@@ -109,7 +109,7 @@ export function Hero({ imageAvailable }: HeroProps) {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             variants={fastReveal}
           >
-            <span className="h-2 w-2 rounded-full bg-orange" />
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-orange" />
             <span className="min-w-0 flex-1">
               Fast execution. Human-reviewed. Ready for your customer.
             </span>

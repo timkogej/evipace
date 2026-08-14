@@ -20,7 +20,7 @@ export function Hero({ imageAvailable }: HeroProps) {
 
   return (
     <section
-      className="relative isolate mt-20 min-h-[84svh] overflow-hidden bg-[#e9e3d8] md:min-h-[82svh] xl:min-h-[min(88vh,56rem)]"
+      className="relative isolate min-h-[92svh] overflow-hidden bg-[#e9e3d8] md:min-h-[88svh] xl:min-h-[min(92vh,56rem)]"
       id="top"
       aria-labelledby="hero-title"
     >
@@ -49,14 +49,15 @@ export function Hero({ imageAvailable }: HeroProps) {
         )}
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(247,246,242,0.96)_0%,rgba(247,246,242,0.88)_38%,rgba(247,246,242,0.48)_68%,rgba(247,246,242,0.12)_100%)] sm:hidden" />
-      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_30%_38%,rgba(250,249,246,0.68)_0%,rgba(247,246,242,0.38)_42%,rgba(247,246,242,0)_72%)] sm:hidden" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(247,246,242,0.94)_0%,rgba(247,246,242,0.84)_40%,rgba(247,246,242,0.30)_66%,rgba(247,246,242,0.04)_88%,rgba(247,246,242,0)_100%)] sm:hidden" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_28%_37%,rgba(250,249,246,0.42)_0%,rgba(247,246,242,0.22)_38%,rgba(247,246,242,0)_66%)] sm:hidden" />
       <div className="pointer-events-none absolute inset-0 z-10 hidden bg-[linear-gradient(90deg,rgba(247,246,242,0.96)_0%,rgba(247,246,242,0.88)_23%,rgba(247,246,242,0.42)_46%,rgba(247,246,242,0.10)_64%,rgba(247,246,242,0)_80%)] sm:block" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[clamp(4.5rem,12vh,8.5rem)] bg-[linear-gradient(180deg,rgba(250,249,246,0.82)_0%,rgba(247,246,242,0.42)_44%,rgba(247,246,242,0)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[clamp(8rem,22vh,14rem)] bg-[linear-gradient(0deg,rgba(247,246,242,0.96)_0%,rgba(247,246,242,0.72)_28%,rgba(247,246,242,0.30)_62%,rgba(247,246,242,0)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[clamp(5rem,14vh,9rem)] bg-[radial-gradient(ellipse_at_50%_100%,rgba(250,249,246,0.54)_0%,rgba(247,246,242,0.24)_46%,rgba(247,246,242,0)_78%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-[linear-gradient(180deg,rgba(250,249,246,0.14)_0%,rgba(247,246,242,0.06)_48%,rgba(247,246,242,0)_100%)] sm:h-24 sm:bg-[linear-gradient(180deg,rgba(250,249,246,0.20)_0%,rgba(247,246,242,0.08)_50%,rgba(247,246,242,0)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-[-4rem] bottom-[-3.5rem] z-10 h-[clamp(12rem,30vh,20rem)] bg-[rgba(247,246,242,0.34)] backdrop-blur-[22px] [-webkit-mask-image:linear-gradient(to_top,black_0%,black_42%,rgba(0,0,0,0.72)_62%,transparent_100%)] [mask-image:linear-gradient(to_top,black_0%,black_42%,rgba(0,0,0,0.72)_62%,transparent_100%)] sm:bottom-[-4.5rem] sm:h-[clamp(14rem,34vh,24rem)] sm:backdrop-blur-[28px]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-36 bg-[linear-gradient(0deg,rgba(250,249,246,1)_0%,rgba(247,246,242,0.88)_24%,rgba(247,246,242,0.46)_56%,rgba(247,246,242,0)_100%)] sm:h-[clamp(10rem,25vh,16rem)] sm:bg-[linear-gradient(0deg,rgba(250,249,246,1)_0%,rgba(247,246,242,0.9)_22%,rgba(247,246,242,0.48)_54%,rgba(247,246,242,0)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-[radial-gradient(ellipse_at_50%_100%,rgba(250,249,246,0.74)_0%,rgba(247,246,242,0.34)_46%,rgba(247,246,242,0)_82%)] sm:h-[clamp(7rem,17vh,11rem)]" />
 
-      <div className="site-shell relative z-20 flex min-h-[84svh] items-start py-14 md:min-h-[82svh] md:items-center md:py-16 xl:min-h-[min(88vh,56rem)]">
+      <div className="site-shell relative z-20 flex min-h-[92svh] items-start pb-14 pt-32 md:min-h-[88svh] md:items-center md:py-20 xl:min-h-[min(92vh,56rem)]">
         <motion.div
           animate="show"
           className="w-full max-w-[31.5rem] pt-1 md:w-[42%] md:max-w-[33rem] md:pt-0 xl:w-[39%]"
@@ -83,7 +84,7 @@ export function Hero({ imageAvailable }: HeroProps) {
           </motion.h1>
 
           <motion.p
-            className="body-lg mt-6 max-w-full text-[rgba(21,21,21,0.76)] [overflow-wrap:anywhere] sm:max-w-[34rem] md:max-w-[30rem]"
+            className="body-lg mt-6 max-w-[15.25rem] text-[rgba(21,21,21,0.76)] [overflow-wrap:anywhere] sm:max-w-[34rem] md:max-w-[30rem]"
             transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
             variants={fastReveal}
           >
@@ -113,7 +114,7 @@ export function Hero({ imageAvailable }: HeroProps) {
           </motion.div>
 
           <motion.div
-            className="mt-7 flex flex-wrap items-center gap-3 text-sm font-semibold text-[rgba(21,21,21,0.66)] md:max-w-[28rem]"
+            className="mt-7 flex max-w-[15.25rem] flex-wrap items-center gap-3 text-sm font-semibold text-[rgba(21,21,21,0.66)] md:max-w-[28rem]"
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             variants={fastReveal}
           >

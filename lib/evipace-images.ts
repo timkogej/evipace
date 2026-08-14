@@ -35,7 +35,7 @@ export const evipaceImages = {
   },
   services: {
     questionnaires: {
-      src: `${homepageBase}/service-questionnaires.webp`,
+      src: `${homepageBase}/service-questionnaires-2.webp`,
       alt: "Supplier ESG questionnaire with evidence and completion statuses",
       sizes: "(min-width: 1024px) 44vw, 100vw",
       imageClassName: "object-[50%_48%]",

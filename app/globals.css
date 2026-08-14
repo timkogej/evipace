@@ -84,12 +84,6 @@ a {
   margin-inline: auto;
 }
 
-.hero-shell {
-  width: calc(100vw - 2rem);
-  max-width: 1480px;
-  margin-inline: auto;
-}
-
 .brand-logo {
   position: relative;
   display: block;
@@ -315,11 +309,5 @@ a {
   .mobile-menu-button {
     right: auto;
     left: min(calc(100vw - 3.75rem), 329px);
-  }
-}
-
-@media (min-width: 521px) {
-  .hero-shell {
-    width: calc(100vw - (var(--section-x) * 2));
   }
 }

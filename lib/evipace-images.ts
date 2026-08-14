@@ -18,10 +18,11 @@ export const evipaceImages = {
     logoGlow: `${brandBase}/evipace-logo-glow.png`
   },
   hero: {
-    src: `${homepageBase}/hero-manufacturing-2.webp`,
-    alt: "Operator working with CNC machinery in a modern manufacturing facility",
-    sizes: "(min-width: 1024px) 56vw, 100vw",
-    imageClassName: "object-[62%_50%] md:object-[64%_50%]",
+    src: `${homepageBase}/evipace-hero-3.webp`,
+    alt: "Evipace consultant reviewing supplier ESG request documents with a client in a meeting room",
+    sizes: "(min-width: 1536px) 1480px, (min-width: 1280px) calc(100vw - 6rem), (min-width: 768px) calc(100vw - 4rem), calc(100vw - 2rem)",
+    imageClassName:
+      "object-[53%_50%] sm:object-[52%_50%] xl:object-[51%_50%]",
     priority: true,
     quality: 88
   },

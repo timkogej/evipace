@@ -20,9 +20,9 @@ export const evipaceImages = {
   hero: {
     src: `${homepageBase}/evipace-hero-3.webp`,
     alt: "Evipace consultant reviewing supplier ESG request documents with a client in a meeting room",
-    sizes: "100vw",
+    sizes: "(min-width: 1536px) 1480px, (min-width: 1280px) calc(100vw - 6rem), (min-width: 768px) calc(100vw - 4rem), calc(100vw - 2rem)",
     imageClassName:
-      "object-[72%_50%] sm:object-[64%_50%] lg:object-[54%_50%] xl:object-[50%_50%]",
+      "object-[53%_50%] sm:object-[52%_50%] xl:object-[51%_50%]",
     priority: true,
     quality: 88
   },

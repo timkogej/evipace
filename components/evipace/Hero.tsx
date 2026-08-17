@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { evipaceImages } from "@/lib/evipace-images";
@@ -12,104 +9,108 @@ type HeroProps = {
 };
 
 export function Hero({ imageAvailable }: HeroProps) {
-  const reducedMotion = useReducedMotion();
-
-  const fastReveal = {
-    hidden: { opacity: 0, y: reducedMotion ? 0 : 24 },
-    show: { opacity: 1, y: 0 }
-  };
+  const heroImage = evipaceImages.hero;
 
   return (
     <section
-      className="relative isolate overflow-hidden pt-24"
+      className="relative isolate min-h-[76svh] overflow-hidden"
       id="top"
       aria-labelledby="hero-title"
     >
-      <div className="hero-shell py-7 sm:py-10 xl:py-8">
-        <div className="relative grid min-w-0 gap-9 xl:block">
-          <div className="relative z-20 w-full min-w-0 max-w-3xl xl:absolute xl:inset-y-0 xl:left-[clamp(2rem,4vw,4.75rem)] xl:flex xl:w-[min(32rem,40%)] xl:items-center">
-            <motion.div
-              animate="show"
-              initial="hidden"
-              transition={{ staggerChildren: 0.09 }}
+      <div className="absolute inset-0 -z-10">
+        {imageAvailable ? (
+          <>
+            <Image
+              alt=""
+              aria-hidden="true"
+              className={`hidden object-cover md:block ${heroImage.imageClassName}`}
+              fill
+              priority={heroImage.priority}
+              quality={heroImage.quality}
+              sizes={heroImage.sizes}
+              src={heroImage.src}
+            />
+            <Image
+              alt=""
+              aria-hidden="true"
+              className={`object-cover md:hidden ${heroImage.mobileImageClassName}`}
+              fill
+              priority={heroImage.priority}
+              quality={heroImage.quality}
+              sizes={heroImage.mobileSizes}
+              src={heroImage.mobileSrc}
+            />
+          </>
+        ) : (
+          <ImageSlot
+            {...heroImage}
+            className="absolute inset-0 border-0"
+            renderActualImage={false}
+          />
+        )}
+
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(250,249,246,0.96)_0%,rgba(250,249,246,0.91)_39%,rgba(250,249,246,0.58)_60%,rgba(247,246,242,0.24)_100%)] md:hidden" />
+        <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(250,249,246,0.96)_0%,rgba(250,249,246,0.88)_25%,rgba(250,249,246,0.40)_48%,rgba(250,249,246,0.08)_70%,rgba(250,249,246,0)_100%)] md:block" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--paper)] to-transparent" />
+      </div>
+
+      <div className="relative z-10 flex min-h-[76svh] w-full min-w-0 items-start justify-center px-6 pb-[20svh] pt-[7.25rem] text-center sm:items-center sm:px-[var(--section-x)] sm:pb-20 sm:pt-24 lg:justify-start lg:px-[clamp(2.5rem,4vw,5rem)]">
+        <div className="w-full min-w-0 max-w-[34rem]">
+          <h1
+            className="mx-auto max-w-full font-display text-[2.25rem] leading-[0.92] text-ink [overflow-wrap:anywhere] [text-shadow:0_1px_26px_rgba(255,255,255,0.78)] min-[380px]:text-[2.35rem] sm:max-w-[10.5ch] sm:text-[4.65rem] sm:leading-[0.88] lg:text-[5.55rem] xl:text-[6rem]"
+            id="hero-title"
+          >
+            <span className="sm:hidden">
+              ESG evidence,
+              <br />
+              ready faster.
+            </span>
+            <span className="hidden sm:inline">
+              ESG evidence, ready faster.
+            </span>
+          </h1>
+
+          <p
+            className="mx-auto mt-5 max-w-full text-[0.98rem] font-medium leading-7 text-[rgba(21,21,21,0.74)] [overflow-wrap:anywhere] sm:mt-6 sm:max-w-[31rem] sm:text-lg lg:text-xl lg:leading-8"
+          >
+            <span className="sm:hidden">
+              Send the ESG request.
+              <br />
+              We organise the evidence.
+            </span>
+            <span className="hidden sm:inline">
+              We turn supplier questionnaires, VSME reports, Scope 1 & 2 data
+              and supporting documents into customer-ready ESG responses.
+            </span>
+          </p>
+
+          <div
+            className="mx-auto mt-7 flex w-full max-w-[20rem] flex-col items-center justify-center gap-3 sm:mt-8 sm:max-w-[28rem] sm:flex-row"
+          >
+            <ButtonLink
+              className="w-full max-w-full text-center sm:w-auto"
+              href="#questionnaire"
             >
-              <motion.h1
-                className="heading-xl font-display max-w-[10ch] text-ink"
-                id="hero-title"
-                transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
-                variants={fastReveal}
-              >
-                ESG, done faster.
-              </motion.h1>
-
-              <motion.p
-                className="body-lg mt-6 max-w-full text-[rgba(21,21,21,0.72)] [overflow-wrap:anywhere] sm:max-w-[34rem] xl:max-w-[30rem]"
-                transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
-                variants={fastReveal}
-              >
-                We handle the ESG work your customers ask for - from supplier
-                questionnaires and VSME reports to Scope 1 & 2 calculations and
-                supporting documentation.
-              </motion.p>
-
-              <motion.div
-                className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
-                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                variants={fastReveal}
-              >
-                <ButtonLink
-                  className="w-full max-w-full text-center sm:w-auto"
-                  href="#questionnaire"
-                >
-                  Send us your ESG request
-                </ButtonLink>
-                <a
-                  className="orange-link inline-flex min-h-12 items-center gap-2 px-1 text-sm"
-                  href="#how-it-works"
-                >
-                  <span>See how it works</span>
-                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                </a>
-              </motion.div>
-
-              <motion.div
-                className="mt-7 flex flex-wrap items-center gap-3 text-sm font-semibold text-[rgba(21,21,21,0.62)] xl:max-w-[28rem]"
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                variants={fastReveal}
-              >
-                <span
-                  aria-hidden="true"
-                  className="h-2 w-2 rounded-full bg-orange"
-                />
-                <span className="min-w-0 flex-1 [overflow-wrap:anywhere]">
-                  Fast execution. Human-reviewed. Ready for your customer.
-                </span>
-              </motion.div>
-            </motion.div>
+              Send us your ESG request
+            </ButtonLink>
+            <a
+              className="orange-link inline-flex min-h-12 items-center gap-2 px-1 text-sm"
+              href="#how-it-works"
+            >
+              <span>See how it works</span>
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </a>
           </div>
 
-          <figure className="relative aspect-[4/3] w-full min-w-0 overflow-hidden rounded-[1.35rem] border border-[rgba(21,21,21,0.10)] bg-[#efede6] shadow-[0_28px_90px_rgba(21,21,21,0.13)] sm:aspect-[16/10] lg:aspect-[16/9] xl:h-[min(76vh,50rem)] xl:min-h-[43rem] xl:aspect-auto">
-            {imageAvailable ? (
-              <Image
-                alt={evipaceImages.hero.alt}
-                className={`object-cover ${evipaceImages.hero.imageClassName}`}
-                fill
-                priority={evipaceImages.hero.priority}
-                quality={evipaceImages.hero.quality}
-                sizes={evipaceImages.hero.sizes}
-                src={evipaceImages.hero.src}
-              />
-            ) : (
-              <ImageSlot
-                {...evipaceImages.hero}
-                className="absolute inset-0 border-0"
-                renderActualImage={false}
-              />
-            )}
-
-            <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(250,249,246,0.98)_0%,rgba(250,249,246,0.93)_21%,rgba(250,249,246,0.62)_42%,rgba(250,249,246,0.12)_66%,rgba(250,249,246,0)_100%)] xl:block" />
-            <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_82%_24%,rgba(255,255,255,0.22),transparent_30%),linear-gradient(180deg,rgba(21,21,21,0)_70%,rgba(21,21,21,0.16)_100%)] xl:block" />
-          </figure>
+          <div className="mx-auto mt-7 hidden max-w-[27rem] flex-wrap items-center justify-center gap-3 text-sm font-semibold text-[rgba(21,21,21,0.62)] sm:flex">
+            <span
+              aria-hidden="true"
+              className="h-2 w-2 rounded-full bg-orange"
+            />
+            <span className="min-w-0 [overflow-wrap:anywhere]">
+              Prepared evidence. Human-reviewed. Ready for your customer.
+            </span>
+          </div>
         </div>
       </div>
     </section>

@@ -1,9 +1,12 @@
 export type EvipaceImageAsset = {
   src: string;
+  mobileSrc?: string;
   alt: string;
   label?: string;
   sizes?: string;
+  mobileSizes?: string;
   imageClassName?: string;
+  mobileImageClassName?: string;
   priority?: boolean;
   quality?: number;
 };
@@ -18,11 +21,14 @@ export const evipaceImages = {
     logoGlow: `${brandBase}/evipace-logo-glow.png`
   },
   hero: {
-    src: `${homepageBase}/evipace-hero-3.webp`,
-    alt: "Evipace consultant reviewing supplier ESG request documents with a client in a meeting room",
-    sizes: "(min-width: 1536px) 1480px, (min-width: 1280px) calc(100vw - 6rem), (min-width: 768px) calc(100vw - 4rem), calc(100vw - 2rem)",
+    src: `${homepageBase}/evidance-hero-4.webp`,
+    mobileSrc: `${homepageBase}/evidance-hero-4-mobile.webp`,
+    alt: "ESG documentation package prepared by Evipace",
+    sizes: "(min-width: 768px) 100vw, 0vw",
+    mobileSizes: "(max-width: 767px) 100vw, 0vw",
     imageClassName:
-      "object-[53%_50%] sm:object-[52%_50%] xl:object-[51%_50%]",
+      "object-[60%_50%] lg:object-[58%_50%] 2xl:object-[55%_50%]",
+    mobileImageClassName: "origin-top scale-[1.12] object-[50%_0%]",
     priority: true,
     quality: 88
   },

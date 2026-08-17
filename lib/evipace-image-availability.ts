@@ -14,7 +14,9 @@ export type EvipaceImageAvailability = ReturnType<
 
 export function getEvipaceImageAvailability() {
   return {
-    hero: hasPublicAsset(evipaceImages.hero.src),
+    hero:
+      hasPublicAsset(evipaceImages.hero.src) &&
+      hasPublicAsset(evipaceImages.hero.mobileSrc),
     customerData: hasPublicAsset(evipaceImages.customerData.src),
     services: {
       questionnaires: hasPublicAsset(evipaceImages.services.questionnaires.src),

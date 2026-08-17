@@ -13,7 +13,7 @@ export function Hero({ imageAvailable }: HeroProps) {
 
   return (
     <section
-      className="relative isolate min-h-[94svh] overflow-hidden md:min-h-[76svh]"
+      className="relative isolate min-h-[100svh] overflow-hidden md:min-h-[76svh]"
       id="top"
       aria-labelledby="hero-title"
     >
@@ -30,16 +30,18 @@ export function Hero({ imageAvailable }: HeroProps) {
               sizes={heroImage.sizes}
               src={heroImage.src}
             />
-            <Image
-              alt=""
-              aria-hidden="true"
-              className={`object-cover md:hidden ${heroImage.mobileImageClassName}`}
-              fill
-              priority={heroImage.priority}
-              quality={heroImage.quality}
-              sizes={heroImage.mobileSizes}
-              src={heroImage.mobileSrc}
-            />
+            <div className="absolute inset-0 md:hidden">
+              <Image
+                alt=""
+                aria-hidden="true"
+                className={`object-contain object-bottom ${heroImage.mobileImageClassName}`}
+                fill
+                priority={heroImage.priority}
+                quality={heroImage.quality}
+                sizes={heroImage.mobileSizes}
+                src={heroImage.mobileSrc}
+              />
+            </div>
           </>
         ) : (
           <ImageSlot
@@ -54,19 +56,21 @@ export function Hero({ imageAvailable }: HeroProps) {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--paper)] to-transparent" />
       </div>
 
-      <div className="relative z-10 flex min-h-[94svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[9.25rem] text-center md:min-h-[76svh] md:items-center md:justify-start md:px-[var(--section-x)] md:pb-20 md:pt-24 lg:px-[clamp(2.5rem,4vw,5rem)]">
+      <div className="relative z-10 flex min-h-[100svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[9.25rem] text-center md:min-h-[76svh] md:items-center md:justify-start md:px-[var(--section-x)] md:pb-20 md:pt-24 lg:px-[clamp(2.5rem,4vw,5rem)]">
         <div className="w-full min-w-0 max-w-[34rem] md:max-w-[32rem] md:text-left">
           <h1
             className="mx-auto max-w-full font-display text-[2.25rem] leading-[0.92] text-ink [overflow-wrap:anywhere] [text-shadow:0_1px_26px_rgba(255,255,255,0.78)] min-[380px]:text-[2.35rem] md:mx-0 md:max-w-[10ch] md:text-[clamp(3.8rem,8.6vw,6.9rem)] md:leading-[0.86]"
             id="hero-title"
           >
             <span className="md:hidden">
-              ESG evidence,
+              ESG, done
               <br />
-              ready faster.
+              faster.
             </span>
             <span className="hidden md:inline">
-              ESG, done faster.
+              ESG, done
+              <br />
+              faster.
             </span>
           </h1>
 

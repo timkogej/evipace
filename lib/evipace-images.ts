@@ -28,7 +28,8 @@ export const evipaceImages = {
     mobileSizes: "(max-width: 767px) 100vw, 0vw",
     imageClassName:
       "object-[60%_50%] lg:object-[58%_50%] 2xl:object-[55%_50%]",
-    mobileImageClassName: "origin-top scale-[1.12] object-[50%_0%]",
+    mobileImageClassName:
+      "origin-center translate-y-[1%] scale-[1.10] object-[50%_50%]",
     priority: true,
     quality: 88
   },

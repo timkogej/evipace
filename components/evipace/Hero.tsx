@@ -20,16 +20,18 @@ export function Hero({ imageAvailable }: HeroProps) {
       <div className="absolute inset-0 z-0">
         {imageAvailable ? (
           <>
-            <Image
-              alt=""
-              aria-hidden="true"
-              className={`evipace-hero__desktop-image object-cover ${heroImage.imageClassName}`}
-              fill
-              priority={heroImage.priority}
-              quality={heroImage.quality}
-              sizes={heroImage.sizes}
-              src={heroImage.src}
-            />
+            <div className="evipace-hero__desktop-visual absolute inset-0 overflow-hidden">
+              <Image
+                alt=""
+                aria-hidden="true"
+                className={`evipace-hero__desktop-image object-cover ${heroImage.imageClassName}`}
+                fill
+                priority={heroImage.priority}
+                quality={heroImage.quality}
+                sizes={heroImage.sizes}
+                src={heroImage.src}
+              />
+            </div>
             <div className="evipace-hero__mobile-image absolute inset-0">
               <Image
                 alt=""
@@ -56,7 +58,7 @@ export function Hero({ imageAvailable }: HeroProps) {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--paper)] to-transparent" />
       </div>
 
-      <div className="evipace-hero__content relative z-10 flex min-h-[100svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[9.25rem] text-center">
+      <div className="evipace-hero__content relative z-10 flex min-h-[100svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[10rem] text-center">
         <div className="evipace-hero__copy w-full min-w-0 max-w-[34rem]">
           <h1
             className="evipace-hero__title mx-auto max-w-full font-display text-[2.25rem] leading-[0.92] text-ink [overflow-wrap:anywhere] [text-shadow:0_1px_26px_rgba(255,255,255,0.78)] min-[380px]:text-[2.35rem]"
@@ -68,7 +70,7 @@ export function Hero({ imageAvailable }: HeroProps) {
               faster.
             </span>
             <span className="evipace-hero__title-desktop">
-              <span className="whitespace-nowrap">ESG done</span>
+              <span className="whitespace-nowrap">ESG, done</span>
               <br />
               faster
             </span>

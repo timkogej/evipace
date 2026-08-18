@@ -90,7 +90,7 @@ a {
   margin-inline: auto;
 }
 
-.evipace-hero__desktop-image,
+.evipace-hero__desktop-visual,
 .evipace-hero__desktop-overlay,
 .evipace-hero__title-desktop,
 .evipace-hero__body-desktop {
@@ -123,13 +123,18 @@ a {
     min-height: 84svh;
   }
 
+  .evipace-hero .evipace-hero__desktop-visual,
+  .evipace-hero .evipace-hero__desktop-overlay {
+    top: 5.5rem;
+  }
+
   .evipace-hero .evipace-hero__desktop-image {
     object-position: 58% 48%;
     transform: translateY(2.25rem) scale(1.035);
     transform-origin: center bottom;
   }
 
-  .evipace-hero__desktop-image,
+  .evipace-hero__desktop-visual,
   .evipace-hero__desktop-overlay {
     display: block;
   }

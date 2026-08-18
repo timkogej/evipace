@@ -21,13 +21,10 @@ export const evipaceImages = {
     logoGlow: `${brandBase}/evipace-logo-glow.png`
   },
   hero: {
-    src: `${homepageBase}/evidance-hero-4.webp`,
-    mobileSrc: `${homepageBase}/evidance-hero-4-mobile.webp`,
-    alt: "ESG documentation package prepared by Evipace",
-    sizes: "(hover: hover) and (pointer: fine) 100vw, (min-width: 640px) 100vw, 0vw",
-    mobileSizes: "(max-width: 639px) 100vw, 0vw",
-    imageClassName: "",
-    mobileImageClassName: "",
+    src: `${homepageBase}/hero-manufacturing-2.webp`,
+    alt: "Operator working with CNC machinery in a modern manufacturing facility",
+    sizes: "(min-width: 1024px) 56vw, 100vw",
+    imageClassName: "object-[62%_50%] md:object-[64%_50%]",
     priority: true,
     quality: 88
   },

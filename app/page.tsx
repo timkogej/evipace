@@ -32,7 +32,7 @@ export default function Home() {
         <QuestionnaireSection
           imageAvailable={imageAvailability.questionnaireForward}
         />
-        <WhyEvipace imageAvailable={imageAvailability.founder} />
+        <WhyEvipace />
         <IndustrialBreak imageAvailable={imageAvailability.industrialBreak} />
         <TransparencySection />
         <SocialProof />

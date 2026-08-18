@@ -1,5 +1,3 @@
-import { evipaceImages } from "@/lib/evipace-images";
-import { ImageSlot } from "./ImageSlot";
 import { Reveal } from "./Reveal";
 
 const values = [
@@ -21,27 +19,24 @@ const values = [
   }
 ];
 
-type WhyEvipaceProps = {
-  imageAvailable: boolean;
-};
-
-export function WhyEvipace({ imageAvailable }: WhyEvipaceProps) {
+export function WhyEvipace() {
   return (
     <section className="section-padding bg-[var(--paper)]" id="why-evipace">
       <div className="site-shell">
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.46fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.58fr] lg:items-end">
           <Reveal className="max-w-4xl">
             <p className="eyebrow">Why Evipace</p>
             <h2 className="heading-md font-display mt-6">
               ESG without building an ESG department.
             </h2>
           </Reveal>
-          <Reveal delay={0.08}>
-            <ImageSlot
-              {...evipaceImages.founder}
-              className="min-h-[24rem] rounded-[1rem]"
-              renderActualImage={imageAvailable}
-            />
+          <Reveal
+            className="border-l border-[rgba(21,21,21,0.12)] pl-6 text-lg leading-8 text-muted lg:pb-2"
+            delay={0.08}
+          >
+            We combine structured ESG workflows with human review, so your team
+            can answer customer requests without hiring, training or managing a
+            new internal function.
           </Reveal>
         </div>
 

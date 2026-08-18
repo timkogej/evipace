@@ -1,101 +1,96 @@
-import { ArrowRight } from "lucide-react";
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, FileText } from "lucide-react";
 import Image from "next/image";
 import { evipaceImages } from "@/lib/evipace-images";
 import { ButtonLink } from "./ButtonLink";
 import { ImageSlot } from "./ImageSlot";
+
+const documentLayers = [
+  {
+    title: "Supplier ESG Questionnaire",
+    meta: "47 / 47 fields reviewed",
+    status: "Ready for customer",
+    className: "-left-4 top-[18%] w-[min(17rem,70vw)] sm:-left-6 lg:-left-8"
+  },
+  {
+    title: "Scope 1 & 2",
+    meta: "Calculation prepared",
+    status: "Ready for review",
+    className: "-right-3 top-[27%] w-[min(15rem,64vw)] sm:-right-5 lg:-right-7"
+  },
+  {
+    title: "VSME",
+    meta: "Draft prepared",
+    status: "Evidence packed",
+    className: "-left-3 bottom-[9%] w-[min(14rem,62vw)] sm:-left-5 lg:-left-7"
+  }
+];
 
 type HeroProps = {
   imageAvailable: boolean;
 };
 
 export function Hero({ imageAvailable }: HeroProps) {
-  const heroImage = evipaceImages.hero;
+  const reducedMotion = useReducedMotion();
+
+  const fastReveal = {
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 24 },
+    show: { opacity: 1, y: 0 }
+  };
 
   return (
     <section
-      className="evipace-hero relative isolate min-h-[100svh] overflow-hidden"
+      className="relative isolate overflow-hidden pt-24"
       id="top"
       aria-labelledby="hero-title"
     >
-      <div className="absolute inset-0 z-0">
-        {imageAvailable ? (
-          <>
-            <div className="evipace-hero__desktop-visual absolute inset-0 overflow-hidden">
-              <Image
-                alt=""
-                aria-hidden="true"
-                className={`evipace-hero__desktop-image object-cover ${heroImage.imageClassName}`}
-                fill
-                priority={heroImage.priority}
-                quality={heroImage.quality}
-                sizes={heroImage.sizes}
-                src={heroImage.src}
-              />
-            </div>
-            <div className="evipace-hero__mobile-image absolute inset-0">
-              <Image
-                alt=""
-                aria-hidden="true"
-                className={`object-contain object-bottom ${heroImage.mobileImageClassName}`}
-                fill
-                priority={heroImage.priority}
-                quality={heroImage.quality}
-                sizes={heroImage.mobileSizes}
-                src={heroImage.mobileSrc}
-              />
-            </div>
-          </>
-        ) : (
-          <ImageSlot
-            {...heroImage}
-            className="absolute inset-0 border-0"
-            renderActualImage={false}
-          />
-        )}
-
-        <div className="evipace-hero__mobile-overlay pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(250,249,246,0.96)_0%,rgba(250,249,246,0.84)_34%,rgba(250,249,246,0.18)_55%,rgba(247,246,242,0)_100%)]" />
-        <div className="evipace-hero__desktop-overlay pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--paper)] to-transparent" />
+      <div className="pointer-events-none absolute left-[4vw] top-28 hidden font-display text-[14vw] leading-none text-[rgba(21,21,21,0.035)] xl:block">
+        FASTER
       </div>
 
-      <div className="evipace-hero__content relative z-10 flex min-h-[100svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[10rem] text-center">
-        <div className="evipace-hero__copy w-full min-w-0 max-w-[34rem]">
-          <h1
-            className="evipace-hero__title mx-auto max-w-full font-display text-[2.25rem] leading-[0.92] text-ink [overflow-wrap:anywhere] [text-shadow:0_1px_26px_rgba(255,255,255,0.78)] min-[380px]:text-[2.35rem]"
+      <div className="site-shell grid items-start gap-12 py-8 sm:py-12 lg:min-h-[calc(100vh-6rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:py-16">
+        <motion.div
+          animate="show"
+          className="relative z-10 max-w-3xl"
+          initial="hidden"
+          transition={{ staggerChildren: 0.09 }}
+        >
+          <motion.p
+            className="eyebrow"
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            variants={fastReveal}
+          >
+            ESG for European manufacturers
+          </motion.p>
+
+          <motion.h1
+            className="heading-xl font-display mt-7 max-w-[11ch]"
             id="hero-title"
+            transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+            variants={fastReveal}
           >
-            <span className="evipace-hero__title-mobile">
-              ESG, done
-              <br />
-              faster.
-            </span>
-            <span className="evipace-hero__title-desktop">
-              <span className="whitespace-nowrap">ESG, done</span>
-              <br />
-              faster
-            </span>
-          </h1>
+            ESG, done faster.
+          </motion.h1>
 
-          <p
-            className="evipace-hero__body mx-auto mt-5 max-w-full text-[0.98rem] font-medium leading-7 text-[rgba(21,21,21,0.74)] [overflow-wrap:anywhere]"
+          <motion.p
+            className="body-lg mt-7 max-w-2xl [overflow-wrap:anywhere]"
+            transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
+            variants={fastReveal}
           >
-            <span className="evipace-hero__body-mobile">
-              Send the ESG request.
-              <br />
-              We organise the evidence.
-            </span>
-            <span className="evipace-hero__body-desktop">
-              We handle the ESG work your customers ask for - from supplier
-              questionnaires and VSME reports to Scope 1 & 2 calculations and
-              supporting documentation.
-            </span>
-          </p>
+            We handle the ESG work your customers ask for - from supplier
+            questionnaires and VSME reports to Scope 1 & 2 calculations and
+            supporting documentation.
+          </motion.p>
 
-          <div
-            className="evipace-hero__actions mx-auto mt-7 flex w-full max-w-[20rem] flex-col items-center justify-center gap-3"
+          <motion.div
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            variants={fastReveal}
           >
             <ButtonLink
-              className="evipace-hero__primary-cta w-full max-w-full text-center sm:w-auto"
+              className="w-full max-w-full text-center sm:w-auto"
               href="#questionnaire"
             >
               Send us your ESG request
@@ -107,17 +102,79 @@ export function Hero({ imageAvailable }: HeroProps) {
               <span>See how it works</span>
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </a>
-          </div>
+          </motion.div>
 
-          <div className="evipace-hero__proof mx-auto mt-7 hidden max-w-[28rem] flex-wrap items-center justify-center gap-3 text-sm font-semibold text-[rgba(21,21,21,0.62)] min-[640px]:mx-0 min-[640px]:flex min-[640px]:justify-start">
-            <span
-              aria-hidden="true"
-              className="h-2 w-2 rounded-full bg-orange"
-            />
-            <span className="min-w-0 [overflow-wrap:anywhere]">
+          <motion.div
+            className="mt-7 flex flex-wrap items-center gap-3 text-sm font-semibold text-[rgba(21,21,21,0.62)]"
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            variants={fastReveal}
+          >
+            <span className="h-2 w-2 rounded-full bg-orange" />
+            <span className="min-w-0 flex-1">
               Fast execution. Human-reviewed. Ready for your customer.
             </span>
+          </motion.div>
+        </motion.div>
+
+        <div className="relative min-h-[30rem] sm:min-h-[36rem] lg:min-h-[44rem]">
+          <div className="absolute inset-0">
+            {imageAvailable ? (
+              <figure className="absolute inset-0 isolate overflow-hidden rounded-[1.25rem] border border-[rgba(21,21,21,0.12)] bg-[#efede6]">
+                <Image
+                  alt={evipaceImages.hero.alt}
+                  className={`object-cover ${evipaceImages.hero.imageClassName}`}
+                  fill
+                  priority={evipaceImages.hero.priority}
+                  quality={evipaceImages.hero.quality}
+                  sizes={evipaceImages.hero.sizes}
+                  src={evipaceImages.hero.src}
+                />
+              </figure>
+            ) : (
+              <ImageSlot
+                {...evipaceImages.hero}
+                className="absolute inset-0 rounded-[1.25rem]"
+                renderActualImage={false}
+              />
+            )}
           </div>
+
+          {documentLayers.map((doc, index) => (
+            <motion.div
+              animate={{ opacity: 1, y: 0 }}
+              className={`absolute z-10 overflow-hidden rounded-lg border border-white/70 bg-white/90 p-4 shadow-premium backdrop-blur-xl ${doc.className}`}
+              initial={reducedMotion ? false : { opacity: 0, y: 26 }}
+              key={doc.title}
+              transition={{
+                duration: 0.58,
+                delay: 0.55 + index * 0.14,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+            >
+              <span aria-hidden="true" className="document-fold" />
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
+                  <FileText aria-hidden="true" className="h-4 w-4" />
+                </div>
+                <span className="font-mono text-[0.68rem] text-muted">
+                  ESG / 2026
+                </span>
+              </div>
+              <p className="text-sm font-bold text-ink">{doc.title}</p>
+              <p className="mt-1 text-xs font-semibold text-muted">{doc.meta}</p>
+              <p className="mt-4 inline-flex items-center gap-2 text-[0.68rem] font-bold uppercase text-[rgba(21,21,21,0.64)]">
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 rounded-full bg-orange"
+                />
+                {doc.status}
+              </p>
+              <div className="mt-4 space-y-1.5">
+                <span className="block h-1.5 w-full rounded-full bg-[rgba(21,21,21,0.10)]" />
+                <span className="block h-1.5 w-3/4 rounded-full bg-[rgba(254,112,1,0.42)]" />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -24,8 +24,8 @@ export const evipaceImages = {
     src: `${homepageBase}/evidance-hero-4.webp`,
     mobileSrc: `${homepageBase}/evidance-hero-4-mobile.webp`,
     alt: "ESG documentation package prepared by Evipace",
-    sizes: "(min-width: 768px) 100vw, 0vw",
-    mobileSizes: "(max-width: 767px) 100vw, 0vw",
+    sizes: "(hover: hover) and (pointer: fine) 100vw, (min-width: 640px) 100vw, 0vw",
+    mobileSizes: "(max-width: 639px) 100vw, 0vw",
     imageClassName:
       "object-[60%_50%] lg:object-[58%_50%] 2xl:object-[55%_50%]",
     mobileImageClassName: "",

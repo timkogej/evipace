@@ -27,7 +27,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
+      className={`evipace-navbar fixed inset-x-0 top-0 z-50 transition duration-300 ${
         scrolled || open
           ? "border-b border-[rgba(21,21,21,0.08)] bg-[rgba(250,249,246,0.86)] shadow-[0_18px_60px_rgba(21,21,21,0.06)] backdrop-blur-xl"
           : "bg-transparent"
@@ -35,7 +35,7 @@ export function Navbar() {
     >
       <nav
         aria-label="Primary navigation"
-        className="site-shell flex h-20 items-center justify-between gap-7"
+        className="evipace-navbar__nav site-shell flex h-20 items-center justify-between gap-7 min-[640px]:h-[5.5rem]"
       >
         <a
           aria-label="Evipace — Home"
@@ -72,7 +72,7 @@ export function Navbar() {
         <button
           aria-expanded={open}
           aria-label={open ? "Close navigation" : "Open navigation"}
-          className="mobile-menu-button fixed top-[1.125rem] z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(21,21,21,0.14)] bg-white/70 text-ink shadow-[0_10px_30px_rgba(21,21,21,0.08)] backdrop-blur lg:hidden"
+          className="mobile-menu-button fixed top-[1.125rem] z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(21,21,21,0.14)] bg-white/70 text-ink shadow-[0_10px_30px_rgba(21,21,21,0.08)] backdrop-blur min-[640px]:top-[1.375rem] lg:hidden"
           onClick={() => setOpen((current) => !current)}
           type="button"
         >

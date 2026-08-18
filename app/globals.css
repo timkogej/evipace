@@ -91,12 +91,19 @@ a {
 }
 
 .evipace-hero__desktop-image,
-.evipace-hero__desktop-overlay {
+.evipace-hero__desktop-overlay,
+.evipace-hero__title-desktop,
+.evipace-hero__body-desktop {
   display: none;
 }
 
 .evipace-hero__mobile-image {
   display: block;
+}
+
+.evipace-hero__title-mobile,
+.evipace-hero__body-mobile {
+  display: inline;
 }
 
 @media (min-width: 640px), (hover: hover) and (pointer: fine) {
@@ -113,7 +120,13 @@ a {
   }
 
   .evipace-hero {
-    min-height: 76svh;
+    min-height: 84svh;
+  }
+
+  .evipace-hero .evipace-hero__desktop-image {
+    object-position: 58% 48%;
+    transform: translateY(2.25rem) scale(1.035);
+    transform-origin: center bottom;
   }
 
   .evipace-hero__desktop-image,
@@ -137,20 +150,20 @@ a {
     );
   }
 
-  .evipace-hero__content {
-    min-height: 76svh;
+  .evipace-hero .evipace-hero__content {
+    min-height: 84svh;
     align-items: center;
     justify-content: flex-start;
-    padding: 8rem var(--section-x) 4rem;
+    padding: 9rem var(--section-x) 3rem;
     text-align: left;
   }
 
-  .evipace-hero__copy {
+  .evipace-hero .evipace-hero__copy {
     max-width: 42rem;
     text-align: left;
   }
 
-  .evipace-hero__title {
+  .evipace-hero .evipace-hero__title {
     max-width: 10ch;
     margin-inline: 0;
     font-size: clamp(3.8rem, 8.6vw, 6.9rem);
@@ -167,25 +180,25 @@ a {
     display: inline;
   }
 
-  .evipace-hero__body {
+  .evipace-hero .evipace-hero__body {
     max-width: 30rem;
     margin: 1.5rem 0 0;
     font-size: clamp(1.05rem, 1.55vw, 1.35rem);
     line-height: 1.55;
   }
 
-  .evipace-hero__actions {
+  .evipace-hero .evipace-hero__actions {
     flex-flow: row wrap;
     justify-content: flex-start;
     max-width: 28rem;
     margin: 2rem 0 0;
   }
 
-  .evipace-hero__primary-cta {
+  .evipace-hero .evipace-hero__primary-cta {
     width: auto;
   }
 
-  .evipace-hero__proof {
+  .evipace-hero .evipace-hero__proof {
     display: flex;
     justify-content: flex-start;
     margin-right: 0;
@@ -209,7 +222,7 @@ a {
     );
   }
 
-  .evipace-hero__content {
+  .evipace-hero .evipace-hero__content {
     padding-right: clamp(2.5rem, 4vw, 5rem);
     padding-left: clamp(2.5rem, 4vw, 5rem);
   }

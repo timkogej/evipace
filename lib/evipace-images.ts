@@ -26,8 +26,7 @@ export const evipaceImages = {
     alt: "ESG documentation package prepared by Evipace",
     sizes: "(hover: hover) and (pointer: fine) 100vw, (min-width: 640px) 100vw, 0vw",
     mobileSizes: "(max-width: 639px) 100vw, 0vw",
-    imageClassName:
-      "object-[60%_50%] lg:object-[58%_50%] 2xl:object-[55%_50%]",
+    imageClassName: "",
     mobileImageClassName: "",
     priority: true,
     quality: 88

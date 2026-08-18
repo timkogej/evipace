@@ -13,7 +13,7 @@ export function Hero({ imageAvailable }: HeroProps) {
 
   return (
     <section
-      className="evipace-hero relative isolate min-h-[100svh] overflow-hidden min-[640px]:min-h-[76svh]"
+      className="evipace-hero relative isolate min-h-[100svh] overflow-hidden"
       id="top"
       aria-labelledby="hero-title"
     >
@@ -23,14 +23,14 @@ export function Hero({ imageAvailable }: HeroProps) {
             <Image
               alt=""
               aria-hidden="true"
-              className={`evipace-hero__desktop-image hidden object-cover min-[640px]:block ${heroImage.imageClassName}`}
+              className={`evipace-hero__desktop-image object-cover ${heroImage.imageClassName}`}
               fill
               priority={heroImage.priority}
               quality={heroImage.quality}
               sizes={heroImage.sizes}
               src={heroImage.src}
             />
-            <div className="evipace-hero__mobile-image absolute inset-0 min-[640px]:hidden">
+            <div className="evipace-hero__mobile-image absolute inset-0">
               <Image
                 alt=""
                 aria-hidden="true"
@@ -51,23 +51,23 @@ export function Hero({ imageAvailable }: HeroProps) {
           />
         )}
 
-        <div className="evipace-hero__mobile-overlay pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(250,249,246,0.96)_0%,rgba(250,249,246,0.84)_34%,rgba(250,249,246,0.18)_55%,rgba(247,246,242,0)_100%)] min-[640px]:hidden" />
-        <div className="evipace-hero__desktop-overlay pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(250,249,246,0.99)_0%,rgba(250,249,246,0.98)_50%,rgba(250,249,246,0.86)_72%,rgba(250,249,246,0.34)_92%,rgba(250,249,246,0)_100%)] min-[640px]:block lg:bg-[linear-gradient(90deg,rgba(250,249,246,0.99)_0%,rgba(250,249,246,0.96)_24%,rgba(250,249,246,0.78)_39%,rgba(250,249,246,0.28)_58%,rgba(250,249,246,0)_100%)]" />
+        <div className="evipace-hero__mobile-overlay pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(250,249,246,0.96)_0%,rgba(250,249,246,0.84)_34%,rgba(250,249,246,0.18)_55%,rgba(247,246,242,0)_100%)]" />
+        <div className="evipace-hero__desktop-overlay pointer-events-none absolute inset-0" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--paper)] to-transparent" />
       </div>
 
-      <div className="evipace-hero__content relative z-10 flex min-h-[100svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[9.25rem] text-center min-[640px]:min-h-[76svh] min-[640px]:items-center min-[640px]:justify-start min-[640px]:px-[var(--section-x)] min-[640px]:pb-16 min-[640px]:pt-32 lg:px-[clamp(2.5rem,4vw,5rem)]">
-        <div className="evipace-hero__copy w-full min-w-0 max-w-[34rem] min-[640px]:max-w-[42rem] min-[640px]:text-left">
+      <div className="evipace-hero__content relative z-10 flex min-h-[100svh] w-full min-w-0 items-start justify-center px-6 pb-[18svh] pt-[9.25rem] text-center">
+        <div className="evipace-hero__copy w-full min-w-0 max-w-[34rem]">
           <h1
-            className="evipace-hero__title mx-auto max-w-full font-display text-[2.25rem] leading-[0.92] text-ink [overflow-wrap:anywhere] [text-shadow:0_1px_26px_rgba(255,255,255,0.78)] min-[380px]:text-[2.35rem] min-[640px]:mx-0 min-[640px]:max-w-[10ch] min-[640px]:text-[clamp(3.8rem,8.6vw,6.9rem)] min-[640px]:leading-[0.86]"
+            className="evipace-hero__title mx-auto max-w-full font-display text-[2.25rem] leading-[0.92] text-ink [overflow-wrap:anywhere] [text-shadow:0_1px_26px_rgba(255,255,255,0.78)] min-[380px]:text-[2.35rem]"
             id="hero-title"
           >
-            <span className="evipace-hero__title-mobile min-[640px]:hidden">
+            <span className="evipace-hero__title-mobile">
               ESG, done
               <br />
               faster.
             </span>
-            <span className="evipace-hero__title-desktop hidden min-[640px]:inline">
+            <span className="evipace-hero__title-desktop">
               <span className="whitespace-nowrap">ESG done</span>
               <br />
               faster
@@ -75,14 +75,14 @@ export function Hero({ imageAvailable }: HeroProps) {
           </h1>
 
           <p
-            className="evipace-hero__body mx-auto mt-5 max-w-full text-[0.98rem] font-medium leading-7 text-[rgba(21,21,21,0.74)] [overflow-wrap:anywhere] min-[640px]:mx-0 min-[640px]:mt-6 min-[640px]:max-w-[30rem] min-[640px]:text-[clamp(1.05rem,1.55vw,1.35rem)] min-[640px]:leading-[1.55]"
+            className="evipace-hero__body mx-auto mt-5 max-w-full text-[0.98rem] font-medium leading-7 text-[rgba(21,21,21,0.74)] [overflow-wrap:anywhere]"
           >
-            <span className="evipace-hero__body-mobile min-[640px]:hidden">
+            <span className="evipace-hero__body-mobile">
               Send the ESG request.
               <br />
               We organise the evidence.
             </span>
-            <span className="evipace-hero__body-desktop hidden min-[640px]:inline">
+            <span className="evipace-hero__body-desktop">
               We handle the ESG work your customers ask for - from supplier
               questionnaires and VSME reports to Scope 1 & 2 calculations and
               supporting documentation.
@@ -90,7 +90,7 @@ export function Hero({ imageAvailable }: HeroProps) {
           </p>
 
           <div
-            className="evipace-hero__actions mx-auto mt-7 flex w-full max-w-[20rem] flex-col items-center justify-center gap-3 min-[640px]:mx-0 min-[640px]:mt-8 min-[640px]:max-w-[28rem] min-[640px]:flex-row min-[640px]:justify-start"
+            className="evipace-hero__actions mx-auto mt-7 flex w-full max-w-[20rem] flex-col items-center justify-center gap-3"
           >
             <ButtonLink
               className="evipace-hero__primary-cta w-full max-w-full text-center sm:w-auto"

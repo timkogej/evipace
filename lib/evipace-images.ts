@@ -29,18 +29,18 @@ export const evipaceImages = {
     quality: 88
   },
   customerData: {
-    src: `${homepageBase}/customer-esg-data.webp`,
-    alt: "Company ESG data spread across invoices, spreadsheets and business documents",
+    src: `${homepageBase}/evipace-your-client-asked.webp`,
+    alt: "Scope 1 and Scope 2 data being prepared from invoices and spreadsheets",
     sizes: "(min-width: 1024px) 42vw, 100vw",
-    imageClassName: "object-[50%_52%]",
+    imageClassName: "object-[50%_50%]",
     quality: 84
   },
   services: {
     questionnaires: {
-      src: `${homepageBase}/service-questionnaires-2.webp`,
+      src: `${homepageBase}/evipace-services-questionnaire.webp`,
       alt: "Supplier ESG questionnaire with evidence and completion statuses",
       sizes: "(min-width: 1024px) 44vw, 100vw",
-      imageClassName: "object-[50%_48%]",
+      imageClassName: "object-[50%_52%]",
       quality: 84
     },
     vsme: {
@@ -51,25 +51,25 @@ export const evipaceImages = {
       quality: 84
     },
     scope: {
-      src: `${homepageBase}/service-scope-1-2.webp`,
+      src: `${homepageBase}/evipace-scope-1-2.webp`,
       alt: "Scope 1 and Scope 2 emissions calculation using energy and fuel data",
       sizes: "(min-width: 1024px) 44vw, 100vw",
-      imageClassName: "object-[52%_50%]",
+      imageClassName: "object-[64%_50%]",
       quality: 84
     },
     evidence: {
-      src: `${homepageBase}/service-policies-evidence.webp`,
+      src: `${homepageBase}/evipace-services-policy.webp`,
       alt: "Organised ESG policies and supporting evidence documents",
       sizes: "(min-width: 1024px) 44vw, 100vw",
-      imageClassName: "object-[50%_48%]",
+      imageClassName: "object-[52%_50%]",
       quality: 84
     }
   },
   howItWorks: {
-    src: `${homepageBase}/how-it-works.webp`,
+    src: `${homepageBase}/evipace-how-it-works.webp`,
     alt: "Business documents organised into a finished ESG response",
     sizes: "(min-width: 1024px) 34vw, 100vw",
-    imageClassName: "object-[52%_50%]",
+    imageClassName: "object-[50%_50%]",
     quality: 84
   },
   questionnaireForward: {

@@ -9,6 +9,8 @@ export type UploadTarget = {
   endpoint: string;
   /** Server-chosen canonical MIME type — see lib/request-upload-constants.ts. */
   contentType: string;
+  /** The private bucket name — server-supplied, never hardcoded client-side. */
+  bucketName: string;
 };
 
 export type UploadCallbacks = {
@@ -40,6 +42,7 @@ export function uploadFile(
         "x-signature": target.token
       },
       metadata: {
+        bucketName: target.bucketName,
         objectName: target.path,
         // Server-chosen canonical MIME, never file.type — a browser can
         // report an empty or inconsistent value, which would otherwise

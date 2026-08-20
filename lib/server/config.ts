@@ -15,6 +15,32 @@ function bool(name: string, fallback: boolean): boolean {
 }
 
 /**
+ * Derives the direct Storage hostname (<project-ref>.storage.supabase.co)
+ * from SUPABASE_URL (<project-ref>.supabase.co), rather than hardcoding
+ * the project ref anywhere. Supabase's resumable (TUS) upload endpoint
+ * must be reached via this direct Storage hostname — the main API
+ * gateway hostname (SUPABASE_URL itself) does not route
+ * /storage/v1/upload/resumable and returns 404 for it.
+ */
+function deriveStorageUrl(supabaseUrl: string): string {
+  const parsed = new URL(supabaseUrl);
+  const labels = parsed.hostname.split(".");
+  const [projectRef, domain, tld] = [
+    labels[0],
+    labels[labels.length - 2],
+    labels[labels.length - 1]
+  ];
+
+  if (labels.length < 3 || domain !== "supabase" || tld !== "co") {
+    throw new Error(
+      `Cannot derive the Storage URL: SUPABASE_URL ("${supabaseUrl}") does not match the expected <project-ref>.supabase.co pattern.`
+    );
+  }
+
+  return `https://${projectRef}.storage.supabase.co`;
+}
+
+/**
  * All server-only configuration for the ESG request-upload feature. Reading
  * any of the `required*` accessors throws immediately with a clear message
  * if the variable is missing — fail loudly at request time rather than
@@ -28,6 +54,12 @@ export const requestUploadsConfig = {
     bool("EVIPACE_VISITOR_CONFIRMATION_ENABLED", false),
 
   supabaseUrl: () => required("SUPABASE_URL"),
+  /**
+   * The direct Storage hostname, for the TUS resumable-upload endpoint
+   * specifically — see deriveStorageUrl() above for why this differs
+   * from supabaseUrl().
+   */
+  supabaseStorageUrl: () => deriveStorageUrl(requestUploadsConfig.supabaseUrl()),
   supabaseSecretKey: () => required("SUPABASE_SECRET_KEY"),
   storageBucket: () => process.env.SUPABASE_STORAGE_BUCKET?.trim() ?? "inbound-requests",
 

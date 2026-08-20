@@ -92,8 +92,21 @@ alter table inbound_request_files enable row level security;
 -- This is a second, independent layer beneath RLS: even if RLS were ever
 -- disabled or a policy accidentally added later, these REVOKEs still
 -- apply.
-revoke all on public.inbound_requests from public, anon, authenticated;
-revoke all on public.inbound_request_files from public, anon, authenticated;
+-- Includes service_role deliberately: Supabase grants service_role full
+-- default privileges (SELECT/INSERT/UPDATE/DELETE) on new public-schema
+-- tables automatically, same as anon/authenticated. GRANT is additive
+-- only — it can never remove a privilege a role already has — so
+-- granting a narrower set below without first revoking ALL from
+-- service_role here would silently leave any pre-existing default
+-- privilege in place. This was caught during Supabase Step 3
+-- verification: inbound_request_files.UPDATE was still true for
+-- service_role despite never being explicitly granted, because it was
+-- only ever revoked from public/anon/authenticated, not from
+-- service_role itself. Revoke everything from every role first, then
+-- grant back exactly the intended minimal set below — the migration
+-- must not depend on what a given project's default grants happen to be.
+revoke all on public.inbound_requests from public, anon, authenticated, service_role;
+revoke all on public.inbound_request_files from public, anon, authenticated, service_role;
 
 -- The server integration's actual role is `service_role` (both the
 -- legacy service_role key and the current sb_secret_... key authenticate

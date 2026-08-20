@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
       filename: f.original_filename,
       path: f.storage_path,
       token: signedUploads[index].token,
-      endpoint: `${requestUploadsConfig.supabaseStorageUrl()}/storage/v1/upload/resumable`,
+      endpoint: `${requestUploadsConfig.supabaseStorageUrl()}/storage/v1/upload/resumable/sign`,
       bucketName: requestUploadsConfig.storageBucket(),
       // Canonical, server-chosen MIME for Storage metadata — never the
       // browser-reported File.type, which can be empty or inconsistent.

@@ -1,7 +1,7 @@
 import "server-only";
 
 function required(name: string): string {
-  const value = process.env[name];
+  const value = process.env[name]?.trim();
   if (!value) {
     throw new Error(`Missing required environment variable: ${name}`);
   }
@@ -29,12 +29,12 @@ export const requestUploadsConfig = {
 
   supabaseUrl: () => required("SUPABASE_URL"),
   supabaseSecretKey: () => required("SUPABASE_SECRET_KEY"),
-  storageBucket: () => process.env.SUPABASE_STORAGE_BUCKET ?? "inbound-requests",
+  storageBucket: () => process.env.SUPABASE_STORAGE_BUCKET?.trim() ?? "inbound-requests",
 
   resendApiKey: () => required("RESEND_API_KEY"),
   notificationRecipient: () => required("EVIPACE_REQUEST_NOTIFICATION_EMAIL"),
   notificationSender: () => required("EVIPACE_NOTIFICATION_SENDER_EMAIL"),
-  confirmationSender: () => process.env.EVIPACE_CONFIRMATION_SENDER_EMAIL,
+  confirmationSender: () => process.env.EVIPACE_CONFIRMATION_SENDER_EMAIL?.trim(),
 
   rateLimitHmacKey: () => required("RATE_LIMIT_HMAC_KEY"),
   submissionTokenHmacKey: () => required("SUBMISSION_TOKEN_HMAC_KEY"),

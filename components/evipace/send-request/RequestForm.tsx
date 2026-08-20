@@ -90,8 +90,16 @@ export function RequestForm() {
       }
 
       setStage("success");
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (caughtError) {
+      // Surfacing the real error message on-page deliberately — during
+      // integration testing this is the diagnostic signal (e.g. the
+      // actual TUS failure reason from onError in upload-file.ts)
+      // without needing DevTools open to see it.
+      const message =
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Something went wrong. Please try again.";
+      setError(message);
       setStage("form");
     } finally {
       setSubmitting(false);

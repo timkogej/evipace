@@ -54,7 +54,20 @@ export function uploadFile(
         onProgress?.(bytesSent, bytesTotal);
       },
       onError: (error) => {
-        reject(error);
+        // tus-js-client's DetailedError carries the actual failed
+        // response (status + body) on originalResponse. Its own
+        // .message already formats both — reject with that instead of
+        // the bare error object, so the real diagnostic (not just
+        // "something went wrong") reaches wherever this promise's
+        // rejection is surfaced, without needing DevTools to see it.
+        const detailed = error as tus.DetailedError;
+        const status = detailed.originalResponse?.getStatus?.();
+        const body = detailed.originalResponse?.getBody?.();
+        const detail =
+          status !== undefined
+            ? `TUS upload failed (HTTP ${status}): ${body || error.message}`
+            : error.message;
+        reject(new Error(detail));
       },
       onSuccess: () => {
         resolve();

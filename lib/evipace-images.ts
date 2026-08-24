@@ -9,6 +9,10 @@ export type EvipaceImageAsset = {
   mobileImageClassName?: string;
   priority?: boolean;
   quality?: number;
+  width?: number;
+  height?: number;
+  mobileWidth?: number;
+  mobileHeight?: number;
 };
 
 const brandBase = "/images/evipace/brand";
@@ -20,13 +24,27 @@ export const evipaceImages = {
     mark: `${brandBase}/evipace-mark.png`,
     logoGlow: `${brandBase}/evipace-logo-glow.png`
   },
+  /**
+   * Homepage hero — art-directed evidence-desk photography.
+   *
+   * Two approved sources, one per orientation: the 16:9 desktop plate and a
+   * dedicated 9:16 mobile plate. They are selected with a `<picture>` element
+   * so exactly one of them is ever downloaded (see EvidenceDeskHero).
+   * Treated as decorative, hence the empty alt — the hero's meaning lives in
+   * the server-rendered heading, description and CTAs next to it.
+   */
   hero: {
-    src: `${homepageBase}/hero-manufacturing-2.webp`,
-    alt: "Operator working with CNC machinery in a modern manufacturing facility",
-    sizes: "(min-width: 1024px) 56vw, 100vw",
-    imageClassName: "object-[62%_50%] md:object-[64%_50%]",
+    src: `${homepageBase}/hero-evidence-desk-desktop.webp`,
+    mobileSrc: `${homepageBase}/hero-evidence-desk-mobile.webp`,
+    alt: "",
+    sizes: "100vw",
+    mobileSizes: "100vw",
     priority: true,
-    quality: 88
+    quality: 86,
+    width: 3840,
+    height: 2160,
+    mobileWidth: 941,
+    mobileHeight: 1672
   },
   customerData: {
     src: `${homepageBase}/evipace-your-client-asked.webp`,

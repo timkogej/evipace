@@ -122,7 +122,7 @@ export function Hero({ imageAvailable }: HeroProps) {
               <figure className="absolute inset-0 isolate overflow-hidden rounded-[1.25rem] border border-[rgba(21,21,21,0.12)] bg-[#efede6]">
                 <Image
                   alt={evipaceImages.hero.alt}
-                  className={`object-cover ${evipaceImages.hero.imageClassName}`}
+                  className="object-cover"
                   fill
                   priority={evipaceImages.hero.priority}
                   quality={evipaceImages.hero.quality}

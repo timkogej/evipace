@@ -309,3 +309,663 @@ a {
     left: min(calc(100vw - 3.75rem), 329px);
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Homepage hero — evidence desk
+
+   Two quite different compositions share one markup tree:
+
+   - Below 1024px the hero is an ivory field with the vertical plate
+     placed as a bottom-anchored "stage" at its natural aspect ratio, so
+     the desk composition is never cropped and never sits behind the
+     copy. The hero's bottom padding reserves the stage's document zone,
+     which is what keeps text off the documents at every width.
+   - From 1024px up the desktop plate goes genuinely full-bleed with a
+     short ivory scrim on the left.
+
+   Everything is server-rendered; the annotation is CSS/SVG only, plays
+   once, and holds its final state.
+   ───────────────────────────────────────────────────────────────── */
+
+.hero-desk {
+  --hero-nav: 5rem;
+  /* Width of the bottom-anchored mobile stage, and the height the
+     plate's 941x1672 ratio gives it. */
+  --hero-stage-w: min(100vw, 620px);
+  --hero-stage-h: calc(var(--hero-stage-w) * 1.7768);
+  /* The plate's documents begin ~42% down; reserving 66% of the stage
+     leaves the copy clear of them with room to spare. */
+  --hero-stage-reserve: calc(var(--hero-stage-h) * 0.66);
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: clamp(960px, 120svh, 1120px);
+  margin-top: var(--hero-nav);
+  padding:
+    clamp(2.75rem, 6vw, 3.5rem)
+    clamp(1.25rem, 4vw, 1.5rem)
+    var(--hero-stage-reserve);
+  overflow: hidden;
+  /* Ivory matched to the clean upper area of the mobile plate, with a
+     slight left-light / right-shadow tilt so the stage merges into it. */
+  background:
+    linear-gradient(
+      102deg,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0) 46%,
+      rgba(198, 184, 171, 0.34) 100%
+    ),
+    linear-gradient(180deg, #f8f4ee 0%, #f2ebe3 58%, #eae1d8 100%);
+  border-radius: 0;
+}
+
+.hero-desk__media {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 0;
+  display: block;
+  width: var(--hero-stage-w);
+  aspect-ratio: 941 / 1672;
+  border-radius: 0;
+  transform: translateX(-50%);
+}
+
+.hero-desk__media--empty {
+  background: rgba(233, 224, 213, 0.5);
+}
+
+.hero-desk__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  /* Dissolves the plate's top edge into the ivory instead of ending on
+     a hard rectangle. Fully clear well before the documents start. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 15%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 15%);
+}
+
+/*
+ * Phones only. With the tablet reservation the questionnaire's white top
+ * margin lands right at the fold, so the request annotation reads as
+ * floating over empty ivory. Lifting the whole stage — image and both
+ * labels move together, since both are anchored to the hero's bottom
+ * edge — brings the printed documents into the first viewport while
+ * keeping ~30px of air under the trust line.
+ *
+ * Two values, because two different things govern the hero's height:
+ * at 360/390 it is content + reservation, at 430 it is `min-height`.
+ */
+@media (max-width: 639.98px) {
+  .hero-desk {
+    --hero-stage-reserve: calc(var(--hero-stage-h) * 0.61);
+    min-height: clamp(960px, 118svh, 1120px);
+  }
+}
+
+/*
+ * Once the viewport is wider than the stage, ivory shows down both sides
+ * of it. Fade the plate's vertical edges as well so the stage reads as
+ * part of the field rather than as a pasted-in rectangle. If
+ * `mask-composite` is unsupported the layers simply add, which is the
+ * same result as having no side fade at all.
+ */
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .hero-desk__image {
+    -webkit-mask-image:
+      linear-gradient(180deg, transparent 0%, #000 15%),
+      linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    mask-image:
+      linear-gradient(180deg, transparent 0%, #000 15%),
+      linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+}
+
+/* No ivory wash over the mobile plate — the stage sits below the copy,
+   so the documents keep their own contrast. */
+.hero-desk__scrim {
+  display: none;
+}
+
+.hero-desk__annotation {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  width: var(--hero-stage-w);
+  aspect-ratio: 941 / 1672;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.hero-desk__lines {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-desk__rule,
+.hero-desk__link {
+  fill: none;
+  stroke: var(--orange);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-desk__rule {
+  opacity: 0.28;
+  stroke-width: 2.4;
+}
+
+/* Final resting opacity — the network stays legible but never competes
+   with the dossier. */
+.hero-desk__link {
+  opacity: 0.1;
+  stroke-width: 2.4;
+}
+
+.hero-desk__dot {
+  fill: #ffffff;
+  opacity: 0.38;
+  stroke: var(--orange);
+  stroke-width: 3;
+}
+
+.hero-desk__dot--final {
+  opacity: 0.9;
+}
+
+.hero-desk__gap {
+  fill: rgba(254, 112, 1, 0.07);
+  opacity: 0.32;
+  stroke: var(--orange);
+  stroke-width: 2.6;
+}
+
+.hero-desk__label {
+  --fx: 0.5;
+  --fy: 0.5;
+  position: absolute;
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+  padding: 0.3rem 0.5rem;
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.32;
+  white-space: nowrap;
+  background: rgba(250, 246, 239, 0.78);
+  border: 1px solid rgba(21, 21, 21, 0.06);
+  border-radius: 0.4375rem;
+  box-shadow: 0 3px 10px rgba(21, 21, 21, 0.05);
+  translate: var(--tx, 0) var(--ty, 0);
+}
+
+@supports (backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px)) {
+  .hero-desk__label {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.hero-desk__label--final {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.hero-desk__label-dot {
+  flex: none;
+  width: 0.3125rem;
+  height: 0.3125rem;
+  margin-top: 0.3rem;
+  background: var(--orange);
+  border-radius: 999px;
+}
+
+.hero-desk__label-line {
+  display: block;
+  color: rgba(21, 21, 21, 0.6);
+  font-weight: 500;
+}
+
+.hero-desk__content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 38.75rem;
+  text-align: left;
+}
+
+.hero-desk__title {
+  font-size: clamp(3.35rem, 14vw, 4.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+}
+
+/* Locales whose heading runs longer than the English two words. */
+.hero-desk__title--long {
+  font-size: clamp(2.6rem, 10.5vw, 3.5rem);
+}
+
+.hero-desk__title-line {
+  display: block;
+}
+
+.hero-desk__lead {
+  max-width: 34rem;
+  color: #4a4540;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.hero-desk__body {
+  max-width: 35rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Kept in the markup for desktop; hidden on narrow screens so the hero
+   stays focused and the copy clears the documents. */
+.hero-desk__body-secondary {
+  display: none;
+}
+
+.hero-desk__trust {
+  max-width: 35rem;
+  color: rgba(21, 21, 21, 0.62);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* Mobile annotation: two labels only, positioned against the stage
+   itself so they stay on the documents when the hero height changes. */
+.hero-desk__label--request {
+  top: 43.5%;
+  left: 5%;
+}
+
+.hero-desk__label--final {
+  top: 68%;
+  left: 27%;
+}
+
+.hero-desk__label--evidence,
+.hero-desk__label--gap {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-desk {
+    justify-content: center;
+    min-height: clamp(700px, calc(100svh - var(--hero-nav)), 920px);
+    padding:
+      clamp(1.5rem, 3vw, 2.5rem)
+      clamp(1.5rem, 5vw, 6rem)
+      clamp(3.5rem, 7vw, 6rem);
+    background: var(--paper);
+  }
+
+  /* Back to a genuine full-bleed photograph. */
+  .hero-desk__media,
+  .hero-desk__annotation {
+    inset: 0;
+    width: auto;
+    aspect-ratio: auto;
+    transform: none;
+  }
+
+  .hero-desk__media--empty {
+    background: #efede6;
+  }
+
+  .hero-desk__image {
+    object-fit: cover;
+    object-position: center;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-desk__annotation {
+    /*
+     * Reproduces `object-fit: cover; object-position: center` in CSS so
+     * HTML labels land where the SVG's `xMidYMid slice` puts the lines.
+     */
+    --hero-cover-w: max(100cqw, 177.7778cqh);
+    --hero-cover-h: max(100cqh, 56.25cqw);
+    container-type: size;
+  }
+
+  .hero-desk__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(249, 247, 242, 0.98) 0%,
+      rgba(249, 247, 242, 0.91) 23%,
+      rgba(249, 247, 242, 0.52) 34%,
+      rgba(249, 247, 242, 0.15) 44%,
+      rgba(249, 247, 242, 0) 52%
+    );
+  }
+
+  .hero-desk__lines {
+    display: block;
+  }
+
+  .hero-desk__content {
+    width: clamp(24rem, 42%, 43rem);
+    max-width: 43rem;
+  }
+
+  .hero-desk__title {
+    font-size: clamp(72px, 7vw, 138px);
+    line-height: 0.88;
+  }
+
+  .hero-desk__title--long {
+    font-size: clamp(52px, 5.6vw, 100px);
+  }
+
+  .hero-desk__lead {
+    max-width: 35rem;
+    font-size: clamp(1.25rem, 1.4vw, 1.375rem);
+  }
+
+  .hero-desk__body {
+    max-width: 35.5rem;
+    font-size: clamp(1.0625rem, 1.15vw, 1.125rem);
+    line-height: 1.5;
+  }
+
+  .hero-desk__body-secondary {
+    display: block;
+  }
+
+  .hero-desk__label {
+    top: calc(var(--fy) * 100%);
+    left: calc(var(--fx) * 100%);
+    top: calc(50% + (var(--fy) - 0.5) * var(--hero-cover-h));
+    left: calc(50% + (var(--fx) - 0.5) * var(--hero-cover-w));
+    bottom: auto;
+  }
+
+  .hero-desk__label--request {
+    --fx: 0.5443;
+    --fy: 0.132;
+    --tx: -100%;
+  }
+
+  .hero-desk__label--evidence {
+    --fx: 0.8724;
+    --fy: 0.1065;
+    --tx: -100%;
+    display: inline-flex;
+  }
+
+  .hero-desk__label--gap {
+    --fx: 0.5169;
+    --fy: 0.3773;
+    display: inline-flex;
+  }
+
+  .hero-desk__label--final {
+    --fx: 0.5495;
+    --fy: 0.6435;
+    --tx: 0;
+  }
+}
+
+/* ── One-shot reveal ────────────────────────────────────────────── */
+
+@keyframes hero-desk-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes hero-desk-label-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Earlier labels step back once the story has been told. */
+@keyframes hero-desk-label-settle {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.55;
+  }
+}
+
+@keyframes hero-desk-rule-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes hero-desk-draw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  25% {
+    opacity: 0.42;
+  }
+
+  to {
+    opacity: 0.42;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* …then the whole network recedes so the dossier is the focus. */
+@keyframes hero-desk-link-settle {
+  from {
+    opacity: 0.42;
+  }
+
+  to {
+    opacity: 0.1;
+  }
+}
+
+/* No `to` keyframe on purpose: it resolves to the element's own final
+   opacity, so each element fades in to exactly its resting value. */
+@keyframes hero-desk-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.hero-desk__content > * {
+  animation: hero-desk-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-desk__content > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.hero-desk__content > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.hero-desk__content > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.hero-desk__content > *:nth-child(4) {
+  animation-delay: 0.27s;
+}
+
+.hero-desk__content > *:nth-child(5) {
+  animation-delay: 0.34s;
+}
+
+.hero-desk__content > *:nth-child(6) {
+  animation-delay: 0.41s;
+}
+
+.hero-desk__label {
+  animation: hero-desk-label-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-desk__label--request {
+  animation-delay: 1.2s;
+}
+
+.hero-desk__label--final {
+  animation-delay: 2.2s;
+}
+
+@media (min-width: 1024px) {
+  .hero-desk__rule {
+    animation: hero-desk-rule-draw 0.8s ease-out 1s both;
+  }
+
+  .hero-desk__link {
+    animation:
+      hero-desk-draw 0.65s ease-in-out both,
+      hero-desk-link-settle 0.7s ease-out 6.5s forwards;
+  }
+
+  .hero-desk__link--e1 {
+    animation-delay: 1.8s, 6.5s;
+  }
+
+  .hero-desk__link--e2 {
+    animation-delay: 2.15s, 6.5s;
+  }
+
+  .hero-desk__link--e3 {
+    animation-delay: 2.5s, 6.5s;
+  }
+
+  .hero-desk__link--e4 {
+    animation-delay: 2.85s, 6.5s;
+  }
+
+  .hero-desk__dot {
+    animation: hero-desk-fade 0.4s ease-out both;
+  }
+
+  .hero-desk__dot--e1 {
+    animation-delay: 2.25s;
+  }
+
+  .hero-desk__dot--e2 {
+    animation-delay: 2.6s;
+  }
+
+  .hero-desk__dot--e3 {
+    animation-delay: 2.95s;
+  }
+
+  .hero-desk__dot--e4 {
+    animation-delay: 3.3s;
+  }
+
+  .hero-desk__gap {
+    animation: hero-desk-fade 0.6s ease-out 4.2s both;
+  }
+
+  .hero-desk__link--d1 {
+    animation-duration: 0.45s, 0.7s;
+    animation-delay: 5.2s, 6.5s;
+  }
+
+  .hero-desk__link--d2 {
+    animation-duration: 0.45s, 0.7s;
+    animation-delay: 5.45s, 6.5s;
+  }
+
+  .hero-desk__link--d3 {
+    animation-duration: 0.45s, 0.7s;
+    animation-delay: 5.7s, 6.5s;
+  }
+
+  .hero-desk__link--d4 {
+    animation-duration: 0.45s, 0.7s;
+    animation-delay: 5.95s, 6.5s;
+  }
+
+  .hero-desk__dot--final {
+    animation-delay: 6.1s;
+  }
+
+  /* Earlier labels reveal at full strength, then recede to 55%. */
+  .hero-desk__label {
+    animation-name: hero-desk-label-in, hero-desk-label-settle;
+    animation-duration: 0.55s, 0.7s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-out;
+    animation-fill-mode: both, forwards;
+  }
+
+  .hero-desk__label--request {
+    opacity: 0.55;
+    animation-delay: 1.35s, 6.5s;
+  }
+
+  .hero-desk__label--evidence {
+    opacity: 0.55;
+    animation-delay: 3.3s, 6.5s;
+  }
+
+  .hero-desk__label--gap {
+    opacity: 0.55;
+    animation-delay: 4.6s, 6.5s;
+  }
+
+  /* The result keeps full emphasis and never recedes. */
+  .hero-desk__label--final {
+    animation-name: hero-desk-label-in;
+    animation-duration: 0.9s;
+    animation-fill-mode: both;
+    animation-delay: 6.3s;
+  }
+}
+
+/*
+ * Reduced motion: nothing draws or moves. Every base state above is
+ * already the animation's end state, so removing the animations leaves
+ * the completed composition on screen — which is also what happens if
+ * CSS animation is unavailable entirely.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-desk__content > *,
+  .hero-desk__rule,
+  .hero-desk__link,
+  .hero-desk__dot,
+  .hero-desk__gap,
+  .hero-desk__label {
+    animation: none !important;
+  }
+}

@@ -969,3 +969,881 @@ a {
     animation: none !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Homepage sections — evidence board, request stream, service
+   plates, delivery dossier.
+
+   All selectors here are scoped to these four sections; nothing
+   touches the hero (.hero-desk*) or any shared utility.
+
+   Motion contract: every base state below is the finished state, so
+   the sections are complete without JavaScript. <InView> only ever
+   adds `data-evi-reveal`, and only the rules nested under it hide
+   anything. Reduced motion never gets the attribute at all.
+   ───────────────────────────────────────────────────────────────── */
+
+/* ── 1. Evidence assembly board ─────────────────────────────────── */
+
+.evb__caption {
+  display: inline-flex;
+  margin-bottom: 1.35rem;
+  color: var(--orange);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.evb__board {
+  position: relative;
+}
+
+.evb__links {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.evb__link {
+  fill: none;
+  stroke: rgba(21, 21, 21, 0.28);
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.evb__nodes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  pointer-events: none;
+}
+
+.evb__node {
+  position: absolute;
+  top: var(--evb-ny);
+  left: var(--evb-nx);
+  width: 0.3rem;
+  height: 0.3rem;
+  background: var(--orange);
+  border-radius: 999px;
+  opacity: 0.85;
+  transform: translate(-50%, -50%);
+}
+
+.evb__slips {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evb__slip {
+  position: relative;
+  padding: 0.85rem 0.95rem 0.9rem;
+  background: linear-gradient(158deg, #ffffff 0%, #fbf9f4 100%);
+  border: 1px solid rgba(21, 21, 21, 0.09);
+  border-left: 2px solid rgba(254, 112, 1, 0.34);
+  box-shadow: 0 8px 20px rgba(21, 21, 21, 0.055);
+}
+
+/* The edge of a second sheet sitting under the first. */
+.evb__slip::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0.3rem -0.3rem -0.3rem 0.3rem;
+  content: "";
+  background: #f2ece3;
+  border: 1px solid rgba(21, 21, 21, 0.07);
+}
+
+.evb__slip:nth-child(3n + 2) {
+  background: linear-gradient(158deg, #fdfbf7 0%, #f6f2ea 100%);
+}
+
+.evb__slip:nth-child(3n + 3) {
+  background: linear-gradient(158deg, #ffffff 0%, #f4f0e8 100%);
+}
+
+.evb__slip-label {
+  color: var(--orange);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.evb__slip-text {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.evb__dossier {
+  position: relative;
+  padding: 1.15rem 1.3rem 1.35rem;
+  background: linear-gradient(166deg, #f8f4ed 0%, #eee7dc 100%);
+  border: 1px solid rgba(21, 21, 21, 0.13);
+  box-shadow: 0 18px 44px rgba(21, 21, 21, 0.1);
+}
+
+/* Stacked page edges under the dossier. */
+.evb__dossier::before,
+.evb__dossier::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  background: #f0e9de;
+  border: 1px solid rgba(21, 21, 21, 0.09);
+}
+
+.evb__dossier::before {
+  inset: 0.45rem -0.45rem -0.45rem 0.45rem;
+}
+
+.evb__dossier::after {
+  inset: 0.9rem -0.9rem -0.9rem 0.9rem;
+  background: #ebe3d6;
+}
+
+.evb__dossier-tab {
+  position: absolute;
+  top: -0.6rem;
+  right: 2.25rem;
+  width: 4rem;
+  height: 0.6rem;
+  background: var(--orange);
+  opacity: 0.92;
+}
+
+.evb__dossier-label {
+  color: var(--orange);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.evb__dossier-index {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evb__dossier-row {
+  display: grid;
+  gap: 0.7rem;
+  align-items: baseline;
+  grid-template-columns: 1.6rem 1fr;
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(21, 21, 21, 0.1);
+}
+
+.evb__dossier-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.evb__dossier-num {
+  color: rgba(21, 21, 21, 0.4);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.evb__dossier-item {
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.evb__dossier-statement {
+  margin-top: 0.35rem;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Phones: two uneven columns, dossier underneath, no connections. */
+.evb__slips {
+  display: grid;
+  gap: 0.7rem;
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.evb__slip:nth-child(even) {
+  margin-top: 1.2rem;
+}
+
+.evb__dossier {
+  margin-top: 1.6rem;
+}
+
+@media (min-width: 768px) {
+  .evb__board {
+    min-height: 41rem;
+  }
+
+  .evb__links,
+  .evb__nodes {
+    display: block;
+  }
+
+  .evb__slips {
+    position: absolute;
+    display: block;
+    inset: 0;
+  }
+
+  .evb__slip {
+    position: absolute;
+    top: var(--evb-t);
+    left: var(--evb-l);
+    width: var(--evb-w);
+    margin-top: 0;
+  }
+
+  .evb__dossier {
+    position: absolute;
+    top: 55%;
+    right: 6%;
+    left: 6%;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .evb__board {
+    min-height: 44rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .evb--compact .evb__board {
+    min-height: 30rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .evb--compact .evb__board {
+    min-height: 32rem;
+  }
+}
+
+/* Reveal: slips settle, connections draw, dots pulse, dossier lands. */
+[data-evi-reveal="pending"] .evb__slip,
+[data-evi-reveal="pending"] .evb__dossier {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+[data-evi-reveal="pending"] .evb__link {
+  opacity: 0;
+  stroke-dashoffset: 1200;
+}
+
+[data-evi-reveal="pending"] .evb__node {
+  opacity: 0;
+}
+
+[data-evi-reveal="in"] .evb__slip {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--evi-d, 0ms),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--evi-d, 0ms);
+}
+
+[data-evi-reveal="in"] .evb__dossier {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 780ms cubic-bezier(0.16, 1, 0.3, 1) 1080ms,
+    transform 780ms cubic-bezier(0.16, 1, 0.3, 1) 1080ms;
+}
+
+[data-evi-reveal="in"] .evb__link {
+  animation: evb-draw 1200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+[data-evi-reveal="in"] .evb__node {
+  animation: evb-node 620ms ease-out both;
+}
+
+.evb__link--1,
+.evb__node--1 {
+  animation-delay: 620ms;
+}
+
+.evb__link--2,
+.evb__node--2 {
+  animation-delay: 700ms;
+}
+
+.evb__link--3,
+.evb__node--3 {
+  animation-delay: 780ms;
+}
+
+.evb__link--4,
+.evb__node--4 {
+  animation-delay: 860ms;
+}
+
+.evb__link--5,
+.evb__node--5 {
+  animation-delay: 940ms;
+}
+
+.evb__link--6,
+.evb__node--6 {
+  animation-delay: 1020ms;
+}
+
+@keyframes evb-draw {
+  from {
+    opacity: 1;
+    stroke: var(--orange);
+    stroke-dashoffset: 1200;
+  }
+
+  58% {
+    opacity: 1;
+    stroke: var(--orange);
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    opacity: 1;
+    stroke: rgba(21, 21, 21, 0.28);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes evb-node {
+  from {
+    opacity: 0;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.85;
+  }
+}
+
+/* ── 2. Request stream ──────────────────────────────────────────── */
+
+.reqsection {
+  position: relative;
+}
+
+.reqsection__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+/*
+ * A grid with a zero-minimum track: the rail is free to be as wide as its
+ * content while the stream itself contributes no intrinsic width. Without
+ * this the `max-content` rail blows out whatever column it sits in.
+ */
+.reqstream {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--surface);
+  border-block: 1px solid rgba(21, 21, 21, 0.12);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5rem, #000 calc(100% - 5rem), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5rem, #000 calc(100% - 5rem), transparent 100%);
+}
+
+.reqstream__rail {
+  display: flex;
+  width: max-content;
+  animation: reqstream-drift 32s linear infinite;
+}
+
+.reqstream__track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reqstream__item {
+  display: flex;
+  align-items: center;
+  padding-block: 0.95rem;
+  color: rgba(21, 21, 21, 0.74);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reqstream__item::after {
+  width: 0.25rem;
+  height: 0.25rem;
+  margin-inline: 1.55rem;
+  content: "";
+  background: var(--orange);
+  border-radius: 999px;
+  opacity: 0.85;
+}
+
+@keyframes reqstream-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (min-width: 1024px) {
+  .reqsection__grid {
+    align-items: stretch;
+    grid-template-columns: 0.96fr 1.04fr;
+  }
+
+  .reqsection__media {
+    grid-row: 1;
+    grid-column: 1;
+    padding-bottom: 6.25rem;
+  }
+
+  /*
+   * The stream spans the whole section and sits at the bottom of the
+   * row, so it runs on under the black panel. The panel is opaque and
+   * one layer above, which is what turns it into a deliberate mask.
+   */
+  .reqsection__stream {
+    z-index: 1;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    align-self: end;
+  }
+
+  .reqsection__panel {
+    position: relative;
+    z-index: 2;
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  /* No fade on the right: words should meet the panel, not dissolve. */
+  .reqsection__stream .reqstream {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7rem);
+    mask-image: linear-gradient(90deg, transparent 0, #000 7rem);
+  }
+}
+
+/* ── 3. Service plates ──────────────────────────────────────────── */
+
+.svc-card {
+  position: relative;
+  display: flex;
+  min-height: 23rem;
+  overflow: hidden;
+  background: #ebe5dc;
+  isolation: isolate;
+}
+
+@media (min-width: 640px) {
+  .svc-card {
+    min-height: 25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .svc-card {
+    min-height: 27.5rem;
+  }
+}
+
+.svc-card__image {
+  z-index: 0;
+  object-fit: cover;
+  transition: transform 640ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.svc-card__scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    178deg,
+    rgba(17, 16, 15, 0.42) 0%,
+    rgba(17, 16, 15, 0.16) 26%,
+    rgba(17, 16, 15, 0.58) 62%,
+    rgba(17, 16, 15, 0.88) 100%
+  );
+  transition: opacity 420ms ease;
+}
+
+.svc-card--soft .svc-card__scrim {
+  background: linear-gradient(
+    178deg,
+    rgba(17, 16, 15, 0.34) 0%,
+    rgba(17, 16, 15, 0.1) 26%,
+    rgba(17, 16, 15, 0.5) 62%,
+    rgba(17, 16, 15, 0.82) 100%
+  );
+}
+
+.svc-card--strong .svc-card__scrim {
+  background: linear-gradient(
+    178deg,
+    rgba(17, 16, 15, 0.5) 0%,
+    rgba(17, 16, 15, 0.26) 26%,
+    rgba(17, 16, 15, 0.66) 60%,
+    rgba(17, 16, 15, 0.92) 100%
+  );
+}
+
+.svc-card__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.6rem;
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .svc-card__body {
+    padding: 2rem;
+  }
+}
+
+.svc-card__number {
+  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.svc-card__text {
+  margin-top: 2.5rem;
+  max-width: 34rem;
+}
+
+.svc-card__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+@media (min-width: 640px) {
+  .svc-card__title {
+    font-size: 1.75rem;
+  }
+}
+
+.svc-card__link {
+  color: inherit;
+}
+
+/* One focusable target covering the whole plate. */
+.svc-card__link::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  content: "";
+}
+
+.svc-card__link:focus-visible::after {
+  outline: 2px solid var(--orange);
+  outline-offset: -5px;
+}
+
+.svc-card__desc {
+  margin-top: 0.7rem;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.svc-card__detail {
+  margin-top: 0.8rem;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--orange);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.svc-card__note {
+  margin-top: 0.6rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.svc-card__cue {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1.05rem;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.svc-card__cue-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--orange);
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .svc-card[data-interactive]:hover .svc-card__image {
+    transform: scale(1.03);
+  }
+
+  .svc-card[data-interactive]:hover .svc-card__scrim {
+    opacity: 0.92;
+  }
+
+  .svc-card[data-interactive]:hover .svc-card__cue-icon {
+    transform: translateX(4px);
+  }
+}
+
+/* ── 4. Delivery dossier ────────────────────────────────────────── */
+
+.dossier {
+  position: relative;
+  padding-right: 1rem;
+}
+
+.dossier__layer {
+  position: absolute;
+  background: #f0e9de;
+  border: 1px solid rgba(21, 21, 21, 0.1);
+}
+
+.dossier__layer--back {
+  inset: 1.5rem -1rem -1.5rem 1.5rem;
+  background: #eae2d5;
+}
+
+.dossier__layer--mid {
+  inset: 0.75rem -0.5rem -0.75rem 0.75rem;
+}
+
+.dossier__sheet {
+  position: relative;
+  padding: 1.9rem 1.5rem 0;
+  background: linear-gradient(168deg, #fbf8f2 0%, #f2ece2 100%);
+  border: 1px solid rgba(21, 21, 21, 0.13);
+  box-shadow: 0 22px 52px rgba(21, 21, 21, 0.1);
+}
+
+@media (min-width: 640px) {
+  .dossier__sheet {
+    padding: 2.25rem 2rem 0;
+  }
+}
+
+.dossier__tab {
+  position: absolute;
+  top: -0.7rem;
+  right: 2.5rem;
+  width: 4.75rem;
+  height: 0.7rem;
+  background: var(--orange);
+}
+
+.dossier__clip {
+  position: absolute;
+  top: -0.45rem;
+  left: 2.25rem;
+  width: 2.1rem;
+  height: 1.4rem;
+  background: linear-gradient(180deg, #e9e3d9 0%, #d5cec2 100%);
+  border: 1.5px solid rgba(21, 21, 21, 0.32);
+  border-radius: 3px;
+}
+
+.dossier__label {
+  margin-bottom: 1rem;
+  color: var(--orange);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.dossier__index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dossier__row,
+.dossier__foundation {
+  display: grid;
+  gap: 0.85rem;
+  align-items: baseline;
+  grid-template-columns: 1.75rem 1fr;
+}
+
+.dossier__row {
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(21, 21, 21, 0.1);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dossier__row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.dossier__num {
+  color: rgba(21, 21, 21, 0.42);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: color 280ms ease;
+}
+
+.dossier__item {
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dossier__row:hover {
+    transform: translateX(4px);
+  }
+
+  .dossier__row:hover .dossier__num {
+    color: var(--orange);
+  }
+}
+
+/* The final deliverable is the dossier's foundation, not a loose row. */
+.dossier__foundation {
+  margin: 1rem -1.5rem 0;
+  padding: 1.15rem 1.5rem;
+  background: linear-gradient(180deg, rgba(254, 112, 1, 0.06), rgba(254, 112, 1, 0.11));
+  border-top: 1px solid rgba(254, 112, 1, 0.3);
+}
+
+@media (min-width: 640px) {
+  .dossier__foundation {
+    margin-inline: -2rem;
+    padding-inline: 2rem;
+  }
+}
+
+.dossier__statement {
+  margin: 1.25rem 0 0;
+  padding-bottom: 1.75rem;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+[data-evi-reveal="pending"] .dossier__layer {
+  transform: translate(-7px, 7px);
+}
+
+[data-evi-reveal="pending"] .dossier__row,
+[data-evi-reveal="pending"] .dossier__foundation {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+[data-evi-reveal="pending"] .dossier__tab,
+[data-evi-reveal="pending"] .dossier__clip {
+  opacity: 0;
+}
+
+[data-evi-reveal="in"] .dossier__layer {
+  transform: none;
+  transition: transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-evi-reveal="in"] .dossier__row,
+[data-evi-reveal="in"] .dossier__foundation {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1) var(--evi-d, 0ms),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1) var(--evi-d, 0ms);
+}
+
+[data-evi-reveal="in"] .dossier__row:nth-child(1) { --evi-d: 160ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(2) { --evi-d: 220ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(3) { --evi-d: 280ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(4) { --evi-d: 340ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(5) { --evi-d: 400ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(6) { --evi-d: 460ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(7) { --evi-d: 520ms; }
+[data-evi-reveal="in"] .dossier__row:nth-child(8) { --evi-d: 580ms; }
+[data-evi-reveal="in"] .dossier__foundation { --evi-d: 660ms; }
+
+[data-evi-reveal="in"] .dossier__tab,
+[data-evi-reveal="in"] .dossier__clip {
+  opacity: 1;
+  transition: opacity 520ms ease 820ms;
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reqstream {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .reqstream__rail {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* The loop duplicate has no purpose without motion. */
+  .reqstream__track[aria-hidden="true"] {
+    display: none;
+  }
+
+  .evb__slip,
+  .evb__dossier,
+  .evb__link,
+  .evb__node,
+  .dossier__layer,
+  .dossier__row,
+  .dossier__foundation,
+  .dossier__tab,
+  .dossier__clip,
+  .svc-card__image,
+  .svc-card__cue-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+}

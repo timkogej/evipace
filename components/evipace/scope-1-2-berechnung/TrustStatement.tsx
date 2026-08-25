@@ -21,7 +21,7 @@ export function TrustStatement() {
             Nachvollziehbare Berechnung - ohne falsche Sicherheit
           </h2>
           <p className="body-lg mt-7">
-            evipace unterstützt Unternehmen bei der strukturierten Erfassung
+            Evipace unterstützt Unternehmen bei der strukturierten Erfassung
             und Berechnung von Scope-1- und Scope-2-Treibhausgasemissionen.
           </p>
         </Reveal>

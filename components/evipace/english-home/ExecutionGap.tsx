@@ -49,7 +49,7 @@ export function ExecutionGap() {
           </div>
 
           <p className="mt-10 text-xl font-semibold text-white">
-            evipace works in that gap.
+            Evipace works in that gap.
           </p>
           <div className="mt-7 flex flex-wrap gap-2">
             {verbs.map((verb) => (

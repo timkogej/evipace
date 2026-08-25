@@ -237,538 +237,264 @@ a {
   }
 }
 
-.about-origin-art {
+/* ─────────────────────────────────────────────────────────────────
+   About — editorial composition
+
+   The About pages are server-rendered in their final, fully visible
+   state. The shared InView wrapper only ever adds `data-evi-reveal`,
+   and the rules nested under "pending" are the only ones that hide
+   anything — so a reader without JavaScript, or one who asked for
+   reduced motion, gets the finished page immediately.
+   ───────────────────────────────────────────────────────────────── */
+
+.about-section {
+  padding-block: clamp(3rem, 4.6vw, 4.75rem);
+}
+
+.about-section--wide {
+  padding-block: clamp(3.75rem, 6vw, 6rem);
+}
+
+.about-hero {
+  padding-top: clamp(6.5rem, 9vw, 8.5rem);
+  padding-bottom: clamp(3rem, 4.6vw, 4.5rem);
+}
+
+/* The hero's ghost wordmark: type set large and very faint behind the
+   masthead. Purely decorative, so it stays out of the accessibility tree
+   and only appears where there is room for it. */
+.about-ghost {
   position: absolute;
-  inset: 0;
+  top: 4.5rem;
+  right: 4vw;
   z-index: 0;
-  overflow: hidden;
-  color: var(--orange);
+  display: none;
+  color: rgba(21, 21, 21, 0.035);
+  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-size: 12rem;
+  line-height: 1;
   pointer-events: none;
+  user-select: none;
 }
 
-.about-origin-art__document {
-  position: absolute;
-  top: clamp(1.5rem, 3vw, 3.5rem);
-  right: clamp(-8rem, -5vw, -3.5rem);
-  width: clamp(20rem, 34vw, 34rem);
-  height: auto;
-  opacity: 0.7;
-  transform: rotate(5deg);
-  transform-origin: 72% 22%;
-  animation: about-document-float 11s ease-in-out infinite;
+@media (min-width: 1280px) {
+  .about-ghost {
+    display: block;
+  }
 }
 
-.about-origin-art__back-sheet {
-  fill-opacity: 0.018;
-  stroke-opacity: 0.095;
+/* ── Headings ───────────────────────────────────────────────────── */
+
+.about-h1 {
+  max-width: 20ch;
+  font-size: clamp(2.45rem, 4.35vw, 3.95rem);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
 }
 
-.about-origin-art__front-sheet {
-  fill-opacity: 0.022;
-  stroke-opacity: 0.17;
+.about-h2 {
+  max-width: 24ch;
+  font-size: clamp(1.8rem, 2.85vw, 2.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
 }
 
-.about-origin-art__document path:not(.about-origin-art__back-sheet, .about-origin-art__front-sheet),
-.about-origin-art__document circle,
-.about-origin-art__document rect {
-  stroke-opacity: 0.15;
+.about-h3 {
+  font-size: clamp(1.3rem, 1.75vw, 1.7rem);
+  line-height: 1.18;
+  letter-spacing: -0.004em;
+  text-wrap: balance;
 }
 
-.about-origin-art__document text {
-  fill-opacity: 0.15;
+/* Display statements inside a section: clearly below the section
+   heading so the hierarchy reads heading → statement → body. */
+.about-statement {
+  max-width: 26ch;
+  font-size: clamp(1.5rem, 2.25vw, 2.15rem);
+  line-height: 1.16;
+  letter-spacing: -0.006em;
+  text-wrap: balance;
 }
 
-.about-origin-art__clip {
-  stroke-opacity: 0.18 !important;
+.about-statement--wide {
+  max-width: 40ch;
 }
 
-.about-origin-art__dots {
-  opacity: 0.12;
+/* Closing CTA heading: balanced lines, with a wider measure for the
+   longer German sentence so no word is left on a line of its own. */
+.about-cta-heading {
+  max-width: 16ch;
+  text-wrap: balance;
 }
 
-.about-origin-art__folder {
-  position: absolute;
-  top: 52%;
-  left: clamp(-9rem, -5vw, -4rem);
-  width: clamp(23rem, 38vw, 36rem);
-  height: auto;
-  opacity: 0.64;
-  transform: rotate(-5deg);
-  transform-origin: 32% 78%;
-  animation: about-folder-float 13s ease-in-out 0.8s infinite;
+.about--de .about-cta-heading {
+  max-width: 20ch;
 }
 
-.about-origin-art__folder path,
-.about-origin-art__folder circle,
-.about-origin-art__folder rect {
-  stroke-opacity: 0.15;
+.about-quote {
+  max-width: 42ch;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
-.about-origin-art__folder text {
-  fill-opacity: 0.15;
+/* German sets longer compounds. Give them a slightly smaller cap and
+   a wider measure so nothing breaks mid-compound or overflows. */
+.about--de .about-h1 {
+  max-width: 23ch;
+  font-size: clamp(2.05rem, 3.65vw, 3.3rem);
 }
 
-.about-origin-art__folder-body {
-  fill-opacity: 0.026;
+.about--de .about-h2 {
+  max-width: 26ch;
+  font-size: clamp(1.65rem, 2.5vw, 2.5rem);
 }
 
-.about-origin-art__folder-tabs rect {
-  fill: transparent;
-  stroke: currentColor;
-  stroke-opacity: 0.15;
-  stroke-width: 2;
+.about--de .about-h3 {
+  font-size: clamp(1.2rem, 1.55vw, 1.5rem);
 }
 
-.about-origin-art__folder-tabs text {
-  fill: currentColor;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
+.about--de .about-statement {
+  max-width: 29ch;
+  font-size: clamp(1.35rem, 1.95vw, 1.9rem);
 }
 
-.about-origin-art__reference {
-  position: absolute;
-  right: clamp(14rem, 29vw, 29rem);
-  bottom: 3.25rem;
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  color: rgba(254, 112, 1, 0.17);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  transform: rotate(-90deg);
-  transform-origin: right bottom;
+.about--de .about-statement--wide {
+  max-width: 44ch;
 }
 
-.about-origin-art__reference::before {
-  width: 3rem;
+/* ── Reading columns ────────────────────────────────────────────── */
+
+.about-lead {
+  max-width: 48ch;
+  font-size: clamp(1rem, 1.1vw, 1.1rem);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.about-body {
+  max-width: 60ch;
+  font-size: clamp(0.975rem, 1.02vw, 1.0625rem);
+  line-height: 1.78;
+  text-wrap: pretty;
+}
+
+.about-body > * + * {
+  margin-top: 1.15rem;
+}
+
+/* ── Hairline lists: a rule as the marker, never an icon ────────── */
+
+.about-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-list--split {
+  gap: 0 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .about-list--split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-item {
+  display: grid;
+  grid-template-columns: 1.55rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: baseline;
+  padding-block: 0.72rem;
+  border-top: 1px solid rgba(21, 21, 21, 0.1);
+  line-height: 1.6;
+  /* German compounds are long; let them break rather than overflow the
+     column when the split list is at its narrowest. */
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.about-tone-dark .about-item {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+.about-item__mark {
+  display: block;
+  width: 0.95rem;
   height: 1px;
-  content: "";
-  background: currentColor;
+  margin-top: 0.62em;
+  background: var(--orange);
 }
 
-@keyframes about-document-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(5deg);
-  }
-
-  50% {
-    transform: translate3d(-0.35rem, 0.7rem, 0) rotate(4.25deg);
-  }
+.about-item__mark--muted {
+  background: rgba(21, 21, 21, 0.32);
 }
 
-@keyframes about-folder-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-5deg);
-  }
+/* ── Founder signature ─────────────────────────────────────────── */
 
-  50% {
-    transform: translate3d(0.45rem, -0.55rem, 0) rotate(-4.25deg);
-  }
+/* There is no approved portrait of the founder, so the section is carried
+   by the heading and a typographic signature rather than a column left
+   empty where a photograph would go. No rules — the tonal band separates
+   this section on its own. */
+.about-signature__name {
+  font-size: clamp(2.1rem, 3.4vw, 3.05rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 
-.about-speed-art,
-.about-europe-art,
-.about-data-art,
-.about-boundaries-art {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.about-speed-art__gauge {
-  position: absolute;
-  top: 1.25rem;
-  right: clamp(-8.5rem, -6vw, -4.5rem);
-  width: clamp(25rem, 38vw, 35rem);
-  height: auto;
-  color: #ffffff;
-  opacity: 0.76;
-  transform: rotate(3deg);
-  transform-origin: 62% 52%;
-  animation: about-speed-gauge-float 12s ease-in-out infinite;
-}
-
-.about-speed-art__arc,
-.about-speed-art__ticks line,
-.about-speed-art__needle path,
-.about-speed-art__needle circle,
-.about-speed-art__baseline {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-}
-
-.about-speed-art__arc--outer {
-  stroke-width: 2;
-  stroke-dasharray: 1.3 3.1;
-  stroke-opacity: 0.14;
-}
-
-.about-speed-art__arc--progress {
-  stroke: var(--orange);
-  stroke-width: 3;
-  stroke-dasharray: 69 31;
-  stroke-opacity: 0.28;
-}
-
-.about-speed-art__ticks line {
-  stroke-width: 2;
-  stroke-opacity: 0.17;
-}
-
-.about-speed-art__needle {
+.about-signature__role {
   color: var(--orange);
-  transform-origin: 300px 353px;
-  animation: about-speed-needle 7s ease-in-out infinite;
-}
-
-.about-speed-art__needle path {
-  stroke-width: 3;
-  stroke-opacity: 0.31;
-}
-
-.about-speed-art__needle circle {
-  stroke-width: 2;
-  stroke-opacity: 0.27;
-}
-
-.about-speed-art__needle circle:last-child {
-  fill-opacity: 0.3;
-}
-
-.about-speed-art__pace {
-  fill: #ffffff;
-  fill-opacity: 0.13;
-  font-family: Georgia, serif;
-  font-size: 54px;
-}
-
-.about-speed-art__label {
-  fill: var(--orange);
-  fill-opacity: 0.28;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 10px;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.about-speed-art__baseline {
-  stroke-width: 2;
-  stroke-opacity: 0.1;
+/* A short orange spine that hugs its own content — never a rule drawn
+   down an otherwise empty column. */
+.about-plate {
+  align-self: start;
+  padding-left: clamp(1.25rem, 2.2vw, 2.25rem);
+  border-left: 2px solid var(--orange);
 }
 
-.about-speed-art__chevrons {
-  position: absolute;
-  bottom: 1.75rem;
-  left: -2.75rem;
-  width: clamp(10rem, 15vw, 14rem);
-  color: var(--orange);
-  opacity: 0.17;
-  transform: rotate(-4deg);
-  animation: about-chevrons-travel 9s ease-in-out infinite;
+/* ── Reveal: enhancement only ──────────────────────────────────── */
+
+[data-evi-reveal="pending"].about-rise {
+  opacity: 0;
+  transform: translateY(14px);
 }
 
-.about-speed-art__chevrons path {
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3;
+[data-evi-reveal="in"].about-rise {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1) var(--about-delay, 0ms),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1) var(--about-delay, 0ms);
 }
 
-.about-europe-art__map {
-  position: absolute;
-  top: 1rem;
-  right: clamp(-8rem, -5vw, -3.5rem);
-  width: clamp(31rem, 45vw, 42rem);
-  height: auto;
-  color: var(--orange);
-  opacity: 0.71;
-  transform: rotate(2deg);
-  transform-origin: 63% 54%;
-  animation: about-europe-map-float 14s ease-in-out infinite;
+.about-rise--s1 {
+  --about-delay: 70ms;
 }
 
-.about-europe-art__land,
-.about-europe-art__island {
-  fill: currentColor;
-  fill-opacity: 0.012;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  stroke-opacity: 0.14;
+.about-rise--s2 {
+  --about-delay: 140ms;
 }
 
-.about-europe-art__routes path {
-  stroke: currentColor;
-  stroke-dasharray: 7 9;
-  stroke-linecap: round;
-  stroke-width: 2.2;
-  stroke-opacity: 0.25;
-  animation: about-route-flow 18s linear infinite;
+.about-rise--s3 {
+  --about-delay: 210ms;
 }
 
-.about-europe-art__nodes circle {
-  fill: rgba(254, 112, 1, 0.025);
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-opacity: 0.29;
-}
-
-.about-europe-art__nodes circle:nth-child(2) {
-  fill-opacity: 0.42;
-}
-
-.about-europe-art__labels text {
-  fill: currentColor;
-  fill-opacity: 0.28;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.about-europe-art__coordinate {
-  position: absolute;
-  right: 1.5rem;
-  bottom: 1.4rem;
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  color: rgba(254, 112, 1, 0.18);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.about-europe-art__coordinate span:last-child {
-  padding-left: 0.75rem;
-  border-left: 1px solid currentColor;
-}
-
-.about-data-art__stack {
-  position: absolute;
-  bottom: -2.25rem;
-  left: clamp(-9rem, -6vw, -4.5rem);
-  width: clamp(28rem, 39vw, 36rem);
-  height: auto;
-  color: var(--orange);
-  opacity: 0.66;
-  transform: rotate(-3deg);
-  transform-origin: 40% 50%;
-  animation: about-data-stack-float 15s ease-in-out infinite;
-}
-
-.about-data-art__orbit path {
-  fill: none;
-  stroke: currentColor;
-  stroke-dasharray: 8 10;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.2;
-  stroke-opacity: 0.18;
-  animation: about-data-orbit 21s linear infinite;
-}
-
-.about-data-art__plates path {
-  fill: currentColor;
-  fill-opacity: 0.014;
-  stroke: currentColor;
-  stroke-linejoin: round;
-  stroke-width: 2.1;
-  stroke-opacity: 0.17;
-}
-
-.about-data-art__plates path:last-child {
-  fill-opacity: 0.026;
-  stroke-opacity: 0.23;
-}
-
-.about-data-art__connectors path,
-.about-data-art__connectors circle {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-opacity: 0.16;
-}
-
-.about-data-art__labels text {
-  fill: currentColor;
-  fill-opacity: 0.21;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-}
-
-.about-data-art__tag {
-  position: absolute;
-  top: 2.25rem;
-  right: 2rem;
-  display: flex;
-  gap: 0.65rem;
-  align-items: center;
-  color: rgba(254, 112, 1, 0.19);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.about-boundaries-art__frame {
-  position: absolute;
-  top: 2.25rem;
-  right: clamp(-8rem, -6vw, -4rem);
-  width: clamp(24rem, 35vw, 32rem);
-  height: auto;
-  color: var(--orange);
-  opacity: 0.68;
-  transform: rotate(3deg);
-  transform-origin: 58% 45%;
-  animation: about-boundary-float 13s ease-in-out infinite;
-}
-
-.about-boundaries-art__boundary {
-  fill: currentColor;
-  fill-opacity: 0.012;
-  stroke: currentColor;
-  stroke-dasharray: 8 10;
-  stroke-width: 2;
-  stroke-opacity: 0.14;
-  animation: about-boundary-trace 20s linear infinite;
-}
-
-.about-boundaries-art__corners path {
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3;
-  stroke-opacity: 0.24;
-}
-
-.about-boundaries-art__scope,
-.about-boundaries-art__axis {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-opacity: 0.17;
-}
-
-.about-boundaries-art__scope-label,
-.about-boundaries-art__index {
-  fill: currentColor;
-  fill-opacity: 0.22;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-}
-
-.about-boundaries-art__index {
-  font-size: 9px;
-}
-
-.about-boundaries-art__outside path,
-.about-boundaries-art__outside circle {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 2;
-  stroke-opacity: 0.2;
-}
-
-@keyframes about-speed-gauge-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(3deg);
-  }
-
-  50% {
-    transform: translate3d(-0.5rem, 0.6rem, 0) rotate(2.3deg);
-  }
-}
-
-@keyframes about-speed-needle {
-  0%,
-  100% {
-    transform: rotate(-2deg);
-  }
-
-  50% {
-    transform: rotate(4deg);
-  }
-}
-
-@keyframes about-chevrons-travel {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-4deg);
-    opacity: 0.14;
-  }
-
-  50% {
-    transform: translate3d(0.55rem, 0, 0) rotate(-4deg);
-    opacity: 0.21;
-  }
-}
-
-@keyframes about-europe-map-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(2deg);
-  }
-
-  50% {
-    transform: translate3d(-0.4rem, 0.55rem, 0) rotate(1.25deg);
-  }
-}
-
-@keyframes about-route-flow {
-  to {
-    stroke-dashoffset: -68;
-  }
-}
-
-@keyframes about-data-stack-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-3deg);
-  }
-
-  50% {
-    transform: translate3d(0.45rem, -0.5rem, 0) rotate(-2.35deg);
-  }
-}
-
-@keyframes about-data-orbit {
-  to {
-    stroke-dashoffset: -90;
-  }
-}
-
-@keyframes about-boundary-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(3deg);
-  }
-
-  50% {
-    transform: translate3d(-0.35rem, 0.5rem, 0) rotate(2.35deg);
-  }
-}
-
-@keyframes about-boundary-trace {
-  to {
-    stroke-dashoffset: -72;
+@media (prefers-reduced-motion: reduce) {
+  .about-rise {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
@@ -936,64 +662,25 @@ a {
     line-height: 1.72;
   }
 
-  .about-origin-art__document {
-    top: 1.5rem;
-    right: -4.5rem;
-    width: 17.5rem;
-    opacity: 0.52;
+  /* Mobile About is composed, not a squeezed desktop: shorter section
+     rhythm, a hero that starts under the bar rather than far below it. */
+  .about-hero {
+    padding-top: 5.5rem;
+    padding-bottom: 2.5rem;
   }
 
-  .about-origin-art__reference {
-    display: none;
+  .about-section,
+  .about-section--wide {
+    padding-block: 3.25rem;
   }
 
-  .about-origin-art__folder {
-    top: 59%;
-    left: -7.5rem;
-    width: 21rem;
-    opacity: 0.5;
+  .about-lead,
+  .about-body {
+    max-width: none;
   }
 
-  .about-speed-art__gauge {
-    top: 1.25rem;
-    right: -9.5rem;
-    width: 25rem;
-    opacity: 0.58;
-  }
-
-  .about-speed-art__chevrons {
-    bottom: 1rem;
-    left: -3.75rem;
-    width: 10rem;
-    opacity: 0.15;
-  }
-
-  .about-europe-art__map {
-    top: 1.5rem;
-    right: -13rem;
-    width: 31rem;
-    opacity: 0.53;
-  }
-
-  .about-europe-art__coordinate,
-  .about-data-art__tag {
-    display: none;
-  }
-
-  .about-data-art__stack {
-    top: 5.25rem;
-    right: -12.5rem;
-    bottom: auto;
-    left: auto;
-    width: 29rem;
-    opacity: 0.5;
-  }
-
-  .about-boundaries-art__frame {
-    top: 2.75rem;
-    right: -10.5rem;
-    width: 27rem;
-    opacity: 0.5;
+  .about-plate {
+    padding-left: 1.1rem;
   }
 }
 
@@ -1604,6 +1291,20 @@ a {
   font-size: clamp(2.6rem, 10.5vw, 3.5rem);
 }
 
+/* A hero heading that carries a whole sentence rather than two words. */
+.hero-desk__title--sentence {
+  font-size: clamp(2.05rem, 8.4vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+}
+
+/* German says the same thing in more characters; a slightly smaller
+   setting keeps its heading to the same number of lines as the English. */
+.hero-desk__title--sentence-de {
+  font-size: clamp(1.7rem, 6.7vw, 2.45rem);
+}
+
 .hero-desk__title-line {
   display: block;
 }
@@ -1727,6 +1428,15 @@ a {
 
   .hero-desk__title--long {
     font-size: clamp(52px, 5.6vw, 100px);
+  }
+
+  .hero-desk__title--sentence {
+    font-size: clamp(2.4rem, 4.15vw, 4rem);
+    line-height: 1.03;
+  }
+
+  .hero-desk__title--sentence-de {
+    font-size: clamp(2.05rem, 2.78vw, 3rem);
   }
 
   .hero-desk__lead {

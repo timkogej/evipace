@@ -98,7 +98,7 @@ const projectSteps = [
     title: "Company confirmation",
     body: "Certain statements can only be confirmed authoritatively by the company itself.",
     closing:
-      "This is particularly relevant to actual business practices, internal responsibilities, formal company policies, strategic statements and information requiring internal approval. evipace prepares the work. The company confirms what only the company can authoritatively confirm."
+      "This is particularly relevant to actual business practices, internal responsibilities, formal company policies, strategic statements and information requiring internal approval. Evipace prepares the work. The company confirms what only the company can authoritatively confirm."
   }
 ];
 
@@ -413,7 +413,7 @@ export function EnglishMethodologyPage({
               </h1>
               <div className="body-lg mt-7 max-w-3xl space-y-5">
                 <p>
-                  evipace does not start with generic answers or pre-written
+                  Evipace does not start with generic answers or pre-written
                   ESG language.
                 </p>
                 <p>
@@ -774,7 +774,7 @@ export function EnglishMethodologyPage({
                 being submitted to the third party.
               </p>
               <p>
-                evipace is an independent service provider and is not
+                Evipace is an independent service provider and is not
                 affiliated with EcoVadis or IntegrityNext.
               </p>
             </Reveal>
@@ -783,7 +783,7 @@ export function EnglishMethodologyPage({
               delay={0.08}
             >
               <p className="mb-6 text-sm font-bold uppercase text-orange">
-                evipace may support the process by
+                Evipace may support the process by
               </p>
               <CheckList items={platformSupportItems} />
             </Reveal>
@@ -887,7 +887,7 @@ export function EnglishMethodologyPage({
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-white/72">
               <p>
-                evipace may use digital and AI-assisted tools internally to
+                Evipace may use digital and AI-assisted tools internally to
                 process larger volumes of information more efficiently.
               </p>
               <p>
@@ -938,7 +938,7 @@ export function EnglishMethodologyPage({
               <div className="mb-6 flex items-center gap-3">
                 <ShieldCheck aria-hidden="true" className="h-5 w-5 text-orange" />
                 <h3 className="text-2xl font-bold text-ink">
-                  evipace is responsible for
+                  Evipace is responsible for
                 </h3>
               </div>
               <CheckList items={evipaceResponsibilities} />

@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Können Sie garantieren, dass unser Kunde die Antwort akzeptiert?",
     answer:
-      "Nein. evipace unterstützt bei der strukturierten Vorbereitung von Daten, Nachweisen und Antworten. Eine bestimmte Bewertung oder die Akzeptanz durch einen Kunden, eine Plattform oder eine andere externe Stelle kann nicht garantiert werden."
+      "Nein. Evipace unterstützt bei der strukturierten Vorbereitung von Daten, Nachweisen und Antworten. Eine bestimmte Bewertung oder die Akzeptanz durch einen Kunden, eine Plattform oder eine andere externe Stelle kann nicht garantiert werden."
   },
   {
     question: "Wie schnell können Sie eine ESG-Kundenanfrage bearbeiten?",

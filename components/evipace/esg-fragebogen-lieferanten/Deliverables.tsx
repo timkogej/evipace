@@ -72,11 +72,11 @@ export function Deliverables() {
           </h3>
           <div className="mt-5 space-y-4 text-lg leading-8 text-muted">
             <p>
-              evipace unterstützt Unternehmen bei der operativen Vorbereitung
+              Evipace unterstützt Unternehmen bei der operativen Vorbereitung
               von ESG-Daten, Fragebögen, Nachweisen und Dokumentation.
             </p>
             <p>
-              evipace ist keine Zertifizierungs- oder Prüfgesellschaft, führt
+              Evipace ist keine Zertifizierungs- oder Prüfgesellschaft, führt
               keine gesetzliche Abschluss- oder Nachhaltigkeitsprüfung durch
               und bietet keine Rechtsberatung.
             </p>

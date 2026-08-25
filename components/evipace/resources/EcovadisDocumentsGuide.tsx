@@ -205,7 +205,7 @@ const faqItems = [
   {
     question: "Kann evipace garantieren, dass EcoVadis unsere Dokumente akzeptiert?",
     answer:
-      "Nein. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis. evipace kann bei Strukturierung, Zuordnung, Vorbereitung und Review der Unterlagen unterstützen, garantiert aber weder die Anerkennung einzelner Dokumente noch eine bestimmte Punktzahl, Medaille oder Bewertung."
+      "Nein. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis. Evipace kann bei Strukturierung, Zuordnung, Vorbereitung und Review der Unterlagen unterstützen, garantiert aber weder die Anerkennung einzelner Dokumente noch eine bestimmte Punktzahl, Medaille oder Bewertung."
   }
 ];
 
@@ -980,7 +980,7 @@ export function EcovadisDocumentsGuide() {
                   <ButtonLink className="w-full sm:w-auto" href="/de/ecovadis-unterstuetzung" variant="light">EcoVadis-Unterstützung</ButtonLink>
                 </div>
                 <p className="mt-6 text-sm font-semibold text-white/50">Fragebogen · Policies · Zertifikate · KPIs · Nachweise</p>
-                <p className="mt-4 max-w-2xl text-xs leading-6 text-white/42">evipace ist ein unabhängiger Dienstleister und weder von EcoVadis akkreditiert noch mit EcoVadis verbunden. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis.</p>
+                <p className="mt-4 max-w-2xl text-xs leading-6 text-white/42">Evipace ist ein unabhängiger Dienstleister und weder von EcoVadis akkreditiert noch mit EcoVadis verbunden. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis.</p>
               </section>
 
               <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">

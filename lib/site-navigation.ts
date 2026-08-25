@@ -3,7 +3,12 @@ import type { PageKey } from "@/lib/seo/page-registry";
 export const siteLocales = ["en", "de"] as const;
 
 export type SiteLocale = (typeof siteLocales)[number];
-export type NavigationSection = "services" | "resources" | "methodology" | "about";
+export type NavigationSection =
+  | "home"
+  | "services"
+  | "resources"
+  | "methodology"
+  | "about";
 
 export type NavigationItem = {
   label: string;
@@ -40,7 +45,10 @@ type PageRoute = {
 
 type SiteNavigation = {
   locale: SiteLocale;
+  /** Accessible name for the logo link. */
   home: NavigationItem;
+  /** The visible "Home" entry, first in the bar and in the mobile panel. */
+  homeLink: NavigationItem & { section: Extract<NavigationSection, "home"> };
   primaryAction: NavigationItem;
   directories: NavigationDirectory[];
   directLinks: Array<NavigationItem & { section: NavigationSection }>;
@@ -520,6 +528,12 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
   en: {
     locale: "en",
     home: { label: "evipace — Home", href: route("en", "home"), pageKey: "home" },
+    homeLink: {
+      label: "Home",
+      href: route("en", "home"),
+      pageKey: "home",
+      section: "home"
+    },
     primaryAction: {
       label: "Send your ESG request",
       href: route("en", "sendRequest"),
@@ -610,6 +624,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       {
         title: "Company",
         links: [
+          { label: "Home", href: route("en", "home"), pageKey: "home" },
           { label: "About", href: route("en", "about"), pageKey: "about" },
           {
             label: "Methodology",
@@ -641,6 +656,12 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       label: "evipace — Startseite",
       href: route("de", "home"),
       pageKey: "home"
+    },
+    homeLink: {
+      label: "Startseite",
+      href: route("de", "home"),
+      pageKey: "home",
+      section: "home"
     },
     primaryAction: {
       label: "ESG-Anfrage senden",
@@ -704,6 +725,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       {
         title: "Unternehmen",
         links: [
+          { label: "Startseite", href: route("de", "home"), pageKey: "home" },
           { label: "Methodik", href: route("de", "methodology"), pageKey: "methodology" },
           { label: "Über evipace", href: route("de", "about"), pageKey: "about" }
         ]
@@ -750,6 +772,10 @@ export function getActiveNavigationSection(
 ): NavigationSection | null {
   const currentPath = normalizeNavigationPath(pathname);
   const navigation = siteNavigation[locale];
+
+  if (isCurrentNavigationItem(currentPath, navigation.homeLink.href)) {
+    return navigation.homeLink.section;
+  }
 
   for (const directory of navigation.directories) {
     if (

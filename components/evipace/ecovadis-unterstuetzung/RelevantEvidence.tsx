@@ -116,7 +116,7 @@ export function RelevantEvidence() {
         <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
           <p>
             Entscheidend ist nicht die Menge der Dokumente, sondern ihre Relevanz
-            für die jeweilige Aussage. evipace hilft dabei, vorhandene Unterlagen
+            für die jeweilige Aussage. Evipace hilft dabei, vorhandene Unterlagen
             gezielt zuzuordnen, statt Dokumente ohne klare Funktion hochzuladen.
           </p>
           <p className="mt-4">

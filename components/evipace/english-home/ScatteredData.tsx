@@ -16,7 +16,12 @@ export function ScatteredData() {
         <div>
           <SectionHeading
             eyebrow="The data is usually already there"
-            heading="Your ESG data is probably not missing. It is scattered."
+            heading={
+              <>
+                Your ESG data is probably not missing.{" "}
+                <span className="block">It is scattered.</span>
+              </>
+            }
           />
           <div className="mt-7 max-w-2xl space-y-5 text-lg leading-8 text-muted">
             <p>

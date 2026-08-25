@@ -24,6 +24,24 @@ const [dataReuse, howItWorks, customerRequest, content, german, passport, spine,
     read("app/globals.css")
   ]);
 
+/**
+ * The hero's CSS block with every `.hero-desk__title*` rule removed. The
+ * heading scale is under active design (the hero now carries a whole
+ * sentence), so these guards pin the parts that define the approved
+ * composition — plate, scrim, annotation, labels, copy column — rather than
+ * the type sizes on top of them.
+ */
+function heroCssWithoutTitleRules(source) {
+  const start = source.indexOf("   Homepage hero \u2014 evidence desk");
+  assert.ok(start > -1, "hero CSS block not found");
+  const next = source.indexOf("   Homepage sections \u2014 evidence board", start);
+  const end = next > start ? source.lastIndexOf("/*", next) : -1;
+  const block = source.slice(start, end > start ? end : undefined);
+  return block
+    .replace(/(\/\*[^*]*\*\/\n)?[ ]*\.hero-desk__title[^{]*\{[^}]*\}\n\n?/g, "")
+    .trimEnd();
+}
+
 /** Indices of each needle, asserting they appear and stay in order. */
 function assertOrdered(source, needles, label) {
   let previous = -1;
@@ -239,11 +257,14 @@ test("each homepage still has exactly one h1 and no client sections", () => {
   }
 });
 
-test("the approved hero is untouched since its checkpoint", () => {
+test("the approved hero plate and annotation are untouched", async () => {
+  // The photography, the crop, the CSS/SVG annotation and the image
+  // registry are still frozen at the hero checkpoint. Only the copy inside
+  // HomeHero.tsx was redesigned in a later round, and its wording is pinned
+  // by the hero copy tests instead.
   const heroPaths = [
     "components/evipace/hero-evidence-desk/EvidenceDeskHero.tsx",
     "components/evipace/hero-evidence-desk/process-labels.ts",
-    "components/evipace/english-home/HomeHero.tsx",
     "components/evipace/Hero.tsx",
     "lib/evipace-images.ts",
     "lib/evipace-image-availability.ts",
@@ -252,28 +273,32 @@ test("the approved hero is untouched since its checkpoint", () => {
   ];
   assert.equal(git(["diff", "--stat", "c6563b4", "--", ...heroPaths]), "");
 
-  // And the hero's CSS block is byte-identical to the commit. In c6563b4
-  // the hero block is the tail of the file; in the working tree the later
-  // section blocks follow it.
-  const heroCss = (source) => {
-    const start = source.indexOf("   Homepage hero — evidence desk");
-    assert.ok(start > -1, "hero CSS block not found");
-    const title = source.indexOf("   Homepage sections — evidence board", start);
-    // Cut at the following block's comment opener, not at its title line.
-    const end = title > start ? source.lastIndexOf("/*", title) : -1;
-    return source.slice(start, end > start ? end : undefined).trimEnd();
-  };
+  // HomeHero still hands the hero its approved machinery rather than
+  // rebuilding it: same asset, same locale wiring, same single h1.
+  const heroPath = "components/evipace/english-home/HomeHero.tsx";
+  const heroSource = await read(heroPath);
+  assert.ok(heroSource.includes("<EvidenceDeskHero"));
+  assert.ok(heroSource.includes("asset={evipaceImages.hero}"));
+  assert.ok(heroSource.includes('headingId="hero-title"'));
+  assert.ok(heroSource.includes("imageAvailable={imageAvailable}"));
+  assert.equal(heroSource.match(/<h1/g)?.length, 1);
+  assert.ok(!heroSource.includes("use client"));
+
+  // And the hero's CSS composition is unchanged since the checkpoint.
   assert.equal(
-    heroCss(globals),
-    heroCss(git(["show", "c6563b4:app/globals.css"]))
+    heroCssWithoutTitleRules(globals),
+    heroCssWithoutTitleRules(git(["show", "c6563b4:app/globals.css"]))
   );
+
+  // The two heading scales the sentence heading needs are declared.
+  assert.ok(globals.includes(".hero-desk__title--sentence {"));
+  assert.ok(globals.includes(".hero-desk__title--sentence-de {"));
 });
 
 test("the other approved sections are unchanged since the checkpoint", () => {
   // Everything from round two except the request-arrival host section,
   // which this round intentionally rebuilds.
   const approved = [
-    "components/evipace/english-home/ScatteredData.tsx",
     "components/evipace/english-home/ServicesSection.tsx",
     "components/evipace/english-home/Deliverables.tsx",
     "components/evipace/home-sections/EvidenceAssemblyBoard.tsx",
@@ -284,4 +309,26 @@ test("the other approved sections are unchanged since the checkpoint", () => {
     "components/evipace/home-sections/RequestStream.tsx"
   ];
   assert.equal(git(["diff", "--stat", "HEAD", "--", ...approved]), "");
+});
+
+test("the scattered-data section changed only by its approved line break", async () => {
+  // One approved edit since the checkpoint: the heading's second sentence
+  // now sits on a line of its own. Undoing exactly that must restore the
+  // committed file byte for byte — the section is otherwise frozen.
+  const file = "components/evipace/english-home/ScatteredData.tsx";
+  const working = await read(file);
+  const applied = `heading={
+              <>
+                Your ESG data is probably not missing.{" "}
+                <span className="block">It is scattered.</span>
+              </>
+            }`;
+  const original =
+    'heading="Your ESG data is probably not missing. It is scattered."';
+  assert.ok(working.includes(applied), "line break missing");
+  assert.equal(
+    working.replace(applied, original),
+    `${git(["show", `HEAD:${file}`])}\n`,
+    "ScatteredData changed beyond the line break"
+  );
 });

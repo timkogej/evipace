@@ -490,7 +490,7 @@ export function Scope12DataCollectionGuide() {
               </div>
               <div>
                 <p className="max-w-2xl text-lg leading-8 text-white/68">
-                  evipace strukturiert Ihre Scope-1-&amp;-2-Aktivitätsdaten,
+                  Evipace strukturiert Ihre Scope-1-&amp;-2-Aktivitätsdaten,
                   dokumentiert Quellen und Annahmen und bereitet eine
                   nachvollziehbare Berechnung vor.
                 </p>

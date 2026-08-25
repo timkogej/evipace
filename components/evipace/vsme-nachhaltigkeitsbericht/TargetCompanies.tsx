@@ -21,7 +21,7 @@ export function TargetCompanies() {
             Für produzierende kleine und mittlere Unternehmen
           </h2>
           <p className="body-lg mt-7">
-            evipace richtet sich besonders an produzierende Unternehmen, die
+            Evipace richtet sich besonders an produzierende Unternehmen, die
             Nachhaltigkeitsinformationen strukturiert aufbauen möchten, ohne
             dafür eine eigene große ESG-Abteilung aufzubauen.
           </p>

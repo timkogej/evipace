@@ -87,7 +87,7 @@ test("English and German About and methodology pages are genuine registry equiva
   );
   assert.ok(
     englishRegistry.includes(
-      '"evipace helps manufacturing companies handle practical ESG requirements — from customer requests and questionnaires to emissions data, reports and evidence."'
+      '"Evipace helps manufacturing companies handle practical ESG requirements — from customer requests and questionnaires to emissions data, reports and evidence."'
     )
   );
   assert.ok(englishRegistry.includes('path: "/en/about"'));
@@ -110,7 +110,7 @@ test("English and German About and methodology pages are genuine registry equiva
   );
   assert.ok(
     germanRegistry.includes(
-      '"evipace übernimmt die praktische ESG-Arbeit für produzierende Unternehmen – von Kundenanfragen und Fragebögen bis zu Scope 1 & 2 und Nachhaltigkeitsberichten."'
+      '"Evipace übernimmt die praktische ESG-Arbeit für produzierende Unternehmen – von Kundenanfragen und Fragebögen bis zu Scope 1 & 2 und Nachhaltigkeitsberichten."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de"'));
@@ -122,7 +122,7 @@ test("English and German About and methodology pages are genuine registry equiva
   );
   assert.ok(
     germanRegistry.includes(
-      '"evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum evipace gegründet wurde und wie wir arbeiten."'
+      '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum evipace gegründet wurde und wie wir arbeiten."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de/about"'));
@@ -219,10 +219,10 @@ test("English About preserves the approved story, founder data, links, and claim
     "ESG should not become more complicated than the task itself.",
     "ESG requirements from larger companies are reaching smaller suppliers",
     "The information may already exist. It simply does not exist in the form the questionnaire expects.",
-    "evipace was built for the space between the two.",
+    "Evipace was built for the space between the two.",
     "ESG, done faster.",
     "Faster does not mean more superficial. It means more structured.",
-    "Founded by Tim Kogej.",
+    "Founded on practical work.",
     "Tim Kogej",
     "Founder & Managing Director",
     "Where a project requires additional specialist knowledge, the working model is designed to involve appropriate external expertise when needed.",
@@ -283,10 +283,10 @@ test("German About preserves the approved founder story, trust links, and claim 
     "ESG sollte für kleinere Unternehmen nicht komplizierter sein als die Aufgabe selbst.",
     "Die ESG-Anforderungen großer Unternehmen erreichen längst auch ihre kleineren Lieferanten",
     "Die Informationen sind häufig vorhanden. Aber sie liegen nicht dort, wo der Fragebogen sie erwartet.",
-    "evipace wurde für den Raum dazwischen aufgebaut.",
+    "Evipace wurde für den Raum dazwischen aufgebaut.",
     "ESG, done faster.",
     "Schneller bedeutet nicht oberflächlicher. Es bedeutet strukturierter.",
-    "Gegründet von Tim Kogej.",
+    "Aus der Praxis entstanden.",
     "Tim Kogej",
     "Founder & Managing Director",
     "Für Aufgaben, die zusätzliche spezialisierte Fachkenntnisse erfordern, ist das Arbeitsmodell darauf ausgelegt, bei Bedarf passende externe Fachleute einzubeziehen.",
@@ -350,7 +350,7 @@ test("German methodology preserves critical trust language and claim limits", ()
     "Wenn Scope 3 Teil des vereinbarten Auftrags ist",
     "Scheinbare Präzision ist nicht besser als transparent dokumentierte Unsicherheit.",
     "Die endgültige Eingabe beziehungsweise Einreichung auf der Plattform erfolgt durch das Unternehmen selbst.",
-    "evipace ist ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden.",
+    "Evipace ist ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden.",
     "Zuletzt methodisch geprüft: 21. August 2026"
   ];
 
@@ -397,7 +397,7 @@ test("English methodology preserves the approved workflow, trust language, and c
     "Where Scope 3 is part of the agreed engagement",
     "False precision is not better than transparently documented uncertainty.",
     "The final entry or submission on the external platform is made by the company itself.",
-    "evipace is an independent service provider and is not affiliated with EcoVadis or IntegrityNext.",
+    "Evipace is an independent service provider and is not affiliated with EcoVadis or IntegrityNext.",
     "Your responsibility. Our responsibility.",
     "Announced changes are not treated as rules that are already in force.",
     "Last methodologically reviewed: 21 August 2026"

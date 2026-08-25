@@ -23,7 +23,7 @@ export function TargetCompanies() {
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-8 text-muted">
             <p>
-              evipace richtet sich besonders an kleine und mittlere
+              Evipace richtet sich besonders an kleine und mittlere
               Produktionsunternehmen, die Scope 1 und Scope 2 erstmals
               strukturiert berechnen oder eine bestehende Berechnung
               nachvollziehbarer aufbauen möchten.

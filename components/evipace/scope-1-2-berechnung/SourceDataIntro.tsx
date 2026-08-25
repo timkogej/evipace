@@ -75,7 +75,7 @@ export function SourceDataIntro() {
             </p>
             <p>
               Genau daraus entsteht eine nachvollziehbare
-              Treibhausgasbilanz. evipace übernimmt diese operative
+              Treibhausgasbilanz. Evipace übernimmt diese operative
               Strukturierung und Berechnung für Sie.
             </p>
           </div>

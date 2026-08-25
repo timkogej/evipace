@@ -10,30 +10,31 @@ export function HomeHero({ imageAvailable }: { imageAvailable: boolean }) {
       imageAvailable={imageAvailable}
       locale="en"
     >
-      <p className="eyebrow">ESG execution for manufacturing suppliers</p>
-
       {/*
-        One semantic h1 — "ESG, done faster." — set as a deliberate
-        two-line composition. The spans are purely visual; the accessible
-        name is still the whole sentence.
+        One semantic h1, set as a deliberate two-line composition: one
+        sentence per line. The spans are purely visual; the accessible name
+        is still the whole sentence.
       */}
-      <h1 className="hero-desk__title font-display mt-7" id="hero-title">
-        <span className="hero-desk__title-line">ESG, done</span>
-        <span className="hero-desk__title-line">faster.</span>
+      <h1
+        className="hero-desk__title hero-desk__title--sentence font-display"
+        id="hero-title"
+      >
+        <span className="hero-desk__title-line">
+          Your customer asked for ESG data.
+        </span>
+        <span className="hero-desk__title-line">
+          We help you get it done.
+        </span>
       </h1>
 
-      <p className="hero-desk__lead mt-6">
-        Your customer asked for ESG data. We help you get it done.
-      </p>
-
-      <div className="hero-desk__body mt-5 space-y-4">
+      <div className="hero-desk__body mt-6 space-y-4">
         <p>
           Customer questionnaires, emissions data, evidence, policies and
           sustainability reporting — prepared from the information your company
           already has.
         </p>
         <p className="hero-desk__body-secondary">
-          evipace takes care of the practical ESG work so your team can respond
+          Evipace takes care of the practical ESG work so your team can respond
           clearly, consistently and without turning every request into a new
           internal project.
         </p>

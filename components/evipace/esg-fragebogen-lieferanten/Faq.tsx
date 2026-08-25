@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "Können Sie bei EcoVadis oder IntegrityNext helfen?",
     answer:
-      "Wir können bei der Vorbereitung der benötigten Daten, Dokumente und Nachweise unterstützen. evipace ist nicht mit EcoVadis oder IntegrityNext verbunden und garantiert weder eine bestimmte Bewertung noch die Annahme durch eine Plattform."
+      "Wir können bei der Vorbereitung der benötigten Daten, Dokumente und Nachweise unterstützen. Evipace ist nicht mit EcoVadis oder IntegrityNext verbunden und garantiert weder eine bestimmte Bewertung noch die Annahme durch eine Plattform."
   },
   {
     question: "Was passiert, wenn uns Daten fehlen?",

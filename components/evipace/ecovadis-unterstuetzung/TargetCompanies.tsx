@@ -21,7 +21,7 @@ export function TargetCompanies() {
             Für kleine und mittlere Produktionsunternehmen
           </h2>
           <p className="body-lg mt-7">
-            evipace richtet sich vor allem an produzierende kleine und mittlere
+            Evipace richtet sich vor allem an produzierende kleine und mittlere
             Unternehmen, die eine EcoVadis-Anfrage pragmatisch und strukturiert
             bearbeiten möchten, ohne dafür ein großes internes
             Nachhaltigkeitsteam aufzubauen.

@@ -46,7 +46,7 @@ export function RegulatoryStatus() {
         </div>
 
         <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
-          evipace richtet neue Projekte am jeweils aktuellen europäischen Rahmen
+          Evipace richtet neue Projekte am jeweils aktuellen europäischen Rahmen
           aus und berücksichtigt den Übergang vom bisherigen VSME zum neuen
           Voluntary Standard.
         </Reveal>

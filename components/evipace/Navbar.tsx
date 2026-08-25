@@ -152,6 +152,19 @@ export function Navbar({ locale }: NavbarProps) {
         </Link>
 
         <div className="hidden min-w-0 items-center justify-center gap-5 lg:flex xl:gap-7">
+          <Link
+            aria-current={activeSection === "home" ? "page" : undefined}
+            className={`relative inline-flex min-h-11 items-center rounded-md px-1 text-sm font-semibold transition ${
+              activeSection === "home"
+                ? "text-ink after:absolute after:inset-x-1 after:bottom-0 after:h-0.5 after:rounded-full after:bg-orange"
+                : "text-[rgba(21,21,21,0.64)] hover:text-ink"
+            }`}
+            href={navigation.homeLink.href}
+            onClick={closeAll}
+          >
+            {navigation.homeLink.label}
+          </Link>
+
           {navigation.directories.map((directory) => {
             const isOpen = desktopPanel === directory.id;
             const isActive = activeSection === directory.id;
@@ -314,6 +327,16 @@ export function Navbar({ locale }: NavbarProps) {
               {navigation.labels.mobileNavigationTitle}
             </h2>
             <div className="divide-y divide-[rgba(21,21,21,0.1)]">
+              <Link
+                aria-current={activeSection === "home" ? "page" : undefined}
+                className={`flex min-h-16 items-center py-3 text-xl font-semibold ${
+                  activeSection === "home" ? "text-orange" : "text-ink"
+                }`}
+                href={navigation.homeLink.href}
+                onClick={closeAll}
+              >
+                {navigation.homeLink.label}
+              </Link>
               {navigation.directories.map((directory) => {
                 const isOpen = mobileSections.has(directory.id);
                 const isActive = activeSection === directory.id;

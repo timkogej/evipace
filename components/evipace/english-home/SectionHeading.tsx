@@ -1,6 +1,9 @@
+import type { ReactNode } from "react";
+
 type SectionHeadingProps = {
   eyebrow: string;
-  heading: string;
+  /** Rich so a heading can put its second sentence on a line of its own. */
+  heading: ReactNode;
   className?: string;
   dark?: boolean;
 };

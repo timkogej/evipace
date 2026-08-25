@@ -20,7 +20,7 @@ const types = [
   {
     icon: LayoutGrid,
     title: "ESG-Plattformen und Portale",
-    body: "Wir unterstützen bei der Vorbereitung der benötigten Angaben und Nachweise für Plattformen und standardisierte ESG-Abfragen, einschließlich Anforderungen im Umfeld von EcoVadis und IntegrityNext. evipace ist weder mit diesen Plattformen verbunden noch kann eine bestimmte Bewertung oder Akzeptanz garantiert werden."
+    body: "Wir unterstützen bei der Vorbereitung der benötigten Angaben und Nachweise für Plattformen und standardisierte ESG-Abfragen, einschließlich Anforderungen im Umfeld von EcoVadis und IntegrityNext. Evipace ist weder mit diesen Plattformen verbunden noch kann eine bestimmte Bewertung oder Akzeptanz garantiert werden."
   },
   {
     icon: MessageSquare,

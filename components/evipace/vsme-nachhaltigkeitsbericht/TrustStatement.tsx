@@ -20,7 +20,7 @@ export function TrustStatement() {
             Strukturierte Unterstützung - ohne falsche Versprechen
           </h2>
           <p className="body-lg mt-7">
-            evipace unterstützt bei der praktischen Vorbereitung und Erstellung
+            Evipace unterstützt bei der praktischen Vorbereitung und Erstellung
             freiwilliger Nachhaltigkeitsberichte.
           </p>
         </Reveal>

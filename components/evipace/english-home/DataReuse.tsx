@@ -20,7 +20,12 @@ export function DataReuse() {
         <div className="max-w-3xl">
           <SectionHeading
             eyebrow="The next request should be easier"
-            heading="Collect once. Use many times."
+            heading={
+              <>
+                Collect once.{" "}
+                <span className="block">Use many times.</span>
+              </>
+            }
           />
           <p className="mt-7 max-w-xl text-lg leading-8 text-muted">
             These should not become independent data-collection projects.

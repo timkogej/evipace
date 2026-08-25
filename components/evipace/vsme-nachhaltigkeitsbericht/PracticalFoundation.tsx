@@ -51,7 +51,7 @@ export function PracticalFoundation() {
         </Reveal>
 
         <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.14}>
-          <p>evipace konzentriert sich auf genau diese operative Ebene.</p>
+          <p>Evipace konzentriert sich auf genau diese operative Ebene.</p>
           <p>
             Wir helfen Ihnen dabei, Nachhaltigkeitsinformationen so aufzubauen,
             dass sie nicht nur gut aussehen, sondern im Unternehmensalltag

@@ -60,7 +60,7 @@ export function EvidenceIntro() {
         </Reveal>
 
         <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.14}>
-          evipace unterstützt Sie genau bei dieser operativen Vorbereitung.
+          Evipace unterstützt Sie genau bei dieser operativen Vorbereitung.
         </Reveal>
       </div>
     </section>

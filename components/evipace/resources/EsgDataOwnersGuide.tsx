@@ -65,7 +65,7 @@ const faqItems = [
   ["Was tun, wenn zwei Abteilungen unterschiedliche Zahlen liefern?", "Zuerst Scope, Zeitraum, Definition, Einheit und Originalquelle vergleichen. Die Differenz sollte verstanden und dokumentiert werden, bevor ein finaler Wert verwendet wird."],
   ["Können dieselben Data Owner für EcoVadis, IntegrityNext und VSME genutzt werden?", "Häufig ja. Die Plattform beziehungsweise der Bericht kann sich ändern, die zugrunde liegenden Unternehmensinformationen bleiben aber oft dieselben. IntegrityNext unterstützt beispielsweise ausdrücklich die Zusammenarbeit mehrerer Kolleginnen und Kollegen im Supplier Profile."],
   ["Wer bestätigt die finale Antwort an den Kunden?", "Das hängt von der internen Governance ab. Fachliche Daten sollten vom zuständigen Owner stammen; Unternehmens- und Managementaussagen benötigen gegebenenfalls eine zusätzliche Freigabe durch die entsprechend autorisierte Person."],
-  ["Kann evipace alle Angaben selbst bestätigen?", "Nein. evipace kann Anforderungen strukturieren, Datenquellen zuordnen, Berechnungen und Entwürfe vorbereiten und die Unterlagen reviewen. Unternehmensspezifische Tatsachen und Aussagen müssen auf den vom Kunden bereitgestellten Quellen beruhen und gegebenenfalls intern bestätigt werden."]
+  ["Kann evipace alle Angaben selbst bestätigen?", "Nein. Evipace kann Anforderungen strukturieren, Datenquellen zuordnen, Berechnungen und Entwürfe vorbereiten und die Unterlagen reviewen. Unternehmensspezifische Tatsachen und Aussagen müssen auf den vom Kunden bereitgestellten Quellen beruhen und gegebenenfalls intern bestätigt werden."]
 ] as const;
 
 function ExternalSourceLink({ children, href }: { children: ReactNode; href: string }) {
@@ -321,7 +321,7 @@ export function EsgDataOwnersGuide() {
               <ArticleSection id="plattform-koordination" number="24" title="EcoVadis und IntegrityNext machen interne Koordination nicht überflüssig.">
                 <p>Plattformzugang löst nicht automatisch das Data-Ownership-Problem. <ExternalSourceLink href={INTEGRITYNEXT_COLLEAGUE_URL}>IntegrityNext beschreibt im eigenen Help Center</ExternalSourceLink>, wie Kollegen aus unterschiedlichen Abteilungen zum Supplier Profile eingeladen werden können, um Assessments zu prüfen, zu bearbeiten und zu aktualisieren.</p>
                 <p>Das bestätigt einen einfachen Punkt: Plattformzugang ersetzt keine interne Zuständigkeit. Ein Fragebogen kann zentral koordiniert werden, HR-, Umwelt- und Procurement-Daten benötigen aber weiterhin ihre fachlichen Quellen.</p>
-                <p className="text-sm text-muted">evipace ist unabhängig von IntegrityNext und EcoVadis und weder deren offizieller Partner noch deren Validierungsstelle.</p>
+                <p className="text-sm text-muted">Evipace ist unabhängig von IntegrityNext und EcoVadis und weder deren offizieller Partner noch deren Validierungsstelle.</p>
               </ArticleSection>
 
               <ArticleSection id="vsme-wiederverwendung" number="25" title="VSME zeigt, warum eine wiederverwendbare Data Owner Map sinnvoll ist.">

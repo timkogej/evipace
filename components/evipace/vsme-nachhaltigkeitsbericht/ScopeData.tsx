@@ -91,7 +91,7 @@ export function ScopeData() {
 
         <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.12}>
           <p>
-            evipace kann diese Daten im Rahmen des Berichtsprojekts
+            Evipace kann diese Daten im Rahmen des Berichtsprojekts
             mitstrukturieren und - sofern die erforderlichen Ausgangsdaten
             vorhanden sind - die entsprechenden Kennzahlen vorbereiten.
           </p>

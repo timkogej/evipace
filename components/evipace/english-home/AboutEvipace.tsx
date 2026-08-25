@@ -42,7 +42,7 @@ export function AboutEvipace() {
               from their suppliers. The resources available to smaller
               suppliers have not increased at the same rate.
             </p>
-            <p>evipace was built around that gap.</p>
+            <p>Evipace was built around that gap.</p>
             <p>
               The information often exists — but someone still has to find it,
               structure it, calculate what is missing and turn it into something

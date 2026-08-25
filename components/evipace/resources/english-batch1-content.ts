@@ -234,7 +234,7 @@ export const customerQuestionnaireReceivedContent: EnglishResourceArticleContent
     {
       question: "Can evipace submit the answer for us?",
       answer:
-        "evipace can prepare the information, evidence mapping and draft response. The final company facts and any platform submission remain under the company's control."
+        "Evipace can prepare the information, evidence mapping and draft response. The final company facts and any platform submission remain under the company's control."
     }
   ],
   sources: [
@@ -668,7 +668,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     "A supplier-side guide to preparing relevant documents without overstating what they prove.",
   summary: [
     "EcoVadis assessments connect answers with supporting documents. The useful question is not how many files you can upload, but which documents actually support the answers within the assessment scope.",
-    "evipace is independent from EcoVadis. We can help suppliers structure information and evidence, but EcoVadis controls its platform, methodology and assessment outcomes."
+    "Evipace is independent from EcoVadis. We can help suppliers structure information and evidence, but EcoVadis controls its platform, methodology and assessment outcomes."
   ],
   quickChecks: [
     {
@@ -835,7 +835,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     {
       question: "Can evipace guarantee EcoVadis acceptance or a score?",
       answer:
-        "No. EcoVadis controls its assessment, methodology and recognition of documents. evipace can support preparation, mapping and review, but does not guarantee acceptance, medals, scores or platform outcomes."
+        "No. EcoVadis controls its assessment, methodology and recognition of documents. Evipace can support preparation, mapping and review, but does not guarantee acceptance, medals, scores or platform outcomes."
     }
   ],
   sources: [
@@ -885,7 +885,7 @@ export const integrityNextInvitationContent: EnglishResourceArticleContent = {
     {
       title: "Keep submission control internal.",
       body:
-        "evipace can prepare information and evidence; the company reviews and submits through its own IntegrityNext profile."
+        "Evipace can prepare information and evidence; the company reviews and submits through its own IntegrityNext profile."
     }
   ],
   nav: [
@@ -1045,7 +1045,7 @@ export const integrityNextInvitationContent: EnglishResourceArticleContent = {
     {
       question: "Can evipace guarantee an IntegrityNext result?",
       answer:
-        "No. evipace is independent from IntegrityNext and does not control platform validation, customer decisions or platform status."
+        "No. Evipace is independent from IntegrityNext and does not control platform validation, customer decisions or platform status."
     }
   ],
   sources: [

@@ -58,21 +58,21 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
     [
       "ecovadisUnterstuetzung",
       "EcoVadis Support for Suppliers | evipace",
-      "evipace helps suppliers prepare EcoVadis questionnaire responses and supporting evidence, organise documentation and identify gaps before submission.",
+      "Evipace helps suppliers prepare EcoVadis questionnaire responses and supporting evidence, organise documentation and identify gaps before submission.",
       "/en/ecovadis-support",
       "Need help preparing for EcoVadis? We organise the answers and evidence with you."
     ],
     [
       "integrityNextUnterstuetzung",
       "IntegrityNext Support for Suppliers | evipace",
-      "evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
+      "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
       "/en/integritynext-support",
       "Received an IntegrityNext request? We help prepare the information and evidence."
     ],
     [
       "vsmeNachhaltigkeitsbericht",
       "VSME Sustainability Reporting for SMEs | evipace",
-      "evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
+      "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
       "/en/vsme-sustainability-report",
       "Need to prepare VSME sustainability information? We help structure the report from your company data."
     ]
@@ -178,9 +178,9 @@ test("navigation, homepage and resources expose real Batch B commercial routes",
 
 test("Batch B copy preserves commercial differentiation and claim safeguards", () => {
   const requiredCopy = [
-    "evipace is an independent service provider and is not affiliated with EcoVadis.",
+    "Evipace is an independent service provider and is not affiliated with EcoVadis.",
     "We do not guarantee a score or assessment outcome.",
-    "evipace is an independent service provider and is not affiliated with IntegrityNext.",
+    "Evipace is an independent service provider and is not affiliated with IntegrityNext.",
     "We do not guarantee platform outcomes or customer acceptance.",
     "Your company stays in control of the platform submission.",
     "A missing certificate should stay a fact.",

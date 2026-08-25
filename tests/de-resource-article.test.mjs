@@ -743,7 +743,7 @@ test("EcoVadis documents guide has the required links, CTAs, independence langua
   );
   assert.ok(
     ecovadisDocumentsArticleSource.includes(
-      "evipace ist ein unabhängiger Dienstleister"
+      "Evipace ist ein unabhängiger Dienstleister"
     )
   );
   assert.ok(
@@ -945,7 +945,7 @@ test("IntegrityNext invitation guide has required links, CTAs, independence lang
   assert.ok(
     normalizedIncludes(
       integrityNextInvitationArticleSource,
-      "evipace ist ein unabhängiger Dienstleister"
+      "Evipace ist ein unabhängiger Dienstleister"
     )
   );
   assert.ok(
@@ -1302,7 +1302,7 @@ test("VSME data guide has required internal links, exact CTAs, independence lang
       "Energie · Emissionen · Abfall · Wasser · Mitarbeitende · Policies · Nachweise"
     )
   );
-  assert.ok(vsmeDataArticleSource.includes("evipace ist unabhängig vom DNK"));
+  assert.ok(vsmeDataArticleSource.includes("Evipace ist unabhängig vom DNK"));
 
   for (const url of [
     "https://finance.ec.europa.eu/regulation-and-supervision/financial-services-legislation/implementing-and-delegated-acts/corporate-sustainability-reporting-directive_en",
@@ -1540,7 +1540,7 @@ test("ESG data-owner guide has all statuses, internal links, CTAs, and clean off
   assert.ok(
     normalizedIncludes(
       esgDataOwnersArticleSource,
-      "evipace ist unabhängig von IntegrityNext und EcoVadis"
+      "Evipace ist unabhängig von IntegrityNext und EcoVadis"
     )
   );
 
@@ -1819,7 +1819,7 @@ test("Scope 1/2/3 guide has required links, exact CTAs, and clean first-party so
   assert.ok(
     normalizedIncludes(
       scope123ArticleSource,
-      "evipace ist unabhängig von GHG Protocol, WRI, WBCSD, ISO und EFRAG"
+      "Evipace ist unabhängig von GHG Protocol, WRI, WBCSD, ISO und EFRAG"
     )
   );
 

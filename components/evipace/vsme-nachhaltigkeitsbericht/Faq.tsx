@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "Können Sie den vollständigen Bericht für uns erstellen?",
     answer:
-      "Ja. evipace kann den Prozess von der Strukturierung der benötigten Informationen über Datenaufbereitung und relevante Kennzahlen bis zur Zusammenführung des Berichts begleiten. Die Unternehmensangaben werden vor finaler Verwendung von Ihnen geprüft und bestätigt."
+      "Ja. Evipace kann den Prozess von der Strukturierung der benötigten Informationen über Datenaufbereitung und relevante Kennzahlen bis zur Zusammenführung des Berichts begleiten. Die Unternehmensangaben werden vor finaler Verwendung von Ihnen geprüft und bestätigt."
   },
   {
     question: "Wie lange dauert die Erstellung?",

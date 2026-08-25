@@ -268,7 +268,7 @@ test("English article content preserves methodology, claim discipline and distin
     "Policy is not the same as implementation",
     "A gap can be closed. It should not be rewritten as though it never existed.",
     "The current Sustainability Rating limit is 55 new documents per assessment.",
-    "evipace is independent from EcoVadis",
+    "Evipace is independent from EcoVadis",
     "The company reviews the facts and handles submission or approval through its own IntegrityNext profile.",
     "does not guarantee acceptance, medals, scores or platform outcomes",
     "does not control platform validation, customer decisions or platform status"

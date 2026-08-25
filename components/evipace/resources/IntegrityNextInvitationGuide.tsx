@@ -123,7 +123,7 @@ const faqItems = [
   {
     question: "Garantiert evipace einen bestimmten IntegrityNext-Status?",
     answer:
-      "Nein. evipace kann bei Vorbereitung, Strukturierung und Review unterstützen, kontrolliert aber weder die IntegrityNext-Validierung noch einen bestimmten Plattformstatus oder die Entscheidung eines Kunden."
+      "Nein. Evipace kann bei Vorbereitung, Strukturierung und Review unterstützen, kontrolliert aber weder die IntegrityNext-Validierung noch einen bestimmten Plattformstatus oder die Entscheidung eines Kunden."
   }
 ];
 
@@ -1480,7 +1480,7 @@ export function IntegrityNextInvitationGuide() {
                   Einladung · Assessments · Zertifikate · Fragebögen · Nachweise
                 </p>
                 <p className="mt-4 max-w-2xl text-xs leading-6 text-white/42">
-                  evipace ist ein unabhängiger Dienstleister und weder mit
+                  Evipace ist ein unabhängiger Dienstleister und weder mit
                   IntegrityNext verbunden noch ein offizieller
                   IntegrityNext-Partner. Die Eingabe und Freigabe im
                   IntegrityNext-Profil sowie die finale Validierung liegen beim

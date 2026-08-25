@@ -51,7 +51,7 @@ export function Deliverables() {
             Was Sie von uns zurückbekommen
           </h2>
           <p className="body-lg mt-7">
-            evipace liefert nicht nur eine Liste von ESG-Themen. Das Ergebnis
+            Evipace liefert nicht nur eine Liste von ESG-Themen. Das Ergebnis
             orientiert sich an der konkreten Anfrage Ihres Kunden.
           </p>
         </Reveal>

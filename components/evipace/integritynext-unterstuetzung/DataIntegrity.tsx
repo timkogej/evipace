@@ -39,7 +39,7 @@ export function DataIntegrity() {
               für eine Checkbox.
             </p>
             <p>
-              evipace unterstützt deshalb bei der Abbildung des tatsächlichen
+              Evipace unterstützt deshalb bei der Abbildung des tatsächlichen
               Unternehmensstands:
             </p>
           </div>

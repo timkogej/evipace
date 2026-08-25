@@ -37,10 +37,11 @@ const flat = (source) => source.replace(/\s+/g, " ");
 
 test("section headings and preserved copy survive the redesign", () => {
   assert.ok(scattered.includes('eyebrow="The data is usually already there"'));
+  // The heading keeps both sentences, with the second one deliberately
+  // set on its own line at every width.
+  assert.ok(flat(scattered).includes("Your ESG data is probably not missing."));
   assert.ok(
-    scattered.includes(
-      'heading="Your ESG data is probably not missing. It is scattered."'
-    )
+    flat(scattered).includes('<span className="block">It is scattered.</span>')
   );
   assert.ok(scattered.includes("That is the problem evipace solves."));
 
@@ -97,7 +98,7 @@ test("every scattered source and structured output is still rendered", () => {
   // German keeps its own sources, label and both closing statements.
   assert.ok(german.includes("sourceLocations.map"));
   assert.ok(german.includes('sourcesLabel="Datenquellen"'));
-  assert.ok(german.includes("evipace bringt diese Informationen zusammen."));
+  assert.ok(german.includes("Evipace bringt diese Informationen zusammen."));
   assert.ok(
     flat(german).includes(
       "Das Problem ist oft nicht, dass die Informationen fehlen."

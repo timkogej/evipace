@@ -59,7 +59,7 @@ test("English commercial Batch A uses exact approved metadata and H1 copy", () =
   const expected = [
     [
       "ESG Customer Requests for Suppliers | evipace",
-      "evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
+      "Evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
       "/en/esg-customer-requests",
       "Your customer asked for ESG information. We help you prepare the response."
     ],
@@ -71,7 +71,7 @@ test("English commercial Batch A uses exact approved metadata and H1 copy", () =
     ],
     [
       "Scope 1 & 2 Calculation for Manufacturing Companies | evipace",
-      "evipace prepares Scope 1 and Scope 2 calculations from company activity data, with emission factors, sources, assumptions and methodology documented clearly.",
+      "Evipace prepares Scope 1 and Scope 2 calculations from company activity data, with emission factors, sources, assumptions and methodology documented clearly.",
       "/en/scope-1-2-calculation",
       "Scope 1 and Scope 2 emissions calculated from your actual company data."
     ]

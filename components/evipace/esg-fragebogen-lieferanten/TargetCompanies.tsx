@@ -21,7 +21,7 @@ export function TargetCompanies() {
             Für welche Unternehmen evipace gedacht ist
           </h2>
           <p className="body-lg mt-7">
-            evipace richtet sich vor allem an produzierende kleine und
+            Evipace richtet sich vor allem an produzierende kleine und
             mittlere Unternehmen, die ESG-Anforderungen ihrer Kunden erfüllen
             müssen, ohne dafür ein großes internes Nachhaltigkeitsteam
             aufzubauen.

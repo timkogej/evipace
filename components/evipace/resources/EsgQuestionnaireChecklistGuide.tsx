@@ -533,7 +533,7 @@ export function EsgQuestionnaireChecklistGuide() {
                 </li>
               </ul>
               <p className="mt-7 text-xs leading-6 text-[rgba(21,21,21,0.48)]">
-                evipace ist unabhängig von EcoVadis und IntegrityNext und weder
+                Evipace ist unabhängig von EcoVadis und IntegrityNext und weder
                 offizieller Partner noch Validierungsstelle dieser Plattformen.
               </p>
             </section>

@@ -25,7 +25,7 @@ export function Limitations() {
             <p>
               Transparenz ist bei EcoVadis-Unterstützung besonders wichtig.
             </p>
-            <p>evipace ist ein unabhängiger Dienstleister.</p>
+            <p>Evipace ist ein unabhängiger Dienstleister.</p>
           </div>
         </Reveal>
 
@@ -55,7 +55,7 @@ export function Limitations() {
 
         <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.14}>
           <p>
-            evipace ist nicht mit EcoVadis verbunden und ist kein von EcoVadis
+            Evipace ist nicht mit EcoVadis verbunden und ist kein von EcoVadis
             akkreditierter Beratungspartner.
           </p>
           <p>

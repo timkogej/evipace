@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Ist die Berechnung zertifiziert oder verifiziert?",
     answer:
-      "Nein. evipace bereitet die Treibhausgasberechnung und ihre Dokumentation auf Basis Ihrer Unternehmensdaten vor. Dies ist keine externe Verifizierung, Assurance oder Zertifizierung durch eine unabhängige Prüfstelle."
+      "Nein. Evipace bereitet die Treibhausgasberechnung und ihre Dokumentation auf Basis Ihrer Unternehmensdaten vor. Dies ist keine externe Verifizierung, Assurance oder Zertifizierung durch eine unabhängige Prüfstelle."
   },
   {
     question: "Können Sie auch Scope 3 berechnen?",

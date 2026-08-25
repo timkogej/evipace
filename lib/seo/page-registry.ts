@@ -79,13 +79,13 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     home: {
       title: "ESG for Manufacturing Companies & Suppliers | evipace",
       description:
-        "evipace handles practical ESG work for manufacturing suppliers — from customer questionnaires and evidence to Scope 1 & 2 and sustainability reporting.",
+        "Evipace handles practical ESG work for manufacturing suppliers — from customer questionnaires and evidence to Scope 1 & 2 and sustainability reporting.",
       path: "/en"
     },
     about: {
       title: "About evipace | ESG for manufacturing companies",
       description:
-        "evipace helps manufacturing companies handle practical ESG requirements — from customer requests and questionnaires to emissions data, reports and evidence.",
+        "Evipace helps manufacturing companies handle practical ESG requirements — from customer requests and questionnaires to emissions data, reports and evidence.",
       path: "/en/about"
     },
     methodology: {
@@ -101,7 +101,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     esgKundenanfragen: {
       title: "ESG Customer Requests for Suppliers | evipace",
       description:
-        "evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
+        "Evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
       path: "/en/esg-customer-requests"
     },
     esgFragebogenLieferanten: {
@@ -113,25 +113,25 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     scope12Berechnung: {
       title: "Scope 1 & 2 Calculation for Manufacturing Companies | evipace",
       description:
-        "evipace prepares Scope 1 and Scope 2 calculations from company activity data, with emission factors, sources, assumptions and methodology documented clearly.",
+        "Evipace prepares Scope 1 and Scope 2 calculations from company activity data, with emission factors, sources, assumptions and methodology documented clearly.",
       path: "/en/scope-1-2-calculation"
     },
     ecovadisUnterstuetzung: {
       title: "EcoVadis Support for Suppliers | evipace",
       description:
-        "evipace helps suppliers prepare EcoVadis questionnaire responses and supporting evidence, organise documentation and identify gaps before submission.",
+        "Evipace helps suppliers prepare EcoVadis questionnaire responses and supporting evidence, organise documentation and identify gaps before submission.",
       path: "/en/ecovadis-support"
     },
     integrityNextUnterstuetzung: {
       title: "IntegrityNext Support for Suppliers | evipace",
       description:
-        "evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
+        "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
       path: "/en/integritynext-support"
     },
     vsmeNachhaltigkeitsbericht: {
       title: "VSME Sustainability Reporting for SMEs | evipace",
       description:
-        "evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
+        "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
       path: "/en/vsme-sustainability-report"
     },
     resourcesHub: {
@@ -250,13 +250,13 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     home: {
       title: "ESG für produzierende Unternehmen | evipace",
       description:
-        "evipace übernimmt die praktische ESG-Arbeit für produzierende Unternehmen – von Kundenanfragen und Fragebögen bis zu Scope 1 & 2 und Nachhaltigkeitsberichten.",
+        "Evipace übernimmt die praktische ESG-Arbeit für produzierende Unternehmen – von Kundenanfragen und Fragebögen bis zu Scope 1 & 2 und Nachhaltigkeitsberichten.",
       path: "/de"
     },
     about: {
       title: "Über evipace | ESG für produzierende Unternehmen",
       description:
-        "evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum evipace gegründet wurde und wie wir arbeiten.",
+        "Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum evipace gegründet wurde und wie wir arbeiten.",
       path: "/de/about"
     },
     methodology: {

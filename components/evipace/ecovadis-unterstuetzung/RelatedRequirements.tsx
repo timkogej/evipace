@@ -27,7 +27,7 @@ export function RelatedRequirements() {
           <p className="body-lg mt-7">
             Manche Kunden verlangen eine EcoVadis-Bewertung. Andere verwenden
             eigene Fragebögen, Excel-Dateien, Lieferantenportale oder
-            individuelle ESG-Anfragen. evipace unterstützt auch bei diesen
+            individuelle ESG-Anfragen. Evipace unterstützt auch bei diesen
             Formaten.
           </p>
         </Reveal>

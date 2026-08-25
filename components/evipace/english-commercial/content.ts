@@ -111,7 +111,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
   intro: [
     "A customer request may start with a spreadsheet, supplier questionnaire, platform invitation or a short email asking for emissions, policies, targets or supporting evidence.",
     "The difficult part is rarely the form itself. The information is usually spread across Finance, HR, Quality, EHS, Procurement, Operations and existing company documents.",
-    "evipace helps turn that request into a structured, reviewable response."
+    "Evipace helps turn that request into a structured, reviewable response."
   ],
   primaryCta: "Send us the request",
   secondaryCta: {
@@ -179,7 +179,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
     eyebrow: "Service scope",
     title: "What we can take off your desk",
     intro:
-      "evipace does the execution work behind the response: reading the requirement, finding the right data and preparing a clear output for company confirmation.",
+      "Evipace does the execution work behind the response: reading the requirement, finding the right data and preparing a clear output for company confirmation.",
     items: [
       {
         title: "Understanding the request",
@@ -544,7 +544,7 @@ export const questionnaireSupportContent: CommercialServicePageContent = {
     eyebrow: "Company control",
     title: "What we need you to confirm",
     body: [
-      "evipace can organise and prepare the response, but company-specific facts must remain under company control.",
+      "Evipace can organise and prepare the response, but company-specific facts must remain under company control.",
       "That is not a defensive limitation. It is good evidence discipline."
     ],
     items: [
@@ -605,7 +605,7 @@ export const scope12CalculationContent: CommercialServicePageContent = {
   intro: [
     "If a customer asks for your company's Scope 1 and Scope 2 emissions, the starting point is not a CO2 number.",
     "It is the underlying activity data: electricity, fuels, vehicles, refrigerants, purchased heat and other relevant sources.",
-    "evipace structures the data, applies appropriate emission factors and prepares a documented calculation you can review."
+    "Evipace structures the data, applies appropriate emission factors and prepares a documented calculation you can review."
   ],
   primaryCta: "Send your Scope 1 & 2 data",
   secondaryCta: {
@@ -867,7 +867,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
   intro: [
     "EcoVadis can require information across multiple parts of the company: policies, environmental data, workforce topics, business practices and supporting documents.",
     "The difficult part is often not finding one answer. It is understanding what the question requires, locating the right supporting material and keeping answers consistent with what the company can actually evidence.",
-    "evipace helps structure that work before your company submits the assessment."
+    "Evipace helps structure that work before your company submits the assessment."
   ],
   primaryCta: "Send us your EcoVadis request",
   secondaryCta: {
@@ -875,7 +875,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     href: "/en/resources/ecovadis-documents-evidence"
   },
   qualifier:
-    "evipace is an independent service provider and is not affiliated with EcoVadis. We do not guarantee a score or assessment outcome.",
+    "Evipace is an independent service provider and is not affiliated with EcoVadis. We do not guarantee a score or assessment outcome.",
   heroVisual: {
     label: "Assessment preparation",
     items: ["Questionnaire", "Data owners", "Evidence", "Client submission"]
@@ -1049,7 +1049,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     eyebrow: "Company control",
     title: "What stays under your company's control",
     body: [
-      "evipace prepares information, evidence and response material. Your company remains the source of company facts.",
+      "Evipace prepares information, evidence and response material. Your company remains the source of company facts.",
       "A newly prepared policy or document can support future practice after internal approval. It should not be presented as proof of past implementation."
     ],
     items: [
@@ -1057,7 +1057,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
       { label: "Entity and site scope", body: "The response should match the assessment scope." },
       { label: "Evidence selection", body: "Documents should support the specific answer being made." },
       { label: "Platform submission", body: "Final submission remains with your company." },
-      { label: "Outcome", body: "evipace does not control scoring, document acceptance or assessment results." }
+      { label: "Outcome", body: "Evipace does not control scoring, document acceptance or assessment results." }
     ]
   },
   resources: {
@@ -1114,7 +1114,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
   intro: [
     "An IntegrityNext request can require company information, questionnaire responses, certifications or supporting documents across different ESG topics.",
     "If the information is scattered across the business, the difficult part is determining what already exists, who owns it and what still needs to be prepared.",
-    "evipace helps organise the required information and evidence so your company can complete the request with a clear internal review trail."
+    "Evipace helps organise the required information and evidence so your company can complete the request with a clear internal review trail."
   ],
   primaryCta: "Send us the IntegrityNext request",
   secondaryCta: {
@@ -1122,7 +1122,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
     href: "/en/resources/integritynext-invitation-for-suppliers"
   },
   qualifier:
-    "evipace is an independent service provider and is not affiliated with IntegrityNext. We do not guarantee platform outcomes or customer acceptance.",
+    "Evipace is an independent service provider and is not affiliated with IntegrityNext. We do not guarantee platform outcomes or customer acceptance.",
   heroVisual: {
     label: "Request preparation",
     items: ["Invitation", "Assessments", "Evidence", "Client submission"]
@@ -1274,7 +1274,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
   model: {
     title: "Your company stays in control of the platform submission.",
     body:
-      "evipace can prepare the work behind the response, but the supplier remains responsible for final platform use where applicable.",
+      "Evipace can prepare the work behind the response, but the supplier remains responsible for final platform use where applicable.",
     items: [
       { title: "Data", body: "Company information structured for review." },
       { title: "Evidence", body: "Certificates, policies and supporting documents organised by topic." },
@@ -1361,7 +1361,7 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
   intro: [
     "Preparing a VSME sustainability report starts with company data, not with writing a polished sustainability narrative.",
     "Energy, emissions, workforce data, policies, environmental information and governance-related information may sit across several internal functions.",
-    "evipace helps structure the relevant information, identify missing inputs and prepare a reviewable VSME reporting draft based on the company data available."
+    "Evipace helps structure the relevant information, identify missing inputs and prepare a reviewable VSME reporting draft based on the company data available."
   ],
   primaryCta: "Send us your VSME reporting request",
   secondaryCta: {
@@ -1563,7 +1563,7 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     eyebrow: "Reporting discipline",
     title: "The company confirms the company facts.",
     body: [
-      "evipace can structure and draft the reporting content. The company remains responsible for confirming the facts and deciding how the report is used externally.",
+      "Evipace can structure and draft the reporting content. The company remains responsible for confirming the facts and deciding how the report is used externally.",
       "This keeps reporting grounded in company reality instead of turning gaps into polished but unsupported claims."
     ],
     items: [

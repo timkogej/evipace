@@ -21,7 +21,7 @@ export function TrustStatement() {
             Unabhängige Unterstützung bei Ihrer Vorbereitung
           </h2>
           <p className="body-lg mt-7">
-            evipace ist ein unabhängiger Dienstleister und nicht mit
+            Evipace ist ein unabhängiger Dienstleister und nicht mit
             IntegrityNext verbunden.
           </p>
         </Reveal>

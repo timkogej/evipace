@@ -254,7 +254,7 @@ const faqItems = [
   {
     question: "Was genau macht evipace?",
     answer:
-      "evipace übernimmt praktische ESG-Arbeit für Unternehmen. Dazu gehören beispielsweise die Vorbereitung von Kundenanfragen und ESG-Fragebögen, Unterstützung bei EcoVadis und IntegrityNext, Scope-1- und Scope-2-Berechnungen sowie freiwillige Nachhaltigkeitsberichte. Wir strukturieren vorhandene Unternehmensdaten, bereiten Kennzahlen und Antworten auf und machen fehlende Informationen sichtbar."
+      "Evipace übernimmt praktische ESG-Arbeit für Unternehmen. Dazu gehören beispielsweise die Vorbereitung von Kundenanfragen und ESG-Fragebögen, Unterstützung bei EcoVadis und IntegrityNext, Scope-1- und Scope-2-Berechnungen sowie freiwillige Nachhaltigkeitsberichte. Wir strukturieren vorhandene Unternehmensdaten, bereiten Kennzahlen und Antworten auf und machen fehlende Informationen sichtbar."
   },
   {
     question: "Für welche Unternehmen ist evipace gedacht?",
@@ -274,7 +274,7 @@ const faqItems = [
   {
     question: "Unterstützen Sie auch EcoVadis und IntegrityNext?",
     answer:
-      "Ja. Wir unterstützen Unternehmen bei der operativen Vorbereitung von Informationen, Antworten, Zertifikaten und Nachweisen für entsprechende Assessments. evipace ist dabei ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden."
+      "Ja. Wir unterstützen Unternehmen bei der operativen Vorbereitung von Informationen, Antworten, Zertifikaten und Nachweisen für entsprechende Assessments. Evipace ist dabei ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden."
   },
   {
     question: "Können Sie Scope 1 und Scope 2 berechnen?",
@@ -311,27 +311,24 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           imageAvailable={imageAvailability.hero}
           locale="de"
         >
-          <p className="eyebrow">ESG für produzierende Unternehmen</p>
-
           {/*
-            One semantic h1 — "ESG, schneller erledigt." — as a deliberate
-            two-line composition. The spans are visual only; the accessible
-            name remains the whole sentence.
+            One semantic h1, set as a deliberate two-line composition: the
+            promise, then the qualification. The spans are visual only; the
+            accessible name remains the whole sentence.
           */}
           <h1
-            className="hero-desk__title hero-desk__title--long font-display mt-7"
+            className="hero-desk__title hero-desk__title--sentence hero-desk__title--sentence-de font-display"
             id="hero-title"
           >
-            <span className="hero-desk__title-line">ESG, schneller</span>
-            <span className="hero-desk__title-line">erledigt.</span>
+            <span className="hero-desk__title-line">
+              ESG-Anforderungen erledigen –
+            </span>
+            <span className="hero-desk__title-line">
+              ohne daraus ein monatelanges Projekt zu machen.
+            </span>
           </h1>
 
-          <p className="hero-desk__lead mt-6">
-            ESG-Anforderungen erledigen – ohne daraus ein monatelanges Projekt
-            zu machen.
-          </p>
-
-          <div className="hero-desk__body mt-5 space-y-4">
+          <div className="hero-desk__body mt-6 space-y-4">
             <p>
               Ihre Kunden verlangen ESG-Daten, Nachweise oder Emissionswerte?
               Sie senden uns die Anfrage und vorhandenen Unterlagen.
@@ -396,7 +393,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             <div>
               <EvidenceAssemblyBoard
                 output={{
-                  statement: "evipace bringt diese Informationen zusammen."
+                  statement: "Evipace bringt diese Informationen zusammen."
                 }}
                 sources={sourceLocations.map(([department, source]) => ({
                   label: department,
@@ -504,7 +501,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                     Viele ESG-Projekte beginnen mit Workshops, Strategiefolien
                     und langen Maßnahmenlisten.
                   </p>
-                  <p>evipace beginnt an einer anderen Stelle.</p>
+                  <p>Evipace beginnt an einer anderen Stelle.</p>
                   <p>Ausgangspunkt ist Ihre konkrete Aufgabe.</p>
                 </div>
               </Reveal>
@@ -575,7 +572,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                 </div>
 
                 <p className="border-l-2 border-orange pl-6 text-2xl font-semibold leading-9 text-white">
-                  evipace ist für Unternehmen gedacht, die ESG nicht
+                  Evipace ist für Unternehmen gedacht, die ESG nicht
                   diskutieren, sondern erledigen müssen.
                 </p>
               </Reveal>
@@ -808,7 +805,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
               </h2>
               <div className="mt-7 max-w-2xl space-y-5 text-lg leading-8 text-muted">
                 <p>
-                  evipace ist besonders für Unternehmen interessant, bei denen
+                  Evipace ist besonders für Unternehmen interessant, bei denen
                   ESG heute von Personen mitbetreut wird, die eigentlich andere
                   Hauptaufgaben haben.
                 </p>
@@ -884,7 +881,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                   Praktische Unterstützung. Klare Grenzen.
                 </h2>
                 <p className="body-lg mt-7 max-w-2xl">
-                  evipace unterstützt bei der strukturierten Vorbereitung und
+                  Evipace unterstützt bei der strukturierten Vorbereitung und
                   Umsetzung von ESG-Anforderungen.
                 </p>
               </Reveal>

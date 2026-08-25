@@ -35,7 +35,7 @@ export function ProblemIntro() {
             <p>
               Die eigentliche Arbeit beginnt dort, wo diese Informationen mit
               den konkreten Fragen Ihres Kunden zusammengebracht werden
-              müssen. evipace übernimmt diese operative Arbeit für Sie — wir
+              müssen. Evipace übernimmt diese operative Arbeit für Sie — wir
               prüfen die Anfrage, strukturieren die benötigten Informationen
               und zeigen klar, welche Antworten bereits vorbereitet werden
               können und wo noch eine Angabe von Ihnen erforderlich ist.

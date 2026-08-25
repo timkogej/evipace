@@ -64,7 +64,7 @@ export function WhyEvipaceSection() {
             </div>
             <div className="mt-10 border-t border-white/14 pt-7">
               <p className="text-lg font-semibold text-white">
-                evipace is designed for the space in between.
+                Evipace is designed for the space in between.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-3">
                 {valueStack.map((item) => (

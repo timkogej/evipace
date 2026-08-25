@@ -21,7 +21,7 @@ export function TargetCompanies() {
             Für produzierende Unternehmen in der Lieferkette
           </h2>
           <p className="body-lg mt-7">
-            evipace richtet sich vor allem an kleine und mittlere
+            Evipace richtet sich vor allem an kleine und mittlere
             Produktionsunternehmen, die Nachhaltigkeitsanforderungen größerer
             Kunden erfüllen müssen, ohne jede neue ESG-Anfrage intern von
             Grund auf aufzubauen.

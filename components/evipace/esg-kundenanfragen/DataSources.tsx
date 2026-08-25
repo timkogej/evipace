@@ -65,7 +65,7 @@ export function DataSources() {
 
         <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.1}>
           <p>
-            evipace macht aus verteilten Unternehmensinformationen eine
+            Evipace macht aus verteilten Unternehmensinformationen eine
             strukturierte Antwort auf die konkrete Kundenanforderung.
           </p>
           <p className="mt-5">

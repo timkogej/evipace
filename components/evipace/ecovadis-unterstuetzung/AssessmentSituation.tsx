@@ -53,7 +53,7 @@ export function AssessmentSituation() {
               ))}
             </ul>
             <p className="mt-5 leading-7 text-muted">
-              evipace hilft dabei, aus den vorhandenen
+              Evipace hilft dabei, aus den vorhandenen
               Unternehmensinformationen eine klare Arbeitsgrundlage für das
               Assessment zu machen.
             </p>

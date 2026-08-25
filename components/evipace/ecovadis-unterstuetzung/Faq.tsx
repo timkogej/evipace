@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Sind Sie offizieller EcoVadis-Partner?",
     answer:
-      "Nein. evipace ist ein unabhängiger Dienstleister und nicht mit EcoVadis verbunden oder von EcoVadis akkreditiert."
+      "Nein. Evipace ist ein unabhängiger Dienstleister und nicht mit EcoVadis verbunden oder von EcoVadis akkreditiert."
   },
   {
     question: "Können Sie auch bei einer erneuten Bewertung helfen?",

@@ -21,7 +21,7 @@ export function TargetCompanies() {
             Für kleine und mittlere Produktionsunternehmen
           </h2>
           <p className="body-lg mt-7">
-            evipace richtet sich vor allem an produzierende kleine und mittlere
+            Evipace richtet sich vor allem an produzierende kleine und mittlere
             Unternehmen, die eine IntegrityNext-Anfrage eines Kunden bearbeiten
             müssen, aber keine große interne ESG-Abteilung für die Koordination
             der Selbstauskunft haben.

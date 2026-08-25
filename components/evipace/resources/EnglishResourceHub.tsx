@@ -486,7 +486,7 @@ export function EnglishResourceHub() {
               title="Practical, traceable and evidence-first."
             >
               <p>
-                evipace resources are designed for real supplier work under time
+                Evipace resources are designed for real supplier work under time
                 pressure.
               </p>
             </SectionHeading>

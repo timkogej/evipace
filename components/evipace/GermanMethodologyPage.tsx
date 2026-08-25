@@ -99,7 +99,7 @@ const projectSteps = [
     title: "Unternehmensangaben bestätigen",
     body: "Bestimmte Aussagen können nur das Unternehmen selbst verbindlich bestätigen.",
     closing:
-      "Das betrifft insbesondere tatsächliche Unternehmenspraktiken, interne Verantwortlichkeiten, formale Richtlinien, strategische Aussagen oder Informationen, für die eine Freigabe erforderlich ist. evipace bereitet vor. Das Unternehmen bestätigt, was nur das Unternehmen selbst bestätigen kann."
+      "Das betrifft insbesondere tatsächliche Unternehmenspraktiken, interne Verantwortlichkeiten, formale Richtlinien, strategische Aussagen oder Informationen, für die eine Freigabe erforderlich ist. Evipace bereitet vor. Das Unternehmen bestätigt, was nur das Unternehmen selbst bestätigen kann."
   }
 ];
 
@@ -413,7 +413,7 @@ export function GermanMethodologyPage({
               </h1>
               <div className="body-lg mt-7 max-w-3xl space-y-5">
                 <p>
-                  evipace beginnt nicht mit generischen Antworten oder fertigen
+                  Evipace beginnt nicht mit generischen Antworten oder fertigen
                   Textbausteinen. Wir beginnen mit den tatsächlichen Daten,
                   Dokumenten und Unternehmensinformationen, die für Ihre
                   konkrete ESG-Aufgabe relevant sind.
@@ -788,7 +788,7 @@ export function GermanMethodologyPage({
                 externen Plattform bestätigt.
               </p>
               <p>
-                evipace ist ein unabhängiger Dienstleister und weder mit
+                Evipace ist ein unabhängiger Dienstleister und weder mit
                 EcoVadis noch mit IntegrityNext verbunden.
               </p>
             </Reveal>
@@ -797,7 +797,7 @@ export function GermanMethodologyPage({
               delay={0.08}
             >
               <p className="mb-6 text-sm font-bold uppercase text-orange">
-                evipace unterstützt bei
+                Evipace unterstützt bei
               </p>
               <CheckList items={platformSupportItems} />
             </Reveal>
@@ -855,7 +855,7 @@ export function GermanMethodologyPage({
                 Manchmal zeigt eine ESG-Anfrage, dass eine relevante Richtlinie
                 oder interne Dokumentation noch nicht formalisiert wurde.
               </p>
-              <p>evipace kann in solchen Fällen einen Entwurf vorbereiten.</p>
+              <p>Evipace kann in solchen Fällen einen Entwurf vorbereiten.</p>
               <p>
                 Dabei gilt ein klares Prinzip: Der Inhalt muss auf der
                 tatsächlichen Praxis und den tatsächlichen Entscheidungen des
@@ -902,7 +902,7 @@ export function GermanMethodologyPage({
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-white/72">
               <p>
-                evipace kann digitale und AI-gestützte Werkzeuge intern
+                Evipace kann digitale und AI-gestützte Werkzeuge intern
                 einsetzen, um umfangreiche Informationen effizienter zu
                 verarbeiten.
               </p>
@@ -955,7 +955,7 @@ export function GermanMethodologyPage({
               <div className="mb-6 flex items-center gap-3">
                 <ShieldCheck className="h-5 w-5 text-orange" />
                 <h3 className="text-2xl font-bold text-ink">
-                  evipace übernimmt
+                  Evipace übernimmt
                 </h3>
               </div>
               <CheckList items={evipaceResponsibilities} />

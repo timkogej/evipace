@@ -21,7 +21,7 @@ export function FocusedScope() {
               Ihr Kunde benötigt bestimmte Informationen - und Sie brauchen
               eine belastbare Antwort.
             </p>
-            <p>evipace kann genau dort starten.</p>
+            <p>Evipace kann genau dort starten.</p>
             <p>
               Wir konzentrieren uns zunächst auf die tatsächliche
               Kundenanforderung, die vorhandenen Unternehmensdaten und das,

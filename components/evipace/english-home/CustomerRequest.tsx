@@ -1,8 +1,8 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { evipaceImages } from "@/lib/evipace-images";
+import { EditorialPlate } from "../home-sections/EditorialPlate";
 import { RequestStream } from "../home-sections/RequestStream";
-import { HomeImage } from "./HomeImage";
 import { requestQuestions, requestTypes } from "./content";
 import { SectionHeading } from "./SectionHeading";
 
@@ -29,11 +29,13 @@ export function CustomerRequest({
         */}
         <div className="reqsection mt-12">
           <div className="reqsection__grid">
-            <div className="reqsection__media flex flex-col">
-              <HomeImage
+            <div className="reqsection__media">
+              <EditorialPlate
                 asset={evipaceImages.questionnaireForward}
                 available={imageAvailable}
-                className="min-h-[24rem] flex-1 rounded-[1.25rem] sm:min-h-[31rem]"
+                position="50% 50%"
+                ratio="1.06 / 1"
+                sizes="(min-width: 1024px) 52vw, 100vw"
               />
             </div>
 
@@ -44,7 +46,7 @@ export function CustomerRequest({
               />
             </div>
 
-            <div className="reqsection__panel flex flex-col justify-between rounded-[1.25rem] bg-dark p-6 text-white sm:p-9 lg:p-11">
+            <div className="reqsection__panel flex flex-col justify-between bg-dark text-white">
               <div>
                 <p className="text-lg leading-8 text-white/70">
                   You do not need another ESG platform just to understand the

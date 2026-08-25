@@ -3,11 +3,13 @@
 import { useRef, useState } from "react";
 import { X, Upload as UploadIcon } from "lucide-react";
 import { ALLOWED_FILE_TYPES, MAX_FILES } from "@/lib/request-upload-constants";
+import { defaultSendRequestCopy, type FileDropzoneCopy } from "./copy";
 
 type FileDropzoneProps = {
   files: File[];
   onChange: (files: File[]) => void;
   disabled?: boolean;
+  copy?: FileDropzoneCopy;
 };
 
 const acceptAttr = Object.keys(ALLOWED_FILE_TYPES).join(",");
@@ -17,7 +19,12 @@ function formatSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export function FileDropzone({ files, onChange, disabled }: FileDropzoneProps) {
+export function FileDropzone({
+  files,
+  onChange,
+  disabled,
+  copy = defaultSendRequestCopy.dropzone
+}: FileDropzoneProps) {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +40,7 @@ export function FileDropzone({ files, onChange, disabled }: FileDropzoneProps) {
   return (
     <div>
       <button
-        aria-label="Add files"
+        aria-label={copy.addFilesAriaLabel}
         className={`flex w-full flex-col items-center justify-center gap-2 rounded-[1rem] border-2 border-dashed p-8 text-center transition ${
           isDragging
             ? "border-orange bg-[var(--soft-orange)]"
@@ -54,12 +61,8 @@ export function FileDropzone({ files, onChange, disabled }: FileDropzoneProps) {
         type="button"
       >
         <UploadIcon aria-hidden="true" className="h-6 w-6 text-orange" />
-        <span className="font-semibold text-ink">
-          Drop files here, or click to choose
-        </span>
-        <span className="text-sm text-muted">
-          .xlsx, .docx, .pdf, .csv, .jpg, .png — up to {MAX_FILES} files, 25MB each
-        </span>
+        <span className="font-semibold text-ink">{copy.dropText}</span>
+        <span className="text-sm text-muted">{copy.hintText}</span>
       </button>
 
       <input
@@ -88,7 +91,7 @@ export function FileDropzone({ files, onChange, disabled }: FileDropzoneProps) {
                 {formatSize(file.size)}
               </span>
               <button
-                aria-label={`Remove ${file.name}`}
+                aria-label={copy.removeAriaLabelTemplate.replace("{file}", file.name)}
                 className="shrink-0 text-muted transition hover:text-ink"
                 disabled={disabled}
                 onClick={() => removeFile(index)}

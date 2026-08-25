@@ -13,7 +13,11 @@ import { WEBSITE_ID } from "./ids";
  * buildPageMetadata's fail-safe behavior) — callers should omit the node
  * from the graph rather than render something untruthful.
  */
-export function buildWebPageSchema(locale: string, pageKey: PageKey) {
+export function buildWebPageSchema(
+  locale: string,
+  pageKey: PageKey,
+  pageType: "WebPage" | "CollectionPage" = "WebPage"
+) {
   const entry = getPageMetadataEntry(locale, pageKey);
 
   if (!entry) {
@@ -23,7 +27,7 @@ export function buildWebPageSchema(locale: string, pageKey: PageKey) {
   const absoluteUrl = `${SITE_URL}${entry.path}`;
 
   return {
-    "@type": "WebPage",
+    "@type": pageType,
     "@id": `${absoluteUrl}#webpage`,
     url: absoluteUrl,
     name: entry.title,

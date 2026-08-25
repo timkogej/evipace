@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FileDropzone } from "./FileDropzone";
 import { SuccessState } from "./SuccessState";
+import { defaultSendRequestCopy, type SendRequestCopy } from "./copy";
 import { uploadFile, type UploadTarget } from "@/lib/client/upload-file";
 import { privacyPolicyPath } from "@/lib/legal-info";
 
@@ -14,7 +15,12 @@ type CreateResponse = {
   uploads: UploadTarget[];
 };
 
-export function RequestForm() {
+type RequestFormProps = {
+  copy?: SendRequestCopy;
+};
+
+export function RequestForm({ copy = defaultSendRequestCopy }: RequestFormProps) {
+  const formCopy = copy.form;
   const [stage, setStage] = useState<Stage>("form");
   const [files, setFiles] = useState<File[]>([]);
   const [progress, setProgress] = useState<Record<string, number>>({});
@@ -26,7 +32,7 @@ export function RequestForm() {
     setError(null);
 
     if (files.length === 0) {
-      setError("Attach at least one file.");
+      setError(formCopy.errors.noFiles);
       return;
     }
 
@@ -54,11 +60,11 @@ export function RequestForm() {
       });
 
       if (createRes.status === 503) {
-        setError("This form isn't accepting submissions yet. Please email us directly.");
+        setError(formCopy.errors.disabled);
         return;
       }
       if (!createRes.ok) {
-        setError("We couldn't submit your request. Please check the form and try again.");
+        setError(formCopy.errors.submitFailed);
         return;
       }
 
@@ -82,9 +88,7 @@ export function RequestForm() {
       });
 
       if (!finalizeRes.ok) {
-        setError(
-          "Your files uploaded, but we couldn't confirm the submission. Please try again or email us directly."
-        );
+        setError(formCopy.errors.finalizeFailed);
         setStage("form");
         return;
       }
@@ -94,11 +98,13 @@ export function RequestForm() {
       // Surfacing the real error message on-page deliberately — during
       // integration testing this is the diagnostic signal (e.g. the
       // actual TUS failure reason from onError in upload-file.ts)
-      // without needing DevTools open to see it.
+      // without needing DevTools open to see it. That underlying message
+      // comes from client/server code shared across locales, so it is not
+      // itself localized — only the generic fallback below is.
       const message =
         caughtError instanceof Error
           ? caughtError.message
-          : "Something went wrong. Please try again.";
+          : formCopy.errors.generic;
       setError(message);
       setStage("form");
     } finally {
@@ -107,7 +113,7 @@ export function RequestForm() {
   }
 
   if (stage === "success") {
-    return <SuccessState />;
+    return <SuccessState copy={copy.success} />;
   }
 
   const overallProgress =
@@ -122,7 +128,7 @@ export function RequestForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold text-ink">
-          Name
+          {formCopy.labels.name}
           <input
             className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
             name="name"
@@ -131,7 +137,7 @@ export function RequestForm() {
           />
         </label>
         <label className="grid gap-2 text-sm font-semibold text-ink">
-          Work email
+          {formCopy.labels.email}
           <input
             className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
             name="email"
@@ -140,7 +146,7 @@ export function RequestForm() {
           />
         </label>
         <label className="grid gap-2 text-sm font-semibold text-ink">
-          Company
+          {formCopy.labels.company}
           <input
             className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
             name="company"
@@ -149,7 +155,8 @@ export function RequestForm() {
           />
         </label>
         <label className="grid gap-2 text-sm font-semibold text-ink">
-          Deadline <span className="font-normal text-muted">(optional)</span>
+          {formCopy.labels.deadline}{" "}
+          <span className="font-normal text-muted">{formCopy.labels.optional}</span>
           <input
             className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
             name="deadline"
@@ -159,7 +166,8 @@ export function RequestForm() {
       </div>
 
       <label className="mt-5 grid gap-2 text-sm font-semibold text-ink">
-        Message / context <span className="font-normal text-muted">(optional)</span>
+        {formCopy.labels.message}{" "}
+        <span className="font-normal text-muted">{formCopy.labels.optional}</span>
         <textarea
           className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
           name="message"
@@ -176,7 +184,12 @@ export function RequestForm() {
       </div>
 
       <div className="mt-6">
-        <FileDropzone disabled={submitting} files={files} onChange={setFiles} />
+        <FileDropzone
+          copy={copy.dropzone}
+          disabled={submitting}
+          files={files}
+          onChange={setFiles}
+        />
       </div>
 
       {stage === "uploading" ? (
@@ -187,7 +200,9 @@ export function RequestForm() {
               style={{ width: `${Math.round(overallProgress * 100)}%` }}
             />
           </div>
-          <p className="mt-2 text-sm font-semibold text-muted">Uploading your files…</p>
+          <p className="mt-2 text-sm font-semibold text-muted">
+            {formCopy.uploadingText}
+          </p>
         </div>
       ) : null}
 
@@ -198,14 +213,13 @@ export function RequestForm() {
       ) : null}
 
       <p className="mt-6 text-sm leading-6 text-muted">
-        Files and information you send us are stored privately and used only
-        to process your request.
+        {formCopy.privacy.intro}
         {privacyPolicyPath ? (
           <>
             {" "}
-            Read our{" "}
+            {formCopy.privacy.linkPrefix}{" "}
             <a className="orange-link" href={privacyPolicyPath}>
-              Privacy Policy
+              {formCopy.privacy.linkLabel}
             </a>
             .
           </>
@@ -217,7 +231,7 @@ export function RequestForm() {
         disabled={submitting}
         type="submit"
       >
-        {submitting ? "Sending…" : "Send your ESG request"}
+        {submitting ? formCopy.submittingLabel : formCopy.submitLabel}
       </button>
     </form>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { evipaceImages } from "@/lib/evipace-images";
-import { defaultLocale, isActiveLocale } from "@/lib/evipace-locales";
+import { defaultLocale } from "@/lib/evipace-locales";
 import { SITE_NAME } from "./site-config";
 import {
   getPageMetadataEntry,
@@ -13,13 +13,10 @@ import {
  * getActivePageGroup query (lib/seo/page-registry.ts) — the same function
  * app/sitemap.ts uses — so the two can never drift apart.
  *
- * Only locales that are both (a) globally active and (b) have a real entry
- * for this exact pageKey are included:
- * - Today, with only "en" active, a page's alternates contain just "en"
- *   (+ x-default pointing at it, since "en" genuinely is the entry).
- * - The moment a locale is added to `activeLocales` in evipace-locales.ts
- *   *and* has a matching registry entry, it appears here automatically —
- *   no changes needed in this function.
+ * Only locales with a real registry entry for this exact pageKey are
+ * included. The moment a second locale gets a matching registry entry for
+ * the same pageKey, it appears here automatically — no changes needed in
+ * this function.
  */
 function buildLanguageAlternates(
   pageKey: PageKey
@@ -52,27 +49,19 @@ function buildLanguageAlternates(
 /**
  * Builds a page's Metadata object from the central registry.
  *
- * If no entry exists for this locale/page (e.g. a request for /de or /sl
- * before real content is registered), this returns a safe, non-indexable
- * fallback rather than throwing — generateMetadata can be invoked before a
- * layout's notFound() check resolves, so this must never crash and must
- * never leak the English title/description onto an unregistered locale.
- *
- * If the locale IS active but still has no entry for this pageKey, that's
- * a real gap (a live route with no SEO metadata registered) — logged as a
- * dev-only warning so it can't silently ship unnoticed.
+ * If no entry exists for this locale/page (e.g. a request for /de/about, or
+ * a reachable-but-unlisted page like /de/send-request — see
+ * lib/seo/page-registry.ts's isPageReachable/unlistedReachablePages), this
+ * returns a safe, non-indexable fallback rather than throwing —
+ * generateMetadata can be invoked before the page component's own
+ * reachability check (notFound()) resolves, so this must never crash and
+ * must never leak another locale's title/description onto an unregistered
+ * page.
  */
 export function buildPageMetadata(locale: string, pageKey: PageKey): Metadata {
   const entry = getPageMetadataEntry(locale, pageKey);
 
   if (!entry) {
-    if (isActiveLocale(locale) && process.env.NODE_ENV === "development") {
-      console.warn(
-        `[seo] Active locale "${locale}" has no metadata registry entry for page "${pageKey}". ` +
-          `Add one to lib/seo/page-registry.ts before this route ships.`
-      );
-    }
-
     return {
       robots: {
         index: false,
@@ -100,7 +89,7 @@ export function buildPageMetadata(locale: string, pageKey: PageKey): Metadata {
       description: entry.description,
       url: entry.path,
       siteName: SITE_NAME,
-      type: "website",
+      type: entry.openGraphType ?? "website",
       images: [ogImage]
     }
   };

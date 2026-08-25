@@ -14,7 +14,10 @@ import { evipaceImages } from "@/lib/evipace-images";
 import { ButtonLink } from "./ButtonLink";
 import { EvidenceDeskHero } from "./hero-evidence-desk/EvidenceDeskHero";
 import { DeliveryDossier } from "./home-sections/DeliveryDossier";
+import { EditorialPlate } from "./home-sections/EditorialPlate";
 import { EvidenceAssemblyBoard } from "./home-sections/EvidenceAssemblyBoard";
+import { ProcessSpine } from "./home-sections/ProcessSpine";
+import { ReuseDataPassport } from "./home-sections/ReuseDataPassport";
 import { RequestStream } from "./home-sections/RequestStream";
 import { ServiceImageCard } from "./home-sections/ServiceImageCard";
 import type { ServiceImageKey } from "./home-sections/service-images";
@@ -638,47 +641,37 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
 
         <section className="section-padding bg-[var(--warm)]" id="ablauf">
           <div className="site-shell">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-              <Reveal>
-                <p className="eyebrow">Ablauf</p>
-                <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
-                  Vom Kundenwunsch zum fertigen ESG-Ergebnis
-                </h2>
-                <ImageSlot
-                  {...evipaceImages.howItWorks}
-                  className="mt-10 min-h-[20rem] rounded-[1rem]"
-                  renderActualImage={imageAvailability.howItWorks}
-                />
-              </Reveal>
+            <Reveal className="max-w-4xl">
+              <p className="eyebrow">Ablauf</p>
+              <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
+                Vom Kundenwunsch zum fertigen ESG-Ergebnis
+              </h2>
+            </Reveal>
 
-              <div className="grid gap-5">
-                {processSteps.map((step, index) => (
-                  <Reveal
-                    className="grid gap-5 rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-[0_14px_45px_rgba(21,21,21,0.045)] md:grid-cols-[9rem_1fr]"
-                    delay={index * 0.05}
-                    key={step.title}
-                  >
-                    <div>
-                      <span className="font-display text-5xl leading-none text-orange">
-                        {step.number}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-ink">
-                        {step.title}
-                      </h3>
-                      <p className="mt-2 leading-7 text-muted">{step.body}</p>
-                      {step.cta ? (
-                        <div className="mt-5">
-                          <ButtonLink href={SEND_REQUEST_HREF}>
-                            ESG-Anfrage senden
-                          </ButtonLink>
-                        </div>
-                      ) : null}
-                    </div>
-                  </Reveal>
-                ))}
+            {/* Image rail and process spine share one axis. */}
+            <div className="works mt-12">
+              <div className="works__rail">
+                <EditorialPlate
+                  asset={evipaceImages.howItWorks}
+                  available={imageAvailability.howItWorks}
+                  ratio="1.08 / 1"
+                  sizes="(min-width: 1024px) 34vw, 100vw"
+                />
               </div>
+
+              <ProcessSpine
+                className="works__spine"
+                steps={processSteps.map((step) => ({
+                  number: step.number,
+                  title: step.title,
+                  body: step.body,
+                  action: step.cta ? (
+                    <ButtonLink href={SEND_REQUEST_HREF}>
+                      ESG-Anfrage senden
+                    </ButtonLink>
+                  ) : undefined
+                }))}
+              />
             </div>
           </div>
         </section>
@@ -744,8 +737,8 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
 
         <section className="section-padding bg-[var(--paper)]" id="datenbasis">
           <div className="site-shell">
-            <div className="grid gap-10 lg:grid-cols-2">
-              <Reveal className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-7 sm:p-9">
+            <div className="grid gap-10 border-b border-[rgba(21,21,21,0.12)] pb-12 lg:grid-cols-2 lg:gap-14">
+              <Reveal>
                 <p className="eyebrow">Wiederverwendbare Grundlage</p>
                 <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl">
                   Einmal strukturierte ESG-Daten sind beim nächsten Mal nicht
@@ -771,10 +764,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                 </div>
               </Reveal>
 
-              <Reveal
-                className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-7 sm:p-9"
-                delay={0.08}
-              >
+              <Reveal delay={0.08}>
                 <p className="eyebrow">Anpassungsfähig</p>
                 <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl">
                   ESG-Anforderungen ändern sich. Eine gute Datengrundlage bleibt
@@ -792,23 +782,20 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                     darunter.
                   </p>
                 </div>
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {dataFoundationItems.map((item) => (
-                    <span
-                      className="rounded-full border border-[rgba(21,21,21,0.12)] bg-[var(--paper)] px-3 py-1.5 text-sm font-semibold text-[rgba(21,21,21,0.68)]"
-                      key={item}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <p className="mt-8 text-lg font-semibold leading-8 text-ink">
+              </Reveal>
+            </div>
+
+            <ReuseDataPassport
+              className="mt-12"
+              fields={dataFoundationItems}
+              footer={
+                <p className="reuse__note">
                   Eine sauber strukturierte Datengrundlage lässt sich leichter
                   an neue Anforderungen anpassen als eine einzelne isolierte
                   Antwort.
                 </p>
-              </Reveal>
-            </div>
+              }
+            />
           </div>
         </section>
 

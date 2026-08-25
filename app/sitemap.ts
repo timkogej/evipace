@@ -10,10 +10,10 @@ import { getAllPageKeys, getActivePageGroup } from "@/lib/seo/page-registry";
  * lib/seo/build-metadata.ts, so a page only ever needs to be registered
  * once for both the <head> alternates and the sitemap to agree.
  *
- * Only real, active, indexable pages appear here. Today that's exactly
- * "/en" — "/de" and "/sl" have no active entries yet and are correctly
- * absent, not because of sitemap-specific logic, but because they fail the
- * same active-locale check every other part of this system uses.
+ * Only real, active, indexable pages appear here. Locale availability is
+ * not inferred globally: a German page appears only when that exact page key
+ * has a German registry entry, and Slovenian pages stay absent until genuine
+ * Slovenian entries exist.
  *
  * lastModified is intentionally omitted. There's no real content-update
  * timestamp source yet (no CMS, no tracked content-change dates) — stamping

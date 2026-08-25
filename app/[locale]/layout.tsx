@@ -1,21 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/evipace/Footer";
+import { Navbar } from "@/components/evipace/Navbar";
 import { evipaceImages } from "@/lib/evipace-images";
-import {
-  activeLocales,
-  isActiveLocale,
-  type Locale
-} from "@/lib/evipace-locales";
+import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
 import { SITE_URL } from "@/lib/seo/site-config";
+import { isSiteLocale } from "@/lib/site-navigation";
 import { gfsDidot, inter } from "../fonts";
 import "../globals.css";
 
-// Only pre-render locales that currently have real, reviewed content.
-// A locale not listed here still exists in the routing architecture (see
-// lib/evipace-locales.ts) but resolves as a 404 rather than thin/placeholder
-// content until real pages are built for it.
+// Pre-render every known locale segment — this layout no longer decides
+// per-page reachability (see lib/seo/page-registry.ts's isPageReachable).
+// A locale/page combination that isn't reachable yet still gets a static
+// path here, but the individual page component calls notFound() itself,
+// which Next renders as a real 404 for that specific path rather than
+// skipping generation.
 export function generateStaticParams() {
-  return activeLocales.map((locale) => ({ locale }));
+  return locales.map((locale) => ({ locale }));
 }
 
 // Site-wide defaults only. Per-page title/description/canonical/OG now live
@@ -55,18 +56,26 @@ export default async function LocaleLayout({
 }: LocaleLayoutProps) {
   const { locale } = await params;
 
-  if (!isActiveLocale(locale)) {
+  // Rejects only genuinely unknown locale segments (e.g. "/xx"). Whether a
+  // *known* locale has this particular page is decided further down the
+  // tree, per page, via isPageReachable() — not here.
+  if (!isLocale(locale)) {
     notFound();
   }
 
   const activeLocale: Locale = locale;
+  const showSiteChrome = isSiteLocale(activeLocale);
 
   return (
     <html
       className={`${inter.variable} ${gfsDidot.variable}`}
       lang={activeLocale}
     >
-      <body>{children}</body>
+      <body>
+        {showSiteChrome ? <Navbar locale={activeLocale} /> : null}
+        {children}
+        {showSiteChrome ? <Footer locale={activeLocale} /> : null}
+      </body>
     </html>
   );
 }

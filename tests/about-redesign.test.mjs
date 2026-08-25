@@ -1,14 +1,35 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
-const repo = new URL(".", root).pathname;
 const read = (path) => readFile(new URL(path, root), "utf8");
-const git = (args) =>
-  execFileSync("git", args, { cwd: repo, encoding: "utf8" }).trim();
+
+/**
+ * Every production source file, read straight from disk.
+ *
+ * Deliberately not `git grep` or `git ls-files`: a guard must not change its
+ * answer depending on whether a file happens to be untracked, staged or
+ * committed. `tests/` is never walked, so a guard can never match the very
+ * assertion literals it uses to describe what must be absent.
+ */
+const PRODUCTION_DIRS = ["app", "components", "lib"];
+
+function productionSourceFiles() {
+  const files = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(new URL(`${dir}/`, root), {
+      withFileTypes: true
+    })) {
+      const path = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) walk(path);
+      else if (/\.(ts|tsx|mjs|js|css)$/.test(entry.name)) files.push(path);
+    }
+  };
+  for (const dir of PRODUCTION_DIRS) walk(dir);
+  return files;
+}
 
 const EN_ABOUT = "components/evipace/EnglishAboutPage.tsx";
 const DE_ABOUT = "components/evipace/GermanAboutPage.tsx";
@@ -139,19 +160,30 @@ test("the About decoration component is deleted and unreferenced", () => {
     existsSync(new URL("components/evipace/AboutSectionDecorations.tsx", root)),
     false
   );
-  // `git grep` exits 1 when nothing matches, which is the passing case.
-  let hits = [];
-  try {
-    hits = git([
-      "grep", "-l",
-      "-e", "AboutSectionDecorations",
-      "-e", "BackgroundGraphic",
-      "--", "app", "components", "lib", "tests"
-    ]).split("\n").filter(Boolean);
-  } catch (error) {
-    assert.equal(error.status, 1, String(error));
+
+  // The module and every symbol it used to export must be gone from
+  // production source. Scanned from disk over app/ components/ lib/ only —
+  // never tests/, so this guard cannot match its own blocklist.
+  const forbidden = [
+    "AboutSectionDecorations",
+    "BackgroundGraphic",
+    "OriginBackgroundGraphic",
+    "SpeedBackgroundGraphic",
+    "EuropeBackgroundGraphic",
+    "DataFoundationBackgroundGraphic",
+    "BoundariesBackgroundGraphic"
+  ];
+  const files = productionSourceFiles();
+  assert.ok(files.length > 100, `only ${files.length} production files walked`);
+
+  const offenders = [];
+  for (const file of files) {
+    const text = readFileSync(new URL(file, root), "utf8");
+    for (const symbol of forbidden) {
+      if (text.includes(symbol)) offenders.push(`${file}: ${symbol}`);
+    }
   }
-  assert.deepEqual(hits, []);
+  assert.deepEqual(offenders, []);
 });
 
 test("every About decoration class and keyframe is gone from the stylesheet", () => {

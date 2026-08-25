@@ -1,12 +1,48 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
 const repo = new URL(".", root).pathname;
 const read = (path) => readFile(new URL(path, root), "utf8");
+
+/**
+ * The website state immediately before the approved capitalisation pass —
+ * commit a19f655, "feat: complete evipace website implementation".
+ *
+ * Pinned to a full hash on purpose. These guards ask "what changed since the
+ * approved baseline", so they must never resolve against `HEAD`: the moment
+ * the change is committed, `HEAD` becomes the changed state and the guard
+ * either inverts or silently degrades into comparing a file with itself.
+ */
+const BASELINE = "a19f6552e86582debba62c52eec611640450ff92";
+
+/**
+ * Every production source file, read straight from disk.
+ *
+ * Deliberately not `git grep` or `git ls-files`: a guard must not change its
+ * answer depending on whether a file happens to be untracked, staged or
+ * committed. `tests/` is never walked, so this guard cannot match the very
+ * blocklist literals it uses to describe what must be absent.
+ */
+const PRODUCTION_DIRS = ["app", "components", "lib"];
+
+function productionSourceFiles() {
+  const files = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(new URL(`${dir}/`, root), {
+      withFileTypes: true
+    })) {
+      const path = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) walk(path);
+      else if (/\.(ts|tsx|mjs|js|css)$/.test(entry.name)) files.push(path);
+    }
+  };
+  for (const dir of PRODUCTION_DIRS) walk(dir);
+  return files;
+}
 
 /**
  * The hero's CSS block with every `.hero-desk__title*` rule removed. The
@@ -162,14 +198,12 @@ test("technical identifiers were not swept up by the capitalisation pass", () =>
       'export const publicContactEmail = "hello@evipace.com"'
     )
   );
-  // No storage key, domain or address may have been capitalised.
-  const tracked = git(["ls-files", "app", "components", "lib", "tests"])
-    .split("\n")
-    .filter((file) => /\.(ts|tsx|mjs|css)$/.test(file))
-    .filter((file) => existsSync(new URL(file, root)));
-  assert.ok(tracked.length > 100);
+  // No storage key, domain, import path or address may have been
+  // capitalised anywhere in production source.
+  const files = productionSourceFiles();
+  assert.ok(files.length > 100, `only ${files.length} production files walked`);
   const offenders = [];
-  for (const file of tracked) {
+  for (const file of files) {
     const text = readFileSync(new URL(file, root), "utf8");
     for (const bad of ["Evipace.com", "Evipace:en:", "Evipace:de:", "@Evipace", "components/Evipace", "EvipaceImages"]) {
       if (text.includes(bad)) offenders.push(`${file}: ${bad}`);
@@ -179,8 +213,8 @@ test("technical identifiers were not swept up by the capitalisation pass", () =>
 });
 
 test("the homepage changed only by the intentional capitalisation literals", () => {
-  // Each of these four files carries exactly one approved edit since the
-  // checkpoint. Undoing that literal must restore the committed file byte for
+  // Each of these files carries exactly one approved edit since the pinned
+  // baseline. Undoing that literal must restore the baseline file byte for
   // byte — nothing else about the approved homepage may have moved.
   // HomeHero is excluded on purpose: its heading was redesigned in a later
   // round, so it is no longer a capitalisation-only file. Its own copy is
@@ -195,7 +229,7 @@ test("the homepage changed only by the intentional capitalisation literals", () 
     assert.ok(working.includes(applied), `${file}: correction missing`);
     assert.equal(
       working.replace(applied, original),
-      `${git(["show", `HEAD:${file}`])}\n`,
+      `${git(["show", `${BASELINE}:${file}`])}\n`,
       `${file} changed beyond the capitalisation`
     );
   }
@@ -203,7 +237,7 @@ test("the homepage changed only by the intentional capitalisation literals", () 
 
 test("no homepage stylesheet block was touched by the About work", async () => {
   const current = await read("app/globals.css");
-  const committed = git(["show", "HEAD:app/globals.css"]);
+  const committed = git(["show", `${BASELINE}:app/globals.css`]);
 
   // The hero's CSS composition is untouched; only its heading scale moved,
   // and that was an explicit hero change, not About work.

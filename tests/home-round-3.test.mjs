@@ -10,6 +10,22 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 const git = (args) =>
   execFileSync("git", args, { cwd: repo, encoding: "utf8" }).trim();
 
+/**
+ * Stable baselines, pinned to full hashes.
+ *
+ * These guards ask "what changed since the approved state", so they must
+ * never resolve against `HEAD`: once the change is committed, `HEAD` becomes
+ * the changed state and the guard either inverts or silently degrades into
+ * comparing a file with itself.
+ *
+ * BASELINE       a19f655 "feat: complete evipace website implementation" —
+ *                the tree immediately before the About/copy/homepage round.
+ * HERO_CHECKPOINT c6563b4 "feat: redesign homepage evidence desk hero" —
+ *                the commit that approved the evidence-desk hero itself.
+ */
+const BASELINE = "a19f6552e86582debba62c52eec611640450ff92";
+const HERO_CHECKPOINT = "c6563b44f6061a4727d399822c876c56bda04bb0";
+
 const [dataReuse, howItWorks, customerRequest, content, german, passport, spine, plate, requestStream, globals] =
   await Promise.all([
     read("components/evipace/english-home/DataReuse.tsx"),
@@ -72,7 +88,10 @@ test("the locked statement is byte-for-byte unchanged", () => {
   assert.ok(block.includes('<span className="text-orange">'));
 
   // And the treatment itself has not drifted since the checkpoint.
-  const committed = git(["show", "HEAD:components/evipace/english-home/DataReuse.tsx"]);
+  const committed = git([
+    "show",
+    `${BASELINE}:components/evipace/english-home/DataReuse.tsx`
+  ]);
   const quoteOf = (source) =>
     source.slice(source.indexOf('<div className="mt-12 border-t')).replace(/\s+/g, " ").trim();
   assert.equal(quoteOf(dataReuse), quoteOf(committed));
@@ -271,7 +290,7 @@ test("the approved hero plate and annotation are untouched", async () => {
     "public/images/evipace/homepage/hero-evidence-desk-desktop.webp",
     "public/images/evipace/homepage/hero-evidence-desk-mobile.webp"
   ];
-  assert.equal(git(["diff", "--stat", "c6563b4", "--", ...heroPaths]), "");
+  assert.equal(git(["diff", "--stat", HERO_CHECKPOINT, "--", ...heroPaths]), "");
 
   // HomeHero still hands the hero its approved machinery rather than
   // rebuilding it: same asset, same locale wiring, same single h1.
@@ -287,7 +306,7 @@ test("the approved hero plate and annotation are untouched", async () => {
   // And the hero's CSS composition is unchanged since the checkpoint.
   assert.equal(
     heroCssWithoutTitleRules(globals),
-    heroCssWithoutTitleRules(git(["show", "c6563b4:app/globals.css"]))
+    heroCssWithoutTitleRules(git(["show", `${HERO_CHECKPOINT}:app/globals.css`]))
   );
 
   // The two heading scales the sentence heading needs are declared.
@@ -308,11 +327,11 @@ test("the other approved sections are unchanged since the checkpoint", () => {
     "components/evipace/home-sections/InView.tsx",
     "components/evipace/home-sections/RequestStream.tsx"
   ];
-  assert.equal(git(["diff", "--stat", "HEAD", "--", ...approved]), "");
+  assert.equal(git(["diff", "--stat", BASELINE, "--", ...approved]), "");
 });
 
 test("the scattered-data section changed only by its approved line break", async () => {
-  // One approved edit since the checkpoint: the heading's second sentence
+  // One approved edit since the pinned baseline: the heading's second sentence
   // now sits on a line of its own. Undoing exactly that must restore the
   // committed file byte for byte — the section is otherwise frozen.
   const file = "components/evipace/english-home/ScatteredData.tsx";
@@ -328,7 +347,7 @@ test("the scattered-data section changed only by its approved line break", async
   assert.ok(working.includes(applied), "line break missing");
   assert.equal(
     working.replace(applied, original),
-    `${git(["show", `HEAD:${file}`])}\n`,
+    `${git(["show", `${BASELINE}:${file}`])}\n`,
     "ScatteredData changed beyond the line break"
   );
 });

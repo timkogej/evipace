@@ -25,22 +25,22 @@ export const evipaceImages = {
     logoGlow: `${brandBase}/evipace-logo-glow.png`
   },
   /**
-   * Homepage hero — art-directed evidence-desk photography.
+   * Homepage hero — art-directed meeting photography.
    *
    * Two approved sources, one per orientation: the 16:9 desktop plate and a
    * dedicated 9:16 mobile plate. They are selected with a `<picture>` element
-   * so exactly one of them is ever downloaded (see EvidenceDeskHero).
+   * so exactly one of them is ever downloaded (see MeetingHero).
    * Treated as decorative, hence the empty alt — the hero's meaning lives in
    * the server-rendered heading, description and CTAs next to it.
    */
   hero: {
-    src: `${homepageBase}/hero-evidence-desk-desktop.webp`,
-    mobileSrc: `${homepageBase}/hero-evidence-desk-mobile.webp`,
+    src: `${homepageBase}/hero-meeting-desktop.webp`,
+    mobileSrc: `${homepageBase}/hero-meeting-mobile.webp`,
     alt: "",
     sizes: "100vw",
     mobileSizes: "100vw",
     priority: true,
-    quality: 86,
+    quality: 88,
     width: 3840,
     height: 2160,
     mobileWidth: 941,

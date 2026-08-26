@@ -54,7 +54,11 @@ function productionSourceFiles() {
 function heroCssWithoutTitleRules(source) {
   const start = source.indexOf("   Homepage hero \u2014 evidence desk");
   assert.ok(start > -1, "hero CSS block not found");
-  const next = source.indexOf("   Homepage sections \u2014 evidence board", start);
+  const meeting = source.indexOf("   Homepage hero \u2014 meeting photograph", start);
+  const next =
+    meeting > start
+      ? meeting
+      : source.indexOf("   Homepage sections \u2014 evidence board", start);
   const end = next > start ? source.lastIndexOf("/*", next) : -1;
   const block = source.slice(start, end > start ? end : undefined);
   return block
@@ -263,7 +267,19 @@ test("no homepage stylesheet block was touched by the About work", async () => {
   // pins the blocks they wrap.
   const approvedAdditions = new Set([
     ".hero-desk__title--sentence",
-    ".hero-desk__title--sentence-de"
+    ".hero-desk__title--sentence-de",
+    ".meeting-hero",
+    ".meeting-hero__body",
+    ".meeting-hero__body-secondary",
+    ".meeting-hero__content",
+    ".meeting-hero__image",
+    ".meeting-hero__inner",
+    ".meeting-hero__picture",
+    ".meeting-hero__picture--empty",
+    ".meeting-hero__scrim",
+    ".meeting-hero__title",
+    ".meeting-hero__title--de",
+    ".meeting-hero__trust"
   ]);
   const pageScoped = /\babout\b|about-|methodology/;
   const selectors = (css) =>

@@ -62,14 +62,13 @@ test("English and German homepages remain separate locale implementations", () =
   assert.ok(pageSource.includes('buildWebPageSchema(locale, "home")'));
   assert.ok(pageSource.includes("buildOrganizationSchema()"));
   assert.ok(pageSource.includes("buildWebsiteSchema()"));
-  assert.ok(germanHomeSource.includes("ESG-Anforderungen erledigen"));
+  assert.ok(germanHomeSource.includes("ESG, schneller erledigt."));
   assert.ok(!germanHomeSource.includes("Your customer asked for ESG data"));
 });
 
 test("approved homepage sections, copy, workflow and CTAs are present", () => {
   const requiredCopy = [
-    "Your customer asked for ESG data.",
-    "We help you get it done.",
+    "ESG, done faster.",
     "Your ESG data is probably not missing.",
     "It is scattered.",
     "A customer asks for ESG information. What happens next?",
@@ -183,39 +182,29 @@ test("homepage preserves optimized local imagery without adding dependencies", (
   assert.ok(!homepageSource.includes('from "../Reveal"'));
 });
 
-test("the hero leads with the customer sentence as its only heading", () => {
+test("the hero leads with the approved meeting headline as its only heading", () => {
   const heroSource = homeFiles.includes("HomeHero.tsx")
     ? sectionSources[homeFiles.indexOf("HomeHero.tsx")]
     : "";
   const normalizedHero = heroSource.replace(/\s+/g, " ");
 
-  // Exactly one semantic h1, carrying the customer sentence as a
-  // deliberate two-line composition — one sentence per line.
   assert.equal(heroSource.match(/<h1/g)?.length, 1);
   assert.ok(normalizedHero.includes('id="hero-title"'));
-  assert.ok(
-    normalizedHero.includes(
-      '<span className="hero-desk__title-line"> Your customer asked for ESG data. </span>'
-    )
-  );
-  assert.ok(
-    normalizedHero.includes(
-      '<span className="hero-desk__title-line"> We help you get it done. </span>'
-    )
-  );
-  assert.ok(normalizedHero.includes("hero-desk__title--sentence"));
+  assert.ok(normalizedHero.includes("> ESG, done faster. </h1>"));
+  assert.ok(normalizedHero.includes("meeting-hero__title"));
   assert.ok(!normalizedHero.includes("<h2"));
+  assert.ok(!normalizedHero.includes("hero-desk"));
+  assert.ok(normalizedHero.includes("<MeetingHero"));
 
-  // The eyebrow and the standalone lead are gone: the sentence they used to
-  // introduce is the heading now, so neither may be repeated.
   assert.ok(!normalizedHero.includes('className="eyebrow"'));
   assert.ok(!normalizedHero.includes("ESG execution for manufacturing suppliers"));
   assert.ok(!normalizedHero.includes("hero-desk__lead"));
-  assert.ok(!normalizedHero.includes("ESG, done"));
+  assert.ok(!normalizedHero.includes("Your customer asked for ESG data."));
+  assert.ok(!normalizedHero.includes("We help you get it done."));
 
   // The secondary paragraph stays in the markup and is hidden with CSS
   // below the desktop breakpoint, never deleted from the content.
-  assert.ok(normalizedHero.includes('className="hero-desk__body-secondary"'));
+  assert.ok(normalizedHero.includes('className="meeting-hero__body-secondary"'));
   assert.ok(normalizedHero.includes("Evipace takes care of the practical ESG work"));
 
   // CTA labels and destinations are unchanged.
@@ -232,24 +221,15 @@ test("German hero mirrors the approved hierarchy in its own locale", () => {
   const normalizedGerman = germanHomeSource.replace(/\s+/g, " ");
 
   assert.equal(germanHomeSource.match(/<h1/g)?.length, 1);
-  assert.ok(
-    normalizedGerman.includes(
-      '<span className="hero-desk__title-line"> ESG-Anforderungen erledigen \u2013 </span>'
-    )
-  );
-  assert.ok(
-    normalizedGerman.includes(
-      '<span className="hero-desk__title-line"> ohne daraus ein monatelanges Projekt zu machen. </span>'
-    )
-  );
-  assert.ok(normalizedGerman.includes("hero-desk__title--sentence"));
+  assert.ok(normalizedGerman.includes("> ESG, schneller erledigt. </h1>"));
+  assert.ok(normalizedGerman.includes("meeting-hero__title"));
+  assert.ok(!normalizedGerman.includes("hero-desk"));
   assert.ok(!normalizedGerman.includes("hero-desk__lead"));
   assert.ok(!normalizedGerman.includes("ESG für produzierende Unternehmen</p>"));
-  assert.ok(normalizedGerman.includes('className="hero-desk__body-secondary"'));
+  assert.ok(normalizedGerman.includes('className="meeting-hero__body-secondary"'));
   assert.ok(normalizedGerman.includes('href={SEND_REQUEST_HREF}'));
   assert.ok(normalizedGerman.includes("ESG-Anfrage senden"));
   assert.ok(normalizedGerman.includes('href="#leistungen"'));
   assert.ok(normalizedGerman.includes("Leistungen ansehen"));
   assert.ok(!normalizedGerman.includes("ESG, done faster"));
-  assert.ok(!normalizedGerman.includes("ESG, schneller"));
 });

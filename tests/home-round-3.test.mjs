@@ -50,7 +50,11 @@ const [dataReuse, howItWorks, customerRequest, content, german, passport, spine,
 function heroCssWithoutTitleRules(source) {
   const start = source.indexOf("   Homepage hero \u2014 evidence desk");
   assert.ok(start > -1, "hero CSS block not found");
-  const next = source.indexOf("   Homepage sections \u2014 evidence board", start);
+  const meeting = source.indexOf("   Homepage hero \u2014 meeting photograph", start);
+  const next =
+    meeting > start
+      ? meeting
+      : source.indexOf("   Homepage sections \u2014 evidence board", start);
   const end = next > start ? source.lastIndexOf("/*", next) : -1;
   const block = source.slice(start, end > start ? end : undefined);
   return block
@@ -276,42 +280,35 @@ test("each homepage still has exactly one h1 and no client sections", () => {
   }
 });
 
-test("the approved hero plate and annotation are untouched", async () => {
-  // The photography, the crop, the CSS/SVG annotation and the image
-  // registry are still frozen at the hero checkpoint. Only the copy inside
-  // HomeHero.tsx was redesigned in a later round, and its wording is pinned
-  // by the hero copy tests instead.
+test("the approved Evidence Desk fallback remains available and untouched", async () => {
+  // The old photography, crop and annotation remain frozen as an explicit
+  // rollback path. The active homepage registry intentionally moved to the
+  // meeting hero and is covered by the focused meeting-hero tests.
   const heroPaths = [
     "components/evipace/hero-evidence-desk/EvidenceDeskHero.tsx",
     "components/evipace/hero-evidence-desk/process-labels.ts",
     "components/evipace/Hero.tsx",
-    "lib/evipace-images.ts",
-    "lib/evipace-image-availability.ts",
     "public/images/evipace/homepage/hero-evidence-desk-desktop.webp",
     "public/images/evipace/homepage/hero-evidence-desk-mobile.webp"
   ];
   assert.equal(git(["diff", "--stat", HERO_CHECKPOINT, "--", ...heroPaths]), "");
 
-  // HomeHero still hands the hero its approved machinery rather than
-  // rebuilding it: same asset, same locale wiring, same single h1.
   const heroPath = "components/evipace/english-home/HomeHero.tsx";
   const heroSource = await read(heroPath);
-  assert.ok(heroSource.includes("<EvidenceDeskHero"));
+  assert.ok(heroSource.includes("<MeetingHero"));
   assert.ok(heroSource.includes("asset={evipaceImages.hero}"));
   assert.ok(heroSource.includes('headingId="hero-title"'));
   assert.ok(heroSource.includes("imageAvailable={imageAvailable}"));
   assert.equal(heroSource.match(/<h1/g)?.length, 1);
+  assert.ok(!heroSource.includes("hero-desk"));
+  assert.ok(!heroSource.includes("<EvidenceDeskHero"));
   assert.ok(!heroSource.includes("use client"));
 
-  // And the hero's CSS composition is unchanged since the checkpoint.
+  // The old hero's CSS composition is unchanged since the checkpoint.
   assert.equal(
     heroCssWithoutTitleRules(globals),
     heroCssWithoutTitleRules(git(["show", `${HERO_CHECKPOINT}:app/globals.css`]))
   );
-
-  // The two heading scales the sentence heading needs are declared.
-  assert.ok(globals.includes(".hero-desk__title--sentence {"));
-  assert.ok(globals.includes(".hero-desk__title--sentence-de {"));
 });
 
 test("the other approved sections are unchanged since the checkpoint", () => {

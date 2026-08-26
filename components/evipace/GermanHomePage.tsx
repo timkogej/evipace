@@ -12,7 +12,7 @@ import Link from "next/link";
 import type { EvipaceImageAvailability } from "@/lib/evipace-image-availability";
 import { evipaceImages } from "@/lib/evipace-images";
 import { ButtonLink } from "./ButtonLink";
-import { EvidenceDeskHero } from "./hero-evidence-desk/EvidenceDeskHero";
+import { MeetingHero } from "./hero-meeting/MeetingHero";
 import { DeliveryDossier } from "./home-sections/DeliveryDossier";
 import { EditorialPlate } from "./home-sections/EditorialPlate";
 import { EvidenceAssemblyBoard } from "./home-sections/EvidenceAssemblyBoard";
@@ -305,61 +305,49 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
   return (
     <>
       <main>
-        <EvidenceDeskHero
+        <MeetingHero
           asset={evipaceImages.hero}
           headingId="hero-title"
           imageAvailable={imageAvailability.hero}
-          locale="de"
         >
-          {/*
-            One semantic h1, set as a deliberate two-line composition: the
-            promise, then the qualification. The spans are visual only; the
-            accessible name remains the whole sentence.
-          */}
           <h1
-            className="hero-desk__title hero-desk__title--sentence hero-desk__title--sentence-de font-display"
+            className="meeting-hero__title meeting-hero__title--de font-display"
             id="hero-title"
           >
-            <span className="hero-desk__title-line">
-              ESG-Anforderungen erledigen –
-            </span>
-            <span className="hero-desk__title-line">
-              ohne daraus ein monatelanges Projekt zu machen.
-            </span>
+            ESG, schneller erledigt.
           </h1>
 
-          <div className="hero-desk__body mt-6 space-y-4">
+          <div className="meeting-hero__body mt-6 space-y-4">
             <p>
               Ihre Kunden verlangen ESG-Daten, Nachweise oder Emissionswerte?
               Sie senden uns die Anfrage und vorhandenen Unterlagen.
             </p>
-            <p className="hero-desk__body-secondary">
+            <p className="meeting-hero__body-secondary">
               Wir strukturieren die Informationen, bereiten Antworten und
               Kennzahlen vor und bringen die Aufgabe bis zu einem prüfbaren
               Ergebnis.
             </p>
           </div>
 
-          <div className="hero-desk__actions mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ButtonLink
-              className="w-full max-w-full text-center sm:w-auto"
+          <div className="meeting-hero__actions mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link
+              className="inline-flex min-h-12 w-full max-w-full items-center justify-center rounded-lg border border-orange bg-orange px-5 py-3 text-center text-sm font-bold text-white sm:w-auto"
               href={SEND_REQUEST_HREF}
             >
               ESG-Anfrage senden
-            </ButtonLink>
+            </Link>
             <a
-              className="orange-link inline-flex min-h-12 items-center gap-2 px-1 text-sm"
+              className="inline-flex min-h-12 w-full max-w-full items-center justify-center rounded-lg border border-[rgba(21,21,21,0.2)] bg-transparent px-5 py-3 text-center text-sm font-bold text-ink sm:w-auto"
               href="#leistungen"
             >
-              <span>Leistungen ansehen</span>
-              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+              Leistungen ansehen
             </a>
           </div>
 
-          <p className="hero-desk__trust mt-7">
+          <p className="meeting-hero__trust mt-7">
             Kundenanfragen · Fragebögen · Scope 1 &amp; 2 · VSME · Nachweise
           </p>
-        </EvidenceDeskHero>
+        </MeetingHero>
 
         <section className="section-padding bg-[var(--warm)]" id="problem">
           <div className="site-shell grid gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">

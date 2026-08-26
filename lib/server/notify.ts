@@ -2,6 +2,12 @@ import "server-only";
 import { Resend } from "resend";
 import { requestUploadsConfig } from "./config";
 import { getSupabaseAdminClient } from "./supabase-admin";
+import { buildRequestNotificationEmail } from "./request-notification-email";
+import {
+  prepareRequestAttachments,
+  SIGNED_LINK_EXPIRY_DAYS,
+  type StoredFileRow
+} from "./request-attachments";
 
 /**
  * Durable notification tracking: rather than a separate outbox table, the
@@ -30,6 +36,7 @@ type RequestRow = {
   message: string | null;
   deadline: string | null;
   created_at: string;
+  submitted_at: string | null;
   internal_notification_status: string;
   internal_notification_attempts: number;
   visitor_confirmation_status: string;
@@ -41,11 +48,37 @@ function getResendClient() {
 }
 
 /**
+ * Reads the submitted locale without making the whole notification depend
+ * on the column existing yet. A deployment whose database has not run the
+ * locale migration still sends a complete email — the field simply reads
+ * "Not recorded" — instead of failing every notification on an unknown
+ * column. Kept as its own tolerant query for exactly that reason.
+ */
+async function readSubmittedLocale(requestId: string): Promise<string | null> {
+  try {
+    const supabase = getSupabaseAdminClient();
+    const { data, error } = await supabase
+      .from("inbound_requests")
+      .select("locale")
+      .eq("id", requestId)
+      .single<{ locale: string | null }>();
+
+    if (error || !data) return null;
+    return data.locale ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Attempts the internal notification for one submitted request. Safe to
  * call multiple times (idempotent): skips immediately if already 'sent'.
- * No confidential file links or attachments — the email names the files,
- * points to the Supabase dashboard for retrieval (per explicit
- * instruction: no bearer download links in email).
+ *
+ * Uploaded documents travel as real email attachments whenever the whole
+ * message stays safely under the provider's size ceiling; anything that
+ * does not fit gets a time-limited signed download link instead. Neither
+ * path exposes a raw bucket path, and neither removes the storage copy —
+ * see lib/server/request-attachments.ts for the policy itself.
  */
 export async function deliverInternalNotification(
   requestId: string
@@ -55,7 +88,7 @@ export async function deliverInternalNotification(
   const { data: request, error: fetchError } = await supabase
     .from("inbound_requests")
     .select(
-      "id, name, email, company, message, deadline, created_at, internal_notification_status, internal_notification_attempts"
+      "id, name, email, company, message, deadline, created_at, submitted_at, internal_notification_status, internal_notification_attempts"
     )
     .eq("id", requestId)
     .eq("status", "submitted")
@@ -69,14 +102,55 @@ export async function deliverInternalNotification(
     return { delivered: true, skipped: true };
   }
 
-  const { data: files } = await supabase
+  // Ordered by storage_path: buildStoragePath() prefixes each object with
+  // its submission index, so this reproduces the order the visitor chose
+  // and makes the attach/link split below deterministic.
+  const { data: fileRows, error: filesError } = await supabase
     .from("inbound_request_files")
-    .select("original_filename")
-    .eq("request_id", requestId);
+    .select("storage_path, original_filename, declared_size, declared_mime")
+    .eq("request_id", requestId)
+    .order("storage_path", { ascending: true });
 
-  const fileList = (files ?? [])
-    .map((f: { original_filename: string }) => `- ${f.original_filename}`)
-    .join("\n");
+  const locale = await readSubmittedLocale(requestId);
+
+  const rows: StoredFileRow[] = (fileRows ?? []) as StoredFileRow[];
+
+  // A retrieval failure must not cost us the notification: fall back to
+  // naming every file with an operational warning rather than sending
+  // nothing at all. Storage copies are untouched either way.
+  let plan;
+  try {
+    if (filesError) throw new Error("could not read the file list");
+    plan = await prepareRequestAttachments(requestId, rows);
+  } catch {
+    plan = {
+      attachments: [],
+      files: rows.map((row) => ({
+        filename: row.original_filename,
+        sizeBytes: Number(row.declared_size) || 0,
+        mimeType: row.declared_mime,
+        delivery: "unavailable" as const,
+        note: "Retrieve this document from secure storage using the reference above."
+      })),
+      warnings: [
+        "Uploaded documents could not be prepared for this email. They remain safely in storage — retrieve them using the reference above."
+      ]
+    };
+  }
+
+  const email = buildRequestNotificationEmail({
+    requestId: request.id,
+    submittedAt: request.submitted_at ?? request.created_at,
+    locale,
+    name: request.name,
+    email: request.email,
+    company: request.company,
+    deadline: request.deadline,
+    message: request.message,
+    files: plan.files,
+    linkExpiryDays: SIGNED_LINK_EXPIRY_DAYS,
+    warnings: plan.warnings
+  });
 
   try {
     const resend = getResendClient();
@@ -84,22 +158,18 @@ export async function deliverInternalNotification(
       {
         from: requestUploadsConfig.notificationSender(),
         to: requestUploadsConfig.notificationRecipient(),
-        subject: `New ESG request — ${request.company}`,
-        text: [
-          `Request ID: ${request.id}`,
-          `Name: ${request.name}`,
-          `Company: ${request.company}`,
-          `Email: ${request.email}`,
-          `Deadline/context: ${request.deadline ?? "(none given)"}`,
-          request.message ? `Message: ${request.message}` : null,
-          "",
-          `Files (${(files ?? []).length}):`,
-          fileList || "(none listed)",
-          "",
-          "Retrieve files via the Supabase dashboard (Storage > inbound-requests)."
-        ]
-          .filter(Boolean)
-          .join("\n")
+        // The visitor's address is never the authenticated sender — the
+        // verified Evipace sender stays in `from`, and replying in a mail
+        // client answers the visitor directly.
+        replyTo: request.email,
+        subject: email.subject,
+        html: email.html,
+        text: email.text,
+        attachments: plan.attachments.map((attachment) => ({
+          filename: attachment.filename,
+          content: attachment.content,
+          contentType: attachment.contentType
+        }))
       },
       { idempotencyKey: `internal-notify-${requestId}` }
     );

@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { name, email, company, message, deadline, files } = parsed.data;
+  const { name, email, company, message, deadline, locale, files } = parsed.data;
 
   const supabase = getSupabaseAdminClient();
   const ip = getClientIp(request.headers);
@@ -55,21 +55,44 @@ export async function POST(request: NextRequest) {
   const plaintextToken = generateSubmissionToken();
   const tokenHash = hashSubmissionToken(plaintextToken);
 
-  const { data: requestRow, error: insertError } = await supabase
+  const baseRow = {
+    name,
+    email,
+    company,
+    message: message ?? null,
+    deadline: deadline ?? null,
+    submission_token_hash: tokenHash,
+    ip_hmac: ipHmac
+  };
+
+  // `locale` arrived with supabase/migrations/20260826000000_inbound_requests_locale.sql.
+  // If that migration has not been applied to the target database yet, the
+  // insert would otherwise fail on an unknown column and take every
+  // submission down with it. A failed insert writes no row, so retrying
+  // once without the field cannot duplicate anything — the submission
+  // succeeds and the notification simply reports the locale as not
+  // recorded. Remove this fallback once the migration is deployed
+  // everywhere.
+  let requestRow: { id: string } | null = null;
+
+  const firstAttempt = await supabase
     .from("inbound_requests")
-    .insert({
-      name,
-      email,
-      company,
-      message: message ?? null,
-      deadline: deadline ?? null,
-      submission_token_hash: tokenHash,
-      ip_hmac: ipHmac
-    })
+    .insert({ ...baseRow, locale: locale ?? null })
     .select("id")
     .single<{ id: string }>();
 
-  if (insertError || !requestRow) {
+  if (firstAttempt.data) {
+    requestRow = firstAttempt.data;
+  } else {
+    const retry = await supabase
+      .from("inbound_requests")
+      .insert(baseRow)
+      .select("id")
+      .single<{ id: string }>();
+    requestRow = retry.data ?? null;
+  }
+
+  if (!requestRow) {
     return NextResponse.json({ error: "could_not_create_request" }, { status: 500 });
   }
 

@@ -1,4 +1,5 @@
 import "server-only";
+import { publicContactEmail } from "@/lib/company-info";
 
 function required(name: string): string {
   const value = process.env[name]?.trim();
@@ -64,7 +65,20 @@ export const requestUploadsConfig = {
   storageBucket: () => process.env.SUPABASE_STORAGE_BUCKET?.trim() ?? "inbound-requests",
 
   resendApiKey: () => required("RESEND_API_KEY"),
-  notificationRecipient: () => required("EVIPACE_REQUEST_NOTIFICATION_EMAIL"),
+  /**
+   * The single source of truth for where new ESG request notifications
+   * land. Both the English and German forms submit through the same API
+   * route, so this one server-only accessor is the only place the address
+   * is decided — it is never duplicated per locale.
+   *
+   * EVIPACE_REQUEST_NOTIFICATION_EMAIL still overrides it, because the
+   * address is operational rather than structural. The repository default
+   * is the public Evipace inbox, so a deployment that sets nothing at all
+   * is already correct. NOTE: an environment variable set in Vercel WINS
+   * over this default and must be updated there to take effect.
+   */
+  notificationRecipient: () =>
+    process.env.EVIPACE_REQUEST_NOTIFICATION_EMAIL?.trim() || publicContactEmail,
   notificationSender: () => required("EVIPACE_NOTIFICATION_SENDER_EMAIL"),
   confirmationSender: () => process.env.EVIPACE_CONFIRMATION_SENDER_EMAIL?.trim(),
 

@@ -17,9 +17,18 @@ type CreateResponse = {
 
 type RequestFormProps = {
   copy?: SendRequestCopy;
+  /**
+   * Which language version of the page is rendering this form. Reported
+   * to the server so the internal notification can name it; it changes
+   * nothing the visitor sees, and no server behaviour branches on it.
+   */
+  locale?: "en" | "de";
 };
 
-export function RequestForm({ copy = defaultSendRequestCopy }: RequestFormProps) {
+export function RequestForm({
+  copy = defaultSendRequestCopy,
+  locale = "en"
+}: RequestFormProps) {
   const formCopy = copy.form;
   const [stage, setStage] = useState<Stage>("form");
   const [files, setFiles] = useState<File[]>([]);
@@ -43,6 +52,7 @@ export function RequestForm({ copy = defaultSendRequestCopy }: RequestFormProps)
       company: String(formData.get("company") ?? ""),
       message: String(formData.get("message") ?? "") || undefined,
       deadline: String(formData.get("deadline") ?? "") || undefined,
+      locale,
       website: String(formData.get("website") ?? ""), // honeypot
       files: files.map((file) => ({
         filename: file.name,

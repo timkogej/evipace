@@ -69,7 +69,10 @@ export default async function SendRequestPage({
         />
         <section className="section-padding py-8 sm:py-10">
           <div className="site-shell max-w-3xl">
-            <RequestForm copy={isGerman ? deSendRequestCopy : undefined} />
+            <RequestForm
+              copy={isGerman ? deSendRequestCopy : undefined}
+              locale={isGerman ? "de" : "en"}
+            />
           </div>
         </section>
       </main>

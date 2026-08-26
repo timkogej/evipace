@@ -24,6 +24,11 @@ export const requestSubmissionSchema = z
     company: z.string().trim().min(1, "Company is required.").max(200),
     message: z.string().trim().max(4000).optional(),
     deadline: z.string().trim().max(40).optional(),
+    // Which language version of the form this came from. Reported in the
+    // internal notification; never shown to the visitor and never used to
+    // branch server behaviour, so an absent or unknown value is simply
+    // not recorded rather than a validation failure.
+    locale: z.enum(["en", "de"]).optional(),
     // Honeypot: real visitors never fill this in. Any non-empty value is
     // treated as a bot signal.
     website: z.string().max(0, "").optional(),

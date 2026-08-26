@@ -255,19 +255,23 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     "homepage section CSS drifted"
   );
 
-  // Outside the About rules, the selector inventory is unchanged apart from
-  // the one approved hero addition above. At-rules are containers rather
-  // than selectors; the rebased tail already pins the blocks they wrap.
+  // Outside the page-scoped rules, the selector inventory is unchanged apart
+  // from the approved hero additions above. `about` and `methodology`
+  // selectors are excluded because they are scoped to their own pages and
+  // cannot repaint the homepage — this guard is about shared selectors.
+  // At-rules are containers rather than selectors; the rebased tail already
+  // pins the blocks they wrap.
   const approvedAdditions = new Set([
     ".hero-desk__title--sentence",
     ".hero-desk__title--sentence-de"
   ]);
+  const pageScoped = /\babout\b|about-|methodology/;
   const selectors = (css) =>
     [...css.matchAll(/^([.#[a-zA-Z][^{}\n]*?)\s*\{/gm)]
       .map((match) => match[1].trim())
       .filter(
         (selector) =>
-          !selector.includes("about") && !approvedAdditions.has(selector)
+          !pageScoped.test(selector) && !approvedAdditions.has(selector)
       )
       .sort();
   assert.deepEqual(selectors(current), selectors(committed));

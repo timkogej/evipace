@@ -7,7 +7,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { ButtonLink } from "./ButtonLink";
-import { Reveal } from "./Reveal";
+import { InView } from "./home-sections/InView";
 
 const SEND_REQUEST_HREF = "/en/send-request";
 
@@ -303,22 +303,50 @@ type EnglishMethodologyPageProps = {
   lastReviewed?: string;
 };
 
+/**
+ * One-time settle, built on the shared InView wrapper.
+ *
+ * The markup ships in its final, visible state; InView only adds
+ * `data-evi-reveal` once the block is on screen, and the CSS hides anything
+ * only while that attribute says "pending". A reader without JavaScript — or
+ * one who asked for reduced motion — gets the finished page. Stagger is a
+ * fixed CSS delay class rather than an inline style, so the shared wrapper
+ * needs no new prop and stays a plain server-rendered boundary.
+ */
+function Rise({
+  children,
+  className = "",
+  delay = 0
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const step = Math.min(5, Math.round((delay * 1000) / 40));
+  const stepClass = step > 0 ? ` methodology-rise--d${step}` : "";
+  return (
+    <InView className={`methodology-rise${stepClass} ${className}`.trim()}>
+      {children}
+    </InView>
+  );
+}
+
 function EnglishReviewedLine({ date }: { date?: string }) {
   return (
     <section className="section-padding py-8 sm:py-10">
       <div className="site-shell">
-        <Reveal className="max-w-3xl border-t border-[rgba(21,21,21,0.12)] pt-6">
+        <Rise className="max-w-3xl border-t border-[rgba(21,21,21,0.12)] pt-6">
           <p className="text-sm font-bold text-[rgba(21,21,21,0.55)]">
             Last methodologically reviewed: 21 August 2026
           </p>
-          <p className="mt-3 text-sm leading-7 text-muted">
+          <p className="methodology-prose mt-3 text-sm leading-7 text-muted">
             This date reflects the latest substantive review of this
             methodology, not the date of a website deployment.
           </p>
           {date ? (
             <p className="sr-only">Registry lastReviewed: {date}</p>
           ) : null}
-        </Reveal>
+        </Rise>
       </div>
     </section>
   );
@@ -345,19 +373,19 @@ function Section({
   };
 
   return (
-    <section className={`section-padding ${classes[tone]}`} id={id}>
+    <section className={`methodology-section ${classes[tone]}`} id={id}>
       <div className="site-shell">
-        <Reveal className="max-w-4xl">
+        <Rise className="max-w-4xl">
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h2
-            className={`font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl ${
+            className={`methodology-h2 font-display mt-5 ${
               tone === "dark" ? "text-white" : "text-ink"
             }`}
           >
             {heading}
           </h2>
-        </Reveal>
-        <div className="mt-10">{children}</div>
+        </Rise>
+        <div className="mt-9 sm:mt-11">{children}</div>
       </div>
     </section>
   );
@@ -393,25 +421,26 @@ export function EnglishMethodologyPage({
 }: EnglishMethodologyPageProps) {
   return (
     <>
-      <main>
+      <main className="methodology-page">
         <section
-          className="section-padding relative isolate overflow-hidden pb-10 pt-32 sm:pb-14"
+          className="methodology-hero relative isolate overflow-hidden"
           id="top"
           aria-labelledby="methodology-title"
         >
-          <div className="pointer-events-none absolute right-[5vw] top-24 hidden font-display text-[12rem] leading-none text-[rgba(21,21,21,0.035)] xl:block">
+          <div aria-hidden="true"
+            className="methodology-ghost pointer-events-none absolute right-[5vw] top-24 hidden font-display text-[12rem] leading-none text-[rgba(21,21,21,0.035)] xl:block">
             METHOD
           </div>
           <div className="site-shell">
             <div className="max-w-4xl">
               <p className="eyebrow">Methodology</p>
               <h1
-                className="heading-lg font-display mt-6 max-w-[12ch]"
+                className="methodology-h1 font-display mt-5"
                 id="methodology-title"
               >
                 How company data becomes reliable ESG work.
               </h1>
-              <div className="body-lg mt-7 max-w-3xl space-y-5">
+              <div className="methodology-lead mt-6 space-y-4">
                 <p>
                   Evipace does not start with generic answers or pre-written
                   ESG language.
@@ -441,17 +470,17 @@ export function EnglishMethodologyPage({
           tone="warm"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 An ESG answer is only as reliable as the information behind
                 it.
               </p>
               <p>That is why we do not begin by asking:</p>
-              <p className="font-display text-3xl leading-tight text-ink">
+              <p className="methodology-statement font-display text-ink">
                 &ldquo;What should we write here?&rdquo;
               </p>
               <p>We begin with:</p>
-              <p className="font-display text-3xl leading-tight text-orange">
+              <p className="methodology-statement font-display text-orange">
                 &ldquo;What can we support based on the company&apos;s actual
                 information?&rdquo;
               </p>
@@ -465,8 +494,8 @@ export function EnglishMethodologyPage({
                 If information is missing, we treat it as a gap — not as an
                 invitation to invent a plausible answer.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift sm:p-8"
               delay={0.08}
             >
@@ -479,7 +508,7 @@ export function EnglishMethodologyPage({
                 </p>
               </div>
               <CheckList items={sourceExamples} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -488,7 +517,7 @@ export function EnglishMethodologyPage({
           heading="How an evipace engagement works."
           id="process"
         >
-          <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+          <Rise className="methodology-body space-y-4 text-muted">
             <p>No two ESG assignments are exactly the same.</p>
             <p>
               Preparing an EcoVadis assessment is different from calculating
@@ -498,20 +527,20 @@ export function EnglishMethodologyPage({
             <p className="font-semibold text-ink">
               But the underlying process remains consistent.
             </p>
-          </Reveal>
+          </Rise>
           <div className="mt-12 grid gap-5">
             {projectSteps.map((step, index) => (
-              <Reveal
+              <Rise
                 className="grid gap-6 rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-7 lg:grid-cols-[8rem_1fr]"
                 delay={index * 0.04}
                 key={step.title}
               >
-                <p className="font-display text-5xl leading-none text-orange">
+                <p className="methodology-step-number font-display text-orange">
                   {step.number}
                 </p>
                 <div>
-                  <h3 className="text-2xl font-bold text-ink">{step.title}</h3>
-                  <p className="mt-3 leading-7 text-muted">{step.body}</p>
+                  <h3 className="methodology-step-title font-bold text-ink">{step.title}</h3>
+                  <p className="methodology-prose mt-3 leading-7 text-muted">{step.body}</p>
                   {step.items ? (
                     <div className="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2">
                       {step.items.map((item) => (
@@ -525,10 +554,10 @@ export function EnglishMethodologyPage({
                     </div>
                   ) : null}
                   {step.closing ? (
-                    <p className="mt-5 leading-7 text-muted">{step.closing}</p>
+                    <p className="methodology-prose mt-5 leading-7 text-muted">{step.closing}</p>
                   ) : null}
                 </div>
-              </Reveal>
+              </Rise>
             ))}
           </div>
         </Section>
@@ -540,7 +569,7 @@ export function EnglishMethodologyPage({
           tone="paper"
         >
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 We do not only want to know what number eventually appears in
                 a spreadsheet or report.
@@ -551,12 +580,12 @@ export function EnglishMethodologyPage({
                 But for material metrics, calculations and claims, the basis
                 should be understandable.
               </p>
-              <p className="font-display text-3xl leading-tight text-orange">
+              <p className="methodology-statement font-display text-orange">
                 The result should not only look complete. It should be
                 traceable.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8"
               delay={0.08}
             >
@@ -564,7 +593,7 @@ export function EnglishMethodologyPage({
                 Relevant working documentation may include
               </p>
               <CheckList items={traceabilityItems} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -573,7 +602,7 @@ export function EnglishMethodologyPage({
           heading="How we calculate greenhouse-gas emissions."
           id="emissions"
         >
-          <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+          <Rise className="methodology-body space-y-4 text-muted">
             <p>
               Greenhouse-gas calculations begin with a defined boundary and
               appropriate activity data.
@@ -581,15 +610,15 @@ export function EnglishMethodologyPage({
             <p className="font-semibold text-ink">
               Not with a desired final number.
             </p>
-          </Reveal>
+          </Rise>
 
           <div className="mt-12 grid gap-6">
-            <Reveal className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 sm:p-9">
+            <Rise className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 sm:p-9">
               <p className="eyebrow">Scope 1</p>
-              <h3 className="mt-5 text-3xl font-bold text-ink">
+              <h3 className="methodology-h3 mt-5 font-bold text-ink">
                 Direct emissions from owned or controlled sources.
               </h3>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
+              <p className="methodology-body mt-5 text-muted">
                 Scope 1 covers relevant direct greenhouse-gas emissions from
                 sources owned or controlled by the company.
               </p>
@@ -612,23 +641,23 @@ export function EnglishMethodologyPage({
                   </div>
                 </div>
               </div>
-            </Reveal>
+            </Rise>
 
-            <Reveal
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-7 sm:p-9"
               delay={0.05}
             >
               <p className="eyebrow">Scope 2</p>
-              <h3 className="mt-5 text-3xl font-bold text-ink">
+              <h3 className="methodology-h3 mt-5 font-bold text-ink">
                 Purchased or acquired energy.
               </h3>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
+              <p className="methodology-body mt-5 text-muted">
                 Scope 2 relates to greenhouse-gas emissions associated with
                 purchased or acquired energy.
               </p>
               <div className="mt-7 grid gap-8 lg:grid-cols-2">
                 <CheckList items={scopeTwoExamples} />
-                <p className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-5 leading-8 text-muted">
+                <p className="methodology-prose rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-5 leading-8 text-muted">
                   Depending on the reporting purpose and available information,
                   a location-based calculation and, where applicable, a
                   market-based calculation may be relevant. The appropriate
@@ -636,18 +665,18 @@ export function EnglishMethodologyPage({
                   requirement.
                 </p>
               </div>
-            </Reveal>
+            </Rise>
 
-            <Reveal
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 sm:p-9"
               delay={0.1}
             >
               <p className="eyebrow">Scope 3</p>
-              <h3 className="mt-5 text-3xl font-bold text-ink">
+              <h3 className="methodology-h3 mt-5 font-bold text-ink">
                 Other indirect emissions, where they are part of the
                 engagement.
               </h3>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
+              <p className="methodology-body mt-5 text-muted">
                 Where Scope 3 is part of the agreed engagement, we assess
                 relevant indirect emissions across the upstream and downstream
                 value chain.
@@ -663,19 +692,19 @@ export function EnglishMethodologyPage({
                   <p className="mb-4 text-sm font-bold uppercase text-orange">
                     Data quality
                   </p>
-                  <p className="mb-5 leading-8 text-muted">
+                  <p className="methodology-prose mb-5 leading-8 text-muted">
                     Scope 3 data is often more heterogeneous than Scope 1 and
                     Scope 2 data. It is therefore important to distinguish
                     between these data types.
                   </p>
                   <CheckList items={scopeThreeDataTypes} />
-                  <p className="mt-6 font-semibold leading-8 text-ink">
+                  <p className="methodology-prose mt-6 font-semibold leading-8 text-ink">
                     The weaker the underlying data, the more important it
                     becomes to make that uncertainty visible.
                   </p>
                 </div>
               </div>
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -686,7 +715,7 @@ export function EnglishMethodologyPage({
           tone="warm"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 An emissions factor is not a number that can be copied blindly
                 from a table and applied to every company, year and geography.
@@ -701,8 +730,8 @@ export function EnglishMethodologyPage({
                 the story. Its source and methodological context should remain
                 identifiable as well.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8"
               delay={0.08}
             >
@@ -710,7 +739,7 @@ export function EnglishMethodologyPage({
                 Selection may take into account
               </p>
               <CheckList items={factorSelectionItems} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -719,30 +748,30 @@ export function EnglishMethodologyPage({
           heading="How we handle estimates and missing data."
           id="data-gaps"
         >
-          <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+          <Rise className="methodology-body space-y-4 text-muted">
             <p>Perfect data is not always available.</p>
             <p>That is normal in real companies.</p>
             <p className="font-semibold text-ink">
               What matters is how the limitation is handled.
             </p>
-          </Reveal>
+          </Rise>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             {estimateRules.map((rule, index) => (
-              <Reveal
+              <Rise
                 className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6"
                 delay={index * 0.04}
                 key={rule.title}
               >
-                <h3 className="text-xl font-bold text-ink">{rule.title}</h3>
-                <p className="mt-3 leading-7 text-muted">{rule.body}</p>
-              </Reveal>
+                <h3 className="methodology-card-title font-bold text-ink">{rule.title}</h3>
+                <p className="methodology-prose mt-3 leading-7 text-muted">{rule.body}</p>
+              </Rise>
             ))}
           </div>
-          <Reveal className="mt-9 max-w-3xl border-l-2 border-orange pl-5 text-lg font-semibold leading-8 text-ink">
+          <Rise className="methodology-quote mt-9 border-l-2 border-orange pl-5 text-ink">
             False precision is not better than transparently documented
             uncertainty. We do not create exact-looking ESG figures from
             unsupported assumptions.
-          </Reveal>
+          </Rise>
         </Section>
 
         <Section
@@ -752,7 +781,7 @@ export function EnglishMethodologyPage({
           tone="paper"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 For customer questionnaires and ESG platforms, completing
                 fields is often only part of the work.
@@ -777,8 +806,8 @@ export function EnglishMethodologyPage({
                 Evipace is an independent service provider and is not
                 affiliated with EcoVadis or IntegrityNext.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8"
               delay={0.08}
             >
@@ -786,7 +815,7 @@ export function EnglishMethodologyPage({
                 Evipace may support the process by
               </p>
               <CheckList items={platformSupportItems} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -796,7 +825,7 @@ export function EnglishMethodologyPage({
           id="evidence"
         >
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 A document should support the statement it is being used to
                 evidence. It should not merely look relevant.
@@ -807,7 +836,7 @@ export function EnglishMethodologyPage({
                 implementation. An invoice does not automatically answer a
                 complete emissions question.
               </p>
-              <p className="font-display text-4xl leading-none text-orange">
+              <p className="methodology-step-number font-display text-orange">
                 Evidence before claim.
               </p>
               <p>
@@ -816,8 +845,8 @@ export function EnglishMethodologyPage({
               <p className="font-semibold text-ink">
                 We do not create fictitious, backdated or misleading evidence.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8"
               delay={0.08}
             >
@@ -825,7 +854,7 @@ export function EnglishMethodologyPage({
                 We may consider questions such as
               </p>
               <CheckList items={evidenceChecks} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -836,7 +865,7 @@ export function EnglishMethodologyPage({
           tone="warm"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 Sometimes an ESG request reveals that a relevant company
                 practice exists but has not yet been formally documented.
@@ -854,27 +883,27 @@ export function EnglishMethodologyPage({
                 A newly created document is also never presented as though it
                 had existed historically.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] p-6 sm:p-8"
               delay={0.08}
             >
               <p className="text-sm font-bold uppercase text-orange">
                 The process is
               </p>
-              <p className="mt-6 font-display text-3xl leading-tight text-ink">
+              <p className="methodology-statement font-display mt-6 text-ink">
                 actual company practice → structured draft → internal review →
                 necessary corrections → explicit approval
               </p>
-              <p className="mt-7 text-2xl font-bold text-ink">
+              <p className="methodology-step-title mt-7 font-bold text-ink">
                 A draft is not yet a company policy.
               </p>
-              <p className="mt-4 leading-8 text-muted">
+              <p className="methodology-prose mt-4 leading-8 text-muted">
                 It only becomes a valid company document once an authorised
                 person within the company has reviewed it, amended it where
                 necessary and explicitly approved or adopted it.
               </p>
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -885,7 +914,7 @@ export function EnglishMethodologyPage({
           tone="dark"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-white/72">
+            <Rise className="methodology-body space-y-4 text-white/72">
               <p>
                 Evipace may use digital and AI-assisted tools internally to
                 process larger volumes of information more efficiently.
@@ -902,15 +931,15 @@ export function EnglishMethodologyPage({
                 AI is an internal tool within the working process — not the
                 source of company truth and not the product we sell.
               </p>
-            </Reveal>
+            </Rise>
             <div className="grid gap-5">
-              <Reveal className="rounded-lg border border-white/12 bg-white/[0.04] p-6 sm:p-7">
+              <Rise className="rounded-lg border border-white/12 bg-white/[0.04] p-6 sm:p-7">
                 <p className="mb-5 text-sm font-bold uppercase text-orange">
                   May support
                 </p>
                 <CheckList items={technologySupportItems} dark />
-              </Reveal>
-              <Reveal
+              </Rise>
+              <Rise
                 className="rounded-lg border border-white/12 bg-white/[0.04] p-6 sm:p-7"
                 delay={0.08}
               >
@@ -918,7 +947,7 @@ export function EnglishMethodologyPage({
                   Does not decide independently
                 </p>
                 <CheckList items={technologyDoesNotDecide} dark />
-              </Reveal>
+              </Rise>
             </div>
           </div>
         </Section>
@@ -928,39 +957,39 @@ export function EnglishMethodologyPage({
           heading="Your responsibility. Our responsibility."
           id="responsibility"
         >
-          <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+          <Rise className="methodology-body space-y-4 text-muted">
             <p>
               Reliable ESG work requires a clear division of responsibilities.
             </p>
-          </Reveal>
+          </Rise>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <Reveal className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 sm:p-9">
+            <Rise className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 sm:p-9">
               <div className="mb-6 flex items-center gap-3">
                 <ShieldCheck aria-hidden="true" className="h-5 w-5 text-orange" />
-                <h3 className="text-2xl font-bold text-ink">
+                <h3 className="methodology-step-title font-bold text-ink">
                   Evipace is responsible for
                 </h3>
               </div>
               <CheckList items={evipaceResponsibilities} />
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"
               delay={0.08}
             >
               <div className="mb-6 flex items-center gap-3">
                 <Scale aria-hidden="true" className="h-5 w-5 text-orange" />
-                <h3 className="text-2xl font-bold text-ink">
+                <h3 className="methodology-step-title font-bold text-ink">
                   Your company is responsible for
                 </h3>
               </div>
               <CheckList items={clientResponsibilities} />
-            </Reveal>
+            </Rise>
           </div>
-          <Reveal className="mt-8 max-w-4xl border-l-2 border-orange bg-[var(--soft-orange)] px-6 py-5 text-lg font-semibold leading-8 text-ink">
+          <Rise className="methodology-quote methodology-quote--box mt-8 border-l-2 border-orange bg-[var(--soft-orange)] px-6 py-5 text-ink">
             If source information appears inconsistent, incomplete or unclear,
             we flag it. We do not replace missing company information with
             invented facts.
-          </Reveal>
+          </Rise>
         </Section>
 
         <Section
@@ -970,7 +999,7 @@ export function EnglishMethodologyPage({
           tone="paper"
         >
           <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 ESG standards, reporting requirements and emissions-factor
                 datasets continue to evolve.
@@ -989,15 +1018,15 @@ export function EnglishMethodologyPage({
                 Where a version or methodological reference materially affects
                 the result, it should remain identifiable.
               </p>
-            </Reveal>
+            </Rise>
             <div className="grid gap-5">
-              <Reveal className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-7">
+              <Rise className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-7">
                 <p className="mb-5 text-sm font-bold uppercase text-orange">
                   Depending on the assignment
                 </p>
                 <CheckList items={methodologyReferences} />
-              </Reveal>
-              <Reveal
+              </Rise>
+              <Rise
                 className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-7"
                 delay={0.08}
               >
@@ -1005,7 +1034,7 @@ export function EnglishMethodologyPage({
                   We distinguish between
                 </p>
                 <CheckList items={standardsStates} />
-              </Reveal>
+              </Rise>
             </div>
           </div>
         </Section>
@@ -1016,7 +1045,7 @@ export function EnglishMethodologyPage({
           id="vsme"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>
                 For voluntary sustainability reporting, we structure the work
                 around the European reporting framework relevant to the
@@ -1034,8 +1063,8 @@ export function EnglishMethodologyPage({
                 also create a structured ESG information base that can be
                 reused for customer requests and other ESG processes later.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8"
               delay={0.08}
             >
@@ -1043,7 +1072,7 @@ export function EnglishMethodologyPage({
                 The first questions are practical
               </p>
               <CheckList items={vsmeQuestions} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -1053,7 +1082,7 @@ export function EnglishMethodologyPage({
           id="documents"
           tone="warm"
         >
-          <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+          <Rise className="methodology-body space-y-4 text-muted">
             <p>
               The documents and information you provide for an engagement are
               used as working material for the agreed service.
@@ -1075,7 +1104,7 @@ export function EnglishMethodologyPage({
               This page intentionally does not make broader storage or
               retention promises beyond the working process described here.
             </p>
-          </Reveal>
+          </Rise>
         </Section>
 
         <Section
@@ -1084,15 +1113,15 @@ export function EnglishMethodologyPage({
           id="deliverables"
         >
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-muted">
+            <Rise className="methodology-body space-y-4 text-muted">
               <p>The exact deliverables depend on the assignment.</p>
               <p>Not every project includes every item.</p>
               <p className="font-semibold text-ink">
                 The objective is consistent: you should be able to understand
                 the basis on which the result was prepared.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8"
               delay={0.08}
             >
@@ -1100,7 +1129,7 @@ export function EnglishMethodologyPage({
                 Deliverables may include
               </p>
               <CheckList items={deliverables} />
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -1111,15 +1140,15 @@ export function EnglishMethodologyPage({
           tone="dark"
         >
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
-            <Reveal className="max-w-3xl space-y-5 text-lg leading-8 text-white/72">
+            <Rise className="methodology-body space-y-4 text-white/72">
               <p>Clear methodology also means clear boundaries.</p>
               <p>
                 Our role is the structured and traceable preparation of ESG
                 work based on the company information available and confirmed
                 for the engagement.
               </p>
-            </Reveal>
-            <Reveal
+            </Rise>
+            <Rise
               className="rounded-lg border border-white/12 bg-white/[0.04] p-6 sm:p-8"
               delay={0.08}
             >
@@ -1137,7 +1166,7 @@ export function EnglishMethodologyPage({
                   </li>
                 ))}
               </ul>
-            </Reveal>
+            </Rise>
           </div>
         </Section>
 
@@ -1148,12 +1177,12 @@ export function EnglishMethodologyPage({
           id="contact"
         >
           <div className="site-shell relative z-10 max-w-5xl">
-            <Reveal>
+            <Rise>
               <p className="eyebrow">Next step</p>
-              <h2 className="font-display mt-6 text-5xl leading-none sm:text-6xl lg:text-7xl">
+              <h2 className="methodology-h2 methodology-h2--cta font-display mt-5">
                 Have a concrete ESG requirement?
               </h2>
-              <div className="mt-7 max-w-2xl space-y-4 text-xl leading-8 text-[rgba(21,21,21,0.68)]">
+              <div className="methodology-lead mt-6 space-y-4 text-[rgba(21,21,21,0.68)]">
                 <p>Show us what you are working with.</p>
                 <p>
                   We will review which data, documents, calculations and
@@ -1169,7 +1198,7 @@ export function EnglishMethodologyPage({
               <p className="mt-7 text-sm font-semibold leading-7 text-[rgba(21,21,21,0.62)]">
                 Questionnaires · Emissions · Reporting · Evidence · Policies
               </p>
-            </Reveal>
+            </Rise>
           </div>
         </section>
       </main>

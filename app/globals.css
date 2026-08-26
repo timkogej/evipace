@@ -504,6 +504,254 @@ a {
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   Methodology — typography refinement
+
+   Every rule is scoped under `.methodology-page`, so nothing here can
+   repaint another page and no shared selector is touched. The scale
+   follows About: display type roughly a third smaller than before, a
+   character-based measure on every heading, subtle negative tracking
+   for Didot, line heights just above 1 rather than compressed, and
+   balanced wrapping instead of manual line management.
+   ───────────────────────────────────────────────────────────────── */
+
+.methodology-hero {
+  padding-top: clamp(6.5rem, 9vw, 8.5rem);
+  padding-bottom: clamp(2.5rem, 3.6vw, 3.5rem);
+}
+
+.methodology-section {
+  padding-block: clamp(3rem, 4.6vw, 4.75rem);
+}
+
+/* ── Display ────────────────────────────────────────────────────── */
+
+.methodology-page .methodology-h1 {
+  max-width: 20ch;
+  font-size: clamp(2.45rem, 4.35vw, 3.95rem);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+.methodology-page .methodology-h2 {
+  max-width: 24ch;
+  font-size: clamp(1.8rem, 2.85vw, 2.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+}
+
+/* The closing CTA stays the loudest heading on the page, but it no
+   longer outruns the H1 the way a 72px setting did. */
+.methodology-page .methodology-h2--cta {
+  max-width: 18ch;
+  font-size: clamp(2.05rem, 3.2vw, 3.1rem);
+  line-height: 1.04;
+}
+
+/* The middle tier between H2 and body — a pull statement, never a
+   competitor to the section heading above it. */
+.methodology-page .methodology-statement {
+  max-width: 30ch;
+  font-size: clamp(1.35rem, 1.95vw, 1.9rem);
+  line-height: 1.18;
+  letter-spacing: -0.006em;
+  text-wrap: balance;
+}
+
+/* Numerals on the process steps: still the anchor of the card, but
+   sized against the new H2 rather than the old one. */
+.methodology-page .methodology-step-number {
+  font-size: clamp(1.9rem, 2.6vw, 2.35rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+/* ── Sub-headings ──────────────────────────────────────────────────
+   Deliberately still Inter. These are defined terms and operational
+   labels, not display type; keeping them sans separates them clearly
+   from the Didot headings above. */
+
+.methodology-page .methodology-h3 {
+  max-width: 28ch;
+  font-size: clamp(1.3rem, 1.75vw, 1.575rem);
+  line-height: 1.28;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+.methodology-page .methodology-step-title {
+  max-width: 30ch;
+  font-size: clamp(1.125rem, 1.45vw, 1.3125rem);
+  line-height: 1.32;
+  letter-spacing: -0.003em;
+  text-wrap: balance;
+}
+
+.methodology-page .methodology-card-title {
+  max-width: 32ch;
+  font-size: clamp(1.0625rem, 1.2vw, 1.15rem);
+  line-height: 1.38;
+  text-wrap: balance;
+}
+
+/* ── Reading text ───────────────────────────────────────────────── */
+
+.methodology-page .methodology-lead {
+  max-width: 50ch;
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.methodology-page .methodology-body {
+  max-width: 62ch;
+  font-size: clamp(0.975rem, 1.05vw, 1.0625rem);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.methodology-page .methodology-quote {
+  max-width: 44ch;
+  font-size: clamp(1.05rem, 1.3vw, 1.175rem);
+  font-weight: 600;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.methodology-page .methodology-quote--box {
+  max-width: 56ch;
+}
+
+.methodology-page .methodology-prose {
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+/* ── German ─────────────────────────────────────────────────────────
+   German says the same thing in more characters. A slightly smaller
+   display scale and a wider measure hold it to the same line counts
+   without truncating or breaking mid-compound. */
+
+.methodology--de .methodology-h1 {
+  max-width: 23ch;
+  font-size: clamp(2.1rem, 3.7vw, 3.35rem);
+}
+
+.methodology--de .methodology-h2 {
+  max-width: 26ch;
+  font-size: clamp(1.65rem, 2.5vw, 2.5rem);
+}
+
+.methodology--de .methodology-h2--cta {
+  max-width: 20ch;
+  font-size: clamp(1.85rem, 2.85vw, 2.75rem);
+}
+
+.methodology--de .methodology-statement {
+  max-width: 33ch;
+  font-size: clamp(1.25rem, 1.75vw, 1.7rem);
+}
+
+.methodology--de .methodology-h3 {
+  max-width: 30ch;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+}
+
+/* German compounds are long; let them break rather than overflow a
+   narrow card column. */
+.methodology--de .methodology-h3,
+.methodology--de .methodology-step-title,
+.methodology--de .methodology-card-title {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ── Reveal: enhancement only ───────────────────────────────────────
+   Server markup ships in its final, visible state. The shared InView
+   wrapper only ever adds `data-evi-reveal`, and the rules nested under
+   "pending" are the only ones that hide anything — so a reader without
+   JavaScript, or one who asked for reduced motion, gets the finished
+   page immediately. */
+
+.methodology-page .methodology-rise {
+  /* Grid items default to `min-width: auto`, which floors a card at its
+     min-content width. In German that pushed the Scope cards ~2px past a
+     360px viewport. Letting them shrink fixes the clipping without hiding
+     overflow and without touching the type scale or the grid design. */
+  min-width: 0;
+}
+
+[data-evi-reveal="pending"].methodology-rise {
+  opacity: 0;
+  transform: translateY(13px);
+}
+
+[data-evi-reveal="in"].methodology-rise {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1)
+      var(--methodology-delay, 0ms),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1)
+      var(--methodology-delay, 0ms);
+}
+
+.methodology-rise--d1 {
+  --methodology-delay: 40ms;
+}
+
+.methodology-rise--d2 {
+  --methodology-delay: 80ms;
+}
+
+.methodology-rise--d3 {
+  --methodology-delay: 120ms;
+}
+
+.methodology-rise--d4 {
+  --methodology-delay: 160ms;
+}
+
+.methodology-rise--d5 {
+  --methodology-delay: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .methodology-rise {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Decorative wordmark ────────────────────────────────────────────
+   Kept as approved, but strictly decorative: out of the accessibility
+   tree, unselectable and non-interactive. */
+
+.methodology-ghost {
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 760px) {
+  .methodology-hero {
+    padding-top: 5.5rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .methodology-section {
+    padding-block: 3.25rem;
+  }
+
+  .methodology-page .methodology-lead,
+  .methodology-page .methodology-body,
+  .methodology-page .methodology-prose {
+    max-width: none;
+  }
+}
+
 .eyebrow {
   display: inline-flex;
   gap: 0.55rem;

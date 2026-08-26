@@ -322,16 +322,17 @@ a {
   max-width: 40ch;
 }
 
-/* Closing CTA heading: balanced lines, with a wider measure for the
-   longer German sentence so no word is left on a line of its own. */
+/* Closing CTA heading. Same setting as the Methodology closing CTA so the
+   two pages end on an identically formed section: loudest heading after the
+   H1, balanced lines, a wider measure for the longer German sentence. */
 .about-cta-heading {
-  max-width: 16ch;
+  max-width: 18ch;
+  font-size: clamp(2.05rem, 3.2vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.008em;
   text-wrap: balance;
 }
 
-.about--de .about-cta-heading {
-  max-width: 20ch;
-}
 
 .about-quote {
   max-width: 42ch;
@@ -364,6 +365,11 @@ a {
 
 .about--de .about-statement--wide {
   max-width: 44ch;
+}
+
+.about--de .about-cta-heading {
+  max-width: 20ch;
+  font-size: clamp(1.85rem, 2.85vw, 2.75rem);
 }
 
 /* ── Reading columns ────────────────────────────────────────────── */

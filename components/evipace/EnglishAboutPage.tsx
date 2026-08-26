@@ -834,40 +834,30 @@ export function EnglishAboutPage() {
       </section>
 
       <section className="bg-[var(--soft-orange)] py-20 sm:py-28">
-        <div className="site-shell">
-          <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-end">
-            <Rise>
-              <p className="eyebrow">Contact</p>
-              <h2 className="about-cta-heading font-display mt-6 text-[2.1rem] leading-[1.04] sm:text-[2.6rem] lg:text-[3.15rem]">
-                Already have an ESG requirement on your desk?
-              </h2>
-            </Rise>
-            <Rise step={1}>
-              <div className="about-body text-[rgba(21,21,21,0.7)]">
-                <p>
-                  You do not need to work out which service category it belongs
-                  to first.
-                </p>
-                <p>
-                  Send us the request, questionnaire or a short description of
-                  the task. We will review what is required and how we can help
-                  structure the work.
-                </p>
-              </div>
-            </Rise>
-          </div>
-
-          <Rise
-            className="mt-11 flex flex-col items-start gap-x-8 gap-y-6 sm:flex-row sm:flex-wrap sm:items-center"
-            step={2}
-          >
-            <ButtonLink href={SEND_REQUEST_HREF}>
-              Send your ESG request
-            </ButtonLink>
-            <a className="orange-link" href={`mailto:${publicContactEmail}`}>
-              {publicContactEmail}
-            </a>
-            <p className="text-sm font-semibold leading-7 text-[rgba(21,21,21,0.62)] lg:ml-auto lg:text-right">
+        <div className="site-shell max-w-5xl">
+          <Rise>
+            <p className="eyebrow">Contact</p>
+            <h2 className="about-cta-heading font-display mt-5">
+              Already have an ESG requirement on your desk?
+            </h2>
+            <div className="about-lead mt-6 space-y-4 text-[rgba(21,21,21,0.7)]">
+              <p>
+                You do not need to work out which service category it belongs
+                to first.
+              </p>
+              <p>
+                Send us the request, questionnaire or a short description of
+                the task. We will review what is required and how we can help
+                structure the work.
+              </p>
+            </div>
+            <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+              <ButtonLink href={SEND_REQUEST_HREF}>Send your ESG request</ButtonLink>
+              <a className="orange-link" href={`mailto:${publicContactEmail}`}>
+                {publicContactEmail}
+              </a>
+            </div>
+            <p className="mt-7 text-sm font-semibold leading-7 text-[rgba(21,21,21,0.62)]">
               Customer request · Questionnaire · Emissions · Reporting ·
               Evidence
             </p>

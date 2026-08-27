@@ -12,7 +12,7 @@ import Link from "next/link";
 import type { EvipaceImageAvailability } from "@/lib/evipace-image-availability";
 import { evipaceImages } from "@/lib/evipace-images";
 import { ButtonLink } from "./ButtonLink";
-import { MeetingHero } from "./hero-meeting/MeetingHero";
+import { AnimatedMarkHero } from "./hero-mark/AnimatedMarkHero";
 import { DeliveryDossier } from "./home-sections/DeliveryDossier";
 import { EditorialPlate } from "./home-sections/EditorialPlate";
 import { EvidenceAssemblyBoard } from "./home-sections/EvidenceAssemblyBoard";
@@ -305,31 +305,27 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
   return (
     <>
       <main>
-        <MeetingHero
-          asset={evipaceImages.hero}
-          headingId="hero-title"
-          imageAvailable={imageAvailability.hero}
-        >
+        <AnimatedMarkHero headingId="hero-title" locale="de">
           <h1
-            className="meeting-hero__title meeting-hero__title--de font-display"
+            className="mark-hero__title mark-hero__title--de font-display"
             id="hero-title"
           >
             ESG, schneller erledigt.
           </h1>
 
-          <div className="meeting-hero__body mt-6 space-y-4">
+          <div className="mark-hero__body mt-6 space-y-4">
             <p>
               Ihre Kunden verlangen ESG-Daten, Nachweise oder Emissionswerte?
               Sie senden uns die Anfrage und vorhandenen Unterlagen.
             </p>
-            <p className="meeting-hero__body-secondary">
+            <p className="mark-hero__body-secondary">
               Wir strukturieren die Informationen, bereiten Antworten und
               Kennzahlen vor und bringen die Aufgabe bis zu einem prüfbaren
               Ergebnis.
             </p>
           </div>
 
-          <div className="meeting-hero__actions mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mark-hero__actions mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               className="inline-flex min-h-12 w-full max-w-full items-center justify-center rounded-lg border border-orange bg-orange px-5 py-3 text-center text-sm font-bold text-white sm:w-auto"
               href={SEND_REQUEST_HREF}
@@ -344,10 +340,10 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             </a>
           </div>
 
-          <p className="meeting-hero__trust mt-7">
+          <p className="mark-hero__trust mt-7">
             Kundenanfragen · Fragebögen · Scope 1 &amp; 2 · VSME · Nachweise
           </p>
-        </MeetingHero>
+        </AnimatedMarkHero>
 
         <section className="section-padding bg-[var(--warm)]" id="problem">
           <div className="site-shell grid gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">

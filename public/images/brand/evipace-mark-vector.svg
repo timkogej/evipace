@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+  width="1254"
+  height="1254"
+  viewBox="0 0 1254 1254"
+  fill="none"
+  role="img"
+  aria-labelledby="evipace-mark-title evipace-mark-description">
+  <title id="evipace-mark-title">Evipace mark</title>
+  <desc id="evipace-mark-description">A dark document outline with three lines and an orange folded corner.</desc>
+
+  <g id="evipace-document-frame" fill="#0E151B">
+    <path d="M409 147C319.5 147 247 219.5 247 309V925C247 1014.5 319.5 1087 409 1087H778C832.1 1087 876 1043.1 876 989V932L842.2 967.5C826 987 803.3 998 779 998H409C367 998 333 964 333 922V311C333 267.9 367.9 233 411 233H680L668 147H409Z"/>
+  </g>
+
+  <g id="evipace-document-lines" fill="#0E151B">
+    <rect x="419" y="564" width="384" height="61" rx="30.5"/>
+    <rect x="419" y="692" width="312" height="62" rx="31"/>
+    <rect x="419" y="821" width="227" height="61" rx="30.5"/>
+  </g>
+
+  <path id="evipace-fold-underlay"
+    fill="#0E151B"
+    d="M877 443H961C997.5 443 1027 472.5 1027 509C1027 527.5 1017.7 538.9 1005 553L877 695V443Z"/>
+
+  <path id="evipace-orange-corner"
+    fill="#FE7001"
+    d="M668 147L991 426.7C1012.4 444.8 1027.3 469 1027.3 494V503.5C1019.4 469.3 994.2 443 961 443H736C730.5 443 725.8 439.1 724.6 433.7C711 375 698 315 685 260C678 230 671 183 668 147Z"/>
+</svg>

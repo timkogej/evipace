@@ -295,13 +295,12 @@ test("the approved Evidence Desk fallback remains available and untouched", asyn
 
   const heroPath = "components/evipace/english-home/HomeHero.tsx";
   const heroSource = await read(heroPath);
-  assert.ok(heroSource.includes("<MeetingHero"));
-  assert.ok(heroSource.includes("asset={evipaceImages.hero}"));
+  assert.ok(heroSource.includes("<AnimatedMarkHero"));
   assert.ok(heroSource.includes('headingId="hero-title"'));
-  assert.ok(heroSource.includes("imageAvailable={imageAvailable}"));
   assert.equal(heroSource.match(/<h1/g)?.length, 1);
   assert.ok(!heroSource.includes("hero-desk"));
   assert.ok(!heroSource.includes("<EvidenceDeskHero"));
+  assert.ok(!heroSource.includes("<MeetingHero"));
   assert.ok(!heroSource.includes("use client"));
 
   // The old hero's CSS composition is unchanged since the checkpoint.
@@ -312,12 +311,14 @@ test("the approved Evidence Desk fallback remains available and untouched", asyn
 });
 
 test("the other approved sections are unchanged since the checkpoint", () => {
-  // Everything from round two except the request-arrival host section,
-  // which this round intentionally rebuilds.
+  // Everything from round two except the request-arrival host section, which
+  // an earlier round rebuilt, and the evidence assembly board, whose source
+  // cards were intentionally redesigned — the scattered slips and their
+  // hairline connectors became one aligned card grid. Its own guards live in
+  // home-sections.test.mjs and evidence-board.test.mjs.
   const approved = [
     "components/evipace/english-home/ServicesSection.tsx",
     "components/evipace/english-home/Deliverables.tsx",
-    "components/evipace/home-sections/EvidenceAssemblyBoard.tsx",
     "components/evipace/home-sections/ServiceImageCard.tsx",
     "components/evipace/home-sections/DeliveryDossier.tsx",
     "components/evipace/home-sections/service-images.ts",

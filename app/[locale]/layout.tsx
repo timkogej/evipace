@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
+import { SiteIntro } from "@/components/evipace/site-intro/SiteIntro";
 import { evipaceImages } from "@/lib/evipace-images";
 import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
 import { SITE_URL } from "@/lib/seo/site-config";
@@ -70,11 +71,27 @@ export default async function LocaleLayout({
     <html
       className={`${inter.variable} ${gfsDidot.variable}`}
       lang={activeLocale}
+      /*
+       * The site intro's boot script stamps `data-site-intro` on <html> at
+       * parse time — deliberately before hydration, so the branded opening is
+       * governed even if React never arrives. That makes the attribute
+       * script-owned rather than render-owned, which is exactly the case this
+       * flag is for. It suppresses attribute diffs on this element only;
+       * everything inside still gets full hydration checking.
+       */
+      suppressHydrationWarning
     >
       <body>
         {showSiteChrome ? <Navbar locale={activeLocale} /> : null}
-        {children}
+        {/*
+          A stable wrapper the site intro can reveal as one piece. It is the
+          only element the intro ever transforms — never <html> or <body> —
+          so the viewport itself cannot shift or overflow. Without the intro
+          it is an inert div.
+        */}
+        <div data-site-intro-content="">{children}</div>
         {showSiteChrome ? <Footer locale={activeLocale} /> : null}
+        {showSiteChrome ? <SiteIntro /> : null}
       </body>
     </html>
   );

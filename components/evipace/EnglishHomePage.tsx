@@ -21,7 +21,7 @@ export function EnglishHomePage({
   return (
     <>
       <main>
-        <HomeHero imageAvailable={imageAvailability.hero} />
+        <HomeHero />
         <ScatteredData />
         <CustomerRequest
           imageAvailable={imageAvailability.questionnaireForward}

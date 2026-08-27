@@ -251,11 +251,23 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     "homepage hero CSS drifted"
   );
 
-  // Everything after the hero block is byte-identical.
+  // Everything after the hero block is byte-identical, except the evidence
+  // assembly board's own sub-block: its source cards were intentionally
+  // redesigned (scattered slips and hairline connectors became one aligned
+  // grid). That block is pinned by evidence-board.test.mjs instead.
   const sectionsMarker = "   Homepage sections \u2014 evidence board";
+  const withoutBoard = (css) => {
+    const from = css.indexOf("/* \u2500\u2500 1. Evidence assembly board");
+    const to = css.indexOf("/* \u2500\u2500 2. Request stream", from);
+    assert.ok(from > -1 && to > from, "evidence board CSS block not found");
+    return (css.slice(0, from) + css.slice(to))
+      // The board's parts are also named in the shared reduced-motion list;
+      // dropping the connectors necessarily shortened it.
+      .replace(/^\s*\.evb__[\w-]+,\n/gm, "");
+  };
   assert.equal(
-    current.slice(current.indexOf(sectionsMarker)).trimEnd(),
-    committed.slice(committed.indexOf(sectionsMarker)).trimEnd(),
+    withoutBoard(current.slice(current.indexOf(sectionsMarker))).trimEnd(),
+    withoutBoard(committed.slice(committed.indexOf(sectionsMarker))).trimEnd(),
     "homepage section CSS drifted"
   );
 
@@ -279,9 +291,57 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     ".meeting-hero__scrim",
     ".meeting-hero__title",
     ".meeting-hero__title--de",
-    ".meeting-hero__trust"
+    ".meeting-hero__trust",
+    ".mark-hero",
+    ".mark-hero__actions",
+    ".mark-hero__body",
+    ".mark-hero__body-secondary",
+    ".mark-hero__content",
+    ".mark-hero__corner",
+    ".mark-hero__frame",
+    ".mark-hero__fold",
+    ".mark-hero__inner",
+    ".mark-hero__line",
+    ".mark-hero__line--1",
+    ".mark-hero__line--2",
+    ".mark-hero__line--3",
+    ".mark-hero__mark",
+    ".mark-hero__title",
+    ".mark-hero__title--de",
+    ".mark-hero__trust",
+    ".mark-hero__visual",
+    ".mark-hero__stage",
+    ".mark-hero__mark[data-intro-landed] .mark-hero__line",
+    ".mark-hero__workflow",
+    ".mark-hero__workflow-list",
+    ".mark-hero__workflow-list::before",
+    ".mark-hero__workflow-node",
+    ".mark-hero__workflow-number",
+    ".mark-hero__workflow-path",
+    ".mark-hero__workflow-text",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-lead",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-line",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::before",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node--1",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node--2",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node--3",
+    ".site-intro",
+    ".site-intro__corner",
+    ".site-intro__fold",
+    ".site-intro__frame",
+    ".site-intro__line",
+    ".site-intro__line--1",
+    ".site-intro__line--2",
+    ".site-intro__line--3",
+    ".site-intro__mark",
+    ".site-intro__surface",
+    'html[data-site-intro="done"] .site-intro',
+    'html[data-site-intro="playing"] .mark-hero__line'
   ]);
-  const pageScoped = /\babout\b|about-|methodology/;
+  // `.evb*` is excluded for the same reason as the block above: the board's
+  // selectors changed on purpose and are pinned by their own test.
+  const pageScoped = /\babout\b|about-|methodology|\.evb/;
   const selectors = (css) =>
     [...css.matchAll(/^([.#[a-zA-Z][^{}\n]*?)\s*\{/gm)]
       .map((match) => match[1].trim())

@@ -294,6 +294,8 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     ".meeting-hero__trust",
     ".mark-hero",
     ".mark-hero__actions",
+    ".mark-hero__backdrop",
+    '.mark-hero[data-intro-backdrop] .mark-hero__backdrop',
     ".mark-hero__body",
     ".mark-hero__body-secondary",
     ".mark-hero__content",

@@ -38,6 +38,14 @@ export function AnimatedMarkHero({
 }: AnimatedMarkHeroProps) {
   return (
     <section aria-labelledby={headingId} className="mark-hero" id="top">
+      {/*
+        Photographic backdrop, art-directed in two plates: landscape above
+        1024px, portrait beneath it. Both are painted by CSS inside their own
+        media query rather than fetched as an <img>, so each viewport
+        downloads exactly one of them and never the other.
+      */}
+      <div aria-hidden="true" className="mark-hero__backdrop" />
+
       <div className="mark-hero__inner site-shell">
         <div className="mark-hero__content">{children}</div>
 

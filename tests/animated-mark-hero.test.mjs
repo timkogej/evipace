@@ -145,11 +145,18 @@ test("the hero introduces no dependency and no request for the mark", async () =
   assert.ok(!markJsx.includes(".png"));
   assert.ok(!markJsx.includes(".webp"));
   assert.ok(!markJsx.includes("url("));
-  assert.ok(!hero.includes("<img"));
-  assert.ok(!hero.includes("<picture"));
-  assert.ok(!hero.includes("next/image"));
-  assert.ok(!cssRules.includes("url("));
-  assert.ok(!cssRules.includes(".webp"));
+  const heroCode = hero.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\{\/\*[\s\S]*?\*\/\}/g, "");
+  assert.ok(!heroCode.includes("<img"));
+  assert.ok(!heroCode.includes("<picture"));
+  assert.ok(!heroCode.includes("next/image"));
+  // The mark itself is inline markup — never a request. The only url() in the
+  // hero block is the desktop backdrop photograph, which is a separate thing.
+  const urls = [...cssRules.matchAll(/url\("([^"]+)"\)/g)].map((m) => m[1]).sort();
+  assert.deepEqual(urls, [
+    "/images/evipace/homepage/hero-backdrop-desktop.webp",
+    "/images/evipace/homepage/hero-backdrop-mobile.webp"
+  ]);
+  assert.ok(!cssRules.includes("evipace-mark-vector"));
 });
 
 test("the inlined mark reproduces the approved SVG exactly", () => {
@@ -294,23 +301,92 @@ test("the hero is white, two-column on desktop and stacked below 1024px", () => 
   assert.ok(css.includes("grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);"));
   assert.ok(css.includes("width: clamp(340px, 34vw, 535px);"));
 
-  // No photograph, scrim, card or decorative furniture of any kind.
-  for (const banned of [
-    "scrim",
-    "picture",
-    "backdrop-filter",
-    "blur(",
-    "box-shadow",
-    "border-radius",
-    "border:",
-    "background-image"
-  ]) {
+  // The hero itself is still white. Neither photograph is declared outside a
+  // media query, so the base layer paints nothing on its own and each plate
+  // reaches only the widths it was cut for.
+  const unqueried = cssRules.slice(0, cssRules.indexOf("@media"));
+  assert.ok(!unqueried.includes("background-image"));
+  assert.ok(!unqueried.includes("url("));
+  assert.ok(!unqueried.includes("box-shadow"));
+
+  // Still no scrim over the content, no glass, no blur, no raster hero plate.
+  for (const banned of ["scrim", "picture", "backdrop-filter", "blur("]) {
     assert.ok(!cssRules.includes(banned), banned);
   }
 
   // The hero owns its namespace and never reaches into the rollback ones.
   assert.ok(!cssRules.includes("meeting-hero"));
   assert.ok(!cssRules.includes("hero-desk"));
+});
+
+test("each backdrop plate reaches only the widths it was cut for", () => {
+  const mobileBlock = cssRules.slice(
+    cssRules.indexOf("@media (max-width: 1023.98px)"),
+    cssRules.indexOf("@media (min-width: 1024px)")
+  );
+  const desktop = cssRules.slice(cssRules.indexOf("@media (min-width: 1024px)"));
+
+  // Landscape plate above 1024, portrait plate below it. Because each is
+  // declared inside a media query, an unmatched query means the file is never
+  // requested — a phone downloads no landscape plate at all, and vice versa.
+  assert.ok(desktop.includes('url("/images/evipace/homepage/hero-backdrop-desktop.webp")'));
+  assert.ok(!desktop.includes("hero-backdrop-mobile"));
+  assert.ok(mobileBlock.includes('url("/images/evipace/homepage/hero-backdrop-mobile.webp")'));
+  assert.ok(!mobileBlock.includes("hero-backdrop-desktop"));
+
+  // Shared painting rules live on the base element, once.
+  assert.ok(cssRules.includes("background-size: cover;"));
+  assert.ok(cssRules.includes("background-position: center;"));
+  assert.ok(cssRules.includes("pointer-events: none;"));
+
+  // Readability washes, not decorative tints. The desktop one is densest
+  // behind the copy column; the phone one holds the picture open across the
+  // copy and closes to white under the mark and the step cards. Both end at
+  // solid white so the hero meets the next section without a step.
+  assert.ok(desktop.includes("rgba(255, 255, 255, 0.9) 0%"));
+  assert.ok(desktop.includes("rgba(255, 255, 255, 0.55) 100%"));
+  assert.ok(mobileBlock.includes("rgba(255, 255, 255, 0.66) 0%"));
+  assert.ok(mobileBlock.includes("rgba(255, 255, 255, 0.94) 84%"));
+  assert.equal((cssRules.match(/#ffffff 100%/g) ?? []).length, 2);
+
+  // The trust line stopped being a translucent ink at every width, because
+  // over a photograph its rendered colour would move with the picture.
+  assert.ok(cssRules.includes("color: #4a443e;"));
+  assert.ok(!cssRules.includes("rgba(21, 21, 21, 0.68)"));
+
+  // The hero clips the backdrop, so the entrance scale cannot overflow.
+  assert.ok(cssRules.includes("overflow: hidden;"));
+
+  // Both assets are WebP, and neither raw PNG was left in public/.
+  for (const name of ["hero-backdrop-desktop", "hero-backdrop-mobile"]) {
+    assert.ok(existsSync(new URL(`public/images/evipace/homepage/${name}.webp`, root)), name);
+  }
+  for (const raw of [
+    "evipace-hero-5-background.png",
+    "evipace-hero-5-background-mobile.png"
+  ]) {
+    assert.ok(!existsSync(new URL(`public/images/evipace/homepage/${raw}`, root)), raw);
+  }
+});
+
+test("the backdrop settles with the intro and is inert without it", () => {
+  // Opt-in: no attribute, no animation. That is what reduced motion, no-JS
+  // and client-side navigation to the homepage all get.
+  assert.ok(cssRules.includes(".mark-hero[data-intro-backdrop] .mark-hero__backdrop"));
+  assert.ok(cssRules.includes("animation: mark-hero-backdrop-settle 1400ms"));
+  assert.ok(cssRules.includes("var(--backdrop-delay, 0ms) backwards"));
+
+  // The phone intro is a shorter sequence, so its settle is too.
+  const phone = cssRules.slice(cssRules.indexOf("@media (max-width: 767.98px)"));
+  assert.ok(phone.includes("animation-duration: 1000ms;"));
+  assert.ok(!/^\s*\.mark-hero__backdrop \{[^}]*animation:/m.test(cssRules));
+
+  // It settles rather than fades: the white intro surface lifting away is
+  // already the reveal, so a second fade underneath would only muddy it.
+  const frames = cssRules.slice(cssRules.indexOf("@keyframes mark-hero-backdrop-settle"));
+  assert.ok(frames.includes("transform: scale(1.06);"));
+  assert.ok(frames.includes("transform: scale(1);"));
+  assert.ok(!/@keyframes mark-hero-backdrop-settle \{[^@]*opacity/.test(frames));
 });
 
 test("the entrance runs once and every part ends on its final state", () => {
@@ -334,7 +410,7 @@ test("the entrance runs once and every part ends on its final state", () => {
   const animations = [...css.matchAll(/^\s*animation: ([^;]+);/gm)]
     .map((m) => m[1])
     .filter((shorthand) => shorthand !== "none !important");
-  assert.equal(animations.length, 4, animations.join(" | "));
+  assert.equal(animations.length, 5, animations.join(" | "));
   for (const shorthand of animations) {
     assert.ok(shorthand.includes("backwards"), shorthand);
     assert.ok(!shorthand.includes("forwards"), shorthand);

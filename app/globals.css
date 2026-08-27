@@ -2197,11 +2197,85 @@ a {
   position: relative;
   z-index: 0;
   margin-top: var(--mark-hero-nav);
+  overflow: hidden;
   color: var(--ink);
   background: #ffffff;
 }
 
+/*
+ * Photographic backdrop, art-directed in two plates.
+ *
+ * This element only carries the painting rules the two share. Each plate is
+ * declared inside its own media query below — landscape above 1024px, portrait
+ * beneath it — which is also how the delivery works: a background declared in
+ * an unmatched media query is never fetched, so a phone downloads no landscape
+ * plate and a desktop downloads no portrait one.
+ */
+.mark-hero__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/*
+ * The phone and tablet plate: the same scene shot portrait, so the crop suits
+ * a tall hero instead of squeezing a landscape frame into it.
+ *
+ * The wash is shaped to this photograph specifically. Measured per tenth of
+ * its height, the darkest pixels need 0.56–0.64 white almost uniformly (foliage
+ * and shadows run the whole way down), but the *mean* collapses from 0.69 at
+ * the building to 0.066 over the grass and asphalt — which is exactly where the
+ * mark and the three step cards sit. So it holds the photograph open across the
+ * copy and closes to white underneath them: legible everywhere, and the good
+ * half of the picture is the half you actually see.
+ */
+@media (max-width: 1023.98px) {
+  .mark-hero__backdrop {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.66) 0%,
+        rgba(255, 255, 255, 0.66) 34%,
+        rgba(255, 255, 255, 0.78) 60%,
+        rgba(255, 255, 255, 0.94) 84%,
+        #ffffff 100%
+      ),
+      url("/images/evipace/homepage/hero-backdrop-mobile.webp");
+  }
+}
+
+/*
+ * The handoff from the intro, at every width that has a backdrop.
+ *
+ * The white intro surface lifting away is already the reveal, so the backdrop
+ * does not fade — a second fade underneath would only muddy it. What it does
+ * is settle: it is already 6% oversized when the white starts to go, and eases
+ * back to rest just after the overlay is gone. Read together it is one
+ * continuous camera move that ends with the photograph coming to a stop.
+ *
+ * Opt-in, like every other intro-driven entrance here: without
+ * `data-intro-backdrop` there is no animation at all, which is what reduced
+ * motion, no-JS and client-side navigation to the homepage get.
+ */
+.mark-hero[data-intro-backdrop] .mark-hero__backdrop {
+  animation: mark-hero-backdrop-settle 1400ms cubic-bezier(0.22, 1, 0.36, 1)
+    var(--backdrop-delay, 0ms) backwards;
+}
+
+/* The phone intro is a shorter sequence, so its settle is too. */
+@media (max-width: 767.98px) {
+  .mark-hero[data-intro-backdrop] .mark-hero__backdrop {
+    animation-duration: 1000ms;
+  }
+}
+
 .mark-hero__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: clamp(1.5rem, 5.5vw, 2.25rem);
@@ -2228,7 +2302,7 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.1rem, 4.5vw, 1.6rem);
+  gap: clamp(1.75rem, 6vw, 2.25rem);
   align-items: center;
   width: 100%;
 }
@@ -2268,9 +2342,14 @@ a {
   display: none;
 }
 
+/*
+ * Solid, not a translucent ink. Over a photograph an alpha colour renders at
+ * whatever happens to be behind it, which measured 4.28:1 at tablet width —
+ * under AA. A fixed value is the only one that can be verified.
+ */
 .mark-hero__trust {
   max-width: 34rem;
-  color: rgba(21, 21, 21, 0.68);
+  color: #4a443e;
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.6;
@@ -2299,6 +2378,48 @@ a {
   .mark-hero__content {
     width: 100%;
     max-width: 32rem;
+  }
+
+  /*
+   * The desktop plate, and the wash that makes it safe to put type on.
+   *
+   * Layer order is top-first, as CSS lists them: a horizontal wash that is
+   * densest behind the copy column and thins out towards the mark, a vertical
+   * wash that is clear across the bright sky and closes to white over the
+   * grass and asphalt, then the photograph itself.
+   *
+   * The densities are not taste. Measured against this photograph, the body
+   * copy (#3f3933) needs a background luminance of at least 0.365 to hold
+   * 4.5:1, and the raw image fails that across 75.8% of the copy column. The
+   * combined wash never drops below ~0.72 effective white there, which lands
+   * the darkest pixel under the copy at luminance 0.477 — 5.7:1, with margin.
+   * The open right-hand side stays near 0.58 so the photograph still reads.
+   */
+  .mark-hero__backdrop {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.8) 30%,
+        rgba(255, 255, 255, 0.62) 50%,
+        rgba(255, 255, 255, 0.55) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 55%,
+        rgba(255, 255, 255, 0.32) 76%,
+        rgba(255, 255, 255, 0.72) 92%,
+        #ffffff 100%
+      ),
+      url("/images/evipace/homepage/hero-backdrop-desktop.webp");
+  }
+
+  /* White cards need slightly more definition to hold their shape over a
+     photograph than over flat white. */
+  .mark-hero__workflow-node {
+    border-color: rgba(21, 21, 21, 0.14);
+    box-shadow: 0 2px 10px rgba(21, 21, 21, 0.05);
   }
 
   .mark-hero__visual {
@@ -2454,6 +2575,16 @@ a {
   }
 }
 
+@keyframes mark-hero-backdrop-settle {
+  from {
+    transform: scale(1.06);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
 @keyframes mark-hero-line {
   from {
     opacity: 0;
@@ -2509,31 +2640,14 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  gap: 0.5rem;
   margin: 0;
-  padding: 0 0 0 1.0625rem;
+  padding: 0 0 0 2.375rem;
   list-style: none;
 }
 
-/* The rail: warm grey the whole way, orange for the first leg. */
-.mark-hero__workflow-list::before {
-  position: absolute;
-  top: 0.9rem;
-  bottom: 0.9rem;
-  left: 0;
-  width: 1px;
-  content: "";
-  background: linear-gradient(
-    180deg,
-    var(--orange) 0%,
-    var(--orange) 30%,
-    var(--border) 30%,
-    var(--border) 100%
-  );
-  transform-origin: top center;
-}
-
 .mark-hero__workflow-node {
+  position: relative;
   display: flex;
   gap: 0.5625rem;
   align-items: baseline;
@@ -2550,6 +2664,87 @@ a {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.06em;
+}
+
+/*
+ * The rail, under 1280px.
+ *
+ * It used to be a hairline beside three cards sitting under the mark, which
+ * read as a bulleted list rather than a sequence — and it pointed the wrong
+ * way: the desktop composition sends 01 → 02 → 03 *into* the document, while
+ * the stacked one put the document first and then listed the steps after it.
+ *
+ * So the order is inverted here (`order` only — the DOM is untouched, and the
+ * mark is decorative anyway), the numbers become badges seated on a
+ * continuous spine, and the spine runs on past the last step and terminates
+ * in an orange dot pointing at the mark below. Same sentence as the desktop
+ * arc, told vertically.
+ */
+@media (max-width: 1279.98px) {
+  .mark-hero__workflow {
+    order: 1;
+  }
+
+  .mark-hero__mark {
+    order: 2;
+  }
+
+  /* Warm grey the whole way, orange for the first leg. */
+  .mark-hero__workflow-list::before {
+    position: absolute;
+    top: 0.85rem;
+    bottom: 0;
+    left: 0.6875rem;
+    width: 1px;
+    content: "";
+    background: linear-gradient(
+      180deg,
+      var(--orange) 0%,
+      var(--orange) 24%,
+      #9a948b 24%,
+      #9a948b 100%
+    );
+    transform-origin: top center;
+  }
+
+  /*
+   * The hand-off. The spine turns under the last step and runs to the centre
+   * of the mark below — the vertical telling of the desktop arc's final leg
+   * into the document, so the sequence ends somewhere instead of just
+   * stopping.
+   *
+   * 47% is not arbitrary: the step list and the mark are both centred in the
+   * same stage, so the distance from the spine to the mark's centre is always
+   * half the list's width less the spine's own inset. It holds within 2px from
+   * 320px up to the 1280px breakpoint where the arc takes over.
+   */
+  .mark-hero__workflow-list::after {
+    position: absolute;
+    bottom: -1.25rem;
+    left: 0.6875rem;
+    width: 47%;
+    height: 1.25rem;
+    content: "";
+    border-bottom: 1px solid #9a948b;
+    border-left: 1px solid #9a948b;
+    border-bottom-left-radius: 0.75rem;
+  }
+
+  .mark-hero__workflow-number {
+    position: absolute;
+    top: 50%;
+    left: -2.375rem;
+    display: grid;
+    place-items: center;
+    width: 1.375rem;
+    height: 1.375rem;
+    margin-top: -0.6875rem;
+    background: #ffffff;
+    border: 1px solid #d8d4cc;
+    border-radius: 999px;
+    font-size: 0.625rem;
+    letter-spacing: 0;
+  }
 }
 
 .mark-hero__workflow-text {
@@ -2640,8 +2835,8 @@ a {
   }
 
   .mark-hero__workflow-line {
-    stroke: var(--border);
-    stroke-width: 1;
+    stroke: #9a948b;
+    stroke-width: 1.25;
   }
 
   /* A short orange lead resting on the 01 -> 02 leg. It draws once and stops
@@ -2657,10 +2852,6 @@ a {
     padding: 0;
   }
 
-  .mark-hero__workflow-list::before {
-    display: none;
-  }
-
   /* Placed with insets only — never transforms — so the entrance
      keyframes below own `transform` outright. */
   .mark-hero__workflow-node {
@@ -2669,7 +2860,7 @@ a {
     max-width: 25%;
     padding: 0.5625rem 0.8125rem;
     pointer-events: auto;
-    box-shadow: 0 1px 2px rgba(21, 21, 21, 0.03);
+    box-shadow: 0 2px 10px rgba(21, 21, 21, 0.05);
   }
 
   .mark-hero__workflow-node--1 {
@@ -2732,6 +2923,12 @@ a {
 .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::before {
   animation: mark-hero-rail-draw 620ms cubic-bezier(0.22, 0.61, 0.28, 1)
     var(--workflow-delay, 0ms) backwards;
+}
+
+/* The terminal dot lands once the spine has reached it. */
+.mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::after {
+  animation: mark-hero-node-in 380ms cubic-bezier(0.22, 0.61, 0.28, 1)
+    calc(var(--workflow-delay, 0ms) + 560ms) backwards;
 }
 
 .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-line {
@@ -2933,10 +3130,15 @@ html[data-site-intro="done"] .site-intro {
     display: none !important;
   }
 
+  .mark-hero[data-intro-backdrop] .mark-hero__backdrop {
+    animation: none !important;
+  }
+
   .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node,
   .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-line,
   .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-lead,
-  .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::before {
+  .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::before,
+  .mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::after {
     animation: none !important;
   }
 }

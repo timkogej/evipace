@@ -121,6 +121,7 @@ function runIntro(): void {
   const nav = document.querySelector<HTMLElement>(".site-header");
   const heroMark = document.querySelector<HTMLElement>(".mark-hero__mark");
   const stage = document.querySelector<HTMLElement>(".mark-hero__stage");
+  const hero = document.querySelector<HTMLElement>(".mark-hero");
 
   const timers: number[] = [];
   const animations: Animation[] = [];
@@ -148,9 +149,15 @@ function runIntro(): void {
     if (finished) return;
     finished = true;
 
-    if (skipped && stage) {
-      stage.removeAttribute("data-workflow-enter");
-      stage.style.removeProperty("--workflow-delay");
+    if (skipped) {
+      if (stage) {
+        stage.removeAttribute("data-workflow-enter");
+        stage.style.removeProperty("--workflow-delay");
+      }
+      if (hero) {
+        hero.removeAttribute("data-intro-backdrop");
+        hero.style.removeProperty("--backdrop-delay");
+      }
     }
 
     clearBootFailsafe();
@@ -275,6 +282,19 @@ function runIntro(): void {
     if (heroMark) {
       if (mode === "flip") heroMark.style.opacity = "0";
       else heroMark.dataset.introLanded = "true";
+    }
+
+    /*
+     * The photographic backdrop settles as the white surface lifts, so the
+     * two read as one move rather than a cut — on every width, each against
+     * its own surface clock.
+     */
+    if (hero) {
+      hero.style.setProperty(
+        "--backdrop-delay",
+        `${Math.max(0, Math.round(T.surface[mode].start - 100 + shift - startedAt))}ms`
+      );
+      hero.dataset.introBackdrop = "";
     }
 
     /*

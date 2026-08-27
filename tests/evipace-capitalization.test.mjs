@@ -324,6 +324,7 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-lead",
     ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-line",
     ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::before",
+    ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-list::after",
     ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node",
     ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node--1",
     ".mark-hero__stage[data-workflow-enter] .mark-hero__workflow-node--2",

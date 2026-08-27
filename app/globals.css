@@ -2302,7 +2302,7 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.75rem, 6vw, 2.25rem);
+  gap: clamp(1.5rem, 5vw, 2rem);
   align-items: center;
   width: 100%;
 }
@@ -2311,7 +2311,7 @@ a {
    never shift the copy or the section below it. */
 .mark-hero__mark {
   display: block;
-  width: clamp(148px, 41vw, 190px);
+  width: clamp(142px, 38vw, 176px);
   height: auto;
   aspect-ratio: 1 / 1;
 }
@@ -2615,19 +2615,18 @@ a {
    Homepage hero — workflow steps
 
    Three lightweight nodes and one thin connector, forming a single
-   visual system with the mark on the right. Stacked as a rail under
-   1024px, placed around the mark above it.
+   visual system with the mark. From 1280px they sit around it on an
+   arc; below that they become a vertical spine that runs down into it.
+   Either way the sequence ends at the document.
 
    Same motion contract as everything else here: every base state is
    the finished state and the keyframes only describe where a node
    comes *from*, so no-CSS-animation, no-JS and reduced motion all land
    on the complete composition.
 
-   The entrance is gated on `html[data-site-intro="playing"]`: while the
-   full-screen intro is running the nodes hold at their start frame and
-   resume the moment the intro hands over, which is why the same short
-   delays also feel right when the homepage is reached by client-side
-   navigation and nothing gates them at all.
+   The entrance is opt-in via `data-workflow-enter`, which the site intro
+   sets: without it the steps are simply present, which is what no-JS,
+   reduced motion and client-side navigation to the homepage all get.
    ───────────────────────────────────────────────────────────────── */
 
 .mark-hero__workflow {
@@ -2675,10 +2674,9 @@ a {
  * the stacked one put the document first and then listed the steps after it.
  *
  * So the order is inverted here (`order` only — the DOM is untouched, and the
- * mark is decorative anyway), the numbers become badges seated on a
- * continuous spine, and the spine runs on past the last step and terminates
- * in an orange dot pointing at the mark below. Same sentence as the desktop
- * arc, told vertically.
+ * mark is decorative anyway), the numbers become badges seated on a continuous
+ * spine, and the spine turns under the last step and runs to the centre of the
+ * mark below. Same sentence as the desktop arc, told vertically.
  */
 @media (max-width: 1279.98px) {
   .mark-hero__workflow {

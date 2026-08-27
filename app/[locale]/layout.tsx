@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
 import { SiteIntro } from "@/components/evipace/site-intro/SiteIntro";
@@ -92,6 +93,7 @@ export default async function LocaleLayout({
         <div data-site-intro-content="">{children}</div>
         {showSiteChrome ? <Footer locale={activeLocale} /> : null}
         {showSiteChrome ? <SiteIntro /> : null}
+        <Analytics />
       </body>
     </html>
   );

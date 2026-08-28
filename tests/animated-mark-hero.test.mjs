@@ -48,7 +48,7 @@ const untouchedHashes = {
   "app/robots.ts":
     "07569ca82f2afb62270f93d18845f81e8230d03bcb7d62082bd6af92261f33ab",
   "lib/seo/page-registry.ts":
-    "c0a3b1d7c0c459c62a42a15112f4434b144281c7a94734f13e9731b4c34b04ea",
+    "8ef8e16f583c1175e7f0c5cf40a68ec39a4dd4df1e6bb8f327769389af1bf13a",
   "lib/seo/build-metadata.ts":
     "ff619511537efc58dcfbb34af01c84473c066d23b75b9396847631d27af67bf6",
   "lib/seo/schema/organization.ts":

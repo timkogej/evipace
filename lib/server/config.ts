@@ -86,5 +86,7 @@ export const requestUploadsConfig = {
   submissionTokenHmacKey: () => required("SUBMISSION_TOKEN_HMAC_KEY"),
 
   /** Guards POST /api/requests/retry-notifications — for external scheduling only. */
-  internalRetrySecret: () => required("INTERNAL_RETRY_SECRET")
+  internalRetrySecret: () => required("INTERNAL_RETRY_SECRET"),
+  /** Guards the report-only retention endpoint. */
+  retentionCronSecret: () => required("CRON_SECRET")
 };

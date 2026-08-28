@@ -5,6 +5,7 @@ import { createSignedUploads } from "@/lib/server/request-storage";
 import { buildStoragePath } from "@/lib/server/sanitize-filename";
 import { generateSubmissionToken, hashSubmissionToken } from "@/lib/server/submission-token";
 import { getClientIp, hmacIp } from "@/lib/server/rate-limit";
+import { retentionExpiryForSubmission } from "@/lib/server/retention";
 import { requestSubmissionSchema } from "@/lib/validation/request-form";
 import {
   RATE_LIMIT_MAX_PER_HOUR,
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
   const supabase = getSupabaseAdminClient();
   const ip = getClientIp(request.headers);
   const ipHmac = hmacIp(ip);
+  const retentionExpiresAt = retentionExpiryForSubmission();
 
   const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MS).toISOString();
   const { count } = await supabase
@@ -64,32 +66,45 @@ export async function POST(request: NextRequest) {
     submission_token_hash: tokenHash,
     ip_hmac: ipHmac
   };
+  const retentionRow = {
+    ...baseRow,
+    retention_expires_at: retentionExpiresAt
+  };
 
-  // `locale` arrived with supabase/migrations/20260826000000_inbound_requests_locale.sql.
-  // If that migration has not been applied to the target database yet, the
-  // insert would otherwise fail on an unknown column and take every
-  // submission down with it. A failed insert writes no row, so retrying
-  // once without the field cannot duplicate anything — the submission
-  // succeeds and the notification simply reports the locale as not
-  // recorded. Remove this fallback once the migration is deployed
-  // everywhere.
+  // `locale` and the report-only retention metadata arrived through
+  // separate migrations. If either has not been applied to a target
+  // database yet, the insert would otherwise fail on an unknown column and
+  // take every submission down with it. A failed insert writes no row, so
+  // retrying with the smaller shape cannot duplicate anything — the
+  // submission succeeds and the missing optional metadata can be
+  // backfilled once the migration is deployed.
   let requestRow: { id: string } | null = null;
 
   const firstAttempt = await supabase
     .from("inbound_requests")
-    .insert({ ...baseRow, locale: locale ?? null })
+    .insert({ ...retentionRow, locale: locale ?? null })
     .select("id")
     .single<{ id: string }>();
 
   if (firstAttempt.data) {
     requestRow = firstAttempt.data;
   } else {
-    const retry = await supabase
+    const secondAttempt = await supabase
       .from("inbound_requests")
-      .insert(baseRow)
+      .insert({ ...baseRow, locale: locale ?? null })
       .select("id")
       .single<{ id: string }>();
-    requestRow = retry.data ?? null;
+
+    if (secondAttempt.data) {
+      requestRow = secondAttempt.data;
+    } else {
+      const retry = await supabase
+        .from("inbound_requests")
+        .insert(baseRow)
+        .select("id")
+        .single<{ id: string }>();
+      requestRow = retry.data ?? null;
+    }
   }
 
   if (!requestRow) {

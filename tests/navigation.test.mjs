@@ -76,7 +76,7 @@ test("the locale layout is the only site-chrome integration point", async () => 
 });
 
 test("every chrome route maps to a real route and the reachability registry", async () => {
-  assert.equal(routeEntries.length, 48);
+  assert.equal(routeEntries.length, 50);
   assert.equal(new Set(hrefs).size, hrefs.length);
 
   for (const entry of routeEntries) {
@@ -144,6 +144,7 @@ test("English navigation remains deliberately smaller and route-correct", () => 
   assert.deepEqual(englishHrefs, [
     "/en",
     "/en/about",
+    "/en/privacy",
     "/en/methodology",
     "/en/send-request",
     "/en/esg-customer-requests",
@@ -243,7 +244,10 @@ test("footer has contact and genuine links without placeholders or fake legal ro
   assert.ok(navigationSource.includes("hello@evipace.com"));
   assert.ok(footerSource.includes("siteNavigation[locale]"));
   assert.ok(!footerSource.includes("#top"));
-  assert.ok(!navigationSource.includes("/privacy"));
+  assert.ok(navigationSource.includes("/en/privacy"));
+  assert.ok(navigationSource.includes("/de/privacy"));
+  assert.ok(footerSource.includes("CONSENT_SETTINGS_EVENT"));
+  assert.ok(footerSource.includes("<button"));
   assert.ok(!navigationSource.includes("/datenschutz"));
   assert.ok(!navigationSource.includes("/impressum"));
   assert.ok(!navigationSource.includes("/terms"));

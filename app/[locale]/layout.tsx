@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Analytics } from "@vercel/analytics/next";
+import { ConsentManager } from "@/components/evipace/analytics/ConsentManager";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
 import { SiteIntro } from "@/components/evipace/site-intro/SiteIntro";
@@ -67,6 +68,7 @@ export default async function LocaleLayout({
 
   const activeLocale: Locale = locale;
   const showSiteChrome = isSiteLocale(activeLocale);
+  const gaMeasurementId = process.env.GA_MEASUREMENT_ID;
 
   return (
     <html
@@ -93,6 +95,12 @@ export default async function LocaleLayout({
         <div data-site-intro-content="">{children}</div>
         {showSiteChrome ? <Footer locale={activeLocale} /> : null}
         {showSiteChrome ? <SiteIntro /> : null}
+        {showSiteChrome && gaMeasurementId ? (
+          <ConsentManager
+            locale={activeLocale}
+            measurementId={gaMeasurementId}
+          />
+        ) : null}
         <Analytics />
       </body>
     </html>

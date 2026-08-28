@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import { CONSENT_SETTINGS_EVENT } from "@/components/evipace/analytics/consent";
+import { getConsentCopy } from "@/components/evipace/analytics/consent-copy";
 import {
   getLanguageDestinations,
   isCurrentNavigationItem,
@@ -17,6 +19,11 @@ export function Footer({ locale }: FooterProps) {
   const pathname = usePathname();
   const navigation = siteNavigation[locale];
   const languageDestinations = getLanguageDestinations(locale, pathname);
+  const consent = getConsentCopy(locale);
+
+  function openCookieSettings() {
+    window.dispatchEvent(new CustomEvent(CONSENT_SETTINGS_EVENT));
+  }
 
   return (
     <footer className="site-footer border-t border-[rgba(21,21,21,0.1)] bg-[var(--warm)] pb-8 pt-16 text-ink">
@@ -100,6 +107,13 @@ export function Footer({ locale }: FooterProps) {
           <div>
             <p className="sr-only">{navigation.labels.language}</p>
             <div className="flex flex-wrap items-start justify-start gap-4 sm:justify-end">
+              <button
+                className="font-semibold transition hover:text-ink"
+                onClick={openCookieSettings}
+                type="button"
+              >
+                {consent.reopen}
+              </button>
               {languageDestinations.map((destination) => (
                 <Link
                   aria-current={destination.isCurrent ? "page" : undefined}

@@ -39,6 +39,7 @@ export type PageMetadataEntry = {
 export type PageKey =
   | "home"
   | "about"
+  | "privacy"
   | "methodology"
   | "sendRequest"
   | "esgFragebogenLieferanten"
@@ -87,6 +88,12 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "Evipace helps manufacturing companies handle practical ESG requirements — from customer requests and questionnaires to emissions data, reports and evidence.",
       path: "/en/about"
+    },
+    privacy: {
+      title: "Privacy policy | evipace",
+      description:
+        "How evipace handles privacy-related information on this website, including optional Google Analytics and cookie choices.",
+      path: "/en/privacy"
     },
     methodology: {
       title: "ESG Methodology & Quality Assurance | evipace",
@@ -258,6 +265,12 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum evipace gegründet wurde und wie wir arbeiten.",
       path: "/de/about"
+    },
+    privacy: {
+      title: "Datenschutzerklärung | evipace",
+      description:
+        "Wie evipace datenschutzbezogene Informationen auf dieser Website behandelt, einschließlich optionalem Google Analytics und Cookie-Auswahl.",
+      path: "/de/privacy"
     },
     methodology: {
       title: "ESG-Methodik & Qualitätssicherung | evipace",

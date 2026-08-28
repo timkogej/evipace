@@ -278,6 +278,21 @@ test("no homepage stylesheet block was touched by the About work", async () => {
   // At-rules are containers rather than selectors; the rebased tail already
   // pins the blocks they wrap.
   const approvedAdditions = new Set([
+    ".cookie-consent",
+    ".cookie-consent h2",
+    ".cookie-consent p",
+    ".cookie-consent__actions",
+    ".cookie-consent__button",
+    ".cookie-consent__button--primary",
+    ".cookie-consent__button--secondary",
+    ".cookie-consent__button:hover",
+    ".cookie-consent__close",
+    ".cookie-consent__close:hover",
+    ".cookie-consent__copy",
+    ".cookie-consent__copy > p:not(.cookie-consent__status)",
+    ".cookie-consent__link",
+    ".cookie-consent__panel",
+    ".cookie-consent__status",
     ".hero-desk__title--sentence",
     ".hero-desk__title--sentence-de",
     ".meeting-hero",

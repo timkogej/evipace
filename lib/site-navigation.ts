@@ -73,6 +73,7 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
   en: [
     { pageKey: "home", href: "/en" },
     { pageKey: "about", href: "/en/about" },
+    { pageKey: "privacy", href: "/en/privacy" },
     { pageKey: "methodology", href: "/en/methodology" },
     { pageKey: "sendRequest", href: "/en/send-request" },
     { pageKey: "esgKundenanfragen", href: "/en/esg-customer-requests" },
@@ -143,6 +144,7 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
   de: [
     { pageKey: "home", href: "/de" },
     { pageKey: "about", href: "/de/about" },
+    { pageKey: "privacy", href: "/de/privacy" },
     { pageKey: "methodology", href: "/de/methodology" },
     { pageKey: "sendRequest", href: "/de/send-request" },
     {
@@ -627,6 +629,11 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
           { label: "Home", href: route("en", "home"), pageKey: "home" },
           { label: "About", href: route("en", "about"), pageKey: "about" },
           {
+            label: "Privacy policy",
+            href: route("en", "privacy"),
+            pageKey: "privacy"
+          },
+          {
             label: "Methodology",
             href: route("en", "methodology"),
             pageKey: "methodology"
@@ -727,6 +734,11 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         links: [
           { label: "Startseite", href: route("de", "home"), pageKey: "home" },
           { label: "Methodik", href: route("de", "methodology"), pageKey: "methodology" },
+          {
+            label: "Datenschutzerklärung",
+            href: route("de", "privacy"),
+            pageKey: "privacy"
+          },
           { label: "Über evipace", href: route("de", "about"), pageKey: "about" }
         ]
       },

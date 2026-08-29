@@ -21,7 +21,9 @@ type GtagCommand =
 
 declare global {
   interface Window {
-    dataLayer?: GtagCommand[];
+    // gtag.js appends its own bookkeeping entries to the same queue, so the
+    // data layer is deliberately not typed as our command tuples only.
+    dataLayer?: unknown[];
     gtag?: (...args: GtagCommand) => void;
     __evipaceGa?: {
       id: string;
@@ -41,18 +43,41 @@ function safePagePath(): string {
   return window.location.pathname;
 }
 
+// The last consent state actually queued, so repeated renders and route
+// changes cannot pile identical `consent update` commands onto the queue.
+let queuedConsentDecision: "accepted" | "rejected" | null = null;
+
 export function initializeConsentDefaults(): void {
+  if (typeof window === "undefined") return;
+
   window.dataLayer = window.dataLayer ?? [];
-  window.gtag =
-    window.gtag ??
-    function gtag(...args: GtagCommand) {
-      window.dataLayer?.push(args);
-    };
+
+  // Bootstrap exactly once per page load: the presence of window.gtag is the
+  // marker, so the Consent Mode defaults are queued once and only once.
+  if (window.gtag) return;
+
+  /*
+   * gtag.js only *executes* a data-layer entry when that entry is a real
+   * `arguments` object — it walks the queue and ignores anything else. The
+   * previous implementation pushed a plain array (`push(args)` with a rest
+   * parameter), so every consent/js/config/event command was queued but
+   * never interpreted: the loader ran, and GA4 collected nothing. Keeping
+   * the canonical `push(arguments)` shape is what makes the queue live.
+   */
+  function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer?.push(arguments);
+  }
+
+  window.gtag = gtag;
   window.gtag("consent", "default", consentDefaults);
 }
 
 export function updateAnalyticsConsent(decision: "accepted" | "rejected"): void {
   initializeConsentDefaults();
+  if (queuedConsentDecision === decision) return;
+
+  queuedConsentDecision = decision;
   window.gtag?.(
     "consent",
     "update",

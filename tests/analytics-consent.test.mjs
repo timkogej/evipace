@@ -11,6 +11,7 @@ const files = {
   footer: "components/evipace/Footer.tsx",
   manager: "components/evipace/analytics/ConsentManager.tsx",
   ga: "components/evipace/analytics/GoogleAnalytics.ts",
+  gaCookies: "components/evipace/analytics/ga-cookies.ts",
   consent: "components/evipace/analytics/consent.ts",
   copy: "components/evipace/analytics/consent-copy.ts",
   privacy: "components/evipace/privacy/PrivacyPage.tsx",
@@ -20,6 +21,15 @@ const files = {
   legalInfo: "lib/legal-info.ts",
   css: "app/globals.css"
 };
+
+/*
+ * This file guards the static side of the consent feature: the copy, the
+ * design tokens, the environment wiring and the promises the privacy page
+ * makes. The runtime behaviour it used to assert by grepping the source —
+ * what actually reaches the data layer, which network requests happen, when
+ * cookies are written and removed — is exercised for real against the shipped
+ * modules in tests/analytics-runtime.test.mjs.
+ */
 
 const sources = Object.fromEntries(
   await Promise.all(
@@ -97,59 +107,23 @@ test("consent manager and Vercel Analytics are each rendered once globally", () 
   assert.ok(sources.layout.includes("<Footer locale={activeLocale} />"));
 });
 
-test("Consent Mode v2 defaults deny all four signals", () => {
-  for (const token of [
-    'analytics_storage: "denied"',
-    'ad_storage: "denied"',
-    'ad_user_data: "denied"',
-    'ad_personalization: "denied"'
-  ]) {
-    assert.ok(sources.consent.includes(token), token);
-  }
-});
-
-test("acceptance grants only analytics storage and advertising stays denied", () => {
-  assert.ok(sources.consent.includes('analytics_storage: "granted"'));
-  for (const token of [
-    'ad_storage: "denied"',
-    'ad_user_data: "denied"',
-    'ad_personalization: "denied"'
-  ]) {
-    assert.ok(sources.consent.includes(token), token);
-  }
-  assert.ok(sources.ga.includes('decision === "accepted"'));
-  assert.ok(!sources.ga.includes('ad_storage: "granted"'));
-  assert.ok(!sources.ga.includes('ad_user_data: "granted"'));
-  assert.ok(!sources.ga.includes('ad_personalization: "granted"'));
-});
-
-test("GA script is absent before a decision and after rejection", () => {
-  assert.ok(sources.manager.includes("decision === null"));
-  assert.ok(sources.manager.includes("!ready"));
-  assert.ok(sources.manager.includes('decision === "accepted"'));
-  assert.ok(sources.manager.includes('nextDecision === "accepted"'));
-  assert.ok(sources.manager.includes('choose(nextDecision: ConsentDecision)'));
-  assert.ok(sources.manager.includes("disableGoogleAnalytics(measurementId)"));
-  assert.ok(!sources.manager.includes("loadGoogleAnalytics(measurementId);") || sources.manager.indexOf('stored === "accepted"') < sources.manager.indexOf("loadGoogleAnalytics(measurementId);"));
-});
-
-test("GA script loads once after acceptance and page views are deduplicated", () => {
-  assert.ok(sources.ga.includes("script.dataset.evipaceGa4 = measurementId"));
-  assert.ok(sources.ga.includes("document.querySelector(`script[data-evipace-ga4="));
-  assert.ok(sources.ga.includes("send_page_view: false"));
-  assert.ok(sources.ga.includes("state.lastPagePath === pagePath"));
-  assert.ok(sources.ga.includes('"event", "page_view"'));
-  assert.ok(sources.ga.includes("window.location.pathname"));
-  assert.ok(!sources.ga.includes("window.location.search"));
-});
-
-test("decision persists and withdrawal deletes accessible GA cookies", () => {
+// The stored decision's shape is a promise made to visitors on the privacy
+// page and to the 180-day retention wording, so it is pinned here; that the
+// decision is honoured, and that withdrawal removes _ga cookies, is proven
+// against the real modules in tests/analytics-runtime.test.mjs.
+test("the consent cookie keeps its name, values and 180-day lifetime", () => {
   assert.ok(sources.consent.includes('CONSENT_COOKIE_NAME = "evipace_cookie_consent"'));
   assert.ok(sources.consent.includes("60 * 60 * 24 * 180"));
+  assert.ok(sources.consent.includes('CONSENT_COOKIE_VERSION = "v1"'));
+  assert.equal(
+    ["accepted", "rejected"].every((decision) =>
+      sources.consent.includes(`"${decision}"`)
+    ),
+    true
+  );
   assert.ok(sources.manager.includes("writeConsentCookie(nextDecision)"));
-  assert.ok(sources.manager.includes('name === "_ga" || name.startsWith("_ga_")'));
+  assert.ok(sources.gaCookies.includes('name === "_ga" || name.startsWith("_ga_")'));
   assert.ok(sources.manager.includes("window.location.reload()"));
-  assert.ok(sources.manager.includes("parseConsentDecision(readCookie"));
 });
 
 test("EN and DE consent copy and privacy links are exact", () => {
@@ -184,6 +158,8 @@ test("EN and DE consent copy and privacy links are exact", () => {
 
 test("no PII or form values are passed to analytics and no GTM container is introduced", () => {
   assert.ok(!sources.ga.includes("useSearchParams"));
+  assert.ok(!sources.ga.includes("window.location.search"));
+  assert.ok(!sources.ga.includes("window.location.hash"));
   assert.ok(!sources.ga.includes("email"));
   assert.ok(!sources.ga.includes("company"));
   assert.ok(!sources.ga.includes("filename"));
@@ -222,6 +198,7 @@ test("only the consent controller is a new client component", () => {
   for (const [label, source] of [
     ["GA loader", sources.ga],
     ["consent helpers", sources.consent],
+    ["GA cookie helpers", sources.gaCookies],
     ["consent copy", sources.copy],
     ["privacy page", sources.privacy],
     ["privacy route", sources.privacyRoute],

@@ -12,6 +12,7 @@ import {
   serializeConsentDecision
 } from "./consent";
 import { getConsentCopy, type ConsentLocale } from "./consent-copy";
+import { removeGoogleAnalyticsCookies } from "./ga-cookies";
 import {
   disableGoogleAnalytics,
   initializeConsentDefaults,
@@ -38,41 +39,6 @@ function writeConsentCookie(decision: ConsentDecision): void {
   document.cookie = `${CONSENT_COOKIE_NAME}=${serializeConsentDecision(
     decision
   )}; Max-Age=${CONSENT_COOKIE_MAX_AGE_SECONDS}; Path=/; SameSite=Lax${secure}`;
-}
-
-function deleteCookieForDomain(name: string, domain?: string): void {
-  const secure = window.location.protocol === "https:" ? "; Secure" : "";
-  const domainPart = domain ? `; Domain=${domain}` : "";
-  document.cookie = `${name}=; Max-Age=0; Path=/${domainPart}; SameSite=Lax${secure}`;
-}
-
-function candidateCookieDomains(hostname: string): string[] {
-  if (!hostname || hostname === "localhost" || /^\d+\.\d+\.\d+\.\d+$/.test(hostname)) {
-    return [];
-  }
-
-  const parts = hostname.split(".");
-  const domains = new Set<string>();
-  for (let index = 0; index <= Math.max(0, parts.length - 2); index += 1) {
-    const domain = parts.slice(index).join(".");
-    domains.add(domain);
-    domains.add(`.${domain}`);
-  }
-  return Array.from(domains);
-}
-
-function removeGoogleAnalyticsCookies(): void {
-  const gaCookieNames = document.cookie
-    .split(";")
-    .map((part) => part.trim().split("=")[0])
-    .filter((name) => name === "_ga" || name.startsWith("_ga_"));
-
-  for (const name of gaCookieNames) {
-    deleteCookieForDomain(name);
-    for (const domain of candidateCookieDomains(window.location.hostname)) {
-      deleteCookieForDomain(name, domain);
-    }
-  }
 }
 
 export function ConsentManager({ locale, measurementId }: ConsentManagerProps) {

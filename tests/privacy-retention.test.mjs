@@ -22,7 +22,8 @@ const sources = Object.fromEntries(
       config: "lib/server/config.ts",
       companyInfo: "lib/company-info.ts",
       docs: "docs/retention-report-only.md",
-      analyticsConsent: "tests/analytics-consent.test.mjs"
+      analyticsConsent: "tests/analytics-consent.test.mjs",
+      analyticsRuntime: "tests/analytics-runtime.test.mjs"
     }).map(async ([key, file]) => [key, await read(file)])
   )
 );
@@ -391,11 +392,24 @@ test("operator document describes holds, extension, report-only checks and revie
 });
 
 test("existing GA consent assertions remain present", () => {
+  // The consent guarantees are now asserted against the shipped modules
+  // rather than against the shape of their source text.
   for (const token of [
-    "GA script is absent before a decision and after rejection",
-    "Consent Mode v2 defaults deny all four signals",
-    "GA script loads once after acceptance and page views are deduplicated",
-    "decision persists and withdrawal deletes accessible GA cookies"
+    "before a decision nothing Google is requested and no GA cookie is set",
+    "rejection keeps Google unloaded, and the stored rejection survives a reload",
+    "acceptance bootstraps gtag once and collects exactly one page view",
+    "each real pathname navigation sends exactly one further page view",
+    "a stored acceptance initializes on the next visit without a banner",
+    "withdrawal clears accessible GA cookies and leaves Google unloaded afterwards",
+    "without a measurement id nothing is loaded and nothing is collected"
+  ]) {
+    assert.ok(sources.analyticsRuntime.includes(token), token);
+  }
+
+  for (const token of [
+    "the consent cookie keeps its name, values and 180-day lifetime",
+    "no PII or form values are passed to analytics and no GTM container is introduced",
+    "no production GA4 measurement ID is hardcoded in source or tests"
   ]) {
     assert.ok(sources.analyticsConsent.includes(token), token);
   }

@@ -163,7 +163,8 @@ test("no PII or form values are passed to analytics and no GTM container is intr
   assert.ok(!sources.ga.includes("email"));
   assert.ok(!sources.ga.includes("company"));
   assert.ok(!sources.ga.includes("filename"));
-  assert.ok(!sources.ga.includes("form"));
+  assert.ok(sources.ga.includes('form_name: "esg_request"'));
+  assert.ok(sources.ga.includes("form_locale: formLocale"));
   assert.ok(!sources.ga.includes("GTM-"));
   assert.ok(!sources.layout.includes("GTM-"));
   assert.ok(!sources.manager.includes("RequestForm"));

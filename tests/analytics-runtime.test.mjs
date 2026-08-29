@@ -41,6 +41,12 @@ function runManagerEffects(ga, decision, measurementId = MEASUREMENT_ID) {
   ga.sendControlledPageView(measurementId);
 }
 
+function eventRequests(environment, eventName) {
+  return environment.collectRequests.filter(
+    (url) => new URL(url).searchParams.get("en") === eventName
+  );
+}
+
 /**
  * One page load. React Strict Mode mounts effects twice in development and
  * a re-render can repeat them at any time, so every visit runs them twice.
@@ -265,6 +271,92 @@ test("page views carry the pathname only — no query string, fragment or form d
   for (const forbidden of ["utm_source", "email", "@", "#company"]) {
     assert.ok(!serialized.includes(forbidden), forbidden);
   }
+  session.end();
+});
+
+test("lead form events no-op before consent and after rejection", async () => {
+  const undecided = await visit();
+  assert.equal(
+    undecided.ga.sendLeadAnalyticsEvent("request_form_start", "en"),
+    false
+  );
+  assert.equal(undecided.environment.collectRequests.length, 0);
+  undecided.end();
+
+  const rejected = await visit({ cookies: { [CONSENT_COOKIE]: "v1:rejected" } });
+  assert.equal(rejected.ga.sendLeadAnalyticsEvent("request_form_start", "de"), false);
+  assert.equal(rejected.ga.sendLeadAnalyticsEvent("generate_lead", "de"), false);
+  assert.equal(rejected.environment.collectRequests.length, 0);
+  rejected.end();
+});
+
+test("request_form_start uses only the allowlisted EN and DE payload", async () => {
+  const en = await visit({ cookies: { [CONSENT_COOKIE]: "v1:accepted" } });
+  assert.equal(en.ga.sendLeadAnalyticsEvent("request_form_start", "en"), true);
+
+  const enHits = eventRequests(en.environment, "request_form_start");
+  assert.equal(enHits.length, 1);
+  const enHit = new URL(enHits[0]);
+  assert.equal(enHit.searchParams.get("form_name"), "esg_request");
+  assert.equal(enHit.searchParams.get("form_locale"), "en");
+  assert.deepEqual(
+    Array.from(enHit.searchParams.keys()).sort(),
+    ["en", "form_locale", "form_name", "tid", "v"].sort()
+  );
+  en.end();
+
+  const de = await visit({ cookies: { [CONSENT_COOKIE]: "v1:accepted" } });
+  assert.equal(de.ga.sendLeadAnalyticsEvent("request_form_start", "de"), true);
+  const deHit = new URL(eventRequests(de.environment, "request_form_start")[0]);
+  assert.equal(deHit.searchParams.get("form_locale"), "de");
+  de.end();
+});
+
+test("generate_lead uses the official event name and only the allowlisted payload", async () => {
+  const session = await visit({ cookies: { [CONSENT_COOKIE]: "v1:accepted" } });
+  assert.equal(session.ga.sendLeadAnalyticsEvent("generate_lead", "de"), true);
+
+  const hits = eventRequests(session.environment, "generate_lead");
+  assert.equal(hits.length, 1);
+  const hit = new URL(hits[0]);
+  assert.equal(hit.searchParams.get("form_name"), "esg_request");
+  assert.equal(hit.searchParams.get("form_locale"), "de");
+  assert.equal(hit.searchParams.get("lead_source"), "website_request_form");
+  assert.deepEqual(
+    Array.from(hit.searchParams.keys()).sort(),
+    ["en", "form_locale", "form_name", "lead_source", "tid", "v"].sort()
+  );
+
+  const serialized = JSON.stringify(readDataLayer(session.environment));
+  for (const forbidden of [
+    "email",
+    "company",
+    "message",
+    "deadline",
+    "requestId",
+    "submissionToken",
+    "filename",
+    "mimeType",
+    "size",
+    "signedUrl"
+  ]) {
+    assert.ok(!serialized.includes(forbidden), forbidden);
+  }
+  session.end();
+});
+
+test("lead form events do not change page-view or loader behavior", async () => {
+  const session = await visit({ cookies: { [CONSENT_COOKIE]: "v1:accepted" } });
+
+  session.ga.sendLeadAnalyticsEvent("request_form_start", "en");
+  session.ga.sendLeadAnalyticsEvent("generate_lead", "en");
+  runManagerEffects(session.ga, "accepted");
+  session.environment.runInjectedScripts();
+
+  assert.equal(session.environment.loaderRequests.length, 1);
+  assert.equal(session.environment.pageViewRequests.length, 1);
+  assert.equal(commandsOfType(session.environment, "config").length, 1);
+  assert.equal(commandsOfType(session.environment, "js").length, 1);
   session.end();
 });
 

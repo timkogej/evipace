@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { sendLeadAnalyticsEvent } from "@/components/evipace/analytics/GoogleAnalytics";
 import { FileDropzone } from "./FileDropzone";
 import { SuccessState } from "./SuccessState";
 import { defaultSendRequestCopy, type SendRequestCopy } from "./copy";
@@ -35,9 +36,33 @@ export function RequestForm({
   const [progress, setProgress] = useState<Record<string, number>>({});
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const formStartTrackedRef = useRef(false);
+  const submitInFlightRef = useRef(false);
+  const workflowSucceededRef = useRef(false);
+  const leadTrackedRef = useRef(false);
+
+  function markFormStarted(target: EventTarget | null) {
+    if (formStartTrackedRef.current) return;
+    if (target instanceof HTMLInputElement && target.name === "website") return;
+
+    formStartTrackedRef.current = sendLeadAnalyticsEvent(
+      "request_form_start",
+      locale
+    );
+  }
+
+  useEffect(() => {
+    if (stage !== "success") return;
+    if (!workflowSucceededRef.current || leadTrackedRef.current) return;
+
+    leadTrackedRef.current = sendLeadAnalyticsEvent("generate_lead", locale);
+  }, [locale, stage]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    markFormStarted(event.target);
+    if (submitInFlightRef.current) return;
+
     setError(null);
 
     if (files.length === 0) {
@@ -45,6 +70,7 @@ export function RequestForm({
       return;
     }
 
+    submitInFlightRef.current = true;
     const formData = new FormData(event.currentTarget);
     const payload = {
       name: String(formData.get("name") ?? ""),
@@ -103,6 +129,7 @@ export function RequestForm({
         return;
       }
 
+      workflowSucceededRef.current = true;
       setStage("success");
     } catch (caughtError) {
       // Surfacing the real error message on-page deliberately — during
@@ -118,6 +145,7 @@ export function RequestForm({
       setError(message);
       setStage("form");
     } finally {
+      submitInFlightRef.current = false;
       setSubmitting(false);
     }
   }
@@ -134,6 +162,9 @@ export function RequestForm({
   return (
     <form
       className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"
+      onChange={(event) => markFormStarted(event.target)}
+      onFocus={(event) => markFormStarted(event.target)}
+      onPointerDown={(event) => markFormStarted(event.target)}
       onSubmit={handleSubmit}
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -198,7 +229,10 @@ export function RequestForm({
           copy={copy.dropzone}
           disabled={submitting}
           files={files}
-          onChange={setFiles}
+          onChange={(nextFiles) => {
+            markFormStarted(null);
+            setFiles(nextFiles);
+          }}
         />
       </div>
 

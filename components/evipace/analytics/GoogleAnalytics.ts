@@ -1,6 +1,7 @@
 import {
   analyticsDeniedConsent,
   analyticsGrantedConsent,
+  CONSENT_COOKIE_NAME,
   consentDefaults
 } from "./consent";
 
@@ -17,7 +18,9 @@ type GtagCommand =
   | ["consent", "update", ConsentUpdatePayload]
   | ["js", Date]
   | ["config", string, { send_page_view: false; allow_google_signals: false; allow_ad_personalization_signals: false }]
-  | ["event", "page_view", { page_title: string; page_location: string; page_path: string; send_to: string }];
+  | ["event", "page_view", { page_title: string; page_location: string; page_path: string; send_to: string }]
+  | ["event", "request_form_start", { form_name: "esg_request"; form_locale: "en" | "de" }]
+  | ["event", "generate_lead", { form_name: "esg_request"; form_locale: "en" | "de"; lead_source: "website_request_form" }];
 
 declare global {
   interface Window {
@@ -41,6 +44,18 @@ function safePageLocation(): string {
 
 function safePagePath(): string {
   return window.location.pathname;
+}
+
+type LeadFormLocale = "en" | "de";
+type LeadAnalyticsEventName = "request_form_start" | "generate_lead";
+
+function hasAcceptedAnalyticsConsent(): boolean {
+  if (typeof document === "undefined") return false;
+
+  return document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .some((cookie) => cookie === `${CONSENT_COOKIE_NAME}=v1:accepted`);
 }
 
 // The last consent state actually queued, so repeated renders and route
@@ -142,6 +157,35 @@ export function sendControlledPageView(measurementId: string): void {
     page_path: pagePath,
     send_to: measurementId
   });
+}
+
+export function sendLeadAnalyticsEvent(
+  eventName: LeadAnalyticsEventName,
+  formLocale: LeadFormLocale
+): boolean {
+  if (typeof window === "undefined") return false;
+  if (!hasAcceptedAnalyticsConsent()) return false;
+  if (formLocale !== "en" && formLocale !== "de") return false;
+  if (!window.gtag) return false;
+
+  if (eventName === "request_form_start") {
+    window.gtag("event", "request_form_start", {
+      form_name: "esg_request",
+      form_locale: formLocale
+    });
+    return true;
+  }
+
+  if (eventName === "generate_lead") {
+    window.gtag("event", "generate_lead", {
+      form_name: "esg_request",
+      form_locale: formLocale,
+      lead_source: "website_request_form"
+    });
+    return true;
+  }
+
+  return false;
 }
 
 export function disableGoogleAnalytics(measurementId: string): void {

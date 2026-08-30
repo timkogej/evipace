@@ -23,16 +23,19 @@ export function LandingHero() {
       <div className="site-shell grid gap-12 pb-16 pt-4 sm:pb-20 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Scope 1 & 2</p>
-          <h1 className="heading-lg font-display mt-6" id="hero-title">
-            Scope 1 und Scope 2 berechnen - aus Ihren Verbrauchsdaten wird
-            eine nachvollziehbare CO₂-Bilanz.
+          <h1
+            className="scope12-hero__title heading-lg font-display mt-6"
+            id="hero-title"
+          >
+            CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 nachvollziehbar
+            berechnen.
           </h1>
           <p className="body-lg mt-7 max-w-xl">
             Sie senden uns Stromrechnungen, Brennstoffverbräuche,
-            Fuhrparkdaten und weitere relevante Unterlagen. Wir strukturieren
-            die Emissionsquellen, bereiten die Berechnung auf und dokumentieren
-            nachvollziehbar, wie Ihre Scope-1- und Scope-2-Werte entstanden
-            sind.
+            Fuhrparkdaten und weitere relevante Unterlagen für die CO₂-Bilanz
+            für Unternehmen. Wir strukturieren die Emissionsquellen, bereiten
+            die Berechnung auf und dokumentieren nachvollziehbar, wie Ihre
+            Scope-1- und Scope-2-Werte entstanden sind.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ButtonLink

@@ -304,13 +304,14 @@ type GermanHomePageProps = {
 export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
   return (
     <>
-      <main>
+      <main className="german-home-page">
         <AnimatedMarkHero headingId="hero-title" locale="de">
           <h1
             className="mark-hero__title mark-hero__title--de font-display"
             id="hero-title"
           >
-            ESG, schneller erledigt.
+            Praktische ESG-Beratung für produzierende Unternehmen – schneller
+            erledigt.
           </h1>
 
           <div className="mark-hero__body mt-6 space-y-4">
@@ -586,7 +587,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
               <h2 className="font-display mt-6 text-5xl leading-none text-white sm:text-6xl lg:text-7xl">
                 Für Unternehmen, die Dinge herstellen.
               </h2>
-              <div className="mt-7 max-w-2xl space-y-5 text-lg leading-8 text-white/76">
+              <div className="german-home-page__industry-copy mt-7 max-w-2xl space-y-5 text-lg leading-8 text-white/76">
                 <p>
                   ESG-Arbeit sieht in einem Produktionsunternehmen anders aus
                   als in einem Konzern mit eigener Nachhaltigkeitsabteilung.
@@ -611,7 +612,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                   </span>
                 ))}
               </div>
-              <p className="mt-8 max-w-3xl text-lg font-semibold leading-8 text-white">
+              <p className="german-home-page__industry-copy mt-8 max-w-3xl text-lg font-semibold leading-8 text-white">
                 Unser Ansatz ist darauf ausgelegt, ESG-Anforderungen in
                 bestehende Unternehmensrealität zu übersetzen – nicht ein
                 zweites Unternehmen neben Ihrem Unternehmen aufzubauen.

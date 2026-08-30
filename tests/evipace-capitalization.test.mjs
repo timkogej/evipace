@@ -109,7 +109,7 @@ test("sentence-initial occurrences are capitalised in English copy", () => {
     ["enMethod", "Evipace is an independent service provider"],
     ["enMethod", "Evipace is responsible for"],
     ["commercial", '"Evipace helps turn that request into a structured, reviewable response."'],
-    ["registry", '"Evipace handles practical ESG work for manufacturing suppliers']
+    ["registry", '"Evipace prepares a documented corporate carbon footprint']
   ];
   for (const [key, copy] of required) {
     assert.ok(source[key].includes(copy), `${key}: ${copy}`);
@@ -126,7 +126,7 @@ test("sentence-initial occurrences are capitalised in German copy", () => {
     ["deHome", "Evipace beginnt an einer anderen Stelle."],
     ["deMethod", "Evipace ist ein unabhängiger Dienstleister"],
     ["deMethod", "Evipace übernimmt"],
-    ["registry", '"Evipace übernimmt die praktische ESG-Arbeit für produzierende Unternehmen']
+    ["registry", '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung']
   ];
   for (const [key, copy] of required) {
     assert.ok(source[key].includes(copy), `${key}: ${copy}`);
@@ -293,6 +293,8 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     ".cookie-consent__link",
     ".cookie-consent__panel",
     ".cookie-consent__status",
+    ".german-home-page :where(p, a, button, summary, span)",
+    ".german-home-page__industry-copy",
     ".hero-desk__title--sentence",
     ".hero-desk__title--sentence-de",
     ".meeting-hero",
@@ -307,6 +309,7 @@ test("no homepage stylesheet block was touched by the About work", async () => {
     ".meeting-hero__title",
     ".meeting-hero__title--de",
     ".meeting-hero__trust",
+    ".scope12-hero__title",
     ".mark-hero",
     ".mark-hero__actions",
     ".mark-hero__backdrop",

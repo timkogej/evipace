@@ -8,7 +8,7 @@ export function HomeHero() {
         className="mark-hero__title font-display"
         id="hero-title"
       >
-        ESG, done faster.
+        Practical ESG consulting for manufacturing companies — done faster.
       </h1>
 
       <div className="mark-hero__body mt-6 space-y-4">

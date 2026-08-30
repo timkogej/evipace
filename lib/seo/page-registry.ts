@@ -78,9 +78,9 @@ type LocaleRegistry = Partial<Record<PageKey, PageMetadataEntry>>;
 export const pageRegistry: Record<Locale, LocaleRegistry> = {
   en: {
     home: {
-      title: "ESG for Manufacturing Companies & Suppliers | evipace",
+      title: "ESG Consulting for Manufacturing Companies | evipace",
       description:
-        "Evipace handles practical ESG work for manufacturing suppliers — from customer questionnaires and evidence to Scope 1 & 2 and sustainability reporting.",
+        "Practical ESG consulting for manufacturing companies and suppliers: customer requests, questionnaires, Scope 1 & 2 and sustainability reporting prepared from real company data.",
       path: "/en"
     },
     about: {
@@ -118,9 +118,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/en/esg-questionnaire-support"
     },
     scope12Berechnung: {
-      title: "Scope 1 & 2 Calculation for Manufacturing Companies | evipace",
+      title: "Corporate Carbon Footprint & Scope 1–2 Calculation | evipace",
       description:
-        "Evipace prepares Scope 1 and Scope 2 calculations from company activity data, with emission factors, sources, assumptions and methodology documented clearly.",
+        "Evipace prepares a documented corporate carbon footprint and Scope 1 and Scope 2 calculation from company activity data, emission factors, sources and assumptions.",
       path: "/en/scope-1-2-calculation"
     },
     ecovadisUnterstuetzung: {
@@ -255,9 +255,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
   },
   de: {
     home: {
-      title: "ESG für produzierende Unternehmen | evipace",
+      title: "ESG-Beratung für produzierende Unternehmen | evipace",
       description:
-        "Evipace übernimmt die praktische ESG-Arbeit für produzierende Unternehmen – von Kundenanfragen und Fragebögen bis zu Scope 1 & 2 und Nachhaltigkeitsberichten.",
+        "Praktische ESG-Beratung für produzierende Unternehmen und industrielle Zulieferer: evipace bereitet Daten, Nachweise, Berechnungen und Antworten nachvollziehbar vor.",
       path: "/de"
     },
     about: {
@@ -317,9 +317,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/de/vsme-nachhaltigkeitsbericht"
     },
     scope12Berechnung: {
-      title: "Scope 1 und Scope 2 berechnen | evipace",
+      title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | evipace",
       description:
-        "Scope-1- und Scope-2-Emissionen für Ihr Unternehmen berechnen: Wir strukturieren Verbrauchsdaten, Emissionsquellen und Faktoren zu einer nachvollziehbaren CO₂-Bilanz.",
+        "CO₂-Bilanz für Unternehmen: Wir strukturieren Verbrauchsdaten, Emissionsquellen und Faktoren, um Scope 1 und Scope 2 nachvollziehbar zu berechnen.",
       path: "/de/scope-1-2-berechnung"
     },
     resourcesHub: {

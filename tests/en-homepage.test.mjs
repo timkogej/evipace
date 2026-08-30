@@ -40,12 +40,12 @@ test("English homepage metadata uses the exact approved registry values", () => 
 
   assert.ok(
     englishRegistry.includes(
-      'title: "ESG for Manufacturing Companies & Suppliers | evipace"'
+      'title: "ESG Consulting for Manufacturing Companies | evipace"'
     )
   );
   assert.ok(
     englishRegistry.includes(
-      '"Evipace handles practical ESG work for manufacturing suppliers — from customer questionnaires and evidence to Scope 1 & 2 and sustainability reporting."'
+      '"Practical ESG consulting for manufacturing companies and suppliers: customer requests, questionnaires, Scope 1 & 2 and sustainability reporting prepared from real company data."'
     )
   );
   assert.ok(englishRegistry.includes('path: "/en"'));
@@ -62,13 +62,17 @@ test("English and German homepages remain separate locale implementations", () =
   assert.ok(pageSource.includes('buildWebPageSchema(locale, "home")'));
   assert.ok(pageSource.includes("buildOrganizationSchema()"));
   assert.ok(pageSource.includes("buildWebsiteSchema()"));
-  assert.ok(germanHomeSource.includes("ESG, schneller erledigt."));
+  assert.ok(
+    germanHomeSource.includes(
+      "Praktische ESG-Beratung für produzierende Unternehmen – schneller"
+    )
+  );
   assert.ok(!germanHomeSource.includes("Your customer asked for ESG data"));
 });
 
 test("approved homepage sections, copy, workflow and CTAs are present", () => {
   const requiredCopy = [
-    "ESG, done faster.",
+    "Practical ESG consulting for manufacturing companies — done faster.",
     "Your ESG data is probably not missing.",
     "It is scattered.",
     "A customer asks for ESG information. What happens next?",
@@ -192,7 +196,11 @@ test("the hero leads with the approved headline as its only heading", () => {
 
   assert.equal(heroSource.match(/<h1/g)?.length, 1);
   assert.ok(normalizedHero.includes('id="hero-title"'));
-  assert.ok(normalizedHero.includes("> ESG, done faster. </h1>"));
+  assert.ok(
+    normalizedHero.includes(
+      "> Practical ESG consulting for manufacturing companies — done faster. </h1>"
+    )
+  );
   assert.ok(normalizedHero.includes("mark-hero__title"));
   assert.ok(!normalizedHero.includes("<h2"));
   assert.ok(!normalizedHero.includes("hero-desk"));
@@ -225,7 +233,11 @@ test("German hero mirrors the approved hierarchy in its own locale", () => {
   const normalizedGerman = germanHomeSource.replace(/\s+/g, " ");
 
   assert.equal(germanHomeSource.match(/<h1/g)?.length, 1);
-  assert.ok(normalizedGerman.includes("> ESG, schneller erledigt. </h1>"));
+  assert.ok(
+    normalizedGerman.includes(
+      "> Praktische ESG-Beratung für produzierende Unternehmen – schneller erledigt. </h1>"
+    )
+  );
   assert.ok(normalizedGerman.includes("mark-hero__title"));
   assert.ok(!normalizedGerman.includes("meeting-hero"));
   assert.ok(!normalizedGerman.includes("hero-desk"));
@@ -236,5 +248,5 @@ test("German hero mirrors the approved hierarchy in its own locale", () => {
   assert.ok(normalizedGerman.includes("ESG-Anfrage senden"));
   assert.ok(normalizedGerman.includes('href="#leistungen"'));
   assert.ok(normalizedGerman.includes("Leistungen ansehen"));
-  assert.ok(!normalizedGerman.includes("ESG, done faster"));
+  assert.ok(!normalizedGerman.includes("ESG consulting for manufacturing"));
 });

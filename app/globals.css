@@ -217,6 +217,10 @@ a {
   display: none;
 }
 
+.scope12-hero__title {
+  overflow-wrap: anywhere;
+}
+
 .checklist-checkbox:focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 3px;
@@ -2471,6 +2475,33 @@ a {
      the visual system so the mark and its steps keep their margins. */
   .mark-hero__inner {
     grid-template-columns: minmax(0, 41fr) minmax(0, 59fr);
+  }
+}
+
+@media (max-width: 359.98px) {
+  .mark-hero__title {
+    max-width: 100%;
+    font-size: 2rem;
+    line-height: 1.02;
+  }
+
+  .mark-hero__title--de {
+    max-width: 100%;
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .german-home-page :where(p, a, button, summary, span) {
+    overflow-wrap: anywhere;
+  }
+
+  .german-home-page__industry-copy {
+    max-width: calc(100vw - (var(--section-x) * 2));
+  }
+
+  .scope12-hero__title {
+    font-size: 2.35rem;
+    line-height: 0.96;
   }
 }
 

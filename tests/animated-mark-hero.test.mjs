@@ -48,7 +48,7 @@ const untouchedHashes = {
   "app/robots.ts":
     "07569ca82f2afb62270f93d18845f81e8230d03bcb7d62082bd6af92261f33ab",
   "lib/seo/page-registry.ts":
-    "8ef8e16f583c1175e7f0c5cf40a68ec39a4dd4df1e6bb8f327769389af1bf13a",
+    "2c5f3caaa9ff0b7ee3dab7cf0e48c4697d74fceec6c662d3c9baedec7a85a221",
   "lib/seo/build-metadata.ts":
     "ff619511537efc58dcfbb34af01c84473c066d23b75b9396847631d27af67bf6",
   "lib/seo/schema/organization.ts":
@@ -247,10 +247,18 @@ test("EN and DE both render the new hero with their approved copy", () => {
   assert.ok(deHome.includes('headingId="hero-title"'));
 
   // Approved headlines, verbatim and unchanged in capitalization.
-  assert.ok(enHero.includes("ESG, done faster."));
-  assert.ok(deHome.includes("ESG, schneller erledigt."));
-  assert.ok(!enHero.includes("ESG, schneller erledigt."));
-  assert.ok(!deHome.includes("ESG, done faster."));
+  assert.ok(
+    enHero.includes(
+      "Practical ESG consulting for manufacturing companies — done faster."
+    )
+  );
+  assert.ok(
+    deHome.includes(
+      "Praktische ESG-Beratung für produzierende Unternehmen – schneller"
+    )
+  );
+  assert.ok(!enHero.includes("ESG-Beratung für produzierende Unternehmen"));
+  assert.ok(!deHome.includes("ESG consulting for manufacturing"));
 
   // English lead, descriptive copy, trust line.
   assert.ok(

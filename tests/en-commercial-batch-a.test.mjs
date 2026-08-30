@@ -70,10 +70,10 @@ test("English commercial Batch A uses exact approved metadata and H1 copy", () =
       "Received an ESG questionnaire? We help you prepare the response."
     ],
     [
-      "Scope 1 & 2 Calculation for Manufacturing Companies | evipace",
-      "Evipace prepares Scope 1 and Scope 2 calculations from company activity data, with emission factors, sources, assumptions and methodology documented clearly.",
+      "Corporate Carbon Footprint & Scope 1–2 Calculation | evipace",
+      "Evipace prepares a documented corporate carbon footprint and Scope 1 and Scope 2 calculation from company activity data, emission factors, sources and assumptions.",
       "/en/scope-1-2-calculation",
-      "Scope 1 and Scope 2 emissions calculated from your actual company data."
+      "Calculate and document your company’s Scope 1 and Scope 2 emissions."
     ]
   ];
 

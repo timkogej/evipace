@@ -601,9 +601,9 @@ export const questionnaireSupportContent: CommercialServicePageContent = {
 export const scope12CalculationContent: CommercialServicePageContent = {
   eyebrow: "Scope 1 & 2 calculation",
   title:
-    "Scope 1 and Scope 2 emissions calculated from your actual company data.",
+    "Calculate and document your company’s Scope 1 and Scope 2 emissions.",
   intro: [
-    "If a customer asks for your company's Scope 1 and Scope 2 emissions, the starting point is not a CO2 number.",
+    "If a customer asks for your company's Scope 1 and Scope 2 emissions or corporate carbon footprint, the starting point is not a CO2 number.",
     "It is the underlying activity data: electricity, fuels, vehicles, refrigerants, purchased heat and other relevant sources.",
     "Evipace structures the data, applies appropriate emission factors and prepares a documented calculation you can review."
   ],

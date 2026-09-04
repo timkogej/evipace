@@ -115,7 +115,7 @@ test("reusable data resource has exact German SEO metadata and English pairing",
   assert.ok(germanRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Daten einmal sammeln und mehrfach nutzen | evipace"'
+      'title: "ESG-Daten einmal sammeln und mehrfach nutzen | Evipace"'
     )
   );
   assert.ok(
@@ -129,7 +129,7 @@ test("reusable data resource has exact German SEO metadata and English pairing",
   assert.ok(englishRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     englishRegistry.includes(
-      'title: "Collect ESG Data Once and Reuse It | evipace"'
+      'title: "Collect ESG Data Once and Reuse It | Evipace"'
     )
   );
   assert.ok(englishRegistry.includes('path: "/en/resources/reusable-esg-data"'));

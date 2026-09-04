@@ -242,7 +242,7 @@ export function EnglishResourceArticle({
 
               <aside className="border-l-2 border-orange pl-6 lg:mb-2 lg:pl-8">
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                  evipace method
+                  Evipace method
                 </p>
                 <p className="mt-4 text-sm font-semibold leading-7 text-muted">
                   {content.methodNote ??

@@ -742,7 +742,7 @@ export function EnvironmentalPolicyGuide() {
                   <p className="text-base leading-8 text-muted">Wir prüfen mit Ihnen, welche Umweltpraktiken, Verantwortlichkeiten und Unterlagen tatsächlich vorhanden sind, strukturieren offene Punkte und bereiten auf dieser Basis einen Policy-Entwurf für Ihre interne Prüfung und Freigabe vor.</p>
                   <p className="mt-4 text-base leading-8 text-muted">Wenn die Policy Teil eines konkreten Fragebogens ist, hilft auch der Überblick <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</Link>.</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Anfrage an evipace senden</ButtonLink>
+                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink>
                     <ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="secondary">Mehr über ESG-Kundenanfragen</ButtonLink>
                   </div>
                   <p className="mt-5 text-sm font-semibold leading-7 text-muted">Der Entwurf wird erst durch Ihre interne Prüfung, Korrektur und autorisierte Freigabe zu einer offiziellen Unternehmensrichtlinie.</p>
@@ -761,7 +761,7 @@ export function EnvironmentalPolicyGuide() {
             <div className="resource-prose">
               <p>Diese Seite beschreibt eine praktische Vorgehensweise zur Vorbereitung einer Environmental Policy im Kontext von ESG-Kundenanfragen. Sie stellt keine Rechts-, Zertifizierungs- oder Auditberatung dar und definiert keine universell verpflichtenden Policy-Inhalte.</p>
               <p>Welche Inhalte für ein konkretes Unternehmen sinnvoll oder erforderlich sind, hängt unter anderem von Tätigkeit, Organisation, bestehenden Managementsystemen, Kundenanforderungen und tatsächlich anwendbaren Anforderungen ab.</p>
-              <div className="mt-7"><InlineLink href="/de/methodology">Wie evipace ESG-Informationen einordnet</InlineLink></div>
+              <div className="mt-7"><InlineLink href="/de/methodology">Wie Evipace ESG-Informationen einordnet</InlineLink></div>
             </div>
           </div>
         </section>

@@ -220,7 +220,7 @@ test("no unrelated SEO infrastructure or duplicate analytics provider is introdu
   }
 });
 
-test("consent UI is semantic, keyboard reachable and styled in the evipace system", () => {
+test("consent UI is semantic, keyboard reachable and styled in the Evipace system", () => {
   assert.ok(sources.manager.includes("<button"));
   assert.ok(sources.manager.includes("aria-labelledby"));
   assert.ok(sources.manager.includes("requestAnimationFrame"));

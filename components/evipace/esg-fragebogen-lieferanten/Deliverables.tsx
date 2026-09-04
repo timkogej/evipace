@@ -68,7 +68,7 @@ export function Deliverables() {
           delay={0.15}
         >
           <h3 className="text-2xl font-bold text-ink sm:text-3xl">
-            Klarheit darüber, was evipace leistet
+            Klarheit darüber, was Evipace leistet
           </h3>
           <div className="mt-5 space-y-4 text-lg leading-8 text-muted">
             <p>

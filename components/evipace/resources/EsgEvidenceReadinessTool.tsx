@@ -505,8 +505,8 @@ function PrintSummary({
       <h1>ESG Evidence Readiness Check</h1>
       <p>
         {isEnglish
-          ? "Created with the evipace ESG Evidence Readiness Check"
-          : "Erstellt mit der evipace ESG-Nachweise-Checkliste"}
+          ? "Created with the Evipace ESG Evidence Readiness Check"
+          : "Erstellt mit der Evipace ESG-Nachweise-Checkliste"}
       </p>
       <dl>
         <div>
@@ -1128,8 +1128,8 @@ export function EsgEvidenceReadinessTool({
         </h2>
         <p className="mt-4 max-w-3xl text-base leading-7 text-muted">
           {isEnglish
-            ? "This checklist does not require an account or document upload. Your entries are not sent to evipace. Progress can be saved only in this browser."
-            : "Diese Checkliste benötigt kein Konto und keinen Dokumenten-Upload. Ihre Eingaben werden nicht an evipace übertragen. Der lokale Fortschritt kann ausschließlich in Ihrem Browser gespeichert werden."}
+            ? "This checklist does not require an account or document upload. Your entries are not sent to Evipace. Progress can be saved only in this browser."
+            : "Diese Checkliste benötigt kein Konto und keinen Dokumenten-Upload. Ihre Eingaben werden nicht an Evipace übertragen. Der lokale Fortschritt kann ausschließlich in Ihrem Browser gespeichert werden."}
         </p>
       </section>
 

@@ -203,7 +203,7 @@ const faqItems = [
       "Sie können technisch Dokumente darstellen, aber EcoVadis empfiehlt maschinenlesbare Inhalte. Nicht maschinenlesbare Scans oder Fotos können bei automatischer Extraktion und Übersetzung problematisch sein. Wenn eine digitale, textbasierte Version verfügbar ist, ist diese deshalb vorzuziehen."
   },
   {
-    question: "Kann evipace garantieren, dass EcoVadis unsere Dokumente akzeptiert?",
+    question: "Kann Evipace garantieren, dass EcoVadis unsere Dokumente akzeptiert?",
     answer:
       "Nein. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis. Evipace kann bei Strukturierung, Zuordnung, Vorbereitung und Review der Unterlagen unterstützen, garantiert aber weder die Anerkennung einzelner Dokumente noch eine bestimmte Punktzahl, Medaille oder Bewertung."
   }
@@ -918,7 +918,7 @@ export function EcovadisDocumentsGuide() {
                 <BulletList items={["klare Prozesse", "reale Maßnahmen", "aktuelle KPIs", "passende Zertifikate", "belastbare Datengrundlagen"]} />
                 <Principle>Die Dokumente sind der Nachweis für das Sustainability Management System. Nicht das Managementsystem selbst.</Principle>
                 <p>
-                  Wie evipace Aussagen, Quellen und Nachweise grundsätzlich behandelt, beschreibt {" "}
+                  Wie Evipace Aussagen, Quellen und Nachweise grundsätzlich behandelt, beschreibt {" "}
                   <Link className="orange-link" href="/de/methodology">Unsere Methodik</Link>.
                 </p>
                 <p>

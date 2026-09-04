@@ -135,7 +135,7 @@ test("supplier code resource has exact German SEO metadata and English pairing",
   assert.ok(germanRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     germanRegistry.includes(
-      'title: "Supplier Code of Conduct erstellen: Leitfaden | evipace"'
+      'title: "Supplier Code of Conduct erstellen: Leitfaden | Evipace"'
     )
   );
   assert.ok(
@@ -149,7 +149,7 @@ test("supplier code resource has exact German SEO metadata and English pairing",
   assert.ok(englishRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     englishRegistry.includes(
-      'title: "Supplier Code of Conduct: How to Create One | evipace"'
+      'title: "Supplier Code of Conduct: How to Create One | Evipace"'
     )
   );
   assert.ok(englishRegistry.includes('path: "/en/resources/supplier-code-of-conduct"'));

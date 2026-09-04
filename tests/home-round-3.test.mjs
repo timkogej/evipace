@@ -148,7 +148,7 @@ test("all eight structured-data fields survive, in order", () => {
   assert.ok(dataReuse.includes("See how reusable ESG data works"));
 });
 
-test("how evipace works keeps every step, its order and its links", () => {
+test("how Evipace works keeps every step, its order and its links", () => {
   assertOrdered(
     content,
     [
@@ -161,7 +161,7 @@ test("how evipace works keeps every step, its order and its links", () => {
     "workflow steps"
   );
   assert.ok(howItWorks.includes("steps={workflowSteps}"));
-  assert.ok(howItWorks.includes('eyebrow="How evipace works"'));
+  assert.ok(howItWorks.includes('eyebrow="How Evipace works"'));
   assert.ok(
     howItWorks.includes('heading="From customer request to a usable answer."')
   );
@@ -329,23 +329,36 @@ test("the other approved sections are unchanged since the checkpoint", () => {
 });
 
 test("the scattered-data section changed only by its approved line break", async () => {
-  // One approved edit since the pinned baseline: the heading's second sentence
-  // now sits on a line of its own. Undoing exactly that must restore the
-  // committed file byte for byte — the section is otherwise frozen.
+  // Two approved edits since the pinned baseline: the heading's second
+  // sentence now sits on a line of its own, and the brand in the closing
+  // line is capitalised (see evipace-capitalization.test.mjs). Undoing
+  // exactly those must restore the committed file byte for byte — the
+  // section is otherwise frozen.
   const file = "components/evipace/english-home/ScatteredData.tsx";
   const working = await read(file);
-  const applied = `heading={
+  const edits = [
+    [
+      `heading={
               <>
                 Your ESG data is probably not missing.{" "}
                 <span className="block">It is scattered.</span>
               </>
-            }`;
-  const original =
-    'heading="Your ESG data is probably not missing. It is scattered."';
-  assert.ok(working.includes(applied), "line break missing");
+            }`,
+      'heading="Your ESG data is probably not missing. It is scattered."'
+    ],
+    [
+      "That is the problem Evipace solves.",
+      "That is the problem evipace solves."
+    ]
+  ];
+  let undone = working;
+  for (const [applied, original] of edits) {
+    assert.ok(undone.includes(applied), `missing: ${applied}`);
+    undone = undone.replace(applied, original);
+  }
   assert.equal(
-    working.replace(applied, original),
+    undone,
     `${git(["show", `${BASELINE}:${file}`])}\n`,
-    "ScatteredData changed beyond the line break"
+    "ScatteredData changed beyond the approved edits"
   );
 });

@@ -252,12 +252,12 @@ const departments = [
 
 const faqItems = [
   {
-    question: "Was genau macht evipace?",
+    question: "Was genau macht Evipace?",
     answer:
       "Evipace übernimmt praktische ESG-Arbeit für Unternehmen. Dazu gehören beispielsweise die Vorbereitung von Kundenanfragen und ESG-Fragebögen, Unterstützung bei EcoVadis und IntegrityNext, Scope-1- und Scope-2-Berechnungen sowie freiwillige Nachhaltigkeitsberichte. Wir strukturieren vorhandene Unternehmensdaten, bereiten Kennzahlen und Antworten auf und machen fehlende Informationen sichtbar."
   },
   {
-    question: "Für welche Unternehmen ist evipace gedacht?",
+    question: "Für welche Unternehmen ist Evipace gedacht?",
     answer:
       "Unser Schwerpunkt liegt auf kleinen und mittleren produzierenden Unternehmen und industriellen Zulieferern. Besonders relevant ist die Unterstützung für Unternehmen, die ESG-Anforderungen größerer Kunden erfüllen müssen, ohne dafür eine große interne Nachhaltigkeitsabteilung zu haben."
   },
@@ -598,7 +598,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                   Tagesgeschäft funktionieren.
                 </p>
                 <p>
-                  Deshalb richtet sich evipace besonders an produzierende kleine
+                  Deshalb richtet sich Evipace besonders an produzierende kleine
                   und mittlere Unternehmen.
                 </p>
               </div>
@@ -802,7 +802,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                   Wir starten mit der Aufgabe, die heute auf Ihrem Tisch liegt.
                 </p>
                 <p>
-                  Mehr darüber, wer hinter evipace steht, finden Sie auf der{" "}
+                  Mehr darüber, wer hinter Evipace steht, finden Sie auf der{" "}
                   <Link className="orange-link" href="/de/about">
                     Über-uns-Seite
                   </Link>
@@ -829,7 +829,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             <Reveal className="mb-12">
               <p className="eyebrow">FAQ</p>
               <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
-                Häufige Fragen zu evipace
+                Häufige Fragen zu Evipace
               </h2>
             </Reveal>
 

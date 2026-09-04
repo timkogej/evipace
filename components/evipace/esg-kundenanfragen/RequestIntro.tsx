@@ -39,7 +39,7 @@ export function RequestIntro() {
               Unternehmen gefunden, geprüft und der jeweiligen Anforderung
               zugeordnet werden.
             </p>
-            <p>Genau hier setzt evipace an.</p>
+            <p>Genau hier setzt Evipace an.</p>
             <p>
               Wir machen aus einer unübersichtlichen Kundenanforderung einen
               klar strukturierten Arbeitsprozess.

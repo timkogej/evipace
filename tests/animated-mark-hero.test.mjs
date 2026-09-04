@@ -48,13 +48,13 @@ const untouchedHashes = {
   "app/robots.ts":
     "07569ca82f2afb62270f93d18845f81e8230d03bcb7d62082bd6af92261f33ab",
   "lib/seo/page-registry.ts":
-    "2c5f3caaa9ff0b7ee3dab7cf0e48c4697d74fceec6c662d3c9baedec7a85a221",
+    "8197cba5fa57fca8e5e0671194ebc54bc8ef4040816c555244951bd2d64ff28e",
   "lib/seo/build-metadata.ts":
     "ff619511537efc58dcfbb34af01c84473c066d23b75b9396847631d27af67bf6",
   "lib/seo/schema/organization.ts":
-    "068d6ab4a61e5ac152b671ae917c72b15c15c6fdd823366a4632808df06ecf15",
+    "875184d8c7044008c58799f5c4cf8b9c8296633f2bb58d4c00f792051e62aba7",
   "lib/seo/schema/website.ts":
-    "15345fed628a6f03f7d054521f77cd5097ea297638f3440cf049c75cb731be87",
+    "cc72f403d12576331c5bb591776b6b8c9f6a717d283b464689f17348e43206f1",
   "lib/seo/schema/webpage.ts":
     "2650144cc2e462e462eacc9b8c7ab75ba02d72706fd1126dca5e6fc361120eb3"
 };

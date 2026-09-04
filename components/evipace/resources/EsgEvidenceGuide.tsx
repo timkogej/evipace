@@ -1625,7 +1625,7 @@ export function EsgEvidenceGuide() {
                   Freigabe
                 </Principle>
                 <p>
-                  Wie evipace diese Zuordnung prüft, beschreibt auch {" "}
+                  Wie Evipace diese Zuordnung prüft, beschreibt auch {" "}
                   <Link className="orange-link" href="/de/methodology">
                     Unsere Methodik
                   </Link>

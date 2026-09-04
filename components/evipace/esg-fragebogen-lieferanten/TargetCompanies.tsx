@@ -18,7 +18,7 @@ export function TargetCompanies() {
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Für wen</p>
           <h2 className="heading-md font-display mt-6 max-w-[20ch]">
-            Für welche Unternehmen evipace gedacht ist
+            Für welche Unternehmen Evipace gedacht ist
           </h2>
           <p className="body-lg mt-7">
             Evipace richtet sich vor allem an produzierende kleine und

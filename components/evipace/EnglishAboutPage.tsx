@@ -111,7 +111,7 @@ const methodologyPrinciples = [
   },
   {
     title: "Draft before approval.",
-    body: "A policy prepared by evipace only becomes a company policy once it has been reviewed and formally adopted by the company."
+    body: "A policy prepared by Evipace only becomes a company policy once it has been reviewed and formally adopted by the company."
   },
   {
     title: "Technology as a tool.",
@@ -126,7 +126,7 @@ const methodologyPrinciples = [
 const responsibilityPoints = [
   "what is required",
   "what already exists",
-  "what evipace prepares",
+  "what Evipace prepares",
   "what remains missing",
   "what the company itself needs to confirm"
 ];
@@ -169,7 +169,7 @@ export function EnglishAboutPage() {
         </span>
         <div className="site-shell relative z-10">
           <Rise>
-            <p className="eyebrow">About evipace</p>
+            <p className="eyebrow">About Evipace</p>
             <h1 className="about-h1 font-display mt-6" id="about-title">
               ESG should not become more complicated than the task itself.
             </h1>
@@ -225,14 +225,14 @@ export function EnglishAboutPage() {
 
       <AboutSection
         eyebrow="Origin"
-        heading="Why evipace exists."
+        heading="Why Evipace exists."
         id="why"
         tone="paper"
       >
         <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <Rise>
             <p className="about-body text-muted">
-              The idea behind evipace started with a simple observation:
+              The idea behind Evipace started with a simple observation:
             </p>
             <p className="about-statement about-statement--wide font-display mt-4 text-ink">
               ESG requirements from larger companies are reaching smaller
@@ -326,7 +326,7 @@ export function EnglishAboutPage() {
             className="border-y border-[rgba(21,21,21,0.13)] bg-[var(--soft-orange)] px-0 py-9 sm:px-9 lg:border-x lg:border-y-0"
             step={1}
           >
-            <p className="text-xs font-bold uppercase text-orange">evipace</p>
+            <p className="text-xs font-bold uppercase text-orange">Evipace</p>
             <p className="mt-5 font-display text-3xl leading-tight text-ink">
               Help prepare the actual ESG work and move it toward a usable
               result.
@@ -369,7 +369,7 @@ export function EnglishAboutPage() {
         <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
           <Rise>
             <p className="about-body text-white/70">
-              The evipace name reflects a simple ambition:
+              The Evipace name reflects a simple ambition:
             </p>
             <p className="about-statement about-statement--wide font-display mt-4 text-white">
               Complex ESG requirements should be faster to handle without
@@ -410,7 +410,7 @@ export function EnglishAboutPage() {
           <Rise step={1}>
             <div className="about-body text-muted">
               <p>
-                Tim Kogej founded evipace with the goal of making ESG work more
+                Tim Kogej founded Evipace with the goal of making ESG work more
                 practical, understandable and accessible for smaller and
                 mid-sized companies.
               </p>
@@ -563,7 +563,7 @@ export function EnglishAboutPage() {
             </Rise>
             <Rise step={1}>
               <p className="about-statement about-statement--wide font-display text-ink">
-                That is why evipace is particularly focused on companies that
+                That is why Evipace is particularly focused on companies that
                 make things.
               </p>
               <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
@@ -596,7 +596,7 @@ export function EnglishAboutPage() {
             <div className="border-t border-[rgba(21,21,21,0.14)] pt-6">
               <p className="font-display text-3xl text-ink">Slovenia</p>
               <p className="mt-2 text-sm font-semibold leading-6 text-muted">
-                Where evipace was founded
+                Where Evipace was founded
               </p>
             </div>
             <p className="mt-7 text-xs font-bold uppercase tracking-[0.14em] text-orange">
@@ -615,7 +615,7 @@ export function EnglishAboutPage() {
                 chains.
               </p>
               <p>
-                As the service develops, evipace is intended to support
+                As the service develops, Evipace is intended to support
                 companies across additional European markets as well.
               </p>
             </div>
@@ -758,7 +758,7 @@ export function EnglishAboutPage() {
 
       <AboutSection
         eyebrow="Boundaries"
-        heading="What evipace does not want to become."
+        heading="What Evipace does not want to become."
         id="boundaries"
         tone="surface"
       >

@@ -118,10 +118,10 @@ const faqItems = [
   {
     question: "Wer gibt die Antworten bei IntegrityNext ein?",
     answer:
-      "Bei einer Unterstützung durch evipace bereiten wir die relevanten Informationen, Antworten, Daten und Nachweise vor. Die finale Prüfung der Unternehmensangaben und die Eingabe beziehungsweise Freigabe im eigenen IntegrityNext-Profil bleibt beim Kunden."
+      "Bei einer Unterstützung durch Evipace bereiten wir die relevanten Informationen, Antworten, Daten und Nachweise vor. Die finale Prüfung der Unternehmensangaben und die Eingabe beziehungsweise Freigabe im eigenen IntegrityNext-Profil bleibt beim Kunden."
   },
   {
-    question: "Garantiert evipace einen bestimmten IntegrityNext-Status?",
+    question: "Garantiert Evipace einen bestimmten IntegrityNext-Status?",
     answer:
       "Nein. Evipace kann bei Vorbereitung, Strukturierung und Review unterstützen, kontrolliert aber weder die IntegrityNext-Validierung noch einen bestimmten Plattformstatus oder die Entscheidung eines Kunden."
   }
@@ -980,7 +980,7 @@ export function IntegrityNextInvitationGuide() {
                 <p>
                   Ein neu verabschiedetes Dokument ist eine neue Richtlinie. Es
                   wird dadurch nicht rückwirkend zu einem historischen Nachweis.
-                  Wie evipace Quellen, Nachweise und Review trennt, erläutert{" "}
+                  Wie Evipace Quellen, Nachweise und Review trennt, erläutert{" "}
                   <Link className="orange-link" href="/de/methodology">
                     Unsere Methodik
                   </Link>

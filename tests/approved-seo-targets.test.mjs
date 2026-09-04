@@ -56,26 +56,26 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
   const expected = [
     [
       enRegistry,
-      'title: "ESG Consulting for Manufacturing Companies | evipace"',
+      'title: "ESG Consulting for Manufacturing Companies | Evipace"',
       englishHeroSource,
       "Practical ESG consulting for manufacturing companies — done faster."
     ],
     [
       deRegistry,
-      'title: "ESG-Beratung für produzierende Unternehmen | evipace"',
+      'title: "ESG-Beratung für produzierende Unternehmen | Evipace"',
       germanHomeSource,
       "Praktische ESG-Beratung für produzierende Unternehmen – schneller erledigt."
     ],
     [
       enRegistry,
-      'title: "Corporate Carbon Footprint & Scope 1–2 Calculation | evipace"',
+      'title: "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace"',
       englishCommercialContent,
       "Calculate and document your company’s Scope 1 and Scope 2 emissions.",
       englishCommercialComponent
     ],
     [
       deRegistry,
-      'title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | evipace"',
+      'title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | Evipace"',
       germanScopeHeroSource,
       "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 nachvollziehbar berechnen."
     ]

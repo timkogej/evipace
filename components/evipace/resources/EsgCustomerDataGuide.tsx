@@ -1544,7 +1544,7 @@ export function EsgCustomerDataGuide() {
               </p>
               <div className="mt-7">
                 <InlineLink href="/de/methodology">
-                  Wie evipace ESG-Informationen einordnet
+                  Wie Evipace ESG-Informationen einordnet
                 </InlineLink>
               </div>
             </div>
@@ -1567,7 +1567,7 @@ export function EsgCustomerDataGuide() {
                 daraus eine klare, nachvollziehbare Antwort entsteht.
               </p>
               <div className="mt-8">
-                <ButtonLink href={SEND_REQUEST_HREF}>Anfrage an evipace senden</ButtonLink>
+                <ButtonLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink>
               </div>
             </div>
           </div>

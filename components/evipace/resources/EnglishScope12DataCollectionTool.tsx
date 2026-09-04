@@ -337,7 +337,7 @@ function PrintSummary({ state }: { state: Scope12CollectionState }) {
   return (
     <section className="scope12-print-summary" aria-label="Print summary">
       <h1>Scope 1 and Scope 2 data collection summary</h1>
-      <p>Created with the evipace Scope 1 and Scope 2 data collection template.</p>
+      <p>Created with the Evipace Scope 1 and Scope 2 data collection template.</p>
       <dl>
         <div><dt>Company</dt><dd>{state.companyLabel || "Not provided"}</dd></div>
         <div><dt>Reporting period</dt><dd>{state.periodStart || "?"} - {state.periodEnd || "?"}</dd></div>

@@ -43,7 +43,7 @@ test("section headings and preserved copy survive the redesign", () => {
   assert.ok(
     flat(scattered).includes('<span className="block">It is scattered.</span>')
   );
-  assert.ok(scattered.includes("That is the problem evipace solves."));
+  assert.ok(scattered.includes("That is the problem Evipace solves."));
 
   assert.ok(customerRequest.includes('eyebrow="When the request arrives"'));
   assert.ok(

@@ -1180,7 +1180,7 @@ export function EsgQuestionnaireGuide() {
                   <Link className="orange-link" href="/de/ecovadis-unterstuetzung">EcoVadis-Unterstützung</Link>
                   {" "}und {" "}
                   <Link className="orange-link" href="/de/integritynext-unterstuetzung">IntegrityNext-Unterstützung</Link>.
-                  Wie evipace Daten, Aussagen und Nachweise behandelt, beschreibt {" "}
+                  Wie Evipace Daten, Aussagen und Nachweise behandelt, beschreibt {" "}
                   <Link className="orange-link" href="/de/methodology">Unsere Methodik</Link>.
                 </p>
                 <p>

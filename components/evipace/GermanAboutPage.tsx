@@ -111,7 +111,7 @@ const methodologyPrinciples = [
   },
   {
     title: "Entwurf vor Freigabe.",
-    body: "Eine von evipace vorbereitete Richtlinie wird erst dann zur Richtlinie des Unternehmens, wenn sie intern geprüft und ausdrücklich angenommen wurde."
+    body: "Eine von Evipace vorbereitete Richtlinie wird erst dann zur Richtlinie des Unternehmens, wenn sie intern geprüft und ausdrücklich angenommen wurde."
   },
   {
     title: "Technologie als Werkzeug.",
@@ -126,7 +126,7 @@ const methodologyPrinciples = [
 const responsibilityPoints = [
   "was benötigt wird",
   "was bereits vorhanden ist",
-  "was evipace vorbereitet",
+  "was Evipace vorbereitet",
   "was noch fehlt",
   "was Ihr Unternehmen bestätigen muss"
 ];
@@ -169,7 +169,7 @@ export function GermanAboutPage() {
         </span>
         <div className="site-shell relative z-10">
           <Rise>
-            <p className="eyebrow">Über evipace</p>
+            <p className="eyebrow">Über Evipace</p>
             <h1 className="about-h1 font-display mt-6" id="about-title">
               ESG sollte für kleinere Unternehmen nicht komplizierter sein
               als die Aufgabe selbst.
@@ -227,14 +227,14 @@ export function GermanAboutPage() {
 
       <AboutSection
         eyebrow="Entstehung"
-        heading="Warum evipace entstanden ist."
+        heading="Warum Evipace entstanden ist."
         id="warum"
         tone="paper"
       >
         <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <Rise>
             <p className="about-body text-muted">
-              Die Idee hinter evipace entstand aus einer einfachen Beobachtung:
+              Die Idee hinter Evipace entstand aus einer einfachen Beobachtung:
             </p>
             <p className="about-statement about-statement--wide font-display mt-4 text-ink">
               Die ESG-Anforderungen großer Unternehmen erreichen längst auch
@@ -330,7 +330,7 @@ export function GermanAboutPage() {
             className="border-y border-[rgba(21,21,21,0.13)] bg-[var(--soft-orange)] px-0 py-9 sm:px-9 lg:border-x lg:border-y-0"
             step={1}
           >
-            <p className="text-xs font-bold uppercase text-orange">evipace</p>
+            <p className="text-xs font-bold uppercase text-orange">Evipace</p>
             <p className="mt-5 font-display text-3xl leading-tight text-ink">
               Die konkrete ESG-Arbeit strukturiert vorbereiten und mit Ihnen
               bis zu einem nutzbaren Ergebnis bringen.
@@ -373,7 +373,7 @@ export function GermanAboutPage() {
         <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
           <Rise>
             <p className="about-body text-white/70">
-              Der Name evipace steht für einen einfachen Anspruch:
+              Der Name Evipace steht für einen einfachen Anspruch:
             </p>
             <p className="about-statement about-statement--wide font-display mt-4 text-white">
               Komplexe ESG-Anforderungen sollen schneller bearbeitbar werden,
@@ -415,7 +415,7 @@ export function GermanAboutPage() {
           <Rise step={1}>
             <div className="about-body text-muted">
               <p>
-                Tim Kogej gründete evipace mit dem Ziel, ESG-Arbeit für
+                Tim Kogej gründete Evipace mit dem Ziel, ESG-Arbeit für
                 kleinere und mittlere Unternehmen operativer, klarer und
                 zugänglicher zu machen.
               </p>
@@ -571,7 +571,7 @@ export function GermanAboutPage() {
             </Rise>
             <Rise step={1}>
               <p className="about-statement about-statement--wide font-display text-ink">
-                Deshalb richtet sich evipace besonders an Unternehmen, die
+                Deshalb richtet sich Evipace besonders an Unternehmen, die
                 Dinge herstellen.
               </p>
               <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
@@ -604,7 +604,7 @@ export function GermanAboutPage() {
             <div className="border-t border-[rgba(21,21,21,0.14)] pt-6">
               <p className="font-display text-3xl text-ink">Slowenien</p>
               <p className="mt-2 text-sm font-semibold leading-6 text-muted">
-                Gründungsstandort von evipace
+                Gründungsstandort von Evipace
               </p>
             </div>
             <p className="mt-7 text-xs font-bold uppercase tracking-[0.14em] text-orange">
@@ -623,7 +623,7 @@ export function GermanAboutPage() {
                 arbeiten.
               </p>
               <p>
-                Mit dem weiteren Ausbau der Leistungen soll evipace auch
+                Mit dem weiteren Ausbau der Leistungen soll Evipace auch
                 Unternehmen in weiteren europäischen Märkten unterstützen.
               </p>
             </div>
@@ -770,7 +770,7 @@ export function GermanAboutPage() {
 
       <AboutSection
         eyebrow="Grenzen"
-        heading="Was evipace nicht sein möchte."
+        heading="Was Evipace nicht sein möchte."
         id="grenzen"
         tone="surface"
       >
@@ -831,7 +831,7 @@ export function GermanAboutPage() {
                 stellen neue Anforderungen. Unternehmen benötigen neue Daten.
               </p>
               <p>
-                Deshalb wird auch evipace nicht statisch bleiben. Neue
+                Deshalb wird auch Evipace nicht statisch bleiben. Neue
                 Leistungen, Methoden und Märkte sollen dort hinzukommen, wo sie
                 für produzierende Unternehmen tatsächlich relevant werden.
               </p>

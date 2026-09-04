@@ -82,7 +82,7 @@ test("English and German About and methodology pages are genuine registry equiva
   assert.ok(englishRegistry.includes("about: {"));
   assert.ok(
     englishRegistry.includes(
-      'title: "About evipace | ESG for manufacturing companies"'
+      'title: "About Evipace | ESG for manufacturing companies"'
     )
   );
   assert.ok(
@@ -94,47 +94,47 @@ test("English and German About and methodology pages are genuine registry equiva
   assert.ok(englishRegistry.includes("methodology: {"));
   assert.ok(
     englishRegistry.includes(
-      'title: "ESG Methodology & Quality Assurance | evipace"'
+      'title: "ESG Methodology & Quality Assurance | Evipace"'
     )
   );
   assert.ok(
     englishRegistry.includes(
-      '"How evipace prepares ESG questionnaires, emissions calculations, sustainability reports and supporting evidence — with traceable sources and human review."'
+      '"How Evipace prepares ESG questionnaires, emissions calculations, sustainability reports and supporting evidence — with traceable sources and human review."'
     )
   );
   assert.ok(englishRegistry.includes('path: "/en/methodology"'));
   assert.ok(englishRegistry.includes('lastReviewed: "2026-08-21"'));
   assert.ok(germanRegistry.includes("home: {"));
   assert.ok(
-    germanRegistry.includes('title: "ESG-Beratung für produzierende Unternehmen | evipace"')
+    germanRegistry.includes('title: "ESG-Beratung für produzierende Unternehmen | Evipace"')
   );
   assert.ok(
     germanRegistry.includes(
-      '"Praktische ESG-Beratung für produzierende Unternehmen und industrielle Zulieferer: evipace bereitet Daten, Nachweise, Berechnungen und Antworten nachvollziehbar vor."'
+      '"Praktische ESG-Beratung für produzierende Unternehmen und industrielle Zulieferer: Evipace bereitet Daten, Nachweise, Berechnungen und Antworten nachvollziehbar vor."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de"'));
   assert.ok(germanRegistry.includes("about: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "Über evipace | ESG für produzierende Unternehmen"'
+      'title: "Über Evipace | ESG für produzierende Unternehmen"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum evipace gegründet wurde und wie wir arbeiten."'
+      '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum Evipace gegründet wurde und wie wir arbeiten."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de/about"'));
   assert.ok(germanRegistry.includes("methodology: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Methodik & Qualitätssicherung | evipace"'
+      'title: "ESG-Methodik & Qualitätssicherung | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      '"So bereitet evipace ESG-Fragebögen, Emissionsberechnungen, Nachhaltigkeitsberichte und Nachweise vor – mit nachvollziehbaren Quellen und menschlicher Prüfung."'
+      '"So bereitet Evipace ESG-Fragebögen, Emissionsberechnungen, Nachhaltigkeitsberichte und Nachweise vor – mit nachvollziehbaren Quellen und menschlicher Prüfung."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de/methodology"'));
@@ -176,7 +176,7 @@ test("German global navigation links the live commercial cluster and homepage CT
   assert.ok(germanHomeSource.includes("Über-uns-Seite"));
   assert.ok(germanHomeSource.includes("Unsere Methodik"));
   assert.ok(navigationSource.includes('href: route("de", "about")'));
-  assert.ok(navigationSource.includes("Über evipace"));
+  assert.ok(navigationSource.includes("Über Evipace"));
 });
 
 test("homepage, About, and methodology stay on the existing SEO and schema infrastructure", () => {

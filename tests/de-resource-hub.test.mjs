@@ -58,7 +58,7 @@ test("hub has exact German metadata, English pairing, and registry-driven indexa
   const englishRegistry = localeRegistryBlock("en").replace(/\s+/g, " ");
 
   assert.ok(germanRegistry.includes("resourcesHub: {"));
-  assert.ok(germanRegistry.includes('title: "ESG-Ressourcen für Lieferanten & Unternehmen | evipace"'));
+  assert.ok(germanRegistry.includes('title: "ESG-Ressourcen für Lieferanten & Unternehmen | Evipace"'));
   assert.ok(germanRegistry.includes('description: "Praktische ESG-Leitfäden, Checklisten und Tools für Lieferanten und produzierende Unternehmen – von Kundenfragebögen und Nachweisen bis Scope 1 & 2 und VSME."'));
   assert.ok(germanRegistry.includes('path: "/de/ressourcen"'));
   assert.ok(englishRegistry.includes("resourcesHub: {"));

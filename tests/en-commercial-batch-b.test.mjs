@@ -57,21 +57,21 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
   const expected = [
     [
       "ecovadisUnterstuetzung",
-      "EcoVadis Support for Suppliers | evipace",
+      "EcoVadis Support for Suppliers | Evipace",
       "Evipace helps suppliers prepare EcoVadis questionnaire responses and supporting evidence, organise documentation and identify gaps before submission.",
       "/en/ecovadis-support",
       "Need help preparing for EcoVadis? We organise the answers and evidence with you."
     ],
     [
       "integrityNextUnterstuetzung",
-      "IntegrityNext Support for Suppliers | evipace",
+      "IntegrityNext Support for Suppliers | Evipace",
       "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
       "/en/integritynext-support",
       "Received an IntegrityNext request? We help prepare the information and evidence."
     ],
     [
       "vsmeNachhaltigkeitsbericht",
-      "VSME Sustainability Reporting for SMEs | evipace",
+      "VSME Sustainability Reporting for SMEs | Evipace",
       "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
       "/en/vsme-sustainability-report",
       "Need to prepare VSME sustainability information? We help structure the report from your company data."
@@ -208,7 +208,7 @@ test("Batch B copy preserves commercial differentiation and claim safeguards", (
     "certified VSME",
     "VSME compliance",
     "assured report",
-    "verified by evipace",
+    "verified by Evipace",
     "Book consultation",
     "Start free trial"
   ];

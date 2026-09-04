@@ -80,7 +80,7 @@ const faqItems = [
   { question: "Muss der Bericht über den DNK erstellt werden?", answer: "Nein. In Deutschland bietet der DNK jedoch ein kostenloses digitales VSME-Tool an, das Unternehmen durch den Berichtsprozess führt." },
   { question: "Wie oft sollte ein VSME-Bericht aktualisiert werden?", answer: "Wenn der Bericht Informationsbedürfnisse großer Unternehmen oder Banken bedient, die jährlich aktualisierte Daten verlangen, sieht der Standard eine jährliche Erstellung vor. Wenn Finanzberichte erstellt werden, soll der Berichtszeitraum mit deren Zeitraum übereinstimmen. Ab dem zweiten Berichtsjahr werden grundsätzlich Vorjahresvergleichsinformationen vorgesehen." },
   { question: "Ist VSME 2026 schon in Kraft?", answer: "Die Kommission hat den neuen Voluntary Standard am 3. Juli 2026 angenommen. Nach dem offiziellen Stand vom 22. August 2026 ist der delegierte Rechtsakt jedoch noch nicht in Kraft, solange er nicht im Amtsblatt der Europäischen Union veröffentlicht wurde." },
-  { question: "Kann evipace garantieren, dass ein Kunde einen VSME-Bericht akzeptiert?", answer: "Nein. Evipace kann Daten, Berechnungen, Nachweise und Berichtsgrundlagen strukturiert vorbereiten. Welche Informationen ein konkreter Kunde, eine Bank oder eine andere Stelle akzeptiert beziehungsweise zusätzlich verlangt, liegt beim jeweiligen Empfänger und den anwendbaren Anforderungen." }
+  { question: "Kann Evipace garantieren, dass ein Kunde einen VSME-Bericht akzeptiert?", answer: "Nein. Evipace kann Daten, Berechnungen, Nachweise und Berichtsgrundlagen strukturiert vorbereiten. Welche Informationen ein konkreter Kunde, eine Bank oder eine andere Stelle akzeptiert beziehungsweise zusätzlich verlangt, liegt beim jeweiligen Empfänger und den anwendbaren Anforderungen." }
 ];
 
 function ExternalSourceLink({ href, children }: { href: string; children: ReactNode }) {
@@ -232,7 +232,7 @@ export function VsmeDataGuide() {
         </ArticleSection>
 
         <ArticleSection id="materialstroeme" number="14" title="Materialströme: Für Manufacturing nicht übersehen.">
-          <p>Dieser Punkt ist für die Zielunternehmen von evipace besonders wichtig. Der 2026 Standard nennt Unternehmen in Sektoren mit bedeutenden Materialströmen und führt Manufacturing ausdrücklich als Beispiel auf.</p>
+          <p>Dieser Punkt ist für die Zielunternehmen von Evipace besonders wichtig. Der 2026 Standard nennt Unternehmen in Sektoren mit bedeutenden Materialströmen und führt Manufacturing ausdrücklich als Beispiel auf.</p>
           <p>Bei einem Produktionsunternehmen sollten deshalb früh die wesentlichen Rohstoffe und Inputs geprüft werden:</p>
           <div className="my-8 grid grid-cols-2 gap-3 sm:grid-cols-3">{["Metalle", "Kunststoffe", "Chemikalien", "Holz", "Verpackungen", "weitere wesentliche Inputs"].map((material) => <div className="rounded-[0.85rem] border border-[rgba(21,21,21,0.11)] bg-white p-4 text-center text-sm font-bold text-ink" key={material}>{material}</div>)}</div>
           <Principle>Material → jährliche Masse → Einheit → Quelle</Principle>

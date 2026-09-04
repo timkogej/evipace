@@ -434,7 +434,7 @@ export function Scope12DataCollectionGuide() {
                     ],
                     [
                       "Methodik ansehen",
-                      "Wie evipace Quellen, Annahmen und Review dokumentiert.",
+                      "Wie Evipace Quellen, Annahmen und Review dokumentiert.",
                       links.methodology
                     ]
                   ].map(([title, copy, href]) => (
@@ -455,7 +455,7 @@ export function Scope12DataCollectionGuide() {
                 </div>
                 <p>
                   Wenn Sie die Berechnung nicht intern aufbauen möchten, kann
-                  evipace die{" "}
+                  Evipace die{" "}
                   <Link href={links.service}>Scope-1-&amp;-2-Berechnung</Link>{" "}
                   für Sie strukturieren. Senden Sie uns dafür die vorhandenen
                   Daten über{" "}

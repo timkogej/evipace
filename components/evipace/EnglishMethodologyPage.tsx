@@ -514,7 +514,7 @@ export function EnglishMethodologyPage({
 
         <Section
           eyebrow="Engagement process"
-          heading="How an evipace engagement works."
+          heading="How an Evipace engagement works."
           id="process"
         >
           <Rise className="methodology-body space-y-4 text-muted">
@@ -870,7 +870,7 @@ export function EnglishMethodologyPage({
                 Sometimes an ESG request reveals that a relevant company
                 practice exists but has not yet been formally documented.
               </p>
-              <p>In those situations, evipace may prepare a draft.</p>
+              <p>In those situations, Evipace may prepare a draft.</p>
               <p>
                 The governing principle is simple: the content must reflect
                 the company&apos;s actual practices and actual decisions.
@@ -1092,7 +1092,7 @@ export function EnglishMethodologyPage({
               information.
             </p>
             <p>
-              Documents uploaded through the evipace request process are
+              Documents uploaded through the Evipace request process are
               therefore not made publicly available.
             </p>
             <p>
@@ -1135,7 +1135,7 @@ export function EnglishMethodologyPage({
 
         <Section
           eyebrow="Boundaries"
-          heading="What evipace does not claim to provide."
+          heading="What Evipace does not claim to provide."
           id="boundaries"
           tone="dark"
         >
@@ -1153,7 +1153,7 @@ export function EnglishMethodologyPage({
               delay={0.08}
             >
               <p className="mb-6 text-sm font-bold uppercase text-orange">
-                evipace
+                Evipace
               </p>
               <ul className="grid gap-4">
                 {limitations.map((item) => (

@@ -4,7 +4,7 @@ import { ORGANIZATION_ID } from "./ids";
 
 /**
  * Article entity for editorial resources. Publication dates and an author are
- * intentionally omitted until evipace has a deliberate source for them.
+ * intentionally omitted until Evipace has a deliberate source for them.
  */
 export function buildArticleSchema(
   locale: string,

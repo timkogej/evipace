@@ -619,7 +619,7 @@ export function EsgReusableDataGuide() {
             </div>
             <div className="resource-prose">
               <p>Wiederverwendung bedeutet auf dieser Seite die strukturierte Wiederverwendung zugrunde liegender Unternehmensinformationen und Nachweise. Sie bedeutet nicht, dass eine frühere Antwort ungeprüft auf einen anderen Kunden, Zeitraum, Standort, Fragebogen oder Reporting-Kontext übertragen werden kann.</p>
-              <div className="mt-7"><InlineLink href="/de/methodology">Wie evipace mit ESG-Daten und Nachweisen arbeitet</InlineLink></div>
+              <div className="mt-7"><InlineLink href="/de/methodology">Wie Evipace mit ESG-Daten und Nachweisen arbeitet</InlineLink></div>
             </div>
           </div>
         </section>
@@ -630,7 +630,7 @@ export function EsgReusableDataGuide() {
               <p className="eyebrow">Nächster Schritt</p>
               <h2 className="font-display mt-6 text-[clamp(2.75rem,6vw,5.8rem)] leading-[0.95]" id="final-title">Jede beantwortete Anfrage sollte die nächste einfacher machen.</h2>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">Aus verstreuten Unternehmensdaten wird mit der Zeit eine nachvollziehbare, wiederverwendbare ESG-Datengrundlage.</p>
-              <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Anfrage an evipace senden</ButtonLink></div>
+              <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink></div>
             </div>
           </div>
         </section>

@@ -47,7 +47,7 @@ export function DocumentationIntegrity() {
         <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.14}>
           <p>
             Wenn eine Richtlinie oder andere Dokumentation tatsächlich als
-            Unternehmensinstrument benötigt wird, kann evipace bei der
+            Unternehmensinstrument benötigt wird, kann Evipace bei der
             strukturierten Ausarbeitung unterstützen.
           </p>
           <p>

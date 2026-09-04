@@ -47,7 +47,7 @@ function EnglishPrivacyPage() {
             <p className="eyebrow">Privacy</p>
             <h1 className="heading-lg font-display mt-6">Privacy policy</h1>
             <p className="body-lg mt-7 max-w-2xl text-muted">
-              This notice explains how evipace handles personal data on this
+              This notice explains how Evipace handles personal data on this
               website, in the ESG request form, in uploaded documents and in
               optional analytics.
             </p>
@@ -62,7 +62,7 @@ function EnglishPrivacyPage() {
         <p>
           The controller for this website is {controllerName},{" "}
           {controllerAddress}. The website is operated under the brand name
-          evipace.
+          Evipace.
         </p>
         <p>
           For privacy questions, contact{" "}
@@ -78,7 +78,7 @@ function EnglishPrivacyPage() {
           If you submit an ESG request, the required fields are your name,
           business email address and company name. You must also attach at least
           one document. The message and requested deadline fields are optional.
-          Without the required information and documents, evipace cannot receive
+          Without the required information and documents, Evipace cannot receive
           and assess the request through this form.
         </p>
         <p>
@@ -111,19 +111,19 @@ function EnglishPrivacyPage() {
       <Section heading="Purposes and legal bases">
         <p>
           When you request services for yourself or as the prospective
-          contractual party, evipace processes the request to take steps at your
+          contractual party, Evipace processes the request to take steps at your
           request before entering into a contract under GDPR Article 6(1)(b).
         </p>
         <p>
-          When you act for your employer or another company, evipace processes
+          When you act for your employer or another company, Evipace processes
           the request under GDPR Article 6(1)(f), legitimate interests in
           handling B2B inquiries, communicating with company representatives and
           preparing the requested ESG service.
         </p>
         <p>
           The same Article 6(1)(b) and/or Article 6(1)(f) bases apply, depending
-          on the relationship to the prospective engagement, when evipace stores
-          uploaded documents, notifies the evipace team, replies to the
+          on the relationship to the prospective engagement, when Evipace stores
+          uploaded documents, notifies the Evipace team, replies to the
           submitter and assesses the requested ESG work.
         </p>
         <p>
@@ -148,7 +148,7 @@ function EnglishPrivacyPage() {
         </p>
         <p>
           After files are verified, the request is marked as submitted. Resend
-          is used to send an internal notification to evipace. Internal
+          is used to send an internal notification to Evipace. Internal
           notifications may include uploaded files or time-limited signed links
           to them. A visitor confirmation email is sent only if the separate
           confirmation email feature is enabled.
@@ -170,7 +170,7 @@ function EnglishPrivacyPage() {
           Analytics consent.
         </p>
         <p>
-          evipace also uses technically necessary first-party technologies to
+          Evipace also uses technically necessary first-party technologies to
           operate the website, route pages by language and remember cookie
           choices.
         </p>
@@ -190,7 +190,7 @@ function EnglishPrivacyPage() {
           If analytics is accepted, Google Analytics cookies such as{" "}
           <code>_ga</code> and <code>_ga_*</code> may be created. Advertising
           storage, advertising user data and advertising personalization remain
-          denied. evipace does not intentionally send form contents,
+          denied. Evipace does not intentionally send form contents,
           uploaded-document information, filenames, email addresses, names or
           company names to Google Analytics. The verified Google Analytics
           retention period is 14 months, and reset on new activity is disabled.
@@ -202,7 +202,7 @@ function EnglishPrivacyPage() {
 
       <Section heading="Service providers and transfers">
         <p>
-          evipace uses Supabase for the request database and private
+          Evipace uses Supabase for the request database and private
           uploaded-document storage, Resend for transactional email delivery and
           internal request notification, Vercel for website hosting and Vercel
           Web Analytics, and Google for optional Google Analytics 4 after
@@ -213,7 +213,7 @@ function EnglishPrivacyPage() {
           other locations according to their services, infrastructure and
           subprocessors. Where processing outside the EEA occurs, applicable
           safeguards may include adequacy decisions, the EU Standard Contractual
-          Clauses or equivalent contractual and technical safeguards. evipace
+          Clauses or equivalent contractual and technical safeguards. Evipace
           does not sell personal data.
         </p>
       </Section>
@@ -275,7 +275,7 @@ function GermanPrivacyPage() {
               Datenschutzerklärung
             </h1>
             <p className="body-lg mt-7 max-w-2xl text-muted">
-              Diese Erklärung beschreibt, wie evipace personenbezogene Daten auf
+              Diese Erklärung beschreibt, wie Evipace personenbezogene Daten auf
               dieser Website, im ESG-Anfrageformular, in hochgeladenen
               Dokumenten und bei optionaler Analyse verarbeitet.
             </p>
@@ -289,7 +289,7 @@ function GermanPrivacyPage() {
       <Section heading="Verantwortlicher und Datenschutzkontakt">
         <p>
           Verantwortlicher für diese Website ist {controllerName},{" "}
-          {controllerAddress}. Die Website wird unter dem Namen evipace
+          {controllerAddress}. Die Website wird unter dem Namen Evipace
           betrieben.
         </p>
         <p>
@@ -308,7 +308,7 @@ function GermanPrivacyPage() {
           E-Mail-Adresse und Unternehmensname Pflichtfelder. Außerdem muss
           mindestens ein Dokument angehängt werden. Nachricht und gewünschte
           Frist sind optional. Ohne die Pflichtangaben und Dokumente kann
-          evipace die Anfrage über dieses Formular nicht entgegennehmen und
+          Evipace die Anfrage über dieses Formular nicht entgegennehmen und
           prüfen.
         </p>
         <p>
@@ -346,13 +346,13 @@ function GermanPrivacyPage() {
       <Section heading="Zwecke und Rechtsgrundlagen">
         <p>
           Wenn Sie Leistungen für sich selbst anfragen oder selbst die
-          potenzielle Vertragspartei sind, verarbeitet evipace die Anfrage zur
+          potenzielle Vertragspartei sind, verarbeitet Evipace die Anfrage zur
           Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage nach Artikel
           6 Absatz 1 Buchstabe b DSGVO.
         </p>
         <p>
           Wenn Sie für Ihren Arbeitgeber oder ein anderes Unternehmen handeln,
-          verarbeitet evipace die Anfrage nach Artikel 6 Absatz 1 Buchstabe f
+          verarbeitet Evipace die Anfrage nach Artikel 6 Absatz 1 Buchstabe f
           DSGVO auf Grundlage berechtigter Interessen an der Bearbeitung von
           B2B-Anfragen, der Kommunikation mit Unternehmensvertretern und der
           Vorbereitung der angefragten ESG-Leistung.
@@ -360,8 +360,8 @@ function GermanPrivacyPage() {
         <p>
           Dieselben Rechtsgrundlagen nach Artikel 6 Absatz 1 Buchstabe b
           und/oder Artikel 6 Absatz 1 Buchstabe f DSGVO gelten, je nach
-          Beziehung zur möglichen Beauftragung, wenn evipace hochgeladene
-          Dokumente speichert, das evipace-Team benachrichtigt, der absendenden
+          Beziehung zur möglichen Beauftragung, wenn Evipace hochgeladene
+          Dokumente speichert, das Evipace-Team benachrichtigt, der absendenden
           Person antwortet und die angefragte ESG-Arbeit prüft.
         </p>
         <p>
@@ -390,7 +390,7 @@ function GermanPrivacyPage() {
         <p>
           Nach der Überprüfung der Dateien wird die Anfrage als eingereicht
           markiert. Resend wird verwendet, um eine interne Benachrichtigung an
-          evipace zu senden. Interne Benachrichtigungen können hochgeladene
+          Evipace zu senden. Interne Benachrichtigungen können hochgeladene
           Dateien oder zeitlich begrenzte signierte Links zu ihnen enthalten.
           Eine Bestätigungs-E-Mail an die absendende Person wird nur gesendet,
           wenn die separate Bestätigungsfunktion aktiviert ist.
@@ -412,7 +412,7 @@ function GermanPrivacyPage() {
           Analytics ändert die Einwilligung zu Vercel Web Analytics nicht.
         </p>
         <p>
-          evipace verwendet außerdem technisch notwendige
+          Evipace verwendet außerdem technisch notwendige
           First-Party-Technologien, um die Website zu betreiben, Seiten nach
           Sprache auszuliefern und Cookie-Entscheidungen zu merken.
         </p>
@@ -433,7 +433,7 @@ function GermanPrivacyPage() {
           Wenn Analytics akzeptiert wird, können Google-Analytics-Cookies wie{" "}
           <code>_ga</code> und <code>_ga_*</code> gesetzt werden. Advertising
           Storage, Advertising User Data und Advertising Personalization bleiben
-          abgelehnt. evipace sendet Formularinhalte, Informationen zu
+          abgelehnt. Evipace sendet Formularinhalte, Informationen zu
           hochgeladenen Dokumenten, Dateinamen, E-Mail-Adressen, Namen oder
           Unternehmensnamen nicht absichtlich an Google Analytics. Die
           verifizierte Aufbewahrungsdauer in Google Analytics beträgt 14 Monate;
@@ -447,7 +447,7 @@ function GermanPrivacyPage() {
 
       <Section heading="Dienstleister und Übermittlungen">
         <p>
-          evipace nutzt Supabase für die Anfragedatenbank und private Speicherung
+          Evipace nutzt Supabase für die Anfragedatenbank und private Speicherung
           hochgeladener Dokumente, Resend für transaktionalen E-Mail-Versand und
           interne Anfragebenachrichtigungen, Vercel für Website-Hosting und
           Vercel Web Analytics sowie Google für optionales Google Analytics 4
@@ -459,7 +459,7 @@ function GermanPrivacyPage() {
           oder an anderen Orten verarbeiten. Soweit Verarbeitung außerhalb des
           EWR stattfindet, können geeignete Garantien Angemessenheitsbeschlüsse,
           EU-Standardvertragsklauseln oder gleichwertige vertragliche und
-          technische Schutzmaßnahmen umfassen. evipace verkauft keine
+          technische Schutzmaßnahmen umfassen. Evipace verkauft keine
           personenbezogenen Daten.
         </p>
       </Section>

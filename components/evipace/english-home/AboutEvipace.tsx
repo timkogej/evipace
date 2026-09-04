@@ -14,7 +14,7 @@ export function AboutEvipace() {
       <div className="site-shell relative z-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
         <div>
           <SectionHeading
-            eyebrow="About evipace"
+            eyebrow="About Evipace"
             heading="ESG should not be more complicated than the task itself."
           />
           <div className="mt-8 flex flex-wrap gap-5">
@@ -22,7 +22,7 @@ export function AboutEvipace() {
               className="orange-link inline-flex items-center gap-2 text-sm"
               href="/en/about"
             >
-              <span>About evipace</span>
+              <span>About Evipace</span>
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
             <Link

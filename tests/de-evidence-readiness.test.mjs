@@ -145,7 +145,7 @@ test("German evidence resource has exact metadata and a genuine English equivale
   assert.ok(germanRegistry.includes("esgNachweiseCheckliste: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Nachweise prüfen: Checkliste für Lieferanten | evipace"'
+      'title: "ESG-Nachweise prüfen: Checkliste für Lieferanten | Evipace"'
     )
   );
   assert.ok(
@@ -306,7 +306,7 @@ test("client tool uses localStorage safely, accessible controls, progressbar sem
     "window.print()",
     "evidence-print-summary",
     "ESG Evidence Readiness Check",
-    "Erstellt mit der evipace ESG-Nachweise-Checkliste",
+    "Erstellt mit der Evipace ESG-Nachweise-Checkliste",
     "focus({ preventScroll: true })",
     "Zu Punkt"
   ]) {

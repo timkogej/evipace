@@ -40,7 +40,7 @@ export function ScatteredData() {
             </p>
           </div>
           <p className="mt-8 border-l-2 border-orange pl-5 text-xl font-semibold leading-8 text-ink">
-            That is the problem evipace solves.
+            That is the problem Evipace solves.
           </p>
         </div>
 

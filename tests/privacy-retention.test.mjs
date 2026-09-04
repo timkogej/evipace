@@ -143,7 +143,7 @@ test("privacy notice contains exact controller facts and no DPO claim", () => {
   for (const token of [
     "Sonja Žužek s.p.",
     "Prešernova cesta 21A, 1234 Mengeš, Slovenia",
-    "evipace",
+    "Evipace",
     "Tim Kogej",
     "authorized contact",
     "autorisierter Kontakt"

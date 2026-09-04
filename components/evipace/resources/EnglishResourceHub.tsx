@@ -515,7 +515,7 @@ export function EnglishResourceHub() {
               <p>Platform outcomes, customer acceptance and scores are not guaranteed.</p>
             </div>
             <div className="mt-7">
-              <InlineLink href="/en/methodology">See evipace methodology</InlineLink>
+              <InlineLink href="/en/methodology">See Evipace methodology</InlineLink>
             </div>
           </div>
         </div>

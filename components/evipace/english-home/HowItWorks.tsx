@@ -13,7 +13,7 @@ export function HowItWorks({ imageAvailable }: { imageAvailable: boolean }) {
       <div className="site-shell">
         <div className="max-w-5xl">
           <SectionHeading
-            eyebrow="How evipace works"
+            eyebrow="How Evipace works"
             heading="From customer request to a usable answer."
           />
         </div>

@@ -205,8 +205,8 @@ export const customerQuestionnaireReceivedContent: EnglishResourceArticleContent
           label: "Get help preparing this questionnaire",
           href: "/en/esg-questionnaire-support"
         },
-        { label: "Send the ESG questionnaire to evipace", href: sendRequest },
-        { label: "See how evipace works", href: "/en/methodology" }
+        { label: "Send the ESG questionnaire to Evipace", href: sendRequest },
+        { label: "See how Evipace works", href: "/en/methodology" }
       ]
     }
   ],
@@ -232,7 +232,7 @@ export const customerQuestionnaireReceivedContent: EnglishResourceArticleContent
         "Mark the missing information as a data gap or evidence gap. The company can then decide whether to collect data, prepare a current document, explain the limitation or answer that the information is not currently available."
     },
     {
-      question: "Can evipace submit the answer for us?",
+      question: "Can Evipace submit the answer for us?",
       answer:
         "Evipace can prepare the information, evidence mapping and draft response. The final company facts and any platform submission remain under the company's control."
     }
@@ -833,7 +833,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
         "Yes, if the document genuinely supports each answer. A consolidated sustainability report may contain several relevant disclosures, but unrelated documents should not be artificially combined to bypass the limit."
     },
     {
-      question: "Can evipace guarantee EcoVadis acceptance or a score?",
+      question: "Can Evipace guarantee EcoVadis acceptance or a score?",
       answer:
         "No. EcoVadis controls its assessment, methodology and recognition of documents. Evipace can support preparation, mapping and review, but does not guarantee acceptance, medals, scores or platform outcomes."
     }
@@ -1010,7 +1010,7 @@ export const integrityNextInvitationContent: EnglishResourceArticleContent = {
       ],
       links: [
         {
-          label: "Send the IntegrityNext request to evipace",
+          label: "Send the IntegrityNext request to Evipace",
           href: sendRequest
         }
       ]
@@ -1040,10 +1040,10 @@ export const integrityNextInvitationContent: EnglishResourceArticleContent = {
     {
       question: "Who submits the information in IntegrityNext?",
       answer:
-        "When evipace supports the work, we prepare information, evidence and draft answers. The company reviews the facts and handles submission or approval through its own IntegrityNext profile."
+        "When Evipace supports the work, we prepare information, evidence and draft answers. The company reviews the facts and handles submission or approval through its own IntegrityNext profile."
     },
     {
-      question: "Can evipace guarantee an IntegrityNext result?",
+      question: "Can Evipace guarantee an IntegrityNext result?",
       answer:
         "No. Evipace is independent from IntegrityNext and does not control platform validation, customer decisions or platform status."
     }

@@ -96,7 +96,7 @@ test("customer data resource has exact German metadata and English pairing", () 
   assert.ok(germanRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     germanRegistry.includes(
-      'title: "Welche ESG-Daten verlangen Kunden von Lieferanten? | evipace"'
+      'title: "Welche ESG-Daten verlangen Kunden von Lieferanten? | Evipace"'
     )
   );
   assert.ok(

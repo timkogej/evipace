@@ -698,7 +698,7 @@ function CommercialBridge({ title, body, note }: { title: string; body: string; 
 }
 
 function MethodSection({ body }: { body: string }) {
-  return <section aria-labelledby="method-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div><ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" /><SectionHeading eyebrow="Methodology" id="method-title" title="Methodological note" /></div><div className="resource-prose"><p>{body}</p><div className="mt-7"><InlineLink href="/en/methodology">How evipace works with ESG data and evidence</InlineLink></div></div></div></section>;
+  return <section aria-labelledby="method-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div><ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" /><SectionHeading eyebrow="Methodology" id="method-title" title="Methodological note" /></div><div className="resource-prose"><p>{body}</p><div className="mt-7"><InlineLink href="/en/methodology">How Evipace works with ESG data and evidence</InlineLink></div></div></div></section>;
 }
 
 function FinalSection({ title, body }: { title: string; body: string }) {

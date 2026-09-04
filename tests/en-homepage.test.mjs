@@ -40,7 +40,7 @@ test("English homepage metadata uses the exact approved registry values", () => 
 
   assert.ok(
     englishRegistry.includes(
-      'title: "ESG Consulting for Manufacturing Companies | evipace"'
+      'title: "ESG Consulting for Manufacturing Companies | Evipace"'
     )
   );
   assert.ok(

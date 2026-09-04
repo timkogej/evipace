@@ -18,7 +18,7 @@ export function WhyEvipaceSection() {
       <div className="site-shell">
         <div className="max-w-5xl">
           <SectionHeading
-            eyebrow="Why evipace"
+            eyebrow="Why Evipace"
             heading="Between a large consultancy and doing everything yourself."
           />
         </div>

@@ -351,7 +351,7 @@ export function EsgQuestionnaireChecklist({
           <ShieldCheck aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-orange" />
           {isEnglish
             ? "Your progress is saved locally in this browser. No account is required."
-            : "Ihr Fortschritt wird nur lokal in diesem Browser gespeichert und nicht an evipace übertragen."}
+            : "Ihr Fortschritt wird nur lokal in diesem Browser gespeichert und nicht an Evipace übertragen."}
         </p>
       </section>
 

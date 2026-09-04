@@ -579,7 +579,7 @@ export function GermanResourceHub() {
           <div>
             <ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" />
             <SectionHeading id="method-title" eyebrow="WIE WIR INHALTE AUFBAUEN" title="Praktisch, nachvollziehbar und quellengestützt.">
-              <p>Die Ressourcen von evipace sollen operative ESG-Arbeit verständlicher machen.</p>
+              <p>Die Ressourcen von Evipace sollen operative ESG-Arbeit verständlicher machen.</p>
             </SectionHeading>
           </div>
           <div>

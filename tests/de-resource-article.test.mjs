@@ -293,7 +293,7 @@ test("German resource has exact metadata, canonical path, sitemap discovery, and
   assert.ok(germanRegistry.includes("esgFragebogenVomKundenErhalten: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Fragebogen vom Kunden erhalten? So gehen Sie vor | evipace"'
+      'title: "ESG-Fragebogen vom Kunden erhalten? So gehen Sie vor | Evipace"'
     )
   );
   assert.ok(
@@ -450,7 +450,7 @@ test("evidence guide has exact metadata, sitemap discovery, and English pairing"
   assert.ok(germanRegistry.includes("esgNachweiseLieferanten: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Nachweise für Lieferanten: Welche Dokumente zählen? | evipace"'
+      'title: "ESG-Nachweise für Lieferanten: Welche Dokumente zählen? | Evipace"'
     )
   );
   assert.ok(
@@ -603,7 +603,7 @@ test("EcoVadis documents guide has exact metadata, sitemap discovery, and Englis
   assert.ok(germanRegistry.includes("ecovadisDokumenteNachweise: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "EcoVadis-Dokumente und Nachweise: Was zählt als Beleg? | evipace"'
+      'title: "EcoVadis-Dokumente und Nachweise: Was zählt als Beleg? | Evipace"'
     )
   );
   assert.ok(
@@ -784,7 +784,7 @@ test("IntegrityNext invitation guide has exact metadata, sitemap discovery, and 
   assert.ok(germanRegistry.includes("integrityNextEinladungLieferanten: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "IntegrityNext für Lieferanten: Einladung erhalten – was jetzt? | evipace"'
+      'title: "IntegrityNext für Lieferanten: Einladung erhalten – was jetzt? | Evipace"'
     )
   );
   assert.ok(
@@ -992,7 +992,7 @@ test("Scope 1 and Scope 2 data guide has exact metadata, sitemap discovery, and 
   assert.ok(germanRegistry.includes("scope12DatenBerechnung: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "Scope 1 und Scope 2: Welche Daten braucht man? | evipace"'
+      'title: "Scope 1 und Scope 2: Welche Daten braucht man? | Evipace"'
     )
   );
   assert.ok(
@@ -1150,7 +1150,7 @@ test("VSME data guide has exact metadata, sitemap discovery, and English pairing
   assert.ok(germanRegistry.includes("vsmeDatenNachhaltigkeitsbericht: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "VSME: Welche Daten braucht ein Nachhaltigkeitsbericht? | evipace"'
+      'title: "VSME: Welche Daten braucht ein Nachhaltigkeitsbericht? | Evipace"'
     )
   );
   assert.ok(
@@ -1362,7 +1362,7 @@ test("ESG data-owner guide has exact metadata, sitemap discovery, and English pa
   assert.ok(germanRegistry.includes("esgDatenVerantwortlicheAbteilungen: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Daten vom Kunden angefragt: Wer liefert welche Daten? | evipace"'
+      'title: "ESG-Daten vom Kunden angefragt: Wer liefert welche Daten? | Evipace"'
     )
   );
   assert.ok(
@@ -1622,7 +1622,7 @@ test("Scope 1/2/3 guide has exact metadata, sitemap discovery, and English pairi
   assert.ok(germanRegistry.includes("scope123EinfachErklaert: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "Scope 1, 2 und 3 einfach erklärt: Unterschiede & Beispiele | evipace"'
+      'title: "Scope 1, 2 und 3 einfach erklärt: Unterschiede & Beispiele | Evipace"'
     )
   );
   assert.ok(
@@ -1880,7 +1880,7 @@ test("interactive ESG questionnaire checklist has exact metadata and genuine Eng
   );
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Fragebogen Checkliste für Lieferanten | evipace"'
+      'title: "ESG-Fragebogen Checkliste für Lieferanten | Evipace"'
     )
   );
   assert.ok(
@@ -2068,7 +2068,7 @@ test("checklist interaction uses semantic controls, derived progress, section pr
   assert.ok(
     normalizedIncludes(
       checklistClientSource,
-      "Ihr Fortschritt wird nur lokal in diesem Browser gespeichert und nicht an evipace übertragen."
+      "Ihr Fortschritt wird nur lokal in diesem Browser gespeichert und nicht an Evipace übertragen."
     )
   );
 });

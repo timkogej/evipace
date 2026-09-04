@@ -56,7 +56,7 @@ export function RequestIntro() {
               </Link>
               .
             </p>
-            <p>Genau bei dieser operativen Vorbereitung unterstützt evipace.</p>
+            <p>Genau bei dieser operativen Vorbereitung unterstützt Evipace.</p>
           </div>
         </Reveal>
       </div>

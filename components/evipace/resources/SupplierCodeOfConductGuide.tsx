@@ -792,7 +792,7 @@ export function SupplierCodeOfConductGuide() {
                   <p className="text-base leading-8 text-muted">Wir prüfen mit Ihnen, welche Erwartungen und Beschaffungsprozesse tatsächlich bestehen, strukturieren relevante ESG- und Compliance-Themen und bereiten daraus einen Supplier-Code-Entwurf für Ihre interne Prüfung und Freigabe vor.</p>
                   <p className="mt-4 text-base leading-8 text-muted">Wenn der Kodex Teil eines konkreten Fragebogens ist, hilft auch der Überblick <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</Link>.</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Anfrage an evipace senden</ButtonLink>
+                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink>
                     <ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="secondary">Mehr über ESG-Kundenanfragen</ButtonLink>
                   </div>
                   <p className="mt-5 text-sm font-semibold leading-7 text-muted">Der Entwurf wird erst durch Ihre interne Prüfung, Anpassung und autorisierte Freigabe zu einem offiziellen Unternehmensdokument.</p>
@@ -812,7 +812,7 @@ export function SupplierCodeOfConductGuide() {
               <p>Dieser Leitfaden beschreibt eine praktische Vorgehensweise zur Vorbereitung eines Supplier Code of Conduct im Kontext von ESG-Kundenanfragen und Lieferantenmanagement.</p>
               <p>Er stellt keine Rechts-, Vertrags-, Audit- oder Zertifizierungsberatung dar und definiert keine universell verpflichtenden Inhalte.</p>
               <p>Welche Anforderungen, Rechte und Prozesse für ein konkretes Unternehmen sinnvoll oder erforderlich sind, hängt unter anderem von Lieferantenstruktur, Produkten, Regionen, bestehenden Verträgen, Kundenanforderungen und tatsächlich anwendbaren Anforderungen ab.</p>
-              <div className="mt-7"><InlineLink href="/de/methodology">Wie evipace ESG-Informationen einordnet</InlineLink></div>
+              <div className="mt-7"><InlineLink href="/de/methodology">Wie Evipace ESG-Informationen einordnet</InlineLink></div>
             </div>
           </div>
         </section>

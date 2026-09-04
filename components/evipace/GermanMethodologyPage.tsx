@@ -514,7 +514,7 @@ export function GermanMethodologyPage({
 
         <Section
           eyebrow="Projektablauf"
-          heading="So läuft ein Projekt bei evipace ab."
+          heading="So läuft ein Projekt bei Evipace ab."
           id="ablauf"
         >
           <Rise className="methodology-body space-y-4 text-muted">
@@ -1122,7 +1122,7 @@ export function GermanMethodologyPage({
             <p>
               Deshalb behandeln wir bereitgestellte Unterlagen als
               Arbeitsmaterial für den jeweiligen ESG-Prozess und stellen über
-              das evipace-Anfrageformular hochgeladene Dokumente nicht
+              das Evipace-Anfrageformular hochgeladene Dokumente nicht
               öffentlich bereit.
             </p>
             <p>
@@ -1163,7 +1163,7 @@ export function GermanMethodologyPage({
 
         <Section
           eyebrow="Grenzen"
-          heading="Was evipace nicht behauptet."
+          heading="Was Evipace nicht behauptet."
           id="grenzen"
           tone="dark"
         >
@@ -1181,7 +1181,7 @@ export function GermanMethodologyPage({
               delay={0.08}
             >
               <p className="mb-6 text-sm font-bold uppercase text-orange">
-                evipace
+                Evipace
               </p>
               <ul className="grid gap-4">
                 {limitations.map((item) => (

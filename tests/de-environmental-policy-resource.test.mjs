@@ -119,7 +119,7 @@ test("environmental policy resource has exact German SEO metadata and English pa
   assert.ok(germanRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     germanRegistry.includes(
-      'title: "Environmental Policy erstellen: Leitfaden für Unternehmen | evipace"'
+      'title: "Environmental Policy erstellen: Leitfaden für Unternehmen | Evipace"'
     )
   );
   assert.ok(
@@ -133,7 +133,7 @@ test("environmental policy resource has exact German SEO metadata and English pa
   assert.ok(englishRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     englishRegistry.includes(
-      'title: "Environmental Policy: How to Create One | evipace"'
+      'title: "Environmental Policy: How to Create One | Evipace"'
     )
   );
   assert.ok(englishRegistry.includes('path: "/en/resources/environmental-policy"'));

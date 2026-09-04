@@ -524,12 +524,12 @@ export function EsgEvidenceReadinessGuide() {
                     Praktische Prüfung statt pauschaler Bewertung.
                   </h2>
                   <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
-                    Wie evipace mit Quellen, Annahmen, Review und
+                    Wie Evipace mit Quellen, Annahmen, Review und
                     Aussagegrenzen arbeitet, beschreibt unsere Methodik.
                   </p>
                   <div className="mt-5">
                     <InlineLink href="/de/methodology">
-                      Zur evipace Methodik
+                      Zur Evipace Methodik
                     </InlineLink>
                   </div>
                 </div>
@@ -555,7 +555,7 @@ export function EsgEvidenceReadinessGuide() {
                 </p>
                 <div className="mt-8">
                   <ButtonLink href={SEND_REQUEST_HREF}>
-                    Anfrage an evipace senden →
+                    Anfrage an Evipace senden →
                   </ButtonLink>
                 </div>
               </div>

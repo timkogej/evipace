@@ -228,7 +228,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
   inputs: {
     title: "Start with what you already have.",
     body:
-      "Send the request first. We can determine what is actually needed from there; you do not need a clean ESG data room before contacting evipace.",
+      "Send the request first. We can determine what is actually needed from there; you do not need a clean ESG data room before contacting Evipace.",
     items: [
       "Customer questionnaire",
       "Customer email or request",
@@ -593,7 +593,7 @@ export const questionnaireSupportContent: CommercialServicePageContent = {
     body:
       "Upload the questionnaire or customer request you received. We can first determine what is being asked, which information already exists and where the real gaps are.",
     primaryLabel: "Send your questionnaire",
-    secondaryLabel: "See how evipace works",
+    secondaryLabel: "See how Evipace works",
     secondaryHref: "/en/methodology"
   }
 };
@@ -1224,7 +1224,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
   inputs: {
     title: "Start with the request itself.",
     body:
-      "You do not need to organise a complete package before contacting evipace. The invitation, requested topics and available documents are enough to begin scoping the work.",
+      "You do not need to organise a complete package before contacting Evipace. The invitation, requested topics and available documents are enough to begin scoping the work.",
     items: [
       "IntegrityNext invitation or request",
       "Screenshots or exported questions where applicable",

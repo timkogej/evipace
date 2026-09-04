@@ -1,5 +1,5 @@
 /**
- * Locale configuration for the evipace site.
+ * Locale configuration for the Evipace site.
  *
  * `locales` is the full set of locales the routing architecture recognises
  * at the URL-segment level — used only to reject nonsense locale segments

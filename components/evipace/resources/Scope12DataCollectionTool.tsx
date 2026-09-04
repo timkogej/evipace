@@ -1136,7 +1136,7 @@ function PrintSummary({ state }: { state: Scope12CollectionState }) {
   return (
     <section className="scope12-print-summary" aria-label="Druckübersicht">
       <h1>Scope 1 &amp; 2 Datenerfassungsübersicht</h1>
-      <p>Erstellt mit der evipace Datenerfassungs-Vorlage</p>
+      <p>Erstellt mit der Evipace Datenerfassungs-Vorlage</p>
       <dl>
         <div><dt>Unternehmen</dt><dd>{state.companyLabel || "Nicht angegeben"}</dd></div>
         <div><dt>Berichtszeitraum</dt><dd>{state.periodStart || "?"} – {state.periodEnd || "?"}</dd></div>
@@ -1808,7 +1808,7 @@ export function Scope12DataCollectionTool({
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-muted">
               Für diese Vorlage benötigen Sie kein Konto und keinen Datei-Upload.
-              Die eingegebenen Werte werden nicht an evipace übertragen. Wenn Sie
+              Die eingegebenen Werte werden nicht an Evipace übertragen. Wenn Sie
               den lokalen Speicher nutzen, bleibt der Arbeitsstand ausschließlich
               in Ihrem Browser gespeichert.
             </p>

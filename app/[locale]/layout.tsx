@@ -5,9 +5,8 @@ import { ConsentManager } from "@/components/evipace/analytics/ConsentManager";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
 import { SiteIntro } from "@/components/evipace/site-intro/SiteIntro";
-import { evipaceImages } from "@/lib/evipace-images";
 import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
-import { SITE_URL } from "@/lib/seo/site-config";
+import { SITE_NAME, SITE_URL } from "@/lib/seo/site-config";
 import { isSiteLocale } from "@/lib/site-navigation";
 import { gfsDidot, inter } from "../fonts";
 import "../globals.css";
@@ -25,22 +24,20 @@ export function generateStaticParams() {
 // Site-wide defaults only. Per-page title/description/canonical/OG now live
 // in lib/seo/page-registry.ts and are set via generateMetadata on each page
 // — keeping them here too would duplicate, and could conflict with, that.
+//
+// There is deliberately no `icons` entry here. The site's icons are the App
+// Router file conventions in app/ (favicon.ico, icon.png, apple-icon.png),
+// all derived from the approved square Evipace mark. Next emits the <link>
+// tags for those automatically; declaring `icons` here as well would produce
+// a second, competing set of rel="icon" tags in the same <head>.
+//
+// `applicationName` is the site-name signal that belongs in metadata rather
+// than in the page registry: it is site-wide, not per page, and it must read
+// "Evipace" everywhere. og:site_name comes from the same SITE_NAME constant
+// via lib/seo/build-metadata.ts.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  icons: {
-    icon: [
-      {
-        url: evipaceImages.brand.mark,
-        type: "image/png"
-      }
-    ],
-    apple: [
-      {
-        url: evipaceImages.brand.mark,
-        type: "image/png"
-      }
-    ]
-  }
+  applicationName: SITE_NAME
 };
 
 export const viewport: Viewport = {

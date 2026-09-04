@@ -48,35 +48,35 @@ const pages = [
     en: "/en/resources/customer-esg-questionnaire-received",
     de: "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
     h1: "Received an ESG questionnaire from a customer? Start here.",
-    title: "Received a Customer ESG Questionnaire? Start Here | evipace"
+    title: "Received a Customer ESG Questionnaire? Start Here | Evipace"
   },
   {
     key: "welcheEsgDatenKundenLieferanten",
     en: "/en/resources/esg-data-customers-request-from-suppliers",
     de: "/de/ressourcen/welche-esg-daten-kunden-lieferanten",
     h1: "What ESG data do customers ask suppliers for?",
-    title: "What ESG Data Do Customers Ask Suppliers For? | evipace"
+    title: "What ESG Data Do Customers Ask Suppliers For? | Evipace"
   },
   {
     key: "esgNachweiseLieferanten",
     en: "/en/resources/esg-evidence-for-suppliers",
     de: "/de/ressourcen/esg-nachweise-lieferanten",
     h1: "ESG evidence for suppliers: what documents actually support your answers?",
-    title: "ESG Evidence for Suppliers: What Documents Support Answers? | evipace"
+    title: "ESG Evidence for Suppliers: What Documents Support Answers? | Evipace"
   },
   {
     key: "ecovadisDokumenteNachweise",
     en: "/en/resources/ecovadis-documents-evidence",
     de: "/de/ressourcen/ecovadis-dokumente-nachweise",
     h1: "EcoVadis documents and evidence: what suppliers should prepare.",
-    title: "EcoVadis Documents & Evidence for Suppliers | evipace"
+    title: "EcoVadis Documents & Evidence for Suppliers | Evipace"
   },
   {
     key: "integrityNextEinladungLieferanten",
     en: "/en/resources/integritynext-invitation-for-suppliers",
     de: "/de/ressourcen/integritynext-einladung-lieferanten",
     h1: "Received an IntegrityNext invitation? A practical guide for suppliers.",
-    title: "IntegrityNext Invitation for Suppliers: What to Do Next | evipace"
+    title: "IntegrityNext Invitation for Suppliers: What to Do Next | Evipace"
   }
 ];
 
@@ -86,28 +86,28 @@ const batch2Pages = [
     en: "/en/resources/scope-1-2-data-calculation",
     de: "/de/ressourcen/scope-1-2-daten-berechnung",
     h1: "What data do you need to calculate Scope 1 and Scope 2?",
-    title: "Scope 1 & 2 Calculation: Data You Need | evipace"
+    title: "Scope 1 & 2 Calculation: Data You Need | Evipace"
   },
   {
     key: "scope123EinfachErklaert",
     en: "/en/resources/scope-1-2-3-explained",
     de: "/de/ressourcen/scope-1-2-3-einfach-erklaert",
     h1: "Scope 1, 2 and 3 explained for companies and suppliers.",
-    title: "Scope 1, 2 & 3 Explained for Companies | evipace"
+    title: "Scope 1, 2 & 3 Explained for Companies | Evipace"
   },
   {
     key: "vsmeDatenNachhaltigkeitsbericht",
     en: "/en/resources/vsme-data-sustainability-report",
     de: "/de/ressourcen/vsme-daten-nachhaltigkeitsbericht",
     h1: "What data do you need for a VSME sustainability report?",
-    title: "VSME Data for Sustainability Reporting | evipace"
+    title: "VSME Data for Sustainability Reporting | Evipace"
   },
   {
     key: "esgDatenVerantwortlicheAbteilungen",
     en: "/en/resources/esg-data-owners",
     de: "/de/ressourcen/esg-daten-verantwortliche-abteilungen",
     h1: "Who owns ESG data inside the company?",
-    title: "ESG Data Owners: Who Owns Which Data? | evipace"
+    title: "ESG Data Owners: Who Owns Which Data? | Evipace"
   }
 ];
 

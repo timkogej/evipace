@@ -43,7 +43,7 @@ export function DataFoundation() {
         </Reveal>
 
         <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.14}>
-          <p>Genau dort beginnt evipace.</p>
+          <p>Genau dort beginnt Evipace.</p>
           <p>
             Wir starten bei den Informationen, die bereits in Ihrem Unternehmen
             existieren - nicht bei einer leeren Berichtsvorlage.

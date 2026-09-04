@@ -126,7 +126,7 @@ test("German Scope 1 & 2 data collection resource has exact metadata and a genui
   assert.ok(germanRegistry.includes("scope12DatenerfassungsVorlage: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "Scope 1 & 2 Datenerfassungs-Vorlage | evipace"'
+      'title: "Scope 1 & 2 Datenerfassungs-Vorlage | Evipace"'
     )
   );
   assert.ok(

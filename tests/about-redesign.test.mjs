@@ -118,7 +118,7 @@ test("the previous founder headings are gone from both About pages", () => {
 
 test("the founder body copy and attribution survive the redesign", () => {
   const english = [
-    "Tim Kogej founded evipace with the goal of making ESG work more practical, understandable and accessible for smaller and mid-sized companies.",
+    "Tim Kogej founded Evipace with the goal of making ESG work more practical, understandable and accessible for smaller and mid-sized companies.",
     "The starting point is not how much a company can say about ESG. It is a more practical question:",
     "How do you turn a concrete ESG requirement into a manageable piece of work?",
     "Evipace is being built at the intersection of structured data, technology and specialist ESG work.",
@@ -129,7 +129,7 @@ test("the founder body copy and attribution survive the redesign", () => {
     "Slovenia"
   ];
   const german = [
-    "Tim Kogej gründete evipace mit dem Ziel, ESG-Arbeit für kleinere und mittlere Unternehmen operativer, klarer und zugänglicher zu machen.",
+    "Tim Kogej gründete Evipace mit dem Ziel, ESG-Arbeit für kleinere und mittlere Unternehmen operativer, klarer und zugänglicher zu machen.",
     "Im Mittelpunkt steht dabei nicht die Frage, wie Unternehmen möglichst viel über ESG sprechen können.",
     "Wie wird aus einer konkreten ESG-Anforderung eine lösbare Aufgabe?",
     "Evipace wird an der Schnittstelle von strukturierten Daten, Technologie und fachlicher ESG-Arbeit aufgebaut.",

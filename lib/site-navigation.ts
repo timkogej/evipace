@@ -529,7 +529,7 @@ const enResources: NavigationDirectory = {
 export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
   en: {
     locale: "en",
-    home: { label: "evipace — Home", href: route("en", "home"), pageKey: "home" },
+    home: { label: "Evipace — Home", href: route("en", "home"), pageKey: "home" },
     homeLink: {
       label: "Home",
       href: route("en", "home"),
@@ -660,7 +660,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
   de: {
     locale: "de",
     home: {
-      label: "evipace — Startseite",
+      label: "Evipace — Startseite",
       href: route("de", "home"),
       pageKey: "home"
     },
@@ -684,7 +684,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         section: "methodology"
       },
       {
-        label: "Über evipace",
+        label: "Über Evipace",
         href: route("de", "about"),
         pageKey: "about",
         section: "about"
@@ -739,7 +739,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
             href: route("de", "privacy"),
             pageKey: "privacy"
           },
-          { label: "Über evipace", href: route("de", "about"), pageKey: "about" }
+          { label: "Über Evipace", href: route("de", "about"), pageKey: "about" }
         ]
       },
       {

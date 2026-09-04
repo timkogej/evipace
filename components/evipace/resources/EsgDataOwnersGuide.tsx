@@ -65,7 +65,7 @@ const faqItems = [
   ["Was tun, wenn zwei Abteilungen unterschiedliche Zahlen liefern?", "Zuerst Scope, Zeitraum, Definition, Einheit und Originalquelle vergleichen. Die Differenz sollte verstanden und dokumentiert werden, bevor ein finaler Wert verwendet wird."],
   ["Können dieselben Data Owner für EcoVadis, IntegrityNext und VSME genutzt werden?", "Häufig ja. Die Plattform beziehungsweise der Bericht kann sich ändern, die zugrunde liegenden Unternehmensinformationen bleiben aber oft dieselben. IntegrityNext unterstützt beispielsweise ausdrücklich die Zusammenarbeit mehrerer Kolleginnen und Kollegen im Supplier Profile."],
   ["Wer bestätigt die finale Antwort an den Kunden?", "Das hängt von der internen Governance ab. Fachliche Daten sollten vom zuständigen Owner stammen; Unternehmens- und Managementaussagen benötigen gegebenenfalls eine zusätzliche Freigabe durch die entsprechend autorisierte Person."],
-  ["Kann evipace alle Angaben selbst bestätigen?", "Nein. Evipace kann Anforderungen strukturieren, Datenquellen zuordnen, Berechnungen und Entwürfe vorbereiten und die Unterlagen reviewen. Unternehmensspezifische Tatsachen und Aussagen müssen auf den vom Kunden bereitgestellten Quellen beruhen und gegebenenfalls intern bestätigt werden."]
+  ["Kann Evipace alle Angaben selbst bestätigen?", "Nein. Evipace kann Anforderungen strukturieren, Datenquellen zuordnen, Berechnungen und Entwürfe vorbereiten und die Unterlagen reviewen. Unternehmensspezifische Tatsachen und Aussagen müssen auf den vom Kunden bereitgestellten Quellen beruhen und gegebenenfalls intern bestätigt werden."]
 ] as const;
 
 function ExternalSourceLink({ children, href }: { children: ReactNode; href: string }) {
@@ -389,7 +389,7 @@ export function EsgDataOwnersGuide() {
                 <p>Unterstützung wird interessanter, wenn:</p>
                 <BulletList items={["mehrere Fachbereiche oder Standorte beteiligt sind", "niemand die Anfrage zentral strukturiert", "Scope 1 und Scope 2 berechnet werden müssen", "Nachweise zugeordnet oder Policies geprüft werden müssen", "widersprüchliche Daten existieren", "mehrere Kunden ähnliche Informationen verlangen", "aus der Anfrage eine wiederverwendbare ESG-Datenbasis entstehen soll"]} />
                 <Principle>Kundenanforderung → Datenpunkt → Owner → Quelle → Berechnung → Evidence → Review → Antwort</Principle>
-                <p>Wie evipace konkrete Kundenanforderungen unterstützt, zeigt die Seite <Link href="/de/esg-kundenanfragen">ESG-Anforderungen von Kunden</Link>.</p>
+                <p>Wie Evipace konkrete Kundenanforderungen unterstützt, zeigt die Seite <Link href="/de/esg-kundenanfragen">ESG-Anforderungen von Kunden</Link>.</p>
               </ArticleSection>
 
               <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
@@ -414,7 +414,7 @@ export function EsgDataOwnersGuide() {
                   <li><ExternalSourceLink href={BMW_SAQ_URL}>BMW Group — Sustainability Assessment Questionnaire</ExternalSourceLink><p className="mt-1">Praxisbeispiel für die thematische Breite eines Lieferanten-Nachhaltigkeitsfragebogens.</p></li>
                   <li><ExternalSourceLink href={BMOE_QUESTIONNAIRE_URL}>BMÖ — Lieferanten-Nachhaltigkeitsfragebogen</ExternalSourceLink><p className="mt-1">Aktueller Kontext zur Standardisierung von Lieferantenfragen und zur Einbindung von Nachhaltigkeit und Einkauf.</p></li>
                 </ul>
-                <p className="mt-7 text-xs leading-6 text-[rgba(21,21,21,0.48)]">Die vorgeschlagene Data-Owner-Struktur ist praktische evipace-Orientierung und keine gesetzlich vorgeschriebene Organisationsform.</p>
+                <p className="mt-7 text-xs leading-6 text-[rgba(21,21,21,0.48)]">Die vorgeschlagene Data-Owner-Struktur ist praktische Evipace-Orientierung und keine gesetzlich vorgeschriebene Organisationsform.</p>
               </section>
             </div>
           </div>

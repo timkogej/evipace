@@ -1,3 +1,4 @@
+import { primarySources, type PrimarySource } from "@/lib/seo/primary-sources";
 import {
   AlertCircle,
   Building2,
@@ -20,6 +21,26 @@ export type CommercialServicePageContent = {
   eyebrow: string;
   title: string;
   intro: string[];
+  /**
+   * Optional plain-language answers to the definitional questions a
+   * first-time reader arrives with ("What is EcoVadis?", "Is VSME
+   * mandatory?"). Rendered directly under the hero so the answer is the
+   * first substantive thing on the page.
+   *
+   * Each answer states the fact in its first sentence and expands after.
+   * Where the claim is regulatory or platform-specific, `sources` carries
+   * the official documentation it rests on — never a secondary summary.
+   * Pages whose topic has no such definitional entry point simply omit
+   * this.
+   */
+  directAnswers?: {
+    eyebrow: string;
+    items: Array<{
+      question: string;
+      answer: string[];
+    }>;
+    sources?: readonly PrimarySource[];
+  };
   primaryCta: string;
   secondaryCta: {
     label: string;
@@ -102,6 +123,32 @@ export type CommercialServicePageContent = {
     secondaryLabel: string;
     secondaryHref: string;
   };
+  /**
+   * Optional links to other Evipace services whose scope genuinely adjoins
+   * this one — VSME reporting needs a Scope 1 and 2 basis, a platform
+   * assessment overlaps with questionnaire work. Deliberately separate from
+   * `resources`, which points at educational material, and deliberately not
+   * a link to every other service.
+   */
+  relatedServices?: {
+    title: string;
+    body: string;
+    links: Array<{
+      title: string;
+      body: string;
+      href: string;
+    }>;
+  };
+  /**
+   * Optional FAQ, rendered between the resources block and the final CTA
+   * using the same <details> pattern the German service pages and the
+   * resource articles already use. Plain crawlable HTML — no FAQPage
+   * structured data is emitted for it anywhere.
+   */
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }>;
 };
 
 export const customerRequestsContent: CommercialServicePageContent = {
@@ -109,7 +156,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
   title:
     "Your customer asked for ESG information. We help you prepare the response.",
   intro: [
-    "A customer request may start with a spreadsheet, supplier questionnaire, platform invitation or a short email asking for emissions, policies, targets or supporting evidence.",
+    "A customer request may start with a spreadsheet, supplier questionnaire, platform invitation or a short email asking for emissions, policies, targets or supporting evidence. This page covers all of those formats.",
     "The difficult part is rarely the form itself. The information is usually spread across Finance, HR, Quality, EHS, Procurement, Operations and existing company documents.",
     "Evipace helps turn that request into a structured, reviewable response."
   ],
@@ -363,14 +410,63 @@ export const customerRequestsContent: CommercialServicePageContent = {
     primaryLabel: "Send us the request",
     secondaryLabel: "See our methodology",
     secondaryHref: "/en/methodology"
-  }
+  },
+  relatedServices: {
+    title: "When the request arrives as a structured questionnaire",
+    body:
+      "Customer ESG requests reach suppliers in many formats. Where the request is a defined questionnaire, assessment or platform profile, the work has its own page.",
+    links: [
+      {
+        title: "ESG questionnaire support",
+        body: "For a specific questionnaire, supplier assessment or scored document that has to be completed field by field.",
+        href: "/en/esg-questionnaire-support"
+      },
+      {
+        title: "Scope 1 & 2 calculation",
+        body: "When the request asks for emissions figures the company does not yet calculate.",
+        href: "/en/scope-1-2-calculation"
+      }
+    ]
+  },
+  faq: [
+    {
+      question: "What counts as a customer ESG request?",
+      answer:
+        "Any request from a customer for sustainability information about your company. In practice that includes spreadsheets, supplier questionnaires, platform invitations such as EcoVadis or IntegrityNext, procurement portal forms, and plain emails asking for a policy, a certificate or an emissions figure."
+    },
+    {
+      question: "How is this different from your ESG questionnaire support?",
+      answer:
+        "This page covers the whole range of request formats, including short ad-hoc asks that are not questionnaires at all. ESG questionnaire support is the narrower case where a defined questionnaire or assessment document has to be completed field by field. Many engagements start here and move into questionnaire work once the format is clear."
+    },
+    {
+      question: "Do we need to organise the information before contacting you?",
+      answer:
+        "No. Send the request as you received it, together with whatever documents you already have. Identifying which data is needed, where it sits internally and what is genuinely missing is part of the work."
+    },
+    {
+      question: "What if we cannot answer some of the questions?",
+      answer:
+        "Unanswerable points are documented as gaps rather than filled with plausible-sounding text. You receive a list of what is missing, what would be needed to close it and which internal function is most likely to hold it."
+    },
+    {
+      question: "Who confirms the answers before they go back to the customer?",
+      answer:
+        "Your company does. Evipace prepares response material from the information available; statements about your company's actual practices are confirmed internally before the response is used."
+    },
+    {
+      question: "Can the work be reused for the next customer request?",
+      answer:
+        "That is the intent. The data, evidence and calculations are structured so the same underlying information can support later requests, after checking the reporting period, scope and continued validity."
+    }
+  ]
 };
 
 export const questionnaireSupportContent: CommercialServicePageContent = {
   eyebrow: "ESG questionnaire support",
   title: "Received an ESG questionnaire? We help you prepare the response.",
   intro: [
-    "Customer ESG questionnaires often combine company data, emissions, environmental information, workforce topics, policies, supplier practices and supporting evidence in one file.",
+    "Customer ESG questionnaires often combine company data, emissions, environmental information, workforce topics, policies, supplier practices and supporting evidence in one file. This page is for that case: a defined questionnaire or assessment document that has to be answered field by field.",
     "We help break the questionnaire into manageable parts, find the right internal sources, prepare the answers and keep unresolved gaps visible."
   ],
   primaryCta: "Send your questionnaire",
@@ -595,7 +691,66 @@ export const questionnaireSupportContent: CommercialServicePageContent = {
     primaryLabel: "Send your questionnaire",
     secondaryLabel: "See how Evipace works",
     secondaryHref: "/en/methodology"
-  }
+  },
+  relatedServices: {
+    title: "Where the questionnaire comes from",
+    body:
+      "A questionnaire is one format a customer ESG request can take. Depending on who is asking, the work may sit closer to one of these.",
+    links: [
+      {
+        title: "Customer ESG requests",
+        body: "For the broader case: emails, spreadsheets, portal forms and ad-hoc data requests that are not a single questionnaire document.",
+        href: "/en/esg-customer-requests"
+      },
+      {
+        title: "EcoVadis support",
+        body: "When the questionnaire is an EcoVadis assessment with its own evidence and document rules.",
+        href: "/en/ecovadis-support"
+      },
+      {
+        title: "IntegrityNext support",
+        body: "When the request arrives as an IntegrityNext invitation with platform assessments and certificate checks.",
+        href: "/en/integritynext-support"
+      }
+    ]
+  },
+  faq: [
+    {
+      question: "What is an ESG questionnaire?",
+      answer:
+        "A structured set of questions a customer sends a supplier to collect sustainability information in a comparable format. It typically mixes company data, energy and emissions figures, environmental and workforce topics, policies, supply-chain practices and requests for supporting documents."
+    },
+    {
+      question: "How is this different from your customer ESG requests page?",
+      answer:
+        "This page is for a defined questionnaire, assessment or scored document that has to be completed field by field. Customer ESG requests covers the wider set of formats, including short emails and informal data requests that never take questionnaire form."
+    },
+    {
+      question: "Do we have to fill anything in before sending it to you?",
+      answer:
+        "No. Send the questionnaire as your customer sent it, along with the documents you already have. Scoping the questions and identifying which internal sources answer them is part of the work."
+    },
+    {
+      question: "What information do you usually need from us?",
+      answer:
+        "Typically energy and fuel data, company and site information, workforce figures, existing policies and certificates, and any prior responses. The exact set depends on the questionnaire; the first step is establishing which questions actually apply to your company."
+    },
+    {
+      question: "What happens to questions we cannot answer?",
+      answer:
+        "They are recorded as gaps with a note on what would be needed to close them. A missing data point stays visible rather than being replaced by an estimate presented as fact."
+    },
+    {
+      question: "Do you submit the questionnaire for us?",
+      answer:
+        "No. Evipace prepares the response material for internal review. Your company confirms the company-specific statements and remains responsible for the submission and for any platform account involved."
+    },
+    {
+      question: "Can the same answers be used for the next questionnaire?",
+      answer:
+        "Often, yes. Different customers ask for the same underlying facts in different wording, so the work is structured around the data and evidence rather than around one customer's form."
+    }
+  ]
 };
 
 export const scope12CalculationContent: CommercialServicePageContent = {
@@ -607,6 +762,31 @@ export const scope12CalculationContent: CommercialServicePageContent = {
     "It is the underlying activity data: electricity, fuels, vehicles, refrigerants, purchased heat and other relevant sources.",
     "Evipace structures the data, applies appropriate emission factors and prepares a documented calculation you can review."
   ],
+  directAnswers: {
+    eyebrow: "The short version",
+    items: [
+      {
+        question: "What are Scope 1 and Scope 2 emissions?",
+        answer: [
+          "Scope 1 covers direct greenhouse-gas emissions from sources a company owns or controls; Scope 2 covers indirect emissions from the electricity, heat, steam or cooling it purchases and consumes.",
+          "For a manufacturing company, Scope 1 usually means natural gas and other fuels burned on site, fuel used in owned vehicles, and refrigerant losses. Scope 2 usually means purchased electricity and district heating.",
+          "The split, the organisational and operational boundary, and the location-based and market-based treatment of purchased electricity follow the GHG Protocol corporate standards."
+        ]
+      },
+      {
+        question: "What data is needed to calculate them?",
+        answer: [
+          "Consumption data for a defined reporting period, plus emission factors appropriate to that data.",
+          "In practice that means meter readings or invoices for electricity and heat, fuel and vehicle records, refrigerant top-up records, and the site and entity boundary the figures apply to.",
+          "Where an input has to be estimated, the assumption is recorded alongside the figure rather than absorbed into it."
+        ]
+      }
+    ],
+    sources: [
+      primarySources.ghgCorporateStandard,
+      primarySources.ghgScope2Guidance
+    ]
+  },
   primaryCta: "Send your Scope 1 & 2 data",
   secondaryCta: {
     label: "See the data collection template",
@@ -857,7 +1037,61 @@ export const scope12CalculationContent: CommercialServicePageContent = {
     primaryLabel: "Send your Scope 1 & 2 data",
     secondaryLabel: "Use the data collection template",
     secondaryHref: "/en/resources/scope-1-2-data-collection-template"
-  }
+  },
+  relatedServices: {
+    title: "Where the emissions figures usually go next",
+    body:
+      "A documented Scope 1 and Scope 2 calculation is rarely the end point. The same figures are normally requested again elsewhere.",
+    links: [
+      {
+        title: "VSME sustainability reporting",
+        body: "Voluntary sustainability reporting draws on the same energy and emissions data, so the calculation basis feeds directly into it.",
+        href: "/en/vsme-sustainability-report"
+      },
+      {
+        title: "Customer ESG requests",
+        body: "Customers frequently ask for emissions figures as part of a broader supplier information request.",
+        href: "/en/esg-customer-requests"
+      }
+    ]
+  },
+  faq: [
+    {
+      question: "What is the difference between Scope 1, Scope 2 and Scope 3?",
+      answer:
+        "Scope 1 is direct emissions from sources the company owns or controls. Scope 2 is indirect emissions from purchased electricity, heat, steam and cooling. Scope 3 covers other indirect emissions across the value chain, such as purchased goods, transport and business travel. This service covers Scope 1 and Scope 2; our Scope 1, 2 and 3 explainer sets out the wider picture."
+    },
+    {
+      question: "What is the difference between location-based and market-based Scope 2?",
+      answer:
+        "Location-based Scope 2 uses the average emissions intensity of the grid the company draws from. Market-based Scope 2 reflects contractual instruments such as a supplier-specific factor or an energy attribute certificate. The GHG Protocol Scope 2 Guidance sets out both methods; which are reported depends on the data and contracts available."
+    },
+    {
+      question: "What data do we need to provide?",
+      answer:
+        "Electricity and heat consumption for the reporting period, fuel and vehicle records, refrigerant records where relevant, and enough company information to define the boundary. Invoices and meter readings are usually the practical starting point."
+    },
+    {
+      question: "What if some consumption data is missing?",
+      answer:
+        "The gap is documented, and where an estimate is used the method and assumption are recorded with it. A calculated figure should always be traceable back to the input it came from."
+    },
+    {
+      question: "Do we receive only the final number?",
+      answer:
+        "No. You receive the calculation basis: activity data, units, emission factors, factor sources, assumptions and the boundary the result applies to, so the figure can be reviewed and defended."
+    },
+    {
+      question: "Is the calculation audited or verified?",
+      answer:
+        "No. Evipace prepares and documents the calculation; it is not an assurance or verification service. If third-party verification is required, the documented basis is what a verifier would work from."
+    },
+    {
+      question: "Does this cover Scope 3?",
+      answer:
+        "Not as standard. Scope 3 is a separate exercise with different data requirements and a much wider boundary. Where a customer request touches Scope 3, we say so rather than silently extending the calculation."
+    }
+  ]
 };
 
 export const ecovadisSupportContent: CommercialServicePageContent = {
@@ -869,6 +1103,31 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     "The difficult part is often not finding one answer. It is understanding what the question requires, locating the right supporting material and keeping answers consistent with what the company can actually evidence.",
     "Evipace helps structure that work before your company submits the assessment."
   ],
+  directAnswers: {
+    eyebrow: "The short version",
+    items: [
+      {
+        question: "What is EcoVadis?",
+        answer: [
+          "EcoVadis is an independent business sustainability rating provider that assesses companies through an online questionnaire and the supporting documents they upload.",
+          "Large buyers commonly ask suppliers to complete an EcoVadis assessment, which covers environmental topics, labour and human rights, ethics and sustainable procurement. Answers are expected to be backed by documents that genuinely support them.",
+          "Evipace is an independent service provider and is not affiliated with EcoVadis. The assessment is run by EcoVadis; what its methodology expects of supporting documents is set out in its own documentation."
+        ]
+      },
+      {
+        question: "What documents does an EcoVadis assessment usually need?",
+        answer: [
+          "Documents that evidence the specific answers being given, rather than a general library of company paperwork.",
+          "That typically means approved policies, management-system certificates, environmental and workforce records, procurement documents and any relevant reports — each matching the entity, site and reporting period the assessment covers.",
+          "The number of documents that can be submitted is limited, so relevance matters more than volume."
+        ]
+      }
+    ],
+    sources: [
+      primarySources.ecovadisSupportingDocuments,
+      primarySources.ecovadisDocumentLimit
+    ]
+  },
   primaryCta: "Send us your EcoVadis request",
   secondaryCta: {
     label: "See the EcoVadis evidence guide",
@@ -1104,7 +1363,61 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     primaryLabel: "Send us your EcoVadis request",
     secondaryLabel: "See our methodology",
     secondaryHref: "/en/methodology"
-  }
+  },
+  relatedServices: {
+    title: "Related Evipace services",
+    body:
+      "An EcoVadis assessment usually overlaps with work a company is already doing for other customers.",
+    links: [
+      {
+        title: "ESG questionnaire support",
+        body: "For customer questionnaires outside the platform that ask for much of the same information.",
+        href: "/en/esg-questionnaire-support"
+      },
+      {
+        title: "Scope 1 & 2 calculation",
+        body: "When the assessment asks for emissions figures the company does not yet calculate.",
+        href: "/en/scope-1-2-calculation"
+      }
+    ]
+  },
+  faq: [
+    {
+      question: "What is EcoVadis?",
+      answer:
+        "EcoVadis is an independent business sustainability rating provider. Companies complete an online questionnaire covering environment, labour and human rights, ethics and sustainable procurement, and upload documents supporting their answers. Buyers commonly ask suppliers to go through the assessment as part of supplier management."
+    },
+    {
+      question: "What documents are typically needed?",
+      answer:
+        "Documents that support the specific answers given: approved policies, management-system certificates, environmental and workforce records, and procurement documents. Each should match the entity, site and reporting period covered by the assessment. Because the number of documents that can be submitted is limited, choosing relevant evidence matters more than uploading everything available."
+    },
+    {
+      question: "What can be used as evidence?",
+      answer:
+        "A document that demonstrates what the answer claims. A certificate does not automatically answer every environmental question, and an existing policy does not by itself prove implementation. Where a document only partly supports an answer, that limitation is better recorded than overstated."
+    },
+    {
+      question: "Can Evipace guarantee a score or medal?",
+      answer:
+        "No. Evipace does not control scoring, document acceptance or assessment outcomes, and does not promise a score, medal level or improvement. The work is preparing accurate, well-evidenced response material."
+    },
+    {
+      question: "How does Evipace support the preparation?",
+      answer:
+        "We break the assessment into concrete information and evidence requirements, identify which internal function is likely to hold each answer, organise the available documents against the questions, prepare response material from what the company can support, and keep gaps visible for internal decision."
+    },
+    {
+      question: "What happens if a required document does not exist?",
+      answer:
+        "It is recorded as a gap. Where a real company practice exists but is undocumented, a draft can be prepared for internal review and approval — but a newly written document is not presented as evidence of past implementation."
+    },
+    {
+      question: "Who submits the assessment?",
+      answer:
+        "Your company. It keeps control of its EcoVadis account, confirms the company-specific statements and makes the final submission."
+    }
+  ]
 };
 
 export const integrityNextSupportContent: CommercialServicePageContent = {
@@ -1116,6 +1429,31 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
     "If the information is scattered across the business, the difficult part is determining what already exists, who owns it and what still needs to be prepared.",
     "Evipace helps organise the required information and evidence so your company can complete the request with a clear internal review trail."
   ],
+  directAnswers: {
+    eyebrow: "The short version",
+    items: [
+      {
+        question: "What is IntegrityNext?",
+        answer: [
+          "IntegrityNext is a supply-chain sustainability and compliance platform that buyers use to collect and monitor information about their suppliers.",
+          "Suppliers are invited by a customer to create or update a company profile and complete assessments covering topics such as environment, health and safety, labour and human rights, and business ethics. Certificates and supporting documents can be attached to the profile.",
+          "Evipace is an independent service provider and is not affiliated with IntegrityNext. How the assessments work is documented by IntegrityNext itself."
+        ]
+      },
+      {
+        question: "What happens after a customer sends an invitation?",
+        answer: [
+          "The invited company sets up or updates its supplier profile and works through the assessments its customer has requested.",
+          "That normally means confirming company and site details, answering the assessment questions, and uploading valid certificates or other supporting documents where they exist.",
+          "Assessments can be reissued or flagged for follow-up later, so the underlying company information is worth keeping in a form that can be reused rather than reassembled each time."
+        ]
+      }
+    ],
+    sources: [
+      primarySources.integrityNextCompletingAssessment,
+      primarySources.integrityNextUpdatedAssessments
+    ]
+  },
   primaryCta: "Send us the IntegrityNext request",
   secondaryCta: {
     label: "See the supplier invitation guide",
@@ -1351,7 +1689,61 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
     primaryLabel: "Send us the IntegrityNext request",
     secondaryLabel: "See our methodology",
     secondaryHref: "/en/methodology"
-  }
+  },
+  relatedServices: {
+    title: "Related Evipace services",
+    body:
+      "The information an IntegrityNext profile asks for usually overlaps with other supplier requests already in progress.",
+    links: [
+      {
+        title: "ESG questionnaire support",
+        body: "For customer questionnaires outside the platform that ask for much of the same company information.",
+        href: "/en/esg-questionnaire-support"
+      },
+      {
+        title: "Customer ESG requests",
+        body: "For the wider set of ESG requests arriving from customers in other formats.",
+        href: "/en/esg-customer-requests"
+      }
+    ]
+  },
+  faq: [
+    {
+      question: "What is IntegrityNext?",
+      answer:
+        "IntegrityNext is a supply-chain sustainability and compliance platform used by buyers to collect and monitor supplier information. Suppliers are invited to maintain a company profile and complete assessments covering areas such as environment, health and safety, labour and human rights, and business ethics."
+    },
+    {
+      question: "We received an invitation from a customer. What happens next?",
+      answer:
+        "The company sets up or updates its supplier profile and works through the assessments the customer has requested. That usually means confirming company and site information, answering the assessment questions and attaching valid certificates or other supporting documents where they exist."
+    },
+    {
+      question: "Do we need certificates to complete the assessments?",
+      answer:
+        "Not necessarily. Where a valid certificate exists it can support the relevant answers. Where it does not, the questions are answered on the basis of what the company can actually evidence, and missing items are recorded rather than implied."
+    },
+    {
+      question: "Which departments are usually involved?",
+      answer:
+        "Typically Quality and EHS, HR, Procurement, Operations and Management, depending on the assessments requested. Part of the work is identifying which function holds each answer so the request does not stall on one person."
+    },
+    {
+      question: "Can Evipace guarantee a particular status or result?",
+      answer:
+        "No. Evipace does not control assessment outcomes, document acceptance or any status shown to your customer, and makes no promise about them."
+    },
+    {
+      question: "Does Evipace access our platform account?",
+      answer:
+        "Your company keeps control of its own account and makes the final submission. Evipace prepares the underlying company data, evidence and answer material for internal confirmation."
+    },
+    {
+      question: "What if the assessments are reissued later?",
+      answer:
+        "Assessments can be updated or flagged for review over time. Because the work is structured around the company information rather than around one submission, most of it can be reviewed and reused rather than rebuilt."
+    }
+  ]
 };
 
 export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
@@ -1363,6 +1755,31 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     "Energy, emissions, workforce data, policies, environmental information and governance-related information may sit across several internal functions.",
     "Evipace helps structure the relevant information, identify missing inputs and prepare a reviewable VSME reporting draft based on the company data available."
   ],
+  directAnswers: {
+    eyebrow: "The short version",
+    items: [
+      {
+        question: "What is VSME?",
+        answer: [
+          "VSME is the voluntary sustainability reporting standard for non-listed small and medium-sized enterprises developed by EFRAG.",
+          "It is structured so a smaller company can report sustainability information in a recognised format without applying the full set of standards written for large, mandatory reporters. It is organised into a Basic Module and a more detailed Comprehensive Module.",
+          "It is commonly used to answer customer, bank and supply-chain information requests with one consistent set of company data."
+        ]
+      },
+      {
+        question: "Is VSME mandatory?",
+        answer: [
+          "No. VSME is a voluntary standard; it does not by itself place a reporting obligation on an SME.",
+          "Companies generally prepare it because a customer, bank or other counterparty asks for structured sustainability information, not because a law requires the report.",
+          "European sustainability reporting rules continue to change, and whether any mandatory obligation applies to a specific company depends on that company's own circumstances. This is general information, not legal advice — the current status of the standard and the underlying legislation is published by EFRAG and in the Official Journal."
+        ]
+      }
+    ],
+    sources: [
+      primarySources.efragVoluntaryStandard,
+      primarySources.eurLexReportingDirective
+    ]
+  },
   primaryCta: "Send us your VSME reporting request",
   secondaryCta: {
     label: "See what VSME data to prepare",
@@ -1615,5 +2032,59 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     primaryLabel: "Send us your VSME reporting request",
     secondaryLabel: "See the VSME data guide",
     secondaryHref: "/en/resources/vsme-data-sustainability-report"
-  }
+  },
+  relatedServices: {
+    title: "What the report is usually built on",
+    body:
+      "A VSME report is only as good as the company data underneath it. Two adjoining pieces of work come up in almost every reporting engagement.",
+    links: [
+      {
+        title: "Scope 1 & 2 calculation",
+        body: "Energy and emissions figures reported under VSME have to be calculated and documented before they can be reported.",
+        href: "/en/scope-1-2-calculation"
+      },
+      {
+        title: "Customer ESG requests",
+        body: "The same structured data usually answers the customer requests that prompted the report in the first place.",
+        href: "/en/esg-customer-requests"
+      }
+    ]
+  },
+  faq: [
+    {
+      question: "What is VSME?",
+      answer:
+        "VSME is the voluntary sustainability reporting standard for non-listed small and medium-sized enterprises developed by EFRAG. It lets a smaller company report sustainability information in a recognised structure, organised into a Basic Module and a more detailed Comprehensive Module, without applying the full set of standards written for large mandatory reporters."
+    },
+    {
+      question: "Is VSME mandatory?",
+      answer:
+        "No. VSME is a voluntary standard and does not by itself create a reporting obligation. Companies usually prepare it because a customer, bank or other counterparty has asked for structured sustainability information. Whether any mandatory reporting requirement applies to a particular company depends on that company's own circumstances; this is general information rather than legal advice."
+    },
+    {
+      question: "Who is VSME intended for?",
+      answer:
+        "Non-listed small and medium-sized enterprises, including manufacturing suppliers that receive sustainability information requests from larger customers but are not themselves subject to mandatory reporting."
+    },
+    {
+      question: "How is VSME different from mandatory ESRS reporting?",
+      answer:
+        "The ESRS are the reporting standards used for mandatory corporate sustainability reporting under EU law. VSME is a separate, voluntary standard with a much smaller and simpler set of disclosures, designed for SMEs that are not in scope of that mandatory regime but still need to provide structured information."
+    },
+    {
+      question: "What information does a VSME report need?",
+      answer:
+        "Company and site information, energy consumption, Scope 1 and Scope 2 emissions, other environmental data such as water and waste where relevant, workforce and health-and-safety figures, and information about policies and governance. The Comprehensive Module adds further detail. Our VSME data guide sets out the practical list."
+    },
+    {
+      question: "Can a VSME report help answer customer ESG requests?",
+      answer:
+        "Usually, yes. The data collected for the report is the same data customers, banks and supplier platforms ask for. Prepared once and kept structured, it can be reused for later requests after checking the reporting period and continued validity."
+    },
+    {
+      question: "Do you audit or assure the report?",
+      answer:
+        "No. Evipace prepares the reporting content and its data foundation, with sources, assumptions and gaps documented. It is not an audit or assurance service."
+    }
+  ]
 };

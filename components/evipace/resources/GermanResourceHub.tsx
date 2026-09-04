@@ -30,6 +30,44 @@ const links = {
   vsmeData: "/de/ressourcen/vsme-daten-nachhaltigkeitsbericht"
 } as const;
 
+/**
+ * Die kommerzielle Entsprechung zu den Leitfäden oben. Der Hub bleibt
+ * redaktionell, deshalb steht dieser Block als ruhiges Band am Seitenfuß —
+ * aber jede Leistung bekommt von hier einen echten, beschreibenden Link.
+ */
+const services = [
+  {
+    title: "ESG-Kundenanfragen",
+    href: "/de/esg-kundenanfragen",
+    body: "Kundenanfragen in jedem Format – von Excel-Dateien bis zu Portalformularen."
+  },
+  {
+    title: "ESG-Fragebögen für Lieferanten",
+    href: "/de/esg-fragebogen-lieferanten",
+    body: "Ein konkreter Fragebogen oder ein Lieferanten-Assessment, das Feld für Feld beantwortet werden muss."
+  },
+  {
+    title: "EcoVadis-Unterstützung",
+    href: "/de/ecovadis-unterstuetzung",
+    body: "Antworten, Nachweise und offene Punkte strukturiert vor der Einreichung vorbereiten."
+  },
+  {
+    title: "IntegrityNext-Unterstützung",
+    href: "/de/integritynext-unterstuetzung",
+    body: "Profil, Assessments, Zertifikate und die Unternehmensdaten hinter jeder Angabe."
+  },
+  {
+    title: "Scope 1 & 2 berechnen",
+    href: "/de/scope-1-2-berechnung",
+    body: "Eine dokumentierte Berechnung mit Aktivitätsdaten, Faktoren, Quellen und Annahmen."
+  },
+  {
+    title: "VSME-Nachhaltigkeitsbericht",
+    href: "/de/vsme-nachhaltigkeitsbericht",
+    body: "Freiwillige Berichterstattung auf einer geprüften Datengrundlage."
+  }
+];
+
 const checklistCount = allChecklistItems.length;
 const evidenceCheckCount = allEvidenceChecks.length;
 
@@ -629,6 +667,47 @@ export function GermanResourceHub() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="services-title"
+        className="py-20 sm:py-24 lg:py-28"
+      >
+        <div className="site-shell">
+          <div className="max-w-3xl">
+            <p className="eyebrow">WENN SIE ES NICHT INTERN ERLEDIGEN MÖCHTEN</p>
+            <h2
+              className="font-display mt-5 text-[clamp(2.4rem,4.8vw,4.4rem)] leading-[0.98] text-ink"
+              id="services-title"
+            >
+              Dieselbe Arbeit – für Sie vorbereitet.
+            </h2>
+            <p className="mt-6 text-base leading-8 text-muted sm:text-lg">
+              Hinter jedem Leitfaden steht eine Leistung. Gleiche Methodik,
+              gleiche Nachweisdisziplin – nur übernimmt Evipace die Umsetzung.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <div
+                className="border-t border-[rgba(21,21,21,0.16)] pt-5"
+                key={service.href}
+              >
+                <h3 className="text-base font-bold leading-tight text-ink">
+                  <Link
+                    className="transition hover:text-orange"
+                    href={service.href}
+                  >
+                    {service.title}
+                  </Link>
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted">
+                  {service.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -12,6 +12,7 @@ import { RequirementCategories } from "@/components/evipace/esg-fragebogen-liefe
 import { TargetCompanies } from "@/components/evipace/esg-fragebogen-lieferanten/TargetCompanies";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildServiceSchema } from "@/lib/seo/schema/service";
@@ -51,7 +52,11 @@ export default async function EsgFragebogenLieferantenPage({
       locale,
       PAGE_KEY,
       "ESG-Fragebogen- und Nachweisvorbereitung für Lieferanten"
-    )
+    ),
+    buildBreadcrumbListSchema([
+      { name: "Startseite", path: "/de" },
+      { name: "ESG-Fragebögen für Lieferanten", path: "/de/esg-fragebogen-lieferanten" }
+    ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   return (

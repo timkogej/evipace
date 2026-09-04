@@ -268,14 +268,9 @@ test("the homepage changed only by the intentional capitalisation literals", () 
       "components/evipace/english-home/ExecutionGap.tsx",
       [["Evipace works in that gap.", "evipace works in that gap."]]
     ],
-    [
-      "components/evipace/english-home/AboutEvipace.tsx",
-      [
-        ["Evipace was built around", "evipace was built around"],
-        ['eyebrow="About Evipace"', 'eyebrow="About evipace"'],
-        ["<span>About Evipace</span>", "<span>About evipace</span>"]
-      ]
-    ]
+    // AboutEvipace is excluded on purpose: a later round added the
+    // geography paragraph naming Germany and Austria, so it is no longer a
+    // capitalisation-only file. Its copy is pinned by phase-2-geo.test.mjs.
   ];
   for (const [file, replacements] of edits) {
     let working = readFileSync(new URL(file, root), "utf8");

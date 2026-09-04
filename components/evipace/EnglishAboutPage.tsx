@@ -179,6 +179,12 @@ export function EnglishAboutPage() {
             <Rise step={1}>
               <div className="about-body text-muted">
                 <p>
+                  Evipace is a Slovenia-based ESG service provider that helps
+                  manufacturing companies and their suppliers prepare the ESG
+                  data, documentation and evidence their customers and supply
+                  chains ask for.
+                </p>
+                <p>
                   Evipace was created to give manufacturing companies a
                   practical alternative between large ESG consulting projects
                   and self-service software.
@@ -497,6 +503,41 @@ export function EnglishAboutPage() {
               What is organised for one customer today can become the
               starting point for the next requirement tomorrow.
             </p>
+            <div className="about-body mt-6 text-muted">
+              <p>
+                In practice that usually means{" "}
+                <Link className="orange-link" href="/en/esg-customer-requests">
+                  customer ESG requests
+                </Link>
+                ,{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/esg-questionnaire-support"
+                >
+                  supplier questionnaires
+                </Link>
+                ,{" "}
+                <Link className="orange-link" href="/en/ecovadis-support">
+                  EcoVadis
+                </Link>{" "}
+                and{" "}
+                <Link className="orange-link" href="/en/integritynext-support">
+                  IntegrityNext
+                </Link>{" "}
+                preparation,{" "}
+                <Link className="orange-link" href="/en/scope-1-2-calculation">
+                  Scope 1 and Scope 2 calculations
+                </Link>{" "}
+                and{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/vsme-sustainability-report"
+                >
+                  VSME sustainability reporting
+                </Link>
+                .
+              </p>
+            </div>
             <div className="mt-6">
               <Link className="orange-link" href="/en#services">
                 Explore our services
@@ -658,6 +699,13 @@ export function EnglishAboutPage() {
                 The more structured this information becomes, the easier it is
                 to reuse: for another customer, another platform, a report or
                 the next internal decision.
+              </p>
+              <p>
+                Our{" "}
+                <Link className="orange-link" href="/en/resources">
+                  practical ESG guides for suppliers
+                </Link>{" "}
+                set out how that foundation can be built in-house.
               </p>
             </div>
           </Rise>

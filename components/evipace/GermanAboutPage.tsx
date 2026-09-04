@@ -180,6 +180,13 @@ export function GermanAboutPage() {
             <Rise step={1}>
               <div className="about-body text-muted">
                 <p>
+                  Evipace ist ein in Slowenien gegründeter ESG-Dienstleister,
+                  der produzierende Unternehmen und ihre Zulieferer dabei
+                  unterstützt, die ESG-Daten, Unterlagen und Nachweise
+                  vorzubereiten, die Kunden und Lieferketten von ihnen
+                  verlangen.
+                </p>
+                <p>
                   Evipace wurde gegründet, um produzierenden Unternehmen eine
                   praktische Alternative zwischen umfangreichen
                   ESG-Beratungsprojekten und reinen Self-Service-Lösungen zu
@@ -505,6 +512,44 @@ export function GermanAboutPage() {
               Was heute für einen Kunden strukturiert wird, kann morgen die
               Grundlage für die nächste ESG-Anforderung sein.
             </p>
+            <div className="about-body mt-6 text-muted">
+              <p>
+                In der Praxis sind das meist{" "}
+                <Link className="orange-link" href="/de/esg-kundenanfragen">
+                  ESG-Kundenanfragen
+                </Link>
+                ,{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/esg-fragebogen-lieferanten"
+                >
+                  ESG-Fragebögen für Lieferanten
+                </Link>
+                , die Vorbereitung von{" "}
+                <Link className="orange-link" href="/de/ecovadis-unterstuetzung">
+                  EcoVadis
+                </Link>{" "}
+                und{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/integritynext-unterstuetzung"
+                >
+                  IntegrityNext
+                </Link>
+                ,{" "}
+                <Link className="orange-link" href="/de/scope-1-2-berechnung">
+                  Scope-1- und Scope-2-Berechnungen
+                </Link>{" "}
+                sowie der{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/vsme-nachhaltigkeitsbericht"
+                >
+                  VSME-Nachhaltigkeitsbericht
+                </Link>
+                .
+              </p>
+            </div>
             <div className="mt-6">
               <Link className="orange-link" href="/de#leistungen">
                 Unsere Leistungen ansehen
@@ -669,6 +714,13 @@ export function GermanAboutPage() {
                 lassen sie sich später wiederverwenden: für einen anderen
                 Kunden, eine andere Plattform, einen Bericht oder die nächste
                 interne Entscheidung.
+              </p>
+              <p>
+                Wie sich eine solche Grundlage aufbauen lässt, zeigen unsere{" "}
+                <Link className="orange-link" href="/de/ressourcen">
+                  praktischen ESG-Leitfäden für Lieferanten
+                </Link>
+                .
               </p>
             </div>
           </Rise>

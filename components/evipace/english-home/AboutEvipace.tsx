@@ -48,6 +48,11 @@ export function AboutEvipace() {
               structure it, calculate what is missing and turn it into something
               usable.
             </p>
+            <p>
+              Evipace was founded in Slovenia and works with companies across
+              European supply chains — including suppliers answering to
+              customers in markets such as Germany and Austria.
+            </p>
           </div>
 
           <div className="flex items-start gap-4 border-t border-[rgba(21,21,21,0.13)] pt-7">

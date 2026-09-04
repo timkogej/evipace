@@ -6,7 +6,7 @@ import { FileDropzone } from "./FileDropzone";
 import { SuccessState } from "./SuccessState";
 import { defaultSendRequestCopy, type SendRequestCopy } from "./copy";
 import { uploadFile, type UploadTarget } from "@/lib/client/upload-file";
-import { privacyPolicyPath } from "@/lib/legal-info";
+import { getPrivacyPolicyPath } from "@/lib/legal-info";
 
 type Stage = "form" | "uploading" | "success";
 
@@ -257,17 +257,12 @@ export function RequestForm({
       ) : null}
 
       <p className="mt-6 text-sm leading-6 text-muted">
-        {formCopy.privacy.intro}
-        {privacyPolicyPath ? (
-          <>
-            {" "}
-            {formCopy.privacy.linkPrefix}{" "}
-            <a className="orange-link" href={privacyPolicyPath}>
-              {formCopy.privacy.linkLabel}
-            </a>
-            .
-          </>
-        ) : null}
+        {formCopy.privacy.intro}{" "}
+        {formCopy.privacy.linkPrefix}{" "}
+        <a className="orange-link" href={getPrivacyPolicyPath(locale)}>
+          {formCopy.privacy.linkLabel}
+        </a>
+        .
       </p>
 
       <button

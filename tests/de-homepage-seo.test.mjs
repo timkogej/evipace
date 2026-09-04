@@ -350,8 +350,7 @@ test("German methodology preserves critical trust language and claim limits", ()
     "Wenn Scope 3 Teil des vereinbarten Auftrags ist",
     "Scheinbare Präzision ist nicht besser als transparent dokumentierte Unsicherheit.",
     "Die endgültige Eingabe beziehungsweise Einreichung auf der Plattform erfolgt durch das Unternehmen selbst.",
-    "Evipace ist ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden.",
-    "Zuletzt methodisch geprüft: 21. August 2026"
+    "Evipace ist ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden."
   ];
 
   const normalizedMethodology = normalizeWhitespace(germanMethodologySource);
@@ -399,8 +398,7 @@ test("English methodology preserves the approved workflow, trust language, and c
     "The final entry or submission on the external platform is made by the company itself.",
     "Evipace is an independent service provider and is not affiliated with EcoVadis or IntegrityNext.",
     "Your responsibility. Our responsibility.",
-    "Announced changes are not treated as rules that are already in force.",
-    "Last methodologically reviewed: 21 August 2026"
+    "Announced changes are not treated as rules that are already in force."
   ];
 
   const normalizedMethodology = normalizeWhitespace(englishMethodologySource);

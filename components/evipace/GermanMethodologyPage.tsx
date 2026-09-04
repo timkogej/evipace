@@ -9,6 +9,9 @@ import {
 import Link from "next/link";
 import { ButtonLink } from "./ButtonLink";
 import { InView } from "./home-sections/InView";
+import { LastReviewed } from "./trust/LastReviewed";
+import { primarySources } from "@/lib/seo/primary-sources";
+import { SourceNote } from "./trust/SourceNote";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -332,20 +335,19 @@ function Rise({
 }
 
 function GermanReviewedLine({ date }: { date?: string }) {
+  if (!date) {
+    return null;
+  }
+
   return (
     <section className="section-padding py-8 sm:py-10">
       <div className="site-shell">
         <Rise className="max-w-3xl border-t border-[rgba(21,21,21,0.12)] pt-6">
-          <p className="text-sm font-bold text-[rgba(21,21,21,0.55)]">
-            Zuletzt methodisch geprüft: 21. August 2026
-          </p>
+          <LastReviewed date={date} locale="de" />
           <p className="methodology-prose mt-3 text-sm leading-7 text-muted">
             Dieser Zeitpunkt bezeichnet die letzte inhaltliche Prüfung dieser
             Methodik – nicht das Datum eines Website-Deployments.
           </p>
-          {date ? (
-            <p className="sr-only">Registry lastReviewed: {date}</p>
-          ) : null}
         </Rise>
       </div>
     </section>
@@ -611,6 +613,34 @@ export function GermanMethodologyPage({
             <p className="font-semibold text-ink">
               Nicht mit einer gewünschten Endzahl.
             </p>
+            <p>
+              Die zugrunde liegenden Bilanzierungskonzepte – organisatorische
+              und operative Abgrenzung, die Trennung von Scope 1 und Scope 2
+              sowie die location-based und market-based Betrachtung von
+              eingekauftem Strom – folgen den Corporate-Standards des GHG
+              Protocol.
+            </p>
+            <p>
+              Das konkrete Angebot beschreiben wir auf der Seite zur{" "}
+              <Link className="orange-link" href="/de/scope-1-2-berechnung">
+                Scope-1- und Scope-2-Berechnung
+              </Link>
+              ; die Begriffe selbst erklären wir in{" "}
+              <Link
+                className="orange-link"
+                href="/de/ressourcen/scope-1-2-3-einfach-erklaert"
+              >
+                Scope 1, 2 und 3 einfach erklärt
+              </Link>
+              .
+            </p>
+            <SourceNote
+              locale="de"
+              sources={[
+                primarySources.ghgCorporateStandard,
+                primarySources.ghgScope2Guidance
+              ]}
+            />
           </Rise>
 
           <div className="mt-12 grid gap-6">
@@ -818,8 +848,31 @@ export function GermanMethodologyPage({
               </p>
               <p>
                 Evipace ist ein unabhängiger Dienstleister und weder mit
-                EcoVadis noch mit IntegrityNext verbunden.
+                EcoVadis noch mit IntegrityNext verbunden. Was die Plattformen
+                von Lieferanten erwarten, dokumentieren die Betreiber selbst;
+                darauf stützen sich unsere Leitfäden zu{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/ressourcen/ecovadis-dokumente-nachweise"
+                >
+                  EcoVadis-Dokumenten und Nachweisen
+                </Link>{" "}
+                und zur{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/ressourcen/integritynext-einladung-lieferanten"
+                >
+                  IntegrityNext-Einladung
+                </Link>
+                .
               </p>
+              <SourceNote
+                locale="de"
+                sources={[
+                  primarySources.ecovadisSupportingDocuments,
+                  primarySources.integrityNextCompletingAssessment
+                ]}
+              />
             </Rise>
             <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8"
@@ -858,6 +911,18 @@ export function GermanMethodologyPage({
               </p>
               <p className="font-semibold text-ink">
                 Wir erstellen keine fingierten, rückdatierten oder irreführend dargestellten Nachweise.
+              </p>
+              <p>
+                Welche Prüfkriterien wir an ein einzelnes Dokument anlegen –
+                Geltungsbereich, Zeitraum, Gültigkeit, Quelle und
+                Nachvollziehbarkeit – beschreibt unser Leitfaden zu{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/ressourcen/esg-nachweise-lieferanten"
+                >
+                  ESG-Nachweisen für Lieferanten
+                </Link>
+                .
               </p>
             </Rise>
             <Rise
@@ -1036,6 +1101,19 @@ export function GermanMethodologyPage({
                 Wo Versionen oder methodische Referenzen für das Ergebnis
                 relevant sind, sollen sie nachvollziehbar bleiben.
               </p>
+              <p>
+                Die Referenzen, mit denen wir am häufigsten arbeiten, werden
+                von den Standardsetzern und den europäischen Institutionen
+                selbst veröffentlicht.
+              </p>
+              <SourceNote
+                locale="de"
+                sources={[
+                  primarySources.ghgCorporateStandard,
+                  primarySources.efragVoluntaryStandard,
+                  primarySources.ecCsrd
+                ]}
+              />
             </Rise>
             <div className="grid gap-5">
               <Rise className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-7">
@@ -1089,8 +1167,19 @@ export function GermanMethodologyPage({
                 >
                   VSME-Nachhaltigkeitsbericht
                 </Link>
+                ; welche Angaben ein Unternehmen vorbereiten sollte, zeigt der{" "}
+                <Link
+                  className="orange-link"
+                  href="/de/ressourcen/vsme-daten-nachhaltigkeitsbericht"
+                >
+                  VSME-Datenleitfaden
+                </Link>
                 .
               </p>
+              <SourceNote
+                locale="de"
+                sources={[primarySources.efragVoluntaryStandard]}
+              />
             </Rise>
             <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8"

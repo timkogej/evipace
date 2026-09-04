@@ -3,8 +3,19 @@ import { SITE_URL } from "../site-config";
 import { ORGANIZATION_ID } from "./ids";
 
 /**
- * Article entity for editorial resources. Publication dates and an author are
- * intentionally omitted until Evipace has a deliberate source for them.
+ * Article entity for editorial resources.
+ *
+ * `author` and `publisher` both reference the Evipace Organization node.
+ * That is the truthful representation today: these resources are prepared
+ * by Evipace as an organization, and the pages say exactly that ("Prepared
+ * by Evipace" — see components/evipace/trust/PreparedBy.tsx). No Person
+ * author is emitted, because no individual is credited as the author of any
+ * specific resource in visible content.
+ *
+ * Publication dates are emitted only when the registry actually carries
+ * them (lib/seo/page-registry.ts). They are absent for every resource page
+ * today and stay absent until real publication records exist — a fabricated
+ * date is a worse signal than no date.
  */
 export function buildArticleSchema(
   locale: string,
@@ -27,6 +38,9 @@ export function buildArticleSchema(
     url: absoluteUrl,
     inLanguage: locale,
     mainEntityOfPage: { "@id": `${absoluteUrl}#webpage` },
-    publisher: { "@id": ORGANIZATION_ID }
+    author: { "@id": ORGANIZATION_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+    ...(entry.datePublished ? { datePublished: entry.datePublished } : {}),
+    ...(entry.dateModified ? { dateModified: entry.dateModified } : {})
   };
 }

@@ -21,6 +21,46 @@ const links = {
   reusableData: "/en/resources/reusable-esg-data"
 } as const;
 
+/**
+ * The commercial counterpart to each cluster above. The hub is editorial
+ * first, so these sit as one quiet band near the foot of the page rather
+ * than competing with the guide cards — but every service does get a real,
+ * descriptive link from here, because a reader who has worked through a
+ * guide and decided not to do it in-house should not have to go hunting.
+ */
+const services = [
+  {
+    title: "Customer ESG requests",
+    href: "/en/esg-customer-requests",
+    body: "Any format of customer sustainability request, from spreadsheets to portal forms."
+  },
+  {
+    title: "ESG questionnaire support",
+    href: "/en/esg-questionnaire-support",
+    body: "A defined questionnaire or supplier assessment that has to be answered field by field."
+  },
+  {
+    title: "EcoVadis support",
+    href: "/en/ecovadis-support",
+    body: "Assessment answers, supporting evidence and gaps prepared before submission."
+  },
+  {
+    title: "IntegrityNext support",
+    href: "/en/integritynext-support",
+    body: "Profile scope, assessments, certificates and the company data behind each answer."
+  },
+  {
+    title: "Scope 1 & 2 calculation",
+    href: "/en/scope-1-2-calculation",
+    body: "A documented calculation with activity data, factors, sources and assumptions."
+  },
+  {
+    title: "VSME sustainability reporting",
+    href: "/en/vsme-sustainability-report",
+    body: "Voluntary SME reporting built on a reviewed company data foundation."
+  }
+];
+
 type ResourceCardProps = {
   title: string;
   type: string;
@@ -558,6 +598,48 @@ export function EnglishResourceHub() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="services-title"
+        className="py-20 sm:py-24 lg:py-28"
+      >
+        <div className="site-shell">
+          <div className="max-w-3xl">
+            <p className="eyebrow">WHEN YOU WOULD RATHER NOT DO IT IN-HOUSE</p>
+            <h2
+              className="font-display mt-5 text-[clamp(2.4rem,4.8vw,4.4rem)] leading-[0.98] text-ink"
+              id="services-title"
+            >
+              The same work, prepared for you.
+            </h2>
+            <p className="mt-6 text-base leading-8 text-muted sm:text-lg">
+              Each guide above has a service behind it. Same method, same
+              evidence discipline — carried out by Evipace instead of by your
+              team.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <div
+                className="border-t border-[rgba(21,21,21,0.16)] pt-5"
+                key={service.href}
+              >
+                <h3 className="text-base font-bold leading-tight text-ink">
+                  <Link
+                    className="transition hover:text-orange"
+                    href={service.href}
+                  >
+                    {service.title}
+                  </Link>
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted">
+                  {service.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

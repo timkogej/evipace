@@ -316,8 +316,12 @@ test("the other approved sections are unchanged since the checkpoint", () => {
   // cards were intentionally redesigned — the scattered slips and their
   // hairline connectors became one aligned card grid. Its own guards live in
   // home-sections.test.mjs and evidence-board.test.mjs.
+  //
+  // ServicesSection is excluded too: a later round appended the platform
+  // assessments strip beneath the card grid, so it is no longer a
+  // checkpoint-identical file. The masonry above it is still pinned here by
+  // the layout/card guards, and the strip itself by phase-2-geo.test.mjs.
   const approved = [
-    "components/evipace/english-home/ServicesSection.tsx",
     "components/evipace/english-home/Deliverables.tsx",
     "components/evipace/home-sections/ServiceImageCard.tsx",
     "components/evipace/home-sections/DeliveryDossier.tsx",

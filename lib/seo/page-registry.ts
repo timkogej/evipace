@@ -31,8 +31,31 @@ export type PageMetadataEntry = {
    * "Last reviewed" line (regulatory/trust pages) — read by
    * components/evipace/trust/LastReviewed.tsx so the date lives in exactly
    * one place rather than being hand-typed into a component.
+   *
+   * "Reviewed" means a real, deliberate content review actually happened on
+   * that date. Never derive it from a build, deploy, or git timestamp.
    */
   lastReviewed?: string;
+  /**
+   * ISO date string. The date the page's content was genuinely first
+   * published. Feeds Article.datePublished (lib/seo/schema/article.ts) and
+   * the visible published line on editorial pages.
+   *
+   * Deliberately optional and deliberately empty for the resource pages
+   * today: this repository's history squashes every resource into one bulk
+   * import commit, so no commit date represents an actual publication
+   * event. Populate these by hand from real publication records — a git
+   * "file added" date is not a publication date, and stamping one here
+   * would assert a freshness signal that never happened.
+   */
+  datePublished?: string;
+  /**
+   * ISO date string. The date the page's content was last substantively
+   * changed. Feeds Article.dateModified. Same discipline as
+   * `datePublished`: only set this when a real content change is known,
+   * never from a deploy timestamp.
+   */
+  dateModified?: string;
 };
 
 /** Identifies a page independent of locale, e.g. "home". Grows over time. */

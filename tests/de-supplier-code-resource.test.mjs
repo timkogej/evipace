@@ -183,8 +183,10 @@ test("supplier code route is German-only and uses restrained article schema", ()
     "SoftwareApplication",
     "Review",
     "AggregateRating",
-    "datePublished",
-    "dateModified",
+    // Dates may only ever come from the page registry, never from a
+    // literal in the route — see lib/seo/page-registry.ts.
+    'datePublished: "',
+    'dateModified: "',
     '"@type": "Person"'
   ]) {
     assert.ok(!routeSource.includes(forbidden), forbidden);

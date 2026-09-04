@@ -1,6 +1,8 @@
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { ServiceImageCard } from "../home-sections/ServiceImageCard";
 import type { ServiceImageKey } from "../home-sections/service-images";
-import { services } from "./content";
+import { platformServices, services } from "./content";
 import { SectionHeading } from "./SectionHeading";
 
 /** Column spans keep the existing editorial masonry rhythm. */
@@ -68,6 +70,40 @@ export function ServicesSection() {
               title={service.title}
             />
           ))}
+        </div>
+
+        {/*
+          Platform-named work lives inside service 02, but customers ask for
+          EcoVadis and IntegrityNext by name — so both pages get a real,
+          descriptive link here rather than only a mention in the card text.
+          A quiet strip keeps the masonry above untouched.
+        */}
+        <div className="mt-10 border-t border-[rgba(21,21,21,0.13)] pt-8">
+          <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">
+            Platform assessments
+          </p>
+          <div className="mt-6 grid gap-8 sm:grid-cols-2">
+            {platformServices.map((platform) => (
+              <div key={platform.href}>
+                <h3 className="text-lg font-bold text-ink">
+                  <Link
+                    className="transition hover:text-orange"
+                    href={platform.href}
+                  >
+                    {platform.title}
+                  </Link>
+                </h3>
+                <p className="mt-3 leading-7 text-muted">{platform.body}</p>
+                <Link
+                  className="orange-link mt-4 inline-flex items-center gap-2 text-sm"
+                  href={platform.href}
+                >
+                  <span>{platform.title}</span>
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

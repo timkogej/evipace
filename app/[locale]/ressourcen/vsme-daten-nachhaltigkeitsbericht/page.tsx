@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { VsmeDataGuide } from "@/components/evipace/resources/VsmeDataGuide";
+import { PreparedBy } from "@/components/evipace/trust/PreparedBy";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
-import { isPageReachable } from "@/lib/seo/page-registry";
+import { getPageMetadataEntry, isPageReachable } from "@/lib/seo/page-registry";
 import { buildArticleSchema } from "@/lib/seo/schema/article";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
@@ -45,10 +46,17 @@ export default async function VsmeDataResourcePage({ params }: PageProps) {
     ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
+  const entry = getPageMetadataEntry(locale, PAGE_KEY);
+
   return (
     <>
       <JsonLd graph={schemaGraph} />
       <VsmeDataGuide />
+      <PreparedBy
+        dateModified={entry?.dateModified}
+        datePublished={entry?.datePublished}
+        locale="de"
+      />
     </>
   );
 }

@@ -19,6 +19,7 @@ import { TargetCompanies } from "@/components/evipace/scope-1-2-berechnung/Targe
 import { TrustStatement } from "@/components/evipace/scope-1-2-berechnung/TrustStatement";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildServiceSchema } from "@/lib/seo/schema/service";
@@ -58,7 +59,11 @@ export default async function Scope12BerechnungPage({ params }: PageProps) {
       "Berechnung von Scope-1- und Scope-2-Emissionen",
       "Berechnung von Scope-1- und Scope-2-Emissionen",
       "Unterstützung für Unternehmen bei der strukturierten Erfassung von Aktivitätsdaten, Zuordnung geeigneter Emissionsfaktoren und nachvollziehbaren Berechnung von Scope-1- und Scope-2-Treibhausgasemissionen."
-    )
+    ),
+    buildBreadcrumbListSchema([
+      { name: "Startseite", path: "/de" },
+      { name: "Scope 1 & 2", path: "/de/scope-1-2-berechnung" }
+    ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   return (

@@ -1,6 +1,7 @@
 import { FileText } from "lucide-react";
 import { ButtonLink } from "../ButtonLink";
 import { Reveal } from "../Reveal";
+import { ServiceBreadcrumb } from "../trust/ServiceBreadcrumb";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -17,6 +18,7 @@ export function LandingHero() {
       className="relative isolate overflow-hidden pt-32"
       id="top"
     >
+      <ServiceBreadcrumb current="ESG-Fragebögen für Lieferanten" />
       <div className="site-shell grid gap-12 pb-16 pt-4 sm:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">ESG-Fragebögen für Lieferanten</p>

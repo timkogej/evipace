@@ -16,6 +16,7 @@ import { TargetCompanies } from "@/components/evipace/integritynext-unterstuetzu
 import { TrustStatement } from "@/components/evipace/integritynext-unterstuetzung/TrustStatement";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildServiceSchema } from "@/lib/seo/schema/service";
@@ -57,7 +58,11 @@ export default async function IntegrityNextUnterstuetzungPage({
       "Unterstützung bei IntegrityNext-Assessments",
       "Unterstützung bei IntegrityNext-Assessments",
       "Unabhängige Unterstützung für Lieferanten bei der Vorbereitung von Angaben, Zertifikaten und Nachweisen für IntegrityNext-Assessments."
-    )
+    ),
+    buildBreadcrumbListSchema([
+      { name: "Startseite", path: "/de" },
+      { name: "IntegrityNext-Unterstützung", path: "/de/integritynext-unterstuetzung" }
+    ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   return (

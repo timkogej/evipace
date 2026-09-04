@@ -132,7 +132,11 @@ test("English homepage route and claim discipline stay within scope", () => {
     "/en/scope-1-2-calculation",
     "/en/vsme-sustainability-report",
     "/en/resources",
-    "/en/resources/reusable-esg-data"
+    "/en/resources/reusable-esg-data",
+    // Platform assessments are named services with their own pages; the
+    // services section links both directly rather than only mentioning them.
+    "/en/ecovadis-support",
+    "/en/integritynext-support"
   ]);
   const englishHrefs = [
     ...homepageSource.matchAll(/href[=:]\s*[{"'`]([^"'`}]+)["'`}]/g)

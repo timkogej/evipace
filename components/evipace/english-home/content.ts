@@ -195,3 +195,55 @@ export const deliverables = [
   "Sustainability reporting content",
   "Reusable documentation for future requests"
 ];
+
+/**
+ * Platform-specific work that sits inside service 02 (ESG questionnaires)
+ * but has its own page, because customers ask for these platforms by name.
+ * Kept as a quiet strip under the services grid rather than as two more
+ * cards, so the editorial masonry above stays as designed.
+ */
+export const platformServices = [
+  {
+    title: "EcoVadis support for suppliers",
+    href: "/en/ecovadis-support",
+    body: "Prepare EcoVadis questionnaire responses and the supporting evidence behind them, before your company submits."
+  },
+  {
+    title: "IntegrityNext support for suppliers",
+    href: "/en/integritynext-support",
+    body: "Work through an IntegrityNext invitation: profile scope, assessments, certificates and the company data behind each answer."
+  }
+];
+
+export const homeFaq = [
+  {
+    question: "What does Evipace do?",
+    answer:
+      "Evipace prepares the practical ESG work a manufacturing company or supplier is asked to produce: customer ESG requests and questionnaires, Scope 1 and Scope 2 calculations, voluntary sustainability reporting, policy drafts and supporting evidence. The work starts from the information the company already has, and every figure keeps its source, method and assumptions visible."
+  },
+  {
+    question: "Who is Evipace for?",
+    answer:
+      "Manufacturing companies and industrial suppliers, typically small and mid-sized, that receive sustainability requirements from larger customers in European supply chains. It is built for companies with real operational data spread across Finance, HR, Quality, EHS, Operations and Procurement — not for companies with a dedicated sustainability department."
+  },
+  {
+    question: "What kinds of ESG requests can Evipace handle?",
+    answer:
+      "Customer questionnaires and spreadsheets, supplier portal forms, platform invitations such as EcoVadis and IntegrityNext, emissions data requests, requests for policies or certificates, and voluntary sustainability reporting. If it arrived from a customer and asks for sustainability information, it is in scope."
+  },
+  {
+    question: "Does Evipace support EcoVadis and IntegrityNext?",
+    answer:
+      "Yes, as an independent service provider. We help prepare the answers, company data and supporting evidence for both. Evipace is not affiliated with either platform, does not control scoring or document acceptance, and does not promise a score, medal or status. Your company keeps its platform account and makes the final submission."
+  },
+  {
+    question: "Do we need an ESG system in place before starting?",
+    answer:
+      "No. Most companies start with scattered information rather than a system: invoices, certificates, HR records and practices that are real but undocumented. Identifying what exists, what has to be calculated and what is genuinely missing is the first part of the work."
+  },
+  {
+    question: "What should we send to get started?",
+    answer:
+      "Whatever your customer sent you — the questionnaire, email, spreadsheet, PDF or platform export — plus any documents you already have. There is no need to rewrite the request, prepare a brief or decide which service you need first."
+  }
+];

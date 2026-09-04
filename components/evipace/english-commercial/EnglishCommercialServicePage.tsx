@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "../ButtonLink";
+import { SourceNote } from "../trust/SourceNote";
 import type { CommercialServicePageContent } from "./content";
 
 const SEND_REQUEST_HREF = "/en/send-request";
@@ -141,6 +142,95 @@ function Hero({ content }: { content: CommercialServicePageContent }) {
         </div>
       </div>
     </header>
+  );
+}
+
+/**
+ * Direct answers to the definitional questions a first-time reader arrives
+ * with, placed immediately under the hero. Kept visually quiet on purpose:
+ * this is reference material, not a second pitch, and the commercial
+ * argument continues in the sections below it.
+ */
+function DirectAnswers({
+  content
+}: {
+  content: CommercialServicePageContent;
+}) {
+  if (!content.directAnswers) return null;
+
+  const { eyebrow, items, sources } = content.directAnswers;
+
+  return (
+    <section
+      aria-labelledby="direct-answers-title"
+      className="border-y border-[rgba(21,21,21,0.09)] bg-white py-14 sm:py-16"
+      id="what-it-is"
+    >
+      <div className="site-shell">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="sr-only" id="direct-answers-title">
+          {eyebrow}
+        </h2>
+        <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-14">
+          {items.map((item) => (
+            <div className="max-w-2xl" key={item.question}>
+              <h3 className="font-display text-[clamp(1.65rem,2.6vw,2.3rem)] leading-tight text-ink">
+                {item.question}
+              </h3>
+              <div className="mt-5 space-y-4 text-base leading-8 text-muted">
+                {item.answer.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        {sources ? <SourceNote sources={sources} /> : null}
+      </div>
+    </section>
+  );
+}
+
+function FaqSection({ content }: { content: CommercialServicePageContent }) {
+  if (!content.faq?.length) return null;
+
+  return (
+    <section
+      aria-labelledby="faq-title"
+      className="section-padding bg-white"
+      id="faq"
+    >
+      <div className="site-shell max-w-5xl">
+        <p className="eyebrow">FAQ</p>
+        <h2
+          className="font-display mt-5 text-[clamp(2.35rem,4.8vw,4.5rem)] leading-none"
+          id="faq-title"
+        >
+          Frequently asked questions
+        </h2>
+        <div className="mt-10 grid gap-3">
+          {content.faq.map((item) => (
+            <details
+              className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] px-5 py-5 sm:px-6"
+              key={item.question}
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+                {item.question}
+                <span
+                  aria-hidden="true"
+                  className="text-2xl font-light text-orange transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
+                {item.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -433,6 +523,49 @@ function ResourcesSection({
   );
 }
 
+function RelatedServicesSection({
+  content
+}: {
+  content: CommercialServicePageContent;
+}) {
+  if (!content.relatedServices) return null;
+
+  const { title, body, links } = content.relatedServices;
+
+  return (
+    <section
+      aria-labelledby="related-services-title"
+      className="section-padding border-t border-[rgba(21,21,21,0.09)] bg-[var(--warm)]"
+    >
+      <div className="site-shell">
+        <div className="max-w-3xl">
+          <h2
+            className="font-display text-[clamp(2rem,3.8vw,3.2rem)] leading-tight"
+            id="related-services-title"
+          >
+            {title}
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-muted">{body}</p>
+        </div>
+        <div className="mt-9 grid gap-4 md:grid-cols-2">
+          {links.map((link) => (
+            <Link
+              className="group rounded-lg border border-[rgba(21,21,21,0.12)] bg-white p-5 transition hover:-translate-y-0.5 hover:border-orange/60"
+              href={link.href}
+              key={link.href}
+            >
+              <h3 className="text-base font-bold leading-tight text-ink group-hover:text-orange">
+                {link.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-muted">{link.body}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalCta({ content }: { content: CommercialServicePageContent }) {
   return (
     <section className="bg-orange py-16 text-white sm:py-20">
@@ -470,6 +603,7 @@ export function EnglishCommercialServicePage({
   return (
     <main id="top">
       <Hero content={content} />
+      <DirectAnswers content={content} />
       <FitSection content={content} />
       <ServiceSection content={content} />
       <InputsSection content={content} />
@@ -478,6 +612,8 @@ export function EnglishCommercialServicePage({
       <DeliverablesSection content={content} />
       <TrustSection content={content} />
       <ResourcesSection content={content} />
+      <RelatedServicesSection content={content} />
+      <FaqSection content={content} />
       <FinalCta content={content} />
     </main>
   );

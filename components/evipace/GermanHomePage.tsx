@@ -6,6 +6,7 @@ import {
   FileCheck2,
   FileText,
   FolderKanban,
+  MapPin,
   MinusCircle
 } from "lucide-react";
 import Link from "next/link";
@@ -743,6 +744,14 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                     zu erledigen – sondern die zugrunde liegenden Informationen
                     zunehmend nutzbar zu machen.
                   </p>
+                  <p>
+                    Wie sich eine solche Grundlage im Alltag aufbauen lässt,
+                    zeigen unsere{" "}
+                    <Link className="orange-link" href="/de/ressourcen">
+                      praktischen ESG-Leitfäden und Checklisten für Lieferanten
+                    </Link>
+                    .
+                  </p>
                 </div>
               </Reveal>
 
@@ -821,6 +830,74 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
                 </div>
               ))}
             </Reveal>
+          </div>
+        </section>
+
+        <section
+          className="section-padding relative isolate overflow-hidden bg-[var(--warm)]"
+          id="ueber-evipace"
+        >
+          <div className="pointer-events-none absolute bottom-[-2rem] right-[3vw] font-display text-[clamp(8rem,22vw,20rem)] leading-none text-[rgba(254,112,1,0.055)]">
+            EU
+          </div>
+          <div className="site-shell relative z-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+            <Reveal>
+              <p className="eyebrow">Über Evipace</p>
+              <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl">
+                ESG sollte nicht komplizierter sein als die Aufgabe selbst.
+              </h2>
+              <div className="mt-8 flex flex-wrap gap-5">
+                <Link
+                  className="orange-link inline-flex items-center gap-2 text-sm"
+                  href="/de/about"
+                >
+                  <span>Über Evipace</span>
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
+                <Link
+                  className="orange-link inline-flex items-center gap-2 text-sm"
+                  href="/de/methodology"
+                >
+                  <span>Unsere Methodik</span>
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-7">
+              <Reveal delay={0.06}>
+                <div className="space-y-5 text-lg leading-8 text-muted">
+                  <p>
+                    Große Unternehmen fordern zunehmend
+                    Nachhaltigkeitsinformationen von ihren Lieferanten. Die
+                    Ressourcen kleinerer Zulieferer sind im gleichen Zeitraum
+                    nicht mitgewachsen.
+                  </p>
+                  <p>Genau für diese Lücke wurde Evipace aufgebaut.</p>
+                  <p>
+                    Evipace wurde in Slowenien gegründet und arbeitet mit
+                    produzierenden Unternehmen und Zulieferern in europäischen
+                    Lieferketten – unter anderem mit Betrieben, die Anfragen
+                    von Kunden in Märkten wie Deutschland und Österreich
+                    beantworten müssen.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal
+                className="flex items-start gap-4 border-t border-[rgba(21,21,21,0.13)] pt-7"
+                delay={0.12}
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
+                  <MapPin aria-hidden="true" className="h-5 w-5" />
+                </div>
+                <p className="font-display text-3xl leading-tight text-ink sm:text-4xl">
+                  Gegründet in Slowenien.
+                  <br />
+                  Gebaut für europäische Lieferketten.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
 

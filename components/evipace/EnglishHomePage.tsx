@@ -4,6 +4,7 @@ import { CustomerRequest } from "./english-home/CustomerRequest";
 import { DataReuse } from "./english-home/DataReuse";
 import { Deliverables } from "./english-home/Deliverables";
 import { ExecutionGap } from "./english-home/ExecutionGap";
+import { HomeFaq } from "./english-home/HomeFaq";
 import { HomeFinalCta } from "./english-home/HomeFinalCta";
 import { HomeHero } from "./english-home/HomeHero";
 import { HowItWorks } from "./english-home/HowItWorks";
@@ -35,6 +36,7 @@ export function EnglishHomePage({
         <WhyEvipaceSection />
         <Deliverables />
         <AboutEvipace />
+        <HomeFaq />
         <HomeFinalCta />
       </main>
     </>

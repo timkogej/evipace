@@ -192,8 +192,10 @@ test("English Batch 1 route files are English-only and use restrained schema", (
       "SoftwareApplication",
       "Product",
       "AggregateRating",
-      "datePublished",
-      "dateModified",
+      // Dates may only ever come from the page registry, never from a
+      // literal in the route — see lib/seo/page-registry.ts.
+      'datePublished: "',
+      'dateModified: "',
       '"@type": "Person"'
     ]) {
       assert.ok(!source.includes(forbidden), forbidden);

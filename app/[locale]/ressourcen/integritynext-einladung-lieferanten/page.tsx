@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { IntegrityNextInvitationGuide } from "@/components/evipace/resources/IntegrityNextInvitationGuide";
+import { PreparedBy } from "@/components/evipace/trust/PreparedBy";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
-import { isPageReachable } from "@/lib/seo/page-registry";
+import { getPageMetadataEntry, isPageReachable } from "@/lib/seo/page-registry";
 import { buildArticleSchema } from "@/lib/seo/schema/article";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
@@ -47,10 +48,17 @@ export default async function IntegrityNextInvitationResourcePage({
     ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
+  const entry = getPageMetadataEntry(locale, PAGE_KEY);
+
   return (
     <>
       <JsonLd graph={schemaGraph} />
       <IntegrityNextInvitationGuide />
+      <PreparedBy
+        dateModified={entry?.dateModified}
+        datePublished={entry?.datePublished}
+        locale="de"
+      />
     </>
   );
 }

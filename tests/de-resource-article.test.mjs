@@ -338,8 +338,22 @@ test("resource route is German-only, indexable through the registry, and uses th
   assert.ok(articleSchemaSource.includes('"@type": "Article"'));
   assert.ok(articleSchemaSource.includes("mainEntityOfPage"));
   assert.ok(articleSchemaSource.includes("publisher"));
-  assert.ok(!articleSchemaSource.includes("datePublished"));
-  assert.ok(!articleSchemaSource.includes("dateModified"));
+  // Authorship resolves to the Evipace Organization entity — the truthful
+  // credit, since no individual is named as author of any resource.
+  assert.ok(
+    articleSchemaSource.includes('author: { "@id": ORGANIZATION_ID }')
+  );
+  assert.ok(
+    articleSchemaSource.includes('publisher: { "@id": ORGANIZATION_ID }')
+  );
+  // Dates are emitted only when the registry genuinely carries them, and
+  // the builder never hardcodes one.
+  assert.ok(
+    articleSchemaSource.includes(
+      "...(entry.datePublished ? { datePublished: entry.datePublished } : {})"
+    )
+  );
+  assert.ok(!/\d{4}-\d{2}-\d{2}/.test(articleSchemaSource));
   assert.ok(!articleSchemaSource.includes('"@type": "Person"'));
   assert.ok(breadcrumbSchemaSource.includes('"@type": "BreadcrumbList"'));
 });
@@ -489,8 +503,9 @@ test("evidence guide route is indexable, German-only, and emits the article sche
   assert.ok(evidenceRouteSource.includes("buildBreadcrumbListSchema"));
   assert.ok(!evidenceRouteSource.includes("buildServiceSchema"));
   assert.ok(!evidenceRouteSource.includes("FAQPage"));
-  assert.ok(!evidenceRouteSource.includes("datePublished"));
-  assert.ok(!evidenceRouteSource.includes("dateModified"));
+  // The route may pass registry dates through, but must never carry a
+  // date literal of its own.
+  assert.ok(!/\d{4}-\d{2}-\d{2}/.test(evidenceRouteSource));
   assert.ok(!evidenceRouteSource.includes('"@type": "Person"'));
 });
 
@@ -661,8 +676,9 @@ test("EcoVadis documents route is German-only and uses the established article s
   );
   assert.ok(!ecovadisDocumentsRouteSource.includes("buildServiceSchema"));
   assert.ok(!ecovadisDocumentsRouteSource.includes("FAQPage"));
-  assert.ok(!ecovadisDocumentsRouteSource.includes("datePublished"));
-  assert.ok(!ecovadisDocumentsRouteSource.includes("dateModified"));
+  // The route may pass registry dates through, but must never carry a
+  // date literal of its own.
+  assert.ok(!/\d{4}-\d{2}-\d{2}/.test(ecovadisDocumentsRouteSource));
   assert.ok(!ecovadisDocumentsRouteSource.includes('"@type": "Person"'));
 });
 
@@ -844,8 +860,9 @@ test("IntegrityNext invitation route is German-only and uses the established art
   );
   assert.ok(!integrityNextInvitationRouteSource.includes("buildServiceSchema"));
   assert.ok(!integrityNextInvitationRouteSource.includes("FAQPage"));
-  assert.ok(!integrityNextInvitationRouteSource.includes("datePublished"));
-  assert.ok(!integrityNextInvitationRouteSource.includes("dateModified"));
+  // The route may pass registry dates through, but must never carry a
+  // date literal of its own.
+  assert.ok(!/\d{4}-\d{2}-\d{2}/.test(integrityNextInvitationRouteSource));
   assert.ok(!integrityNextInvitationRouteSource.includes('"@type": "Person"'));
 });
 
@@ -1025,7 +1042,9 @@ test("Scope 1 and Scope 2 data route is German-only and uses the article schema 
   assert.ok(!scope12DataRouteSource.includes("buildServiceSchema"));
   assert.ok(!scope12DataRouteSource.includes("FAQPage"));
   assert.ok(!scope12DataRouteSource.includes("Dataset"));
-  assert.ok(!scope12DataRouteSource.includes("datePublished"));
+  // The route may pass registry dates through, but must never carry a
+  // date literal of its own.
+  assert.ok(!/\d{4}-\d{2}-\d{2}/.test(scope12DataRouteSource));
   assert.ok(!scope12DataRouteSource.includes('"@type": "Person"'));
 });
 
@@ -1190,8 +1209,9 @@ test("VSME data route is German-only and uses the established article schema gra
   assert.ok(!vsmeDataRouteSource.includes("Certification"));
   assert.ok(!vsmeDataRouteSource.includes("Review"));
   assert.ok(!vsmeDataRouteSource.includes("Report"));
-  assert.ok(!vsmeDataRouteSource.includes("datePublished"));
-  assert.ok(!vsmeDataRouteSource.includes("dateModified"));
+  // The route may pass registry dates through, but must never carry a
+  // date literal of its own.
+  assert.ok(!/\d{4}-\d{2}-\d{2}/.test(vsmeDataRouteSource));
   assert.ok(!vsmeDataRouteSource.includes('"@type": "Person"'));
 });
 
@@ -1406,8 +1426,10 @@ test("ESG data-owner route is German-only and uses the established article schem
     "FAQPage",
     "HowTo",
     "Dataset",
-    "datePublished",
-    "dateModified",
+    // Dates may only ever come from the page registry, never from a
+    // literal in the route — see lib/seo/page-registry.ts.
+    'datePublished: "',
+    'dateModified: "',
     '"@type": "Person"'
   ]) {
     assert.ok(!esgDataOwnersRouteSource.includes(forbidden), forbidden);
@@ -1664,8 +1686,10 @@ test("Scope 1/2/3 route is German-only and uses the established article schema g
     "FAQPage",
     "HowTo",
     "Dataset",
-    "datePublished",
-    "dateModified",
+    // Dates may only ever come from the page registry, never from a
+    // literal in the route — see lib/seo/page-registry.ts.
+    'datePublished: "',
+    'dateModified: "',
     '"@type": "Person"'
   ]) {
     assert.ok(!scope123RouteSource.includes(forbidden), forbidden);
@@ -1921,8 +1945,10 @@ test("interactive checklist route is German-only and uses the editorial schema g
     "SoftwareApplication",
     "WebApplication",
     '"@type": "Person"',
-    "datePublished",
-    "dateModified"
+    // Dates may only ever come from the page registry, never from a
+    // literal in the route — see lib/seo/page-registry.ts.
+    'datePublished: "',
+    'dateModified: "'
   ]) {
     assert.ok(!checklistRouteSource.includes(forbidden), forbidden);
   }

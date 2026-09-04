@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "../ButtonLink";
 import { Reveal } from "../Reveal";
+import { ServiceBreadcrumb } from "../trust/ServiceBreadcrumb";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -47,6 +48,7 @@ export function LandingHero() {
       className="relative isolate overflow-hidden pt-32"
       id="top"
     >
+      <ServiceBreadcrumb current="EcoVadis-Unterstützung" />
       <div className="site-shell grid gap-12 pb-16 pt-4 sm:pb-20 lg:grid-cols-[1.04fr_0.96fr] lg:items-center">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">EcoVadis-Unterstützung</p>

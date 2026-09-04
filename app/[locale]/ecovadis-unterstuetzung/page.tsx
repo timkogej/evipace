@@ -15,6 +15,7 @@ import { RelevantEvidence } from "@/components/evipace/ecovadis-unterstuetzung/R
 import { TargetCompanies } from "@/components/evipace/ecovadis-unterstuetzung/TargetCompanies";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildServiceSchema } from "@/lib/seo/schema/service";
@@ -56,7 +57,11 @@ export default async function EcoVadisUnterstuetzungPage({
       "Unterstützung bei der EcoVadis-Vorbereitung",
       "Unterstützung bei der EcoVadis-Vorbereitung",
       "Unabhängige Unterstützung bei der strukturierten Vorbereitung von Antworten, Daten und Nachweisen für EcoVadis-Bewertungen."
-    )
+    ),
+    buildBreadcrumbListSchema([
+      { name: "Startseite", path: "/de" },
+      { name: "EcoVadis-Unterstützung", path: "/de/ecovadis-unterstuetzung" }
+    ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   return (

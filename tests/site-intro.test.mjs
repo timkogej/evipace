@@ -665,11 +665,11 @@ test("metadata, routes and SEO sources are untouched by the intro", async () => 
     "app/robots.ts":
       "07569ca82f2afb62270f93d18845f81e8230d03bcb7d62082bd6af92261f33ab",
     "lib/seo/page-registry.ts":
-      "8197cba5fa57fca8e5e0671194ebc54bc8ef4040816c555244951bd2d64ff28e",
+      "e65b049a42c5782dad74a461ec83a2b961ace93e6a7a69dfe7dfee4d241b0f2a",
     "lib/seo/build-metadata.ts":
       "ff619511537efc58dcfbb34af01c84473c066d23b75b9396847631d27af67bf6",
     "lib/seo/schema/organization.ts":
-      "875184d8c7044008c58799f5c4cf8b9c8296633f2bb58d4c00f792051e62aba7",
+      "6b3982189afad7a1ea9a058290a8005f73d385619a47afcc555c766b86a2d30a",
     "lib/seo/schema/website.ts":
       "cc72f403d12576331c5bb591776b6b8c9f6a717d283b464689f17348e43206f1",
     "lib/seo/schema/webpage.ts":

@@ -8,6 +8,10 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "./ButtonLink";
 import { InView } from "./home-sections/InView";
+import { LastReviewed } from "./trust/LastReviewed";
+import Link from "next/link";
+import { primarySources } from "@/lib/seo/primary-sources";
+import { SourceNote } from "./trust/SourceNote";
 
 const SEND_REQUEST_HREF = "/en/send-request";
 
@@ -332,20 +336,19 @@ function Rise({
 }
 
 function EnglishReviewedLine({ date }: { date?: string }) {
+  if (!date) {
+    return null;
+  }
+
   return (
     <section className="section-padding py-8 sm:py-10">
       <div className="site-shell">
         <Rise className="max-w-3xl border-t border-[rgba(21,21,21,0.12)] pt-6">
-          <p className="text-sm font-bold text-[rgba(21,21,21,0.55)]">
-            Last methodologically reviewed: 21 August 2026
-          </p>
+          <LastReviewed date={date} locale="en" />
           <p className="methodology-prose mt-3 text-sm leading-7 text-muted">
             This date reflects the latest substantive review of this
             methodology, not the date of a website deployment.
           </p>
-          {date ? (
-            <p className="sr-only">Registry lastReviewed: {date}</p>
-          ) : null}
         </Rise>
       </div>
     </section>
@@ -610,6 +613,32 @@ export function EnglishMethodologyPage({
             <p className="font-semibold text-ink">
               Not with a desired final number.
             </p>
+            <p>
+              The accounting concepts we work from — organisational and
+              operational boundaries, the Scope 1 and Scope 2 split, and the
+              location-based and market-based treatment of purchased
+              electricity — follow the GHG Protocol corporate standards.
+            </p>
+            <p>
+              The engagement itself is described on the{" "}
+              <Link className="orange-link" href="/en/scope-1-2-calculation">
+                Scope 1 and Scope 2 calculation service
+              </Link>{" "}
+              page, and the underlying concepts are explained in our{" "}
+              <Link
+                className="orange-link"
+                href="/en/resources/scope-1-2-3-explained"
+              >
+                Scope 1, 2 and 3 explainer
+              </Link>
+              .
+            </p>
+            <SourceNote
+              sources={[
+                primarySources.ghgCorporateStandard,
+                primarySources.ghgScope2Guidance
+              ]}
+            />
           </Rise>
 
           <div className="mt-12 grid gap-6">
@@ -791,8 +820,15 @@ export function EnglishMethodologyPage({
                 those responses.
               </p>
               <p>
-                For EcoVadis and IntegrityNext, we prepare the working basis
-                for the company.
+                For{" "}
+                <Link className="orange-link" href="/en/ecovadis-support">
+                  EcoVadis
+                </Link>{" "}
+                and{" "}
+                <Link className="orange-link" href="/en/integritynext-support">
+                  IntegrityNext
+                </Link>
+                , we prepare the working basis for the company.
               </p>
               <p className="font-semibold text-ink">
                 The final entry or submission on the external platform is made
@@ -804,8 +840,30 @@ export function EnglishMethodologyPage({
               </p>
               <p>
                 Evipace is an independent service provider and is not
-                affiliated with EcoVadis or IntegrityNext.
+                affiliated with EcoVadis or IntegrityNext. What each platform
+                expects from a supplier is documented by the platform
+                operators themselves; our guides on{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/resources/ecovadis-documents-evidence"
+                >
+                  EcoVadis documents and evidence
+                </Link>{" "}
+                and the{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/resources/integritynext-invitation-for-suppliers"
+                >
+                  IntegrityNext invitation
+                </Link>{" "}
+                work from those sources.
               </p>
+              <SourceNote
+                sources={[
+                  primarySources.ecovadisSupportingDocuments,
+                  primarySources.integrityNextCompletingAssessment
+                ]}
+              />
             </Rise>
             <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8"
@@ -844,6 +902,18 @@ export function EnglishMethodologyPage({
               </p>
               <p className="font-semibold text-ink">
                 We do not create fictitious, backdated or misleading evidence.
+              </p>
+              <p>
+                The practical test we apply to a single document — scope,
+                reporting period, validity, source and traceability — is set
+                out in our guide to{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/resources/esg-evidence-for-suppliers"
+                >
+                  ESG evidence for suppliers
+                </Link>
+                .
               </p>
             </Rise>
             <Rise
@@ -1018,6 +1088,17 @@ export function EnglishMethodologyPage({
                 Where a version or methodological reference materially affects
                 the result, it should remain identifiable.
               </p>
+              <p>
+                The references we most often work from are published by the
+                standard setters and the European institutions themselves.
+              </p>
+              <SourceNote
+                sources={[
+                  primarySources.ghgCorporateStandard,
+                  primarySources.efragVoluntaryStandard,
+                  primarySources.ecCsrd
+                ]}
+              />
             </Rise>
             <div className="grid gap-5">
               <Rise className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-7">
@@ -1063,6 +1144,27 @@ export function EnglishMethodologyPage({
                 also create a structured ESG information base that can be
                 reused for customer requests and other ESG processes later.
               </p>
+              <p>
+                The reporting engagement is described on the{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/vsme-sustainability-report"
+                >
+                  VSME sustainability reporting
+                </Link>{" "}
+                page, and the information an SME should prepare is set out in
+                our{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/resources/vsme-data-sustainability-report"
+                >
+                  VSME data guide
+                </Link>
+                .
+              </p>
+              <SourceNote
+                sources={[primarySources.efragVoluntaryStandard]}
+              />
             </Rise>
             <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8"

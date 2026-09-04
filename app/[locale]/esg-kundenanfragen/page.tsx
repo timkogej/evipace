@@ -14,6 +14,7 @@ import { TaskTranslation } from "@/components/evipace/esg-kundenanfragen/TaskTra
 import { TypicalRequests } from "@/components/evipace/esg-kundenanfragen/TypicalRequests";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildServiceSchema } from "@/lib/seo/schema/service";
@@ -52,7 +53,11 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
       PAGE_KEY,
       "Unterstützung bei ESG-Kundenanfragen",
       "Unterstützung bei ESG-Kundenanfragen"
-    )
+    ),
+    buildBreadcrumbListSchema([
+      { name: "Startseite", path: "/de" },
+      { name: "ESG-Kundenanfragen", path: "/de/esg-kundenanfragen" }
+    ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   return (

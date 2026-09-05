@@ -62,17 +62,17 @@ test("English and German homepages remain separate locale implementations", () =
   assert.ok(pageSource.includes('buildWebPageSchema(locale, "home")'));
   assert.ok(pageSource.includes("buildOrganizationSchema()"));
   assert.ok(pageSource.includes("buildWebsiteSchema()"));
-  assert.ok(
-    germanHomeSource.includes(
-      "Praktische ESG-Beratung für produzierende Unternehmen – schneller"
-    )
-  );
+  for (const line of ["ESG-Arbeit.", "Richtig gemacht.", "Schneller erledigt."]) {
+    assert.ok(germanHomeSource.includes(line), line);
+  }
   assert.ok(!germanHomeSource.includes("Your customer asked for ESG data"));
 });
 
 test("approved homepage sections, copy, workflow and CTAs are present", () => {
   const requiredCopy = [
-    "Practical ESG consulting for manufacturing companies — done faster.",
+    "ESG work.",
+    "Done right.",
+    "Done faster.",
     "Your ESG data is probably not missing.",
     "It is scattered.",
     "A customer asks for ESG information. What happens next?",
@@ -200,9 +200,14 @@ test("the hero leads with the approved headline as its only heading", () => {
 
   assert.equal(heroSource.match(/<h1/g)?.length, 1);
   assert.ok(normalizedHero.includes('id="hero-title"'));
+  // Three sentences, one <span className="block"> each, inside the single
+  // <h1>. The breaks are explicit so "faster." can never be stranded on a
+  // line of its own at display size.
   assert.ok(
     normalizedHero.includes(
-      "> Practical ESG consulting for manufacturing companies — done faster. </h1>"
+      '<span className="block">ESG work.</span>' +
+        ' <span className="block">Done right.</span>' +
+        ' <span className="block">Done faster.</span> </h1>'
     )
   );
   assert.ok(normalizedHero.includes("mark-hero__title"));
@@ -237,9 +242,14 @@ test("German hero mirrors the approved hierarchy in its own locale", () => {
   const normalizedGerman = germanHomeSource.replace(/\s+/g, " ");
 
   assert.equal(germanHomeSource.match(/<h1/g)?.length, 1);
+  // Three sentences, one <span className="block"> each, mirroring the
+  // English hero's rhythm. Explicit breaks so no German line is left with
+  // an orphaned word at display size.
   assert.ok(
     normalizedGerman.includes(
-      "> Praktische ESG-Beratung für produzierende Unternehmen – schneller erledigt. </h1>"
+      '<span className="block">ESG-Arbeit.</span>' +
+        ' <span className="block">Richtig gemacht.</span>' +
+        ' <span className="block">Schneller erledigt.</span> </h1>'
     )
   );
   assert.ok(normalizedGerman.includes("mark-hero__title"));

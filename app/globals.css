@@ -2321,16 +2321,28 @@ a {
 }
 
 .mark-hero__title {
-  max-width: 11ch;
-  font-size: clamp(3.2rem, 14vw, 4.75rem);
+  /* Sized to hold the longest of the three headline lines without
+     re-wrapping it; the line breaks themselves live in the markup. The
+     German title keeps its own measure below. */
+  max-width: 14ch;
+  /* The fluid step is gentler than the old headline's because this one has
+     a fixed longest line ("Done faster."). At 14vw that line no longer fit
+     a narrow phone and broke into an orphaned word. The desktop and
+     tablet sizes are unchanged — the cap is the same 4.75rem. The German
+     title sets its own size below and is unaffected. */
+  font-size: clamp(2.2rem, 9.4vw, 4.75rem);
   line-height: 0.94;
   letter-spacing: 0;
   text-wrap: balance;
 }
 
 .mark-hero__title--de {
-  max-width: 13ch;
-  font-size: clamp(2.85rem, 12vw, 4.25rem);
+  /* The German headline's longest line ("Schneller erledigt.") is a good
+     deal wider than the English one, so this measure and fluid step are
+     sized to hold it on a single line at every width. The line breaks
+     themselves live in the markup. */
+  max-width: 21ch;
+  font-size: clamp(1.7rem, 8.6vw, 3.9rem);
 }
 
 .mark-hero__body {
@@ -2441,14 +2453,14 @@ a {
   }
 
   .mark-hero__title {
-    max-width: 9.5ch;
+    max-width: 14ch;
     font-size: clamp(3.25rem, 4.6vw, 4.7rem);
     line-height: 0.94;
   }
 
   .mark-hero__title--de {
-    max-width: 11ch;
-    font-size: clamp(2.85rem, 4vw, 4rem);
+    max-width: 21ch;
+    font-size: clamp(2.6rem, 4.2vw, 3.9rem);
   }
 
   .mark-hero__body {
@@ -2487,7 +2499,7 @@ a {
 
   .mark-hero__title--de {
     max-width: 100%;
-    font-size: 1.55rem;
+    font-size: 1.3rem;
     line-height: 1;
   }
 

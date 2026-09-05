@@ -247,18 +247,20 @@ test("EN and DE both render the new hero with their approved copy", () => {
   assert.ok(deHome.includes('headingId="hero-title"'));
 
   // Approved headlines, verbatim and unchanged in capitalization.
-  assert.ok(
-    enHero.includes(
-      "Practical ESG consulting for manufacturing companies — done faster."
-    )
-  );
-  assert.ok(
-    deHome.includes(
-      "Praktische ESG-Beratung für produzierende Unternehmen – schneller"
-    )
-  );
-  assert.ok(!enHero.includes("ESG-Beratung für produzierende Unternehmen"));
-  assert.ok(!deHome.includes("ESG consulting for manufacturing"));
+  for (const line of ["ESG work.", "Done right.", "Done faster."]) {
+    assert.ok(enHero.includes(line), line);
+  }
+  for (const line of [
+    "ESG-Arbeit.",
+    "Richtig gemacht.",
+    "Schneller erledigt."
+  ]) {
+    assert.ok(deHome.includes(line), line);
+  }
+  // The two headlines are parallel by design, so the contamination guard
+  // checks each locale for the other's wording.
+  assert.ok(!enHero.includes("Richtig gemacht."));
+  assert.ok(!deHome.includes("Done right."));
 
   // English lead, descriptive copy, trust line.
   assert.ok(

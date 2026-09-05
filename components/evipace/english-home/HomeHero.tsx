@@ -4,11 +4,19 @@ import { AnimatedMarkHero } from "../hero-mark/AnimatedMarkHero";
 export function HomeHero() {
   return (
     <AnimatedMarkHero headingId="hero-title" locale="en">
+      {/*
+        Three short sentences, one per line. The breaks are explicit rather
+        than left to the measure: at this display size a purely fluid wrap
+        can strand "faster." on a line of its own, which the old, much
+        longer headline never risked.
+      */}
       <h1
         className="mark-hero__title font-display"
         id="hero-title"
       >
-        Practical ESG consulting for manufacturing companies — done faster.
+        <span className="block">ESG work.</span>
+        <span className="block">Done right.</span>
+        <span className="block">Done faster.</span>
       </h1>
 
       <div className="mark-hero__body mt-6 space-y-4">

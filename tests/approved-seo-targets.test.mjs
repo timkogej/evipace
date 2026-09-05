@@ -58,13 +58,17 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
       enRegistry,
       'title: "ESG Consulting for Manufacturing Companies | Evipace"',
       englishHeroSource,
-      "Practical ESG consulting for manufacturing companies — done faster."
+      // The visible H1 is deliberately shorter than the <title>; the two are
+      // authored independently, and the title above is the approved one.
+      "Done right."
     ],
     [
       deRegistry,
       'title: "ESG-Beratung für produzierende Unternehmen | Evipace"',
       germanHomeSource,
-      "Praktische ESG-Beratung für produzierende Unternehmen – schneller erledigt."
+      // As with the English pair, the visible H1 is deliberately shorter
+      // than the <title>; the approved DE title above is unchanged.
+      "Richtig gemacht."
     ],
     [
       enRegistry,

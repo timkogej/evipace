@@ -307,12 +307,18 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
     <>
       <main className="german-home-page">
         <AnimatedMarkHero headingId="hero-title" locale="de">
+          {/*
+            Three sentences, one per line — the same rhythm as the English
+            hero. The breaks are explicit because the German lines are long
+            enough that a fluid wrap strands single words at display size.
+          */}
           <h1
             className="mark-hero__title mark-hero__title--de font-display"
             id="hero-title"
           >
-            Praktische ESG-Beratung für produzierende Unternehmen – schneller
-            erledigt.
+            <span className="block">ESG-Arbeit.</span>
+            <span className="block">Richtig gemacht.</span>
+            <span className="block">Schneller erledigt.</span>
           </h1>
 
           <div className="mark-hero__body mt-6 space-y-4">

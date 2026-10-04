@@ -4,12 +4,14 @@ import { Analytics } from "@vercel/analytics/next";
 import { ConsentManager } from "@/components/evipace/analytics/ConsentManager";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
-import { SiteIntro } from "@/components/evipace/site-intro/SiteIntro";
+import { WelcomeIntro, WELCOME_BOOT_SCRIPT } from "@/components/evipace/site-intro/WelcomeIntro";
 import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
 import { SITE_NAME, SITE_URL } from "@/lib/seo/site-config";
 import { isSiteLocale } from "@/lib/site-navigation";
 import { gfsDidot, inter } from "../fonts";
 import "../globals.css";
+import "../typography.css";
+import "../faq.css";
 
 // Pre-render every known locale segment — this layout no longer decides
 // per-page reachability (see lib/seo/page-registry.ts's isPageReachable).
@@ -81,6 +83,9 @@ export default async function LocaleLayout({
        */
       suppressHydrationWarning
     >
+      <head>
+        {showSiteChrome ? <script dangerouslySetInnerHTML={{ __html: WELCOME_BOOT_SCRIPT }} /> : null}
+      </head>
       <body>
         {showSiteChrome ? <Navbar locale={activeLocale} /> : null}
         {/*
@@ -89,9 +94,9 @@ export default async function LocaleLayout({
           so the viewport itself cannot shift or overflow. Without the intro
           it is an inert div.
         */}
-        <div data-site-intro-content="">{children}</div>
+        <div className="editorial-layout" data-site-intro-content="">{children}</div>
         {showSiteChrome ? <Footer locale={activeLocale} /> : null}
-        {showSiteChrome ? <SiteIntro /> : null}
+        {showSiteChrome ? <WelcomeIntro locale={activeLocale === "de" ? "de" : "en"} /> : null}
         {showSiteChrome && gaMeasurementId ? (
           <ConsentManager
             locale={activeLocale}

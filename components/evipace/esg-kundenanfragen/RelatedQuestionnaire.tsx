@@ -8,10 +8,10 @@ export function RelatedQuestionnaire() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Konkretere Anfrage</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Wenn die Kundenanfrage konkreter wird
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Nicht jede ESG-Anforderung sieht gleich aus.
           </p>
         </Reveal>

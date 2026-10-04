@@ -13,8 +13,9 @@ import { ORGANIZATION_ID } from "./ids";
  * specific resource in visible content.
  *
  * Publication dates are emitted only when the registry actually carries
- * them (lib/seo/page-registry.ts). They are absent for every resource page
- * today and stay absent until real publication records exist — a fabricated
+ * them (lib/seo/page-registry.ts). Original publication dates remain absent
+ * until real publication records exist;
+ * modification dates record actual substantive revisions — a fabricated
  * date is a worse signal than no date.
  */
 export function buildArticleSchema(

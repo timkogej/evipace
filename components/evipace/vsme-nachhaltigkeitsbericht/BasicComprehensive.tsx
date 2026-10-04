@@ -27,10 +27,10 @@ export function BasicComprehensive() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Umfang</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Basic oder Comprehensive? Wir wählen den Umfang anhand Ihres Ziels.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Nicht jedes Unternehmen benötigt von Beginn an denselben
             Detailgrad. Der freiwillige Standard arbeitet mit zwei Ebenen.
           </p>

@@ -18,7 +18,7 @@ export function SectionHeading({
     <div className={className}>
       <p className="eyebrow">{eyebrow}</p>
       <h2
-        className={`font-display mt-6 text-4xl leading-[0.98] sm:text-5xl lg:text-6xl ${dark ? "text-white" : "text-ink"}`}
+        className={`type-heading font-display mt-6 ${dark ? "text-white" : "text-ink"}`}
       >
         {heading}
       </h2>

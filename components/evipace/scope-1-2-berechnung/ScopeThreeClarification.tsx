@@ -18,7 +18,7 @@ export function ScopeThreeClarification() {
       <div className="site-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         <Reveal>
           <p className="eyebrow">Abgrenzung</p>
-          <h2 className="heading-md font-display mt-6 max-w-[12ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Und Scope 3?
           </h2>
         </Reveal>

@@ -625,9 +625,9 @@ function SectionHeading({
     <div className="max-w-3xl">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2
-        className={`font-display mt-5 scroll-mt-28 break-words hyphens-auto text-[clamp(2.35rem,4.8vw,4.8rem)] leading-[1] ${
-          light ? "text-white" : "text-ink"
-        }`}
+        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
+ light ? "text-white" : "text-ink"
+ }`}
         id={id}
       >
         {title}
@@ -712,7 +712,7 @@ function CategorySection({ category }: { category: Category }) {
         </div>
         <div className="min-w-0">
           <h2
-            className="font-display break-words hyphens-auto text-[clamp(2rem,3.8vw,3.45rem)] leading-[1.03] text-ink"
+            className="type-heading font-display break-words hyphens-auto text-ink"
             id={`${category.id}-title`}
           >
             {category.title}
@@ -757,7 +757,7 @@ function CategorySection({ category }: { category: Category }) {
                       <p className="font-mono text-xs font-bold text-orange">
                         {index === 0 ? "" : "≠"}
                       </p>
-                      <p className="mt-2 break-words font-display text-2xl leading-tight text-ink">
+                      <p className="type-statement mt-2 break-words font-display text-ink">
                         {item}
                       </p>
                     </div>
@@ -779,7 +779,7 @@ function CategorySection({ category }: { category: Category }) {
 
           {category.evidenceFlow ? (
             <div className="mt-6 rounded-[1rem] border border-orange/25 bg-[var(--soft-orange)] p-5 sm:p-6">
-              <p className="font-display text-2xl leading-tight text-ink">
+              <p className="type-statement font-display text-ink">
                 Ein Dokument ist nicht automatisch ein guter ESG-Nachweis.
               </p>
               <div className="mt-6">
@@ -875,7 +875,7 @@ function RequestMap() {
                 className="absolute -right-3 top-8 hidden h-5 w-5 text-orange lg:block"
               />
             ) : null}
-            <h3 className="font-display text-2xl leading-tight text-ink">{title}</h3>
+            <h3 className="type-subheading font-display text-ink">{title}</h3>
             <p className="mt-3 text-sm leading-6 text-muted">{body}</p>
           </li>
         ))}
@@ -890,7 +890,7 @@ function RequestMap() {
             <p className="font-mono text-xs font-bold text-orange">
               Beispiel {index + 1}
             </p>
-            <h3 className="font-display mt-3 text-3xl leading-tight text-ink">
+            <h3 className="type-subheading font-display mt-3 text-ink">
               {example.request}
             </h3>
             <dl className="mt-5 grid gap-3 text-sm">
@@ -943,7 +943,7 @@ export function EsgCustomerDataGuide() {
             <div className="mt-12 max-w-6xl">
               <p className="eyebrow">ESG-DATEN FÜR KUNDENANFRAGEN</p>
               <h1
-                className="font-display mt-7 max-w-[17ch] break-words hyphens-auto text-[clamp(3.05rem,6.8vw,6.35rem)] leading-[0.92]"
+                className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
                 id="article-title"
               >
                 Welche ESG-Daten verlangen Kunden von Lieferanten?
@@ -951,7 +951,7 @@ export function EsgCustomerDataGuide() {
             </div>
 
             <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+              <div className="type-lead max-w-3xl text-muted">
                 <p>
                   Kunden fragen heute nicht nach „ESG“ als einer einzelnen
                   Kennzahl. Je nach Unternehmen, Branche und Anfrage können
@@ -1005,7 +1005,7 @@ export function EsgCustomerDataGuide() {
             <div>
               <p className="eyebrow">Quick Answer</p>
               <h2
-                className="font-display mt-6 text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]"
+                className="type-heading font-display mt-6"
                 id="quick-answer-title"
               >
                 Kurz gesagt
@@ -1164,14 +1164,14 @@ export function EsgCustomerDataGuide() {
                   className="rounded-[1.1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6"
                   key={column.title}
                 >
-                  <h3 className="font-display text-3xl leading-tight text-ink">
+                  <h3 className="type-subheading font-display text-ink">
                     {column.title}
                   </h3>
                   <BulletList items={column.items} />
                 </section>
               ))}
             </div>
-            <p className="font-display mt-10 max-w-4xl text-[clamp(1.8rem,3vw,2.7rem)] leading-tight text-ink">
+            <p className="type-statement font-display mt-10 max-w-4xl text-ink">
               Eine gute ESG-Antwort verbindet die richtige Art von Information
               mit einer nachvollziehbaren Quelle.
             </p>
@@ -1209,7 +1209,7 @@ export function EsgCustomerDataGuide() {
                     {index > 0 ? (
                       <span
                         aria-hidden="true"
-                        className="absolute -top-4 left-8 font-display text-3xl text-orange"
+                        className="type-number absolute -top-4 left-8 font-display text-orange"
                       >
                         ↓
                       </span>
@@ -1278,7 +1278,7 @@ export function EsgCustomerDataGuide() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      <h3 className="font-display text-2xl leading-tight text-ink">
+                      <h3 className="type-subheading font-display text-ink">
                         {title}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
@@ -1314,7 +1314,7 @@ export function EsgCustomerDataGuide() {
                   className="rounded-[1rem] border border-white/16 bg-white/[0.04] p-6"
                   key={title}
                 >
-                  <h3 className="font-display text-2xl leading-tight text-white">
+                  <h3 className="type-subheading font-display text-white">
                     {title}
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-white/62">{body}</p>
@@ -1353,7 +1353,7 @@ export function EsgCustomerDataGuide() {
                   className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6"
                   key={title}
                 >
-                  <h3 className="font-display text-3xl leading-tight text-ink">
+                  <h3 className="type-subheading font-display text-ink">
                     {title}
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-muted">{body}</p>
@@ -1429,7 +1429,7 @@ export function EsgCustomerDataGuide() {
                   className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6"
                   key={title}
                 >
-                  <h3 className="font-display text-2xl leading-tight text-ink">
+                  <h3 className="type-subheading font-display text-ink">
                     {title}
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
@@ -1455,7 +1455,7 @@ export function EsgCustomerDataGuide() {
                   <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">
                     {eyebrow}
                   </p>
-                  <h3 className="font-display mt-4 text-3xl leading-tight text-ink">
+                  <h3 className="type-subheading font-display mt-4 text-ink">
                     {title}
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-muted">{body}</p>
@@ -1556,7 +1556,7 @@ export function EsgCustomerDataGuide() {
             <div className="max-w-4xl">
               <p className="eyebrow">Nächster Schritt</p>
               <h2
-                className="font-display mt-6 text-[clamp(2.75rem,6vw,5.8rem)] leading-[0.95]"
+                className="type-heading font-display mt-6"
                 id="final-title"
               >
                 Sie müssen nicht zuerst ein ESG-System aufbauen.

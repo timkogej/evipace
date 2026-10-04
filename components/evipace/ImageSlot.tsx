@@ -34,7 +34,7 @@ export function ImageSlot({
 
   return (
     <figure
-      className={`relative isolate overflow-hidden border border-[rgba(21,21,21,0.12)] bg-[#efede6] ${className}`}
+      className={`relative isolate overflow-hidden border border-[rgba(21,21,21,0.12)] bg-[var(--paper)] ${className}`}
     >
       {showImage ? (
         <Image

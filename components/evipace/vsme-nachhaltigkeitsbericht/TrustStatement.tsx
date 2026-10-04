@@ -16,10 +16,10 @@ export function TrustStatement() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Transparenz</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Strukturierte Unterstützung - ohne falsche Versprechen
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Evipace unterstützt bei der praktischen Vorbereitung und Erstellung
             freiwilliger Nachhaltigkeitsberichte.
           </p>

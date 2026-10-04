@@ -17,10 +17,10 @@ export function TrustStatement() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Unabhängigkeit</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Unabhängige Unterstützung bei Ihrer Vorbereitung
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Evipace ist ein unabhängiger Dienstleister und nicht mit
             IntegrityNext verbunden.
           </p>

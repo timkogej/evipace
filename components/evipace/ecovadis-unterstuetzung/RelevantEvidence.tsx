@@ -74,10 +74,10 @@ export function RelevantEvidence() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Dokumente</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Welche Nachweise können relevant sein?
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Je nach Fragebogen und Unternehmenssituation können
             unterschiedliche Dokumente als Nachweis relevant sein.
           </p>

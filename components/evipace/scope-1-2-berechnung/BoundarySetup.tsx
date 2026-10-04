@@ -35,7 +35,7 @@ export function BoundarySetup() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Bilanzgrenze</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Bevor gerechnet wird, muss klar sein, was zum Unternehmen gehört.
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-8 text-muted">

@@ -20,11 +20,11 @@ export function ScopeTwoMethods() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Scope-2-Methode</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Location-based oder market-based? Die Methode muss zum
             Anwendungsfall passen.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Bei Scope 2 können unterschiedliche Berechnungsperspektiven
             relevant sein.
           </p>

@@ -185,7 +185,7 @@ function ArticleSection({
           {number}
         </span>
         <h2
-          className="font-display max-w-[20ch] text-[clamp(2.15rem,4.1vw,3.7rem)] leading-[1.02]"
+          className="type-heading font-display max-w-[24ch]"
           id={`${id}-title`}
         >
           {title}
@@ -374,7 +374,7 @@ export function IntegrityNextInvitationGuide() {
               <div className="mt-12 max-w-6xl">
                 <p className="eyebrow">IntegrityNext · Leitfaden für Lieferanten</p>
                 <h1
-                  className="font-display mt-7 max-w-[17ch] text-[clamp(3.15rem,7vw,6.55rem)] leading-[0.91]"
+                  className="type-title font-display mt-7 max-w-[20ch]"
                   id="article-title"
                 >
                   IntegrityNext für Lieferanten: Was passiert nach der Einladung?
@@ -382,7 +382,7 @@ export function IntegrityNextInvitationGuide() {
               </div>
 
               <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                <div className="type-lead max-w-3xl text-muted">
                   <p>Eine E-Mail kommt von IntegrityNext.</p>
                   <p className="mt-6">
                     Ein Kunde möchte, dass Ihr Unternehmen ein Nachhaltigkeits-
@@ -458,7 +458,7 @@ export function IntegrityNextInvitationGuide() {
                 <div>
                   <p className="eyebrow">Quick Answer</p>
                   <h2
-                    className="font-display mt-6 max-w-[14ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]"
+                    className="type-heading font-display mt-6 max-w-[24ch]"
                     id="quick-answer-title"
                   >
                     IntegrityNext-Einladung erhalten? Gehen Sie so vor.
@@ -559,7 +559,7 @@ export function IntegrityNextInvitationGuide() {
                     <p className="text-xs font-bold uppercase tracking-[0.12em] text-[rgba(21,21,21,0.45)]">
                       Nicht die erste Frage
                     </p>
-                    <p className="font-display mt-4 text-2xl leading-tight text-ink">
+                    <p className="type-statement font-display mt-4 text-ink">
                       „Was will IntegrityNext von uns?“
                     </p>
                   </div>
@@ -567,7 +567,7 @@ export function IntegrityNextInvitationGuide() {
                     <p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">
                       Sondern
                     </p>
-                    <p className="font-display mt-4 text-2xl leading-tight text-ink">
+                    <p className="type-statement font-display mt-4 text-ink">
                       „Welche Informationen möchte unser Kunde über
                       IntegrityNext von uns erhalten?“
                     </p>
@@ -1003,7 +1003,7 @@ export function IntegrityNextInvitationGuide() {
                   <p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">
                     Die richtige Grundlage
                   </p>
-                  <p className="font-display mt-4 text-[clamp(1.7rem,3vw,2.5rem)] leading-[1.16] text-ink">
+                  <p className="type-statement font-display mt-4 text-ink">
                     „Wie ist der tatsächliche Stand unseres Unternehmens?“
                   </p>
                 </div>
@@ -1068,7 +1068,7 @@ export function IntegrityNextInvitationGuide() {
                     <p className="text-xs font-bold uppercase tracking-[0.12em] text-[rgba(21,21,21,0.48)]">
                       Bedeutet nicht automatisch
                     </p>
-                    <p className="font-display mt-4 text-2xl text-ink">
+                    <p className="type-statement font-display mt-4 text-ink">
                       „Ihr gesamtes Assessment ist falsch.“
                     </p>
                   </div>
@@ -1076,7 +1076,7 @@ export function IntegrityNextInvitationGuide() {
                     <p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">
                       Bedeutet
                     </p>
-                    <p className="font-display mt-4 text-2xl text-ink">
+                    <p className="type-statement font-display mt-4 text-ink">
                       Ein bestimmter Punkt muss geklärt oder korrigiert werden.
                     </p>
                   </div>
@@ -1294,7 +1294,7 @@ export function IntegrityNextInvitationGuide() {
                 <div className="mt-8 grid gap-5 sm:grid-cols-2">
                   <div className="rounded-[1rem] border border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] p-6">
                     <FileBadge2 aria-hidden="true" className="h-5 w-5 text-orange" />
-                    <h3 className="mt-5 font-display text-3xl text-ink">
+                    <h3 className="type-subheading mt-5 font-display text-ink">
                       IntegrityNext
                     </h3>
                     <p className="mt-4 text-sm leading-7 text-muted">
@@ -1305,7 +1305,7 @@ export function IntegrityNextInvitationGuide() {
                   </div>
                   <div className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6">
                     <FileCheck2 aria-hidden="true" className="h-5 w-5 text-orange" />
-                    <h3 className="mt-5 font-display text-3xl text-ink">EcoVadis</h3>
+                    <h3 className="type-subheading mt-5 font-display text-ink">EcoVadis</h3>
                     <p className="mt-4 text-sm leading-7 text-muted">
                       EcoVadis arbeitet mit einem eigenen Sustainability Rating
                       und umfangreicher Supporting-Document-Methodik.
@@ -1439,7 +1439,7 @@ export function IntegrityNextInvitationGuide() {
                   Ihr nächster Schritt
                 </p>
                 <h2
-                  className="font-display mt-5 max-w-[15ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]"
+                  className="type-heading font-display mt-5 max-w-[24ch]"
                   id="article-cta-title"
                 >
                   Sie wurden zu IntegrityNext eingeladen?
@@ -1495,27 +1495,22 @@ export function IntegrityNextInvitationGuide() {
               >
                 <p className="eyebrow">FAQ</p>
                 <h2
-                  className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none"
+                  className="type-heading font-display mt-6"
                   id="faq-title"
                 >
                   Häufige Fragen zu IntegrityNext für Lieferanten
                 </h2>
-                <div className="mt-9 grid gap-3">
+                <div className="faq-list">
                   {faqItems.map((faq) => (
                     <details
-                      className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6"
+                      className="faq-item group"
                       key={faq.question}
                     >
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+                      <summary className="faq-question">
                         {faq.question}
-                        <span
-                          aria-hidden="true"
-                          className="text-2xl font-light text-orange transition-transform group-open:rotate-45"
-                        >
-                          +
-                        </span>
+                        <span aria-hidden="true" className="faq-toggle" />
                       </summary>
-                      <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
+                      <p className="faq-answer">
                         {faq.answer}
                       </p>
                     </details>

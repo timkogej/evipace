@@ -1,3 +1,4 @@
+import { primarySources } from "@/lib/seo/primary-sources";
 import type { EnglishResourceArticleContent } from "./EnglishResourceArticle";
 
 const sendRequest = "/en/send-request";
@@ -561,6 +562,7 @@ export const esgEvidenceForSuppliersContent: EnglishResourceArticleContent = {
     },
     {
       id: "carbon-trail",
+      sources: [primarySources.ghgCorporateStandard],
       number: "04",
       title: "Emissions evidence needs a calculation trail.",
       paragraphs: [
@@ -752,6 +754,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     },
     {
       id: "document-limit",
+      sources: [primarySources.ecovadisDocumentLimit],
       number: "03",
       title: "The 55-document limit changes the evidence strategy.",
       paragraphs: [
@@ -778,6 +781,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     },
     {
       id: "currency",
+      sources: [primarySources.ecovadisSupportingDocuments],
       number: "05",
       title: "Check age, validity and machine readability.",
       paragraphs: [
@@ -929,6 +933,7 @@ export const integrityNextInvitationContent: EnglishResourceArticleContent = {
     },
     {
       id: "certificate-questionnaire",
+      sources: [primarySources.integrityNextCompletingAssessment],
       number: "03",
       title: "For each topic, check whether a certificate or questionnaire is required.",
       paragraphs: [

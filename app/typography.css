@@ -1,0 +1,161 @@
+/* Shared reading scale, based on About and Methodology.
+   Component classes describe the role; EN/DE share one responsive system. */
+:root {
+  --type-title: clamp(2.45rem, 4.35vw, 3.95rem);
+  --type-heading: clamp(1.8rem, 2.85vw, 2.85rem);
+  --type-subheading: clamp(1.3rem, 1.75vw, 1.575rem);
+  --type-statement: clamp(1.35rem, 1.95vw, 1.9rem);
+}
+
+html[lang="de"] {
+  --type-title: clamp(2.1rem, 3.7vw, 3.35rem);
+  --type-heading: clamp(1.65rem, 2.5vw, 2.5rem);
+  --type-subheading: clamp(1.2rem, 1.6vw, 1.45rem);
+  --type-statement: clamp(1.25rem, 1.75vw, 1.7rem);
+}
+
+.type-title {
+  font-size: var(--type-title);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Keep the long German VSME term intact on the narrowest phones. */
+@media (max-width: 360px) {
+  html[lang="de"] .service-vsme-hero-title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+}
+
+.type-heading {
+  font-size: var(--type-heading);
+  line-height: 1.12;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.type-subheading {
+  font-size: var(--type-subheading);
+  line-height: 1.28;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.type-statement {
+  font-size: var(--type-statement);
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+.type-number {
+  font-size: clamp(1.9rem, 2.6vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.type-lead {
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* Shared legacy primitives also appear in reusable page-header components. */
+.heading-xl,
+.heading-lg {
+  font-size: var(--type-title);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.heading-md {
+  font-size: var(--type-heading);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.body-lg {
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  line-height: 1.7;
+}
+
+/* The homepage uses deliberate line breaks. Preserve those on small phones,
+   and match the editorial scale on desktop instead of the oversized hero. */
+.mark-hero__title.type-title {
+  font-size: clamp(2rem, 8.2vw, 3.95rem);
+  line-height: 1.04;
+}
+
+.mark-hero__title--de.type-title {
+  font-size: clamp(1.3rem, 6.5vw, 3.35rem);
+}
+
+@media (min-width: 1024px) {
+  .mark-hero__title.type-title {
+    font-size: var(--type-title);
+  }
+}
+
+/* Image-card headings belong to the smaller subheading tier. */
+.svc-card__title {
+  font-size: var(--type-subheading);
+  line-height: 1.28;
+}
+
+/* Compact section rhythm, using About/Methodology as the reference.
+   Their custom layouts, the navigation and interactive control sizes stay intact. */
+@media screen {
+  .editorial-layout :where(.section-padding):not(.methodology-page *):not(.about-page *) {
+    padding-block: clamp(3rem, 4.6vw, 4.75rem);
+  }
+
+  /* Page introductions still clear the fixed navigation. */
+  .editorial-layout :where(.section-padding):has(h1):not(.methodology-page *):not(.about-page *),
+  .editorial-layout :where(header):has(.type-title) {
+    padding-top: clamp(6.5rem, 9vw, 8.5rem);
+    padding-bottom: clamp(3rem, 4.6vw, 4.5rem);
+  }
+
+  .editorial-layout :where(.py-20):not(.methodology-page *):not(.about-page *) {
+    padding-block: clamp(3.5rem, 5vw, 5rem);
+  }
+
+  .svc-card {
+    min-height: 20rem;
+  }
+
+  .svc-card__body {
+    padding: 1.4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .svc-card {
+      min-height: 23rem;
+    }
+
+    .svc-card__body {
+      padding: 1.6rem;
+    }
+
+    .editorial-layout :where(.gap-12, .lg\:gap-16, .lg\:gap-20):not(.methodology-page *):not(.about-page *) {
+      gap: 2.5rem;
+    }
+
+    .editorial-layout :where(.p-8, .sm\:p-8, .lg\:p-10):not(.methodology-page *):not(.about-page *) {
+      padding: 1.5rem;
+    }
+
+    .editorial-layout :where(.min-h-\[48rem\]):not(.methodology-page *):not(.about-page *) {
+      min-height: 36rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .editorial-layout #industrie,
+  .editorial-layout #industrie > .site-shell {
+    min-height: 60vh;
+  }
+}

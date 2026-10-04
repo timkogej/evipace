@@ -50,12 +50,12 @@ function ToolHero({
           <div className="min-w-0">
             <p className="eyebrow">{eyebrow}</p>
             <h1
-              className="font-display mt-7 max-w-[14ch] break-words text-[clamp(3.05rem,6.4vw,6.2rem)] leading-[0.92]"
+              className="type-title font-display mt-7 max-w-[20ch] break-words"
               id="article-title"
             >
               {title}
             </h1>
-            <p className="mt-8 max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+            <p className="type-lead mt-8 max-w-3xl text-muted">
               {deck}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -101,7 +101,7 @@ function Bridge({
       <div className="site-shell grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16">
         <div>
           <FileCheck2 aria-hidden="true" className="h-9 w-9 text-orange" />
-          <h2 className="font-display mt-5 max-w-[14ch] text-[clamp(2.4rem,4.8vw,4.5rem)] leading-none">
+          <h2 className="type-heading font-display mt-5 max-w-[24ch]">
             From tool to response.
           </h2>
         </div>
@@ -187,7 +187,7 @@ export function EnglishScope12DataCollectionGuide() {
         <div className="site-shell grid gap-8 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
           <div>
             <ClipboardList aria-hidden="true" className="h-9 w-9 text-orange" />
-            <h2 className="font-display mt-5 max-w-[14ch] text-[clamp(2.4rem,4.8vw,4.5rem)] leading-none">
+            <h2 className="type-heading font-display mt-5 max-w-[24ch]">
               Activity data first. CO2e later.
             </h2>
           </div>

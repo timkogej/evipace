@@ -15,12 +15,9 @@ import { getAllPageKeys, getActivePageGroup } from "@/lib/seo/page-registry";
  * has a German registry entry, and Slovenian pages stay absent until genuine
  * Slovenian entries exist.
  *
- * lastModified is intentionally omitted. There's no real content-update
- * timestamp source yet (no CMS, no tracked content-change dates) — stamping
- * every entry with the build time would misrepresent "just updated" on
- * every deploy regardless of whether anything actually changed, which is
- * worse than omitting the field. Wire this to a real source (CMS
- * updatedAt, or git commit date per content file) once one exists.
+ * lastModified comes only from a recorded substantive dateModified in the
+ * registry. Pages without a real content-change record omit it. Never use
+ * the build or deployment time to make unchanged content appear fresh.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
@@ -46,6 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const { entry } of group) {
       entries.push({
         url: `${SITE_URL}${entry.path}`,
+        ...(entry.dateModified ? { lastModified: entry.dateModified } : {}),
         ...(languages ? { alternates: { languages } } : {})
       });
     }

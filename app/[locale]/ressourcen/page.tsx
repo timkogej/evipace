@@ -19,6 +19,7 @@ export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  if (locale !== "de") return { robots: { index: false, follow: false } };
   return buildPageMetadata(locale, PAGE_KEY);
 }
 

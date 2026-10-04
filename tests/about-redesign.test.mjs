@@ -40,18 +40,14 @@ const [
   germanAbout,
   composition,
   inView,
-  globals,
-  englishMethodology,
-  germanMethodology
+  globals
 ] =
   await Promise.all([
     read(EN_ABOUT),
     read(DE_ABOUT),
     read(COMPOSITION),
     read("components/evipace/home-sections/InView.tsx"),
-    read("app/globals.css"),
-    read("components/evipace/EnglishMethodologyPage.tsx"),
-    read("components/evipace/GermanMethodologyPage.tsx")
+    read("app/globals.css")
   ]);
 
 const aboutSources = [
@@ -485,78 +481,4 @@ test("the Positioning section keeps its approved arrangement", () => {
   for (const [label, source] of aboutSources) {
     assert.ok(!source.includes("lead={"), `${label} still uses the lead column`);
   }
-});
-
-/**
- * The ordered shape of a page's closing contact band, reduced to the roles
- * that define its composition. Class names differ per page scope; the form
- * must not.
- */
-function contactShape(source) {
-  const start = source.lastIndexOf('bg-[var(--soft-orange)] py-20 sm:py-28');
-  assert.ok(start > -1, "no closing contact band");
-  const block = source.slice(start).replace(/\s+/g, " ");
-  const shape = [];
-  for (const [role, pattern] of [
-    ["shell", /site-shell[^"]*max-w-5xl/],
-    ["eyebrow", /<p className="eyebrow">/],
-    ["cta-heading", /<h2 className="(?:about-cta-heading|methodology-h2 methodology-h2--cta) font-display mt-5">/],
-    ["lead", /<div className="(?:about|methodology)-lead mt-6 space-y-4/],
-    ["actions", /<div className="mt-9/],
-    ["button", /<ButtonLink href=\{SEND_REQUEST_HREF\}>/],
-    ["tagline", /<p className="mt-7 text-sm font-semibold leading-7 text-\[rgba\(21,21,21,0\.62\)\]">/]
-  ]) {
-    const at = block.search(pattern);
-    if (at > -1) shape.push([role, at]);
-  }
-  return { roles: shape.map(([role]) => role), ordered: shape.map(([, at]) => at), block };
-}
-
-test("the About contact band is formed exactly like the Methodology one", () => {
-  const pages = [
-    ["English About", englishAbout],
-    ["German About", germanAbout],
-    ["English Methodology", englishMethodology],
-    ["German Methodology", germanMethodology]
-  ];
-  const expected = [
-    "shell",
-    "eyebrow",
-    "cta-heading",
-    "lead",
-    "actions",
-    "button",
-    "tagline"
-  ];
-  for (const [label, source] of pages) {
-    const { roles, ordered, block } = contactShape(source);
-    assert.deepEqual(roles, expected, `${label} contact shape`);
-    // Roles appear in that order, top to bottom.
-    assert.deepEqual(
-      [...ordered].sort((a, b) => a - b),
-      ordered,
-      `${label} contact order`
-    );
-    // One stacked column: no side-by-side grid, nothing pushed to the right.
-    assert.ok(!/lg:grid-cols-/.test(block), `${label} still splits into columns`);
-    assert.ok(!/ml-auto/.test(block), `${label} still pushes content right`);
-  }
-
-  // Both CTA headings are set from the same scale.
-  assert.ok(globals.includes("font-size: clamp(2.05rem, 3.2vw, 3.1rem)"));
-  assert.ok(
-    (globals.match(/font-size: clamp\(2\.05rem, 3\.2vw, 3\.1rem\)/g) ?? []).length === 2,
-    "About and Methodology CTA headings should share one scale"
-  );
-
-  // The About band keeps its email link; Methodology never had one.
-  for (const source of [englishAbout, germanAbout]) {
-    assert.ok(contactShape(source).block.includes("mailto:${publicContactEmail}"));
-  }
-  assert.ok(
-    englishAbout.includes("Already have an ESG requirement on your desk?")
-  );
-  assert.ok(
-    germanAbout.includes("Eine ESG-Anforderung liegt bereits auf Ihrem Tisch?")
-  );
 });

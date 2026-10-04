@@ -14,22 +14,17 @@ export function HomeFaq() {
       <div className="site-shell max-w-5xl">
         <SectionHeading eyebrow="FAQ" heading="Common questions about Evipace." />
 
-        <div className="mt-12 grid gap-4">
+        <div className="faq-list">
           {homeFaq.map((item) => (
             <details
-              className="group rounded-lg border border-[rgba(21,21,21,0.11)] bg-white"
+              className="faq-item group"
               key={item.question}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-6 text-left text-xl font-bold text-ink marker:content-none sm:p-7">
+              <summary className="faq-question">
                 <span>{item.question}</span>
-                <span
-                  aria-hidden="true"
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(21,21,21,0.12)] text-2xl font-light leading-none text-orange transition-transform group-open:rotate-45"
-                >
-                  +
-                </span>
+                <span aria-hidden="true" className="faq-toggle" />
               </summary>
-              <p className="px-6 pb-6 leading-8 text-muted sm:px-7 sm:pb-7">
+              <p className="faq-answer">
                 {item.answer}
               </p>
             </details>

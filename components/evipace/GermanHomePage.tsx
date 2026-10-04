@@ -313,7 +313,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             enough that a fluid wrap strands single words at display size.
           */}
           <h1
-            className="mark-hero__title mark-hero__title--de font-display"
+            className="type-title mark-hero__title mark-hero__title--de font-display"
             id="hero-title"
           >
             <span className="block">ESG-Arbeit.</span>
@@ -357,7 +357,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell grid gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
             <Reveal>
               <p className="eyebrow">Ausgangslage</p>
-              <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6 max-w-3xl">
                 Ihr Kunde fragt nach ESG. Die Daten liegen irgendwo in Ihrem
                 Unternehmen.
               </h2>
@@ -406,11 +406,11 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <Reveal>
                 <p className="eyebrow">Kernlösung</p>
-                <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl">
+                <h2 className="type-heading font-display mt-6 max-w-3xl">
                   Sie schicken die Anforderung. Wir bringen die Antwort
                   zusammen.
                 </h2>
-                <p className="body-lg mt-7 max-w-2xl">
+                <p className="type-lead mt-7 max-w-2xl text-muted">
                   Sie müssen nicht zuerst selbst herausfinden, welche ESG-Daten
                   benötigt werden, wer im Unternehmen zuständig ist oder welche
                   Unterlagen zu welcher Frage gehören.
@@ -456,7 +456,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell">
             <Reveal className="mb-14 max-w-4xl">
               <p className="eyebrow">Leistungen</p>
-              <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6">
                 Wobei wir Sie unterstützen
               </h2>
             </Reveal>
@@ -485,7 +485,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <Reveal>
                 <p className="eyebrow">Praktische Umsetzung</p>
-                <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none text-white sm:text-5xl lg:text-6xl">
+                <h2 className="type-heading font-display mt-6 max-w-3xl text-white">
                   Keine ESG-Strategie für die Schublade. Praktische Umsetzung.
                 </h2>
                 <div className="mt-7 max-w-2xl space-y-5 text-lg leading-8 text-white/70">
@@ -591,7 +591,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell relative z-10 flex min-h-[78vh] items-end pb-14 pt-24">
             <Reveal className="max-w-4xl">
               <p className="eyebrow">Industrie-Fokus</p>
-              <h2 className="font-display mt-6 text-5xl leading-none text-white sm:text-6xl lg:text-7xl">
+              <h2 className="type-heading font-display mt-6 text-white">
                 Für Unternehmen, die Dinge herstellen.
               </h2>
               <div className="german-home-page__industry-copy mt-7 max-w-2xl space-y-5 text-lg leading-8 text-white/76">
@@ -632,7 +632,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell">
             <Reveal className="max-w-4xl">
               <p className="eyebrow">Ablauf</p>
-              <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6">
                 Vom Kundenwunsch zum fertigen ESG-Ergebnis
               </h2>
             </Reveal>
@@ -672,7 +672,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <Reveal>
               <p className="eyebrow">Nachvollziehbarkeit</p>
-              <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6 max-w-3xl">
                 Nachvollziehbar statt erfunden.
               </h2>
               <div className="mt-7 max-w-2xl space-y-5 text-lg leading-8 text-muted">
@@ -729,7 +729,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             <div className="grid gap-10 border-b border-[rgba(21,21,21,0.12)] pb-12 lg:grid-cols-2 lg:gap-14">
               <Reveal>
                 <p className="eyebrow">Wiederverwendbare Grundlage</p>
-                <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl">
+                <h2 className="type-heading font-display mt-6">
                   Einmal strukturierte ESG-Daten sind beim nächsten Mal nicht
                   wieder verschwunden.
                 </h2>
@@ -763,7 +763,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
 
               <Reveal delay={0.08}>
                 <p className="eyebrow">Anpassungsfähig</p>
-                <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl">
+                <h2 className="type-heading font-display mt-6">
                   ESG-Anforderungen ändern sich. Eine gute Datengrundlage bleibt
                   wertvoll.
                 </h2>
@@ -800,7 +800,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell grid gap-10 lg:grid-cols-[1fr_0.86fr] lg:items-start">
             <Reveal>
               <p className="eyebrow">Interne Kapazität</p>
-              <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6 max-w-3xl">
                 Sie brauchen nicht zuerst eine eigene ESG-Abteilung.
               </h2>
               <div className="mt-7 max-w-2xl space-y-5 text-lg leading-8 text-muted">
@@ -849,7 +849,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           <div className="site-shell relative z-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <Reveal>
               <p className="eyebrow">Über Evipace</p>
-              <h2 className="font-display mt-6 max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6 max-w-3xl">
                 ESG sollte nicht komplizierter sein als die Aufgabe selbst.
               </h2>
               <div className="mt-8 flex flex-wrap gap-5">
@@ -909,28 +909,26 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
 
         <section className="section-padding bg-[var(--warm)]" id="faq">
           <div className="site-shell max-w-5xl">
-            <Reveal className="mb-12">
+            <Reveal className="mb-7">
               <p className="eyebrow">FAQ</p>
-              <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
+              <h2 className="type-heading font-display mt-6">
                 Häufige Fragen zu Evipace
               </h2>
             </Reveal>
 
-            <div className="grid gap-4">
+            <div className="faq-list">
               {faqItems.map((item, index) => (
                 <Reveal
-                  className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white"
+                  className="faq-reveal"
                   delay={index * 0.03}
                   key={item.question}
                 >
-                  <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-6 text-left text-xl font-bold text-ink sm:p-7">
+                  <details className="faq-item group">
+                    <summary className="faq-question">
                       <span>{item.question}</span>
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(21,21,21,0.12)] text-orange transition group-open:rotate-90">
-                        <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                      </span>
+                      <span aria-hidden="true" className="faq-toggle" />
                     </summary>
-                    <p className="px-6 pb-6 leading-8 text-muted sm:px-7 sm:pb-7">
+                    <p className="faq-answer">
                       {item.answer}
                     </p>
                   </details>
@@ -945,10 +943,10 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
             <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
               <Reveal>
                 <p className="eyebrow">Klare Grenzen</p>
-                <h2 className="font-display mt-6 text-4xl leading-none sm:text-5xl lg:text-6xl">
+                <h2 className="type-heading font-display mt-6">
                   Praktische Unterstützung. Klare Grenzen.
                 </h2>
-                <p className="body-lg mt-7 max-w-2xl">
+                <p className="type-lead mt-7 max-w-2xl text-muted">
                   Evipace unterstützt bei der strukturierten Vorbereitung und
                   Umsetzung von ESG-Anforderungen.
                 </p>
@@ -991,7 +989,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
           </div>
           <div className="site-shell relative z-10 max-w-5xl">
             <p className="eyebrow">Nächster Schritt</p>
-            <h2 className="font-display mt-6 text-5xl leading-none sm:text-6xl lg:text-7xl">
+            <h2 className="type-heading font-display mt-6">
               Ihre nächste ESG-Anfrage muss nicht wieder bei null beginnen.
             </h2>
             <div className="mt-7 max-w-2xl space-y-4 text-xl leading-8 text-[rgba(21,21,21,0.68)]">

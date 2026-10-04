@@ -26,11 +26,11 @@ export function RelatedRequirements() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Weitere Anforderungen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             IntegrityNext ist eine von mehreren möglichen
             ESG-Kundenanforderungen.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Nicht jeder Kunde verwendet dieselbe Plattform oder denselben
             Prozess.
           </p>

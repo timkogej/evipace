@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "../ButtonLink";
 import { SourceNote } from "../trust/SourceNote";
+import { ServiceRequestCta } from "../service-landing/ServiceRequestCta";
+import { ServiceDetailAccordion } from "../service-landing/ServiceDetailAccordion";
 import type { CommercialServicePageContent } from "./content";
 
 const SEND_REQUEST_HREF = "/en/send-request";
@@ -48,55 +50,60 @@ function SectionHeading({
   eyebrow,
   id,
   intro,
-  title
+  title,
+  dark = false
 }: {
   eyebrow?: string;
   id: string;
   intro?: string;
   title: string;
+  dark?: boolean;
 }) {
   return (
     <div className="max-w-4xl">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2
-        className="font-display mt-5 scroll-mt-28 max-w-[18ch] text-[clamp(2.35rem,4.8vw,4.75rem)] leading-[1]"
+        className="type-heading font-display mt-5 scroll-mt-28 max-w-[24ch]"
         id={id}
       >
         {title}
       </h2>
       {intro ? (
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">{intro}</p>
+        <p className={`mt-6 max-w-3xl text-lg leading-8 ${dark ? "text-white/75" : "text-muted"}`}>
+          {intro}
+        </p>
       ) : null}
     </div>
   );
 }
 
 function Hero({ content }: { content: CommercialServicePageContent }) {
+  const featured = content.streamlinedService;
   return (
     <header
       aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden pb-18 pt-28 sm:pb-22 sm:pt-32 lg:pb-24"
+      className={`relative isolate overflow-hidden pt-28 sm:pt-32 ${featured ? "pb-14 sm:pb-18" : "pb-18 sm:pb-22 lg:pb-24"}`}
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 overflow-hidden bg-[var(--paper)]"
+        className={`absolute inset-0 -z-10 overflow-hidden ${featured ? "bg-white" : "bg-[var(--paper)]"}`}
       >
-        <div className="absolute bottom-0 left-[58%] top-0 hidden w-px bg-gradient-to-b from-transparent via-orange/20 to-transparent lg:block" />
-        <div className="absolute -right-48 top-16 h-[36rem] w-[36rem] rounded-full border border-orange/15" />
+        {!featured ? <div className="absolute bottom-0 left-[58%] top-0 hidden w-px bg-gradient-to-b from-transparent via-orange/20 to-transparent lg:block" /> : null}
+        {!featured ? <div className="absolute -right-48 top-16 h-[36rem] w-[36rem] rounded-full border border-orange/15" /> : null}
       </div>
 
       <div className="site-shell">
         <Breadcrumb current={content.eyebrow} />
-        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.58fr)] lg:items-end lg:gap-16">
+        <div className={`grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.58fr)] lg:gap-16 ${featured ? "mt-9 lg:items-center" : "mt-12 lg:items-end"}`}>
           <div className="min-w-0">
             <p className="eyebrow">{content.eyebrow}</p>
             <h1
-              className="font-display mt-7 max-w-[13.5ch] break-words text-[clamp(3rem,6.4vw,6.4rem)] leading-[0.92]"
+              className="type-title font-display mt-7 max-w-[20ch] break-words"
               id="hero-title"
             >
               {content.title}
             </h1>
-            <div className="mt-8 max-w-3xl space-y-4 text-[clamp(1.06rem,1.45vw,1.28rem)] leading-[1.7] text-muted">
+            <div className={`type-lead max-w-3xl space-y-4 text-muted ${featured ? "mt-6" : "mt-8"}`}>
               {content.intro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -121,7 +128,7 @@ function Hero({ content }: { content: CommercialServicePageContent }) {
             </p>
           </div>
 
-          <aside className="rounded-[1.15rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 shadow-lift sm:p-7">
+          <aside className={`p-6 sm:p-7 ${featured ? "border border-[rgba(21,21,21,0.1)] bg-[#f8f8f6]" : "rounded-[1.15rem] border border-[rgba(21,21,21,0.12)] bg-white shadow-lift"}`}>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
               {content.heroVisual.label}
             </p>
@@ -174,7 +181,7 @@ function DirectAnswers({
         <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-14">
           {items.map((item) => (
             <div className="max-w-2xl" key={item.question}>
-              <h3 className="font-display text-[clamp(1.65rem,2.6vw,2.3rem)] leading-tight text-ink">
+              <h3 className="type-subheading font-display text-ink">
                 {item.question}
               </h3>
               <div className="mt-5 space-y-4 text-base leading-8 text-muted">
@@ -203,27 +210,22 @@ function FaqSection({ content }: { content: CommercialServicePageContent }) {
       <div className="site-shell max-w-5xl">
         <p className="eyebrow">FAQ</p>
         <h2
-          className="font-display mt-5 text-[clamp(2.35rem,4.8vw,4.5rem)] leading-none"
+          className="type-heading font-display mt-5"
           id="faq-title"
         >
           Frequently asked questions
         </h2>
-        <div className="mt-10 grid gap-3">
+        <div className="faq-list">
           {content.faq.map((item) => (
             <details
-              className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] px-5 py-5 sm:px-6"
+              className="faq-item group"
               key={item.question}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+              <summary className="faq-question">
                 {item.question}
-                <span
-                  aria-hidden="true"
-                  className="text-2xl font-light text-orange transition-transform group-open:rotate-45"
-                >
-                  +
-                </span>
+                <span aria-hidden="true" className="faq-toggle" />
               </summary>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
+              <p className="faq-answer">
                 {item.answer}
               </p>
             </details>
@@ -244,13 +246,13 @@ function FitSection({ content }: { content: CommercialServicePageContent }) {
           intro={content.fit.intro}
           title={content.fit.title}
         />
-        <div className="mt-12 grid gap-px overflow-hidden border border-[rgba(21,21,21,0.11)] bg-[rgba(21,21,21,0.11)] md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {content.fit.items.map((item) => {
             const Icon = item.icon;
             return (
-              <article className="bg-[var(--paper)] p-6 sm:p-7" key={item.title}>
+              <article className="border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-7" key={item.title}>
                 <Icon aria-hidden="true" className="h-7 w-7 text-orange" />
-                <h3 className="font-display mt-7 text-2xl leading-tight text-ink">
+                <h3 className="type-subheading font-display mt-7 text-ink">
                   {item.title}
                 </h3>
                 {item.quote ? (
@@ -280,32 +282,31 @@ function ServiceSection({
       id="service"
     >
       <div className="site-shell">
-        <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16">
-          <SectionHeading
-            eyebrow={content.service.eyebrow}
-            id="service-title"
-            intro={content.service.intro}
-            title={content.service.title}
-          />
-          <div className="grid gap-4 sm:grid-cols-2">
-            {content.service.items.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article
-                  className="rounded-lg border border-white/12 bg-white/[0.04] p-5"
-                  key={item.title}
-                >
-                  <Icon aria-hidden="true" className="h-6 w-6 text-orange" />
-                  <h3 className="mt-5 text-lg font-bold leading-tight text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/66">
-                    {item.body}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
+        <SectionHeading
+          eyebrow={content.service.eyebrow}
+          id="service-title"
+          intro={content.service.intro}
+          title={content.service.title}
+          dark
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {content.service.items.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article
+                className="rounded-lg border border-white/12 bg-white/[0.04] p-5"
+                key={item.title}
+              >
+                <Icon aria-hidden="true" className="h-6 w-6 text-orange" />
+                <h3 className="mt-5 text-lg font-bold leading-tight text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-white/66">
+                  {item.body}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -318,7 +319,7 @@ function InputsSection({ content }: { content: CommercialServicePageContent }) {
       <div className="site-shell grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
         <div>
           <h2
-            className="font-display max-w-[14ch] text-[clamp(2.4rem,4.8vw,4.5rem)] leading-none"
+            className="type-heading font-display max-w-[24ch]"
             id="inputs-title"
           >
             {content.inputs.title}
@@ -361,13 +362,13 @@ function ProcessSection({
           intro={content.process.intro}
           title={content.process.title}
         />
-        <ol className="mt-12 grid gap-px overflow-hidden border border-[rgba(21,21,21,0.11)] bg-[rgba(21,21,21,0.11)] md:grid-cols-2 lg:grid-cols-3">
+        <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {content.process.steps.map((step, index) => (
-            <li className="bg-white p-6 sm:p-7" key={step.title}>
+            <li className="border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-7" key={step.title}>
               <span className="font-mono text-xs font-bold tracking-[0.14em] text-orange">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="font-display mt-5 text-2xl leading-tight text-ink">
+              <h3 className="type-subheading font-display mt-5 text-ink">
                 {step.title}
               </h3>
               <p className="mt-4 text-sm leading-7 text-muted">{step.body}</p>
@@ -427,7 +428,7 @@ function DeliverablesSection({
       <div className="site-shell grid gap-10 lg:grid-cols-[0.64fr_1.36fr] lg:gap-16">
         <div>
           <h2
-            className="font-display max-w-[14ch] text-[clamp(2.4rem,4.8vw,4.5rem)] leading-none"
+            className="type-heading font-display max-w-[24ch]"
             id="deliverables-title"
           >
             {content.deliverables.title}
@@ -459,7 +460,7 @@ function TrustSection({ content }: { content: CommercialServicePageContent }) {
           <div>
             <p className="eyebrow">{content.trust.eyebrow}</p>
             <h2
-              className="font-display mt-5 max-w-[15ch] text-[clamp(2.4rem,5vw,5rem)] leading-none text-white"
+              className="type-heading font-display mt-5 max-w-[24ch] text-white"
               id="trust-title"
             >
               {content.trust.title}
@@ -540,7 +541,7 @@ function RelatedServicesSection({
       <div className="site-shell">
         <div className="max-w-3xl">
           <h2
-            className="font-display text-[clamp(2rem,3.8vw,3.2rem)] leading-tight"
+            className="type-heading font-display"
             id="related-services-title"
           >
             {title}
@@ -567,10 +568,22 @@ function RelatedServicesSection({
 }
 
 function FinalCta({ content }: { content: CommercialServicePageContent }) {
+  if (content.streamlinedService) {
+    return (
+      <ServiceRequestCta
+        eyebrow="Next step"
+        title={content.finalCta.title}
+        body={content.finalCta.body}
+        button={content.finalCta.primaryLabel}
+        href={SEND_REQUEST_HREF}
+      />
+    );
+  }
+
   return (
     <section className="bg-orange py-16 text-white sm:py-20">
       <div className="site-shell grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
-        <h2 className="font-display max-w-[13ch] text-[clamp(2.7rem,5.6vw,5.4rem)] leading-none">
+        <h2 className="type-heading font-display max-w-[24ch]">
           {content.finalCta.title}
         </h2>
         <div>
@@ -604,12 +617,19 @@ export function EnglishCommercialServicePage({
     <main id="top">
       <Hero content={content} />
       <DirectAnswers content={content} />
-      <FitSection content={content} />
+      {content.streamlinedService ? <DeliverablesSection content={content} /> : <FitSection content={content} />}
+      {content.streamlinedService ? <ProcessSection content={content} /> : null}
       <ServiceSection content={content} />
-      <InputsSection content={content} />
-      <ProcessSection content={content} />
+      {content.streamlinedService ? (
+        <ServiceDetailAccordion label={content.detailsLabel ?? "When this service fits and what you can send"}>
+          <FitSection content={content} />
+          <InputsSection content={content} />
+        </ServiceDetailAccordion>
+      ) : (
+        <><InputsSection content={content} /><ProcessSection content={content} /></>
+      )}
       <ModelSection content={content} />
-      <DeliverablesSection content={content} />
+      {!content.streamlinedService ? <DeliverablesSection content={content} /> : null}
       <TrustSection content={content} />
       <ResourcesSection content={content} />
       <RelatedServicesSection content={content} />

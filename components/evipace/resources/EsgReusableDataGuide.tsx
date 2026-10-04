@@ -158,9 +158,9 @@ function SectionHeading({
     <div className="max-w-3xl">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2
-        className={`font-display mt-5 scroll-mt-28 break-words hyphens-auto text-[clamp(2.35rem,4.8vw,4.8rem)] leading-[1] ${
-          light ? "text-white" : "text-ink"
-        }`}
+        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
+ light ? "text-white" : "text-ink"
+ }`}
         id={id}
       >
         {title}
@@ -238,13 +238,13 @@ export function EsgReusableDataGuide() {
 
             <div className="mt-12 max-w-6xl">
               <p className="eyebrow">REUSABLE ESG DATA FOUNDATION</p>
-              <h1 className="font-display mt-7 max-w-[17ch] break-words hyphens-auto text-[clamp(3.05rem,6.8vw,6.35rem)] leading-[0.92]" id="article-title">
+              <h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">
                 ESG-Daten einmal sammeln. Für die nächste Anfrage wiederverwenden.
               </h1>
             </div>
 
             <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+              <div className="type-lead max-w-3xl text-muted">
                 <p>Viele Lieferanten beantworten ESG-Anfragen noch wie Einzelprojekte: Fragebogen öffnen, Daten zusammensuchen, Nachweise anfordern, Antworten vorbereiten – und beim nächsten Kunden beginnt ein großer Teil der Arbeit erneut.</p>
                 <p className="mt-6">Mit einer strukturierten Datengrundlage lassen sich häufig benötigte Unternehmensdaten, Kennzahlen, Quellen und Nachweise so organisieren, dass sie für spätere Kundenanfragen schneller geprüft, aktualisiert und wiederverwendet werden können.</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -266,7 +266,7 @@ export function EsgReusableDataGuide() {
           <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
             <div>
               <p className="eyebrow">Quick Answer</p>
-              <h2 className="font-display mt-6 text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]" id="quick-answer-title">Kurz gesagt</h2>
+              <h2 className="type-heading font-display mt-6" id="quick-answer-title">Kurz gesagt</h2>
             </div>
             <div className="max-w-4xl text-lg leading-8 text-white/72 sm:text-xl sm:leading-9">
               <p>Eine wiederverwendbare ESG-Datengrundlage verbindet häufig benötigte Datenpunkte, interne Verantwortliche, Originalquellen, Nachweise, Definitionen, Zeiträume und Freigabestatus.</p>
@@ -294,17 +294,17 @@ export function EsgReusableDataGuide() {
             <SectionHeading eyebrow="Before / After" id="before-after-title" title="Was sich mit einer wiederverwendbaren Struktur verändert" />
             <div className="mt-12 grid gap-6 lg:grid-cols-2" data-before-after>
               <article className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-[var(--warm)] p-6 sm:p-8">
-                <h3 className="font-display text-3xl leading-tight text-ink">Ohne wiederverwendbare Struktur</h3>
+                <h3 className="type-subheading font-display text-ink">Ohne wiederverwendbare Struktur</h3>
                 <FlowLine dark={false} items={["Kunde A", "neue Excel-Datei", "Finance fragen", "HR fragen", "Rechnungen suchen", "Nachweise suchen"]} />
                 <div className="mt-7 border-l-2 border-orange pl-5">
-                  <p className="font-display text-2xl leading-tight text-ink">Kunde B → wieder von vorne</p>
+                  <p className="type-statement font-display text-ink">Kunde B → wieder von vorne</p>
                   <p className="mt-3 text-sm leading-7 text-muted">Antworten vorbereiten bleibt ein isoliertes Projekt.</p>
                 </div>
               </article>
               <article className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8">
-                <h3 className="font-display text-3xl leading-tight text-ink">Mit strukturierter Datengrundlage</h3>
+                <h3 className="type-subheading font-display text-ink">Mit strukturierter Datengrundlage</h3>
                 <div className="mt-6 rounded-[1rem] bg-white p-5 shadow-lift">
-                  <p className="font-display text-2xl leading-tight text-ink">Datenpunkt + Quelle + Nachweis + Owner + Zeitraum + Status</p>
+                  <p className="type-statement font-display text-ink">Datenpunkt + Quelle + Nachweis + Owner + Zeitraum + Status</p>
                 </div>
                 <ol className="mt-6 grid gap-3 sm:grid-cols-2">
                   {["Kundenfragebogen", "EcoVadis", "IntegrityNext", "VSME", "interne ESG-Auswertung"].map((item) => (
@@ -326,7 +326,7 @@ export function EsgReusableDataGuide() {
               {reusableComponents.map(([title, example, copy], index) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift" key={title}>
                   <p className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</p>
-                  <h3 className="font-display mt-4 text-3xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display mt-4 text-ink">{title}</h3>
                   <p className="mt-4 rounded-[0.8rem] bg-[var(--warm)] p-4 text-sm font-bold leading-6 text-ink">{example}</p>
                   <p className="mt-4 text-sm leading-7 text-muted">{copy}</p>
                 </article>
@@ -365,12 +365,12 @@ export function EsgReusableDataGuide() {
             <div className="mt-12 grid gap-5 lg:grid-cols-3" data-reuse-groups>
               {reuseGroups.map((group) => (
                 <section className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={group.title}>
-                  <h3 className="font-display text-3xl leading-tight text-ink">{group.title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{group.title}</h3>
                   <BulletList items={group.items} />
                 </section>
               ))}
             </div>
-            <p className="font-display mt-10 max-w-4xl text-[clamp(1.8rem,3vw,2.7rem)] leading-tight text-ink">Ziel ist deshalb nicht eine universelle „Master-Antwort“, sondern eine zuverlässige Informationsbasis, aus der passende Antworten vorbereitet werden können.</p>
+            <p className="type-statement font-display mt-10 max-w-4xl text-ink">Ziel ist deshalb nicht eine universelle „Master-Antwort“, sondern eine zuverlässige Informationsbasis, aus der passende Antworten vorbereitet werden können.</p>
           </div>
         </section>
 
@@ -380,7 +380,7 @@ export function EsgReusableDataGuide() {
             <ol className="mt-12 grid gap-5 lg:grid-cols-5" data-foundation-layers>
               {foundationLayers.map(([title, copy]) => (
                 <li className="rounded-[1rem] border border-white/16 bg-white/[0.04] p-6" key={title}>
-                  <h3 className="font-display text-2xl leading-tight text-white">{title}</h3>
+                  <h3 className="type-subheading font-display text-white">{title}</h3>
                   <p className="mt-4 text-sm leading-7 text-white/62">{copy}</p>
                 </li>
               ))}
@@ -413,7 +413,7 @@ export function EsgReusableDataGuide() {
             <div className="mt-12 grid gap-6" data-practical-examples>
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6 sm:p-8">
                 <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustratives Beispiel</p>
-                <h3 className="font-display mt-4 text-3xl leading-tight text-ink">Beispiel: Stromverbrauch</h3>
+                <h3 className="type-subheading font-display mt-4 text-ink">Beispiel: Stromverbrauch</h3>
                 <p className="mt-5 text-base leading-8 text-muted">Erste Anfrage: Kunde A fragt nach dem Stromverbrauch 2025.</p>
                 <dl className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {[["Datenpunkt", "Stromverbrauch"], ["Gesellschaft", "Gesellschaft A"], ["Standort", "Werk A"], ["Zeitraum", "2025"], ["Wert", "X MWh"], ["Quelle", "Stromrechnungen"], ["Owner", "Facility / Finance"]].map(([term, description]) => (
@@ -424,12 +424,12 @@ export function EsgReusableDataGuide() {
                 <p className="mt-4 text-base leading-8 text-muted">Der Stromverbrauch muss nicht erneut aus zwölf Rechnungen zusammengesucht werden. Zuerst wird geprüft, ob Gesellschaft, Standort, Zeitraum und Definition zur neuen Anfrage passen. Ist das der Fall, kann derselbe bestätigte Datenpunkt als Ausgangspunkt verwendet werden.</p>
               </article>
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8">
-                <h3 className="font-display text-3xl leading-tight text-ink">Beispiel: Environmental Policy</h3>
+                <h3 className="type-subheading font-display text-ink">Beispiel: Environmental Policy</h3>
                 <p className="mt-5 text-base leading-8 text-muted">Wurde eine aktuelle Environmental Policy bereits intern verabschiedet, muss bei jeder neuen Kundenanfrage nicht automatisch eine neue Richtlinie geschrieben werden.</p>
                 <p className="mt-5 text-base leading-8 text-muted">Stattdessen wird geprüft:</p>
                 <BulletList items={["Ist die Policy noch aktuell?", "Gilt sie für die antwortende Gesellschaft?", "Wurde sie seit der letzten Anfrage ersetzt?", "Unterstützt sie tatsächlich die konkrete Kundenfrage?"]} />
                 <div className="mt-6 rounded-[1rem] border-l-4 border-orange bg-[var(--soft-orange)] p-5">
-                  <p className="font-display text-2xl leading-tight text-ink">Wiederverwenden heißt prüfen – nicht blind kopieren.</p>
+                  <p className="type-statement font-display text-ink">Wiederverwenden heißt prüfen – nicht blind kopieren.</p>
                 </div>
                 <div className="mt-6">
                   <InlineLink href="/de/ressourcen/environmental-policy-erstellen">
@@ -443,7 +443,7 @@ export function EsgReusableDataGuide() {
                 </div>
               </article>
               <article className="rounded-[1.1rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8">
-                <h3 className="font-display text-3xl leading-tight text-ink">Beispiel: Scope 1 &amp; 2</h3>
+                <h3 className="type-subheading font-display text-ink">Beispiel: Scope 1 &amp; 2</h3>
                 <p className="mt-5 text-base leading-8 text-muted">Eine strukturierte Scope-1-&amp;-2-Datengrundlage kann für mehrere ESG-Anfragen nützlich sein, wenn Aktivitätsdaten, Quellen, Einheiten, Zeitraum, verwendete Methodik und spätere Berechnung nachvollziehbar dokumentiert bleiben.</p>
                 <p className="mt-5 text-base leading-8 text-muted">Bei einem neuen Berichtsjahr werden dann nicht alte Emissionen einfach übernommen. Stattdessen wird die bestehende Struktur mit neuen Aktivitätsdaten aktualisiert.</p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -501,7 +501,7 @@ export function EsgReusableDataGuide() {
             <SectionHeading eyebrow="Request Mapping" id="request-mapping-title" title="Speichern Sie nicht nur den Datenpunkt – speichern Sie auch, wo er verwendet wurde." />
             <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-request-mapping>
               <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustrative Labels</p>
-              <h3 className="font-display mt-4 text-3xl leading-tight text-ink">Scope 2 emissions 2025</h3>
+              <h3 className="type-subheading font-display mt-4 text-ink">Scope 2 emissions 2025</h3>
               <p className="mt-5 text-sm font-bold uppercase tracking-[0.11em] text-muted">Verwendet für</p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {["Customer A questionnaire", "EcoVadis assessment", "VSME preparation", "Customer B sustainability request"].map((item) => <li className="rounded-[0.9rem] bg-white p-4 text-sm font-bold text-ink" key={item}>{item}</li>)}
@@ -520,7 +520,7 @@ export function EsgReusableDataGuide() {
             <div className="mt-12 grid gap-5 lg:grid-cols-3">
               {platformCards.map(([title, cta, href]) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}>
-                  <h3 className="font-display text-3xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <p className="mt-4 text-sm leading-7 text-muted">Ein eigener Kontext mit eigener Formulierung, Prüfung und Nachweislogik.</p>
                   <div className="mt-5"><InlineLink href={href}>{cta}</InlineLink></div>
                 </article>
@@ -537,7 +537,7 @@ export function EsgReusableDataGuide() {
                 <li className="grid gap-4 bg-ink p-5 sm:grid-cols-[4rem_1fr] sm:p-6" key={title}>
                   <span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
                   <div>
-                    <h3 className="font-display text-2xl leading-tight text-white">{title}</h3>
+                    <h3 className="type-subheading font-display text-white">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-white/62">{copy}</p>
                   </div>
                 </li>
@@ -555,7 +555,7 @@ export function EsgReusableDataGuide() {
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-copy-paste-warnings>
               {copyPasteWarnings.map(([title, copy]) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}>
-                  <h3 className="font-display text-2xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-muted">{copy}</p>
                 </article>
               ))}
@@ -628,7 +628,7 @@ export function EsgReusableDataGuide() {
           <div className="site-shell">
             <div className="max-w-4xl">
               <p className="eyebrow">Nächster Schritt</p>
-              <h2 className="font-display mt-6 text-[clamp(2.75rem,6vw,5.8rem)] leading-[0.95]" id="final-title">Jede beantwortete Anfrage sollte die nächste einfacher machen.</h2>
+              <h2 className="type-heading font-display mt-6" id="final-title">Jede beantwortete Anfrage sollte die nächste einfacher machen.</h2>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">Aus verstreuten Unternehmensdaten wird mit der Zeit eine nachvollziehbare, wiederverwendbare ESG-Datengrundlage.</p>
               <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink></div>
             </div>

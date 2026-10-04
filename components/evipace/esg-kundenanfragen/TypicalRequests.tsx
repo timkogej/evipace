@@ -100,10 +100,10 @@ export function TypicalRequests() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Typische Inhalte</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Was Kunden typischerweise anfordern
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Welche Informationen benötigt werden, hängt vom jeweiligen Kunden,
             der Branche und der Position in der Lieferkette ab. Bestimmte
             Themen treten jedoch besonders häufig auf.

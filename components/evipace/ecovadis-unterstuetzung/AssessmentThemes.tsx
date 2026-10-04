@@ -63,10 +63,10 @@ export function AssessmentThemes() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Themenbereiche</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Die vier Themen der EcoVadis-Bewertung
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Welche Fragen konkret gestellt werden, hängt unter anderem von
             Ihrem Unternehmensprofil ab. Die Bewertung orientiert sich jedoch
             an vier zentralen Themenbereichen.

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
+import { RequestButtonPapers } from "./RequestButtonPapers";
 
 type ButtonLinkProps = {
   href: string;
@@ -24,9 +25,13 @@ export function ButtonLink({
   variant = "primary",
   className = ""
 }: ButtonLinkProps) {
+  const requestPaperClass = /(?:^|\/)send-request\/?(?:[?#]|$)/.test(href)
+    ? "request-paper-hover"
+    : "";
+
   return (
     <a
-      className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-bold transition duration-200 hover:-translate-y-0.5 ${variants[variant]} ${className}`}
+      className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-bold transition duration-200 hover:-translate-y-0.5 ${variants[variant]} ${requestPaperClass} ${className}`}
       href={href}
     >
       <span>{children}</span>
@@ -34,6 +39,7 @@ export function ButtonLink({
         aria-hidden="true"
         className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
       />
+      {requestPaperClass ? <RequestButtonPapers /> : null}
     </a>
   );
 }

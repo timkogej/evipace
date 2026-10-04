@@ -72,10 +72,10 @@ export function RequirementCategories() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Typische Anforderungen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Welche Informationen Kunden typischerweise verlangen
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Die Anforderungen unterscheiden sich je nach Kunde, Branche und
             Lieferkette. Bestimmte Themen tauchen jedoch besonders häufig
             auf.

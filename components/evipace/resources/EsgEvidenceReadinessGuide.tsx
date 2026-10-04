@@ -92,7 +92,7 @@ function ArticleSection({
       id={id}
     >
       <h2
-        className="font-display max-w-[18ch] text-[clamp(2.35rem,5vw,4.5rem)] leading-none text-ink"
+        className="type-heading font-display max-w-[24ch] text-ink"
         id={`${id}-title`}
       >
         {title}
@@ -167,12 +167,12 @@ export function EsgEvidenceReadinessGuide() {
                 <div className="min-w-0">
                   <p className="eyebrow">ESG EVIDENCE READINESS CHECK</p>
                   <h1
-                    className="font-display mt-7 max-w-[14ch] break-words hyphens-auto text-[clamp(3.05rem,6.4vw,6.2rem)] leading-[0.92]"
+                    className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
                     id="article-title"
                   >
                     Ist dieser ESG-Nachweis wirklich verwendbar?
                   </h1>
-                  <p className="mt-8 max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                  <p className="type-lead mt-8 max-w-3xl text-muted">
                     Ein Dokument zu haben, bedeutet noch nicht automatisch,
                     dass es eine ESG-Aussage belastbar unterstützt. Prüfen Sie
                     einen Nachweis in wenigen Minuten auf Aussagebezug,
@@ -214,7 +214,7 @@ export function EsgEvidenceReadinessGuide() {
             <div className="site-shell grid gap-8 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
               <div>
                 <p className="eyebrow">Abgrenzung</p>
-                <h2 className="font-display mt-5 max-w-[14ch] text-[clamp(2.4rem,4.8vw,4.5rem)] leading-none">
+                <h2 className="type-heading font-display mt-5 max-w-[24ch]">
                   Ein Nachweis. Nicht der ganze Fragebogen.
                 </h2>
               </div>
@@ -397,7 +397,7 @@ export function EsgEvidenceReadinessGuide() {
               id="typische-esg-nachweise"
             >
               <h2
-                className="font-display max-w-[18ch] text-[clamp(2.35rem,5vw,4.5rem)] leading-none text-ink"
+                className="type-heading font-display max-w-[24ch] text-ink"
                 id="typische-nachweise-title"
               >
                 Typische ESG-Nachweise in produzierenden Unternehmen
@@ -408,7 +408,7 @@ export function EsgEvidenceReadinessGuide() {
                     className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5"
                     key={card.title}
                   >
-                    <h3 className="font-display text-2xl leading-tight text-ink">
+                    <h3 className="type-subheading font-display text-ink">
                       {card.title}
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-muted">
@@ -422,7 +422,7 @@ export function EsgEvidenceReadinessGuide() {
             <section className="grid gap-5 border-t border-[rgba(21,21,21,0.12)] py-14 md:grid-cols-2">
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 sm:p-7">
                 <FolderTree aria-hidden="true" className="h-8 w-8 text-orange" />
-                <h2 className="font-display mt-5 text-3xl leading-tight text-ink">
+                <h2 className="type-heading font-display mt-5 text-ink">
                   Sie wissen nicht, wer den fehlenden Nachweis liefern kann?
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-muted">
@@ -452,7 +452,7 @@ export function EsgEvidenceReadinessGuide() {
 
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 sm:p-7">
                 <FileCheck2 aria-hidden="true" className="h-8 w-8 text-orange" />
-                <h2 className="font-display mt-5 text-3xl leading-tight text-ink">
+                <h2 className="type-heading font-display mt-5 text-ink">
                   Sie prüfen nicht nur einen Nachweis, sondern einen ganzen
                   Kundenfragebogen?
                 </h2>
@@ -475,7 +475,7 @@ export function EsgEvidenceReadinessGuide() {
             >
               <BadgeCheck aria-hidden="true" className="h-8 w-8 text-orange" />
               <h2
-                className="font-display mt-6 max-w-[16ch] text-[clamp(2.45rem,5vw,4.5rem)] leading-none"
+                className="type-heading font-display mt-6 max-w-[24ch]"
                 id="commercial-bridge-title"
               >
                 Sie haben die Unterlagen – aber noch keine klare
@@ -518,7 +518,7 @@ export function EsgEvidenceReadinessGuide() {
                 />
                 <div>
                   <h2
-                    className="font-display text-3xl leading-tight text-ink"
+                    className="type-heading font-display text-ink"
                     id="methodology-link-title"
                   >
                     Praktische Prüfung statt pauschaler Bewertung.
@@ -543,7 +543,7 @@ export function EsgEvidenceReadinessGuide() {
               <div className="rounded-[1.25rem] border border-orange/30 bg-[var(--soft-orange)] p-7 sm:p-10">
                 <Link2 aria-hidden="true" className="h-8 w-8 text-orange" />
                 <h2
-                  className="font-display mt-6 max-w-[16ch] text-[clamp(2.45rem,5vw,4.5rem)] leading-none text-ink"
+                  className="type-heading font-display mt-6 max-w-[24ch] text-ink"
                   id="final-cta-title"
                 >
                   Aus Dokumenten werden belastbare Antworten.

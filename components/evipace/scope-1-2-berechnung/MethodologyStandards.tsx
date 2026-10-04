@@ -15,7 +15,7 @@ export function MethodologyStandards() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Methodischer Stand</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Wir arbeiten mit dem aktuellen methodischen Stand.
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-8 text-muted">

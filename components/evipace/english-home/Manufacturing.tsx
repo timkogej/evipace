@@ -24,7 +24,7 @@ export function Manufacturing({
       <div className="site-shell relative z-10 grid min-h-[48rem] gap-12 py-20 sm:py-28 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
         <div>
           <p className="eyebrow">Built for companies that make things</p>
-          <h2 className="font-display mt-6 max-w-[13ch] text-4xl leading-[0.98] text-white sm:text-5xl lg:text-6xl">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch] text-white">
             ESG looks different inside a manufacturing company.
           </h2>
           <p className="mt-7 max-w-xl text-lg leading-8 text-white/72">

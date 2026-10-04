@@ -12,6 +12,7 @@ import { RequestIntro } from "@/components/evipace/esg-kundenanfragen/RequestInt
 import { TargetCompanies } from "@/components/evipace/esg-kundenanfragen/TargetCompanies";
 import { TaskTranslation } from "@/components/evipace/esg-kundenanfragen/TaskTranslation";
 import { TypicalRequests } from "@/components/evipace/esg-kundenanfragen/TypicalRequests";
+import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -66,11 +67,13 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
       <main>
         <LandingHero />
         <RequestIntro />
-        <TaskTranslation />
-        <TypicalRequests />
-        <DataSources />
-        <ProcessSteps />
         <Deliverables />
+        <ProcessSteps />
+        <ServiceDetailAccordion label="Welche Anfragen, Daten und Nachweise wir bearbeiten">
+          <TypicalRequests />
+          <DataSources />
+          <TaskTranslation />
+        </ServiceDetailAccordion>
         <FocusedScope />
         <TargetCompanies />
         <RelatedQuestionnaire />

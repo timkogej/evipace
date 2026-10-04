@@ -49,7 +49,7 @@ function buildLanguageAlternates(
 /**
  * Builds a page's Metadata object from the central registry.
  *
- * If no entry exists for this locale/page (e.g. a request for /de/about, or
+ * If no entry exists for this locale/page (e.g. a request for /sl/about, or
  * a reachable-but-unlisted page like /de/send-request — see
  * lib/seo/page-registry.ts's isPageReachable/unlistedReachablePages), this
  * returns a safe, non-indexable fallback rather than throwing —
@@ -90,6 +90,10 @@ export function buildPageMetadata(locale: string, pageKey: PageKey): Metadata {
       url: entry.path,
       siteName: SITE_NAME,
       type: entry.openGraphType ?? "website",
+      locale: locale === "de" ? "de_DE" : "en_GB",
+      alternateLocale: getActivePageGroup(pageKey)
+        .filter((candidate) => candidate.locale !== locale)
+        .map((candidate) => candidate.locale === "de" ? "de_DE" : "en_GB"),
       images: [ogImage]
     }
   };

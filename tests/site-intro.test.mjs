@@ -259,38 +259,27 @@ test("the overlay is decorative, silent and never a click target", () => {
   assert.ok(!intro.includes("tabIndex"));
 });
 
-test("playback is per document and never replays on client navigation", () => {
-  // A module binding, not storage: a new document resets it, a route change
-  // does not.
-  assert.ok(/^let introConsumed = false;$/m.test(controller));
-  assert.ok(controller.includes("if (introConsumed) return;"));
-  assert.ok(controller.includes("introConsumed = true;"));
+test("the active welcome intro plays once per tab and skips refreshes", () => {
+  const welcome = readFileSync(new URL("components/evipace/site-intro/WelcomeIntro.tsx", root), "utf8");
+  const welcomeController = readFileSync(new URL("components/evipace/site-intro/WelcomeIntroController.tsx", root), "utf8");
+  const welcomeCss = readFileSync(new URL("components/evipace/site-intro/WelcomeIntro.module.css", root), "utf8");
 
-  // Storage of any kind would break refresh eligibility.
-  const controllerCode = codeOnly(controller);
-  const introCode = codeOnly(intro);
-  for (const [label, source] of [
-    ["controller", controllerCode],
-    ["SiteIntro", introCode]
-  ]) {
-    assert.ok(!source.includes("localStorage"), label);
-    assert.ok(!source.includes("sessionStorage"), label);
-    assert.ok(!source.includes("document.cookie"), label);
-  }
-
-  // Mounted once in the persistent layout, so a route change cannot remount it.
-  assert.ok(layout.includes("<SiteIntro />"));
-  assert.ok(layout.includes('import { SiteIntro }'));
-
-  // The effect runs on mount only.
-  assert.ok(controller.includes("useEffect(() => {"));
-  assert.ok(controller.includes("}, []);"));
-
-  // bfcache: a restore reuses the realm, and the pageshow guard reveals rather
-  // than replays.
-  assert.ok(controller.includes("pageshow"));
-  assert.ok(controller.includes("event.persisted"));
-  assert.ok(controller.includes("if (event.persisted) finish();"));
+  assert.ok(layout.includes('import { WelcomeIntro, WELCOME_BOOT_SCRIPT }'));
+  assert.ok(layout.includes("<WelcomeIntro locale="));
+  assert.ok(!layout.includes("<SiteIntro />"));
+  assert.ok(welcome.includes("window.sessionStorage.getItem"));
+  assert.ok(welcome.includes("window.sessionStorage.setItem"));
+  assert.ok(welcome.includes("Scattered data. Clear answers."));
+  assert.ok(welcome.includes("Verstreute Daten. Klare Antworten."));
+  assert.ok(!welcome.includes("<BrandLogo"));
+  assert.ok(welcomeCss.includes("white-space: nowrap"));
+  assert.ok(welcomeController.includes("sentence.textContent = characters.slice"));
+  assert.ok(!welcomeController.includes("overlay.dataset.introLogo"));
+  assert.ok(welcomeController.includes('root.setAttribute("data-site-intro-revealing", "")'));
+  assert.ok(welcomeCss.includes("translateY(-105%)"));
+  assert.ok(welcomeController.includes("document.hidden"));
+  assert.ok(welcomeController.includes('event.key === "Escape"'));
+  assert.ok(welcomeCss.includes('prefers-reduced-motion: reduce'));
 });
 
 test("route classification covers both locales and trailing slashes", () => {
@@ -396,8 +385,17 @@ test("phones lift the mark away rather than whipping it off screen", () => {
   assert.ok(controller.includes('let mode: Mode = isMobile ? "phone" : "fade";'));
   assert.ok(controller.includes('if (mode !== "flip") at(T[mode].start, runFadeExit);'));
   assert.ok(controller.includes('type Mode = "flip" | "fade" | "phone";'));
-  assert.ok(controller.includes("phone: { start: 1080, duration: 320 }"));
+  assert.ok(controller.includes("phone: { start: 1600, duration: 500 }"));
+  // The completed mobile mark remains visible before the fade begins.
+  const mobileAssemblyEnd = Number(
+    controller.match(/ASSEMBLY_END = \{ desktop: \d+, mobile: (\d+) \}/)?.[1]
+  );
+  const phoneExitStart = Number(
+    controller.match(/phone: \{ start: (\d+), duration: 500 \}/)?.[1]
+  );
+  assert.ok(phoneExitStart - mobileAssemblyEnd >= 500);
   assert.ok(controller.includes('const MOBILE_QUERY = "(max-width: 767.98px)"'));
+  assert.ok(controller.includes("phone: { start: 1850, duration: 500 }"));
 
   // One exit motion for both: shrink slightly, fade out.
   const exit = controller.slice(
@@ -413,7 +411,7 @@ test("phones lift the mark away rather than whipping it off screen", () => {
   assert.ok(!code.includes("translate3d(20px, 0, 0)"));
 
   // Only the dedicated wrapper is ever transformed.
-  assert.ok(layout.includes('<div data-site-intro-content="">{children}</div>'));
+  assert.ok(layout.includes('<div className="editorial-layout" data-site-intro-content="">{children}</div>'));
   assert.ok(controller.includes('document.querySelector<HTMLElement>("[data-site-intro-content]")'));
   assert.ok(!controller.includes("document.body.style.transform"));
   assert.ok(!controller.includes("document.documentElement.style.transform"));
@@ -656,34 +654,15 @@ test("nothing in the hero or the intro loops", () => {
   assert.ok(!controller.includes('direction: "alternate"'));
 });
 
-test("metadata, routes and SEO sources are untouched by the intro", async () => {
-  const untouched = {
-    "app/[locale]/page.tsx":
-      "4110a483a5303c827f51b2bd2dd684f208b506802d38e1ab93fe676d65cc13d4",
-    "app/sitemap.ts":
-      "c9d09c0eaadea76b6cdc80ffe69c7e70448d46b596a346ca1e0a1921ef066b50",
-    "app/robots.ts":
-      "07569ca82f2afb62270f93d18845f81e8230d03bcb7d62082bd6af92261f33ab",
-    "lib/seo/page-registry.ts":
-      "e65b049a42c5782dad74a461ec83a2b961ace93e6a7a69dfe7dfee4d241b0f2a",
-    "lib/seo/build-metadata.ts":
-      "ff619511537efc58dcfbb34af01c84473c066d23b75b9396847631d27af67bf6",
-    "lib/seo/schema/organization.ts":
-      "6b3982189afad7a1ea9a058290a8005f73d385619a47afcc555c766b86a2d30a",
-    "lib/seo/schema/website.ts":
-      "cc72f403d12576331c5bb591776b6b8c9f6a717d283b464689f17348e43206f1",
-    "lib/seo/schema/webpage.ts":
-      "2650144cc2e462e462eacc9b8c7ab75ba02d72706fd1126dca5e6fc361120eb3"
-  };
-  for (const [file, expected] of Object.entries(untouched)) {
-    const url = new URL(file, root);
-    assert.ok(existsSync(url), file);
-    assert.equal(
-      createHash("sha256").update(readFileSync(url)).digest("hex"),
-      expected,
-      `${file} changed unexpectedly`
-    );
-  }
+test("the intro preserves homepage schema and SEO sources", async () => {
+  // SEO builders are covered by executable contracts in geo-contracts.test.mjs.
+  const homeRoute = await read("app/[locale]/page.tsx");
+  assert.ok(homeRoute.includes('buildPageMetadata(locale, "home")'));
+  assert.ok(homeRoute.includes('buildWebPageSchema(locale, "home")'));
+  assert.ok(homeRoute.includes("buildOrganizationSchema()"));
+  assert.ok(homeRoute.includes("buildWebsiteSchema()"));
+  assert.ok(homeRoute.includes('<HomeLandingPage locale="en"'));
+  assert.ok(homeRoute.includes('<HomeLandingPage locale="de"'));
 
   // The layout is the one file the intro touches, and only to mount itself
   // and wrap the children. Its metadata surface is unchanged.

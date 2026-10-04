@@ -41,11 +41,11 @@ export function AssessmentPreparation() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Operative Vorbereitung</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Wir strukturieren Ihre vorhandenen Unterlagen entlang des
             EcoVadis-Fragebogens.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Sie müssen nicht jede Frage selbst interpretieren und anschließend
             versuchen, im gesamten Unternehmen passende Dokumente zu finden.
           </p>

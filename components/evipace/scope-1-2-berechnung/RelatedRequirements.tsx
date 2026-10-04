@@ -36,10 +36,10 @@ export function RelatedRequirements() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Verwendungszwecke</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Eine Berechnung, mehrere Verwendungszwecke.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Scope-1- und Scope-2-Werte werden heute in unterschiedlichen
             ESG-Prozessen benötigt.
           </p>

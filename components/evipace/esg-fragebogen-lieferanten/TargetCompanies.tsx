@@ -17,10 +17,10 @@ export function TargetCompanies() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Für wen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Für welche Unternehmen Evipace gedacht ist
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Evipace richtet sich vor allem an produzierende kleine und
             mittlere Unternehmen, die ESG-Anforderungen ihrer Kunden erfüllen
             müssen, ohne dafür ein großes internes Nachhaltigkeitsteam

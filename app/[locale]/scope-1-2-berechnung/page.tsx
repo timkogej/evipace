@@ -17,6 +17,7 @@ import { ScopeTwoMethods } from "@/components/evipace/scope-1-2-berechnung/Scope
 import { SourceDataIntro } from "@/components/evipace/scope-1-2-berechnung/SourceDataIntro";
 import { TargetCompanies } from "@/components/evipace/scope-1-2-berechnung/TargetCompanies";
 import { TrustStatement } from "@/components/evipace/scope-1-2-berechnung/TrustStatement";
+import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -72,14 +73,16 @@ export default async function Scope12BerechnungPage({ params }: PageProps) {
       <main>
         <LandingHero />
         <SourceDataIntro />
-        <ScopeOne />
-        <ScopeTwo />
-        <ScopeTwoMethods />
-        <BoundarySetup />
-        <CalculationMethod />
-        <DataRequirements />
-        <ProcessSteps />
         <Deliverables />
+        <ProcessSteps />
+        <ServiceDetailAccordion label="Emissionsquellen, Daten und Berechnungsmethoden im Detail">
+          <ScopeOne />
+          <ScopeTwo />
+          <ScopeTwoMethods />
+          <BoundarySetup />
+          <CalculationMethod />
+          <DataRequirements />
+        </ServiceDetailAccordion>
         <RelatedRequirements />
         <ScopeThreeClarification />
         <MethodologyStandards />

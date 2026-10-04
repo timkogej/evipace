@@ -37,7 +37,7 @@ const [
     "utf8"
   ),
   readFile(
-    new URL("../components/evipace/esg-kundenanfragen/DataSources.tsx", import.meta.url),
+    new URL("../components/evipace/esg-kundenanfragen/RequestIntro.tsx", import.meta.url),
     "utf8"
   ),
   readFile(

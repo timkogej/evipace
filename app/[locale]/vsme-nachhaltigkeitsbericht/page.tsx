@@ -16,6 +16,7 @@ import { ScopeData } from "@/components/evipace/vsme-nachhaltigkeitsbericht/Scop
 import { TargetCompanies } from "@/components/evipace/vsme-nachhaltigkeitsbericht/TargetCompanies";
 import { TrustStatement } from "@/components/evipace/vsme-nachhaltigkeitsbericht/TrustStatement";
 import { ValueChainCap } from "@/components/evipace/vsme-nachhaltigkeitsbericht/ValueChainCap";
+import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -74,11 +75,13 @@ export default async function VsmeNachhaltigkeitsberichtPage({
         <LandingHero />
         <DataFoundation />
         <ReportContents />
-        <BasicComprehensive />
-        <DataSources />
         <ProcessSteps />
-        <ScopeData />
-        <ReusableValue />
+        <ServiceDetailAccordion label="VSME-Module, Datenquellen und Kennzahlen im Detail">
+          <BasicComprehensive />
+          <DataSources />
+          <ScopeData />
+          <ReusableValue />
+        </ServiceDetailAccordion>
         <RegulatoryStatus />
         <ValueChainCap />
         <PracticalFoundation />

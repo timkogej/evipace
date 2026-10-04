@@ -34,6 +34,8 @@ export function buildOrganizationSchema() {
     description:
       "Evipace prepares practical ESG documentation and support for manufacturing companies and suppliers in European supply chains, including customer ESG requests, questionnaires, Scope 1 and Scope 2 calculations, voluntary sustainability reporting, policies and supporting evidence.",
     email: publicContactEmail,
+    // General country context is visible on both About pages; no invented address.
+    location: { "@type": "Country", name: "Slovenia" },
     areaServed: {
       "@type": "Place",
       name: "Europe"
@@ -42,7 +44,8 @@ export function buildOrganizationSchema() {
       "@type": "Person",
       "@id": FOUNDER_ID,
       name: "Tim Kogej",
-      jobTitle: "Founder & Managing Director"
+      jobTitle: "Founder & Managing Director",
+      url: `${SITE_URL}/en/about#founder-title`
     },
     logo: {
       "@type": "ImageObject",

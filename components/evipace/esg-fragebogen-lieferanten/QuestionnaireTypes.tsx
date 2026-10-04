@@ -35,10 +35,10 @@ export function QuestionnaireTypes() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Formate</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Welche ESG-Fragebögen wir unterstützen
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Nicht jeder Kunde verwendet denselben Prozess. Deshalb arbeiten
             wir nicht nur mit einem bestimmten Fragebogenformat.
           </p>

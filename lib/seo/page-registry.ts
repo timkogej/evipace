@@ -224,6 +224,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "What information should an SME prepare for a VSME sustainability report? Practical guide to company, energy, emissions, workforce, policy and evidence data.",
       path: "/en/resources/vsme-data-sustainability-report",
+      dateModified: "2026-10-04",
       openGraphType: "article"
     },
     esgDatenVerantwortlicheAbteilungen: {
@@ -425,6 +426,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "Welche Daten brauchen Sie für einen VSME-Nachhaltigkeitsbericht? Praktischer Überblick zu Energie, Emissionen, Wasser, Abfall, Mitarbeitenden, Policies und weiteren VSME-Angaben.",
       path: "/de/ressourcen/vsme-daten-nachhaltigkeitsbericht",
+      dateModified: "2026-10-04",
       openGraphType: "article"
     },
     esgDatenVerantwortlicheAbteilungen: {

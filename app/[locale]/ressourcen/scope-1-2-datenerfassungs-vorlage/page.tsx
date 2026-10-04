@@ -23,6 +23,7 @@ export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  if (locale !== "de") return { robots: { index: false, follow: false } };
   return buildPageMetadata(locale, PAGE_KEY);
 }
 
@@ -39,7 +40,7 @@ export default async function Scope12DataCollectionResourcePage({
     buildOrganizationSchema(),
     buildWebsiteSchema(),
     buildWebPageSchema(locale, PAGE_KEY),
-    buildArticleSchema(locale, PAGE_KEY, PAGE_TITLE),
+    buildArticleSchema(locale, PAGE_KEY, "Sammeln Sie alle Daten für Scope 1 & 2 an einem Ort."),
     buildBreadcrumbListSchema([
       { name: "Startseite", path: "/de" },
       { name: "Ressourcen", path: "/de/ressourcen" },

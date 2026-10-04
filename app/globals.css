@@ -6,10 +6,10 @@
   --orange: #fe7001;
   --ink: #151515;
   --muted: #66635f;
-  --paper: #f7f6f2;
-  --warm: #faf9f6;
+  --paper: #f8f8f6;
+  --warm: #f8f8f6;
   --surface: #ffffff;
-  --border: #dedcd6;
+  --border: #e2e2df;
   --dark: #171717;
   --soft-orange: #fff0e5;
   --section-x: clamp(1.25rem, 3vw, 3rem);
@@ -21,19 +21,23 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--paper);
+  background: var(--surface);
   overflow-x: hidden;
 }
 
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    linear-gradient(180deg, rgba(250, 249, 246, 0.88), rgba(247, 246, 242, 1)),
-    var(--paper);
+  background: var(--surface);
   font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   overflow-x: hidden;
   text-rendering: geometricPrecision;
+}
+
+html[data-site-intro="playing"]:not([data-site-intro-revealing]) .site-header,
+html[data-site-intro="playing"]:not([data-site-intro-revealing]) [data-site-intro-content],
+html[data-site-intro="playing"]:not([data-site-intro-revealing]) footer {
+  visibility: hidden;
 }
 
 body::before {
@@ -58,6 +62,84 @@ body::before {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.request-button-papers {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .request-paper-hover {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+  }
+
+  .request-paper-hover > :not(.request-button-papers) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .request-button-papers {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  .request-button-papers > span {
+    position: absolute;
+    width: 1.45rem;
+    height: 1.9rem;
+    border: 1px solid #d6dad6;
+    border-radius: 0.12rem;
+    background:
+      linear-gradient(#fe7001, #fe7001) 0.27rem 0.35rem / 0.55rem 0.12rem no-repeat,
+      linear-gradient(#cdd3cf, #cdd3cf) 0.27rem 0.78rem / 0.87rem 0.07rem no-repeat,
+      linear-gradient(#cdd3cf, #cdd3cf) 0.27rem 1.02rem / 0.87rem 0.07rem no-repeat,
+      linear-gradient(#cdd3cf, #cdd3cf) 0.27rem 1.26rem / 0.62rem 0.07rem no-repeat,
+      #f8f8f6;
+    box-shadow: 0 0.35rem 0.85rem rgba(20, 25, 22, 0.17);
+    opacity: 0;
+    transition: opacity 220ms ease, transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .request-button-papers > span:first-child {
+    top: 50%;
+    left: 0;
+    transform: translate(0.15rem, -50%) rotate(0) scale(0.65);
+  }
+
+  .request-button-papers > span:nth-child(2) {
+    top: 0;
+    left: 56%;
+    transform: translate(-50%, 0.25rem) rotate(0) scale(0.65);
+    transition-delay: 35ms;
+  }
+
+  .request-button-papers > span:last-child {
+    top: 48%;
+    right: 0;
+    transform: translate(-0.15rem, -20%) rotate(0) scale(0.65);
+    transition-delay: 70ms;
+  }
+
+  .request-paper-hover:hover .request-button-papers > span {
+    opacity: 1;
+  }
+
+  .request-paper-hover:hover .request-button-papers > span:first-child {
+    transform: translate(-0.95rem, -50%) rotate(-16deg) scale(1);
+  }
+
+  .request-paper-hover:hover .request-button-papers > span:nth-child(2) {
+    transform: translate(-50%, -0.95rem) rotate(10deg) scale(1);
+  }
+
+  .request-paper-hover:hover .request-button-papers > span:last-child {
+    transform: translate(0.95rem, -20%) rotate(17deg) scale(1);
+  }
 }
 
 button,
@@ -146,7 +228,7 @@ a {
 .resource-article-hero {
   background:
     radial-gradient(circle at 80% 16%, rgba(254, 112, 1, 0.075), transparent 28rem),
-    linear-gradient(180deg, rgba(250, 249, 246, 0.96), var(--paper));
+    linear-gradient(180deg, var(--surface), var(--paper));
 }
 
 .resource-hero-art {
@@ -250,6 +332,15 @@ a {
    anything — so a reader without JavaScript, or one who asked for
    reduced motion, gets the finished page immediately.
    ───────────────────────────────────────────────────────────────── */
+
+/* About-only palette: white canvas with the portal's light-grey section tone.
+   Orange accents, warm orange panels and dark sections retain their colours. */
+.about-page {
+  --paper: #f8f8f6;
+  --warm: #f8f8f6;
+  --surface: #ffffff;
+  background: var(--surface);
+}
 
 .about-section {
   padding-block: clamp(3rem, 4.6vw, 4.75rem);
@@ -519,13 +610,404 @@ a {
    balanced wrapping instead of manual line management.
    ───────────────────────────────────────────────────────────────── */
 
+/* Match About's white and light-grey palette, scoped to both Methodology locales. */
+.methodology-page {
+  --paper: #f8f8f6;
+  --warm: #f8f8f6;
+  --surface: #ffffff;
+  background: var(--surface);
+}
+
 .methodology-hero {
-  padding-top: clamp(6.5rem, 9vw, 8.5rem);
-  padding-bottom: clamp(2.5rem, 3.6vw, 3.5rem);
+  display: flex;
+  align-items: center;
+  min-height: clamp(38rem, 51vw, 47rem);
+  padding-block: clamp(6.5rem, 9vw, 8.5rem) clamp(4rem, 6vw, 6rem);
+}
+
+.methodology-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.methodology-hero-media picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.methodology-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.04) 72%);
+}
+
+.methodology-hero > .site-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.methodology-hero-copy {
+  max-width: 42rem;
+  padding: clamp(1.6rem, 3vw, 2.8rem);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 55px rgba(21, 21, 21, 0.12);
+  backdrop-filter: blur(6px);
+}
+
+.methodology-hero .methodology-ghost {
+  display: none;
+}
+
+.methodology-feature {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: clamp(27rem, 43vw, 38rem);
+  padding-block: clamp(3rem, 5vw, 5rem);
+  overflow: hidden;
+}
+
+.methodology-feature-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.methodology-feature-media--process img {
+  object-position: center 47%;
+}
+
+.methodology-feature-media--emissions img {
+  object-position: center 52%;
+}
+
+.methodology-feature-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.methodology-feature-copy {
+  max-width: 40rem;
+  padding: clamp(1.6rem, 3vw, 2.75rem);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: rgba(255, 255, 255, 0.91);
+  box-shadow: 0 18px 55px rgba(21, 21, 21, 0.14);
+  backdrop-filter: blur(7px);
+}
+
+.methodology-feature-body {
+  padding-top: clamp(3rem, 4.6vw, 4.75rem);
+}
+
+.methodology-page .methodology-deep-dive {
+  border: 1px solid rgba(21, 21, 21, 0.16);
+  background: var(--paper);
+}
+
+.methodology-page .methodology-deep-dive > summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem clamp(1.25rem, 2.5vw, 2rem);
+  color: var(--ink);
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+  list-style: none;
+}
+
+.methodology-page .methodology-deep-dive > summary::-webkit-details-marker {
+  display: none;
+}
+
+.methodology-page .methodology-deep-dive > summary:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -2px;
+}
+
+.methodology-page .methodology-deep-dive-content {
+  padding: 0 clamp(1.25rem, 2.5vw, 2rem) clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.methodology-evidence-photo {
+  position: relative;
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 0.55rem solid white;
+  border-radius: 0.65rem;
+  background: var(--paper);
+  box-shadow: 0 14px 38px rgba(21, 21, 21, 0.14);
+}
+
+@media (min-width: 768px) {
+  .methodology-evidence-checks ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
 }
 
 .methodology-section {
   padding-block: clamp(3rem, 4.6vw, 4.75rem);
+}
+
+.methodology-page .methodology-section--image {
+  padding-top: 0;
+}
+
+.methodology-page #principle,
+.methodology-page #grundprinzip {
+  padding-bottom: clamp(4.5rem, 6vw, 6rem);
+}
+
+.methodology-page .methodology-overview {
+  padding-block: clamp(3.5rem, 5vw, 5rem);
+  background: #fff;
+}
+
+.methodology-page .methodology-overview-title {
+  max-width: 24ch;
+  margin: 0.9rem 0 2.2rem;
+  font-size: clamp(1.8rem, 2.85vw, 2.85rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.methodology-page .methodology-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.methodology-page .methodology-overview-grid > div {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(21, 21, 21, 0.2);
+}
+
+.methodology-page .methodology-overview-grid span {
+  color: #b44d00;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.methodology-page .methodology-overview-grid p {
+  max-width: 36ch;
+  margin: 0.65rem 0 0;
+  color: var(--ink);
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .methodology-page .methodology-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+}
+
+.methodology-list--lines li {
+  border-top: 1px solid rgba(21, 21, 21, 0.12);
+  padding-top: 0.65rem;
+}
+
+.methodology-list--lines.methodology-list--dark li {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Keep the main journey visible; supporting technical chapters open on demand. */
+.methodology-page .methodology-disclosure {
+  border-top: 1px solid rgba(21, 21, 21, 0.12);
+  background: #fff;
+}
+
+.methodology-page .methodology-disclosure:nth-of-type(even) {
+  background: var(--paper);
+}
+
+.methodology-page .methodology-disclosure-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.4rem 2rem;
+  align-items: center;
+  padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.methodology-page .methodology-disclosure-summary::-webkit-details-marker,
+.methodology-page .methodology-step-summary::-webkit-details-marker {
+  display: none;
+}
+
+.methodology-page .methodology-disclosure-label {
+  grid-column: 1;
+  color: #b44d00;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.methodology-page .methodology-disclosure-summary .methodology-disclosure-heading {
+  grid-column: 1;
+  max-width: 35ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.45rem, 2.2vw, 2.15rem);
+  font-weight: 400;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.methodology-page .methodology-disclosure-toggle,
+.methodology-page .methodology-step-toggle,
+.methodology-page .methodology-deep-dive-toggle {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  position: relative;
+  display: block;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: 0 0 2.2rem;
+  border: 1px solid rgba(21, 21, 21, 0.24);
+  border-radius: 50%;
+  color: var(--ink);
+  transition: border-color 180ms ease;
+}
+
+.methodology-page .methodology-disclosure-toggle::before,
+.methodology-page .methodology-disclosure-toggle::after,
+.methodology-page .methodology-step-toggle::before,
+.methodology-page .methodology-step-toggle::after,
+.methodology-page .methodology-deep-dive-toggle::before,
+.methodology-page .methodology-deep-dive-toggle::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.methodology-page .methodology-disclosure-toggle::before,
+.methodology-page .methodology-step-toggle::before,
+.methodology-page .methodology-deep-dive-toggle::before {
+  width: 0.8rem;
+  height: 1.5px;
+}
+
+.methodology-page .methodology-disclosure-toggle::after,
+.methodology-page .methodology-step-toggle::after,
+.methodology-page .methodology-deep-dive-toggle::after {
+  width: 1.5px;
+  height: 0.8rem;
+  transition: opacity 180ms ease;
+}
+
+.methodology-page .methodology-disclosure[open] .methodology-disclosure-toggle,
+.methodology-page .methodology-step details[open] .methodology-step-toggle,
+.methodology-page .methodology-deep-dive[open] .methodology-deep-dive-toggle {
+  border-color: var(--orange);
+}
+
+.methodology-page .methodology-disclosure[open] .methodology-disclosure-toggle::after,
+.methodology-page .methodology-step details[open] .methodology-step-toggle::after,
+.methodology-page .methodology-deep-dive[open] .methodology-deep-dive-toggle::after {
+  opacity: 0;
+}
+
+.methodology-page .methodology-disclosure-summary:hover .methodology-disclosure-toggle,
+.methodology-page .methodology-step-summary:hover .methodology-step-toggle,
+.methodology-page .methodology-deep-dive > summary:hover .methodology-deep-dive-toggle {
+  border-color: var(--orange);
+}
+
+.methodology-page .methodology-disclosure-summary:focus-visible,
+.methodology-page .methodology-step-summary:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -2px;
+}
+
+.methodology-page .methodology-disclosure-content {
+  padding-bottom: clamp(3rem, 4.6vw, 4.75rem);
+}
+
+.methodology-page .methodology-process-intro {
+  max-width: 65ch;
+  margin: 0 0 1.8rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.methodology-page .methodology-steps {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.methodology-page .methodology-step {
+  border: 1px solid rgba(21, 21, 21, 0.12);
+  border-radius: 0.35rem;
+  background: var(--paper);
+}
+
+.methodology-page .methodology-step-summary {
+  display: grid;
+  grid-template-columns: minmax(3rem, 6rem) minmax(0, 1fr) auto;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.methodology-page .methodology-step-summary-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.methodology-page .methodology-step-summary-copy .methodology-prose {
+  max-width: 70ch;
+  line-height: 1.55;
+}
+
+.methodology-page .methodology-step-toggle {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.methodology-page .methodology-step-detail {
+  padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 2vw, 2rem) clamp(5rem, 11vw, 9.5rem);
+}
+
+@media (max-width: 639px) {
+  .methodology-page .methodology-disclosure-summary {
+    gap: 0.4rem 1rem;
+  }
+
+  .methodology-page .methodology-step-summary {
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    gap: 0.8rem;
+  }
+
+  .methodology-page .methodology-step-detail {
+    padding-left: 1rem;
+  }
 }
 
 /* ── Display ────────────────────────────────────────────────────── */
@@ -653,6 +1135,106 @@ a {
   font-size: clamp(1.85rem, 2.85vw, 2.75rem);
 }
 
+.methodology-page .methodology-contact {
+  padding-block: clamp(3.75rem, 5.5vw, 5.5rem);
+  border-top: 0;
+  background: #222725;
+  color: #fff;
+}
+
+.methodology-page .methodology-contact .eyebrow {
+  color: #ffb77d;
+}
+
+.methodology-page .methodology-contact .methodology-h2--cta {
+  max-width: 16ch;
+  margin-top: 1rem;
+  color: #fff;
+  font-size: clamp(2.65rem, 4vw, 4.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.methodology--de .methodology-contact .methodology-h2--cta {
+  max-width: 20ch;
+  font-size: clamp(2.35rem, 3.6vw, 3.7rem);
+}
+
+.methodology-contact-bottom {
+  max-width: 33rem;
+  margin-top: 1.2rem;
+}
+
+.methodology-page .methodology-contact .methodology-lead {
+  max-width: 33rem;
+  color: #f1f1ef;
+  font-size: clamp(0.96rem, 1.05vw, 1.06rem);
+  line-height: 1.6;
+}
+
+.methodology-contact-action {
+  margin-top: 1.6rem;
+}
+
+.methodology-page .methodology-contact-action a {
+  min-height: 3.6rem;
+  padding: 0.9rem 1.4rem;
+  border-color: var(--orange);
+  background: var(--orange);
+  color: white;
+  font-size: 0.96rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.methodology-page .methodology-contact-action a:hover {
+  border-color: #cb5800;
+  background: #cb5800;
+  color: white;
+}
+
+.methodology-contact-action svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.methodology-contact-topics {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .methodology-contact-inner:has(.methodology-contact-action a:hover) .methodology-contact-artwork,
+  .methodology-contact-inner:has(.methodology-contact-action a:focus-visible) .methodology-contact-artwork {
+    transform: translateY(-0.3rem) scale(1.06);
+  }
+}
+
+@media (max-width: 760px) {
+  .methodology-page .methodology-contact {
+    padding-block: 3.5rem;
+  }
+
+  .methodology-page .methodology-contact .methodology-h2--cta {
+    font-size: clamp(2.45rem, 8vw, 3.4rem);
+  }
+
+  .methodology--de .methodology-contact .methodology-h2--cta {
+    font-size: clamp(2.15rem, 7vw, 3rem);
+  }
+
+  .methodology-page .methodology-contact-action a {
+    width: 100%;
+  }
+}
+
 .methodology--de .methodology-statement {
   max-width: 33ch;
   font-size: clamp(1.25rem, 1.75vw, 1.7rem);
@@ -741,8 +1323,44 @@ a {
 
 @media (max-width: 760px) {
   .methodology-hero {
+    display: block;
+    min-height: 0;
     padding-top: 5.5rem;
-    padding-bottom: 2.25rem;
+    padding-bottom: 12rem;
+  }
+
+  .methodology-hero-media::after {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.16) 75%);
+  }
+
+  .methodology-hero-media img {
+    object-position: 61% center;
+  }
+
+  .methodology-hero-copy {
+    max-width: none;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .methodology-feature {
+    align-items: flex-end;
+    min-height: 0;
+    padding-block: 12rem 1.5rem;
+  }
+
+  .methodology-feature-copy {
+    max-width: none;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.93);
+  }
+
+  .methodology-feature-media--process img {
+    object-position: 60% center;
+  }
+
+  .methodology-feature-media--emissions img {
+    object-position: 67% center;
   }
 
   .methodology-section {
@@ -3405,7 +4023,7 @@ html[data-site-intro="done"] .site-intro {
 .evb__dossier {
   position: relative;
   padding: 1.15rem 1.3rem 1.35rem;
-  background: linear-gradient(166deg, #f8f4ed 0%, #eee7dc 100%);
+  background: linear-gradient(166deg, #ffffff 0%, #f8f8f6 100%);
   border: 1px solid rgba(21, 21, 21, 0.13);
   box-shadow: 0 18px 44px rgba(21, 21, 21, 0.1);
 }
@@ -3416,7 +4034,7 @@ html[data-site-intro="done"] .site-intro {
   position: absolute;
   z-index: -1;
   content: "";
-  background: #f0e9de;
+  background: #eeefed;
   border: 1px solid rgba(21, 21, 21, 0.09);
 }
 
@@ -3426,7 +4044,7 @@ html[data-site-intro="done"] .site-intro {
 
 .evb__dossier::after {
   inset: 0.9rem -0.9rem -0.9rem 0.9rem;
-  background: #ebe3d6;
+  background: #e4e5e2;
 }
 
 .evb__dossier-tab {
@@ -3708,7 +4326,7 @@ html[data-site-intro="done"] .site-intro {
   display: flex;
   min-height: 23rem;
   overflow: hidden;
-  background: #ebe5dc;
+  background: #f8f8f6;
   isolation: isolate;
 }
 
@@ -3886,13 +4504,13 @@ html[data-site-intro="done"] .site-intro {
 
 .dossier__layer {
   position: absolute;
-  background: #f0e9de;
+  background: #eeefed;
   border: 1px solid rgba(21, 21, 21, 0.1);
 }
 
 .dossier__layer--back {
   inset: 1.5rem -1rem -1.5rem 1.5rem;
-  background: #eae2d5;
+  background: #e4e5e2;
 }
 
 .dossier__layer--mid {
@@ -3902,7 +4520,7 @@ html[data-site-intro="done"] .site-intro {
 .dossier__sheet {
   position: relative;
   padding: 1.9rem 1.5rem 0;
-  background: linear-gradient(168deg, #fbf8f2 0%, #f2ece2 100%);
+  background: linear-gradient(168deg, #ffffff 0%, #f8f8f6 100%);
   border: 1px solid rgba(21, 21, 21, 0.13);
   box-shadow: 0 22px 52px rgba(21, 21, 21, 0.1);
 }
@@ -3928,7 +4546,7 @@ html[data-site-intro="done"] .site-intro {
   left: 2.25rem;
   width: 2.1rem;
   height: 1.4rem;
-  background: linear-gradient(180deg, #e9e3d9 0%, #d5cec2 100%);
+  background: linear-gradient(180deg, #e8e9e6 0%, #d3d5d1 100%);
   border: 1.5px solid rgba(21, 21, 21, 0.32);
   border-radius: 3px;
 }
@@ -4063,6 +4681,274 @@ html[data-site-intro="done"] .site-intro {
 
 /* ── Reduced motion ─────────────────────────────────────────────── */
 
+/* Resource articles: a quieter opening and a compact, recognizable request finish. */
+main:has(> article > header #article-title) > article > header.resource-article-hero {
+  background: #fff;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.1);
+  padding-bottom: clamp(3.5rem, 5vw, 5rem);
+}
+
+main:has(> article > header #article-title) > article > header.resource-article-hero::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange) 0 5.5rem, transparent 5.5rem);
+  content: "";
+}
+
+main:has(> article > header #article-title) > article > header.resource-article-hero .resource-hero-art__sheet {
+  opacity: 0.09;
+}
+
+main:has(> article > header #article-title) > article > header.resource-article-hero h1 {
+  font-size: clamp(2.5rem, 3.5vw, 3.8rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+main:has(> article > header #article-title) > article > header.resource-article-hero aside {
+  box-shadow: none;
+}
+
+main:has(> article > header #article-title) > article > section[aria-labelledby="quick-answer-title"] {
+  position: relative;
+  background: #252a28;
+  padding-block: clamp(3.5rem, 5vw, 5rem);
+}
+
+main:has(> article > header #article-title) > article > section[aria-labelledby="quick-answer-title"]::before {
+  position: absolute;
+  top: 0;
+  left: max(1.25rem, calc((100vw - 88rem) / 2));
+  width: 3.5rem;
+  height: 3px;
+  background: var(--orange);
+  content: "";
+}
+
+main:has(> article > header #article-title) > article > section[aria-labelledby="quick-answer-title"] h2 {
+  font-size: clamp(2rem, 3vw, 3.25rem);
+  line-height: 1.12;
+}
+
+main:has(> article > header #article-title) > article > section[aria-labelledby="quick-answer-title"] :is(.rounded-\[1rem\], .rounded-\[1\.2rem\]) {
+  border-color: rgba(255, 255, 255, 0.19);
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 20rem;
+  background: var(--orange);
+  color: #fff;
+  box-shadow: none;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::before,
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::after {
+  position: absolute;
+  z-index: -1;
+  right: clamp(0.5rem, 2vw, 2rem);
+  top: 50%;
+  width: clamp(7.5rem, 14vw, 11rem);
+  height: clamp(10rem, 19vw, 14rem);
+  border: 1px solid rgba(21, 21, 21, 0.14);
+  border-radius: 0.35rem;
+  background-color: #f8f8f6;
+  box-shadow: 0 1.4rem 2.5rem rgba(88, 35, 0, 0.18);
+  content: "";
+  pointer-events: none;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::before {
+  background-image:
+    linear-gradient(#242a28, #242a28),
+    repeating-linear-gradient(to bottom, #d5d9d7 0 2px, transparent 2px 1rem);
+  background-position: 1.3rem 1.4rem, 1.3rem 3.2rem;
+  background-size: 43% 0.35rem, calc(100% - 2.6rem) 5.5rem;
+  background-repeat: no-repeat;
+  transform: translate(0.8rem, -54%) rotate(12deg);
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::after {
+  background-image:
+    linear-gradient(#ff6f00, #ff6f00),
+    repeating-linear-gradient(to bottom, #d5d9d7 0 2px, transparent 2px 1rem),
+    linear-gradient(90deg, #e6ebe8 0 34%, transparent 34% 38%, #e6ebe8 38% 70%, transparent 70% 74%, #e6ebe8 74%);
+  background-position: 1.3rem 1.4rem, 1.3rem 3.2rem, 1.3rem calc(100% - 2.2rem);
+  background-size: 35% 0.35rem, calc(100% - 2.6rem) 5.5rem, calc(100% - 2.6rem) 2.5rem;
+  background-repeat: no-repeat;
+  transform: translate(-1rem, -46%) rotate(-8deg);
+  transition: transform 450ms ease;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]):hover::after {
+  transform: translate(-1rem, -48%) rotate(-6deg);
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) :is(.text-orange, .eyebrow) {
+  color: #fff;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) p[class*="text-white/"] {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) h2,
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) p {
+  position: relative;
+  max-width: 33rem;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) h2 {
+  font-size: clamp(2rem, 3.2vw, 3.5rem);
+  line-height: 1.12;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) a[href*="send-request"] {
+  background: #242a28;
+  border-color: #242a28;
+  color: #fff;
+}
+
+main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) a[href*="send-request"]:hover {
+  background: #151918;
+  border-color: #151918;
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--orange);
+  padding-block: clamp(3.5rem, 5vw, 5rem);
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta::before,
+main:has(> article > header #article-title) > section.resource-final-cta::after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: clamp(2rem, 8vw, 10rem);
+  width: 10rem;
+  height: 12.5rem;
+  border: 1px solid rgba(21, 21, 21, 0.16);
+  border-radius: 0.35rem;
+  background-color: #f8f8f6;
+  box-shadow: 0 1rem 2rem rgba(88, 35, 0, 0.18);
+  content: "";
+  pointer-events: none;
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta::before {
+  background-image: repeating-linear-gradient(to bottom, #cbd3cf 0 2px, transparent 2px 0.9rem);
+  background-position: 1rem 3rem;
+  background-size: 8rem 5rem;
+  background-repeat: no-repeat;
+  transform: translate(2.2rem, -52%) rotate(11deg);
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta::after {
+  background-image:
+    linear-gradient(#ff6f00, #ff6f00),
+    repeating-linear-gradient(to bottom, #cbd3cf 0 2px, transparent 2px 0.9rem),
+    linear-gradient(90deg, #e2e9e5 0 46%, transparent 46% 52%, #e2e9e5 52%);
+  background-position: 1rem 1.3rem, 1rem 3rem, 1rem 9rem;
+  background-size: 3rem 0.3rem, 8rem 5rem, 8rem 2rem;
+  background-repeat: no-repeat;
+  transform: translate(-0.5rem, -47%) rotate(-8deg);
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta :is(h2, p) {
+  max-width: 39rem;
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta h2 {
+  font-size: clamp(2rem, 3.2vw, 3.5rem);
+  line-height: 1.12;
+}
+
+main:has(> article > header #article-title) > section.resource-final-cta a[href*="send-request"] {
+  background: #242a28;
+  border-color: #242a28;
+  color: #fff;
+}
+
+/* German resource copy runs longer; keep its invitation visually compact. */
+html[lang="de"] .resource-hub-final-cta {
+  padding-block: clamp(2.75rem, 4vw, 3.75rem);
+}
+
+html[lang="de"] .resource-hub-final-cta h2 {
+  max-width: 28ch;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.1;
+}
+
+html[lang="de"] .resource-hub-final-cta :is(h2, p) {
+  margin-top: 0.75rem;
+}
+
+html[lang="de"] main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) {
+  min-height: 15rem;
+  padding: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+html[lang="de"] main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"]) h2 {
+  font-size: clamp(1.85rem, 2.7vw, 2.75rem);
+}
+
+html[lang="de"] main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::before,
+html[lang="de"] main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::after {
+  width: clamp(6.5rem, 11vw, 9rem);
+  height: clamp(8.5rem, 15vw, 11.5rem);
+}
+
+/* The shared English article already has a detailed in-article invitation.
+   Keep that card quiet; the full-width section is its final call to action. */
+main:has(> article > header #article-title):has(> section.resource-final-cta) > article section[aria-labelledby="article-cta-title"] {
+  background: #252a28;
+}
+
+main:has(> article > header #article-title):has(> section.resource-final-cta) > article section[aria-labelledby="article-cta-title"]::before,
+main:has(> article > header #article-title):has(> section.resource-final-cta) > article section[aria-labelledby="article-cta-title"]::after {
+  content: none;
+}
+
+main:has(> article > header #article-title):has(> section.resource-final-cta) > article section[aria-labelledby="article-cta-title"] :is(.text-orange, .eyebrow) {
+  color: var(--orange);
+}
+
+main:has(> article > header #article-title):has(> section.resource-final-cta) > article section[aria-labelledby="article-cta-title"] a[href*="send-request"] {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+@media (max-width: 900px) {
+  main:has(> article > header #article-title) > section.resource-final-cta::before,
+  main:has(> article > header #article-title) > section.resource-final-cta::after {
+    opacity: 0.14;
+    right: -1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::before,
+  main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::after {
+    opacity: 0.15;
+    right: -1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main:has(> article > header #article-title) > article section:is([aria-labelledby="article-cta-title"], [aria-labelledby="final-title"], [aria-labelledby$="final-cta-title"])::after {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reqstream {
     overflow-x: auto;
@@ -4115,7 +5001,7 @@ html[data-site-intro="done"] .site-intro {
   overflow: hidden;
   margin: 0;
   aspect-ratio: var(--plate-ratio, 1 / 1);
-  background: #efeae2;
+  background: #eeefed;
   isolation: isolate;
 }
 
@@ -4139,7 +5025,7 @@ html[data-site-intro="done"] .site-intro {
 .reuse__record {
   position: relative;
   padding: 1.75rem 1.5rem 0 2.1rem;
-  background: linear-gradient(168deg, #fbf9f5 0%, #f4efe6 100%);
+  background: linear-gradient(168deg, #ffffff 0%, #f8f8f6 100%);
   border: 1px solid rgba(21, 21, 21, 0.12);
   box-shadow: 0 20px 46px rgba(21, 21, 21, 0.08);
 }
@@ -4149,7 +5035,7 @@ html[data-site-intro="done"] .site-intro {
   position: absolute;
   z-index: -1;
   content: "";
-  background: #f1eae0;
+  background: #eeefed;
   border: 1px solid rgba(21, 21, 21, 0.09);
 }
 
@@ -4159,7 +5045,7 @@ html[data-site-intro="done"] .site-intro {
 
 .reuse__record::after {
   inset: 0.9rem -0.9rem -0.9rem 0.9rem;
-  background: #ece4d8;
+  background: #e4e5e2;
 }
 
 .reuse__spine {

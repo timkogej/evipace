@@ -129,7 +129,7 @@ function LocationCard({
   return (
     <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <h4 className="font-display text-2xl leading-tight text-ink">
+        <h4 className="type-subheading font-display text-ink">
           {location.name || "New site"}
         </h4>
         <button
@@ -229,7 +229,7 @@ function EntryCard({
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
             Scope {entry.scope} - {categoryLabels[entry.category]}
           </p>
-          <h4 className="font-display mt-2 text-2xl leading-tight text-ink">
+          <h4 className="type-subheading font-display mt-2 text-ink">
             {entry.activityType || entry.fuelType || entry.assetGroup || entry.refrigerantType || entry.processName || "Activity data row"}
           </h4>
         </div>
@@ -550,7 +550,7 @@ export function EnglishScope12DataCollectionTool() {
     <section className="scope12-data-tool scroll-mt-28" id="scope12-workspace">
       <div className="mb-10 max-w-3xl">
         <p className="eyebrow">Interactive workspace</p>
-        <h2 className="font-display mt-5 text-[clamp(2.5rem,5.2vw,4.7rem)] leading-none text-ink">
+        <h2 className="type-heading font-display mt-5 text-ink">
           Scope 1 and Scope 2 data workspace
         </h2>
         <p className="mt-5 text-lg leading-8 text-muted">
@@ -574,7 +574,7 @@ export function EnglishScope12DataCollectionTool() {
 
       <div className="grid gap-6">
         <section className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-white p-5 shadow-[0_18px_55px_rgba(21,21,21,0.045)] sm:p-7 lg:p-8">
-          <h3 className="font-display text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink">
+          <h3 className="type-subheading font-display text-ink">
             Boundary and reporting period
           </h3>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -587,7 +587,7 @@ export function EnglishScope12DataCollectionTool() {
         <section className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-white p-5 shadow-[0_18px_55px_rgba(21,21,21,0.045)] sm:p-7 lg:p-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h3 className="font-display text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink">
+              <h3 className="type-subheading font-display text-ink">
                 Sites
               </h3>
               <p className="mt-4 max-w-3xl leading-7 text-muted">
@@ -618,7 +618,7 @@ export function EnglishScope12DataCollectionTool() {
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
                   Scope {category.scope}
                 </p>
-                <h3 className="font-display mt-3 text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink">
+                <h3 className="type-subheading font-display mt-3 text-ink">
                   {categoryLabels[category.id]}
                 </h3>
               </div>
@@ -642,7 +642,7 @@ export function EnglishScope12DataCollectionTool() {
         ))}
 
         <section className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-white p-5 shadow-[0_18px_55px_rgba(21,21,21,0.045)] sm:p-7 lg:p-8">
-          <h3 className="font-display text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink">
+          <h3 className="type-subheading font-display text-ink">
             Source completeness checks
           </h3>
           <div className="mt-6 grid gap-4">

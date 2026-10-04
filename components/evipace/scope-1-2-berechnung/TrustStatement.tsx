@@ -17,10 +17,10 @@ export function TrustStatement() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Vertrauen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Nachvollziehbare Berechnung - ohne falsche Sicherheit
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Evipace unterstützt Unternehmen bei der strukturierten Erfassung
             und Berechnung von Scope-1- und Scope-2-Treibhausgasemissionen.
           </p>

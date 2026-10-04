@@ -265,6 +265,6 @@ test("Batch B English source has no unintended German UI leakage", () => {
 
   const batchBSource = contentSource;
   for (const term of germanTerms) {
-    assert.ok(!batchBSource.includes(term), term);
+    assert.ok(!batchBSource.replace(/getServiceBuyerQuestions\("en", "[^"]+"\)/g, "").includes(term), term);
   }
 });

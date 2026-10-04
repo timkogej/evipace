@@ -774,7 +774,7 @@ export function EsgEvidenceReadinessTool({
       <div className="mb-10 max-w-3xl">
         <p className="eyebrow">{isEnglish ? "Interactive check" : "Interaktiver Check"}</p>
         <h2
-          className="font-display mt-5 text-[clamp(2.5rem,5.2vw,4.7rem)] leading-none text-ink"
+          className="type-heading font-display mt-5 text-ink"
           id="evidence-tool-title"
         >
           {isEnglish
@@ -896,7 +896,7 @@ export function EsgEvidenceReadinessTool({
                       {isEnglish ? `Section ${section.number}` : `Abschnitt ${section.number}`}
                     </p>
                     <h3
-                      className="font-display mt-3 break-words text-[clamp(2rem,4vw,3.35rem)] leading-[1.02] text-ink"
+                      className="type-subheading font-display mt-3 break-words text-ink"
                       id={`evidence-section-${section.id}-title`}
                     >
                       {section.title}
@@ -947,7 +947,7 @@ export function EsgEvidenceReadinessTool({
               {isEnglish ? "Your evidence overview" : "Ihre Evidence-Übersicht"}
             </p>
             <h3
-              className="font-display mt-4 text-[clamp(2.2rem,4.5vw,3.8rem)] leading-none text-ink"
+              className="type-subheading font-display mt-4 text-ink"
               id="evidence-result-title"
             >
               {status.title}
@@ -1087,7 +1087,7 @@ export function EsgEvidenceReadinessTool({
       >
         <div className="max-w-md p-6 sm:p-7">
           <h2
-            className="font-display text-3xl leading-tight text-ink"
+            className="type-heading font-display text-ink"
             id="reset-evidence-dialog-title"
           >
             {isEnglish ? "Reset this check?" : "Prüfung wirklich zurücksetzen?"}
@@ -1121,7 +1121,7 @@ export function EsgEvidenceReadinessTool({
         className="mt-10 rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-white p-5 sm:p-7"
       >
         <h2
-          className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-none text-ink"
+          className="type-heading font-display text-ink"
           id="privacy-tool-title"
         >
           {isEnglish ? "Your inputs stay in this browser." : "Ihre Daten bleiben bei Ihnen."}

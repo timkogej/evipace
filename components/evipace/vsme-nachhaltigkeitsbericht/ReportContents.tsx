@@ -74,10 +74,10 @@ export function ReportContents() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Berichtsstruktur</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Was ein VSME-Bericht strukturiert abdeckt
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Der freiwillige europäische Berichtsrahmen ordnet
             Nachhaltigkeitsinformationen in eine klare Struktur. Dabei geht es
             nicht nur um CO₂. Umwelt-, Sozial- und Governance-Themen werden in

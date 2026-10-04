@@ -11,7 +11,7 @@ export function HomeHero() {
         longer headline never risked.
       */}
       <h1
-        className="mark-hero__title font-display"
+        className="type-title mark-hero__title font-display"
         id="hero-title"
       >
         <span className="block">ESG work.</span>

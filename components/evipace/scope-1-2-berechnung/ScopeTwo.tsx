@@ -14,7 +14,7 @@ export function ScopeTwo() {
       <div className="site-shell grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Scope 2</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Emissionen aus eingekaufter Energie
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-8 text-muted">

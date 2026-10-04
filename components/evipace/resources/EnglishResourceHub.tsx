@@ -87,9 +87,9 @@ function SectionHeading({
     <div className="min-w-0 max-w-3xl">
       <p className="eyebrow">{eyebrow}</p>
       <h2
-        className={`font-display mt-5 scroll-mt-28 break-words text-[clamp(2.6rem,5.2vw,5rem)] leading-[0.98] ${
-          light ? "text-white" : "text-ink"
-        }`}
+        className={`type-heading font-display mt-5 scroll-mt-28 break-words ${
+ light ? "text-white" : "text-ink"
+ }`}
         id={id}
       >
         {title}
@@ -141,7 +141,7 @@ function ResourceCard({
       <p className="text-[0.66rem] font-bold uppercase tracking-[0.16em] text-orange">
         {type}
       </p>
-      <h3 className="font-display mt-4 break-words text-[2rem] leading-[1.06] text-ink">
+      <h3 className="type-subheading font-display mt-4 break-words text-[2rem] text-ink">
         {title}
       </h3>
       <p className="mt-4 flex-1 text-sm leading-7 text-muted">{description}</p>
@@ -217,13 +217,13 @@ export function EnglishResourceHub() {
           <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.18fr)_minmax(18rem,0.52fr)] lg:items-end lg:gap-20">
             <div>
               <p className="eyebrow">RESOURCES · GUIDES · EVIDENCE</p>
-              <h1 className="font-display mt-7 max-w-[16ch] text-[clamp(3.5rem,7.4vw,7.2rem)] leading-[0.9]">
+              <h1 className="type-title font-display mt-7 max-w-[20ch]">
                 Practical ESG resources for suppliers.
               </h1>
-              <p className="font-display mt-8 text-[clamp(1.65rem,3vw,2.8rem)] leading-tight text-ink">
+              <p className="type-statement font-display mt-8 text-ink">
                 Start with the customer request.
               </p>
-              <div className="mt-7 max-w-3xl space-y-4 text-[clamp(1.05rem,1.55vw,1.3rem)] leading-[1.65] text-muted">
+              <div className="type-lead mt-7 max-w-3xl space-y-4 text-muted">
                 <p>
                   Guides for manufacturing suppliers that need to respond to
                   customer ESG questionnaires, data requests, evidence requests
@@ -286,7 +286,7 @@ export function EnglishResourceHub() {
                 <p className="mt-8 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-orange">
                   {step.label}
                 </p>
-                <h3 className="font-display mt-4 text-[2rem] leading-[1.06] text-white">
+                <h3 className="type-subheading font-display mt-4 text-[2rem] text-white">
                   {step.title}
                 </h3>
                 <p className="mt-5 flex-1 text-sm leading-7 text-white/62">
@@ -316,7 +316,7 @@ export function EnglishResourceHub() {
             title="When a customer asks for supplier ESG information."
           >
             <p>The hard question is often not: what is ESG?</p>
-            <p className="font-display mt-4 text-2xl leading-tight text-ink">
+            <p className="type-statement font-display mt-4 text-ink">
               It is: what exactly is the customer asking us to provide?
             </p>
           </SectionHeading>
@@ -371,7 +371,7 @@ export function EnglishResourceHub() {
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
                 From the beginning
               </p>
-              <p className="font-display mt-4 text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">
+              <p className="type-statement font-display mt-4">
                 Statement - source - evidence
               </p>
             </div>
@@ -428,7 +428,7 @@ export function EnglishResourceHub() {
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
                 Document discipline
               </p>
-              <p className="font-display mt-4 text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">
+              <p className="type-statement font-display mt-4">
                 Draft - approved - implemented - evidenced
               </p>
             </div>
@@ -477,7 +477,7 @@ export function EnglishResourceHub() {
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
                 Calculation logic
               </p>
-              <p className="font-display mt-4 text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">
+              <p className="type-statement font-display mt-4">
                 Boundary - activity data - emission factor - CO2e
               </p>
             </div>
@@ -550,6 +550,7 @@ export function EnglishResourceHub() {
               ))}
             </dl>
             <div className="mt-8 space-y-3 border-l-2 border-orange pl-5 text-sm leading-7 text-muted sm:pl-7">
+              <p>These guides are prepared by Evipace. Preparation workflows and examples are our practical guidance; official requirements are linked to the standard setter or platform. Check the cited version against your reporting period or assigned assessment.</p>
               <p>New documents are not presented as historical evidence.</p>
               <p>Uncertain information is not written as confirmed fact.</p>
               <p>Platform outcomes, customer acceptance and scores are not guaranteed.</p>
@@ -610,7 +611,7 @@ export function EnglishResourceHub() {
           <div className="max-w-3xl">
             <p className="eyebrow">WHEN YOU WOULD RATHER NOT DO IT IN-HOUSE</p>
             <h2
-              className="font-display mt-5 text-[clamp(2.4rem,4.8vw,4.4rem)] leading-[0.98] text-ink"
+              className="type-heading font-display mt-5 text-ink"
               id="services-title"
             >
               The same work, prepared for you.
@@ -652,7 +653,7 @@ export function EnglishResourceHub() {
               START WITH THE REQUEST
             </p>
             <h2
-              className="font-display mt-6 text-[clamp(3rem,6vw,6rem)] leading-[0.92]"
+              className="type-heading font-display mt-6"
               id="final-title"
             >
               The customer has already asked?

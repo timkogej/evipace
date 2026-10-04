@@ -43,26 +43,27 @@ const ASSEMBLY_END = { desktop: 1260, mobile: 1080 } as const;
 
 /**
  * Phase clocks, in ms from document parse. The CSS assembly on
- * `.site-intro__*` runs 0 → ~1250ms (~1050ms under 768px) on its own.
+ * `.site-intro__*` runs 0 → ~1250ms (~1080ms under 768px) on its own.
+ * On phones the completed mark stays visible for a beat before the exit.
  */
 const T = {
   flip: { start: 1250, duration: 950 },
   fade: { start: 1250, duration: 340 },
-  phone: { start: 1080, duration: 320 },
+  phone: { start: 1600, duration: 500 },
   surface: {
     flip: { start: 1400, duration: 500 },
     fade: { start: 1250, duration: 400 },
-    phone: { start: 1080, duration: 360 }
+    phone: { start: 1650, duration: 480 }
   },
   nav: {
     flip: { start: 1550, duration: 520 },
     fade: { start: 1300, duration: 450 },
-    phone: { start: 1130, duration: 420 }
+    phone: { start: 1750, duration: 450 }
   },
   content: {
     flip: { start: 1620, duration: 580 },
     fade: { start: 1380, duration: 520 },
-    phone: { start: 1200, duration: 460 }
+    phone: { start: 1850, duration: 500 }
   }
 } as const;
 

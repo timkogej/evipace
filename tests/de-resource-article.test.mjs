@@ -446,7 +446,7 @@ test("commercial page adds exactly one natural resource backlink and leaves send
   assert.equal(backlinks?.length, 1);
   assert.ok(
     normalizeWhitespace(commercialIntroSource).includes(
-      "ESG-Fragebogen erhalten? Lesen Sie unseren praktischen Leitfaden für die ersten Schritte."
+      "Lesen Sie unseren praktischen Leitfaden für die ersten Schritte."
     )
   );
 
@@ -990,7 +990,7 @@ test("IntegrityNext commercial page and general evidence guide each add one cont
   assert.ok(
     normalizedIncludes(
       integrityNextCommercialIntroSource,
-      "Unser Leitfaden erklärt den Ablauf vom Supplier Profile über Zertifikate und Fragebögen bis zum möglichen Nachbesserungsbedarf"
+      "Leitfaden zur IntegrityNext-Einladung"
     )
   );
   assert.ok(
@@ -1150,7 +1150,7 @@ test("Scope 1 commercial page and first resource each add exactly one contextual
   assert.ok(
     normalizedIncludes(
       scope12CommercialSource,
-      "Unser Leitfaden zeigt die benötigten Daten für Scope 1 und Scope 2 – von Brennstoffen und Kältemitteln bis zu Strom und Fernwärme"
+      "benötigte Scope-1- und Scope-2-Daten"
     )
   );
   assert.ok(
@@ -1222,8 +1222,8 @@ test("VSME data guide preserves all 34 sections, Basic requirements, applicabili
     "Welche Daten brauchen Sie für einen VSME-Bericht?",
     "VSME oder „Voluntary Standard“ – was gilt 2026 eigentlich?",
     "3. Juli 2026",
-    "Angenommen bedeutet noch nicht in Kraft.",
-    "Stand · 22. August 2026",
+    "In Kraft; Anwendung des Value Chain Cap ab 2027.",
+    "Status geprüft · 4. Oktober 2026",
     "Basic oder Comprehensive: Diese Entscheidung kommt zuerst.",
     "B1–B11",
     "C1–C9",
@@ -1347,7 +1347,7 @@ test("VSME commercial page and Scope data guide each add exactly one contextual 
   assert.ok(
     normalizedIncludes(
       vsmeCommercialSource,
-      "Unser Leitfaden zeigt die wichtigsten VSME-Daten von Energie und Emissionen bis zu Abfall, Mitarbeitenden und Policies"
+      "Leitfaden zu VSME-Daten"
     )
   );
   assert.ok(
@@ -2164,7 +2164,7 @@ test("required checklist backlinks appear exactly once on the three approved ups
   assert.ok(
     normalizedIncludes(
       commercialIntroSource,
-      "Unsere ESG-Fragebogen-Checkliste führt Sie von Scope und Datensammlung bis zum finalen Submission Review."
+      "ESG-Fragebogen-Checkliste"
     )
   );
   assert.ok(

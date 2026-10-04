@@ -198,7 +198,7 @@ export function EsgQuestionnaireChecklistGuide() {
                   ESG-Fragebogen · Checkliste für Lieferanten
                 </p>
                 <h1
-                  className="font-display mt-7 max-w-[16ch] break-words hyphens-auto text-[clamp(3.05rem,6.8vw,6.35rem)] leading-[0.92]"
+                  className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
                   id="article-title"
                 >
                   ESG-Fragebogen Checkliste für Lieferanten
@@ -206,7 +206,7 @@ export function EsgQuestionnaireChecklistGuide() {
               </div>
 
               <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                <div className="type-lead max-w-3xl text-muted">
                   <p>
                     Ihr Kunde hat einen ESG- oder Nachhaltigkeitsfragebogen
                     geschickt. Bevor Sie Antworten Feld für Feld eintragen,
@@ -255,7 +255,7 @@ export function EsgQuestionnaireChecklistGuide() {
             <div className="site-shell grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16">
               <div>
                 <p className="eyebrow">Direkt loslegen</p>
-                <h2 className="font-display mt-6 max-w-[14ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]">
+                <h2 className="type-heading font-display mt-6 max-w-[24ch]">
                   Kein ESG-Grundkurs. Ein konkreter Arbeitsprozess.
                 </h2>
               </div>
@@ -339,7 +339,7 @@ export function EsgQuestionnaireChecklistGuide() {
                     Red Flags
                   </p>
                   <h2
-                    className="font-display mt-4 max-w-[16ch] text-[clamp(2.4rem,5vw,4.5rem)] leading-none text-ink"
+                    className="type-heading font-display mt-4 max-w-[24ch] text-ink"
                     id="red-flags-title"
                   >
                     Stop – vor der Einreichung noch einmal prüfen
@@ -387,7 +387,7 @@ export function EsgQuestionnaireChecklistGuide() {
                 Ihr nächster Schritt
               </p>
               <h2
-                className="font-display mt-5 max-w-[14ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]"
+                className="type-heading font-display mt-5 max-w-[24ch]"
                 id="article-cta-title"
               >
                 Der Fragebogen ist länger als die Checkliste?
@@ -435,27 +435,22 @@ export function EsgQuestionnaireChecklistGuide() {
             >
               <p className="eyebrow">FAQ</p>
               <h2
-                className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none"
+                className="type-heading font-display mt-6"
                 id="faq-title"
               >
                 Häufige Fragen zur ESG-Fragebogen-Checkliste
               </h2>
-              <div className="mt-9 grid gap-3">
+              <div className="faq-list">
                 {faqItems.map((faq) => (
                   <details
-                    className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6"
+                    className="faq-item group"
                     key={faq.question}
                   >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+                    <summary className="faq-question">
                       {faq.question}
-                      <span
-                        aria-hidden="true"
-                        className="text-2xl font-light text-orange transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
+                      <span aria-hidden="true" className="faq-toggle" />
                     </summary>
-                    <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
+                    <p className="faq-answer">
                       {faq.answer}
                     </p>
                   </details>

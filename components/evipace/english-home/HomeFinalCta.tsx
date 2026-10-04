@@ -11,7 +11,7 @@ export function HomeFinalCta() {
       </div>
       <div className="site-shell relative z-10 max-w-5xl">
         <p className="eyebrow">Start with the request</p>
-        <h2 className="font-display mt-6 max-w-[14ch] text-5xl leading-[0.96] text-ink sm:text-6xl lg:text-7xl">
+        <h2 className="type-heading font-display mt-6 max-w-[24ch] text-ink">
           Already have an ESG request in your inbox?
         </h2>
         <div className="mt-8 max-w-2xl space-y-2 text-lg leading-8 text-muted">

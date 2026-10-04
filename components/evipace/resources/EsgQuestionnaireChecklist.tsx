@@ -305,7 +305,7 @@ export function EsgQuestionnaireChecklist({
               {isEnglish ? "Checklist status" : "Checklist Status"}
             </p>
             <h2
-              className="font-display mt-4 text-[clamp(2.25rem,5vw,4.4rem)] leading-none"
+              className="type-heading font-display mt-4"
               id="checklist-progress-title"
             >
               {isEnglish ? "Your progress" : "Ihr Fortschritt"}
@@ -375,7 +375,7 @@ export function EsgQuestionnaireChecklist({
                     {section.number}
                   </p>
                   <h2
-                    className="font-display mt-3 break-words text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.02]"
+                    className="type-heading font-display mt-3 break-words"
                     id={`${section.id}-title`}
                   >
                     {section.title}
@@ -448,7 +448,7 @@ export function EsgQuestionnaireChecklist({
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
                     {section.gate.label}
                   </p>
-                  <p className="mt-3 font-display text-2xl leading-tight">
+                  <p className="type-statement mt-3 font-display">
                     {section.gate.text}
                   </p>
                 </aside>
@@ -483,7 +483,7 @@ export function EsgQuestionnaireChecklist({
         <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2
-              className="font-display max-w-[18ch] text-[clamp(2.4rem,5vw,4.5rem)] leading-none"
+              className="type-heading font-display max-w-[24ch]"
               id="final-submission-gate-title"
             >
               {isEnglish

@@ -388,7 +388,7 @@ function ArticleSection({
           {number}
         </span>
         <h2
-          className="font-display max-w-[20ch] text-[clamp(2.15rem,4.1vw,3.7rem)] leading-[1.02]"
+          className="type-heading font-display max-w-[24ch]"
           id={`${id}-title`}
         >
           {title}
@@ -585,7 +585,7 @@ export function EsgEvidenceGuide() {
               <div className="mt-12 max-w-6xl">
                 <p className="eyebrow">ESG-Nachweise · Praxisleitfaden</p>
                 <h1
-                  className="font-display mt-7 max-w-[17ch] text-[clamp(3.15rem,7vw,6.55rem)] leading-[0.91]"
+                  className="type-title font-display mt-7 max-w-[20ch]"
                   id="article-title"
                 >
                   ESG-Nachweise für Lieferanten: Welche Dokumente werden
@@ -594,7 +594,7 @@ export function EsgEvidenceGuide() {
               </div>
 
               <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.6fr)] lg:items-start lg:gap-16">
-                <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                <div className="type-lead max-w-3xl text-muted">
                   <p>Ihr Kunde fragt nicht mehr nur:</p>
                   <p className="font-display mt-4 text-3xl text-ink">
                     „Haben Sie eine Umweltpolitik?“
@@ -660,7 +660,7 @@ export function EsgEvidenceGuide() {
                 <div>
                   <p className="eyebrow">Quick Answer</p>
                   <h2
-                    className="font-display mt-6 max-w-[12ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]"
+                    className="type-heading font-display mt-6 max-w-[24ch]"
                     id="quick-answer-title"
                   >
                     Was macht einen guten ESG-Nachweis aus?
@@ -936,7 +936,7 @@ export function EsgEvidenceGuide() {
                     "und wo etwas fehlt"
                   ]}
                 />
-                <p className="font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement font-display text-ink">
                   Ein Evidence Register ist wertvoller als ein Ordner mit
                   Dateinamen, deren Bedeutung niemand mehr kennt.
                 </p>
@@ -954,7 +954,7 @@ export function EsgEvidenceGuide() {
                   Antikorruptionsrichtlinie verabschiedet hat.
                 </p>
                 <p>Aber wenn die Frage lautet:</p>
-                <blockquote className="my-7 rounded-[1rem] border-l-2 border-orange bg-white p-6 font-display text-[clamp(1.55rem,3vw,2.25rem)] leading-[1.2] text-ink">
+                <blockquote className="type-statement my-7 rounded-[1rem] border-l-2 border-orange bg-white p-6 font-display text-ink">
                   „Werden relevante Mitarbeitende regelmäßig zu Antikorruption
                   geschult?“
                 </blockquote>
@@ -1036,7 +1036,7 @@ export function EsgEvidenceGuide() {
                   werden. Das Fehlen eines Zertifikats bedeutet dort also nicht
                   automatisch, dass die Anfrage nicht bearbeitet werden kann.
                 </p>
-                <p className="font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement font-display text-ink">
                   Kein Zertifikat ist besser als ein unpassendes Zertifikat,
                   das etwas anderes suggeriert.
                 </p>
@@ -1286,7 +1286,7 @@ export function EsgEvidenceGuide() {
                   Das letzte Ergebnis ist nicht automatisch ein Fehler. Es ist
                   eine Information über den aktuellen Zustand des Unternehmens.
                 </p>
-                <p className="font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement font-display text-ink">
                   Ein sichtbarer Gap ist professioneller als ein Nachweis, der
                   etwas belegen soll, das nicht existiert.
                 </p>
@@ -1437,7 +1437,7 @@ export function EsgEvidenceGuide() {
                 <div className="mt-8 grid gap-5 sm:grid-cols-2">
                   <section className="rounded-[1.05rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 sm:p-7">
                     <BadgeCheck aria-hidden="true" className="h-5 w-5 text-orange" />
-                    <h3 className="font-display mt-5 text-3xl text-ink">EcoVadis</h3>
+                    <h3 className="type-subheading font-display mt-5 text-ink">EcoVadis</h3>
                     <p className="mt-4 text-sm leading-7 text-muted">
                       Bei der vollständigen EcoVadis-Bewertung spielen
                       Supporting Documents eine zentrale Rolle. EcoVadis
@@ -1457,7 +1457,7 @@ export function EsgEvidenceGuide() {
                   </section>
                   <section className="rounded-[1.05rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 sm:p-7">
                     <FileBadge2 aria-hidden="true" className="h-5 w-5 text-orange" />
-                    <h3 className="font-display mt-5 text-3xl text-ink">IntegrityNext</h3>
+                    <h3 className="type-subheading font-display mt-5 text-ink">IntegrityNext</h3>
                     <p className="mt-4 text-sm leading-7 text-muted">
                       Bei bestimmten IntegrityNext-Assessments kann ein
                       passendes Zertifikat für ein zertifiziertes
@@ -1589,7 +1589,7 @@ export function EsgEvidenceGuide() {
                     "und bekannte Gaps"
                   ]}
                 />
-                <p className="font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement font-display text-ink">
                   Der Wert einer guten Evidence-Struktur liegt darin, dass die
                   nächste Anfrage nicht wieder bei null beginnt.
                 </p>
@@ -1647,7 +1647,7 @@ export function EsgEvidenceGuide() {
                   Ihr nächster Schritt
                 </p>
                 <h2
-                  className="font-display mt-5 max-w-[14ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]"
+                  className="type-heading font-display mt-5 max-w-[24ch]"
                   id="article-cta-title"
                 >
                   Die Antworten sind da. Die Nachweise liegen überall?
@@ -1687,27 +1687,22 @@ export function EsgEvidenceGuide() {
               >
                 <p className="eyebrow">FAQ</p>
                 <h2
-                  className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none"
+                  className="type-heading font-display mt-6"
                   id="faq-title"
                 >
                   Häufige Fragen zu ESG-Nachweisen
                 </h2>
-                <div className="mt-9 grid gap-3">
+                <div className="faq-list">
                   {faqItems.map((faq) => (
                     <details
-                      className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6"
+                      className="faq-item group"
                       key={faq.question}
                     >
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+                      <summary className="faq-question">
                         {faq.question}
-                        <span
-                          aria-hidden="true"
-                          className="text-2xl font-light text-orange transition-transform group-open:rotate-45"
-                        >
-                          +
-                        </span>
+                        <span aria-hidden="true" className="faq-toggle" />
                       </summary>
-                      <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
+                      <p className="faq-answer">
                         {faq.answer}
                       </p>
                     </details>

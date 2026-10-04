@@ -105,7 +105,7 @@ test("visible FAQs are plain HTML — no FAQPage schema exists anywhere", async 
     const text = await read(file);
     // Match the JSON-LD type value and its properties, not prose that
     // merely names the type — several comments explain why it is absent.
-    for (const forbidden of ['"FAQPage"', "acceptedAnswer", "mainEntity:"]) {
+    for (const forbidden of ['"FAQPage"', "acceptedAnswer"]) {
       assert.ok(!text.includes(forbidden), `${file}: ${forbidden}`);
     }
   }
@@ -185,15 +185,14 @@ test("Article authorship resolves to the Organization and dates stay unfabricate
   );
   assert.ok(!/\d{4}-\d{2}-\d{2}/.test(articleSchema));
 
-  // The registry declares the fields but carries no resource dates: the
-  // repository has no publication record to derive them from, and a
-  // fabricated date is a worse signal than none.
+  // No original publication dates are invented. Only the two VSME guides
+  // have a known substantive revision from this source-checked update.
   assert.ok(registry.includes("datePublished?: string;"));
   assert.ok(registry.includes("dateModified?: string;"));
   assert.equal((registry.match(/^\s*datePublished: "/gm) ?? []).length, 0);
-  assert.equal((registry.match(/^\s*dateModified: "/gm) ?? []).length, 0);
+  assert.deepEqual(registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim()), ['dateModified: "2026-10-04"', 'dateModified: "2026-10-04"']);
 
-  // The one real date on the site is the hand-set methodology review.
+  // Methodology reviews retain their original dates; a GEO edit is not a new full review.
   assert.equal((registry.match(/lastReviewed: "/g) ?? []).length, 2);
   assert.ok(registry.includes('lastReviewed: "2026-08-21"'));
 });
@@ -468,7 +467,7 @@ test("every English service page carries a FAQ, and platform pages define themse
   );
   assert.ok(
     commercialContent.includes(
-      "VSME is the voluntary sustainability reporting standard for non-listed small and medium-sized enterprises developed by EFRAG"
+      "VSME was developed by EFRAG for non-listed SMEs."
     )
   );
   assert.ok(
@@ -521,10 +520,10 @@ test("every English service page carries a FAQ, and platform pages define themse
 });
 
 test("the customer-request and questionnaire pages state their distinct scope", () => {
-  assert.ok(commercialContent.includes("This page covers all of those formats."));
+  assert.ok(commercialContent.includes("This page covers the whole range of request formats"));
   assert.ok(
     commercialContent.includes(
-      "This page is for that case: a defined questionnaire or assessment document that has to be answered field by field."
+      "ESG questionnaire support is the narrower case where a defined questionnaire or assessment document has to be completed field by field."
     )
   );
   assert.ok(

@@ -73,7 +73,7 @@ function assertOrdered(source, needles, label) {
   }
 }
 
-test("the locked statement is byte-for-byte unchanged", () => {
+test("the statement retains its original display treatment and wording", () => {
   // Exact wording, both lines.
   assert.ok(dataReuse.includes("The questionnaire may change."));
   assert.ok(dataReuse.includes("The company reality underneath it does not."));
@@ -91,7 +91,7 @@ test("the locked statement is byte-for-byte unchanged", () => {
   assert.ok(block.includes("<br />"));
   assert.ok(block.includes('<span className="text-orange">'));
 
-  // And the treatment itself has not drifted since the checkpoint.
+  // The large display statement remains an intentional design accent.
   const committed = git([
     "show",
     `${BASELINE}:components/evipace/english-home/DataReuse.tsx`

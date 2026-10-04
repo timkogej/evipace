@@ -17,10 +17,10 @@ export function TargetCompanies() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Für wen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Für produzierende kleine und mittlere Unternehmen
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Evipace richtet sich besonders an produzierende Unternehmen, die
             Nachhaltigkeitsinformationen strukturiert aufbauen möchten, ohne
             dafür eine eigene große ESG-Abteilung aufzubauen.

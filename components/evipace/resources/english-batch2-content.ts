@@ -1,3 +1,5 @@
+import { voluntaryStandardStatus } from "@/lib/seo/voluntary-standard-status";
+import { primarySources } from "@/lib/seo/primary-sources";
 import type { EnglishResourceArticleContent } from "./EnglishResourceArticle";
 
 const sendRequest = "/en/send-request";
@@ -105,6 +107,7 @@ export const scope12DataCalculationContent: EnglishResourceArticleContent = {
     },
     {
       id: "scope-1",
+      sources: [primarySources.ghgCorporateStandard],
       number: "03",
       title: "Scope 1 starts with direct sources you own or control.",
       paragraphs: [
@@ -120,6 +123,7 @@ export const scope12DataCalculationContent: EnglishResourceArticleContent = {
     },
     {
       id: "scope-2",
+      sources: [primarySources.ghgScope2Guidance],
       number: "04",
       title: "Scope 2 is purchased energy, not only electricity.",
       paragraphs: [
@@ -358,6 +362,7 @@ export const scope123ExplainedContent: EnglishResourceArticleContent = {
   sections: [
     {
       id: "meaning",
+      sources: [primarySources.ghgCorporateStandard, primarySources.ghgScope3Standard],
       number: "01",
       title: "What does Scope mean in greenhouse gas accounting?",
       paragraphs: [
@@ -380,6 +385,7 @@ export const scope123ExplainedContent: EnglishResourceArticleContent = {
     },
     {
       id: "scope-1",
+      sources: [primarySources.ghgCorporateStandard],
       number: "02",
       title: "Scope 1: direct emissions from owned or controlled sources.",
       paragraphs: [
@@ -411,6 +417,7 @@ export const scope123ExplainedContent: EnglishResourceArticleContent = {
     },
     {
       id: "scope-2",
+      sources: [primarySources.ghgScope2Guidance],
       number: "03",
       title: "Scope 2: emissions from purchased energy.",
       paragraphs: [
@@ -638,11 +645,12 @@ export const vsmeDataSustainabilityReportContent: EnglishResourceArticleContent 
   sections: [
     {
       id: "status",
+      sources: [primarySources.voluntaryStandardRegulation],
       number: "01",
       title: "VSME remains the common term, but the 2026 status matters.",
       paragraphs: [
         "Many companies still use the term VSME. In 2026, the relevant framework shifted to the Sustainability Reporting Standard for Voluntary Use, also called the Voluntary Standard.",
-        "The European Commission adopted the new Voluntary Standard on 3 July 2026; as of 22 August 2026, adoption did not yet mean entry into force because publication in the Official Journal was still outstanding."
+        voluntaryStandardStatus.en
       ],
       principle: {
         text:
@@ -651,6 +659,7 @@ export const vsmeDataSustainabilityReportContent: EnglishResourceArticleContent 
     },
     {
       id: "basic",
+      sources: [primarySources.efragVoluntaryStandard],
       number: "02",
       title: "The Basic Module starts with company and reporting information.",
       paragraphs: [
@@ -858,6 +867,7 @@ export const vsmeDataSustainabilityReportContent: EnglishResourceArticleContent 
     }
   ],
   sources: [
+    primarySources.voluntaryStandardRegulation,
     {
       label: "European Commission - Sustainability reporting delegated acts",
       href:

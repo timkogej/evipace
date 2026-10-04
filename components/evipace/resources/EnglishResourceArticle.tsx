@@ -1,3 +1,5 @@
+import { SourceNote } from "../trust/SourceNote";
+import type { PrimarySource } from "@/lib/seo/primary-sources";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import {
@@ -10,6 +12,7 @@ import {
 import { ButtonLink } from "../ButtonLink";
 
 export type EnglishArticleSection = {
+  sources?: readonly PrimarySource[];
   id: string;
   number: string;
   title: string;
@@ -147,7 +150,7 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
           {section.number}
         </span>
         <h2
-          className="font-display max-w-[20ch] text-[clamp(2.15rem,4.1vw,3.7rem)] leading-[1.02]"
+          className="type-heading font-display max-w-[24ch]"
           id={`${section.id}-title`}
         >
           {section.title}
@@ -170,7 +173,7 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
                 className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6"
                 key={card.title}
               >
-                <h3 className="font-display text-2xl leading-tight text-ink">
+                <h3 className="type-subheading font-display text-ink">
                   {card.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{card.body}</p>
@@ -178,6 +181,7 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
             ))}
           </div>
         ) : null}
+        {section.sources ? <SourceNote sources={section.sources} /> : null}
         {section.links ? (
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {section.links.map((link) => (
@@ -200,7 +204,7 @@ export function EnglishResourceArticle({
   return (
     <main id="top">
       <article>
-        <header className="relative isolate overflow-hidden pb-18 pt-28 sm:pb-22 sm:pt-32 lg:pb-24 lg:pt-36">
+        <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-18 pt-28 sm:pb-22 sm:pt-32 lg:pb-24 lg:pt-36">
           <div
             aria-hidden="true"
             className="absolute inset-0 -z-10 overflow-hidden"
@@ -230,12 +234,12 @@ export function EnglishResourceArticle({
               <div>
                 <p className="eyebrow">{content.eyebrow}</p>
                 <h1
-                  className="font-display mt-7 max-w-[16ch] text-[clamp(3.15rem,7vw,6.55rem)] leading-[0.91]"
+                  className="type-title font-display mt-7 max-w-[20ch]"
                   id="article-title"
                 >
                   {content.title}
                 </h1>
-                <p className="font-display mt-8 max-w-3xl text-[clamp(1.55rem,2.8vw,2.65rem)] leading-tight text-ink">
+                <p className="type-statement font-display mt-8 max-w-3xl text-ink">
                   {content.deck}
                 </p>
               </div>
@@ -265,7 +269,7 @@ export function EnglishResourceArticle({
             <div>
               <p className="eyebrow text-orange">Quick answer</p>
               <h2
-                className="font-display mt-6 max-w-[13ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]"
+                className="type-heading font-display mt-6 max-w-[24ch]"
                 id="quick-answer-title"
               >
                 {content.quickAnswerTitle ??
@@ -286,7 +290,7 @@ export function EnglishResourceArticle({
                   <span className="font-mono text-xs font-bold text-orange">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-5 font-display text-2xl leading-tight">
+                  <h3 className="type-subheading mt-5 font-display">
                     {check.title}
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-white/62">
@@ -335,7 +339,7 @@ export function EnglishResourceArticle({
                 <Link2 aria-hidden="true" className="h-10 w-10 text-orange" />
                 <p className="eyebrow mt-7 text-orange">{content.cta.eyebrow}</p>
                 <h2
-                  className="font-display mt-5 max-w-[15ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]"
+                  className="type-heading font-display mt-5 max-w-[24ch]"
                   id="article-cta-title"
                 >
                   {content.cta.title}
@@ -369,21 +373,22 @@ export function EnglishResourceArticle({
               >
                 <p className="eyebrow">FAQ</p>
                 <h2
-                  className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none"
+                  className="type-heading font-display mt-6"
                   id="faq-title"
                 >
                   Frequently asked questions
                 </h2>
-                <div className="mt-8 grid gap-4">
+                <div className="faq-list">
                   {content.faq.map((faq) => (
                     <details
-                      className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6"
+                      className="faq-item group"
                       key={faq.question}
                     >
-                      <summary className="cursor-pointer text-base font-bold text-ink">
+                      <summary className="faq-question">
                         {faq.question}
+                        <span aria-hidden="true" className="faq-toggle" />
                       </summary>
-                      <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
+                      <p className="faq-answer">
                         {faq.answer}
                       </p>
                     </details>
@@ -424,11 +429,11 @@ export function EnglishResourceArticle({
         </div>
       </article>
 
-      <section className="bg-orange py-16 text-white sm:py-20 lg:py-24">
+      <section className="resource-final-cta bg-orange py-16 text-white sm:py-20 lg:py-24">
         <div className="site-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div className="max-w-4xl">
             <ShieldCheck aria-hidden="true" className="h-10 w-10 text-ink" />
-            <h2 className="font-display mt-6 text-[clamp(3rem,6vw,6rem)] leading-[0.92]">
+            <h2 className="type-heading font-display mt-6">
               Already have the customer request?
             </h2>
             <p className="mt-7 max-w-3xl text-lg leading-8 text-white/85">

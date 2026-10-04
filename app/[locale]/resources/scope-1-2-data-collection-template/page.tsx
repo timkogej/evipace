@@ -12,7 +12,7 @@ import { buildWebPageSchema } from "@/lib/seo/schema/webpage";
 import { buildWebsiteSchema } from "@/lib/seo/schema/website";
 
 const PAGE_KEY = "scope12DatenerfassungsVorlage";
-const ARTICLE_HEADLINE = "Scope 1 & 2 Data Collection Template";
+const ARTICLE_HEADLINE = "Collect the data you need for Scope 1 and Scope 2.";
 const ARTICLE_PATH = "/en/resources/scope-1-2-data-collection-template";
 
 type PageProps = {
@@ -23,6 +23,7 @@ export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  if (locale !== "en") return { robots: { index: false, follow: false } };
   return buildPageMetadata(locale, PAGE_KEY);
 }
 

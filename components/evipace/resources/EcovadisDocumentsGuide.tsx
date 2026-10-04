@@ -262,7 +262,7 @@ function ArticleSection({
       <div className="flex items-start gap-4 sm:gap-6">
         <span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span>
         <h2
-          className="font-display max-w-[20ch] text-[clamp(2.15rem,4.1vw,3.7rem)] leading-[1.02]"
+          className="type-heading font-display max-w-[24ch]"
           id={`${id}-title`}
         >
           {title}
@@ -447,13 +447,13 @@ export function EcovadisDocumentsGuide() {
 
               <div className="mt-12 max-w-6xl">
                 <p className="eyebrow">EcoVadis · Dokumente &amp; Nachweise</p>
-                <h1 className="font-display mt-7 max-w-[16ch] text-[clamp(3.15rem,7vw,6.55rem)] leading-[0.91]" id="article-title">
+                <h1 className="type-title font-display mt-7 max-w-[20ch]" id="article-title">
                   EcoVadis-Dokumente und Nachweise: Was zählt als Beleg?
                 </h1>
               </div>
 
               <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.6fr)] lg:items-start lg:gap-16">
-                <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                <div className="type-lead max-w-3xl text-muted">
                   <p>Beim EcoVadis-Fragebogen reicht es nicht, die richtige Antwort zu kennen.</p>
                   <p className="mt-6">Entscheidend ist häufig auch:</p>
                   <p className="font-display mt-4 text-3xl leading-tight text-ink">Können Sie die Antwort mit einem geeigneten Dokument belegen?</p>
@@ -493,7 +493,7 @@ export function EcovadisDocumentsGuide() {
               <div className="grid gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
                 <div>
                   <p className="eyebrow">Quick Answer</p>
-                  <h2 className="font-display mt-6 max-w-[13ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]" id="quick-answer-title">
+                  <h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">
                     Welche EcoVadis-Dokumente sollten Sie zuerst vorbereiten?
                   </h2>
                   <p className="mt-7 max-w-sm leading-7 text-white/65">Bevor Sie Dateien hochladen, prüfen Sie sieben Dinge.</p>
@@ -600,7 +600,7 @@ export function EcovadisDocumentsGuide() {
                     ["Site", "Ein konkreter geografischer Standort oder eine Einrichtung einer juristischen Einheit."]
                   ].map(([title, body]) => (
                     <div className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={title}>
-                      <h3 className="font-display text-2xl text-orange">{title}</h3>
+                      <h3 className="type-subheading font-display text-orange">{title}</h3>
                       <p className="mt-3 text-sm leading-6 text-muted">{body}</p>
                     </div>
                   ))}
@@ -630,7 +630,7 @@ export function EcovadisDocumentsGuide() {
                 </p>
                 <EvidenceMap />
                 <p>Eine solche Struktur zeigt sofort:</p>
-                <p className="font-display text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.18] text-ink">Welche Antwort wird durch welches Dokument gestützt?</p>
+                <p className="type-statement font-display text-ink">Welche Antwort wird durch welches Dokument gestützt?</p>
                 <p>Und ebenso wichtig: Wo haben wir noch keine belastbare Dokumentation?</p>
               </ArticleSection>
 
@@ -650,11 +650,11 @@ export function EcovadisDocumentsGuide() {
                 <div className="mt-8 grid gap-4 sm:grid-cols-2">
                   <blockquote className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 text-muted">
                     <span className="text-xs font-bold uppercase tracking-[0.12em] text-[rgba(21,21,21,0.45)]">Nicht fragen</span>
-                    <p className="font-display mt-4 text-2xl leading-tight text-ink">„Welche 55 Dateien können wir hochladen?“</p>
+                    <p className="type-statement font-display mt-4 text-ink">„Welche 55 Dateien können wir hochladen?“</p>
                   </blockquote>
                   <blockquote className="rounded-[1rem] border border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] p-6">
                     <span className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Sondern</span>
-                    <p className="font-display mt-4 text-2xl leading-tight text-ink">„Welche Dokumente belegen die wichtigsten ausgewählten Antworten am klarsten?“</p>
+                    <p className="type-statement font-display mt-4 text-ink">„Welche Dokumente belegen die wichtigsten ausgewählten Antworten am klarsten?“</p>
                   </blockquote>
                 </div>
               </ArticleSection>
@@ -748,7 +748,7 @@ export function EcovadisDocumentsGuide() {
                 <div className="my-7 rounded-[1rem] border-l-2 border-orange bg-white p-5 text-sm font-bold leading-7 text-ink">Diese Zeiträume sind EcoVadis-spezifische Dokumentenregeln und keine allgemeine gesetzliche ESG-Regel.</div>
                 <p>Aber die reine Altersgrenze ist nicht das einzige Kriterium.</p>
                 <p>Ein sechs Jahre altes Dokument kann formal noch innerhalb des EcoVadis-Zeitraums liegen und trotzdem fachlich überholt sein, wenn Verantwortlichkeiten geändert wurden, Prozesse nicht mehr gelten, neue Standorte hinzugekommen sind, Ziele geändert wurden oder Unternehmensstrukturen anders sind.</p>
-                <p className="font-display text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.18] text-ink">Ist das Dokument nicht nur formal gültig, sondern beschreibt es unser Unternehmen noch korrekt?</p>
+                <p className="type-statement font-display text-ink">Ist das Dokument nicht nur formal gültig, sondern beschreibt es unser Unternehmen noch korrekt?</p>
               </ArticleSection>
 
               <ArticleSection id="zertifikate-2026" number="11" title="Zertifikate: 2026 haben sich die Nachweisregeln verändert.">
@@ -809,7 +809,7 @@ export function EcovadisDocumentsGuide() {
                     <p className="mt-3 text-sm leading-7 text-muted">Teilnahmebestätigung in Verbindung mit internen Schulungsinformationen oder einer eindeutigen Zuordnung.</p>
                   </div>
                 </div>
-                <p className="font-display text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.18] text-ink">Der Analyst muss nachvollziehen können, warum dieses externe Dokument etwas über das bewertete Unternehmen belegt.</p>
+                <p className="type-statement font-display text-ink">Der Analyst muss nachvollziehen können, warum dieses externe Dokument etwas über das bewertete Unternehmen belegt.</p>
               </ArticleSection>
 
               <ArticleSection id="machine-readable" number="14" title="Machine-readable: Ein guter Nachweis muss auch verarbeitet werden können.">
@@ -911,9 +911,9 @@ export function EcovadisDocumentsGuide() {
 
               <ArticleSection id="kein-schreibwettbewerb" number="19" title="EcoVadis ist kein Dokumenten-Schreibwettbewerb.">
                 <p>Der vielleicht größte Denkfehler bei der Vorbereitung lautet:</p>
-                <blockquote className="my-7 rounded-[1rem] border-l-2 border-orange bg-white p-6 font-display text-[clamp(1.8rem,3vw,2.5rem)] leading-[1.16] text-ink">„Wir brauchen mehr Policies.“</blockquote>
+                <blockquote className="type-statement my-7 rounded-[1rem] border-l-2 border-orange bg-white p-6 font-display text-ink">„Wir brauchen mehr Policies.“</blockquote>
                 <p>Manchmal stimmt das. Häufig lautet die bessere Frage aber:</p>
-                <p className="font-display text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.18] text-ink">„Welche Managementpraktiken existieren bereits und wie sind sie dokumentiert?“</p>
+                <p className="type-statement font-display text-ink">„Welche Managementpraktiken existieren bereits und wie sind sie dokumentiert?“</p>
                 <p>Ein Unternehmen kann 25 professionell gestaltete Policies besitzen und trotzdem nur wenig belastbare Umsetzung zeigen. Ein anderes Unternehmen kann weniger Dokumente haben, aber:</p>
                 <BulletList items={["klare Prozesse", "reale Maßnahmen", "aktuelle KPIs", "passende Zertifikate", "belastbare Datengrundlagen"]} />
                 <Principle>Die Dokumente sind der Nachweis für das Sustainability Management System. Nicht das Managementsystem selbst.</Principle>
@@ -968,7 +968,7 @@ export function EcovadisDocumentsGuide() {
               <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
                 <FileText aria-hidden="true" className="h-7 w-7 text-orange" />
                 <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-                <h2 className="font-display mt-5 max-w-[15ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]" id="article-cta-title">
+                <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">
                   Ihr EcoVadis-Fragebogen ist offen – aber die Dokumente sind noch nicht sortiert?
                 </h2>
                 <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68">
@@ -985,15 +985,15 @@ export function EcovadisDocumentsGuide() {
 
               <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
                 <p className="eyebrow">FAQ</p>
-                <h2 className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none" id="faq-title">Häufige Fragen zu EcoVadis-Dokumenten</h2>
-                <div className="mt-9 grid gap-3">
+                <h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zu EcoVadis-Dokumenten</h2>
+                <div className="faq-list">
                   {faqItems.map((faq) => (
-                    <details className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6" key={faq.question}>
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+                    <details className="faq-item group" key={faq.question}>
+                      <summary className="faq-question">
                         {faq.question}
-                        <span aria-hidden="true" className="text-2xl font-light text-orange transition-transform group-open:rotate-45">+</span>
+                        <span aria-hidden="true" className="faq-toggle" />
                       </summary>
-                      <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">{faq.answer}</p>
+                      <p className="faq-answer">{faq.answer}</p>
                     </details>
                   ))}
                 </div>

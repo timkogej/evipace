@@ -17,10 +17,10 @@ export function TargetCompanies() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Für wen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Für kleine und mittlere Produktionsunternehmen
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Evipace richtet sich vor allem an produzierende kleine und mittlere
             Unternehmen, die eine IntegrityNext-Anfrage eines Kunden bearbeiten
             müssen, aber keine große interne ESG-Abteilung für die Koordination

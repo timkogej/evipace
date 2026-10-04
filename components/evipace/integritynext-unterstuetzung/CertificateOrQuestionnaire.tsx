@@ -30,10 +30,10 @@ export function CertificateOrQuestionnaire() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Zertifikate und Fragen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Zertifikat oder Fragebogen? Wir prüfen, was bereits vorhanden ist.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Bei bestimmten IntegrityNext-Themen kann ein passendes
             zertifiziertes Managementsystem als Grundlage verwendet werden.
             Liegt kein entsprechendes Zertifikat vor, bedeutet das nicht

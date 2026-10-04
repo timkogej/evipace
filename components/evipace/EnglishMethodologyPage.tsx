@@ -7,11 +7,18 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { ButtonLink } from "./ButtonLink";
+import homeStyles from "./HomeLandingPage.module.css";
 import { InView } from "./home-sections/InView";
+import { MethodologyCtaArtwork } from "./MethodologyCtaArtwork";
 import { LastReviewed } from "./trust/LastReviewed";
 import Link from "next/link";
 import { primarySources } from "@/lib/seo/primary-sources";
 import { SourceNote } from "./trust/SourceNote";
+import {
+  MethodologyEvidenceImage,
+  MethodologyHeroImage,
+  MethodologySectionImage
+} from "./MethodologyImages";
 
 const SEND_REQUEST_HREF = "/en/send-request";
 
@@ -360,12 +367,20 @@ function Section({
   heading,
   children,
   id,
+  image,
+  intro,
+  detailsLabel,
+  collapsible = false,
   tone = "light"
 }: {
   eyebrow?: string;
   heading: string;
   children: ReactNode;
   id?: string;
+  image?: "process" | "emissions";
+  intro?: ReactNode;
+  detailsLabel?: string;
+  collapsible?: boolean;
   tone?: "light" | "warm" | "paper" | "dark";
 }) {
   const classes = {
@@ -375,43 +390,95 @@ function Section({
     dark: "bg-dark text-white"
   };
 
+  const title = (
+    <h2
+      className={`methodology-h2 font-display ${collapsible ? "methodology-disclosure-heading" : "mt-5"} ${
+        tone === "dark" ? "text-white" : "text-ink"
+      }`}
+    >
+      {heading}
+    </h2>
+  );
+  const header = (
+    <Rise className="max-w-4xl">
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      {title}
+    </Rise>
+  );
+
+  if (collapsible) {
+    return (
+      <details className="methodology-disclosure" id={id}>
+        <summary className="site-shell methodology-disclosure-summary">
+          <span className="methodology-disclosure-label">{eyebrow}</span>
+          {title}
+          <span aria-hidden="true" className="methodology-disclosure-toggle" />
+        </summary>
+        <div className="site-shell methodology-disclosure-content">{children}</div>
+      </details>
+    );
+  }
+
   return (
-    <section className={`methodology-section ${classes[tone]}`} id={id}>
-      <div className="site-shell">
-        <Rise className="max-w-4xl">
-          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-          <h2
-            className={`methodology-h2 font-display mt-5 ${
-              tone === "dark" ? "text-white" : "text-ink"
-            }`}
-          >
-            {heading}
-          </h2>
-        </Rise>
-        <div className="mt-9 sm:mt-11">{children}</div>
-      </div>
+    <section
+      className={`methodology-section ${classes[tone]}${image ? " methodology-section--image" : ""}`}
+      id={id}
+    >
+      {image ? (
+        <>
+          <div className="methodology-feature">
+            <MethodologySectionImage kind={image} />
+            <div className="site-shell methodology-feature-content">
+              <div className="methodology-feature-copy">
+                {header}
+                <div className="mt-7">{intro}</div>
+              </div>
+            </div>
+          </div>
+          <div className="site-shell methodology-feature-body">
+            {detailsLabel ? (
+              <details className="methodology-deep-dive">
+                <summary>
+                  {detailsLabel}
+                  <span aria-hidden="true" className="methodology-deep-dive-toggle" />
+                </summary>
+                <div className="methodology-deep-dive-content">{children}</div>
+              </details>
+            ) : children}
+          </div>
+        </>
+      ) : (
+        <div className="site-shell">
+          {header}
+          <div className="mt-9 sm:mt-11">{children}</div>
+        </div>
+      )}
     </section>
   );
 }
 
 function CheckList({
   items,
-  dark = false
+  dark = false,
+  variant = "lines"
 }: {
   items: string[];
   dark?: boolean;
+  variant?: "lines" | "checks";
 }) {
   return (
-    <ul className="grid gap-3">
+    <ul className={`methodology-list methodology-list--${variant} grid gap-3${dark ? " methodology-list--dark" : ""}`}>
       {items.map((item) => (
         <li
           className={`flex gap-3 leading-7 ${dark ? "text-white/72" : "text-muted"}`}
           key={item}
         >
-          <CheckCircle2
-            aria-hidden="true"
-            className="mt-0.5 h-5 w-5 shrink-0 text-orange"
-          />
+          {variant === "checks" ? (
+            <CheckCircle2
+              aria-hidden="true"
+              className="mt-0.5 h-5 w-5 shrink-0 text-orange"
+            />
+          ) : null}
           <span>{item}</span>
         </li>
       ))}
@@ -430,12 +497,13 @@ export function EnglishMethodologyPage({
           id="top"
           aria-labelledby="methodology-title"
         >
+          <MethodologyHeroImage />
           <div aria-hidden="true"
             className="methodology-ghost pointer-events-none absolute right-[5vw] top-24 hidden font-display text-[12rem] leading-none text-[rgba(21,21,21,0.035)] xl:block">
             METHOD
           </div>
           <div className="site-shell">
-            <div className="max-w-4xl">
+            <div className="methodology-hero-copy max-w-4xl">
               <p className="eyebrow">Methodology</p>
               <h1
                 className="methodology-h1 font-display mt-5"
@@ -443,25 +511,24 @@ export function EnglishMethodologyPage({
               >
                 How company data becomes reliable ESG work.
               </h1>
-              <div className="methodology-lead mt-6 space-y-4">
-                <p>
-                  Evipace does not start with generic answers or pre-written
-                  ESG language.
-                </p>
-                <p>
-                  We start with the actual data, documents and company
-                  information relevant to the task in front of you.
-                </p>
-                <p>
-                  From that foundation, we prepare questionnaire responses,
-                  emissions calculations, sustainability reports, evidence
-                  packages and document drafts — with traceable sources,
-                  visible assumptions and human review.
-                </p>
-              </div>
-              <p className="mt-7 text-sm font-semibold leading-7 text-[rgba(21,21,21,0.62)]">
-                Sources · Calculations · Evidence · Review · Transparency
+              <p className="methodology-lead mt-6">
+                We turn your existing records into ESG answers and calculations
+                you can check — with visible sources, assumptions and human review.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="methodology-overview" aria-labelledby="methodology-overview-title">
+          <div className="site-shell">
+            <p className="eyebrow">At a glance</p>
+            <h2 className="methodology-overview-title font-display" id="methodology-overview-title">
+              From your records to a response you can stand behind.
+            </h2>
+            <div className="methodology-overview-grid">
+              <div><span>01 / You provide</span><p>The request and the records your team already has.</p></div>
+              <div><span>02 / We prepare</span><p>Answers, calculations and evidence linked to their sources.</p></div>
+              <div><span>03 / You confirm</span><p>Your company checks the facts and approves the final response.</p></div>
             </div>
           </div>
         </section>
@@ -519,33 +586,44 @@ export function EnglishMethodologyPage({
           eyebrow="Engagement process"
           heading="How an Evipace engagement works."
           id="process"
+          image="process"
+          intro={
+            <Rise className="methodology-body space-y-4 text-muted">
+              <p>No two ESG assignments are exactly the same.</p>
+              <p>
+                Preparing an EcoVadis assessment is different from calculating
+                Scope 1 emissions. A VSME report has a different structure from
+                a customer-specific supplier questionnaire.
+              </p>
+              <p className="font-semibold text-ink">
+                But the underlying process remains consistent.
+              </p>
+            </Rise>
+          }
         >
-          <Rise className="methodology-body space-y-4 text-muted">
-            <p>No two ESG assignments are exactly the same.</p>
-            <p>
-              Preparing an EcoVadis assessment is different from calculating
-              Scope 1 emissions. A VSME report has a different structure from
-              a customer-specific supplier questionnaire.
-            </p>
-            <p className="font-semibold text-ink">
-              But the underlying process remains consistent.
-            </p>
-          </Rise>
-          <div className="mt-12 grid gap-5">
+          <p className="methodology-process-intro">
+            Six steps, from the request you received to work your company can review and approve.
+            Open any step for the detailed activities.
+          </p>
+          <div className="methodology-steps">
             {projectSteps.map((step, index) => (
               <Rise
-                className="grid gap-6 rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-7 lg:grid-cols-[8rem_1fr]"
+                className="methodology-step"
                 delay={index * 0.04}
                 key={step.title}
               >
-                <p className="methodology-step-number font-display text-orange">
-                  {step.number}
-                </p>
-                <div>
-                  <h3 className="methodology-step-title font-bold text-ink">{step.title}</h3>
-                  <p className="methodology-prose mt-3 leading-7 text-muted">{step.body}</p>
+                <details>
+                  <summary className="methodology-step-summary">
+                    <span className="methodology-step-number font-display text-orange">{step.number}</span>
+                    <span className="methodology-step-summary-copy">
+                      <span className="methodology-step-title font-bold text-ink">{step.title}</span>
+                      <span className="methodology-prose text-muted">{step.body}</span>
+                    </span>
+                    <span aria-hidden="true" className="methodology-step-toggle" />
+                  </summary>
+                  <div className="methodology-step-detail">
                   {step.items ? (
-                    <div className="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                    <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
                       {step.items.map((item) => (
                         <p
                           className="border-t border-[rgba(21,21,21,0.1)] pt-3 text-sm font-semibold text-[rgba(21,21,21,0.66)]"
@@ -559,7 +637,8 @@ export function EnglishMethodologyPage({
                   {step.closing ? (
                     <p className="methodology-prose mt-5 leading-7 text-muted">{step.closing}</p>
                   ) : null}
-                </div>
+                  </div>
+                </details>
               </Rise>
             ))}
           </div>
@@ -578,6 +657,7 @@ export function EnglishMethodologyPage({
                 a spreadsheet or report.
               </p>
               <p>We also want to understand how that number was produced.</p>
+              <p>For each material answer, the working record should identify the question or metric, company and site boundary, reporting period, source file and page or worksheet, calculation or factor version, assumption, data owner and approval status. A reader should be able to follow the result back to its basis without guessing.</p>
               <p>
                 Not every sentence requires the same level of documentation.
                 But for material metrics, calculations and claims, the basis
@@ -604,44 +684,47 @@ export function EnglishMethodologyPage({
           eyebrow="Greenhouse-gas emissions"
           heading="How we calculate greenhouse-gas emissions."
           id="emissions"
+          image="emissions"
+          detailsLabel="Explore Scope 1, Scope 2 and Scope 3 calculations"
+          intro={
+            <Rise className="methodology-body space-y-4 text-muted">
+              <p>
+                Greenhouse-gas calculations begin with a defined boundary and
+                appropriate activity data.
+              </p>
+              <p className="font-semibold text-ink">
+                Not with a desired final number.
+              </p>
+              <p>
+                The accounting concepts we work from — organisational and
+                operational boundaries, the Scope 1 and Scope 2 split, and the
+                location-based and market-based treatment of purchased
+                electricity — follow the GHG Protocol corporate standards.
+              </p>
+              <p>
+                The engagement itself is described on the{" "}
+                <Link className="orange-link" href="/en/scope-1-2-calculation">
+                  Scope 1 and Scope 2 calculation service
+                </Link>{" "}
+                page, and the underlying concepts are explained in our{" "}
+                <Link
+                  className="orange-link"
+                  href="/en/resources/scope-1-2-3-explained"
+                >
+                  Scope 1, 2 and 3 explainer
+                </Link>
+                .
+              </p>
+              <SourceNote
+                sources={[
+                  primarySources.ghgCorporateStandard,
+                  primarySources.ghgScope2Guidance
+                ]}
+              />
+            </Rise>
+          }
         >
-          <Rise className="methodology-body space-y-4 text-muted">
-            <p>
-              Greenhouse-gas calculations begin with a defined boundary and
-              appropriate activity data.
-            </p>
-            <p className="font-semibold text-ink">
-              Not with a desired final number.
-            </p>
-            <p>
-              The accounting concepts we work from — organisational and
-              operational boundaries, the Scope 1 and Scope 2 split, and the
-              location-based and market-based treatment of purchased
-              electricity — follow the GHG Protocol corporate standards.
-            </p>
-            <p>
-              The engagement itself is described on the{" "}
-              <Link className="orange-link" href="/en/scope-1-2-calculation">
-                Scope 1 and Scope 2 calculation service
-              </Link>{" "}
-              page, and the underlying concepts are explained in our{" "}
-              <Link
-                className="orange-link"
-                href="/en/resources/scope-1-2-3-explained"
-              >
-                Scope 1, 2 and 3 explainer
-              </Link>
-              .
-            </p>
-            <SourceNote
-              sources={[
-                primarySources.ghgCorporateStandard,
-                primarySources.ghgScope2Guidance
-              ]}
-            />
-          </Rise>
-
-          <div className="mt-12 grid gap-6">
+          <div className="grid gap-6">
             <Rise className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 sm:p-9">
               <p className="eyebrow">Scope 1</p>
               <h3 className="methodology-h3 mt-5 font-bold text-ink">
@@ -666,7 +749,7 @@ export function EnglishMethodologyPage({
                     Activity data → appropriate emissions factor → CO₂e
                   </p>
                   <div className="mt-5">
-                    <CheckList items={scopeOneChecks} />
+                    <CheckList items={scopeOneChecks} variant="checks" />
                   </div>
                 </div>
               </div>
@@ -741,6 +824,7 @@ export function EnglishMethodologyPage({
           eyebrow="Emissions factors"
           heading="We do not treat emissions factors as universal constants."
           id="emissions-factors"
+          collapsible
           tone="warm"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -776,6 +860,7 @@ export function EnglishMethodologyPage({
           eyebrow="Estimates and gaps"
           heading="How we handle estimates and missing data."
           id="data-gaps"
+          collapsible
         >
           <Rise className="methodology-body space-y-4 text-muted">
             <p>Perfect data is not always available.</p>
@@ -807,6 +892,7 @@ export function EnglishMethodologyPage({
           eyebrow="Questionnaires and platforms"
           heading="Questionnaires, EcoVadis and IntegrityNext: the answer and the evidence belong together."
           id="platforms"
+          collapsible
           tone="paper"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -872,7 +958,7 @@ export function EnglishMethodologyPage({
               <p className="mb-6 text-sm font-bold uppercase text-orange">
                 Evipace may support the process by
               </p>
-              <CheckList items={platformSupportItems} />
+              <CheckList items={platformSupportItems} variant="checks" />
             </Rise>
           </div>
         </Section>
@@ -881,6 +967,7 @@ export function EnglishMethodologyPage({
           eyebrow="Supporting evidence"
           heading="How we treat supporting evidence."
           id="evidence"
+          collapsible
         >
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <Rise className="methodology-body space-y-4 text-muted">
@@ -916,22 +1003,21 @@ export function EnglishMethodologyPage({
                 .
               </p>
             </Rise>
-            <Rise
-              className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8"
-              delay={0.08}
-            >
-              <p className="mb-6 text-sm font-bold uppercase text-orange">
-                We may consider questions such as
-              </p>
-              <CheckList items={evidenceChecks} />
-            </Rise>
+            <MethodologyEvidenceImage locale="en" />
           </div>
+          <Rise className="methodology-evidence-checks mt-8 rounded-lg border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8">
+            <p className="mb-6 text-sm font-bold uppercase text-orange">
+              We may consider questions such as
+            </p>
+            <CheckList items={evidenceChecks} />
+          </Rise>
         </Section>
 
         <Section
           eyebrow="Policies"
           heading="How policies and company documents are drafted."
           id="policies"
+          collapsible
           tone="warm"
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -1040,7 +1126,7 @@ export function EnglishMethodologyPage({
                   Evipace is responsible for
                 </h3>
               </div>
-              <CheckList items={evipaceResponsibilities} />
+              <CheckList items={evipaceResponsibilities} variant="checks" />
             </Rise>
             <Rise
               className="rounded-lg border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"
@@ -1052,7 +1138,7 @@ export function EnglishMethodologyPage({
                   Your company is responsible for
                 </h3>
               </div>
-              <CheckList items={clientResponsibilities} />
+              <CheckList items={clientResponsibilities} variant="checks" />
             </Rise>
           </div>
           <Rise className="methodology-quote methodology-quote--box mt-8 border-l-2 border-orange bg-[var(--soft-orange)] px-6 py-5 text-ink">
@@ -1066,6 +1152,7 @@ export function EnglishMethodologyPage({
           eyebrow="Methodological basis"
           heading="We work with the methodology relevant to the engagement."
           id="standards"
+          collapsible
           tone="paper"
         >
           <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
@@ -1124,6 +1211,7 @@ export function EnglishMethodologyPage({
           eyebrow="VSME"
           heading="VSME and voluntary sustainability reporting."
           id="vsme"
+          collapsible
         >
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <Rise className="methodology-body space-y-4 text-muted">
@@ -1182,6 +1270,7 @@ export function EnglishMethodologyPage({
           eyebrow="Working material"
           heading="How we use the documents you provide."
           id="documents"
+          collapsible
           tone="warm"
         >
           <Rise className="methodology-body space-y-4 text-muted">
@@ -1230,7 +1319,7 @@ export function EnglishMethodologyPage({
               <p className="mb-6 text-sm font-bold uppercase text-orange">
                 Deliverables may include
               </p>
-              <CheckList items={deliverables} />
+              <CheckList items={deliverables} variant="checks" />
             </Rise>
           </div>
         </Section>
@@ -1275,32 +1364,35 @@ export function EnglishMethodologyPage({
         <EnglishReviewedLine date={lastReviewed} />
 
         <section
-          className="relative isolate overflow-hidden bg-[var(--soft-orange)] py-20 sm:py-28"
+          className={`methodology-contact relative isolate overflow-hidden ${homeStyles.cta}`}
           id="contact"
         >
-          <div className="site-shell relative z-10 max-w-5xl">
-            <Rise>
+          <div className={`${homeStyles.ctaInner} methodology-contact-inner site-shell relative z-10`}>
+            <Rise className={homeStyles.ctaContent}>
               <p className="eyebrow">Next step</p>
               <h2 className="methodology-h2 methodology-h2--cta font-display mt-5">
                 Have a concrete ESG requirement?
               </h2>
-              <div className="methodology-lead mt-6 space-y-4 text-[rgba(21,21,21,0.68)]">
-                <p>Show us what you are working with.</p>
-                <p>
-                  We will review which data, documents, calculations and
-                  working steps are likely to be required and how the
-                  assignment can be structured.
-                </p>
+              <div className="methodology-contact-bottom">
+                <div className="methodology-lead space-y-4 text-[rgba(21,21,21,0.68)]">
+                  <p>Show us what you are working with.</p>
+                  <p>
+                    We will review which data, documents, calculations and
+                    working steps are likely to be required and how the
+                    assignment can be structured.
+                  </p>
+                </div>
+                <div className="methodology-contact-action">
+                  <ButtonLink href={SEND_REQUEST_HREF}>
+                    Send your ESG request
+                  </ButtonLink>
+                </div>
               </div>
-              <div className="mt-9">
-                <ButtonLink href={SEND_REQUEST_HREF}>
-                  Send your ESG request
-                </ButtonLink>
-              </div>
-              <p className="mt-7 text-sm font-semibold leading-7 text-[rgba(21,21,21,0.62)]">
+              <p className="methodology-contact-topics">
                 Questionnaires · Emissions · Reporting · Evidence · Policies
               </p>
             </Rise>
+            <MethodologyCtaArtwork />
           </div>
         </section>
       </main>

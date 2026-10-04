@@ -1,4 +1,3 @@
-import { BarChart3, Database, Flame, Zap } from "lucide-react";
 import { evipaceImages } from "@/lib/evipace-images";
 import { ButtonLink } from "../ButtonLink";
 import { ImageSlot } from "../ImageSlot";
@@ -6,13 +5,6 @@ import { Reveal } from "../Reveal";
 import { ServiceBreadcrumb } from "../trust/ServiceBreadcrumb";
 
 const SEND_REQUEST_HREF = "/de/send-request";
-
-const flow = [
-  { icon: Database, label: "Verbrauch" },
-  { icon: Flame, label: "Emissionsquelle" },
-  { icon: Zap, label: "Faktor" },
-  { icon: BarChart3, label: "tCO₂e" }
-];
 
 export function LandingHero() {
   return (
@@ -22,17 +14,17 @@ export function LandingHero() {
       id="top"
     >
       <ServiceBreadcrumb current="Scope 1 & 2" />
-      <div className="site-shell grid gap-12 pb-16 pt-4 sm:pb-20 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+      <div className="site-shell grid grid-cols-[minmax(0,1fr)] gap-10 pb-14 pt-4 sm:pb-18 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Scope 1 & 2</p>
           <h1
-            className="scope12-hero__title heading-lg font-display mt-6"
+            className="type-title scope12-hero__title font-display mt-6"
             id="hero-title"
           >
             CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 nachvollziehbar
             berechnen.
           </h1>
-          <p className="body-lg mt-7 max-w-xl">
+          <p className="type-lead mt-7 max-w-xl text-muted">
             Sie senden uns Stromrechnungen, Brennstoffverbräuche,
             Fuhrparkdaten und weitere relevante Unterlagen für die CO₂-Bilanz
             für Unternehmen. Wir strukturieren die Emissionsquellen, bereiten
@@ -58,27 +50,16 @@ export function LandingHero() {
           </p>
         </Reveal>
 
-        <Reveal className="space-y-5" delay={0.12}>
+        <Reveal delay={0.12}>
           <ImageSlot
             alt={evipaceImages.services.scope.alt}
-            className="aspect-[4/3] rounded-[1.25rem] shadow-lift"
+            className="aspect-[4/3] overflow-hidden bg-[#f8f8f6]"
             imageClassName={evipaceImages.services.scope.imageClassName}
             priority
             quality={evipaceImages.services.scope.quality}
             sizes="(min-width: 1024px) 44vw, 100vw"
             src={evipaceImages.services.scope.src}
           />
-          <div className="grid gap-3 sm:grid-cols-4">
-            {flow.map((item) => (
-              <div
-                className="border-t border-[rgba(21,21,21,0.13)] pt-3"
-                key={item.label}
-              >
-                <item.icon aria-hidden="true" className="h-4 w-4 text-orange" />
-                <p className="mt-2 text-sm font-bold text-ink">{item.label}</p>
-              </div>
-            ))}
-          </div>
         </Reveal>
       </div>
     </section>

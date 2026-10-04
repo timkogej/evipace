@@ -156,7 +156,7 @@ test("route is German-only and emits restrained resource Article schema", () => 
     "buildOrganizationSchema()",
     "buildWebsiteSchema()",
     "buildWebPageSchema(locale, PAGE_KEY)",
-    "buildArticleSchema(locale, PAGE_KEY, PAGE_TITLE)",
+    'buildArticleSchema(locale, PAGE_KEY, "Sammeln Sie alle Daten für Scope 1 & 2 an einem Ort.")',
     "buildBreadcrumbListSchema"
   ]) {
     assert.ok(routeSource.includes(marker), marker);

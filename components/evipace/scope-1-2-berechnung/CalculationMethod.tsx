@@ -35,11 +35,11 @@ export function CalculationMethod() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Berechnungslogik</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Verbrauch × Emissionsfaktor = CO₂e - aber die Details entscheiden
             über die Qualität.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Die grundlegende Logik einer emissionsbasierten Berechnung ist
             einfach:
           </p>

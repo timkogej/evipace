@@ -35,10 +35,10 @@ export function ProcessBreakdown() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Wie wir arbeiten</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Wir bringen Fragebogen, Daten und Nachweise zusammen.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Sie müssen nicht zuerst selbst herausfinden, welches Dokument zu
             welcher Frage gehört.
           </p>

@@ -78,10 +78,10 @@ export function DataSources() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Datenquellen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Viele der benötigten Daten haben Sie bereits.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Nachhaltigkeitsdaten liegen in Unternehmen selten an einem einzigen
             Ort. Das bedeutet aber nicht, dass sie nicht vorhanden sind.
           </p>

@@ -471,7 +471,7 @@ function LocationCard({
       id={`scope12-location-${location.id}`}
     >
       <div className="flex items-start justify-between gap-4">
-        <h4 className="font-display text-2xl leading-tight text-ink">
+        <h4 className="type-subheading font-display text-ink">
           {location.name || "Neuer Standort"}
         </h4>
         <button
@@ -627,7 +627,7 @@ function EntryCard({
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
             Scope {entry.scope} · {category.shortLabel}
           </p>
-          <h4 className="font-display mt-2 text-2xl leading-tight text-ink">
+          <h4 className="type-subheading font-display mt-2 text-ink">
             {entry.activityType ||
               entry.fuelType ||
               entry.assetGroup ||
@@ -989,7 +989,7 @@ function ModuleSection({
             {label}
           </p>
           <h3
-            className="font-display mt-3 text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink"
+            className="type-subheading font-display mt-3 text-ink"
             id={`scope12-module-${category}-title`}
           >
             {title}
@@ -1055,7 +1055,7 @@ function ElectricityInfoPanel({
       className="rounded-[1rem] border border-orange/25 bg-[var(--soft-orange)] p-5 sm:p-6"
       id="scope12-electricity-info"
     >
-      <h3 className="font-display text-3xl leading-tight text-ink" id="scope12-electricity-info-title">
+      <h3 className="type-subheading font-display text-ink" id="scope12-electricity-info-title">
         Welche Zusatzinformationen liegen zum eingekauften Strom vor?
       </h3>
       <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
@@ -1409,7 +1409,7 @@ export function Scope12DataCollectionTool({
       <div className="mb-10 max-w-3xl">
         <p className="eyebrow">Interaktive Vorlage</p>
         <h2
-          className="font-display mt-5 text-[clamp(2.5rem,5.2vw,4.7rem)] leading-none text-ink"
+          className="type-heading font-display mt-5 text-ink"
           id="scope12-tool-title"
         >
           Ihre Datensammlung
@@ -1425,7 +1425,7 @@ export function Scope12DataCollectionTool({
             tabIndex={-1}
           >
             <h3
-              className="font-display text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink"
+              className="type-subheading font-display text-ink"
               id="scope12-setup-title"
             >
               Basis festlegen
@@ -1497,7 +1497,7 @@ export function Scope12DataCollectionTool({
             <div className="flex flex-col gap-4 border-b border-[rgba(21,21,21,0.11)] pb-6 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <h3
-                  className="font-display text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink"
+                  className="type-subheading font-display text-ink"
                   id="scope12-locations-title"
                 >
                   1. Welche Standorte gehören zur Datensammlung?
@@ -1598,7 +1598,7 @@ export function Scope12DataCollectionTool({
               SCOPE 1 · PROZESSE
             </p>
             <h3
-              className="font-display mt-3 text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink"
+              className="type-subheading font-display mt-3 text-ink"
               id="scope12-module-process-emissions-title"
             >
               5. Direkte Prozessemissionen
@@ -1679,7 +1679,7 @@ export function Scope12DataCollectionTool({
               SCOPE 2 · WEITERE EINGEKAUFTE ENERGIE
             </p>
             <h3
-              className="font-display mt-3 text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink"
+              className="type-subheading font-display mt-3 text-ink"
               id="scope12-module-purchased-energy-title"
             >
               7. Eingekaufte Wärme, Dampf oder Kälte
@@ -1734,7 +1734,7 @@ export function Scope12DataCollectionTool({
             tabIndex={-1}
           >
             <h3
-              className="font-display text-[clamp(2rem,4vw,3.35rem)] leading-none text-ink"
+              className="type-subheading font-display text-ink"
               id="scope12-source-checks-title"
             >
               8. Sind die Quelldaten nachvollziehbar?
@@ -1801,7 +1801,7 @@ export function Scope12DataCollectionTool({
             className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-white p-5 sm:p-7"
           >
             <h2
-              className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-none text-ink"
+              className="type-heading font-display text-ink"
               id="scope12-privacy-title"
             >
               Ihre Unternehmensdaten bleiben in Ihrem Browser.
@@ -1832,7 +1832,7 @@ export function Scope12DataCollectionTool({
         ref={entryDialogRef}
       >
         <div className="max-w-md p-6 sm:p-7">
-          <h2 className="font-display text-3xl leading-tight" id="scope12-entry-delete-title">
+          <h2 className="type-heading font-display" id="scope12-entry-delete-title">
             Datensatz wirklich entfernen?
           </h2>
           <p className="mt-4 text-sm leading-6 text-muted">
@@ -1852,7 +1852,7 @@ export function Scope12DataCollectionTool({
         ref={locationDialogRef}
       >
         <div className="max-w-md p-6 sm:p-7">
-          <h2 className="font-display text-3xl leading-tight" id="scope12-location-delete-title">
+          <h2 className="type-heading font-display" id="scope12-location-delete-title">
             Standort wirklich entfernen?
           </h2>
           <p className="mt-4 text-sm leading-6 text-muted">
@@ -1873,7 +1873,7 @@ export function Scope12DataCollectionTool({
         ref={resetDialogRef}
       >
         <div className="max-w-md p-6 sm:p-7">
-          <h2 className="font-display text-3xl leading-tight" id="scope12-reset-title">
+          <h2 className="type-heading font-display" id="scope12-reset-title">
             Datensammlung wirklich zurücksetzen?
           </h2>
           <p className="mt-4 text-sm leading-6 text-muted">

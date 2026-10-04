@@ -33,6 +33,7 @@ export function buildServiceSchema(
     description: serviceDescription ?? entry.description,
     serviceType,
     url: absoluteUrl,
-    provider: { "@id": ORGANIZATION_ID }
+    provider: { "@id": ORGANIZATION_ID },
+    mainEntityOfPage: { "@id": `${absoluteUrl}#webpage` }
   };
 }

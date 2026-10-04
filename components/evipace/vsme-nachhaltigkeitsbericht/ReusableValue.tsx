@@ -40,10 +40,10 @@ export function ReusableValue() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Wiederverwendung</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Ein Bericht, der auch nach der Veröffentlichung noch nützlich ist.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Ein Nachhaltigkeitsbericht sollte nicht das Ende des Prozesses
             sein. Die strukturierte Datengrundlage dahinter kann für Ihr
             Unternehmen langfristig wertvoller sein als das fertige PDF allein.

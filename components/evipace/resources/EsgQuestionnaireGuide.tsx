@@ -417,7 +417,7 @@ function ArticleSection({
             {number}
           </span>
           <h2
-            className="font-display max-w-[19ch] text-[clamp(2.15rem,4.1vw,3.7rem)] leading-[1.02]"
+            className="type-heading font-display max-w-[24ch]"
             id={`${id}-title`}
           >
             {title}
@@ -586,7 +586,7 @@ export function EsgQuestionnaireGuide() {
               <div className="mt-12 max-w-5xl">
                 <p className="eyebrow">ESG-Fragebögen · Praxisleitfaden</p>
                 <h1
-                  className="font-display mt-7 max-w-[14ch] text-[clamp(3.15rem,7.2vw,6.7rem)] leading-[0.9]"
+                  className="type-title font-display mt-7 max-w-[20ch]"
                   id="article-title"
                 >
                   ESG-Fragebogen vom Kunden erhalten – was jetzt?
@@ -594,7 +594,7 @@ export function EsgQuestionnaireGuide() {
               </div>
 
               <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(19rem,0.62fr)] lg:items-start lg:gap-16">
-                <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                <div className="type-lead max-w-3xl text-muted">
                   <p>
                     Ein wichtiger Kunde schickt einen Nachhaltigkeits- oder
                     ESG-Fragebogen.
@@ -666,7 +666,7 @@ export function EsgQuestionnaireGuide() {
               <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
                 <div>
                   <p className="eyebrow">Quick Answer</p>
-                  <h2 className="font-display mt-6 max-w-[12ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]" id="quick-answer-title">
+                  <h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">
                     ESG-Fragebogen erhalten? Beginnen Sie mit diesen sechs
                     Schritten.
                   </h2>
@@ -789,7 +789,7 @@ export function EsgQuestionnaireGuide() {
                     </section>
                   ))}
                 </div>
-                <p className="mt-8 font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement mt-8 font-display text-ink">
                   Das erste ESG-Projekt ist deshalb häufig weniger ein Problem
                   fehlender Daten als ein Problem verteilter Daten.
                 </p>
@@ -976,7 +976,7 @@ export function EsgQuestionnaireGuide() {
                 </div>
                 <div className="my-8 rounded-[1rem] border border-[rgba(254,112,1,0.26)] bg-[var(--soft-orange)] p-6 sm:p-8">
                   <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Vereinfacht</p>
-                  <p className="font-display mt-4 text-[clamp(1.7rem,3.8vw,2.8rem)] leading-[1.12] text-ink">
+                  <p className="type-statement font-display mt-4 text-ink">
                     Aktivitätsdaten × geeigneter Emissionsfaktor → Treibhausgasemissionen in CO₂e
                   </p>
                 </div>
@@ -1009,7 +1009,7 @@ export function EsgQuestionnaireGuide() {
                     ["3", "EU-Regeln zu Informationsanfragen in der Wertschöpfungskette", "Die EU hat 2026 einen neuen freiwilligen Sustainability Reporting Standard einschließlich eines sogenannten value chain cap angenommen."]
                   ].map(([number, title, body]) => (
                     <div className="grid gap-4 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:grid-cols-[2rem_1fr]" key={number}>
-                      <span className="font-display text-3xl text-orange">{number}</span>
+                      <span className="type-number font-display text-orange">{number}</span>
                       <div>
                         <h3 className="font-bold text-ink">{title}</h3>
                         <p className="mt-2 text-sm leading-7 text-muted">{body}</p>
@@ -1107,7 +1107,7 @@ export function EsgQuestionnaireGuide() {
                     </div>
                   ))}
                 </div>
-                <p className="font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement font-display text-ink">
                   Die Frage ändert sich. Die Unternehmensinformation dahinter häufig nicht.
                 </p>
                 <p>
@@ -1130,7 +1130,7 @@ export function EsgQuestionnaireGuide() {
                   Nicht jedes Unternehmen hat diese Abteilungen separat.
                   Entscheidend ist nicht der Titel der Person, sondern:
                 </p>
-                <p className="font-display text-[clamp(1.75rem,3vw,2.45rem)] leading-[1.16] text-ink">
+                <p className="type-statement font-display text-ink">
                   Wer besitzt die belastbarste Quelle für die jeweilige Information?
                 </p>
               </ArticleSection>
@@ -1201,7 +1201,7 @@ export function EsgQuestionnaireGuide() {
                     <FileText aria-hidden="true" className="h-5 w-5" />
                   </div>
                   <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-                  <h2 className="font-display mt-5 max-w-[13ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]" id="article-cta-title">Ihr ESG-Fragebogen liegt bereits vor?</h2>
+                  <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">Ihr ESG-Fragebogen liegt bereits vor?</h2>
                   <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68">
                     <p>Sie müssen ihn nicht zuerst selbst vollständig analysieren.</p>
                     <p>Senden Sie uns den Fragebogen und die Unterlagen, die Sie bereits haben.</p>
@@ -1218,15 +1218,15 @@ export function EsgQuestionnaireGuide() {
               <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
                 <div>
                   <p className="eyebrow">FAQ</p>
-                  <h2 className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none" id="faq-title">Häufige Fragen</h2>
-                  <div className="mt-9 grid gap-3">
+                  <h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen</h2>
+                  <div className="faq-list">
                     {faqItems.map((faq) => (
-                      <details className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6" key={faq.question}>
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">
+                      <details className="faq-item group" key={faq.question}>
+                        <summary className="faq-question">
                           {faq.question}
-                          <span aria-hidden="true" className="text-2xl font-light text-orange transition-transform group-open:rotate-45">+</span>
+                          <span aria-hidden="true" className="faq-toggle" />
                         </summary>
-                        <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">{faq.answer}</p>
+                        <p className="faq-answer">{faq.answer}</p>
                       </details>
                     ))}
                   </div>

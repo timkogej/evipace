@@ -1,3 +1,6 @@
+import { voluntaryStandardStatus } from "@/lib/seo/voluntary-standard-status";
+import { primarySources } from "@/lib/seo/primary-sources";
+import { SourceNote } from "../trust/SourceNote";
 import { FileText } from "lucide-react";
 import { Reveal } from "../Reveal";
 
@@ -12,7 +15,7 @@ const statusCards = [
   },
   {
     title: "Ist der neue Standard bereits in Kraft?",
-    body: "Zum aktuellen Stand noch nicht. Nach der Annahme durch die Europäische Kommission muss der delegierte Rechtsakt zunächst das vorgesehene europäische Prüfverfahren durchlaufen und anschließend im Amtsblatt der Europäischen Union veröffentlicht werden. Erst danach wird er rechtlich wirksam."
+    body: voluntaryStandardStatus.de
   }
 ];
 
@@ -22,10 +25,10 @@ export function RegulatoryStatus() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Regulatorischer Stand</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             VSME, Voluntary Standard und 2026: Was gilt aktuell?
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Der europäische Rahmen für freiwillige
             Nachhaltigkeitsberichterstattung wurde 2026 weiterentwickelt.
           </p>
@@ -44,6 +47,8 @@ export function RegulatoryStatus() {
             </Reveal>
           ))}
         </div>
+
+        <SourceNote locale="de" sources={[primarySources.voluntaryStandardRegulation]} />
 
         <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
           Evipace richtet neue Projekte am jeweils aktuellen europäischen Rahmen

@@ -41,7 +41,7 @@ export function ScopeData() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Emissionen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Scope 1 und Scope 2 sind Teil der Datengrundlage - nicht nur ein
             separates Excel-Thema.
           </h2>

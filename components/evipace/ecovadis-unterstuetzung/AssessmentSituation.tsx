@@ -22,10 +22,10 @@ export function AssessmentSituation() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Ausgangslage</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Erstbewertung oder erneute Bewertung?
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Die Ausgangssituation ist nicht immer dieselbe.
           </p>
         </Reveal>

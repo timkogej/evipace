@@ -49,10 +49,10 @@ export function TaskTranslation() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Arbeitsprozess</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Wir übersetzen die Kundenanforderung in konkrete Aufgaben.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Sie müssen nicht selbst jede einzelne ESG-Anforderung
             interpretieren und anschließend im gesamten Unternehmen nach den
             passenden Informationen suchen.

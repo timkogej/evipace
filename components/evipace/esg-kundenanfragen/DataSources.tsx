@@ -34,7 +34,7 @@ export function DataSources() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Vorhandene Grundlage</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Ihre ESG-Daten sind oft bereits vorhanden - nur nicht als fertige
             Kundenantwort.
           </h2>

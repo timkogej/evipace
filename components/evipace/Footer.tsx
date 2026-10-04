@@ -115,7 +115,7 @@ export function Footer({ locale }: FooterProps) {
                 {consent.reopen}
               </button>
               {languageDestinations.map((destination) => (
-                <Link
+                <a
                   aria-current={destination.isCurrent ? "page" : undefined}
                   className={
                     destination.isCurrent
@@ -136,7 +136,7 @@ export function Footer({ locale }: FooterProps) {
                       · {navigation.labels.unavailableTranslation}
                     </span>
                   ) : null}
-                </Link>
+                </a>
               ))}
             </div>
           </div>

@@ -15,7 +15,7 @@ export function DataIntegrity() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Integrität</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Ihre Antworten sollten die tatsächliche Unternehmenspraxis
             abbilden.
           </h2>

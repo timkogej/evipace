@@ -1,3 +1,5 @@
+import { voluntaryStandardStatus } from "@/lib/seo/voluntary-standard-status";
+import { getServiceBuyerQuestions } from "@/lib/seo/service-buyer-questions";
 import { primarySources, type PrimarySource } from "@/lib/seo/primary-sources";
 import {
   AlertCircle,
@@ -18,6 +20,8 @@ import {
 } from "lucide-react";
 
 export type CommercialServicePageContent = {
+  streamlinedService?: boolean;
+  detailsLabel?: string;
   eyebrow: string;
   title: string;
   intro: string[];
@@ -152,13 +156,13 @@ export type CommercialServicePageContent = {
 };
 
 export const customerRequestsContent: CommercialServicePageContent = {
+  streamlinedService: true,
+  detailsLabel: "Explore request types and the records you can send",
   eyebrow: "Customer ESG requests",
   title:
     "Your customer asked for ESG information. We help you prepare the response.",
   intro: [
-    "A customer request may start with a spreadsheet, supplier questionnaire, platform invitation or a short email asking for emissions, policies, targets or supporting evidence. This page covers all of those formats.",
-    "The difficult part is rarely the form itself. The information is usually spread across Finance, HR, Quality, EHS, Procurement, Operations and existing company documents.",
-    "Evipace helps turn that request into a structured, reviewable response."
+    "Send us the questionnaire, spreadsheet, platform invitation or email. We identify what the customer needs, bring together the relevant data and evidence, and prepare a response for your review."
   ],
   primaryCta: "Send us the request",
   secondaryCta: {
@@ -429,6 +433,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
     ]
   },
   faq: [
+    ...getServiceBuyerQuestions("en", "esgKundenanfragen"),
     {
       question: "What counts as a customer ESG request?",
       answer:
@@ -463,11 +468,11 @@ export const customerRequestsContent: CommercialServicePageContent = {
 };
 
 export const questionnaireSupportContent: CommercialServicePageContent = {
+  streamlinedService: true,
   eyebrow: "ESG questionnaire support",
   title: "Received an ESG questionnaire? We help you prepare the response.",
   intro: [
-    "Customer ESG questionnaires often combine company data, emissions, environmental information, workforce topics, policies, supplier practices and supporting evidence in one file. This page is for that case: a defined questionnaire or assessment document that has to be answered field by field.",
-    "We help break the questionnaire into manageable parts, find the right internal sources, prepare the answers and keep unresolved gaps visible."
+    "Send us the questionnaire and the records you already have. We work through the questions, find the relevant data and evidence, and prepare answers for your review while keeping gaps visible."
   ],
   primaryCta: "Send your questionnaire",
   secondaryCta: {
@@ -715,6 +720,7 @@ export const questionnaireSupportContent: CommercialServicePageContent = {
     ]
   },
   faq: [
+    ...getServiceBuyerQuestions("en", "esgFragebogenLieferanten"),
     {
       question: "What is an ESG questionnaire?",
       answer:
@@ -754,13 +760,12 @@ export const questionnaireSupportContent: CommercialServicePageContent = {
 };
 
 export const scope12CalculationContent: CommercialServicePageContent = {
+  streamlinedService: true,
   eyebrow: "Scope 1 & 2 calculation",
   title:
     "Calculate and document your company’s Scope 1 and Scope 2 emissions.",
   intro: [
-    "If a customer asks for your company's Scope 1 and Scope 2 emissions or corporate carbon footprint, the starting point is not a CO2 number.",
-    "It is the underlying activity data: electricity, fuels, vehicles, refrigerants, purchased heat and other relevant sources.",
-    "Evipace structures the data, applies appropriate emission factors and prepares a documented calculation you can review."
+    "For your corporate carbon footprint, start with the electricity, fuel, vehicle, refrigerant and purchased-heat records you already have. We organise the activity data, apply appropriate emission factors and prepare a documented Scope 1 and Scope 2 calculation for your review."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1056,6 +1061,7 @@ export const scope12CalculationContent: CommercialServicePageContent = {
     ]
   },
   faq: [
+    ...getServiceBuyerQuestions("en", "scope12Berechnung"),
     {
       question: "What is the difference between Scope 1, Scope 2 and Scope 3?",
       answer:
@@ -1095,13 +1101,12 @@ export const scope12CalculationContent: CommercialServicePageContent = {
 };
 
 export const ecovadisSupportContent: CommercialServicePageContent = {
+  streamlinedService: true,
   eyebrow: "ECOVADIS SUPPORT",
   title:
     "Need help preparing for EcoVadis? We organise the answers and evidence with you.",
   intro: [
-    "EcoVadis can require information across multiple parts of the company: policies, environmental data, workforce topics, business practices and supporting documents.",
-    "The difficult part is often not finding one answer. It is understanding what the question requires, locating the right supporting material and keeping answers consistent with what the company can actually evidence.",
-    "Evipace helps structure that work before your company submits the assessment."
+    "Send us your current assessment and available documents. We organise the questions, identify relevant evidence and make gaps visible before your company reviews and submits its answers."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1382,6 +1387,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     ]
   },
   faq: [
+    ...getServiceBuyerQuestions("en", "ecovadisUnterstuetzung"),
     {
       question: "What is EcoVadis?",
       answer:
@@ -1421,13 +1427,12 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
 };
 
 export const integrityNextSupportContent: CommercialServicePageContent = {
+  streamlinedService: true,
   eyebrow: "INTEGRITYNEXT SUPPORT",
   title:
     "Received an IntegrityNext request? We help prepare the information and evidence.",
   intro: [
-    "An IntegrityNext request can require company information, questionnaire responses, certifications or supporting documents across different ESG topics.",
-    "If the information is scattered across the business, the difficult part is determining what already exists, who owns it and what still needs to be prepared.",
-    "Evipace helps organise the required information and evidence so your company can complete the request with a clear internal review trail."
+    "Show us the invitation or requested assessments and the documents you already have. We organise the company information, certificates and evidence, then flag what still needs an answer or internal confirmation."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1708,6 +1713,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
     ]
   },
   faq: [
+    ...getServiceBuyerQuestions("en", "integrityNextUnterstuetzung"),
     {
       question: "What is IntegrityNext?",
       answer:
@@ -1747,13 +1753,12 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
 };
 
 export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
+  streamlinedService: true,
   eyebrow: "VSME SUSTAINABILITY REPORTING",
   title:
     "Need to prepare VSME sustainability information? We help structure the report from your company data.",
   intro: [
-    "Preparing a VSME sustainability report starts with company data, not with writing a polished sustainability narrative.",
-    "Energy, emissions, workforce data, policies, environmental information and governance-related information may sit across several internal functions.",
-    "Evipace helps structure the relevant information, identify missing inputs and prepare a reviewable VSME reporting draft based on the company data available."
+    "We bring together the energy, emissions, workforce, policy and other company information needed for your reporting scope, identify missing inputs and prepare a VSME draft for your review."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1761,7 +1766,7 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
       {
         question: "What is VSME?",
         answer: [
-          "VSME is the voluntary sustainability reporting standard for non-listed small and medium-sized enterprises developed by EFRAG.",
+          "VSME was developed by EFRAG for non-listed SMEs. The 2026 Voluntary Standard builds on it and is intended for undertakings outside mandatory sustainability reporting with no more than 1,000 employees on average in the previous financial year.",
           "It is structured so a smaller company can report sustainability information in a recognised format without applying the full set of standards written for large, mandatory reporters. It is organised into a Basic Module and a more detailed Comprehensive Module.",
           "It is commonly used to answer customer, bank and supply-chain information requests with one consistent set of company data."
         ]
@@ -1769,6 +1774,7 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
       {
         question: "Is VSME mandatory?",
         answer: [
+          voluntaryStandardStatus.en,
           "No. VSME is a voluntary standard; it does not by itself place a reporting obligation on an SME.",
           "Companies generally prepare it because a customer, bank or other counterparty asks for structured sustainability information, not because a law requires the report.",
           "European sustainability reporting rules continue to change, and whether any mandatory obligation applies to a specific company depends on that company's own circumstances. This is general information, not legal advice — the current status of the standard and the underlying legislation is published by EFRAG and in the Official Journal."
@@ -1777,7 +1783,8 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     ],
     sources: [
       primarySources.efragVoluntaryStandard,
-      primarySources.eurLexReportingDirective
+      primarySources.eurLexReportingDirective,
+      primarySources.voluntaryStandardRegulation
     ]
   },
   primaryCta: "Send us your VSME reporting request",
@@ -2051,10 +2058,11 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     ]
   },
   faq: [
+    ...getServiceBuyerQuestions("en", "vsmeNachhaltigkeitsbericht"),
     {
       question: "What is VSME?",
       answer:
-        "VSME is the voluntary sustainability reporting standard for non-listed small and medium-sized enterprises developed by EFRAG. It lets a smaller company report sustainability information in a recognised structure, organised into a Basic Module and a more detailed Comprehensive Module, without applying the full set of standards written for large mandatory reporters."
+        "VSME was developed by EFRAG for non-listed SMEs. The 2026 Voluntary Standard builds on it and is intended for undertakings outside mandatory sustainability reporting with no more than 1,000 employees on average in the previous financial year. It lets a smaller company report sustainability information in a recognised structure, organised into a Basic Module and a more detailed Comprehensive Module, without applying the full set of standards written for large mandatory reporters."
     },
     {
       question: "Is VSME mandatory?",

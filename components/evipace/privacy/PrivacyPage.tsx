@@ -45,8 +45,8 @@ function EnglishPrivacyPage() {
         <div className="site-shell">
           <div className="max-w-3xl break-words">
             <p className="eyebrow">Privacy</p>
-            <h1 className="heading-lg font-display mt-6">Privacy policy</h1>
-            <p className="body-lg mt-7 max-w-2xl text-muted">
+            <h1 className="type-title font-display mt-6">Privacy policy</h1>
+            <p className="type-lead mt-7 max-w-2xl text-muted">
               This notice explains how Evipace handles personal data on this
               website, in the ESG request form, in uploaded documents and in
               optional analytics.
@@ -271,10 +271,10 @@ function GermanPrivacyPage() {
         <div className="site-shell">
           <div className="max-w-3xl break-words">
             <p className="eyebrow">Datenschutz</p>
-            <h1 className="heading-lg font-display mt-6">
+            <h1 className="type-title font-display mt-6">
               Datenschutzerklärung
             </h1>
-            <p className="body-lg mt-7 max-w-2xl text-muted">
+            <p className="type-lead mt-7 max-w-2xl text-muted">
               Diese Erklärung beschreibt, wie Evipace personenbezogene Daten auf
               dieser Website, im ESG-Anfrageformular, in hochgeladenen
               Dokumenten und bei optionaler Analyse verarbeitet.

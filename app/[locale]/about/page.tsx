@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EnglishAboutPage } from "@/components/evipace/EnglishAboutPage";
-import { GermanAboutPage } from "@/components/evipace/GermanAboutPage";
+import { AboutLandingPage } from "@/components/evipace/about/AboutLandingPage";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
@@ -37,7 +36,7 @@ export default async function About({ params }: AboutPageProps) {
     return (
       <>
         <JsonLd graph={schemaGraph} />
-        <GermanAboutPage />
+        <AboutLandingPage locale="de" />
       </>
     );
   }
@@ -46,7 +45,7 @@ export default async function About({ params }: AboutPageProps) {
     return (
       <>
         <JsonLd graph={schemaGraph} />
-        <EnglishAboutPage />
+        <AboutLandingPage locale="en" />
       </>
     );
   }

@@ -50,10 +50,10 @@ export function Deliverables() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Ergebnis</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Was Sie von uns zurückbekommen
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Eine Scope-1-&-2-Berechnung sollte mehr liefern als nur eine
             einzelne Zahl.
           </p>

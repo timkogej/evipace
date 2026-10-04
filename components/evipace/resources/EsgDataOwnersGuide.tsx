@@ -77,7 +77,7 @@ function BulletList({ items }: { items: readonly string[] }) {
 }
 
 function ArticleSection({ children, id, number, title }: { children: ReactNode; id: string; number: string; title: string }) {
-  return <section aria-labelledby={id + "-title"} className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16" id={id}><div className="flex items-start gap-4 sm:gap-6"><span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span><h2 className="font-display max-w-[21ch] text-[clamp(2.15rem,4.1vw,3.7rem)] leading-[1.02]" id={id + "-title"}>{title}</h2></div><div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div></section>;
+  return <section aria-labelledby={id + "-title"} className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16" id={id}><div className="flex items-start gap-4 sm:gap-6"><span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span><h2 className="type-heading font-display max-w-[24ch]" id={id + "-title"}>{title}</h2></div><div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div></section>;
 }
 
 function Principle({ children, label }: { children: ReactNode; label?: string }) {
@@ -109,9 +109,9 @@ export function EsgDataOwnersGuide() {
               <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
                 <Link className="transition hover:text-orange" href="/de">Startseite</Link><span aria-hidden="true">/</span><Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link><span aria-hidden="true">/</span><span className="text-ink">ESG-Datenverantwortung</span>
               </nav>
-              <div className="mt-12 max-w-6xl"><p className="eyebrow">ESG-Daten · Interne Verantwortlichkeiten</p><h1 className="font-display mt-7 max-w-[18ch] break-words hyphens-auto text-[clamp(3.05rem,6.8vw,6.35rem)] leading-[0.92]" id="article-title">ESG-Daten vom Kunden angefragt: Wer im Unternehmen liefert welche Informationen?</h1></div>
+              <div className="mt-12 max-w-6xl"><p className="eyebrow">ESG-Daten · Interne Verantwortlichkeiten</p><h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">ESG-Daten vom Kunden angefragt: Wer im Unternehmen liefert welche Informationen?</h1></div>
               <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                <div className="type-lead max-w-3xl text-muted">
                   <p>Ein Kunde schickt einen ESG-Fragebogen. Die Datei landet bei Einkauf, Qualität, Geschäftsführung oder bei der Person, die gerade als Kontakt im Kundenportal hinterlegt ist.</p>
                   <p className="mt-6">Diese Person kann den Fragebogen koordinieren. Aber sie besitzt normalerweise nicht alle Informationen, die für eine belastbare Antwort benötigt werden.</p>
                   <p className="font-display mt-7 text-3xl leading-tight text-ink">Wer besitzt für jeden Datenpunkt die verlässlichste interne Quelle?</p>
@@ -125,7 +125,7 @@ export function EsgDataOwnersGuide() {
           <section aria-labelledby="quick-answer-title" className="scroll-mt-24 bg-ink py-20 text-white sm:py-24" id="schnellantwort">
             <div className="site-shell">
               <div className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-16">
-                <div><p className="eyebrow">Quick Answer</p><h2 className="font-display mt-6 max-w-[14ch] text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]" id="quick-answer-title">Wer liefert typischerweise welche ESG-Daten?</h2><p className="mt-6 max-w-sm leading-7 text-white/62">Die genaue Organisation ist in jedem Unternehmen anders. Diese Zuordnung ist eine praktische Orientierung für ein typisches produzierendes KMU.</p></div>
+                <div><p className="eyebrow">Quick Answer</p><h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">Wer liefert typischerweise welche ESG-Daten?</h2><p className="mt-6 max-w-sm leading-7 text-white/62">Die genaue Organisation ist in jedem Unternehmen anders. Diese Zuordnung ist eine praktische Orientierung für ein typisches produzierendes KMU.</p></div>
                 <div className="grid gap-x-7 gap-y-8 sm:grid-cols-2">{quickDepartments.map(([title, items], index) => <section className="border-t border-white/20 pt-4" key={title}><p className="font-mono text-xs text-orange">{String(index + 1).padStart(2, "0")}</p><h3 className="mt-2 font-bold text-white">{title}</h3><ul className="mt-3 grid gap-1.5 text-sm leading-6 text-white/62">{items.map((item) => <li key={item}>{item}</li>)}</ul></section>)}</div>
               </div>
               <div className="mt-14 border-t border-white/15 pt-9"><p className="font-display max-w-5xl text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Eine Person koordiniert.<br />Die Fachbereiche liefern die Quellen.<br />Verantwortliche Personen bestätigen die Aussagen.</p></div>
@@ -153,7 +153,7 @@ export function EsgDataOwnersGuide() {
                 <p>Ein häufiger Fehler ist, den kompletten Excel-Fragebogen an HR, Finance, Qualität, Einkauf und Geschäftsführung weiterzuleiten – verbunden mit der Bitte, „die eigenen Fragen“ zu beantworten.</p>
                 <p>Das führt häufig zu mehreren Dateiversionen, widersprüchlichen Antworten, doppelter Arbeit, fehlenden Quellen und unklarer Verantwortung.</p>
                 <ol className="my-8 grid gap-px overflow-hidden rounded-[1rem] bg-[rgba(21,21,21,0.12)]">{["Fragen zuerst zentral analysieren.", "Jede Frage einem Thema zuordnen.", "Data Owner identifizieren.", "Nur die tatsächlich benötigte Information anfordern.", "Quelle beziehungsweise Nachweis mit anfordern."].map((step, index) => <li className="grid grid-cols-[3rem_1fr] gap-4 bg-white p-5" key={step}><span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span><span className="font-semibold leading-6 text-ink">{step}</span></li>)}</ol>
-                <div className="my-8 grid gap-4 sm:grid-cols-2"><article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Zu allgemein</p><p className="font-display mt-4 text-2xl">„Bitte ESG-Fragebogen ausfüllen.“</p></article><article className="rounded-[1rem] border border-[rgba(254,112,1,0.25)] bg-[var(--soft-orange)] p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Gezielte Anfrage</p><p className="font-display mt-4 text-2xl">„Wir benötigen für Werk A den Stromverbrauch 2025 in kWh sowie die zugrunde liegende Jahresabrechnung.“</p></article></div>
+                <div className="my-8 grid gap-4 sm:grid-cols-2"><article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Zu allgemein</p><p className="type-statement font-display mt-4">„Bitte ESG-Fragebogen ausfüllen.“</p></article><article className="rounded-[1rem] border border-[rgba(254,112,1,0.25)] bg-[var(--soft-orange)] p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Gezielte Anfrage</p><p className="type-statement font-display mt-4">„Wir benötigen für Werk A den Stromverbrauch 2025 in kWh sowie die zugrunde liegende Jahresabrechnung.“</p></article></div>
                 <p>Wenn zunächst unklar ist, welche Informationen überhaupt gefragt sein können, bietet der Leitfaden <Link href="/de/ressourcen/welche-esg-daten-kunden-lieferanten">Welche ESG-Daten verlangen Kunden von Lieferanten?</Link> eine Orientierung. Den Gesamtprozess nach Eingang einer Anfrage erklärt anschließend <Link href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen vom Kunden erhalten – was jetzt?</Link></p>
               </ArticleSection>
 
@@ -201,7 +201,7 @@ export function EsgDataOwnersGuide() {
               </ArticleSection>
 
               <ArticleSection id="facility-technik" number="09" title="Facility und Technik: Hier liegen Daten, die auf Rechnungen oft fehlen.">
-                <div className="my-8 grid gap-4 sm:grid-cols-[0.85fr_auto_1.15fr] sm:items-center"><article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Finance sieht</p><p className="font-display mt-4 text-3xl">Klimaanlagen-Service: 1.420 €</p></article><span aria-hidden="true" className="hidden font-display text-4xl text-orange sm:block">+</span><article className="rounded-[1rem] border border-[rgba(254,112,1,0.25)] bg-[var(--soft-orange)] p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Technik dokumentiert</p><p className="font-display mt-4 text-3xl">R410A – 2,3 kg nachgefüllt</p></article></div>
+                <div className="my-8 grid gap-4 sm:grid-cols-[0.85fr_auto_1.15fr] sm:items-center"><article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-muted">Finance sieht</p><p className="font-display mt-4 text-3xl">Klimaanlagen-Service: 1.420 €</p></article><span aria-hidden="true" className="type-number hidden font-display text-orange sm:block">+</span><article className="rounded-[1rem] border border-[rgba(254,112,1,0.25)] bg-[var(--soft-orange)] p-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Technik dokumentiert</p><p className="font-display mt-4 text-3xl">R410A – 2,3 kg nachgefüllt</p></article></div>
                 <p>Die technische Information liegt eher bei Facility, Instandhaltung, technischem Service oder einem externen Wartungsunternehmen. Dasselbe gilt für Zählerstände, Kälteanlagen, Wärmepumpen, Generatoren, Heiztechnik, eigene Energieanlagen und Wasserzähler.</p>
                 <Principle>Kaufmännische Quelle + technische Quelle.</Principle>
               </ArticleSection>
@@ -249,7 +249,7 @@ export function EsgDataOwnersGuide() {
                   ["2 — Calculation Owner", "Berechnet aus Quellen eine Kennzahl. Beispiel: Scope-2-Emissionen."],
                   ["3 — Statement Owner", "Kann die fachliche Richtigkeit einer Aussage bestätigen. Beispiel: HSE bestätigt den Arbeitssicherheitsprozess."],
                   ["4 — Approver", "Darf eine formelle Aussage oder Policy freigeben. Beispiel: Geschäftsführung verabschiedet eine Environmental Policy."]
-                ].map(([title, body]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}><h3 className="font-display text-2xl text-ink">{title}</h3><p className="mt-4 text-sm leading-6 text-muted">{body}</p></article>)}</div>
+                ].map(([title, body]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}><h3 className="type-subheading font-display text-ink">{title}</h3><p className="mt-4 text-sm leading-6 text-muted">{body}</p></article>)}</div>
               </ArticleSection>
 
               <ArticleSection id="scope-2-owner" number="16" title="Beispiel: Eine einzige Scope-2-Zahl kann mehrere Owner haben.">
@@ -395,15 +395,15 @@ export function EsgDataOwnersGuide() {
               <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
                 <ClipboardCheck aria-hidden="true" className="h-7 w-7 text-orange" />
                 <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-                <h2 className="font-display mt-5 max-w-[17ch] text-[clamp(2.45rem,5vw,4.4rem)] leading-[0.98]" id="article-cta-title">Ihr Kunde verlangt ESG-Daten – aber intern ist unklar, wer was liefern soll?</h2>
+                <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">Ihr Kunde verlangt ESG-Daten – aber intern ist unklar, wer was liefern soll?</h2>
                 <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68"><p>Senden Sie uns die Kundenanfrage oder den Fragebogen.</p><p>Wir strukturieren die benötigten Datenpunkte, ordnen vorhandene Quellen und Nachweise zu und machen sichtbar, welche Informationen aus Finance, HR, Einkauf, Qualität, Operations oder Management noch benötigt werden.</p></div>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>ESG-Anfrage senden</ButtonLink><ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="light">ESG-Anforderungen von Kunden</ButtonLink><Link className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/25 px-6 py-3 text-center text-sm font-bold text-white transition hover:border-orange hover:text-orange sm:w-auto" href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen erhalten – was jetzt?</Link></div>
                 <p className="mt-6 text-sm font-semibold text-white/50">Finance · HR · Einkauf · Qualität · Operations · Nachweise</p>
               </section>
 
               <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
-                <p className="eyebrow">FAQ</p><h2 className="font-display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-none" id="faq-title">Häufige Fragen zu internen ESG-Verantwortlichkeiten</h2>
-                <div className="mt-9 grid gap-3">{faqItems.map(([question, answer]) => <details className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-5 py-5 sm:px-6" key={question}><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold leading-6 text-ink marker:content-none">{question}<span aria-hidden="true" className="text-2xl font-light text-orange transition-transform group-open:rotate-45">+</span></summary><p className="mt-4 max-w-3xl text-sm leading-7 text-muted">{answer}</p></details>)}</div>
+                <p className="eyebrow">FAQ</p><h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zu internen ESG-Verantwortlichkeiten</h2>
+                <div className="faq-list">{faqItems.map(([question, answer]) => <details className="faq-item group" key={question}><summary className="faq-question">{question}<span aria-hidden="true" className="faq-toggle" /></summary><p className="faq-answer">{answer}</p></details>)}</div>
               </section>
 
               <section aria-labelledby="sources-title" className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12">

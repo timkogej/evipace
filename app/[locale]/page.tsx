@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EnglishHomePage } from "@/components/evipace/EnglishHomePage";
-import { GermanHomePage } from "@/components/evipace/GermanHomePage";
-import { getEvipaceImageAvailability } from "@/lib/evipace-image-availability";
+import { HomeLandingPage } from "@/components/evipace/HomeLandingPage";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
@@ -28,8 +26,6 @@ export default async function Home({ params }: HomePageProps) {
     notFound();
   }
 
-  const imageAvailability = getEvipaceImageAvailability();
-
   const schemaGraph = [
     buildOrganizationSchema(),
     buildWebsiteSchema(),
@@ -40,7 +36,7 @@ export default async function Home({ params }: HomePageProps) {
     return (
       <>
         <JsonLd graph={schemaGraph} />
-        <GermanHomePage imageAvailability={imageAvailability} />
+        <HomeLandingPage locale="de" />
       </>
     );
   }
@@ -48,7 +44,7 @@ export default async function Home({ params }: HomePageProps) {
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <EnglishHomePage imageAvailability={imageAvailability} />
+      <HomeLandingPage locale="en" />
     </>
   );
 }

@@ -16,7 +16,7 @@ export function PracticalFoundation() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Nutzbare Grundlage</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Kein Hochglanzbericht für die Schublade. Eine nutzbare
             ESG-Grundlage für Ihr Unternehmen.
           </h2>

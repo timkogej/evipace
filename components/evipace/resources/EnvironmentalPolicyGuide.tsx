@@ -255,9 +255,9 @@ function SectionHeading({
     <div className="max-w-3xl">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2
-        className={`font-display mt-5 scroll-mt-28 break-words hyphens-auto text-[clamp(2.35rem,4.8vw,4.8rem)] leading-[1] ${
-          light ? "text-white" : "text-ink"
-        }`}
+        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
+ light ? "text-white" : "text-ink"
+ }`}
         id={id}
       >
         {title}
@@ -319,13 +319,13 @@ export function EnvironmentalPolicyGuide() {
 
             <div className="mt-12 max-w-6xl">
               <p className="eyebrow">ENVIRONMENTAL POLICY</p>
-              <h1 className="font-display mt-7 max-w-[17ch] break-words hyphens-auto text-[clamp(3rem,6.7vw,6.25rem)] leading-[0.92]" id="article-title">
+              <h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">
                 Environmental Policy erstellen: Was eine belastbare Umweltrichtlinie enthalten sollte
               </h1>
             </div>
 
             <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+              <div className="type-lead max-w-3xl text-muted">
                 <p>Kunden, ESG-Fragebögen und Supplier Assessments fragen häufig danach, ob ein Unternehmen eine Environmental Policy oder Umweltrichtlinie besitzt.</p>
                 <p className="mt-6">Eine belastbare Policy sollte jedoch nicht nur gut formuliert sein. Sie sollte zum tatsächlichen Unternehmen passen, einen klaren Geltungsbereich haben, Verantwortlichkeiten benennen und nur Aussagen enthalten, die intern vertreten und umgesetzt werden können.</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -347,7 +347,7 @@ export function EnvironmentalPolicyGuide() {
           <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
             <div>
               <p className="eyebrow">Quick Answer</p>
-              <h2 className="font-display mt-6 text-[clamp(2.65rem,5vw,4.8rem)] leading-[0.98]" id="quick-answer-title">Kurz gesagt</h2>
+              <h2 className="type-heading font-display mt-6" id="quick-answer-title">Kurz gesagt</h2>
             </div>
             <div className="max-w-4xl text-lg leading-8 text-white/72 sm:text-xl sm:leading-9">
               <p>Eine Environmental Policy beschreibt die grundlegenden Umweltprinzipien eines Unternehmens, ihren Geltungsbereich, interne Verantwortlichkeiten und den Rahmen für relevante Umweltziele und Maßnahmen.</p>
@@ -411,7 +411,7 @@ export function EnvironmentalPolicyGuide() {
               {purposeBlocks.map(([title, copy], index) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift" key={title}>
                   <span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
-                  <h3 className="font-display mt-4 text-3xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display mt-4 text-ink">{title}</h3>
                   <p className="mt-4 text-sm leading-7 text-muted">{copy}</p>
                 </article>
               ))}
@@ -427,7 +427,7 @@ export function EnvironmentalPolicyGuide() {
                 <section className="rounded-[1.2rem] border border-white/14 bg-white/[0.04] p-6 sm:p-8" key={block.title}>
                   <div className="grid gap-8 lg:grid-cols-[0.46fr_0.54fr]">
                     <div>
-                      <h3 className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-tight text-white">{block.title}</h3>
+                      <h3 className="type-subheading font-display text-white">{block.title}</h3>
                       <p className="mt-5 text-base leading-8 text-white/66">{block.copy}</p>
                       {"link" in block ? (
                         <div className="mt-5">
@@ -473,7 +473,7 @@ export function EnvironmentalPolicyGuide() {
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-not-in-policy-items>
               {notInPolicyItems.map(([title, copy]) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}>
-                  <h3 className="font-display text-2xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-muted">{copy}</p>
                 </article>
               ))}
@@ -562,7 +562,7 @@ export function EnvironmentalPolicyGuide() {
             <div className="mt-12 grid gap-4 md:grid-cols-5" data-policy-status-model>
               {statusModel.map(([title, copy]) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={title}>
-                  <h3 className="font-display text-2xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
                 </article>
               ))}
@@ -597,7 +597,7 @@ export function EnvironmentalPolicyGuide() {
             <ol className="mt-12 grid gap-4 md:grid-cols-2" data-policy-outline>
               {outlineSections.map(([title, copy]) => (
                 <li className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}>
-                  <h3 className="font-display text-2xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-muted">{copy}</p>
                 </li>
               ))}
@@ -613,7 +613,7 @@ export function EnvironmentalPolicyGuide() {
                 <li className="grid gap-4 bg-ink p-5 sm:grid-cols-[4rem_1fr] sm:p-6" key={title}>
                   <span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
                   <div>
-                    <h3 className="font-display text-2xl leading-tight text-white">{title}</h3>
+                    <h3 className="type-subheading font-display text-white">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-white/62">{copy}</p>
                   </div>
                 </li>
@@ -658,7 +658,7 @@ export function EnvironmentalPolicyGuide() {
                 ["IntegrityNext", "IntegrityNext-Unterstützung", "/de/integritynext-unterstuetzung"]
               ].map(([title, cta, href]) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}>
-                  <h3 className="font-display text-3xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <p className="mt-4 text-sm leading-7 text-muted">Kontext für Supplier Assessments. Keine Aussage über automatische Akzeptanz, Bewertung oder Plattformfreigabe.</p>
                   <div className="mt-5"><InlineLink href={href}>{cta}</InlineLink></div>
                 </article>
@@ -694,7 +694,7 @@ export function EnvironmentalPolicyGuide() {
               {commonMistakes.map(([title, copy], index) => (
                 <article className={`rounded-[1rem] border border-white/14 bg-white/[0.04] p-6 ${index === 6 ? "xl:col-span-3" : ""}`} key={title}>
                   <p className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</p>
-                  <h3 className="font-display mt-4 text-2xl leading-tight text-white">{title}</h3>
+                  <h3 className="type-subheading font-display mt-4 text-white">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-white/62">{copy}</p>
                 </article>
               ))}
@@ -722,7 +722,7 @@ export function EnvironmentalPolicyGuide() {
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-resource-bridge>
               {resourceBridgeCards.map(([title, href]) => (
                 <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6" key={title}>
-                  <h3 className="font-display text-2xl leading-tight text-ink">{title}</h3>
+                  <h3 className="type-subheading font-display text-ink">{title}</h3>
                   <div className="mt-5"><InlineLink href={href}>Ressource öffnen</InlineLink></div>
                 </article>
               ))}
@@ -770,7 +770,7 @@ export function EnvironmentalPolicyGuide() {
           <div className="site-shell">
             <div className="max-w-4xl">
               <RefreshCw aria-hidden="true" className="h-10 w-10 text-orange" />
-              <h2 className="font-display mt-6 text-[clamp(2.75rem,6vw,5.8rem)] leading-[0.95]" id="final-title">Eine gute Environmental Policy beginnt nicht mit Text. Sie beginnt mit dem tatsächlichen Unternehmen.</h2>
+              <h2 className="type-heading font-display mt-6" id="final-title">Eine gute Environmental Policy beginnt nicht mit Text. Sie beginnt mit dem tatsächlichen Unternehmen.</h2>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">Wenn Scope, Verantwortlichkeiten und bestehende Praxis klar sind, lässt sich daraus eine Richtlinie formulieren, die nachvollziehbar, realistisch und intern vertretbar ist.</p>
               <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Environmental-Policy-Anfrage senden</ButtonLink></div>
             </div>

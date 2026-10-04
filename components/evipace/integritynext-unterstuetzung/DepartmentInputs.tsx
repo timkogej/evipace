@@ -90,11 +90,11 @@ export function DepartmentInputs() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Interne Koordination</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Wir bringen die richtigen Informationen aus Ihrem Unternehmen
             zusammen.
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             IntegrityNext-Themen liegen selten vollständig bei einer einzigen
             Person.
           </p>

@@ -1,6 +1,8 @@
+import { getServiceBuyerQuestions } from "@/lib/seo/service-buyer-questions";
 import { Reveal } from "../Reveal";
 
 const faqs = [
+  ...getServiceBuyerQuestions("de", "esgFragebogenLieferanten"),
   {
     question: "Was ist ein ESG-Fragebogen für Lieferanten?",
     answer:
@@ -54,25 +56,20 @@ export function Faq() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Häufige Fragen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Häufige Fragen zu ESG-Fragebögen für Lieferanten
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-3">
+        <div className="faq-list">
           {faqs.map((faq, index) => (
             <Reveal delay={index * 0.03} key={faq.question}>
-              <details className="group rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white px-6 py-5 shadow-[0_10px_30px_rgba(21,21,21,0.04)]">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold text-ink marker:content-none">
+              <details className="faq-item group">
+                <summary className="faq-question">
                   {faq.question}
-                  <span
-                    aria-hidden="true"
-                    className="shrink-0 text-2xl leading-none text-orange transition-transform duration-200 group-open:rotate-45"
-                  >
-                    +
-                  </span>
+                  <span aria-hidden="true" className="faq-toggle" />
                 </summary>
-                <p className="mt-4 leading-7 text-muted">{faq.answer}</p>
+                <p className="faq-answer">{faq.answer}</p>
               </details>
             </Reveal>
           ))}

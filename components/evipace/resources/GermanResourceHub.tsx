@@ -98,9 +98,9 @@ function SectionHeading({
       <p className="eyebrow">{eyebrow}</p>
       <h2
         id={id}
-        className={`font-display mt-5 scroll-mt-28 break-words hyphens-auto text-[clamp(2.6rem,5.2vw,5rem)] leading-[0.98] ${
-          light ? "text-white" : "text-ink"
-        }`}
+        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
+ light ? "text-white" : "text-ink"
+ }`}
       >
         {title}
       </h2>
@@ -151,7 +151,7 @@ function ResourceCard({
       <p className="text-[0.66rem] font-bold uppercase tracking-[0.16em] text-orange">
         {type}
       </p>
-      <h3 className="font-display mt-4 break-words hyphens-auto text-[2rem] leading-[1.06] text-ink">
+      <h3 className="type-subheading font-display mt-4 break-words hyphens-auto text-[2rem] text-ink">
         {title}
       </h3>
       <p className="mt-4 flex-1 text-sm leading-7 text-muted">{description}</p>
@@ -242,13 +242,13 @@ export function GermanResourceHub() {
           <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.18fr)_minmax(18rem,0.52fr)] lg:items-end lg:gap-20">
             <div>
               <p className="eyebrow">RESSOURCEN · LEITFÄDEN · CHECKLISTEN</p>
-              <h1 className="font-display mt-7 max-w-[16ch] text-[clamp(3.5rem,7.4vw,7.2rem)] leading-[0.9]">
+              <h1 className="type-title font-display mt-7 max-w-[20ch]">
                 Praktische ESG-Ressourcen für Lieferanten.
               </h1>
-              <p className="font-display mt-8 text-[clamp(1.65rem,3vw,2.8rem)] leading-tight text-ink">
+              <p className="type-statement font-display mt-8 text-ink">
                 Keine Theorie-Sammlung.
               </p>
-              <div className="mt-7 max-w-3xl space-y-4 text-[clamp(1.05rem,1.55vw,1.3rem)] leading-[1.65] text-muted">
+              <div className="type-lead mt-7 max-w-3xl space-y-4 text-muted">
                 <p>
                   Hier finden Sie Leitfäden, Checklisten und praktische Hilfsmittel für die Aufgaben, die entstehen, wenn Kunden ESG-Daten, Nachweise, Emissionszahlen oder Nachhaltigkeitsinformationen verlangen.
                 </p>
@@ -307,7 +307,7 @@ export function GermanResourceHub() {
                 <p className="mt-8 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-orange">
                   {step.label}
                 </p>
-                <h3 className="font-display mt-4 text-[2rem] leading-[1.06] text-white">
+                <h3 className="type-subheading font-display mt-4 text-[2rem] text-white">
                   {step.title}
                 </h3>
                 <p className="mt-5 flex-1 text-sm leading-7 text-white/62">{step.description}</p>
@@ -333,7 +333,7 @@ export function GermanResourceHub() {
         <div className="site-shell grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
           <SectionHeading id="customer-title" eyebrow="KUNDENANFRAGEN" title="Wenn ein Kunde ESG-Daten verlangt.">
             <p>Die schwierigste Frage ist häufig nicht: „Was ist ESG?“</p>
-            <p className="font-display mt-4 text-2xl leading-tight text-ink">„Was genau will unser Kunde – und wie bekommen wir die Antwort aus unserem Unternehmen zusammen?“</p>
+            <p className="type-statement font-display mt-4 text-ink">„Was genau will unser Kunde – und wie bekommen wir die Antwort aus unserem Unternehmen zusammen?“</p>
             <p className="mt-4">Diese Ressourcen helfen beim operativen Teil der Kundenanfrage.</p>
           </SectionHeading>
           <div className="grid gap-10 sm:grid-cols-2">
@@ -388,7 +388,7 @@ export function GermanResourceHub() {
             </SectionHeading>
             <div className="rounded-[1.1rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-7">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">Darum von Anfang an</p>
-              <p className="font-display mt-4 text-[clamp(1.8rem,3vw,2.6rem)] leading-tight">Aussage → Quelle → Nachweis</p>
+              <p className="type-statement font-display mt-4">Aussage → Quelle → Nachweis</p>
             </div>
           </div>
           <div className="mt-14 grid gap-10 md:grid-cols-2 xl:grid-cols-3">
@@ -483,7 +483,7 @@ export function GermanResourceHub() {
         <div className="site-shell grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
           <SectionHeading id="reporting-title" eyebrow="REPORTING" title="Nachhaltigkeitsdaten strukturiert vorbereiten.">
             <p>Ein Nachhaltigkeitsbericht beginnt nicht beim Layout.</p>
-            <p className="font-display mt-4 text-2xl leading-tight text-ink">Er beginnt bei den Unternehmensdaten dahinter.</p>
+            <p className="type-statement font-display mt-4 text-ink">Er beginnt bei den Unternehmensdaten dahinter.</p>
           </SectionHeading>
           <div>
             <ResourceCard
@@ -494,7 +494,7 @@ export function GermanResourceHub() {
               type="LEITFADEN"
             />
             <div className="mt-10 border-l-2 border-orange pl-5 sm:pl-7">
-              <h3 className="font-display text-2xl leading-tight">Sie möchten daraus einen Bericht erstellen?</h3>
+              <h3 className="type-subheading font-display">Sie möchten daraus einen Bericht erstellen?</h3>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">Wir strukturieren die zugrunde liegenden Unternehmensdaten und bereiten die Inhalte für einen nachvollziehbaren Nachhaltigkeitsbericht vor.</p>
               <div className="mt-4"><InlineLink href="/de/vsme-nachhaltigkeitsbericht">VSME-Unterstützung ansehen</InlineLink></div>
             </div>
@@ -514,12 +514,12 @@ export function GermanResourceHub() {
               <div className="border-b border-white/14 p-6 sm:p-9 lg:border-b-0 lg:border-r">
                 <ClipboardCheck aria-hidden="true" className="h-10 w-10 text-orange" />
                 <p className="mt-8 text-[0.66rem] font-bold uppercase tracking-[0.16em] text-orange">INTERAKTIV</p>
-                <h3 className="font-display mt-4 text-[clamp(2.3rem,4vw,4rem)] leading-[0.98]">ESG-Fragebogen Checkliste für Lieferanten</h3>
+                <h3 className="type-subheading font-display mt-4">ESG-Fragebogen Checkliste für Lieferanten</h3>
                 <p className="mt-5 text-lg font-semibold text-white/82">Von der ersten Prüfung bis zum finalen Submit.</p>
               </div>
               <div className="p-6 sm:p-9">
                 <p className="leading-7 text-white/62">Die Checkliste führt durch den vollständigen internen Preparation-Prozess:</p>
-                <p className="font-display mt-5 text-2xl leading-[1.35] text-white">Anfrage → Scope → Verantwortliche → Daten → Nachweise → Berechnungen → Review → Submission → Wiederverwendung</p>
+                <p className="type-statement font-display mt-5 text-white">Anfrage → Scope → Verantwortliche → Daten → Nachweise → Berechnungen → Review → Submission → Wiederverwendung</p>
                 <div className="mt-7 grid gap-3 sm:grid-cols-3">
                   {[`${checklistCount} Prüfpunkte`, "Lokal gespeichert", "Druckbar"].map((item) => (
                     <div className="flex items-center gap-2 rounded-lg border border-white/14 px-3 py-3 text-sm font-bold" key={item}>
@@ -538,12 +538,12 @@ export function GermanResourceHub() {
               <div className="border-b border-white/14 p-6 sm:p-9 lg:border-b-0 lg:border-r">
                 <ClipboardCheck aria-hidden="true" className="h-10 w-10 text-orange" />
                 <p className="mt-8 text-[0.66rem] font-bold uppercase tracking-[0.16em] text-orange">INTERAKTIV</p>
-                <h3 className="font-display mt-4 text-[clamp(2.3rem,4vw,4rem)] leading-[0.98]">ESG-Nachweise prüfen</h3>
+                <h3 className="type-subheading font-display mt-4">ESG-Nachweise prüfen</h3>
                 <p className="mt-5 text-lg font-semibold text-white/82">Für ein konkretes Dokument oder eine konkrete Kennzahl.</p>
               </div>
               <div className="p-6 sm:p-9">
                 <p className="leading-7 text-white/62">Der Evidence Readiness Check prüft nicht den ganzen Fragebogen, sondern einen einzelnen Nachweis:</p>
-                <p className="font-display mt-5 text-2xl leading-[1.35] text-white">Aussage → Gesellschaft → Scope → Zeitraum → Quelle → Gültigkeit → Freigabe</p>
+                <p className="type-statement font-display mt-5 text-white">Aussage → Gesellschaft → Scope → Zeitraum → Quelle → Gültigkeit → Freigabe</p>
                 <div className="mt-7 grid gap-3 sm:grid-cols-3">
                   {[`${evidenceCheckCount} Prüfpunkte`, "Lokal gespeichert", "Druckbar"].map((item) => (
                     <div className="flex items-center gap-2 rounded-lg border border-white/14 px-3 py-3 text-sm font-bold" key={item}>
@@ -562,12 +562,12 @@ export function GermanResourceHub() {
               <div className="border-b border-white/14 p-6 sm:p-9 lg:border-b-0 lg:border-r">
                 <ClipboardCheck aria-hidden="true" className="h-10 w-10 text-orange" />
                 <p className="mt-8 text-[0.66rem] font-bold uppercase tracking-[0.16em] text-orange">INTERAKTIVE VORLAGE</p>
-                <h3 className="font-display mt-4 text-[clamp(2.3rem,4vw,4rem)] leading-[0.98]">Scope 1 &amp; 2 Datenerfassungs-Vorlage</h3>
+                <h3 className="type-subheading font-display mt-4">Scope 1 &amp; 2 Datenerfassungs-Vorlage</h3>
                 <p className="mt-5 text-lg font-semibold text-white/82">Für Aktivitätsdaten vor der CO₂e-Berechnung.</p>
               </div>
               <div className="p-6 sm:p-9">
                 <p className="leading-7 text-white/62">Strom, Brennstoffe, Fahrzeuge, Kältemittel und weitere Aktivitätsdaten strukturiert je Standort erfassen.</p>
-                <p className="font-display mt-5 text-2xl leading-[1.35] text-white">Standorte → Relevanz → Datensätze → Quellen → Datenlücken → CSV</p>
+                <p className="type-statement font-display mt-5 text-white">Standorte → Relevanz → Datensätze → Quellen → Datenlücken → CSV</p>
                 <div className="mt-7 grid gap-3 sm:grid-cols-3">
                   {["Lokal gespeichert", "CSV-Export", "Druckbar"].map((item) => (
                     <div className="flex items-center gap-2 rounded-lg border border-white/14 px-3 py-3 text-sm font-bold" key={item}>
@@ -606,7 +606,7 @@ export function GermanResourceHub() {
               <div className="mt-5">
                 <InlineLink href={links.reusableData}>ESG-Daten für spätere Anfragen wiederverwendbar strukturieren</InlineLink>
               </div>
-              <p className="font-display mt-5 text-2xl leading-tight text-ink">Nicht durch blindes Kopieren alter Antworten. Sondern durch strukturierte, überprüfbare Quellen.</p>
+              <p className="type-statement font-display mt-5 text-ink">Nicht durch blindes Kopieren alter Antworten. Sondern durch strukturierte, überprüfbare Quellen.</p>
             </div>
           </div>
         </div>
@@ -637,6 +637,7 @@ export function GermanResourceHub() {
               ))}
             </dl>
             <div className="mt-8 space-y-3 border-l-2 border-orange pl-5 text-sm leading-7 text-muted sm:pl-7">
+              <p>Diese Leitfäden werden von Evipace erstellt. Arbeitsabläufe und Beispiele sind unsere praktischen Hinweise; offizielle Anforderungen werden mit dem Standardgeber oder der Plattform verknüpft. Prüfen Sie die zitierte Version anhand Ihres Berichtszeitraums oder zugewiesenen Assessments.</p>
               <p>Neue Dokumente werden nicht als historische Nachweise dargestellt.</p>
               <p>Unsichere Informationen werden nicht als gesicherte Tatsachen formuliert.</p>
               <p>Und relevante methodische oder regulatorische Änderungen werden nicht als geltende Regeln dargestellt, bevor sie tatsächlich gelten.</p>
@@ -679,7 +680,7 @@ export function GermanResourceHub() {
           <div className="max-w-3xl">
             <p className="eyebrow">WENN SIE ES NICHT INTERN ERLEDIGEN MÖCHTEN</p>
             <h2
-              className="font-display mt-5 text-[clamp(2.4rem,4.8vw,4.4rem)] leading-[0.98] text-ink"
+              className="type-heading font-display mt-5 text-ink"
               id="services-title"
             >
               Dieselbe Arbeit – für Sie vorbereitet.
@@ -712,11 +713,11 @@ export function GermanResourceHub() {
         </div>
       </section>
 
-      <section aria-labelledby="final-title" className="bg-orange py-20 text-white sm:py-24">
-        <div className="site-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+      <section aria-labelledby="final-title" className="resource-hub-final-cta bg-orange text-white">
+        <div className="site-shell grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div className="max-w-4xl">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink">STARTEN SIE MIT DER ANFRAGE</p>
-            <h2 className="font-display mt-6 text-[clamp(3rem,6vw,6rem)] leading-[0.92]" id="final-title">Der Kunde hat bereits gefragt?</h2>
+            <h2 className="type-heading font-display mt-6" id="final-title">Der Kunde hat bereits gefragt?</h2>
             <p className="mt-7 max-w-3xl text-lg leading-8 text-white/85">Sie müssen nicht zuerst entscheiden, welcher Leitfaden oder welche Leistung die richtige ist.</p>
             <p className="mt-3 max-w-3xl text-lg leading-8 text-white/85">Senden Sie uns einfach das, was Ihr Kunde Ihnen geschickt hat. Wir beginnen mit der tatsächlichen Anfrage.</p>
           </div>

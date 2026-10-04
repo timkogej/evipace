@@ -146,7 +146,7 @@ test("English and German About and methodology pages are genuine registry equiva
 
 test("homepage rendering and global English About navigation remain locale-specific", () => {
   assert.ok(pageSource.includes('locale === "de"'));
-  assert.ok(pageSource.includes("<GermanHomePage"));
+  assert.ok(pageSource.includes('<HomeLandingPage locale="de"'));
   assert.ok(pageSource.includes('buildWebPageSchema(locale, "home")'));
   assert.ok(navigationSource.includes('label: "About"'));
   assert.ok(navigationSource.includes('href: route("en", "about")'));
@@ -190,8 +190,8 @@ test("homepage, About, and methodology stay on the existing SEO and schema infra
   assert.ok(aboutPageSource.includes('buildWebPageSchema(locale, "about")'));
   assert.ok(aboutPageSource.includes('locale === "de"'));
   assert.ok(aboutPageSource.includes('locale === "en"'));
-  assert.ok(aboutPageSource.includes("<EnglishAboutPage"));
-  assert.ok(aboutPageSource.includes("<GermanAboutPage"));
+  assert.ok(aboutPageSource.includes('<AboutLandingPage locale="en"'));
+  assert.ok(aboutPageSource.includes('<AboutLandingPage locale="de"'));
   assert.ok(methodologyPageSource.includes("buildOrganizationSchema()"));
   assert.ok(methodologyPageSource.includes("buildWebsiteSchema()"));
   assert.ok(

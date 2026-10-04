@@ -57,8 +57,8 @@ test("English homepage metadata uses the exact approved registry values", () => 
 
 test("English and German homepages remain separate locale implementations", () => {
   assert.ok(pageSource.includes('locale === "de"'));
-  assert.ok(pageSource.includes("<GermanHomePage"));
-  assert.ok(pageSource.includes("<EnglishHomePage"));
+  assert.ok(pageSource.includes('<HomeLandingPage locale="de"'));
+  assert.ok(pageSource.includes('<HomeLandingPage locale="en"'));
   assert.ok(pageSource.includes('buildWebPageSchema(locale, "home")'));
   assert.ok(pageSource.includes("buildOrganizationSchema()"));
   assert.ok(pageSource.includes("buildWebsiteSchema()"));

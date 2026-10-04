@@ -18,7 +18,7 @@ export function TargetCompanies() {
       <div className="site-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Für wen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Für produzierende KMU, die belastbare Emissionszahlen brauchen.
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-8 text-muted">

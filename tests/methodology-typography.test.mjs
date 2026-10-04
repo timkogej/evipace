@@ -217,7 +217,11 @@ test("the Methodology work did not leak into About or the homepage", () => {
     assert.ok(source.includes("about-h1") || source.includes("about-h2"), label);
   }
   const strays = productionSourceFiles().filter((file) => {
-    if (file.includes("MethodologyPage") || file === "app/globals.css") return false;
+    if (
+      file.includes("MethodologyPage") ||
+      file === "components/evipace/MethodologyImages.tsx" ||
+      file === "app/globals.css"
+    ) return false;
     return readFileSync(new URL(file, root), "utf8").includes("methodology-h");
   });
   assert.deepEqual(strays, []);
@@ -225,12 +229,11 @@ test("the Methodology work did not leak into About or the homepage", () => {
 
 /* ── Copy, links and content integrity ───────────────────────────── */
 
-test("the approved Methodology copy is unchanged", () => {
+test("the Methodology keeps its core claims while shortening the first screen", () => {
   const englishCopy = [
     "How company data becomes reliable ESG work.",
     "Our first principle: source before statement.",
-    "Evipace does not start with generic answers or pre-written ESG language.",
-    "Sources · Calculations · Evidence · Review · Transparency",
+    "We turn your existing records into ESG answers and calculations",
     "Direct emissions from owned or controlled sources.",
     "Understand the requirement",
     "Evipace is responsible for",
@@ -242,7 +245,7 @@ test("the approved Methodology copy is unchanged", () => {
   const germanCopy = [
     "So wird aus Unternehmensdaten belastbare ESG-Arbeit.",
     "Unser Grundprinzip: Quelle vor Aussage.",
-    "Evipace beginnt nicht mit generischen Antworten oder fertigen",
+    "Wir machen aus vorhandenen Unternehmensdaten prüfbare ESG-Antworten",
     "Direkte Emissionen aus eigenen oder kontrollierten Quellen.",
     "Aufgabe verstehen",
     "Sie haben eine konkrete ESG-Anforderung?",

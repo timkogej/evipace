@@ -55,7 +55,7 @@ function ArticleSection({
       id={id}
     >
       <h2
-        className="font-display max-w-[18ch] text-[clamp(2.3rem,5vw,4.6rem)] leading-none text-ink"
+        className="type-heading font-display max-w-[24ch] text-ink"
         id={`${id}-title`}
       >
         {title}
@@ -176,12 +176,12 @@ export function Scope12DataCollectionGuide() {
                 <div className="min-w-0">
                   <p className="eyebrow">SCOPE 1 &amp; 2 DATA COLLECTION</p>
                   <h1
-                    className="font-display mt-7 max-w-[14ch] break-words hyphens-auto text-[clamp(3.05rem,6.4vw,6.2rem)] leading-[0.92]"
+                    className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
                     id="article-title"
                   >
                     Sammeln Sie alle Daten für Scope 1 &amp; 2 an einem Ort.
                   </h1>
-                  <p className="mt-8 max-w-3xl text-[clamp(1.08rem,1.55vw,1.35rem)] leading-[1.65] text-muted">
+                  <p className="type-lead mt-8 max-w-3xl text-muted">
                     Erfassen Sie Strom-, Brennstoff-, Fahrzeug-, Kältemittel-
                     und Wärmedaten strukturiert je Standort, Quelle und
                     Zeitraum. Diese Vorlage berechnet keine CO₂e-Werte,
@@ -223,7 +223,7 @@ export function Scope12DataCollectionGuide() {
             <div className="site-shell grid gap-8 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
               <div>
                 <p className="eyebrow">Einordnung</p>
-                <h2 className="font-display mt-5 max-w-[14ch] text-[clamp(2.4rem,4.8vw,4.5rem)] leading-none">
+                <h2 className="type-heading font-display mt-5 max-w-[24ch]">
                   Erst Datenbasis, dann CO₂e.
                 </h2>
               </div>
@@ -244,7 +244,7 @@ export function Scope12DataCollectionGuide() {
                       <span className="font-mono text-xs font-bold text-orange">
                         {number}
                       </span>
-                      <h3 className="mt-3 font-display text-3xl leading-tight text-white">
+                      <h3 className="type-subheading mt-3 font-display text-white">
                         {title}
                       </h3>
                       <p className="mt-3 text-sm leading-6 text-white/60">
@@ -265,7 +265,7 @@ export function Scope12DataCollectionGuide() {
             <div className="mb-10 max-w-3xl">
               <p className="eyebrow">Interaktive Vorlage</p>
               <h2
-                className="font-display mt-5 max-w-[15ch] text-[clamp(2.5rem,5.4vw,5.2rem)] leading-none text-ink"
+                className="type-heading font-display mt-5 max-w-[24ch] text-ink"
                 id="datensammlung-title"
               >
                 Scope-1-&amp;-2-Daten strukturiert erfassen.
@@ -443,7 +443,7 @@ export function Scope12DataCollectionGuide() {
                       key={href}
                     >
                       <Link2 aria-hidden="true" className="h-6 w-6 text-orange" />
-                      <h3 className="mt-4 font-display text-3xl leading-tight text-ink">
+                      <h3 className="type-subheading mt-4 font-display text-ink">
                         {title}
                       </h3>
                       <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
@@ -482,7 +482,7 @@ export function Scope12DataCollectionGuide() {
               <div>
                 <p className="eyebrow">Nächster Schritt</p>
                 <h2
-                  className="font-display mt-5 max-w-[15ch] text-[clamp(2.45rem,5vw,4.6rem)] leading-none"
+                  className="type-heading font-display mt-5 max-w-[24ch]"
                   id="scope12-final-cta-title"
                 >
                   Daten gesammelt, aber die Berechnung fehlt?

@@ -35,10 +35,10 @@ export function Deliverables() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Ergebnis</p>
-          <h2 className="heading-md font-display mt-6 max-w-[18ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Was Sie am Ende erhalten
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Das Ziel ist nicht noch ein zusätzliches ESG-Dokument, das intern
             niemand verwendet. Sie erhalten eine strukturierte Grundlage für
             die konkrete Anfrage Ihres Kunden.

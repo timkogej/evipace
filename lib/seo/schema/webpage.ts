@@ -1,6 +1,6 @@
 import { getPageMetadataEntry, type PageKey } from "../page-registry";
 import { SITE_URL } from "../site-config";
-import { WEBSITE_ID } from "./ids";
+import { ORGANIZATION_ID, WEBSITE_ID } from "./ids";
 
 /**
  * WebPage entity for one page, linked to WebSite via `isPartOf`. name,
@@ -16,7 +16,7 @@ import { WEBSITE_ID } from "./ids";
 export function buildWebPageSchema(
   locale: string,
   pageKey: PageKey,
-  pageType: "WebPage" | "CollectionPage" = "WebPage"
+  pageType: "WebPage" | "CollectionPage" | "AboutPage" = "WebPage"
 ) {
   const entry = getPageMetadataEntry(locale, pageKey);
 
@@ -27,12 +27,16 @@ export function buildWebPageSchema(
   const absoluteUrl = `${SITE_URL}${entry.path}`;
 
   return {
-    "@type": pageType,
+    "@type": pageKey === "about" ? "AboutPage" : pageType,
     "@id": `${absoluteUrl}#webpage`,
     url: absoluteUrl,
     name: entry.title,
     description: entry.description,
     inLanguage: locale,
-    isPartOf: { "@id": WEBSITE_ID }
+    isPartOf: { "@id": WEBSITE_ID },
+    ...(pageKey === "home" || pageKey === "about"
+      ? { about: { "@id": ORGANIZATION_ID } }
+      : {}),
+    ...(pageKey === "about" ? { mainEntity: { "@id": ORGANIZATION_ID } } : {})
   };
 }

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const copy = {
   en: {
     preparedBy: "Prepared by Evipace",
@@ -17,8 +19,8 @@ type PreparedByProps = {
   locale: "en" | "de";
   /**
    * ISO date strings from the page registry (lib/seo/page-registry.ts).
-   * Both are optional and both are currently unset for every resource
-   * page — no real publication record exists yet, and a date derived from
+   * Both are optional. Original publication records are not available;
+   * substantive revisions can have a recorded update date. A date derived from
    * a commit or a deploy would assert a freshness signal that never
    * happened. When a real date is added to the registry it appears here
    * automatically, in semantic <time> markup.
@@ -31,7 +33,8 @@ function formatDate(value: string, locale: "en" | "de") {
   return new Date(value).toLocaleDateString(copy[locale].locale, {
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
+    timeZone: "UTC"
   });
 }
 
@@ -56,7 +59,10 @@ export function PreparedBy({
     <section className="border-t border-[rgba(21,21,21,0.1)] bg-[var(--paper)] py-8 sm:py-10">
       <div className="site-shell">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[rgba(21,21,21,0.5)]">
-          <p>{labels.preparedBy}</p>
+          <p><Link className="underline underline-offset-4 hover:text-orange" href={`/${locale}/about`}>{labels.preparedBy}</Link></p>
+          <Link className="underline underline-offset-4 hover:text-orange" href={`/${locale}/methodology`}>
+            {locale === "de" ? "Methodik und Grenzen" : "Methodology and limitations"}
+          </Link>
           {datePublished ? (
             <p>
               {labels.published}:{" "}

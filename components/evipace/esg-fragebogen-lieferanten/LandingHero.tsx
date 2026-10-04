@@ -19,14 +19,14 @@ export function LandingHero() {
       id="top"
     >
       <ServiceBreadcrumb current="ESG-Fragebögen für Lieferanten" />
-      <div className="site-shell grid gap-12 pb-16 pt-4 sm:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="site-shell grid grid-cols-[minmax(0,1fr)] gap-10 pb-14 pt-4 sm:pb-18 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">ESG-Fragebögen für Lieferanten</p>
-          <h1 className="heading-lg font-display mt-6">
+          <h1 className="type-title font-display mt-6">
             ESG-Fragebogen vom Kunden erhalten? Wir bereiten die Antworten für
             Sie vor.
           </h1>
-          <p className="body-lg mt-7 max-w-xl">
+          <p className="type-lead mt-7 max-w-xl text-muted">
             Ihr Kunde verlangt Nachhaltigkeitsdaten, Emissionswerte,
             Richtlinien oder Nachweise? Sie senden uns den Fragebogen und Ihre
             vorhandenen Unterlagen. Wir strukturieren die benötigten
@@ -53,7 +53,7 @@ export function LandingHero() {
         </Reveal>
 
         <Reveal
-          className="relative min-h-[20rem] rounded-[1.25rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 shadow-lift sm:min-h-[24rem]"
+          className="relative border border-[rgba(21,21,21,0.1)] bg-[#f8f8f6] p-6 sm:p-8"
           delay={0.12}
         >
           <div className="flex items-center justify-between gap-3">

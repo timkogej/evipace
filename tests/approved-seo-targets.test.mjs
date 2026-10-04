@@ -8,8 +8,7 @@ const [
   registrySource,
   metadataSource,
   homepageSource,
-  englishHeroSource,
-  germanHomeSource,
+  landingHomeSource,
   englishCommercialContent,
   englishCommercialComponent,
   germanScopeHeroSource,
@@ -20,8 +19,7 @@ const [
   readFile(new URL("lib/seo/page-registry.ts", root), "utf8"),
   readFile(new URL("lib/seo/build-metadata.ts", root), "utf8"),
   readFile(new URL("app/[locale]/page.tsx", root), "utf8"),
-  readFile(new URL("components/evipace/english-home/HomeHero.tsx", root), "utf8"),
-  readFile(new URL("components/evipace/GermanHomePage.tsx", root), "utf8"),
+  readFile(new URL("components/evipace/HomeLandingPage.tsx", root), "utf8"),
   readFile(new URL("components/evipace/english-commercial/content.ts", root), "utf8"),
   readFile(
     new URL(
@@ -57,18 +55,14 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
     [
       enRegistry,
       'title: "ESG Consulting for Manufacturing Companies | Evipace"',
-      englishHeroSource,
-      // The visible H1 is deliberately shorter than the <title>; the two are
-      // authored independently, and the title above is the approved one.
-      "Done right."
+      landingHomeSource,
+      "Your customer needs ESG answers. We help you deliver them."
     ],
     [
       deRegistry,
       'title: "ESG-Beratung für produzierende Unternehmen | Evipace"',
-      germanHomeSource,
-      // As with the English pair, the visible H1 is deliberately shorter
-      // than the <title>; the approved DE title above is unchanged.
-      "Richtig gemacht."
+      landingHomeSource,
+      "Ihr Kunde fragt nach ESG-Daten. Wir bereiten Ihre Antwort vor."
     ],
     [
       enRegistry,
@@ -101,8 +95,8 @@ test("locale-specific titles, canonical paths and hreflang behavior stay on regi
   assert.ok(metadataSource.includes("languages[locale] = entry.path"));
   assert.ok(metadataSource.includes('languages["x-default"]'));
   assert.ok(homepageSource.includes('locale === "de"'));
-  assert.ok(homepageSource.includes("<GermanHomePage"));
-  assert.ok(homepageSource.includes("<EnglishHomePage"));
+  assert.ok(homepageSource.includes('<HomeLandingPage locale="de"'));
+  assert.ok(homepageSource.includes('<HomeLandingPage locale="en"'));
   assert.ok(englishScopePageSource.includes('locale !== "en"'));
   assert.ok(germanScopePageSource.includes('locale !== "de"'));
 });

@@ -24,8 +24,12 @@ export const primarySources = {
     href: "https://ghgprotocol.org/corporate-value-chain-scope-3-standard"
   },
   efragVoluntaryStandard: {
-    label: "EFRAG Knowledge Hub — Voluntary standard for non-listed SMEs",
+    label: "EFRAG Knowledge Hub — 2026 Voluntary Standard",
     href: "https://knowledgehub.efrag.org/eng/interactive/voluntary-standard"
+  },
+  voluntaryStandardRegulation: {
+    label: "EUR-Lex — Regulation (EU) 2026/1560, Articles 2–4",
+    href: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202601560"
   },
   eurLexReportingDirective: {
     label: "EUR-Lex — Directive (EU) 2026/470",

@@ -12,7 +12,7 @@ import { buildWebPageSchema } from "@/lib/seo/schema/webpage";
 import { buildWebsiteSchema } from "@/lib/seo/schema/website";
 
 const PAGE_KEY = "esgNachweiseCheckliste";
-const ARTICLE_HEADLINE = "ESG Evidence Readiness Check for Suppliers";
+const ARTICLE_HEADLINE = "Is this ESG evidence actually usable?";
 const ARTICLE_PATH = "/en/resources/esg-evidence-readiness-check";
 
 type PageProps = {
@@ -23,6 +23,7 @@ export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  if (locale !== "en") return { robots: { index: false, follow: false } };
   return buildPageMetadata(locale, PAGE_KEY);
 }
 

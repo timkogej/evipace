@@ -175,7 +175,7 @@ test("route is German-only and uses restrained resource Article schema", () => {
     "buildOrganizationSchema()",
     "buildWebsiteSchema()",
     "buildWebPageSchema(locale, PAGE_KEY)",
-    "buildArticleSchema(locale, PAGE_KEY, PAGE_TITLE)",
+    'buildArticleSchema(locale, PAGE_KEY, "Ist dieser ESG-Nachweis wirklich verwendbar?")',
     "buildBreadcrumbListSchema"
   ]) {
     assert.ok(routeSource.includes(marker), marker);

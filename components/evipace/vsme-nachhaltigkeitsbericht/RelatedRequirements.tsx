@@ -31,10 +31,10 @@ export function RelatedRequirements() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Konkrete Anforderungen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Vom Nachhaltigkeitsbericht zur konkreten Kundenanforderung
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             Eine strukturierte ESG-Datengrundlage kann auch bei anderen
             Anforderungen helfen.
           </p>

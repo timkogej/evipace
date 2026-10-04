@@ -39,7 +39,7 @@ export function ProcessSteps() {
       <div className="site-shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Ablauf</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             So unterstützen wir bei Ihrer EcoVadis-Vorbereitung
           </h2>
         </Reveal>
@@ -54,7 +54,7 @@ export function ProcessSteps() {
                 key={step.title}
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-display text-5xl leading-none text-orange">
+                  <span className="type-number font-display text-orange">
                     {step.number}
                   </span>
                   {index < steps.length - 1 ? (

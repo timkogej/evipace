@@ -13,6 +13,7 @@ import {
   type SiteLocale
 } from "@/lib/site-navigation";
 import { BrandLogo } from "./BrandLogo";
+import { RequestButtonPapers } from "./RequestButtonPapers";
 
 type NavbarProps = { locale: SiteLocale };
 type DesktopPanel = NavigationDirectory["id"] | "language" | null;
@@ -133,7 +134,7 @@ export function Navbar({ locale }: NavbarProps) {
       <header
         className={`site-header fixed inset-x-0 top-0 z-50 transition duration-300 ${
           solid
-            ? "border-b border-[rgba(21,21,21,0.08)] bg-[rgba(250,249,246,0.94)] shadow-[0_18px_60px_rgba(21,21,21,0.06)] backdrop-blur-xl"
+            ? "border-b border-[rgba(21,21,21,0.08)] bg-[rgba(255,255,255,0.94)] shadow-[0_18px_60px_rgba(21,21,21,0.06)] backdrop-blur-xl"
             : "bg-transparent"
         }`}
         ref={headerRef}
@@ -283,7 +284,7 @@ export function Navbar({ locale }: NavbarProps) {
                 ? "page"
                 : undefined
             }
-            className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-4 py-2.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:border-[#e96500] hover:bg-[#e96500]"
+            className="request-paper-hover group inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-4 py-2.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:border-[#e96500] hover:bg-[#e96500]"
             href={navigation.primaryAction.href}
             onClick={closeAll}
           >
@@ -292,6 +293,7 @@ export function Navbar({ locale }: NavbarProps) {
               aria-hidden="true"
               className="h-4 w-4 transition-transform group-hover:translate-x-1"
             />
+            <RequestButtonPapers />
           </Link>
         </div>
 
@@ -317,7 +319,7 @@ export function Navbar({ locale }: NavbarProps) {
         <div
           aria-labelledby={`mobile-${locale}-navigation-title`}
           aria-modal="true"
-          className="fixed inset-x-0 bottom-0 top-20 z-40 overflow-y-auto overscroll-contain border-t border-[rgba(21,21,21,0.08)] bg-[rgba(250,249,246,0.98)] px-[var(--section-x)] pb-[max(2rem,env(safe-area-inset-bottom))] pt-4 backdrop-blur-xl lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-20 z-40 overflow-y-auto overscroll-contain border-t border-[rgba(21,21,21,0.08)] bg-[rgba(255,255,255,0.98)] px-[var(--section-x)] pb-[max(2rem,env(safe-area-inset-bottom))] pt-4 backdrop-blur-xl lg:hidden"
           id={`mobile-${locale}-navigation`}
           ref={mobilePanelRef}
           role="dialog"
@@ -596,7 +598,10 @@ function LanguageLink({
 }: LanguageLinkProps) {
   const labels = siteNavigation[locale].labels;
   return (
-    <Link
+    // Switching locales replaces the root <html> layout, including its
+    // parse-time welcome script. A document navigation lets that script run
+    // normally and avoids rendering it inside an existing React tree.
+    <a
       aria-current={destination.isCurrent ? "page" : undefined}
       className={
         mobile
@@ -625,6 +630,6 @@ function LanguageLink({
           {labels.unavailableTranslation}
         </span>
       ) : null}
-    </Link>
+    </a>
   );
 }

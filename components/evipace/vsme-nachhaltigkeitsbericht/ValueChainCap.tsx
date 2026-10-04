@@ -1,3 +1,6 @@
+import { voluntaryStandardStatus } from "@/lib/seo/voluntary-standard-status";
+import { primarySources } from "@/lib/seo/primary-sources";
+import { SourceNote } from "../trust/SourceNote";
 import { Link2 } from "lucide-react";
 import { Reveal } from "../Reveal";
 
@@ -16,7 +19,7 @@ export function ValueChainCap() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Value Chain Cap</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Der Value Chain Cap macht den Standard auch für Lieferanten
             relevant.
           </h2>
@@ -44,6 +47,8 @@ export function ValueChainCap() {
               Das bedeutet jedoch nicht, dass jede darüber hinausgehende
               ESG-Anfrage eines Kunden automatisch unzulässig ist.
             </p>
+            <p>{voluntaryStandardStatus.de}</p>
+            <SourceNote locale="de" sources={[primarySources.voluntaryStandardRegulation]} />
             <p>Andere Informationsanforderungen können beispielsweise aus:</p>
           </div>
         </Reveal>

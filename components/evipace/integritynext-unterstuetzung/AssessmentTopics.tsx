@@ -75,10 +75,10 @@ export function AssessmentTopics() {
       <div className="site-shell">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Assessment-Themen</p>
-          <h2 className="heading-md font-display mt-6 max-w-[20ch]">
+          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
             Welche Themen können in IntegrityNext relevant sein?
           </h2>
-          <p className="body-lg mt-7">
+          <p className="type-lead mt-7 text-muted">
             IntegrityNext deckt unterschiedliche Nachhaltigkeits- und
             Compliance-Themen ab. Welche Assessments Ihr Unternehmen
             tatsächlich bearbeiten soll, hängt von der jeweiligen

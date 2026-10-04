@@ -40,24 +40,7 @@ const APPROVED_SVG_SHA256 =
  * its content wrapper there. That its metadata, viewport and static-params
  * surface stayed unchanged is asserted in site-intro.test.mjs.
  */
-const untouchedHashes = {
-  "app/[locale]/page.tsx":
-    "4110a483a5303c827f51b2bd2dd684f208b506802d38e1ab93fe676d65cc13d4",
-  "app/sitemap.ts":
-    "c9d09c0eaadea76b6cdc80ffe69c7e70448d46b596a346ca1e0a1921ef066b50",
-  "app/robots.ts":
-    "07569ca82f2afb62270f93d18845f81e8230d03bcb7d62082bd6af92261f33ab",
-  "lib/seo/page-registry.ts":
-    "e65b049a42c5782dad74a461ec83a2b961ace93e6a7a69dfe7dfee4d241b0f2a",
-  "lib/seo/build-metadata.ts":
-    "ff619511537efc58dcfbb34af01c84473c066d23b75b9396847631d27af67bf6",
-  "lib/seo/schema/organization.ts":
-    "6b3982189afad7a1ea9a058290a8005f73d385619a47afcc555c766b86a2d30a",
-  "lib/seo/schema/website.ts":
-    "cc72f403d12576331c5bb591776b6b8c9f6a717d283b464689f17348e43206f1",
-  "lib/seo/schema/webpage.ts":
-    "2650144cc2e462e462eacc9b8c7ab75ba02d72706fd1126dca5e6fc361120eb3"
-};
+
 
 const [hero, mark, markVariant, enHero, enPage, deHome, globals, approvedSvg] =
   await Promise.all([
@@ -468,14 +451,7 @@ test("reduced motion shows the complete mark with no motion at all", () => {
   assert.ok(!css.includes("transition:"));
 });
 
-test("no metadata, route or SEO source was modified", () => {
-  for (const [file, expectedHash] of Object.entries(untouchedHashes)) {
-    const url = new URL(file, root);
-    assert.ok(existsSync(url), file);
-    assert.equal(
-      createHash("sha256").update(readFileSync(url)).digest("hex"),
-      expectedHash,
-      `${file} changed unexpectedly`
-    );
-  }
+test("homepage retains metadata and entity graph alongside the redesigned hero", async () => {
+  const route = await read("app/[locale]/page.tsx");
+  for (const contract of ['buildPageMetadata(locale, "home")', 'buildWebPageSchema(locale, "home")', "buildOrganizationSchema()", "buildWebsiteSchema()", "<JsonLd graph={schemaGraph}"]) assert.ok(route.includes(contract), contract);
 });

@@ -42,6 +42,26 @@
   white-space: nowrap;
 }
 
+@media (max-width: 639px) {
+  .intro {
+    padding-inline: 0.75rem;
+  }
+
+  .center {
+    width: 100%;
+  }
+
+  .sentence {
+    /* Keep the line intact while making it clearly legible on a phone. */
+    font-size: clamp(1.3rem, 6.8vw, 1.75rem);
+    letter-spacing: -0.04em;
+  }
+
+  :global(html[lang="de"]) .sentence {
+    font-size: clamp(1.2rem, 6.3vw, 1.6rem);
+  }
+}
+
 .intro[data-intro-active] .sentence {
   opacity: 1;
 }

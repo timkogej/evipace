@@ -240,7 +240,12 @@
     return s;
   }
 
-  function shadowSVG(w, h, uid) {
+  function shadowSVG(w, h, uid, lightweight) {
+    if (lightweight) {
+      return '<g data-sh="1">' +
+        '<rect data-amb="1" x="4" y="7" width="' + (w - 8) + '" height="' + (h - 4) + '" rx="6" fill="' + INK + '" opacity="0.08"/>' +
+        '</g>';
+    }
     return '<g data-sh="1">' +
       '<rect data-amb="1" x="10" y="16" width="' + (w - 20) + '" height="' + (h - 10) + '" rx="6" fill="' + INK + '" opacity="0.09" filter="url(#' + uid + '-blur-l)"/>' +
       '<rect x="1" y="2" width="' + (w - 2) + '" height="' + h + '" rx="4" fill="' + INK + '" opacity="0.06" filter="url(#' + uid + '-blur-s)"/>' +
@@ -357,17 +362,17 @@
 
   var counter = 0;
 
-  function markup(L, uid) {
+  function markup(L, uid, lightweight) {
     function doc(name, inner) {
       var d = DOCS[name];
-      return '<g data-r="' + name + '" opacity="0">' + shadowSVG(d.w, d.h, uid) + inner + '</g>';
+      return '<g data-r="' + name + '" opacity="0">' + shadowSVG(d.w, d.h, uid, lightweight) + inner + '</g>';
     }
     return '' +
-      '<defs>' +
+      (lightweight ? '' : '<defs>' +
       '<filter id="' + uid + '-blur-l" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>' +
       '<filter id="' + uid + '-blur-s" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.6"/></filter>' +
-      '</defs>' +
-      '<g font-family="' + FONT.replace(/"/g, "'") + '" text-rendering="geometricPrecision">' +
+      '</defs>') +
+      '<g font-family="' + FONT.replace(/"/g, "'") + '" text-rendering="' + (lightweight ? 'auto' : 'geometricPrecision') + '">' +
       '<g data-r="factory">' + factorySVG() + '</g>' +
       '<rect data-r="veil" x="-3000" y="-3000" width="7000" height="7000" fill="#F8F8F6" opacity="0"/>' +
       doc('invoice', invoiceSVG()) +
@@ -438,7 +443,8 @@
     function build() {
       layoutName = chooseLayout();
       L = LAYOUTS[layoutName];
-      svg.innerHTML = markup(L, uid);
+      svg.setAttribute('data-layout', layoutName);
+      svg.innerHTML = markup(L, uid, layoutName === 'mobile');
       refs = {};
       Array.prototype.forEach.call(svg.querySelectorAll('[data-r]'), function (el) { refs[el.getAttribute('data-r')] = el; });
       var ts = L.cam.map(function (k) { return k[0]; });
@@ -484,7 +490,7 @@
       refs.ans1.textContent = c.answer[1];
       fitGroup([refs.ans0, refs.ans1], 352);
       answerLines = c.answer.slice();
-      try { lens = [refs.seg1.getTotalLength(), refs.seg2.getTotalLength()]; } catch (e) { lens = [600, 400]; }
+      try { lens = [refs.seg1.getTotalLength(), refs.seg2.getTotalLength()]; } catch { lens = [600, 400]; }
       refs.seg1.setAttribute('stroke-dasharray', f(lens[0]) + ' ' + f(lens[0] + 2));
       refs.seg2.setAttribute('stroke-dasharray', f(lens[1]) + ' ' + f(lens[1] + 2));
       render(lastT);
@@ -508,15 +514,24 @@
 
       /* camera — one continuous push-in and pull-back */
       var a = size.w / size.h || L.aspect;
-      var w = cam.w(t), hReq = w / L.aspect, vw, vh;
+      var lightweight = layoutName === 'mobile';
+      // On phones the camera stays calm. Moving the viewBox forces the whole
+      // detailed factory scene to repaint and is the main source of stutter in
+      // mobile Safari; the documents and trace still carry the full story.
+      var cameraX = lightweight ? 246 : cam.x(t);
+      var cameraY = lightweight ? 388 : cam.y(t);
+      var w = lightweight ? 555 : cam.w(t), hReq = w / L.aspect, vw, vh;
       if (a > L.aspect) { vh = hReq; vw = vh * a; } else { vw = w; vh = vw / a; }
-      svg.setAttribute('viewBox', f(cam.x(t) - vw / 2) + ' ' + f(cam.y(t) - vh / 2) + ' ' + f(vw) + ' ' + f(vh));
+      var viewBox = f(cameraX - vw / 2) + ' ' + f(cameraY - vh / 2) + ' ' + f(vw) + ' ' + f(vh);
+      if (svg.getAttribute('viewBox') !== viewBox) svg.setAttribute('viewBox', viewBox);
 
       /* source of the data: factory + meter */
-      var fp = L.factory, fk = 1 + 0.025 * easeInOut(prog(t, [0, 2.4]));
-      refs.factory.setAttribute('transform',
-        'translate(' + f(fp[0] + 500 * fp[2]) + ' ' + f(fp[1] + 560 * fp[2]) + ') scale(' + f(fp[2] * fk) + ') translate(-500 -560)');
-      setOpacity(refs.led, 0.35 + 0.65 * (0.5 + 0.5 * Math.cos(t * Math.PI * 2 / 1.3)));
+      var fp = L.factory, fk = lightweight ? 1 : 1 + 0.025 * easeInOut(prog(t, [0, 2.4]));
+      var factoryTransform = 'translate(' + f(fp[0] + 500 * fp[2]) + ' ' + f(fp[1] + 560 * fp[2]) + ') scale(' + f(fp[2] * fk) + ') translate(-500 -560)';
+      if (refs.factory.getAttribute('transform') !== factoryTransform) refs.factory.setAttribute('transform', factoryTransform);
+      if (!lightweight || refs.led.getAttribute('opacity') !== '0.9') {
+        setOpacity(refs.led, lightweight ? 0.9 : 0.35 + 0.65 * (0.5 + 0.5 * Math.cos(t * Math.PI * 2 / 1.3)));
+      }
       setOpacity(refs.veil, 0.8 * easeInOut(prog(t, T.veil)));
 
       /* documents placed calmly into the workspace */
@@ -611,12 +626,20 @@
     var reduce = global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) { scene.render(DURATION); return scene; }
     var start = null;
+    var lastFrame = -Infinity;
     scene.render(0);
     function tick(now) {
       if (scene.destroyed) return;
       if (start === null) start = now;
       var t = (now - start) / 1000;
-      scene.render(t);
+      // The mobile composition is deliberately rendered at a film-like 30fps.
+      // Combined with its lighter shadows this avoids overloaded, uneven frames
+      // on mobile Safari while keeping the full eight-second story and timing.
+      var frameInterval = scene.layout === 'mobile' ? 1000 / 30 : 0;
+      if (now - lastFrame >= frameInterval || t >= DURATION) {
+        scene.render(t);
+        lastFrame = now;
+      }
       if (t < DURATION) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);

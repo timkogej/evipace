@@ -857,6 +857,28 @@ export function EcovadisDocumentsGuide() {
               <ArticleSection id="evidence-register" number="16" title="Nutzen Sie ein internes EcoVadis Evidence Register.">
                 <p>Bevor Sie mit dem Upload beginnen, lohnt sich eine einfache Arbeitsübersicht.</p>
                 <EvidenceRegister />
+                <div className="mt-10 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8">
+                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Zusammenarbeit im Unternehmen</p>
+                  <h3 className="type-subheading font-display mt-3 text-ink">Wer sammelt EcoVadis-Nachweise aus den Abteilungen?</h3>
+                  <p className="mt-4 text-sm leading-7 text-muted">Eine koordinierende Person verwaltet Fragen, Fristen, Versionen und Lücken. Die Originalunterlagen kommen von den Teams, die den jeweiligen Prozess verantworten. Eine andere Person prüft, ob Antwort, Dokument, Bewertungsumfang und Zeitraum zusammenpassen; die finale Unternehmensantwort wird intern freigegeben.</p>
+                  <p className="mt-5 text-xs font-bold uppercase tracking-[0.1em] text-muted">Illustrativer Ablauf – kein Kundenfall und keine EcoVadis-Vorgabe zur Aufgabenverteilung</p>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    {[
+                      ["Umwelt", "EHS / Facility", "Umweltpolitik, Energiedaten, Entsorgungsnachweise"],
+                      ["Arbeits- und Menschenrechte", "HR / Arbeitssicherheit", "Mitarbeiterhandbuch, Sicherheitsverfahren, Schulungsnachweise"],
+                      ["Ethik", "Compliance / Geschäftsführung", "Verhaltenskodex, Antikorruptionsverfahren, Schulungen"],
+                      ["Nachhaltige Beschaffung", "Einkauf / Qualität", "Supplier Code, Onboarding-Verfahren, Lieferantenprüfungen"]
+                    ].map(([area, owner, examples]) => (
+                      <div className="rounded-[0.85rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={area}>
+                        <p className="text-xs font-bold uppercase tracking-[0.1em] text-orange">{area}</p>
+                        <p className="mt-2 font-semibold text-ink">{owner}</p>
+                        <p className="mt-2 text-sm leading-6 text-muted">Mögliche vorhandene Unterlagen: {examples}.</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-5 text-sm leading-7 text-muted">Beispiel: Eine Stromabrechnung kann eine Angabe zum Energieverbrauch stützen. Sie beweist für sich allein nicht, dass eine Umweltpolitik umgesetzt wurde. Entscheidend bleiben die konkrete Frage und der tatsächliche Assessment Scope.</p>
+                  <Link className="orange-link mt-4 inline-flex items-center gap-2 text-sm" href="/de/ressourcen/esg-daten-verantwortliche-abteilungen">Alle ESG-Datenverantwortlichen ansehen <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
+                </div>
                 <div className="my-8 rounded-[1rem] border border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] p-6 sm:p-7">
                   <div className="flex items-center gap-3">
                     <Table2 aria-hidden="true" className="h-5 w-5 text-orange" />

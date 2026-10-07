@@ -26,6 +26,11 @@ export type EnglishArticleSection = {
     title: string;
     body: string;
   }>;
+  matrix?: {
+    caption: string;
+    columns: string[];
+    rows: string[][];
+  };
   links?: Array<{
     label: string;
     href: string;
@@ -160,6 +165,39 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
         {section.paragraphs?.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
+        {section.matrix ? (
+          <div className="mt-8 max-w-full">
+            <div className="grid gap-3 md:hidden">
+              {section.matrix.rows.map((row) => (
+                <dl className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={row.join("|")}>
+                  {row.map((cell, index) => (
+                    <div className={index ? "mt-4" : ""} key={section.matrix?.columns[index]}>
+                      <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-orange">{section.matrix?.columns[index]}</dt>
+                      <dd className="mt-1 text-sm leading-6 text-ink">{cell}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ))}
+            </div>
+            <div className="hidden overflow-x-auto rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white md:block">
+              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                <caption className="sr-only">{section.matrix.caption}</caption>
+                <thead className="bg-[var(--paper)] text-xs uppercase tracking-[0.08em] text-muted">
+                  <tr>{section.matrix.columns.map((column) => <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={column} scope="col">{column}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {section.matrix.rows.map((row) => (
+                    <tr className="border-b border-[rgba(21,21,21,0.09)] last:border-b-0" key={row.join("|")}>
+                      {row.map((cell, index) => index === 0
+                        ? <th className="px-4 py-4 font-semibold text-ink" key={index} scope="row">{cell}</th>
+                        : <td className="px-4 py-4 text-muted" key={index}>{cell}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : null}
         {section.bullets ? <BulletList items={section.bullets} /> : null}
         {section.principle ? (
           <Principle label={section.principle.label}>
@@ -327,7 +365,7 @@ export function EnglishResourceArticle({
               </div>
             </aside>
 
-            <div>
+            <div className="min-w-0">
               {content.sections.map((section) => (
                 <ArticleSection key={section.id} section={section} />
               ))}

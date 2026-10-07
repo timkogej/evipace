@@ -697,10 +697,11 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
   nav: [
     ["01", "Why documents matter", "#why-documents"],
     ["02", "Document types", "#document-types"],
-    ["03", "55-document limit", "#document-limit"],
-    ["04", "Policies", "#policies"],
-    ["05", "Currency", "#currency"],
-    ["06", "Evidence register", "#evidence-register"]
+    ["03", "Who collects what", "#department-owner-map"],
+    ["04", "55-document limit", "#document-limit"],
+    ["05", "Policies", "#policies"],
+    ["06", "Currency", "#currency"],
+    ["07", "Evidence register", "#evidence-register"]
   ].map(([number, label, href]) => ({ number, label, href })),
   sections: [
     {
@@ -753,9 +754,39 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
       ]
     },
     {
+      id: "department-owner-map",
+      number: "03",
+      title: "How should a manufacturing supplier organise EcoVadis evidence across departments?",
+      paragraphs: [
+        "Assign one coordinator for the assessment, but keep each source document with the team that owns the underlying process. Route each question to a source owner, record the exact file and relevant page, then ask a separate reviewer to confirm the company statement before submission.",
+        "The map below is an illustrative workflow, not an EcoVadis-required allocation of roles. The real questionnaire, assessment scope and your company's structure determine which evidence is relevant."
+      ],
+      matrix: {
+        caption: "Illustrative EcoVadis evidence owner map for a manufacturing supplier",
+        columns: ["Assessment area", "Likely source owner", "Possible existing evidence", "Final check"],
+        rows: [
+          ["Environment", "EHS / Facilities", "Environmental policy, energy records, waste contractor reports", "Scope, period and site coverage"],
+          ["Labour & human rights", "HR / Health & Safety", "Employee handbook, safety procedure, training or incident records", "Approval, workforce and site coverage"],
+          ["Ethics", "Compliance / Management", "Code of conduct, anti-corruption procedure, training records", "Document status and actual implementation"],
+          ["Sustainable procurement", "Procurement / Quality", "Supplier code, onboarding procedure, supplier review records", "Which suppliers and periods are covered"]
+        ]
+      },
+      bullets: [
+        "Coordinator: tracks questions, deadlines, versions and unresolved gaps; does not invent missing company facts.",
+        "Source owner: supplies the original document and explains what it covers.",
+        "Reviewer: checks that the draft answer matches the document, assessed entity, sites and period.",
+        "Approver: confirms the final company response before the company submits it."
+      ],
+      principle: {
+        label: "Illustrative example — not a client case",
+        text: "A plant energy record can support an energy-data answer; it does not by itself prove that an environmental policy is implemented."
+      },
+      links: [{ label: "See the full ESG data owner map", href: "/en/resources/esg-data-owners" }]
+    },
+    {
       id: "document-limit",
       sources: [primarySources.ecovadisDocumentLimit],
-      number: "03",
+      number: "04",
       title: "The 55-document limit changes the evidence strategy.",
       paragraphs: [
         "For the EcoVadis Sustainability Rating, the current published rule sets a limit of 55 new documents per assessment. Documents from previous assessments do not count toward the new upload allowance, but may still be considered if valid.",
@@ -767,7 +798,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     },
     {
       id: "policies",
-      number: "04",
+      number: "05",
       title: "Policies must be real company documents.",
       paragraphs: [
         "A useful policy normally has a clear scope, owner, date, internal approval and content that reflects actual company decisions.",
@@ -782,7 +813,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     {
       id: "currency",
       sources: [primarySources.ecovadisSupportingDocuments],
-      number: "05",
+      number: "06",
       title: "Check age, validity and machine readability.",
       paragraphs: [
         "EcoVadis applies different currency expectations to different document types. Policies and actions are generally treated as usable up to eight years, while KPI and results reporting is generally treated as usable up to two years.",
@@ -798,7 +829,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     },
     {
       id: "evidence-register",
-      number: "06",
+      number: "07",
       title: "Use an EcoVadis evidence register before uploading.",
       paragraphs: [
         "An internal register helps decide which documents to upload and how they connect to answers. It also prevents last-minute file dumping.",
@@ -811,6 +842,7 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
         "Assessment scope",
         "Period or validity",
         "Owner",
+        "Internal reviewer and approval status",
         "Status: ready, review, gap"
       ]
     }
@@ -826,6 +858,11 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
     secondaryHref: "/en/ecovadis-support"
   },
   faq: [
+    {
+      question: "Who should collect EcoVadis documents across departments?",
+      answer:
+        "Use one assessment coordinator, then ask the team responsible for each underlying process to supply its existing records: for example EHS for environmental data, HR for workforce records, Compliance for ethics and Procurement for supplier practices. A reviewer should confirm that each document supports the actual answer, scope and period before submission."
+    },
     {
       question: "How many documents can be uploaded to EcoVadis?",
       answer:

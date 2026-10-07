@@ -125,9 +125,9 @@ export function RelevantEvidence() {
             unserem {" "}
             <Link
               className="orange-link"
-              href="/de/ressourcen/ecovadis-dokumente-nachweise"
+              href="/de/ressourcen/ecovadis-dokumente-nachweise#evidence-register"
             >
-              Leitfaden zu EcoVadis-Dokumenten und Nachweisen
+              Leitfaden zu EcoVadis-Dokumenten und Nachweisen mit illustrativem Register und leerer Vorlage
             </Link>
             .
           </p>

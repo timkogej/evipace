@@ -148,12 +148,9 @@ const evidenceMapRows = [
 ] as const;
 
 const registerRows = [
-  ["Umweltpolitik", "Environment", "Environmental Policy", "1–3", "Unternehmen", "aktuell", "bereit"],
-  ["ISO 14001", "Environment", "Zertifikat", "1", "Werk A", "gültig", "bereit"],
-  ["Scope 1", "Environment", "GHG Report", "8–10", "Unternehmen", "2025", "bereit"],
-  ["Arbeitssicherheit", "Labor & Human Rights", "H&S Policy", "1–5", "Unternehmen", "aktuell", "bereit"],
-  ["Antikorruption", "Ethics", "Code of Conduct", "7–9", "Unternehmen", "aktuell", "bereit"],
-  ["Supplier Code", "Sustainable Procurement", "Supplier Code", "1–6", "Unternehmen", "aktuell", "prüfen"]
+  ["Energieverbrauch wird erfasst", "Facility / Finanzen", "Stromrechnungen oder Zählerexport, falls vorhanden", "relevante Stelle markieren", "bewerteter Standort und Berichtsjahr", "Vollständigkeit, Einheiten und fehlende Monate prüfen", "prüfen"],
+  ["Umweltpolitik ist freigegeben", "EHS / Geschäftsführung", "Freigegebene Richtlinie, falls vorhanden", "Freigabestelle markieren", "bewertete Gesellschaft und Gültigkeit", "Freigabe bestätigen; Entwurf als Lücke erfassen", "prüfen"],
+  ["Lieferantenanforderungen werden kommuniziert", "Einkauf", "Supplier Code und Nachweis der Weitergabe, falls vorhanden", "relevante Stelle markieren", "betroffene Lieferanten und aktueller Prozess", "Kommunikation prüfen; sonst Lücke dokumentieren", "prüfen"]
 ] as const;
 
 const prioritisation = [
@@ -357,14 +354,14 @@ function EvidenceMap() {
 }
 
 function EvidenceRegister() {
-  const fields = ["Thema", "Dokument", "relevante Seite", "Scope", "Aktualität"];
+  const fields = ["Quellenverantwortung", "Mögliches Dokument", "relevante Stelle", "Scope / Zeitraum", "Interne Prüfung / nächster Schritt"];
 
   return (
     <div className="mt-8" data-ecovadis-evidence-register>
       <div className="resource-answer-map hidden overflow-hidden rounded-[1.1rem] border border-[rgba(21,21,21,0.13)] bg-white md:block">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1010px] border-collapse text-left text-sm">
-            <caption className="sr-only">Beispiel eines EcoVadis Evidence Registers mit Frage, Thema, Dokument, relevanter Seite, Scope, Aktualität und Status</caption>
+          <table className="w-full min-w-[1240px] border-collapse text-left text-sm">
+            <caption className="sr-only">Illustratives internes EcoVadis Evidence Register, kein Kundenfall</caption>
             <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
               <tr>
                 {["Frage / Option", ...fields, "Status"].map((heading) => (
@@ -856,7 +853,15 @@ export function EcovadisDocumentsGuide() {
 
               <ArticleSection id="evidence-register" number="16" title="Nutzen Sie ein internes EcoVadis Evidence Register.">
                 <p>Bevor Sie mit dem Upload beginnen, lohnt sich eine einfache Arbeitsübersicht.</p>
+                <p>Die folgende Tabelle ist ausschließlich ein illustratives Beispiel: kein Kundenfall und kein Wortlaut des EcoVadis-Fragebogens. Die genannten Dokumenttypen und Prüfschritte zeigen eine mögliche interne Planung; sie behaupten weder, dass diese Dateien bei einem Unternehmen vorliegen, noch dass EcoVadis sie akzeptiert.</p>
                 <EvidenceRegister />
+                <div className="mt-7">
+                  <a className="orange-link inline-flex items-center gap-2 text-sm" download href="/templates/ecovadis-evidence-register-de.csv">
+                    Leere Vorlage für das Evidence Register herunterladen (CSV)
+                    <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  </a>
+                  <p className="mt-3 text-sm leading-6 text-muted">Die Vorlage dient nur der internen Planung. Sie ist selbst kein einzureichender Nachweis.</p>
+                </div>
                 <div className="mt-10 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 sm:p-8">
                   <p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Zusammenarbeit im Unternehmen</p>
                   <h3 className="type-subheading font-display mt-3 text-ink">Wer sammelt EcoVadis-Nachweise aus den Abteilungen?</h3>

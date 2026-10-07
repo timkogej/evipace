@@ -833,18 +833,23 @@ export const ecovadisDocumentsEvidenceContent: EnglishResourceArticleContent = {
       title: "Use an EcoVadis evidence register before uploading.",
       paragraphs: [
         "An internal register helps decide which documents to upload and how they connect to answers. It also prevents last-minute file dumping.",
-        "After the assessment, do not discard the library. The same documents may be useful for future customer ESG requests, but each future use should still be checked against scope, period and question wording."
+        "Illustrative example only — not a client case or EcoVadis questionnaire wording. The document types and review decisions below show how a team might plan its evidence. They do not imply that these files exist at any company or will be accepted by EcoVadis.",
+        "The downloadable blank CSV is an internal planning tool, not evidence to submit. After the assessment, do not discard the library: future uses still need a fresh check of scope, period and question wording."
       ],
-      bullets: [
-        "Document name",
-        "EcoVadis theme",
-        "Supported answer or topic",
-        "Assessment scope",
-        "Period or validity",
-        "Owner",
-        "Internal reviewer and approval status",
-        "Status: ready, review, gap"
-      ]
+      matrix: {
+        caption: "Illustrative internal EcoVadis evidence register, not a client case",
+        columns: ["Possible answer", "Source owner", "Possible source", "Scope and period check", "Internal review / next step"],
+        rows: [
+          ["Energy use is monitored", "Facilities / Finance", "Utility invoices or meter export, if available", "Confirm assessed site and reporting year", "Check all months and units; flag any missing period"],
+          ["Environmental policy is approved", "EHS / Management", "Approved policy, if one exists", "Confirm entity, approval date and validity", "Reviewer confirms actual approval; a draft is a gap"],
+          ["Supplier requirements are communicated", "Procurement", "Supplier code and rollout record, if available", "Confirm supplier population and current process", "Check evidence of communication; otherwise record a gap"]
+        ]
+      },
+      download: {
+        label: "Download the blank evidence register (CSV)",
+        href: "/templates/ecovadis-evidence-register-en.csv"
+      },
+      links: [{ label: "See the full ESG data owner map", href: "/en/resources/esg-data-owners" }]
     }
   ],
   cta: {

@@ -1331,8 +1331,8 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     links: [
       {
         title: "EcoVadis documents and evidence",
-        body: "Understand evidence relevance, scope, document limits and common mistakes.",
-        href: "/en/resources/ecovadis-documents-evidence"
+        body: "See an illustrative evidence register and download a blank planning template.",
+        href: "/en/resources/ecovadis-documents-evidence#evidence-register"
       },
       {
         title: "ESG evidence for suppliers",

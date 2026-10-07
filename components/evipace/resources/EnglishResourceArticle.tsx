@@ -35,6 +35,10 @@ export type EnglishArticleSection = {
     label: string;
     href: string;
   }>;
+  download?: {
+    label: string;
+    href: string;
+  };
 };
 
 export type EnglishResourceArticleContent = {
@@ -220,6 +224,16 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
           </div>
         ) : null}
         {section.sources ? <SourceNote sources={section.sources} /> : null}
+        {section.download ? (
+          <a
+            className="orange-link mt-7 inline-flex items-center gap-2 text-sm"
+            download
+            href={section.download.href}
+          >
+            {section.download.label}
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </a>
+        ) : null}
         {section.links ? (
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {section.links.map((link) => (

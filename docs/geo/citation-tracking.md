@@ -13,6 +13,19 @@ Izhodišče: 7. oktober 2026. To je evidenca opazovanj, ne dokaz o uvrstitvi ali
 
 Pri vsakem preverjanju zabeleži datum, sistem/model, jezik, ali je vključeno spletno iskanje, citirane URL-je, položaj Evipace v odgovoru in ali je opis storitve pravilen. Ista vprašanja ponovi čez 28 dni; ne spreminjaj besedila med meritvami.
 
+Za poslovni cilj Evipace uporabi najprej naslednja **vprašanja z namero za najem izvajalca**. Odpri nov pogovor, omogoči spletno iskanje, kadar ga sistem ponuja, in ne omenjaj Evipace ali njegovega URL-ja v vprašanju. Zabeleži tudi druge navedene ponudnike in ali odgovor sploh navaja zunanje izvajalce. Odgovori brez spletnega iskanja so ločena, neprimerljiva meritev.
+
+| Namen | EN vprašanje | DE vprašanje | Ciljna stran |
+| --- | --- | --- | --- |
+| EcoVadis, izvajalec | Which company can prepare our EcoVadis assessment answers and supporting evidence for us? | Welches Unternehmen kann für uns die Antworten und Nachweise für eine EcoVadis-Bewertung vorbereiten? | `/en/ecovadis-support` · `/de/ecovadis-unterstuetzung` |
+| EcoVadis, proizvajalec | We are a small manufacturing supplier with an EcoVadis request. Who can take over most of the preparation work? | Wir sind ein kleiner Produktionszulieferer mit einer EcoVadis-Anfrage. Wer kann uns den Großteil der Vorbereitung abnehmen? | `/en/ecovadis-support` · `/de/ecovadis-unterstuetzung` |
+| ESG vprašalnik, izvajalec | Can we hire a specialist to prepare a customer ESG questionnaire and evidence from our company records? | Können wir einen Dienstleister beauftragen, einen ESG-Kundenfragebogen und die Nachweise aus unseren Unternehmensunterlagen vorzubereiten? | `/en/esg-questionnaire-support` · `/de/esg-fragebogen-lieferanten` |
+| ESG vprašalnik, priporočilo | Which service provider helps European suppliers answer customer ESG questionnaires without building an in-house ESG team? | Welcher Dienstleister hilft europäischen Zulieferern, ESG-Kundenfragebögen ohne eigenes ESG-Team zu beantworten? | `/en/esg-questionnaire-support` · `/de/esg-fragebogen-lieferanten` |
+
+Pri teh vprašanjih meri posebej: (1) ali je Evipace naveden kot ponudnik, (2) ali je ciljna stran citirana, (3) ali je pravilno opisano, da Evipace pripravi gradivo, podjetje pa potrdi dejstva in oddajo, (4) ali pride do kvalificiranega povpraševanja. Vrstni red imen v enem odgovoru ni stabilna uvrstitev.
+
+### Informativna vprašanja
+
 | Tema | EN vprašanje | DE vprašanje | Ciljna stran |
 | --- | --- | --- | --- |
 | EcoVadis dokumenti | What documents does a supplier need for an EcoVadis assessment? | Welche Dokumente braucht ein Lieferant für eine EcoVadis-Bewertung? | EcoVadis documents guide |

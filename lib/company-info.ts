@@ -28,3 +28,6 @@ export const companyLocationStatement = "Slovenia-based";
  * channel.
  */
 export const publicContactEmail = "hello@evipace.com";
+
+/** Official Evipace company profile, supplied by the founder. */
+export const publicLinkedInUrl = "https://www.linkedin.com/company/evipace";

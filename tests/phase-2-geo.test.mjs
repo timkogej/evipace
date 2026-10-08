@@ -142,7 +142,6 @@ test("Organization schema adds only visibly supported properties", () => {
   // Property syntax, so the doc comment listing what must stay out does
   // not trip the guard it is describing.
   for (const forbidden of [
-    "sameAs:",
     "foundingDate:",
     "numberOfEmployees:",
     "award:",

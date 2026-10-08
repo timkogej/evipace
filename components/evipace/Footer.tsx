@@ -84,6 +84,20 @@ export function Footer({ locale }: FooterProps) {
                           <a className={className} href={link.href}>
                             {link.label}
                           </a>
+                        ) : link.href.startsWith("https://") ? (
+                          <a
+                            className={className}
+                            href={link.href}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            {link.label}
+                            <span className="sr-only">
+                              {locale === "de"
+                                ? " (öffnet in einem neuen Tab)"
+                                : " (opens in a new tab)"}
+                            </span>
+                          </a>
                         ) : (
                           <Link
                             aria-current={current ? "page" : undefined}

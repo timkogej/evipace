@@ -1,4 +1,4 @@
-import { publicContactEmail } from "@/lib/company-info";
+import { publicContactEmail, publicLinkedInUrl } from "@/lib/company-info";
 import { evipaceImages } from "@/lib/evipace-images";
 import { SITE_NAME, SITE_URL } from "../site-config";
 import { FOUNDER_ID, ORGANIZATION_ID } from "./ids";
@@ -21,7 +21,7 @@ import { FOUNDER_ID, ORGANIZATION_ID } from "./ids";
  *    page, with the job title shown there and nothing more.
  *
  * Do not add address, telephone, founding date, certifications,
- * memberships, employee count, social profiles, or awards here unless they
+ * memberships, employee count, other social profiles, or awards here unless they
  * exist, are verified, and are visible on the site — an unsupported claim
  * in structured data is worse than no claim at all.
  */
@@ -34,6 +34,7 @@ export function buildOrganizationSchema() {
     description:
       "Evipace prepares practical ESG documentation and support for manufacturing companies and suppliers in European supply chains, including customer ESG requests, questionnaires, Scope 1 and Scope 2 calculations, voluntary sustainability reporting, policies and supporting evidence.",
     email: publicContactEmail,
+    sameAs: [publicLinkedInUrl],
     // General country context is visible on both About pages; no invented address.
     location: { "@type": "Country", name: "Slovenia" },
     areaServed: {

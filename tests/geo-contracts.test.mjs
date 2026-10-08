@@ -64,6 +64,7 @@ test("schema identifies supported entities and serializes text without breaking 
   assert.equal(about.mainEntity["@id"],organization["@id"]);
   assert.equal(organization.location.name,"Slovenia");
   assert.equal(organization.founder.name,"Tim Kogej");
+  assert.deepEqual(organization.sameAs,["https://www.linkedin.com/company/evipace"]);
   for (const field of ["award","aggregateRating","numberOfEmployees","foundingDate"]) assert.ok(!(field in organization));
   const html = renderToStaticMarkup(createElement(JsonLd,{graph:[{name:"</script><script>alert(1)</script>"}]}));
   assert.equal((html.match(/<script/g)||[]).length,1);

@@ -242,7 +242,9 @@ test("desktop and mobile menus expose the required accessible behavior", () => {
 
 test("footer has contact and genuine links without placeholders or fake legal routes", () => {
   assert.ok(navigationSource.includes("hello@evipace.com"));
+  assert.ok(navigationSource.includes('label: "LinkedIn", href: publicLinkedInUrl'));
   assert.ok(footerSource.includes("siteNavigation[locale]"));
+  assert.ok(footerSource.includes('rel="noopener noreferrer"'));
   assert.ok(!footerSource.includes("#top"));
   assert.ok(navigationSource.includes("/en/privacy"));
   assert.ok(navigationSource.includes("/de/privacy"));

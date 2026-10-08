@@ -4,6 +4,7 @@ import { ButtonLink } from "../ButtonLink";
 import { SourceNote } from "../trust/SourceNote";
 import { ServiceRequestCta } from "../service-landing/ServiceRequestCta";
 import { ServiceDetailAccordion } from "../service-landing/ServiceDetailAccordion";
+import { IllustrativeHandover } from "../service-landing/IllustrativeHandover";
 import type { CommercialServicePageContent } from "./content";
 
 const SEND_REQUEST_HREF = "/en/send-request";
@@ -618,6 +619,9 @@ export function EnglishCommercialServicePage({
       <Hero content={content} />
       <DirectAnswers content={content} />
       {content.streamlinedService ? <DeliverablesSection content={content} /> : <FitSection content={content} />}
+      {content.illustrativeHandover ? (
+        <IllustrativeHandover locale="en" service={content.illustrativeHandover} />
+      ) : null}
       {content.streamlinedService ? <ProcessSection content={content} /> : null}
       <ServiceSection content={content} />
       {content.streamlinedService ? (

@@ -137,7 +137,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     esgFragebogenLieferanten: {
       title: "ESG Questionnaire Support for Suppliers | Evipace",
       description:
-        "Support for suppliers completing customer ESG questionnaires: scope the request, gather data and evidence, prepare answers and get the response ready for internal confirmation.",
+        "Evipace prepares customer ESG questionnaire answers and supporting evidence from supplier records. Your team reviews the facts and approves the final response.",
       path: "/en/esg-questionnaire-support"
     },
     scope12Berechnung: {
@@ -149,7 +149,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     ecovadisUnterstuetzung: {
       title: "EcoVadis Support for Suppliers | Evipace",
       description:
-        "Evipace helps suppliers prepare EcoVadis questionnaire responses and supporting evidence, organise documentation and identify gaps before submission.",
+        "Evipace prepares EcoVadis response material, maps supporting evidence and flags gaps. Your team confirms company facts and submits the assessment.",
       path: "/en/ecovadis-support"
     },
     integrityNextUnterstuetzung: {
@@ -312,7 +312,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     esgFragebogenLieferanten: {
       title: "ESG-Fragebogen für Lieferanten ausfüllen | Evipace",
       description:
-        "Ihr Kunde verlangt ESG-Daten oder Nachweise? Wir bereiten Ihren ESG-Fragebogen strukturiert vor – inklusive Daten, Dokumenten und menschlicher Prüfung.",
+        "Evipace bereitet Antworten und Nachweise für ESG-Fragebögen Ihrer Kunden vor. Ihr Team bestätigt die Unternehmensangaben und gibt die Antwort frei.",
       path: "/de/esg-fragebogen-lieferanten"
     },
     esgKundenanfragen: {
@@ -324,7 +324,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     ecovadisUnterstuetzung: {
       title: "EcoVadis-Beratung & Unterstützung für Lieferanten | Evipace",
       description:
-        "Unterstützung bei EcoVadis-Fragebogen, Nachweisen und Dokumentation. Wir strukturieren vorhandene ESG-Informationen und bereiten Ihre Bewertung nachvollziehbar vor.",
+        "Evipace bereitet EcoVadis-Antworten und Nachweise vor und dokumentiert Lücken. Ihr Unternehmen bestätigt die Angaben und reicht das Assessment ein.",
       path: "/de/ecovadis-unterstuetzung"
     },
     integrityNextUnterstuetzung: {

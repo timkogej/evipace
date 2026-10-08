@@ -14,6 +14,7 @@ import { RelatedRequirements } from "@/components/evipace/ecovadis-unterstuetzun
 import { RelevantEvidence } from "@/components/evipace/ecovadis-unterstuetzung/RelevantEvidence";
 import { TargetCompanies } from "@/components/evipace/ecovadis-unterstuetzung/TargetCompanies";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
+import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -73,6 +74,7 @@ export default async function EcoVadisUnterstuetzungPage({
         <EvidenceIntro />
         <AssessmentPreparation />
         <ProcessSteps />
+        <IllustrativeHandover locale="de" service="ecovadis" />
         <ServiceDetailAccordion label="Assessment-Themen und Nachweise im Detail">
           <AssessmentThemes />
           <RelevantEvidence />

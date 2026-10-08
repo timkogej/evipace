@@ -21,6 +21,7 @@ import {
 
 export type CommercialServicePageContent = {
   streamlinedService?: boolean;
+  illustrativeHandover?: "questionnaire" | "ecovadis";
   detailsLabel?: string;
   eyebrow: string;
   title: string;
@@ -469,10 +470,11 @@ export const customerRequestsContent: CommercialServicePageContent = {
 
 export const questionnaireSupportContent: CommercialServicePageContent = {
   streamlinedService: true,
+  illustrativeHandover: "questionnaire",
   eyebrow: "ESG questionnaire support",
-  title: "Received an ESG questionnaire? We help you prepare the response.",
+  title: "Send us the ESG questionnaire. We prepare the answers and evidence for your review.",
   intro: [
-    "Send us the questionnaire and the records you already have. We work through the questions, find the relevant data and evidence, and prepare answers for your review while keeping gaps visible."
+    "We take on the question-by-question preparation: finding the relevant company data, drafting answers, matching available evidence and marking what is missing. Your team supplies the facts it holds, confirms the final statements and controls submission."
   ],
   primaryCta: "Send your questionnaire",
   secondaryCta: {
@@ -1102,11 +1104,12 @@ export const scope12CalculationContent: CommercialServicePageContent = {
 
 export const ecovadisSupportContent: CommercialServicePageContent = {
   streamlinedService: true,
+  illustrativeHandover: "ecovadis",
   eyebrow: "ECOVADIS SUPPORT",
   title:
-    "Need help preparing for EcoVadis? We organise the answers and evidence with you.",
+    "EcoVadis assessment ahead? We prepare the answers and evidence for your review.",
   intro: [
-    "Send us your current assessment and available documents. We organise the questions, identify relevant evidence and make gaps visible before your company reviews and submits its answers."
+    "Send us the current assessment context and the documents you already have. We take on the preparation: mapping questions to data owners, drafting supportable answers, organising evidence and recording gaps. Your company confirms its facts and submits the assessment."
   ],
   directAnswers: {
     eyebrow: "The short version",

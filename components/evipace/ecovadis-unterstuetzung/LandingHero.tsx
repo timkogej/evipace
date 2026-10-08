@@ -40,15 +40,15 @@ export function LandingHero() {
         <Reveal className="max-w-2xl">
           <p className="eyebrow">EcoVadis-Unterstützung</p>
           <h1 className="type-title font-display mt-6" id="hero-title">
-            EcoVadis-Fragebogen vor Ihnen? Wir helfen, Antworten und Nachweise
-            zusammenzubringen.
+            EcoVadis-Fragebogen vor Ihnen? Wir bereiten Antworten und Nachweise
+            für Ihre Prüfung vor.
           </h1>
           <p className="type-lead mt-7 max-w-xl text-muted">
-            Sie senden uns Ihren aktuellen EcoVadis-Fragebogen und die
-            vorhandenen Unterlagen. Wir helfen dabei, relevante
-            ESG-Informationen zu strukturieren, passende Nachweise zu
-            identifizieren und offene Punkte vor der Einreichung sichtbar zu
-            machen.
+            Sie senden uns den aktuellen Assessment-Kontext und vorhandene
+            Unterlagen. Wir übernehmen die Vorbereitung: Fragen und Daten
+            strukturieren, belastbare Antworten entwerfen, Nachweise zuordnen
+            und Lücken dokumentieren. Ihr Unternehmen bestätigt die Angaben
+            und reicht das Assessment ein.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ButtonLink

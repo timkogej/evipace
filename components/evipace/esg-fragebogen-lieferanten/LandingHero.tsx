@@ -27,11 +27,11 @@ export function LandingHero() {
             Sie vor.
           </h1>
           <p className="type-lead mt-7 max-w-xl text-muted">
-            Ihr Kunde verlangt Nachhaltigkeitsdaten, Emissionswerte,
-            Richtlinien oder Nachweise? Sie senden uns den Fragebogen und Ihre
-            vorhandenen Unterlagen. Wir strukturieren die benötigten
-            ESG-Daten, ordnen passende Nachweise zu und bereiten die
-            Antworten für Ihre Prüfung und Einreichung vor.
+            Sie senden uns den Fragebogen und Ihre vorhandenen Unterlagen. Wir
+            übernehmen die operative Vorbereitung: Wir bearbeiten die Fragen,
+            bereiten Antworten vor, ordnen Nachweise zu und markieren Lücken.
+            Ihr Team bestätigt die Unternehmensangaben und gibt die finale
+            Antwort frei.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ButtonLink

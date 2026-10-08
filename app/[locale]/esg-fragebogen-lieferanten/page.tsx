@@ -11,6 +11,7 @@ import { QuestionnaireTypes } from "@/components/evipace/esg-fragebogen-lieferan
 import { RequirementCategories } from "@/components/evipace/esg-fragebogen-lieferanten/RequirementCategories";
 import { TargetCompanies } from "@/components/evipace/esg-fragebogen-lieferanten/TargetCompanies";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
+import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -67,6 +68,7 @@ export default async function EsgFragebogenLieferantenPage({
         <LandingHero />
         <ProblemIntro />
         <Deliverables />
+        <IllustrativeHandover locale="de" service="questionnaire" />
         <HowItWorks />
         <ServiceDetailAccordion label="Fragebogenarten, Themen und Arbeitsschritte im Detail">
           <QuestionnaireTypes />

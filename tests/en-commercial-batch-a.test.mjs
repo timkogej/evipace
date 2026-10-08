@@ -65,9 +65,9 @@ test("English commercial Batch A uses exact approved metadata and H1 copy", () =
     ],
     [
       "ESG Questionnaire Support for Suppliers | Evipace",
-      "Support for suppliers completing customer ESG questionnaires: scope the request, gather data and evidence, prepare answers and get the response ready for internal confirmation.",
+      "Evipace prepares customer ESG questionnaire answers and supporting evidence from supplier records. Your team reviews the facts and approves the final response.",
       "/en/esg-questionnaire-support",
-      "Received an ESG questionnaire? We help you prepare the response."
+      "Send us the ESG questionnaire. We prepare the answers and evidence for your review."
     ],
     [
       "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace",

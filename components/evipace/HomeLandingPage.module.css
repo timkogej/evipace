@@ -12,6 +12,7 @@
   --ev-white: #ffffff;
   --ev-ink-2: #4a4743;
   --ev-muted: #66635f;
+  --ev-green: #2f7d4f;
   --ev-line: rgba(23, 23, 23, 0.14);
   --ev-s-1: 0.25rem;
   --ev-s-2: 0.5rem;
@@ -403,6 +404,79 @@
   gap: var(--ev-s-3);
   border-top: 1px solid var(--ev-line);
   padding-block: var(--ev-s-3);
+}
+
+/* Desk panel motion. --t runs 0..1 per row from the stage's scroll progress
+   (--p) and the row index (--i). With no --p (no JS, reduced motion) every
+   row is in its finished state. */
+.visualStage {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.panelRow {
+  --t: clamp(0, calc(var(--p, 1) * 5.6 - var(--i) * 1.05 - 1.2), 1);
+}
+
+.mark {
+  position: relative;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
+  border-radius: 50%;
+}
+
+/* Finished steps: the ring fills green and the tick is drawn. */
+.panelRow:not([data-tone="open"]) .mark {
+  border: 1.5px solid color-mix(in srgb, var(--ev-green) calc(var(--t) * 100%), var(--ev-taupe));
+  background: color-mix(in srgb, var(--ev-green) calc(var(--t) * 100%), var(--ev-white));
+  transform: scale(calc(0.86 + var(--t) * 0.14));
+}
+
+.panelRow:not([data-tone="open"]) .mark::after {
+  position: absolute;
+  top: 0.22rem;
+  left: 0.43rem;
+  width: 0.32rem;
+  height: 0.6rem;
+  border: solid var(--ev-white);
+  border-width: 0 2px 2px 0;
+  opacity: var(--t);
+  transform: rotate(45deg) scale(calc(0.4 + var(--t) * 0.6));
+  content: "";
+}
+
+/* ...and their title is struck through from left to right. */
+.panelRow:not([data-tone="open"]) .panelText strong {
+  justify-self: start;
+  background: linear-gradient(currentColor, currentColor) 0 56% / calc(var(--t) * 100%) 1.5px no-repeat;
+  color: color-mix(in srgb, var(--ev-muted) calc(var(--t) * 100%), var(--ev-charcoal));
+}
+
+/* The step that needs the client's input is not struck: it lights up. */
+.panelRow[data-tone="open"] {
+  margin-inline: calc(var(--ev-s-3) * -1);
+  border-radius: var(--ev-r-sm);
+  background: color-mix(in srgb, var(--ev-orange-100) calc(var(--t) * 55%), transparent);
+  padding-inline: var(--ev-s-3);
+}
+
+.panelRow[data-tone="open"] .mark {
+  background: var(--ev-orange-500);
+  box-shadow: 0 0 0 calc(var(--t) * 0.3rem) rgba(254, 112, 1, 0.22);
+  transform: scale(calc(0.5 + var(--t) * 0.22));
+}
+
+.panelRow[data-tone="open"] .pill {
+  opacity: var(--t);
+  transform: translateX(calc((1 - var(--t)) * 0.6rem));
+}
+
+.panelFoot .mockButton {
+  --t: clamp(0, calc(var(--p, 1) * 8 - 6.9), 1);
+  opacity: calc(0.35 + var(--t) * 0.65);
+  transform: scale(calc(0.96 + var(--t) * 0.04));
 }
 
 .panelText {

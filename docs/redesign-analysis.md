@@ -288,6 +288,7 @@ Med razdelkoma 3 in 4 je velika izjava čez skoraj celo širino (Didot, do 64 px
 | Animacija | Vrsta | Kako deluje |
 |---|---|---|
 | Izjava beseda za besedo | vezana na pomik | `ScrollProgress` zapiše napredek 0 do 1 v `--p`; CSS iz tega izračuna prosojnost vsake besede. Pri pomiku nazaj se odvije nazaj. |
+| Plošča „Request desk“ v heroju | vezana na pomik | Opravljeni koraki dobijo zeleno kljukico (`#2F7D4F`) in se prečrtajo eden za drugim; korak „Missing information“ se ne prečrta, ampak se osvetli in pokaže oznako „Your input“; na koncu se obarva gumb. Oznak „Done“ / „Ready“ ni več (ostanejo samo za bralnike zaslona). |
 | Mapa z dokazili | vezana na pomik | Isti mehanizem; dokumenti in njihove oznake se pojavijo zaporedno. |
 | Kartice in koraki | ob vstopu | Ko razdelek pride v pogled, se kartice oziroma koraki pojavijo eden za drugim (zamik 80 ms). Velja tudi za korake na Offers. |
 

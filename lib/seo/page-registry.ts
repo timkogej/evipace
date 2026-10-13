@@ -65,6 +65,7 @@ export type PageKey =
   | "privacy"
   | "methodology"
   | "sendRequest"
+  | "offers"
   | "esgFragebogenLieferanten"
   | "esgKundenanfragen"
   | "ecovadisUnterstuetzung"
@@ -105,6 +106,12 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "Forward your customer's ESG questionnaire, EcoVadis, carbon data or code of conduct request. Evipace prepares the response for you to review and approve.",
       path: "/en"
+    },
+    offers: {
+      title: "Ways to work with Evipace | Request, Desk, Report",
+      description:
+        "Forward one customer request, set up a standing desk for recurring requests, or prepare a voluntary VSME report. Scope and price are confirmed after review, before we start.",
+      path: "/en/offers"
     },
     about: {
       title: "About Evipace | ESG for manufacturing companies",
@@ -283,6 +290,12 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "Leiten Sie ESG-Fragebögen, EcoVadis-Anfragen, Anfragen zu CO2-Daten oder Verhaltenskodizes Ihrer Kunden weiter. Evipace bereitet die Antwort zur Prüfung und Freigabe vor.",
       path: "/de"
+    },
+    offers: {
+      title: "Zusammenarbeit mit Evipace | Request, Desk, Report",
+      description:
+        "Eine einzelne Kundenanfrage weiterleiten, einen laufenden Schreibtisch für wiederkehrende Anfragen einrichten oder einen freiwilligen VSME-Bericht vorbereiten. Umfang und Preis bestätigen wir nach der Prüfung, bevor wir beginnen.",
+      path: "/de/angebot"
     },
     about: {
       title: "Über Evipace | ESG für produzierende Unternehmen",

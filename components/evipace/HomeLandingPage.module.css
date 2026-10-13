@@ -570,53 +570,7 @@
   line-height: 1.6;
 }
 
-/* Offers */
-.offers {
-  display: grid;
-  gap: var(--ev-s-5);
-}
-
-.offer {
-  border: 1px solid var(--ev-taupe);
-  border-radius: var(--ev-r-lg);
-  background: var(--ev-white);
-  padding: clamp(1.5rem, 2.4vw, 2rem);
-}
-
-.offerKind {
-  margin: 0;
-  color: var(--ev-orange-700);
-  font-size: 0.8rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.offerName {
-  margin: var(--ev-s-2) 0 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
-  font-size: clamp(2rem, 2.8vw, 2.5rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-.offerLabel {
-  margin: var(--ev-s-5) 0 0;
-  border-top: 1px solid var(--ev-line);
-  padding-top: var(--ev-s-4);
-  color: var(--ev-muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.offerText {
-  margin: var(--ev-s-2) 0 0;
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
+/* Lists shared by cards and lanes */
 .offerList {
   display: grid;
   gap: var(--ev-s-2);
@@ -643,21 +597,284 @@
   content: "";
 }
 
-.offersFoot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Request-type cards (homepage) */
+.cards {
+  display: grid;
   gap: var(--ev-s-5);
-  margin-top: var(--ev-s-7);
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.offersFoot p {
-  max-width: 40rem;
+.card,
+.detail {
+  border: 1px solid var(--ev-taupe);
+  border-radius: var(--ev-r-lg);
+  background: var(--ev-white);
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.cardIcon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: var(--ev-s-4);
+  color: var(--ev-orange-700);
+}
+
+.card .cardTitle {
+  font-size: 1.25rem;
+}
+
+.card p {
+  margin: var(--ev-s-2) 0 0;
+  color: var(--ev-ink-2);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.sectionFoot {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--ev-s-6);
+}
+
+.sectionFoot .textLink {
+  margin-top: 0;
+}
+
+/* Evidence folder ("Faster the second time"). .scrollStage is the hook for a
+   later scroll-driven animation; today it only centres the figure. */
+.scrollStage {
+  display: flex;
+  justify-content: center;
+}
+
+.reuseVisual {
+  position: relative;
+  width: 100%;
+  max-width: 44rem;
   margin: 0;
-  font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
-  font-weight: 600;
+  padding: 4.25rem clamp(1rem, 5vw, 3.5rem) 0;
+}
+
+.reuseFolder {
+  position: absolute;
+  inset: 1.4rem 0 2.5rem;
+}
+
+.reuseFolder::before {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 var(--ev-r-md) var(--ev-r-md) var(--ev-r-md);
+  background: var(--ev-taupe);
+  clip-path: polygon(0 0, calc(100% - 3.25rem) 0, 100% 3.25rem, 100% 100%, 0 100%);
+  content: "";
+}
+
+.reuseDocs {
+  position: relative;
+  display: grid;
+  gap: var(--ev-s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reuseDoc {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--ev-s-4);
+  border: 1px solid var(--ev-line);
+  border-radius: var(--ev-r-md);
+  background: var(--ev-white);
+  padding: var(--ev-s-4) var(--ev-s-5);
+  box-shadow: 0 10px 28px rgba(23, 23, 23, 0.06);
+}
+
+.docIcon {
+  position: relative;
+  width: 1.6rem;
+  height: 2rem;
+  border: 1.5px solid var(--ev-charcoal);
+  border-radius: 3px;
+  background:
+    linear-gradient(rgba(23, 23, 23, 0.35), rgba(23, 23, 23, 0.35)) 50% 55% / 60% 1.5px no-repeat,
+    linear-gradient(rgba(23, 23, 23, 0.35), rgba(23, 23, 23, 0.35)) 50% 75% / 60% 1.5px no-repeat,
+    var(--ev-white);
+}
+
+.docIcon::after {
+  position: absolute;
+  top: -1.5px;
+  right: -1.5px;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: linear-gradient(225deg, var(--ev-white) 50%, var(--ev-orange-500) 50%);
+  content: "";
+}
+
+.pill[data-tone="ok"] {
+  border-color: var(--ev-charcoal);
+  color: var(--ev-charcoal);
+}
+
+.reuseCaption {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--ev-s-5);
+}
+
+/* Trust illustration */
+.trustArt {
+  display: block;
+  width: min(100%, 20rem);
+  height: auto;
+  margin-top: var(--ev-s-6);
+}
+
+/* Offers page */
+.pageHero {
+  padding-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ev-s-3);
+  margin-top: var(--ev-s-6);
+}
+
+.jumpLink {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border: 1px solid var(--ev-charcoal);
+  border-radius: 999px;
+  padding: 0.4rem 1.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background-color var(--ev-dur-base) ease;
+}
+
+.jumpLink:hover {
+  background: rgba(23, 23, 23, 0.07);
+}
+
+/* Clear the fixed header when jumping to #request / #desk / #report. */
+.anchored {
+  scroll-margin-top: 5rem;
+}
+
+.offerHeading {
+  font-size: clamp(2.5rem, 4.6vw, 4.25rem);
+}
+
+.note {
+  max-width: 38rem;
+  margin: var(--ev-s-4) 0 0;
+  color: var(--ev-ink-2);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.detailGrid {
+  display: grid;
+  gap: var(--ev-s-5);
+}
+
+.detailTitle {
+  margin: 0;
+  color: var(--ev-orange-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.numbered {
+  display: grid;
+  gap: var(--ev-s-2);
+  margin: var(--ev-s-3) 0 0;
+  padding: 0;
+  counter-reset: step;
+  list-style: none;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.numbered li {
+  position: relative;
+  padding-left: 1.9rem;
+  counter-increment: step;
+}
+
+.numbered li::before {
+  position: absolute;
+  top: 0.05em;
+  left: 0;
+  display: inline-flex;
+  width: 1.35rem;
+  height: 1.35rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--ev-orange-100);
+  color: var(--ev-orange-800);
+  font-size: 0.75rem;
+  font-weight: 700;
+  content: counter(step);
+}
+
+.tableWrap {
+  max-width: 68rem;
+  margin-inline: auto;
+  border: 1px solid var(--ev-taupe);
+  border-radius: var(--ev-r-lg);
+  background: var(--ev-white);
+  overflow: hidden;
+}
+
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.compare th,
+.compare td {
+  border-top: 1px solid var(--ev-line);
+  padding: var(--ev-s-4) var(--ev-s-5);
+  vertical-align: top;
+}
+
+.compare thead th {
+  border-top: 0;
+  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.compare tbody th {
+  width: 22%;
+  color: var(--ev-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.inlineLink {
+  color: var(--ev-orange-700);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
 
 /* Example */
@@ -889,6 +1106,19 @@
   transform: translateY(16px);
 }
 
+@media (min-width: 640px) and (max-width: 899px) {
+  .cards,
+  .stepsFour {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .steps.stepsFour {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 640px) {
   .assuranceList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -905,9 +1135,13 @@
 
 @media (min-width: 900px) {
   .steps,
-  .offers,
+  .cards,
   .trust {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .detailGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }
@@ -926,13 +1160,51 @@
 }
 
 @media (max-width: 479px) {
-  .panelRow {
+  .panelRow,
+  .reuseDoc {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
   .pill {
     grid-column: 2;
     justify-self: start;
+  }
+}
+
+@media (max-width: 767px) {
+  .compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .compare,
+  .compare tbody,
+  .compare tr,
+  .compare th,
+  .compare td {
+    display: block;
+    width: auto;
+  }
+
+  .compare tbody th {
+    width: auto;
+    border-top: 0;
+    background: var(--ev-offwhite);
+    color: var(--ev-charcoal);
+  }
+
+  .compare td::before {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--ev-orange-700);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    content: attr(data-label);
   }
 }
 

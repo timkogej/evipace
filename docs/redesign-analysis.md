@@ -265,66 +265,104 @@ Opozorilo: [globals.css](../app/globals.css) ima 5592 vrstic, `typography.css` p
 
 ## C. Končno stanje in preverjanje (13. 10. 2026)
 
-Načrt iz 1. faze (predlagani tokeni, struktura, vprašanja) je bil po odločitvah lastnika spremenjen; spodaj je samo to, kar je v kodi.
+Načrt iz 1. faze je bil po odločitvah lastnika spremenjen; spodaj je samo to, kar je v kodi na veji `redesign/homepage-request-desk`.
 
-### C1. Kaj je izvedeno
+### C1. Domača stran (`/en`, `/de`): 9 razdelkov
 
-| Področje | Stanje |
+| # | Razdelek | Opomba |
+|---|---|---|
+| 1 | Hero | Sredinsko. Podnaslov se konča z „Forward it by email or upload it.“. Gumb `mailto:desk@evipace.com` (naslov ni izpisan), povezava na obrazec, vrstica o odobritvi. Pod besedilom vizual mape in plošče „Request desk“. |
+| 2 | Zaupni trak | Štiri trditve. |
+| 3 | How it works | Trije koraki: pošljite zahtevo (e-pošta, obrazec ali vaš Evipace portal), pripravimo odgovor, pregledate in odobrite v svojem Evipace portalu. |
+| 4 | What you can forward | Šest kartic z lastnimi linijskimi ikonami (SVG). Povezava na stran Offers. Sidro `#services` / `#leistungen` je ohranjeno. |
+| 5 | Faster the second time | Besedilo o ponovni uporabi potrjenih dokazil in vizual mape z dokumenti („Confirmed“ / „Needs update“, „Illustrative example“). Ovojnik `data-scroll-stage="reuse"` in indeks `--i` na dokumentih sta pripravljena za poznejšo scroll animacijo; animacije ni. |
+| 6 | Primer odgovora | Stezi Preparation / Review in ilustrativna kartica. |
+| 7 | Trust | Tri stolpci in lastna SVG ilustracija (mapa, dokument, znak odobritve). |
+| 8 | FAQ | Šest vprašanj. |
+| 9 | Zaključni poziv | Slogan, gumb, povezava na obrazec in sekundarna povezava na Offers. |
+
+Razdelek s tremi ponudbami in vrstica o obsegu in ceni sta z domače strani odstranjena (preseljena na Offers).
+
+### C2. Stran Offers (`/en/offers`, `/de/angebot`)
+
+| # | Razdelek |
 |---|---|
-| Postavitev | Sredinsko poravnana stran. Hero je en stolpec, vizual je pod besedilom. Edini dvostolpčni, levo poravnan razdelek je primer odgovora. |
-| Glavni poziv | Majhen okrogel oranžen gumb „Forward your request“ / „Anfrage weiterleiten“ z belo pisavo in belim krogom s črno puščico; `mailto:desk@evipace.com`. Naslov ni nikjer izpisan. Drugotna pot je povezava na obrazec. |
-| Razdelki | Hero, zaupni trak, trije koraki, tri ponudbe (Request, Desk, Report), primer odgovora s stezama Preparation / Review, Trust, FAQ, zaključni poziv s sloganom. |
-| Skrito | Logotipi strank, citati, študije primerov, številke, vodniki. |
-| Barve | Brand book v1.2: `#FE7001`, `#F6F2EC`, `#D8D0C7`, `#171717`, `#FFFFFF`; oranžno besedilo `#B44D00`. |
-| Pisavi | GFS Didot (naslovi), Inter (ostalo). |
-| Tokeni | `--ev-*` v `HomeLandingPage.module.css`, razred `.page`. `app/globals.css` ni spremenjen (test varuje njegovo zgoščeno vrednost). |
-| Širina | 1360 px, enako kot glava in noga. |
-| Vizual | HTML/CSS: taupe mapa z oranžnim zavihanim kotom in plošča „Request desk“, oznaka „Illustrative example“. Brez fotografij. |
-| Glava in noga | Slogan v nogi „ESG work. Done right. Done faster.“. Gumb ima belo pisavo. |
-| Uvodna animacija | `WelcomeIntro` ni več nameščen (bil je v skupnem `layout.tsx`, zato velja za vse strani). Datoteke so ostale. |
-| SEO | Nov `title` in `description` začetne strani (EN, DE), brez besede „consulting“. hreflang, kanonični URL in JSON-LD nespremenjeni. |
-| Besedila | `components/evipace/home/content.ts`. Nemška besedila razen heroja in vrstice o ceni so osnutki. |
+| 1 | Hero z naslovom, podnaslovom in tremi skoki na sidra |
+| 2 | Request (`#request`), Desk (`#desk`), Report (`#report`): za koga, kaj je vključeno, kaj naredite vi, kako poteka, kaj potrebujemo od vas |
+| 3 | „Which one is for me?“: tabela s tremi stolpci in štirimi vrsticami (na telefonu zložena v bloke) |
+| 4 | „How a request works“: štirje koraki |
+| 5 | FAQ: pet vprašanj |
+| 6 | Zaključni poziv (ista komponenta kot na domači strani) |
 
-### C2. Lighthouse (produkcijski build, `next start`, lokalno, Lighthouse 12)
+- Stran je v registru (`pageKey: "offers"`): naslov, opis, kanonični URL, hreflang (`en`, `de`, `x-default`), zemljevid strani. JSON-LD: Organization, WebSite, WebPage, BreadcrumbList.
+- `/en/angebot`, `/de/offers` in `/sl/offers` vrnejo 404.
+- Brez cen, rokov, referenc in številk. Pri Desku je v seznamu vključenega izpisan naslov `desk@evipace.com` (tako je bilo naročeno); na domači strani naslov ni izpisan.
+
+### C3. Skupni elementi
+
+| Element | Sprememba |
+|---|---|
+| Glava | Nova povezava „Offers“ / „Angebot“ in zunanja povezava „Client login“ / „Kundenportal“ na `https://portal.evipace.com`. Namizna navigacija se zdaj prikaže od 1280 px naprej (prej od 1024 px), ker se osem elementov pri 1024 px prekriva; pod tem je meni. |
+| Noga | „Offers“ / „Angebot“ v stolpcu Company / Unternehmen; slogan „ESG work. Done right. Done faster.“. |
+| Uvodna animacija | `WelcomeIntro` ni nameščen (vse strani). |
+| Tokeni | `--ev-*` v `HomeLandingPage.module.css`; isti modul uporablja tudi stran Offers. `app/globals.css` ni spremenjen. |
+
+### C4. Portal
+
+Kode portala v tem repozitoriju ni. Besedilo ga zato omenja samo splošno in vedno kot „your Evipace portal“ / „Ihr Evipace-Portal“:
+
+| Omenjeno v besedilu | Kje |
+|---|---|
+| Zahtevo lahko dodate v portalu | Domača, korak 1 |
+| Pregled in odobritev v portalu | Domača, korak 3; Offers (Request, Desk, Report, tabela) |
+| Knjižnica dokazil v portalu | Domača, „Faster the second time“; Offers, Desk in tabela |
+| Povezava za prijavo | Glava (`portal.evipace.com`) |
+
+Status zahteve v besedilu ni omenjen. Nobena od teh trditev ni preverjena ob kodi portala.
+
+### C5. Lighthouse (produkcijski build, `next start`, lokalno, Lighthouse 12)
 
 | Profil | Stran | Performance | Accessibility | Best practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
-| Mobile | /en | 91 do 96 (3 zagoni) | 96 | 96 | 100 | 2,7 s (enkrat 3,2 s) | 0 | 20 do 120 ms |
-| Mobile | /de | 96 | 96 | 96 | 100 | 2,7 s | 0 | 20 ms |
-| Desktop | /en | 100 | 96 | 96 | 100 | 0,6 s | 0 | 0 ms |
-| Desktop | /de | 100 | 96 | 96 | 100 | 0,6 s | 0 | 0 ms |
+| Mobile | /en | 95 | 96 | 96 | 100 | 3,0 s | 0 | 60 ms |
+| Mobile | /de | 95 | 96 | 96 | 100 | 2,9 s | 0 | 20 ms |
+| Mobile | /en/offers | 96 | 96 | 96 | 100 | 2,8 s | 0 | 50 ms |
+| Mobile | /de/angebot | 96 | 96 | 96 | 100 | 2,8 s | 0 | 30 ms |
+| Desktop | /en | 100 | 96 | 96 | 100 | 0,7 s | 0 | 10 ms |
+| Desktop | /de | 100 | 96 | 96 | 100 | 0,6 s | 0 | 40 ms |
+| Desktop | /en/offers | 100 | 96 | 96 | 100 | 0,6 s | 0 | 0 ms |
+| Desktop | /de/angebot | 100 | 96 | 96 | 100 | 0,6 s | 0 | 0 ms |
 
-- Mobilni LCP (2,7 s) je nad ciljem 2,5 s. Element LCP je odstavek v heroju; čas določajo skupne datoteke CSS (blokirajo izris) in pisavi, ne vsebina začetne strani.
-- Accessibility 96: edina napaka je kontrast bele pisave na `#FE7001` (2,79:1) na oranžnih gumbih. To je odločitev lastnika.
-- Best practices 96: edina napaka je 404 za `/_vercel/insights/script.js`, ki obstaja samo na Vercelu.
+- Mobilni LCP (2,8 do 3,0 s) je nad ciljem 2,5 s. Element LCP je besedilo v heroju; Lighthouse kot zavoro navaja skupne datoteke CSS, ki blokirajo izris.
+- Accessibility 96, napaka kontrasta: (a) bela pisava na `#FE7001` na oranžnih gumbih (odločitev lastnika), (b) obstoječa noga: oranžni naslovi stolpcev `#FE7001` in sivo besedilo `#878786` na `#F8F8F6`. Točka (b) je obstajala že prej in v tem koraku ni bila spremenjena.
+- Best practices 96: 404 za `/_vercel/insights/script.js`, ki obstaja samo na Vercelu.
 
-### C3. Drugo preverjanje
+### C6. Drugo preverjanje
 
 | Preverjanje | Rezultat |
 |---|---|
-| Testi, tipi, lint, build | 358/358, `tsc` in `eslint` brez napak, build uspešen. |
-| Horizontalno drsenje | Ni pri 390, 768 in 1440 px (EN in DE). |
-| Hero pri 1440 × 900 | Vizual se začne pri 674 px (EN) oziroma 636 px (DE), torej nad pregibom. |
-| Tipkovnica | Vrstni red: gumb, povezava na obrazec, gumb pod ponudbami, tri povezave v Trust, šest vprašanj FAQ, gumb in povezava v zaključnem pozivu, noga. |
-| Fokus | Viden obroč 3 px: `#171717` na svetlem, bel na temnem ozadju (`focus-en-1440.jpg`). |
-| `prefers-reduced-motion` | Preverjeno v Chromu z `--force-prefers-reduced-motion`: noben razdelek se ne skrije (brez zastavice 5 razdelkov čaka na vstopni učinek). Prehodi so v CSS izklopljeni. |
-| Gumb mailto | Oba gumba imata `href="mailto:desk@evipace.com"`, klik ni prestrežen, stran se ne zamenja. Odpiranja poštnega programa iz testnega brskalnika ni bilo mogoče opazovati. |
-| Obrazec, lokalno | `/en/send-request` in `/de/send-request`: polja in datoteka se sprejmejo, `POST /api/requests` vrne 503, ker nalaganje lokalno ni vklopljeno; prikaže se pravilno sporočilo v jeziku strani. Celotne oddaje (nalaganje, finalize, obvestilo) lokalno ni mogoče preveriti. Kode obrazca prenova ni spreminjala. |
+| Testi, tipi, lint, build | 363/363 (dodan `tests/home-offers-content.test.mjs` in test za Offers v navigaciji), `tsc` in `eslint` brez napak, build uspešen. |
+| hreflang in zemljevid strani | `/en/offers` ↔ `/de/angebot`, `x-default` na EN; obe poti sta v `sitemap.xml` z alternativama. |
+| Horizontalno drsenje | Ni pri 390, 768, 1280 in 1440 px. |
+| Glava | Pri 1280 px (DE, najdaljše oznake) se elementi ne prekrivajo in ne lomijo; pri 1100 px je prikazan meni. |
+| Tipkovnica in fokus | Offers: skoki, gumb, FAQ, zaključni poziv, noga; obroč 3 px (`#171717` na svetlem, bel na temnem). Skok na `#desk` s tipko Enter pristane tik pod fiksno glavo. Domača stran je bila s tipkovnico preverjena pred tem korakom; nove povezave uporabljajo iste sloge. |
+| `prefers-reduced-motion` | Chrome z `--force-prefers-reduced-motion`: 0 skritih razdelkov na `/en`, `/en/offers`, `/de/angebot` (brez zastavice 5 do 6). |
+| Obrazec | Koda ni spremenjena. Lokalno `POST /api/requests` vrne 503 (nalaganje ni vklopljeno), zato celotna oddaja ostaja nepreverjena. |
 
-### C4. Posnetki zaslona
+### C7. Posnetki zaslona
 
-`docs/redesign-screenshots/`: vsi razdelki od vrha do noge, produkcijski build.
+`docs/redesign-screenshots/`: celostranski posnetki produkcijskega builda, narejeni s Chromom brez glave (`--screenshot`), po en na stran in širino.
 
-| Datoteke | Širina | Število |
-|---|---|---|
-| `en-1440-*`, `de-1440-*` | 1440 × 900 | 8 + 8 |
-| `en-768-*`, `de-768-*` | 768 × 1024 | 9 + 9 |
-| `en-390-*`, `de-390-*` | 390 × 844 | 13 + 13 |
-| `focus-en-1440.jpg` | fokus na glavnem gumbu | 1 |
+| Datoteke | Širine |
+|---|---|
+| `home-en-*`, `home-de-*` | 1440, 768, 390 |
+| `offers-en-*`, `offers-de-*` | 1440, 768, 390 |
 
-### C5. Odprto
+### C8. Odprto
 
-- Kontrast bele pisave na oranžnih gumbih (2,79:1) ne dosega WCAG AA.
-- Obiskovalec brez nastavljenega poštnega programa naslova ne more prebrati; ostane mu obrazec.
-- Nemška besedila čakajo na pregled lastnika.
-- Podstrani še govorijo po starem in imajo svoje gumbe nespremenjene.
+- Nemška besedila (domača in Offers) so osnutki za revizijo lastnika, razen heroja domače strani.
+- Trditve o portalu niso preverjene ob kodi.
+- Kontrast bele pisave na oranžnih gumbih in obstoječe noge ne dosega WCAG AA.
+- Obiskovalec brez poštnega programa na domači strani naslova ne more prebrati.
+- Podstrani storitev še govorijo po starem.
+- Scroll animacij ni.

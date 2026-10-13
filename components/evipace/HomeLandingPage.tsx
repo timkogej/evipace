@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { deskForwardEmail } from "@/lib/company-info";
+import { getOffersPath } from "@/lib/site-navigation";
+import { ClosingCta } from "./home/ClosingCta";
 import { DeskVisual } from "./home/DeskVisual";
+import { LineIcon } from "./home/LineIcon";
+import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
+import { TrustIllustration } from "./home/TrustIllustration";
 import { homeContent, type HomeLocale } from "./home/content";
 import styles from "./HomeLandingPage.module.css";
 
@@ -9,6 +14,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
   const copy = homeContent[locale];
   const requestHref = `/${locale}/send-request`;
   const forwardHref = `mailto:${deskForwardEmail}`;
+  const offersHref = getOffersPath(locale);
 
   return (
     <main className={styles.page} data-locale={locale}>
@@ -63,40 +69,41 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
       </section>
 
       <section
-        aria-labelledby="home-offers-title"
+        aria-labelledby="home-forwardable-title"
         className={`${styles.section} ${styles.tinted}`}
         id={locale === "de" ? "leistungen" : "services"}
       >
         <RevealOnView className={styles.shell}>
           <header className={styles.sectionHead}>
-            <p className={styles.eyebrow}>{copy.offers.label}</p>
-            <h2 className={styles.heading} id="home-offers-title">{copy.offers.title}</h2>
-            <p className={styles.lead}>{copy.offers.intro}</p>
+            <p className={styles.eyebrow}>{copy.forwardable.label}</p>
+            <h2 className={styles.heading} id="home-forwardable-title">{copy.forwardable.title}</h2>
+            <p className={styles.lead}>{copy.forwardable.intro}</p>
           </header>
-          <div className={styles.offers}>
-            {copy.offers.items.map((offer) => (
-              <article className={styles.offer} key={offer.name}>
-                <p className={styles.offerKind}>{offer.kind}</p>
-                <h3 className={styles.offerName}>{offer.name}</h3>
-                <h4 className={styles.offerLabel}>{copy.offers.forWhomLabel}</h4>
-                <p className={styles.offerText}>{offer.forWhom}</p>
-                <h4 className={styles.offerLabel}>{copy.offers.includedLabel}</h4>
-                <ul className={styles.offerList}>
-                  {offer.included.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-                <h4 className={styles.offerLabel}>{copy.offers.youDoLabel}</h4>
-                <ul className={styles.offerList}>
-                  {offer.youDo.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </article>
+          <ul className={styles.cards}>
+            {copy.forwardable.items.map((item) => (
+              <li className={styles.card} key={item.title}>
+                <LineIcon className={styles.cardIcon} name={item.icon} />
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <p>{item.body}</p>
+              </li>
             ))}
-          </div>
-          <div className={styles.offersFoot}>
-            <p>{copy.offers.closing}</p>
-            <Link className={styles.primaryButton} href={requestHref}>
-              {copy.offers.cta}<span aria-hidden="true">→</span>
+          </ul>
+          <div className={styles.sectionFoot}>
+            <Link className={styles.textLink} href={offersHref}>
+              {copy.forwardable.link}<span aria-hidden="true">→</span>
             </Link>
           </div>
+        </RevealOnView>
+      </section>
+
+      <section aria-labelledby="home-reuse-title" className={styles.section}>
+        <RevealOnView className={styles.shell}>
+          <header className={styles.sectionHead}>
+            <p className={styles.eyebrow}>{copy.reuse.label}</p>
+            <h2 className={styles.heading} id="home-reuse-title">{copy.reuse.title}</h2>
+            <p className={styles.lead}>{copy.reuse.body}</p>
+          </header>
+          <ReuseVisual copy={copy.reuse} />
         </RevealOnView>
       </section>
 
@@ -143,6 +150,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
           <header className={styles.sectionHead}>
             <p className={styles.eyebrow}>{copy.trust.label}</p>
             <h2 className={styles.heading} id="home-trust-title">{copy.trust.title}</h2>
+            <TrustIllustration label={copy.trust.illustrationLabel} />
           </header>
           <ul className={styles.trust}>
             {copy.trust.items.map((item) => (
@@ -180,24 +188,15 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
         </RevealOnView>
       </section>
 
-      <section aria-labelledby="home-cta-title" className={styles.cta}>
-        <div className={`${styles.shell} ${styles.ctaInner}`}>
-          <div>
-            <p className={styles.ctaSlogan}>{copy.cta.slogan}</p>
-            <h2 className={styles.heading} id="home-cta-title">{copy.cta.title}</h2>
-            <p className={styles.ctaBody}>{copy.cta.body}</p>
-          </div>
-          <div className={styles.actions}>
-            <a className={styles.pillButton} href={forwardHref}>
-              {copy.hero.forward}
-              <span aria-hidden="true" className={styles.pillArrow}>→</span>
-            </a>
-            <Link className={`${styles.textLink} ${styles.textLinkOnDark}`} href={requestHref}>
-              {copy.cta.formLink}<span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ClosingCta
+        body={copy.cta.body}
+        formHref={requestHref}
+        formLabel={copy.cta.formLink}
+        forwardLabel={copy.hero.forward}
+        offers={{ label: copy.cta.offersLink, href: offersHref }}
+        slogan={copy.cta.slogan}
+        title={copy.cta.title}
+      />
     </main>
   );
 }

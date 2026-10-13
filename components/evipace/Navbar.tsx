@@ -152,7 +152,7 @@ export function Navbar({ locale }: NavbarProps) {
           <BrandLogo priority />
         </Link>
 
-        <div className="hidden min-w-0 items-center justify-center gap-5 lg:flex xl:gap-7">
+        <div className="hidden min-w-0 items-center justify-center gap-4 whitespace-nowrap xl:flex 2xl:gap-7">
           <Link
             aria-current={activeSection === "home" ? "page" : undefined}
             className={`relative inline-flex min-h-11 items-center rounded-md px-1 text-sm font-semibold transition ${
@@ -232,7 +232,14 @@ export function Navbar({ locale }: NavbarProps) {
           })}
         </div>
 
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+        <div className="hidden shrink-0 items-center gap-3 whitespace-nowrap xl:flex">
+          <a
+            className="inline-flex min-h-11 items-center rounded-md px-1 text-sm font-semibold text-[rgba(21,21,21,0.64)] transition hover:text-ink"
+            href={navigation.clientLogin.href}
+            rel="noopener noreferrer"
+          >
+            {navigation.clientLogin.label}
+          </a>
           <div className="relative">
             <button
               aria-controls={`desktop-${locale}-language`}
@@ -305,7 +312,7 @@ export function Navbar({ locale }: NavbarProps) {
               ? navigation.labels.closeNavigation
               : navigation.labels.openNavigation
           }
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(21,21,21,0.14)] bg-white/80 text-ink shadow-[0_10px_30px_rgba(21,21,21,0.08)] backdrop-blur lg:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(21,21,21,0.14)] bg-white/80 text-ink shadow-[0_10px_30px_rgba(21,21,21,0.08)] backdrop-blur xl:hidden"
           onClick={() => setMobileOpen((current) => !current)}
           ref={mobileButtonRef}
           type="button"
@@ -319,7 +326,7 @@ export function Navbar({ locale }: NavbarProps) {
         <div
           aria-labelledby={`mobile-${locale}-navigation-title`}
           aria-modal="true"
-          className="fixed inset-x-0 bottom-0 top-20 z-40 overflow-y-auto overscroll-contain border-t border-[rgba(21,21,21,0.08)] bg-[rgba(255,255,255,0.98)] px-[var(--section-x)] pb-[max(2rem,env(safe-area-inset-bottom))] pt-4 backdrop-blur-xl lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-20 z-40 overflow-y-auto overscroll-contain border-t border-[rgba(21,21,21,0.08)] bg-[rgba(255,255,255,0.98)] px-[var(--section-x)] pb-[max(2rem,env(safe-area-inset-bottom))] pt-4 backdrop-blur-xl xl:hidden"
           id={`mobile-${locale}-navigation`}
           ref={mobilePanelRef}
           role="dialog"
@@ -389,6 +396,13 @@ export function Navbar({ locale }: NavbarProps) {
                   </Link>
                 );
               })}
+              <a
+                className="flex min-h-16 items-center py-3 text-xl font-semibold text-ink"
+                href={navigation.clientLogin.href}
+                rel="noopener noreferrer"
+              >
+                {navigation.clientLogin.label}
+              </a>
             </div>
 
             <section className="mt-6 border-t border-[rgba(21,21,21,0.1)] pt-6">

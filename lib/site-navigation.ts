@@ -8,6 +8,7 @@ export type NavigationSection =
   | "home"
   | "services"
   | "resources"
+  | "offers"
   | "methodology"
   | "about";
 
@@ -51,6 +52,8 @@ type SiteNavigation = {
   /** The visible "Home" entry, first in the bar and in the mobile panel. */
   homeLink: NavigationItem & { section: Extract<NavigationSection, "home"> };
   primaryAction: NavigationItem;
+  /** External link to the client portal (a separate application). */
+  clientLogin: NavigationItem;
   directories: NavigationDirectory[];
   directLinks: Array<NavigationItem & { section: NavigationSection }>;
   footerColumns: FooterColumn[];
@@ -77,6 +80,7 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     { pageKey: "privacy", href: "/en/privacy" },
     { pageKey: "methodology", href: "/en/methodology" },
     { pageKey: "sendRequest", href: "/en/send-request" },
+    { pageKey: "offers", href: "/en/offers" },
     { pageKey: "esgKundenanfragen", href: "/en/esg-customer-requests" },
     {
       pageKey: "esgFragebogenLieferanten",
@@ -148,6 +152,7 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     { pageKey: "privacy", href: "/de/privacy" },
     { pageKey: "methodology", href: "/de/methodology" },
     { pageKey: "sendRequest", href: "/de/send-request" },
+    { pageKey: "offers", href: "/de/angebot" },
     {
       pageKey: "esgKundenanfragen",
       href: "/de/esg-kundenanfragen"
@@ -527,6 +532,13 @@ const enResources: NavigationDirectory = {
   ]
 };
 
+/** The client portal is a separate application on its own host. */
+export const CLIENT_PORTAL_URL = "https://portal.evipace.com";
+
+export function getOffersPath(locale: SiteLocale): string {
+  return route(locale, "offers");
+}
+
 export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
   en: {
     locale: "en",
@@ -542,8 +554,15 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       href: route("en", "sendRequest"),
       pageKey: "sendRequest"
     },
+    clientLogin: { label: "Client login", href: CLIENT_PORTAL_URL },
     directories: [enServices, enResources],
     directLinks: [
+      {
+        label: "Offers",
+        href: route("en", "offers"),
+        pageKey: "offers",
+        section: "offers"
+      },
       {
         label: "Methodology",
         href: route("en", "methodology"),
@@ -628,6 +647,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         title: "Company",
         links: [
           { label: "Home", href: route("en", "home"), pageKey: "home" },
+          { label: "Offers", href: route("en", "offers"), pageKey: "offers" },
           { label: "About", href: route("en", "about"), pageKey: "about" },
           {
             label: "Privacy policy",
@@ -677,8 +697,15 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       href: route("de", "sendRequest"),
       pageKey: "sendRequest"
     },
+    clientLogin: { label: "Kundenportal", href: CLIENT_PORTAL_URL },
     directories: [deServices, deResources],
     directLinks: [
+      {
+        label: "Angebot",
+        href: route("de", "offers"),
+        pageKey: "offers",
+        section: "offers"
+      },
       {
         label: "Methodik",
         href: route("de", "methodology"),
@@ -735,6 +762,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         title: "Unternehmen",
         links: [
           { label: "Startseite", href: route("de", "home"), pageKey: "home" },
+          { label: "Angebot", href: route("de", "offers"), pageKey: "offers" },
           { label: "Methodik", href: route("de", "methodology"), pageKey: "methodology" },
           {
             label: "Datenschutzerklärung",

@@ -76,7 +76,7 @@ test("the locale layout is the only site-chrome integration point", async () => 
 });
 
 test("every chrome route maps to a real route and the reachability registry", async () => {
-  assert.equal(routeEntries.length, 50);
+  assert.equal(routeEntries.length, 52);
   assert.equal(new Set(hrefs).size, hrefs.length);
 
   for (const entry of routeEntries) {
@@ -147,6 +147,7 @@ test("English navigation remains deliberately smaller and route-correct", () => 
     "/en/privacy",
     "/en/methodology",
     "/en/send-request",
+    "/en/offers",
     "/en/esg-customer-requests",
     "/en/esg-questionnaire-support",
     "/en/scope-1-2-calculation",
@@ -267,4 +268,18 @@ test("checklist print mode hides the global chrome", () => {
   assert.ok(printCss.includes(".site-header"));
   assert.ok(printCss.includes(".site-footer"));
   assert.ok(printCss.includes(".esg-checklist-page .checklist-screen-controls"));
+});
+
+test("Offers is a registered EN/DE pair and the client portal link is external", () => {
+  assert.ok(hrefs.includes("/en/offers"));
+  assert.ok(hrefs.includes("/de/angebot"));
+  assert.ok(registrySource.includes('path: "/en/offers"'));
+  assert.ok(registrySource.includes('path: "/de/angebot"'));
+  assert.ok(navigationSource.includes('label: "Offers"'));
+  assert.ok(navigationSource.includes('label: "Angebot"'));
+  assert.ok(
+    navigationSource.includes('CLIENT_PORTAL_URL = "https://portal.evipace.com"')
+  );
+  assert.ok(navigationSource.includes('label: "Client login"'));
+  assert.ok(navigationSource.includes('label: "Kundenportal"'));
 });

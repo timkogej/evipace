@@ -5,12 +5,13 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 const read = (path) => readFile(new URL(path, root), "utf8");
 
-const [home, offers, homePage, offersPage, reuseVisual] = await Promise.all([
+const [home, offers, homePage, offersPage, reuseVisual, scrollProgress] = await Promise.all([
   read("components/evipace/home/content.ts"),
   read("components/evipace/offers/content.ts"),
   read("components/evipace/HomeLandingPage.tsx"),
   read("components/evipace/offers/OffersPage.tsx"),
-  read("components/evipace/home/ReuseVisual.tsx")
+  read("components/evipace/home/ReuseVisual.tsx"),
+  read("components/evipace/home/ScrollProgress.tsx")
 ]);
 
 test("the portal is always named as the client's Evipace portal", () => {
@@ -35,7 +36,7 @@ test("homepage and Offers copy carries no prices, deadlines or partner claims", 
   assert.ok(offers.includes("not affiliated with, accredited by or endorsed by EcoVadis"));
 });
 
-test("the homepage has the nine agreed sections and one h1", () => {
+test("the homepage has the agreed sections, the statement and one h1", () => {
   assert.equal((homePage.match(/<h1\b/g) ?? []).length, 1);
   for (const id of [
     "hero-title",
@@ -52,8 +53,13 @@ test("the homepage has the nine agreed sections and one h1", () => {
   assert.ok(homePage.includes("<ClosingCta"));
   assert.ok(!homePage.includes("copy.offers"));
   assert.ok(home.includes('"Illustrative example"'));
-  // The visual wrapper is ready for a scroll animation, but none exists yet.
+  // Scroll-linked motion goes through ScrollProgress, which leaves content
+  // complete without JavaScript and under reduced motion.
   assert.ok(reuseVisual.includes('data-scroll-stage="reuse"'));
+  assert.ok(reuseVisual.includes("<ScrollProgress"));
+  assert.ok(homePage.includes("copy.statement"));
+  assert.ok(scrollProgress.includes("prefers-reduced-motion: reduce"));
+  assert.ok(!scrollProgress.includes("requestAnimationFrame"));
 });
 
 test("Offers has anchored Request, Desk and Report sections and no portal question", () => {

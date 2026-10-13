@@ -1,14 +1,15 @@
 import styles from "../HomeLandingPage.module.css";
 import type { HomeContent } from "./content";
+import { ScrollProgress } from "./ScrollProgress";
 
 /**
- * Illustrative evidence folder. The outer stage carries `data-scroll-stage`
- * and each document a `--i` index, so a scroll-driven animation can be added
- * later in CSS without touching this markup. Nothing animates today.
+ * Illustrative evidence folder. The stage reports its scroll progress as
+ * `--p`; each document carries an index `--i`, and CSS files the documents
+ * into the folder one after another as the section scrolls into view.
  */
 export function ReuseVisual({ copy }: { copy: HomeContent["reuse"] }) {
   return (
-    <div className={styles.scrollStage} data-scroll-stage="reuse">
+    <ScrollProgress className={styles.scrollStage} data-scroll-stage="reuse">
       <figure aria-label={copy.visualLabel} className={styles.reuseVisual}>
         <div aria-hidden="true" className={styles.reuseFolder}>
           <span className={styles.folderTab} />
@@ -38,6 +39,6 @@ export function ReuseVisual({ copy }: { copy: HomeContent["reuse"] }) {
           <span className={styles.badge}>{copy.badge}</span>
         </figcaption>
       </figure>
-    </div>
+    </ScrollProgress>
   );
 }

@@ -21,6 +21,7 @@ export type HomeContent = {
     approve: string;
   };
   assurances: { label: string; items: string[] };
+  statement: string;
   steps: { label: string; title: string; items: Array<{ title: string; body: string }> };
   forwardable: {
     label: string;
@@ -101,6 +102,8 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         "Slovenia-based"
       ]
     },
+    statement:
+      "Your customer asks for proof. You forward the request. We prepare the answer from what you have already confirmed, and nothing is sent until you approve it.",
     steps: {
       label: "How it works",
       title: "Three steps from request to approved response.",
@@ -293,6 +296,8 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         "Mit Sitz in Slowenien"
       ]
     },
+    statement:
+      "Ihr Kunde verlangt Nachweise. Sie leiten die Anfrage weiter. Wir bereiten die Antwort aus dem vor, was Sie bereits bestätigt haben, und nichts wird versendet, bevor Sie es freigeben.",
     steps: {
       label: "So funktioniert es",
       title: "Drei Schritte von der Anfrage zur freigegebenen Antwort.",

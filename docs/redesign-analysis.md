@@ -267,7 +267,7 @@ Opozorilo: [globals.css](../app/globals.css) ima 5592 vrstic, `typography.css` p
 
 Načrt iz 1. faze je bil po odločitvah lastnika spremenjen; spodaj je samo to, kar je v kodi na veji `redesign/homepage-request-desk`.
 
-### C1. Domača stran (`/en`, `/de`): 9 razdelkov
+### C1. Domača stran (`/en`, `/de`): 9 razdelkov in vmesna izjava
 
 | # | Razdelek | Opomba |
 |---|---|---|
@@ -275,11 +275,23 @@ Načrt iz 1. faze je bil po odločitvah lastnika spremenjen; spodaj je samo to, 
 | 2 | Zaupni trak | Štiri trditve. |
 | 3 | How it works | Trije koraki: pošljite zahtevo (e-pošta, obrazec ali vaš Evipace portal), pripravimo odgovor, pregledate in odobrite v svojem Evipace portalu. |
 | 4 | What you can forward | Šest kartic z lastnimi linijskimi ikonami (SVG). Povezava na stran Offers. Sidro `#services` / `#leistungen` je ohranjeno. |
-| 5 | Faster the second time | Besedilo o ponovni uporabi potrjenih dokazil in vizual mape z dokumenti („Confirmed“ / „Needs update“, „Illustrative example“). Ovojnik `data-scroll-stage="reuse"` in indeks `--i` na dokumentih sta pripravljena za poznejšo scroll animacijo; animacije ni. |
+| 5 | Faster the second time | Besedilo o ponovni uporabi potrjenih dokazil in vizual mape z dokumenti („Confirmed“ / „Needs update“, „Illustrative example“). Dokumenti se med pomikanjem eden za drugim zložijo v mapo (animacija vezana na pomik). |
 | 6 | Primer odgovora | Stezi Preparation / Review in ilustrativna kartica. |
 | 7 | Trust | Tri stolpci in lastna SVG ilustracija (mapa, dokument, znak odobritve). |
 | 8 | FAQ | Šest vprašanj. |
 | 9 | Zaključni poziv | Slogan, gumb, povezava na obrazec in sekundarna povezava na Offers. |
+
+Med razdelkoma 3 in 4 je velika izjava čez skoraj celo širino (Didot, do 64 px), ki se med pomikanjem razkriva beseda za besedo.
+
+**Animacije** (samo domača stran, razen zadnje):
+
+| Animacija | Vrsta | Kako deluje |
+|---|---|---|
+| Izjava beseda za besedo | vezana na pomik | `ScrollProgress` zapiše napredek 0 do 1 v `--p`; CSS iz tega izračuna prosojnost vsake besede. Pri pomiku nazaj se odvije nazaj. |
+| Mapa z dokazili | vezana na pomik | Isti mehanizem; dokumenti in njihove oznake se pojavijo zaporedno. |
+| Kartice in koraki | ob vstopu | Ko razdelek pride v pogled, se kartice oziroma koraki pojavijo eden za drugim (zamik 80 ms). Velja tudi za korake na Offers. |
+
+Brez JavaScripta in pri `prefers-reduced-motion` je vsa vsebina takoj vidna in se nič ne premika. Brez knjižnic; en poslušalec pomika na animiran element.
 
 Razdelek s tremi ponudbami in vrstica o obsegu in ceni sta z domače strani odstranjena (preseljena na Offers).
 
@@ -365,4 +377,4 @@ Status zahteve v besedilu ni omenjen. Nobena od teh trditev ni preverjena ob kod
 - Kontrast bele pisave na oranžnih gumbih in obstoječe noge ne dosega WCAG AA.
 - Obiskovalec brez poštnega programa na domači strani naslova ne more prebrati.
 - Podstrani storitev še govorijo po starem.
-- Scroll animacij ni.
+- Besedilo izjave (EN in DE) je osnutek.

@@ -6,6 +6,7 @@ import { DeskVisual } from "./home/DeskVisual";
 import { LineIcon } from "./home/LineIcon";
 import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
+import { ScrollProgress } from "./home/ScrollProgress";
 import { TrustIllustration } from "./home/TrustIllustration";
 import { homeContent, type HomeLocale } from "./home/content";
 import styles from "./HomeLandingPage.module.css";
@@ -15,6 +16,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
   const requestHref = `/${locale}/send-request`;
   const forwardHref = `mailto:${deskForwardEmail}`;
   const offersHref = getOffersPath(locale);
+  const statementWords = copy.statement.split(" ");
 
   return (
     <main className={styles.page} data-locale={locale}>
@@ -58,7 +60,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
           </header>
           <ol className={styles.steps}>
             {copy.steps.items.map((step, index) => (
-              <li className={styles.step} key={step.title}>
+              <li className={styles.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
                 <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
                 <h3 className={styles.cardTitle}>{step.title}</h3>
                 <p>{step.body}</p>
@@ -66,6 +68,22 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             ))}
           </ol>
         </RevealOnView>
+      </section>
+
+      <section aria-label={copy.statement} className={styles.statementSection}>
+        <ScrollProgress className={styles.shell}>
+          <p
+            aria-hidden="true"
+            className={styles.statement}
+            style={{ "--n": statementWords.length } as React.CSSProperties}
+          >
+            {statementWords.map((word, index) => (
+              <span className={styles.word} key={`${index}-${word}`} style={{ "--i": index } as React.CSSProperties}>
+                {word}{" "}
+              </span>
+            ))}
+          </p>
+        </ScrollProgress>
       </section>
 
       <section
@@ -80,8 +98,8 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             <p className={styles.lead}>{copy.forwardable.intro}</p>
           </header>
           <ul className={styles.cards}>
-            {copy.forwardable.items.map((item) => (
-              <li className={styles.card} key={item.title}>
+            {copy.forwardable.items.map((item, index) => (
+              <li className={styles.card} key={item.title} style={{ "--i": index } as React.CSSProperties}>
                 <LineIcon className={styles.cardIcon} name={item.icon} />
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p>{item.body}</p>

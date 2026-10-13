@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { ConsentManager } from "@/components/evipace/analytics/ConsentManager";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
-import { WelcomeIntro, WELCOME_BOOT_SCRIPT } from "@/components/evipace/site-intro/WelcomeIntro";
 import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
 import { SITE_NAME, SITE_URL } from "@/lib/seo/site-config";
 import { isSiteLocale } from "@/lib/site-navigation";
@@ -73,30 +72,11 @@ export default async function LocaleLayout({
     <html
       className={`${inter.variable} ${gfsDidot.variable}`}
       lang={activeLocale}
-      /*
-       * The site intro's boot script stamps `data-site-intro` on <html> at
-       * parse time — deliberately before hydration, so the branded opening is
-       * governed even if React never arrives. That makes the attribute
-       * script-owned rather than render-owned, which is exactly the case this
-       * flag is for. It suppresses attribute diffs on this element only;
-       * everything inside still gets full hydration checking.
-       */
-      suppressHydrationWarning
     >
-      <head>
-        {showSiteChrome ? <script dangerouslySetInnerHTML={{ __html: WELCOME_BOOT_SCRIPT }} /> : null}
-      </head>
       <body>
         {showSiteChrome ? <Navbar locale={activeLocale} /> : null}
-        {/*
-          A stable wrapper the site intro can reveal as one piece. It is the
-          only element the intro ever transforms — never <html> or <body> —
-          so the viewport itself cannot shift or overflow. Without the intro
-          it is an inert div.
-        */}
-        <div className="editorial-layout" data-site-intro-content="">{children}</div>
+        <div className="editorial-layout">{children}</div>
         {showSiteChrome ? <Footer locale={activeLocale} /> : null}
-        {showSiteChrome ? <WelcomeIntro locale={activeLocale === "de" ? "de" : "en"} /> : null}
         {showSiteChrome && gaMeasurementId ? (
           <ConsentManager
             locale={activeLocale}

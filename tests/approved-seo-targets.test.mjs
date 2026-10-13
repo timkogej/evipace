@@ -50,19 +50,28 @@ function normalizeWhitespace(value) {
   return value.replace(/\s+/g, " ").trim();
 }
 
+// Homepage copy lives in its own EN/DE dictionary; the component holds the
+// single <h1>.
+const homeContentSource = await readFile(
+  new URL("components/evipace/home/content.ts", root),
+  "utf8"
+);
+
 test("approved EN and DE SEO titles and H1s are exact", () => {
   const expected = [
     [
       enRegistry,
-      'title: "ESG Consulting for Manufacturing Companies | Evipace"',
-      landingHomeSource,
-      "Your customer needs ESG answers. We help you deliver them."
+      'title: "ESG Customer Request Support for Suppliers | Evipace"',
+      homeContentSource,
+      "Forward your customer's request. We prepare the answer.",
+      landingHomeSource
     ],
     [
       deRegistry,
-      'title: "ESG-Beratung für produzierende Unternehmen | Evipace"',
-      landingHomeSource,
-      "Ihr Kunde fragt nach ESG-Daten. Wir bereiten Ihre Antwort vor."
+      'title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"',
+      homeContentSource,
+      "Leiten Sie die Anfrage Ihres Kunden weiter. Wir bereiten die Antwort vor.",
+      landingHomeSource
     ],
     [
       enRegistry,

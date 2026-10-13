@@ -31,3 +31,10 @@ export const publicContactEmail = "hello@evipace.com";
 
 /** Official Evipace company profile, supplied by the founder. */
 export const publicLinkedInUrl = "https://www.linkedin.com/company/evipace";
+
+/**
+ * Address customers forward their own customer's requests to. Used only as
+ * the mailto target of the homepage's "Forward your request" buttons; it is
+ * deliberately not printed as visible text.
+ */
+export const deskForwardEmail = "desk@evipace.com";

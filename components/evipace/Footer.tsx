@@ -38,7 +38,7 @@ export function Footer({ locale }: FooterProps) {
               <BrandLogo variant="footer" />
             </Link>
             <p className="mt-5 text-lg font-semibold text-[rgba(21,21,21,0.66)]">
-              ESG, done faster.
+              ESG work. Done right. Done faster.
             </p>
             <Link
               aria-current={

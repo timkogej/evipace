@@ -264,8 +264,10 @@ test("the active welcome intro plays once per tab and skips refreshes", () => {
   const welcomeController = readFileSync(new URL("components/evipace/site-intro/WelcomeIntroController.tsx", root), "utf8");
   const welcomeCss = readFileSync(new URL("components/evipace/site-intro/WelcomeIntro.module.css", root), "utf8");
 
-  assert.ok(layout.includes('import { WelcomeIntro, WELCOME_BOOT_SCRIPT }'));
-  assert.ok(layout.includes("<WelcomeIntro locale="));
+  // The intro is no longer mounted: it held content back for up to 4.6 s on
+  // a first visit, which works against LCP. Its sources stay for reference.
+  assert.ok(!layout.includes("WelcomeIntro"));
+  assert.ok(!layout.includes("WELCOME_BOOT_SCRIPT"));
   assert.ok(!layout.includes("<SiteIntro />"));
   assert.ok(welcome.includes("window.sessionStorage.getItem"));
   assert.ok(welcome.includes("window.sessionStorage.setItem"));
@@ -411,7 +413,7 @@ test("phones lift the mark away rather than whipping it off screen", () => {
   assert.ok(!code.includes("translate3d(20px, 0, 0)"));
 
   // Only the dedicated wrapper is ever transformed.
-  assert.ok(layout.includes('<div className="editorial-layout" data-site-intro-content="">{children}</div>'));
+  assert.ok(layout.includes('<div className="editorial-layout">{children}</div>'));
   assert.ok(controller.includes('document.querySelector<HTMLElement>("[data-site-intro-content]")'));
   assert.ok(!controller.includes("document.body.style.transform"));
   assert.ok(!controller.includes("document.documentElement.style.transform"));
@@ -508,7 +510,9 @@ test("a late start plays the exit out instead of collapsing it", () => {
 test("the pre-hydration attribute cannot report a hydration mismatch", () => {
   // The boot script stamps data-site-intro on <html> before React arrives, so
   // the attribute is script-owned. Flagged on that element only.
-  assert.ok(layout.includes("suppressHydrationWarning"));
+  // With the intro unmounted, nothing stamps <html> before hydration, so the
+  // layout no longer suppresses hydration warnings there.
+  assert.ok(!layout.includes("suppressHydrationWarning"));
   assert.ok(intro.includes('r.setAttribute("data-site-intro","playing")'));
 
   // <html> is not server-rendered with the attribute: no-JS must never be left

@@ -106,11 +106,11 @@ test("English and German About and methodology pages are genuine registry equiva
   assert.ok(englishRegistry.includes('lastReviewed: "2026-08-21"'));
   assert.ok(germanRegistry.includes("home: {"));
   assert.ok(
-    germanRegistry.includes('title: "ESG-Beratung für produzierende Unternehmen | Evipace"')
+    germanRegistry.includes('title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"')
   );
   assert.ok(
     germanRegistry.includes(
-      '"Praktische ESG-Beratung für produzierende Unternehmen und industrielle Zulieferer: Evipace bereitet Daten, Nachweise, Berechnungen und Antworten nachvollziehbar vor."'
+      '"Leiten Sie ESG-Fragebögen, EcoVadis-Anfragen, Anfragen zu CO2-Daten oder Verhaltenskodizes Ihrer Kunden weiter. Evipace bereitet die Antwort zur Prüfung und Freigabe vor."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de"'));

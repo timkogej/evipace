@@ -162,7 +162,7 @@ test("headings, eyebrows and titles carry the brand capitalisation", () => {
     // read it.
     [
       "registry",
-      'title: "ESG Consulting for Manufacturing Companies | Evipace"'
+      'title: "ESG Customer Request Support for Suppliers | Evipace"'
     ]
   ];
   for (const [key, copy] of required) {

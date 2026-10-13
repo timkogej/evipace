@@ -103,7 +103,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       ]
     },
     statement:
-      "Your customer asks for proof. You forward the request. We prepare the answer from what you have already confirmed, and nothing is sent until you approve it.",
+      "Your customer's request does not have to land on your desk. Forward it, and we turn what you have already confirmed into an answer that is ready for your approval.",
     steps: {
       label: "How it works",
       title: "Three steps from request to approved response.",
@@ -297,7 +297,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       ]
     },
     statement:
-      "Ihr Kunde verlangt Nachweise. Sie leiten die Anfrage weiter. Wir bereiten die Antwort aus dem vor, was Sie bereits bestätigt haben, und nichts wird versendet, bevor Sie es freigeben.",
+      "Die Anfrage Ihres Kunden muss nicht auf Ihrem Schreibtisch liegen bleiben. Leiten Sie sie weiter, und wir machen aus dem, was Sie bereits bestätigt haben, eine Antwort, die bereit für Ihre Freigabe ist.",
     steps: {
       label: "So funktioniert es",
       title: "Drei Schritte von der Anfrage zur freigegebenen Antwort.",

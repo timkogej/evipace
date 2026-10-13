@@ -447,14 +447,7 @@
   content: "";
 }
 
-/* ...and their title is struck through from left to right. */
-.panelRow:not([data-tone="open"]) .panelText strong {
-  justify-self: start;
-  background: linear-gradient(currentColor, currentColor) 0 56% / calc(var(--t) * 100%) 1.5px no-repeat;
-  color: color-mix(in srgb, var(--ev-muted) calc(var(--t) * 100%), var(--ev-charcoal));
-}
-
-/* The step that needs the client's input is not struck: it lights up. */
+/* The step that needs the client's input lights up instead of being ticked. */
 .panelRow[data-tone="open"] {
   margin-inline: calc(var(--ev-s-3) * -1);
   border-radius: var(--ev-r-sm);

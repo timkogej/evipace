@@ -7,7 +7,7 @@ import { ScrollProgress } from "./ScrollProgress";
  * its orange folded corner behind a status panel. Not a screenshot of software.
  *
  * The stage reports its scroll progress as `--p`. As the visitor scrolls, the
- * finished steps are ticked green and struck through one after another, and
+ * finished steps are ticked green one after another, and
  * the step that needs the client's input is highlighted instead. Without
  * JavaScript or with reduced motion the panel shows its finished state.
  */

@@ -1,6 +1,6 @@
-import { ArrowRight } from "lucide-react";
-import { ButtonLink } from "../ButtonLink";
-import { Reveal } from "../Reveal";
+import Link from "next/link";
+import h from "../HomeLandingPage.module.css";
+import { Band, Head, Steps } from "../service-landing/Blocks";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -30,51 +30,18 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="section-padding bg-white" id="ablauf">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Ablauf</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            So funktioniert die Bearbeitung
-          </h2>
-        </Reveal>
-
-        <div className="relative mt-12">
-          <div className="absolute left-6 top-0 hidden h-full w-px bg-[rgba(21,21,21,0.13)] md:block" />
-          <div className="grid gap-5">
-            {steps.map((step, index) => (
-              <Reveal
-                className="relative grid gap-5 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 shadow-[0_14px_45px_rgba(21,21,21,0.045)] md:ml-16 md:grid-cols-[11rem_1fr]"
-                delay={index * 0.06}
-                key={step.title}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="type-number font-display text-orange">
-                    {step.number}
-                  </span>
-                  {index < steps.length - 1 ? (
-                    <ArrowRight
-                      aria-hidden="true"
-                      className="hidden h-4 w-4 text-muted md:block"
-                    />
-                  ) : null}
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-ink">{step.title}</h3>
-                  <p className="mt-2 leading-7 text-muted">{step.body}</p>
-                  {step.cta ? (
-                    <div className="mt-5">
-                      <ButtonLink href={SEND_REQUEST_HREF}>
-                        ESG-Anfrage senden
-                      </ButtonLink>
-                    </div>
-                  ) : null}
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    <Band id="ablauf">
+      <Head eyebrow="Ablauf" title="So funktioniert die Bearbeitung" />
+      <Steps
+        items={steps.map((step) => ({
+          ...step,
+          extra: step.cta ? (
+            <Link className={h.textLink} href={SEND_REQUEST_HREF}>
+              ESG-Anfrage senden<span aria-hidden="true">→</span>
+            </Link>
+          ) : undefined
+        }))}
+      />
+    </Band>
   );
 }

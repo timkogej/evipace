@@ -16,6 +16,7 @@ import { ScopeData } from "@/components/evipace/vsme-nachhaltigkeitsbericht/Scop
 import { TargetCompanies } from "@/components/evipace/vsme-nachhaltigkeitsbericht/TargetCompanies";
 import { TrustStatement } from "@/components/evipace/vsme-nachhaltigkeitsbericht/TrustStatement";
 import { ValueChainCap } from "@/components/evipace/vsme-nachhaltigkeitsbericht/ValueChainCap";
+import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
@@ -71,7 +72,7 @@ export default async function VsmeNachhaltigkeitsberichtPage({
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <main>
+      <ServiceMain>
         <LandingHero />
         <DataFoundation />
         <ReportContents />
@@ -90,7 +91,7 @@ export default async function VsmeNachhaltigkeitsberichtPage({
         <Faq />
         <TrustStatement />
         <LandingFinalCTA />
-      </main>
+      </ServiceMain>
     </>
   );
 }

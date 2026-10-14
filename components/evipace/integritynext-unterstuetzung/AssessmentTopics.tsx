@@ -5,7 +5,7 @@ import {
   Scale,
   ShoppingCart
 } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Items, Prose } from "../service-landing/Blocks";
 
 const topics = [
   {
@@ -71,62 +71,27 @@ const topics = [
 
 export function AssessmentTopics() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Assessment-Themen</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Welche Themen können in IntegrityNext relevant sein?
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            IntegrityNext deckt unterschiedliche Nachhaltigkeits- und
-            Compliance-Themen ab. Welche Assessments Ihr Unternehmen
-            tatsächlich bearbeiten soll, hängt von der jeweiligen
-            Kundenanforderung ab. Die Plattform nennt unter anderem
-            Supply-Chain-Due-Diligence, Produkt- und Material-Compliance,
-            Carbon-Themen, Lieferkettentransparenz und
-            Nachhaltigkeitsberichterstattung; im Supplier Helpdesk gibt es
-            zudem spezifische Assessment-Leitfäden, etwa zu Konfliktmineralien
-            und EUDR.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {topics.map((topic, index) => (
-            <Reveal
-              className={`rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift ${
-                index === topics.length - 1 ? "lg:col-span-2" : ""
-              }`}
-              delay={index * 0.05}
-              key={topic.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-                <topic.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {topic.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{topic.intro}</p>
-              <ul className="mt-4 space-y-2">
-                {topic.items.map((item) => (
-                  <li
-                    className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                    key={item}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
+    <Band>
+      <Head
+        eyebrow="Assessment-Themen"
+        lead="IntegrityNext deckt unterschiedliche Nachhaltigkeits- und Compliance-Themen ab. Welche Assessments Ihr Unternehmen tatsächlich bearbeiten soll, hängt von der jeweiligen Kundenanforderung ab. Die Plattform nennt unter anderem Supply-Chain-Due-Diligence, Produkt- und Material-Compliance, Carbon-Themen, Lieferkettentransparenz und Nachhaltigkeitsberichterstattung; im Supplier Helpdesk gibt es zudem spezifische Assessment-Leitfäden, etwa zu Konfliktmineralien und EUDR."
+        title="Welche Themen können in IntegrityNext relevant sein?"
+      />
+      <CardGrid>
+        {topics.map((topic) => (
+          <Card icon={topic.icon} key={topic.title} title={topic.title}>
+            <p>{topic.intro}</p>
+            <Items items={topic.items} />
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
+        <p>
           Nicht jedes Unternehmen muss jedes dieser Themen bearbeiten.
           Entscheidend sind die Assessments, die für Ihr Profil tatsächlich
           angefordert wurden.
-        </Reveal>
-      </div>
-    </section>
+        </p>
+      </Prose>
+    </Band>
   );
 }

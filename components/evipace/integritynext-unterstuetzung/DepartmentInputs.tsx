@@ -6,7 +6,7 @@ import {
   Scale,
   Users
 } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Items, Prose } from "../service-landing/Blocks";
 
 const departments = [
   {
@@ -86,54 +86,27 @@ const departments = [
 
 export function DepartmentInputs() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Interne Koordination</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Wir bringen die richtigen Informationen aus Ihrem Unternehmen
-            zusammen.
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            IntegrityNext-Themen liegen selten vollständig bei einer einzigen
-            Person.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {departments.map((department, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 shadow-lift"
-              delay={index * 0.05}
-              key={department.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-orange shadow-[0_6px_18px_rgba(21,21,21,0.08)]">
-                <department.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {department.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{department.intro}</p>
-              <ul className="mt-4 space-y-2">
-                {department.items.map((item) => (
-                  <li
-                    className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                    key={item}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
+    <Band tone="tinted">
+      <Head
+        eyebrow="Interne Koordination"
+        lead="IntegrityNext-Themen liegen selten vollständig bei einer einzigen Person."
+        title="Wir bringen die richtigen Informationen aus Ihrem Unternehmen zusammen."
+      />
+      <CardGrid>
+        {departments.map((department) => (
+          <Card icon={department.icon} key={department.title} title={department.title}>
+            <p>{department.intro}</p>
+            <Items items={department.items} />
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
+        <p>
           Sie müssen nicht zuerst selbst koordinieren, welche Abteilung welche
           Information liefern soll. Wir strukturieren den Bedarf entlang der
           angeforderten Assessments.
-        </Reveal>
-      </div>
-    </section>
+        </p>
+      </Prose>
+    </Band>
   );
 }

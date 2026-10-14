@@ -6,7 +6,7 @@ import {
   Users,
   Zap
 } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Items } from "../service-landing/Blocks";
 
 const categories = [
   {
@@ -96,53 +96,21 @@ const categories = [
 
 export function TypicalRequests() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Typische Inhalte</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Was Kunden typischerweise anfordern
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Welche Informationen benötigt werden, hängt vom jeweiligen Kunden,
-            der Branche und der Position in der Lieferkette ab. Bestimmte
-            Themen treten jedoch besonders häufig auf.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((category, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 shadow-lift"
-              delay={index * 0.05}
-              key={category.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-orange shadow-[0_6px_18px_rgba(21,21,21,0.08)]">
-                <category.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {category.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{category.intro}</p>
-              <ul className="mt-4 space-y-2">
-                {category.items.map((item) => (
-                  <li
-                    className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                    key={item}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              {category.note ? (
-                <p className="mt-4 text-sm leading-6 text-[rgba(21,21,21,0.58)]">
-                  {category.note}
-                </p>
-              ) : null}
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Band>
+      <Head
+        eyebrow="Typische Inhalte"
+        lead="Welche Informationen benötigt werden, hängt vom jeweiligen Kunden, der Branche und der Position in der Lieferkette ab. Bestimmte Themen treten jedoch besonders häufig auf."
+        title="Was Kunden typischerweise anfordern"
+      />
+      <CardGrid>
+        {categories.map((category) => (
+          <Card icon={category.icon} key={category.title} title={category.title}>
+            <p>{category.intro}</p>
+            <Items items={category.items} />
+            {category.note ? <p>{category.note}</p> : null}
+          </Card>
+        ))}
+      </CardGrid>
+    </Band>
   );
 }

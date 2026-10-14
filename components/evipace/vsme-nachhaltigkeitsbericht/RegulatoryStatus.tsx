@@ -2,7 +2,7 @@ import { voluntaryStandardStatus } from "@/lib/seo/voluntary-standard-status";
 import { primarySources } from "@/lib/seo/primary-sources";
 import { SourceNote } from "../trust/SourceNote";
 import { FileText } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Prose } from "../service-landing/Blocks";
 
 const statusCards = [
   {
@@ -21,41 +21,27 @@ const statusCards = [
 
 export function RegulatoryStatus() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Regulatorischer Stand</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            VSME, Voluntary Standard und 2026: Was gilt aktuell?
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Der europäische Rahmen für freiwillige
-            Nachhaltigkeitsberichterstattung wurde 2026 weiterentwickelt.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {statusCards.map((card, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift"
-              delay={index * 0.06}
-              key={card.title}
-            >
-              <FileText aria-hidden="true" className="h-5 w-5 text-orange" />
-              <h3 className="mt-5 text-lg font-bold text-ink">{card.title}</h3>
-              <p className="mt-3 leading-7 text-muted">{card.body}</p>
-            </Reveal>
-          ))}
-        </div>
-
+    <Band>
+      <Head
+        eyebrow="Regulatorischer Stand"
+        lead="Der europäische Rahmen für freiwillige Nachhaltigkeitsberichterstattung wurde 2026 weiterentwickelt."
+        title="VSME, Voluntary Standard und 2026: Was gilt aktuell?"
+      />
+      <CardGrid>
+        {statusCards.map((card) => (
+          <Card icon={FileText} key={card.title} title={card.title}>
+            <p>{card.body}</p>
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
         <SourceNote locale="de" sources={[primarySources.voluntaryStandardRegulation]} />
-
-        <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
+        <p>
           Evipace richtet neue Projekte am jeweils aktuellen europäischen Rahmen
           aus und berücksichtigt den Übergang vom bisherigen VSME zum neuen
           Voluntary Standard.
-        </Reveal>
-      </div>
-    </section>
+        </p>
+      </Prose>
+    </Band>
   );
 }

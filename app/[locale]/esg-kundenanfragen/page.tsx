@@ -12,6 +12,7 @@ import { RequestIntro } from "@/components/evipace/esg-kundenanfragen/RequestInt
 import { TargetCompanies } from "@/components/evipace/esg-kundenanfragen/TargetCompanies";
 import { TaskTranslation } from "@/components/evipace/esg-kundenanfragen/TaskTranslation";
 import { TypicalRequests } from "@/components/evipace/esg-kundenanfragen/TypicalRequests";
+import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
@@ -64,7 +65,7 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <main>
+      <ServiceMain>
         <LandingHero />
         <RequestIntro />
         <Deliverables />
@@ -79,7 +80,7 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
         <RelatedQuestionnaire />
         <Faq />
         <LandingFinalCTA />
-      </main>
+      </ServiceMain>
     </>
   );
 }

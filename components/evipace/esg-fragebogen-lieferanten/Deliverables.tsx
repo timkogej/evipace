@@ -1,5 +1,5 @@
 import { FileEdit, Link2, CircleAlert, Calculator, History } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head } from "../service-landing/Blocks";
 
 const deliverables = [
   {
@@ -31,63 +31,37 @@ const deliverables = [
 
 export function Deliverables() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Ergebnis</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Was Sie am Ende erhalten
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Das Ziel ist nicht noch ein zusätzliches ESG-Dokument, das intern
-            niemand verwendet. Sie erhalten eine strukturierte Grundlage für
-            die konkrete Anfrage Ihres Kunden.
+    <Band tone="tinted">
+      <Head
+        eyebrow="Ergebnis"
+        lead="Das Ziel ist nicht noch ein zusätzliches ESG-Dokument, das intern niemand verwendet. Sie erhalten eine strukturierte Grundlage für die konkrete Anfrage Ihres Kunden."
+        title="Was Sie am Ende erhalten"
+      />
+      <CardGrid>
+        {deliverables.map((item) => (
+          <Card icon={item.icon} key={item.title} title={item.title}>
+            <p>{item.body}</p>
+          </Card>
+        ))}
+      </CardGrid>
+      <CardGrid columns={1}>
+        <Card title="Klarheit darüber, was Evipace leistet">
+          <p>
+            Evipace unterstützt Unternehmen bei der operativen Vorbereitung
+            von ESG-Daten, Fragebögen, Nachweisen und Dokumentation.
           </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {deliverables.map((item, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift"
-              delay={index * 0.05}
-              key={item.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-                <item.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {item.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{item.body}</p>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal
-          className="mt-10 max-w-3xl rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"
-          delay={0.15}
-        >
-          <h3 className="text-2xl font-bold text-ink sm:text-3xl">
-            Klarheit darüber, was Evipace leistet
-          </h3>
-          <div className="mt-5 space-y-4 text-lg leading-8 text-muted">
-            <p>
-              Evipace unterstützt Unternehmen bei der operativen Vorbereitung
-              von ESG-Daten, Fragebögen, Nachweisen und Dokumentation.
-            </p>
-            <p>
-              Evipace ist keine Zertifizierungs- oder Prüfgesellschaft, führt
-              keine gesetzliche Abschluss- oder Nachhaltigkeitsprüfung durch
-              und bietet keine Rechtsberatung.
-            </p>
-            <p>
-              Eine bestimmte ESG-Bewertung, Zertifizierung oder Akzeptanz
-              durch einen Kunden oder eine externe Plattform kann nicht
-              garantiert werden.
-            </p>
-          </div>
-        </Reveal>
-      </div>
-    </section>
+          <p>
+            Evipace ist keine Zertifizierungs- oder Prüfgesellschaft, führt
+            keine gesetzliche Abschluss- oder Nachhaltigkeitsprüfung durch
+            und bietet keine Rechtsberatung.
+          </p>
+          <p>
+            Eine bestimmte ESG-Bewertung, Zertifizierung oder Akzeptanz
+            durch einen Kunden oder eine externe Plattform kann nicht
+            garantiert werden.
+          </p>
+        </Card>
+      </CardGrid>
+    </Band>
   );
 }

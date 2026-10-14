@@ -1,5 +1,5 @@
 import { ClipboardCheck } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Items, Prose } from "../service-landing/Blocks";
 
 const checks = [
   "den vorgesehenen Anwendungsfall",
@@ -11,63 +11,33 @@ const checks = [
 
 export function MethodologyStandards() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Methodischer Stand</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Wir arbeiten mit dem aktuellen methodischen Stand.
-          </h2>
-          <div className="mt-8 space-y-5 text-lg leading-8 text-muted">
-            <p>
-              Standards, Leitlinien und Emissionsfaktoren entwickeln sich
-              weiter.
-            </p>
-            <p>
-              Deshalb sollte eine Berechnung nicht auf einer dauerhaft
-              festgeschriebenen internen Tabelle beruhen, die über Jahre
-              unverändert weiterverwendet wird.
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal
-          className="mt-10 rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"
-          delay={0.08}
-        >
-          <div className="flex items-start gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-              <ClipboardCheck aria-hidden="true" className="h-5 w-5" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-ink">
-                Bei neuen Berechnungen prüfen wir:
-              </h3>
-              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-                {checks.map((check) => (
-                  <li
-                    className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                    key={check}
-                  >
-                    {check}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.12}>
-          <p>
-            Laufende oder angekündigte Änderungen an Standards behandeln wir
-            nicht als bereits geltende Anforderungen.
-          </p>
-          <p>
-            So bleibt nachvollziehbar, auf welchem methodischen Stand eine
-            Berechnung erstellt wurde.
-          </p>
-        </Reveal>
-      </div>
-    </section>
+    <Band>
+      <Head eyebrow="Methodischer Stand" title="Wir arbeiten mit dem aktuellen methodischen Stand.">
+        <p>
+          Standards, Leitlinien und Emissionsfaktoren entwickeln sich
+          weiter.
+        </p>
+        <p>
+          Deshalb sollte eine Berechnung nicht auf einer dauerhaft
+          festgeschriebenen internen Tabelle beruhen, die über Jahre
+          unverändert weiterverwendet wird.
+        </p>
+      </Head>
+      <CardGrid columns={1}>
+        <Card icon={ClipboardCheck} title="Bei neuen Berechnungen prüfen wir:">
+          <Items items={checks} />
+        </Card>
+      </CardGrid>
+      <Prose>
+        <p>
+          Laufende oder angekündigte Änderungen an Standards behandeln wir
+          nicht als bereits geltende Anforderungen.
+        </p>
+        <p>
+          So bleibt nachvollziehbar, auf welchem methodischen Stand eine
+          Berechnung erstellt wurde.
+        </p>
+      </Prose>
+    </Band>
   );
 }

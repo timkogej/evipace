@@ -6,7 +6,7 @@ import {
   Link2,
   Rows3
 } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head } from "../service-landing/Blocks";
 
 const deliverables = [
   {
@@ -43,37 +43,19 @@ const deliverables = [
 
 export function Deliverables() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Ergebnis</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Was Sie von uns zurückbekommen
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Evipace liefert nicht nur eine Liste von ESG-Themen. Das Ergebnis
-            orientiert sich an der konkreten Anfrage Ihres Kunden.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {deliverables.map((item, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift"
-              delay={index * 0.05}
-              key={item.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-                <item.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {item.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{item.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Band tone="tinted">
+      <Head
+        eyebrow="Ergebnis"
+        lead="Evipace liefert nicht nur eine Liste von ESG-Themen. Das Ergebnis orientiert sich an der konkreten Anfrage Ihres Kunden."
+        title="Was Sie von uns zurückbekommen"
+      />
+      <CardGrid>
+        {deliverables.map((item) => (
+          <Card icon={item.icon} key={item.title} title={item.title}>
+            <p>{item.body}</p>
+          </Card>
+        ))}
+      </CardGrid>
+    </Band>
   );
 }

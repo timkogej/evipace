@@ -1,5 +1,5 @@
 import { BarChart3, Database, FileText, ListChecks } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Prose } from "../service-landing/Blocks";
 
 const deliverables = [
   {
@@ -46,40 +46,25 @@ const deliverables = [
 
 export function Deliverables() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Ergebnis</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Was Sie von uns zurückbekommen
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Eine Scope-1-&-2-Berechnung sollte mehr liefern als nur eine
-            einzelne Zahl.
-          </p>
-        </Reveal>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {deliverables.map((item, index) => (
-            <Reveal
-              className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-6 shadow-[0_12px_35px_rgba(21,21,21,0.04)]"
-              delay={index * 0.04}
-              key={item.title}
-            >
-              <item.icon aria-hidden="true" className="h-5 w-5 text-orange" />
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-muted">{item.body}</p>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
+    <Band tone="tinted">
+      <Head
+        eyebrow="Ergebnis"
+        lead="Eine Scope-1-&-2-Berechnung sollte mehr liefern als nur eine einzelne Zahl."
+        title="Was Sie von uns zurückbekommen"
+      />
+      <CardGrid>
+        {deliverables.map((item) => (
+          <Card icon={item.icon} key={item.title} title={item.title}>
+            <p>{item.body}</p>
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
+        <p>
           Sie sehen nicht nur, wie viele Tonnen CO₂e entstanden sind - sondern
           auch, wie die Zahl berechnet wurde.
-        </Reveal>
-      </div>
-    </section>
+        </p>
+      </Prose>
+    </Band>
   );
 }

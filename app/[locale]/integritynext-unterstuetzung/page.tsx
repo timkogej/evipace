@@ -14,6 +14,7 @@ import { RelatedRequirements } from "@/components/evipace/integritynext-unterstu
 import { RequestIntro } from "@/components/evipace/integritynext-unterstuetzung/RequestIntro";
 import { TargetCompanies } from "@/components/evipace/integritynext-unterstuetzung/TargetCompanies";
 import { TrustStatement } from "@/components/evipace/integritynext-unterstuetzung/TrustStatement";
+import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
@@ -69,7 +70,7 @@ export default async function IntegrityNextUnterstuetzungPage({
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <main>
+      <ServiceMain>
         <LandingHero />
         <RequestIntro />
         <ProcessSteps />
@@ -86,7 +87,7 @@ export default async function IntegrityNextUnterstuetzungPage({
         <Faq />
         <TrustStatement />
         <LandingFinalCTA />
-      </main>
+      </ServiceMain>
     </>
   );
 }

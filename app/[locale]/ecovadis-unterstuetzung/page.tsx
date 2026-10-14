@@ -13,6 +13,7 @@ import { ProcessSteps } from "@/components/evipace/ecovadis-unterstuetzung/Proce
 import { RelatedRequirements } from "@/components/evipace/ecovadis-unterstuetzung/RelatedRequirements";
 import { RelevantEvidence } from "@/components/evipace/ecovadis-unterstuetzung/RelevantEvidence";
 import { TargetCompanies } from "@/components/evipace/ecovadis-unterstuetzung/TargetCompanies";
+import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
@@ -69,7 +70,7 @@ export default async function EcoVadisUnterstuetzungPage({
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <main>
+      <ServiceMain>
         <LandingHero />
         <EvidenceIntro />
         <AssessmentPreparation />
@@ -86,7 +87,7 @@ export default async function EcoVadisUnterstuetzungPage({
         <RelatedRequirements />
         <Faq />
         <LandingFinalCTA />
-      </main>
+      </ServiceMain>
     </>
   );
 }

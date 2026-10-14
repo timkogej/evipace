@@ -1,5 +1,5 @@
 import { getServiceBuyerQuestions } from "@/lib/seo/service-buyer-questions";
-import { Reveal } from "../Reveal";
+import { Faq as FaqBlock } from "../service-landing/Blocks";
 
 const faqs = [
   ...getServiceBuyerQuestions("de", "vsmeNachhaltigkeitsbericht"),
@@ -67,29 +67,10 @@ const faqs = [
 
 export function Faq() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Häufige Fragen</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Häufige Fragen zum VSME-Nachhaltigkeitsbericht
-          </h2>
-        </Reveal>
-
-        <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <Reveal delay={index * 0.03} key={faq.question}>
-              <details className="faq-item group">
-                <summary className="faq-question">
-                  {faq.question}
-                  <span aria-hidden="true" className="faq-toggle" />
-                </summary>
-                <p className="faq-answer">{faq.answer}</p>
-              </details>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <FaqBlock
+      eyebrow="Häufige Fragen"
+      items={faqs}
+      title="Häufige Fragen zum VSME-Nachhaltigkeitsbericht"
+    />
   );
 }

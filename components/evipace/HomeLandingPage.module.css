@@ -56,11 +56,11 @@
 }
 
 /* Long German compounds wrap instead of widening cards on narrow screens. */
-.page :where(h2, h3, h4, summary, li, p) {
+.page :where(h2, h3, h4, summary, li, p, dd, dt) {
   overflow-wrap: break-word;
 }
 
-.page[data-locale="de"] :where(h2, h3, h4, summary) {
+.page[data-locale="de"] :where(h2, h3, h4, summary, dd) {
   hyphens: auto;
 }
 
@@ -1026,6 +1026,7 @@
 }
 
 .exampleRow dt {
+  overflow-wrap: anywhere;
   color: var(--ev-orange-700);
   font-size: 0.75rem;
   font-weight: 700;
@@ -1295,7 +1296,7 @@
   }
 
   .exampleRow {
-    grid-template-columns: 8.5rem minmax(0, 1fr);
+    grid-template-columns: 11.5rem minmax(0, 1fr);
   }
 
   .lanes {

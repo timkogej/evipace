@@ -4,7 +4,7 @@ import {
   LayoutGrid,
   MessageSquare
 } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head } from "../service-landing/Blocks";
 
 const types = [
   {
@@ -31,37 +31,19 @@ const types = [
 
 export function QuestionnaireTypes() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Formate</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Welche ESG-Fragebögen wir unterstützen
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Nicht jeder Kunde verwendet denselben Prozess. Deshalb arbeiten
-            wir nicht nur mit einem bestimmten Fragebogenformat.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {types.map((type, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 shadow-lift"
-              delay={index * 0.06}
-              key={type.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-orange shadow-[0_6px_18px_rgba(21,21,21,0.08)]">
-                <type.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-xl font-bold text-ink">
-                {type.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{type.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Band>
+      <Head
+        eyebrow="Formate"
+        lead="Nicht jeder Kunde verwendet denselben Prozess. Deshalb arbeiten wir nicht nur mit einem bestimmten Fragebogenformat."
+        title="Welche ESG-Fragebögen wir unterstützen"
+      />
+      <CardGrid columns={2}>
+        {types.map((type) => (
+          <Card icon={type.icon} key={type.title} title={type.title}>
+            <p>{type.body}</p>
+          </Card>
+        ))}
+      </CardGrid>
+    </Band>
   );
 }

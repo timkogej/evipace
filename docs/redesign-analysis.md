@@ -348,6 +348,13 @@ Prenovljena v sredinski postavitvi domače strani; objekt z besedili (EN in DE) 
 
 Fotografije (tudi ljudi) so odstranjene. Test `about-landing-page.test.mjs` je prilagojen (namesto fotografij preverja, da jih ni).
 
+### C2d. Storitvene strani (EN 6, DE 6)
+
+- **EN** (`/en/esg-customer-requests`, `/en/esg-questionnaire-support`, `/en/scope-1-2-calculation`, `/en/ecovadis-support`, `/en/integritynext-support`, `/en/vsme-sustainability-report`): skupni prikaz `EnglishCommercialServicePage.tsx` je prepisan v sredinsko postavitev; `content.ts` je nespremenjen.
+- **DE** (`/de/esg-kundenanfragen`, `/de/esg-fragebogen-lieferanten`, `/de/ecovadis-unterstuetzung`, `/de/integritynext-unterstuetzung`, `/de/vsme-nachhaltigkeitsbericht`, `/de/scope-1-2-berechnung`): vsaka komponenta obdrži svoje podatke in besedila; postavitev gre skozi skupne gradnike v `components/evipace/service-landing/Blocks.tsx` (hero z drobtinico, pas, naslov, besedilo, kartice, seznami, koraki, FAQ, statusna plošča, formula). Primerjava z gitom: izgubljena so le koda in opisi odstranjenih fotografij.
+- Skupno: hero z drobtinico na sredini, plošča s koraki oziroma statusom (kjer je bila), kartice z ikonami, seznami s kljukicami, koraki kot na domači strani, temni pas za meje in neodvisnost, FAQ in zaključni poziv kot na domači strani. Fotografije so odstranjene.
+- Skupni gradniki (razpiralo, primer predaje, zaključni poziv) prinesejo svoje barvne žetone (`.tokens`).
+
 ### C3. Skupni elementi
 
 | Element | Sprememba |

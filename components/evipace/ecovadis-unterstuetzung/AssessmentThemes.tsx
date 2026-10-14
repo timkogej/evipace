@@ -1,5 +1,5 @@
 import { Factory, HeartHandshake, Scale, ShoppingCart } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Items, Prose } from "../service-landing/Blocks";
 
 const themes = [
   {
@@ -59,54 +59,27 @@ const themes = [
 
 export function AssessmentThemes() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Themenbereiche</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Die vier Themen der EcoVadis-Bewertung
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Welche Fragen konkret gestellt werden, hängt unter anderem von
-            Ihrem Unternehmensprofil ab. Die Bewertung orientiert sich jedoch
-            an vier zentralen Themenbereichen.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {themes.map((theme, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 shadow-lift"
-              delay={index * 0.05}
-              key={theme.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-orange shadow-[0_6px_18px_rgba(21,21,21,0.08)]">
-                <theme.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-xl font-bold text-ink">
-                {theme.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{theme.intro}</p>
-              <ul className="mt-4 space-y-2">
-                {theme.items.map((item) => (
-                  <li
-                    className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                    key={item}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
+    <Band>
+      <Head
+        eyebrow="Themenbereiche"
+        lead="Welche Fragen konkret gestellt werden, hängt unter anderem von Ihrem Unternehmensprofil ab. Die Bewertung orientiert sich jedoch an vier zentralen Themenbereichen."
+        title="Die vier Themen der EcoVadis-Bewertung"
+      />
+      <CardGrid columns={2}>
+        {themes.map((theme) => (
+          <Card icon={theme.icon} key={theme.title} title={theme.title}>
+            <p>{theme.intro}</p>
+            <Items items={theme.items} />
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
+        <p>
           Der konkrete Umfang ist nicht für jedes Unternehmen identisch.
           Deshalb arbeiten wir mit Ihrem tatsächlichen Fragebogen und Ihren
           vorhandenen Unterlagen - nicht mit einer pauschalen Checkliste.
-        </Reveal>
-      </div>
-    </section>
+        </p>
+      </Prose>
+    </Band>
   );
 }

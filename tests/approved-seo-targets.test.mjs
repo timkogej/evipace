@@ -91,7 +91,9 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
   for (const [registry, title, source, h1, h1Source = source] of expected) {
     assert.ok(registry.includes(title), title);
     assert.ok(normalizeWhitespace(source).includes(h1), h1);
-    assert.equal((h1Source.match(/<h1\b/g) ?? []).length, 1, h1);
+    // Rebuilt German service heroes render their single <h1> through
+    // ServiceHero (components/evipace/service-landing/Blocks.tsx).
+    assert.equal((h1Source.match(/<h1\b|<ServiceHero\b/g) ?? []).length, 1, h1);
   }
 });
 

@@ -1,5 +1,5 @@
 import { MapPinned, ShoppingCart } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Prose } from "../service-landing/Blocks";
 
 const methods = [
   {
@@ -16,56 +16,36 @@ const methods = [
 
 export function ScopeTwoMethods() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Scope-2-Methode</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Location-based oder market-based? Die Methode muss zum
-            Anwendungsfall passen.
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Bei Scope 2 können unterschiedliche Berechnungsperspektiven
-            relevant sein.
-          </p>
-        </Reveal>
-
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {methods.map((method, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift"
-              delay={index * 0.06}
-              key={method.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-                <method.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-xl font-bold text-ink">
-                {method.title}
-              </h3>
-              <p className="mt-4 leading-7 text-muted">{method.body}</p>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-muted" delay={0.12}>
-          <p>
-            Nicht jeder Anwendungsfall verlangt dieselbe Darstellung. Für
-            bestimmte Berichtsanforderungen kann eine location-based Berechnung
-            ausreichen oder ausdrücklich vorgesehen sein. In anderen Fällen
-            kann zusätzlich eine market-based Betrachtung relevant sein.
-          </p>
-          <p>
-            Wir legen deshalb nicht einfach eine Methode pauschal fest, sondern
-            richten die Berechnung am vorgesehenen Verwendungszweck aus.
-          </p>
-          <p>
-            Für VSME beziehungsweise den aktuellen freiwilligen europäischen
-            Berichtsrahmen ist insbesondere die location-based
-            Scope-2-Betrachtung relevant.
-          </p>
-        </Reveal>
-      </div>
-    </section>
+    <Band>
+      <Head
+        eyebrow="Scope-2-Methode"
+        lead="Bei Scope 2 können unterschiedliche Berechnungsperspektiven relevant sein."
+        title="Location-based oder market-based? Die Methode muss zum Anwendungsfall passen."
+      />
+      <CardGrid columns={2}>
+        {methods.map((method) => (
+          <Card icon={method.icon} key={method.title} title={method.title}>
+            <p>{method.body}</p>
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
+        <p>
+          Nicht jeder Anwendungsfall verlangt dieselbe Darstellung. Für
+          bestimmte Berichtsanforderungen kann eine location-based Berechnung
+          ausreichen oder ausdrücklich vorgesehen sein. In anderen Fällen
+          kann zusätzlich eine market-based Betrachtung relevant sein.
+        </p>
+        <p>
+          Wir legen deshalb nicht einfach eine Methode pauschal fest, sondern
+          richten die Berechnung am vorgesehenen Verwendungszweck aus.
+        </p>
+        <p>
+          Für VSME beziehungsweise den aktuellen freiwilligen europäischen
+          Berichtsrahmen ist insbesondere die location-based
+          Scope-2-Betrachtung relevant.
+        </p>
+      </Prose>
+    </Band>
   );
 }

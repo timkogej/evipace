@@ -1,5 +1,5 @@
 import { RefreshCw, Sparkles } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, Card, CardGrid, Head, Items } from "../service-landing/Blocks";
 
 const firstAssessmentItems = [
   "welche Informationen benötigt werden",
@@ -18,80 +18,39 @@ const reassessmentItems = [
 
 export function AssessmentSituation() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Ausgangslage</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Erstbewertung oder erneute Bewertung?
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Die Ausgangssituation ist nicht immer dieselbe.
+    <Band>
+      <Head
+        eyebrow="Ausgangslage"
+        lead="Die Ausgangssituation ist nicht immer dieselbe."
+        title="Erstbewertung oder erneute Bewertung?"
+      />
+      <CardGrid columns={2}>
+        <Card icon={Sparkles} title="Erste EcoVadis-Bewertung">
+          <p>
+            Bei einer ersten Bewertung besteht die größte Herausforderung oft
+            darin, überhaupt zu verstehen:
           </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          <Reveal className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-              <Sparkles aria-hidden="true" className="h-5 w-5" />
-            </div>
-            <h3 className="mt-5 text-2xl font-bold text-ink">
-              Erste EcoVadis-Bewertung
-            </h3>
-            <p className="mt-4 leading-7 text-muted">
-              Bei einer ersten Bewertung besteht die größte Herausforderung oft
-              darin, überhaupt zu verstehen:
-            </p>
-            <ul className="mt-4 space-y-2">
-              {firstAssessmentItems.map((item) => (
-                <li
-                  className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                  key={item}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 leading-7 text-muted">
-              Evipace hilft dabei, aus den vorhandenen
-              Unternehmensinformationen eine klare Arbeitsgrundlage für das
-              Assessment zu machen.
-            </p>
-          </Reveal>
-
-          <Reveal
-            className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift"
-            delay={0.08}
-          >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-              <RefreshCw aria-hidden="true" className="h-5 w-5" />
-            </div>
-            <h3 className="mt-5 text-2xl font-bold text-ink">
-              Erneute Bewertung
-            </h3>
-            <p className="mt-4 leading-7 text-muted">
-              Wenn bereits eine frühere Scorecard vorhanden ist, kann die
-              Vorbereitung gezielter erfolgen. Wir können beispielsweise
-              prüfen:
-            </p>
-            <ul className="mt-4 space-y-2">
-              {reassessmentItems.map((item) => (
-                <li
-                  className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                  key={item}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 leading-7 text-muted">
-              Ziel ist eine besser vorbereitete und nachvollziehbar
-              dokumentierte Einreichung - nicht die Garantie einer bestimmten
-              Punktzahl.
-            </p>
-          </Reveal>
-        </div>
-      </div>
-    </section>
+          <Items items={firstAssessmentItems} />
+          <p>
+            Evipace hilft dabei, aus den vorhandenen
+            Unternehmensinformationen eine klare Arbeitsgrundlage für das
+            Assessment zu machen.
+          </p>
+        </Card>
+        <Card icon={RefreshCw} title="Erneute Bewertung">
+          <p>
+            Wenn bereits eine frühere Scorecard vorhanden ist, kann die
+            Vorbereitung gezielter erfolgen. Wir können beispielsweise
+            prüfen:
+          </p>
+          <Items items={reassessmentItems} />
+          <p>
+            Ziel ist eine besser vorbereitete und nachvollziehbar
+            dokumentierte Einreichung - nicht die Garantie einer bestimmten
+            Punktzahl.
+          </p>
+        </Card>
+      </CardGrid>
+    </Band>
   );
 }

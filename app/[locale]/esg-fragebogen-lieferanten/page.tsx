@@ -10,6 +10,7 @@ import { ProcessBreakdown } from "@/components/evipace/esg-fragebogen-lieferante
 import { QuestionnaireTypes } from "@/components/evipace/esg-fragebogen-lieferanten/QuestionnaireTypes";
 import { RequirementCategories } from "@/components/evipace/esg-fragebogen-lieferanten/RequirementCategories";
 import { TargetCompanies } from "@/components/evipace/esg-fragebogen-lieferanten/TargetCompanies";
+import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
@@ -64,7 +65,7 @@ export default async function EsgFragebogenLieferantenPage({
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <main>
+      <ServiceMain>
         <LandingHero />
         <ProblemIntro />
         <Deliverables />
@@ -78,7 +79,7 @@ export default async function EsgFragebogenLieferantenPage({
         <TargetCompanies />
         <Faq />
         <LandingFinalCTA />
-      </main>
+      </ServiceMain>
     </>
   );
 }

@@ -1,53 +1,35 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, CardGrid, Head, LinkCard, Prose } from "../service-landing/Blocks";
 
 export function RelatedQuestionnaire() {
   return (
-    <section className="section-padding bg-white">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Konkretere Anfrage</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Wenn die Kundenanfrage konkreter wird
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Nicht jede ESG-Anforderung sieht gleich aus.
-          </p>
-        </Reveal>
-
-        <Reveal
-          className="mt-10 rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-[var(--paper)] p-7 shadow-lift sm:p-9"
-          delay={0.08}
-        >
-          <h3 className="text-2xl font-bold text-ink">
-            ESG-Fragebogen für Lieferanten
-          </h3>
-          <div className="mt-5 space-y-4 text-lg leading-8 text-muted">
-            <p>
+    <Band>
+      <Head
+        eyebrow="Konkretere Anfrage"
+        lead="Nicht jede ESG-Anforderung sieht gleich aus."
+        title="Wenn die Kundenanfrage konkreter wird"
+      />
+      <CardGrid columns={1}>
+        <LinkCard
+          body={
+            <>
               Hat Ihr Kunde einen strukturierten ESG- oder
-              Nachhaltigkeitsfragebogen geschickt?
-            </p>
-            <p>
-              Dann unterstützen wir bei der Vorbereitung der Antworten, Daten
-              und Nachweise entlang der einzelnen Fragen.
-            </p>
-          </div>
-          <Link
-            className="orange-link mt-6 inline-flex items-center gap-2 text-sm"
-            href="/de/esg-fragebogen-lieferanten"
-          >
-            ESG-Fragebogen für Lieferanten
-            <ArrowRight aria-hidden="true" className="h-4 w-4" />
-          </Link>
-        </Reveal>
-
-        <Reveal className="mt-9 max-w-3xl text-lg leading-8 text-muted" delay={0.14}>
+              Nachhaltigkeitsfragebogen geschickt? Dann unterstützen wir bei der
+              Vorbereitung der Antworten, Daten und Nachweise entlang der
+              einzelnen Fragen.
+            </>
+          }
+          href="/de/esg-fragebogen-lieferanten"
+          more="ESG-Fragebogen für Lieferanten"
+          title="ESG-Fragebogen für Lieferanten"
+        />
+      </CardGrid>
+      <Prose>
+        <p>
           Andere Anforderungen können beispielsweise aus standardisierten
           ESG-Plattformen, Emissionsabfragen oder Reporting-Anforderungen
           entstehen. Dafür entstehen separate, spezialisierte Leistungsseiten.
-        </Reveal>
-      </div>
-    </section>
+        </p>
+      </Prose>
+    </Band>
   );
 }

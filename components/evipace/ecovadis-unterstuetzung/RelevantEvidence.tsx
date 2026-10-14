@@ -1,6 +1,11 @@
-import { ArrowRight, BadgeCheck, BarChart3, FileStack, ListChecks, ShieldCheck } from "lucide-react";
-import Link from "next/link";
-import { Reveal } from "../Reveal";
+import {
+  BadgeCheck,
+  BarChart3,
+  FileStack,
+  ListChecks,
+  ShieldCheck
+} from "lucide-react";
+import { Band, Card, CardGrid, Head, InlineLink, Items, Prose } from "../service-landing/Blocks";
 
 const evidenceGroups = [
   {
@@ -70,78 +75,41 @@ const evidenceGroups = [
 
 export function RelevantEvidence() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">Dokumente</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Welche Nachweise können relevant sein?
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Je nach Fragebogen und Unternehmenssituation können
-            unterschiedliche Dokumente als Nachweis relevant sein.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {evidenceGroups.map((group, index) => (
-            <Reveal
-              className={`rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift ${
-                index === evidenceGroups.length - 1 ? "lg:col-span-2" : ""
-              }`}
-              delay={index * 0.05}
-              key={group.title}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
-                <group.icon aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-ink">
-                {group.title}
-              </h3>
-              <p className="mt-3 leading-7 text-muted">{group.intro}</p>
-              <ul className="mt-4 space-y-2">
-                {group.items.map((item) => (
-                  <li
-                    className="border-t border-[rgba(21,21,21,0.1)] pt-2 text-sm text-muted"
-                    key={item}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 max-w-3xl text-lg leading-8 text-muted" delay={0.12}>
-          <p>
-            Entscheidend ist nicht die Menge der Dokumente, sondern ihre Relevanz
-            für die jeweilige Aussage. Evipace hilft dabei, vorhandene Unterlagen
-            gezielt zuzuordnen, statt Dokumente ohne klare Funktion hochzuladen.
-          </p>
-          <p className="mt-4">
-            Welche Dokumente EcoVadis als Supporting Evidence berücksichtigt und
-            wie Sie das 55-Dokumente-Limit sinnvoll nutzen, erklären wir in
-            unserem {" "}
-            <Link
-              className="orange-link"
-              href="/de/ressourcen/ecovadis-dokumente-nachweise#evidence-register"
-            >
-              Leitfaden zu EcoVadis-Dokumenten und Nachweisen mit illustrativem Register und leerer Vorlage
-            </Link>
-            .
-          </p>
-        </Reveal>
-        <Reveal className="mt-5" delay={0.14}>
-          <Link
-            className="orange-link inline-flex items-center gap-2 text-sm"
-            href="/de/ressourcen/esg-nachweise-lieferanten"
-          >
+    <Band tone="tinted">
+      <Head
+        eyebrow="Dokumente"
+        lead="Je nach Fragebogen und Unternehmenssituation können unterschiedliche Dokumente als Nachweis relevant sein."
+        title="Welche Nachweise können relevant sein?"
+      />
+      <CardGrid>
+        {evidenceGroups.map((group) => (
+          <Card icon={group.icon} key={group.title} title={group.title}>
+            <p>{group.intro}</p>
+            <Items items={group.items} />
+          </Card>
+        ))}
+      </CardGrid>
+      <Prose>
+        <p>
+          Entscheidend ist nicht die Menge der Dokumente, sondern ihre Relevanz
+          für die jeweilige Aussage. Evipace hilft dabei, vorhandene Unterlagen
+          gezielt zuzuordnen, statt Dokumente ohne klare Funktion hochzuladen.
+        </p>
+        <p>
+          Welche Dokumente EcoVadis als Supporting Evidence berücksichtigt und
+          wie Sie das 55-Dokumente-Limit sinnvoll nutzen, erklären wir in
+          unserem{" "}
+          <InlineLink href="/de/ressourcen/ecovadis-dokumente-nachweise#evidence-register">
+            Leitfaden zu EcoVadis-Dokumenten und Nachweisen mit illustrativem Register und leerer Vorlage
+          </InlineLink>
+          .
+        </p>
+        <p>
+          <InlineLink href="/de/ressourcen/esg-nachweise-lieferanten">
             ESG-Nachweise nach Aussage, Scope und Zeitraum prüfen
-            <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
-          </Link>
-        </Reveal>
-      </div>
-    </section>
+          </InlineLink>
+        </p>
+      </Prose>
+    </Band>
   );
 }

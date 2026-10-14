@@ -1,6 +1,4 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Reveal } from "../Reveal";
+import { Band, CardGrid, Head, LinkCard } from "../service-landing/Blocks";
 
 const relatedLinks = [
   {
@@ -32,39 +30,17 @@ const relatedLinks = [
 
 export function RelatedRequirements() {
   return (
-    <section className="section-padding bg-[var(--warm)]">
-      <div className="site-shell">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Verwendungszwecke</p>
-          <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-            Eine Berechnung, mehrere Verwendungszwecke.
-          </h2>
-          <p className="type-lead mt-7 text-muted">
-            Scope-1- und Scope-2-Werte werden heute in unterschiedlichen
-            ESG-Prozessen benötigt.
-          </p>
-        </Reveal>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {relatedLinks.map((link, index) => (
-            <Reveal
-              className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift"
-              delay={index * 0.05}
-              key={link.href}
-            >
-              <h3 className="text-xl font-bold text-ink">{link.title}</h3>
-              <p className="mt-4 leading-7 text-muted">{link.body}</p>
-              <Link
-                className="orange-link mt-6 inline-flex items-center gap-2 text-sm"
-                href={link.href}
-              >
-                {link.title}
-                <ArrowRight aria-hidden="true" className="h-4 w-4" />
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Band>
+      <Head
+        eyebrow="Verwendungszwecke"
+        lead="Scope-1- und Scope-2-Werte werden heute in unterschiedlichen ESG-Prozessen benötigt."
+        title="Eine Berechnung, mehrere Verwendungszwecke."
+      />
+      <CardGrid>
+        {relatedLinks.map((link) => (
+          <LinkCard body={link.body} href={link.href} key={link.href} more={link.title} title={link.title} />
+        ))}
+      </CardGrid>
+    </Band>
   );
 }

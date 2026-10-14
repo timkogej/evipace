@@ -17,6 +17,7 @@ import { ScopeTwoMethods } from "@/components/evipace/scope-1-2-berechnung/Scope
 import { SourceDataIntro } from "@/components/evipace/scope-1-2-berechnung/SourceDataIntro";
 import { TargetCompanies } from "@/components/evipace/scope-1-2-berechnung/TargetCompanies";
 import { TrustStatement } from "@/components/evipace/scope-1-2-berechnung/TrustStatement";
+import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
@@ -70,7 +71,7 @@ export default async function Scope12BerechnungPage({ params }: PageProps) {
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <main>
+      <ServiceMain>
         <LandingHero />
         <SourceDataIntro />
         <Deliverables />
@@ -90,7 +91,7 @@ export default async function Scope12BerechnungPage({ params }: PageProps) {
         <Faq />
         <TrustStatement />
         <LandingFinalCTA />
-      </main>
+      </ServiceMain>
     </>
   );
 }

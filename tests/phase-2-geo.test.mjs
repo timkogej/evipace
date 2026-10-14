@@ -565,14 +565,24 @@ test("VSME and Scope 1 & 2 reference each other", () => {
    ──────────────────────────────────────────────────────────────────────── */
 
 test("German service pages have matching visible and structured breadcrumbs", async () => {
-  assert.ok(serviceBreadcrumb.includes('aria-label="Brotkrümelnavigation"'));
-  assert.ok(serviceBreadcrumb.includes('aria-current="page"'));
+  // Rebuilt pages render the breadcrumb through ServiceHero (Blocks.tsx);
+  // pages not yet rebuilt still use ServiceBreadcrumb. Both carry the same
+  // accessible name and current-page marker.
+  const blocks = await read("components/evipace/service-landing/Blocks.tsx");
+  for (const source of [serviceBreadcrumb, blocks]) {
+    assert.ok(source.includes('aria-label="Brotkrümelnavigation"'));
+    assert.ok(source.includes('aria-current="page"'));
+  }
 
   for (const [slug, label] of DE_SERVICES) {
     const hero = await read(`components/evipace/${slug}/LandingHero.tsx`);
     const route = await read(`app/[locale]/${slug}/page.tsx`);
 
-    assert.ok(hero.includes(`<ServiceBreadcrumb current="${label}" />`), slug);
+    assert.ok(
+      hero.includes(`<ServiceBreadcrumb current="${label}" />`) ||
+        hero.includes(`breadcrumb="${label}"`),
+      slug
+    );
     assert.ok(route.includes("buildBreadcrumbListSchema(["), slug);
     assert.ok(route.includes('{ name: "Startseite", path: "/de" }'), slug);
     // The visible label and the structured one are the same string.

@@ -10,7 +10,6 @@ import {
   ExternalLink,
   Factory,
   FileCheck2,
-  Link2,
   Recycle,
   ShieldCheck,
   Target,
@@ -18,7 +17,24 @@ import {
   Zap
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -89,18 +105,6 @@ function ExternalSourceLink({ href, children }: { href: string; children: ReactN
   return <a className="inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-[rgba(254,112,1,0.45)] underline-offset-4 transition hover:text-orange" href={href} rel="noreferrer" target="_blank">{children}<ExternalLink aria-hidden="true" className="h-3.5 w-3.5 shrink-0"/></a>;
 }
 
-function BulletList({ items }: { items: string[] }) {
-  return <ul className="mt-6 grid gap-3">{items.map((item) => <li className="flex gap-3 leading-7 text-muted" key={item}><span aria-hidden="true" className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange"/><span>{item}</span></li>)}</ul>;
-}
-
-function ArticleSection({ children, id, number, title }: { children: ReactNode; id: string; number: string; title: string }) {
-  return <section aria-labelledby={`${id}-title`} className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16" id={id}><div className="flex items-start gap-4 sm:gap-6"><span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span><h2 className="type-heading font-display max-w-[24ch]" id={`${id}-title`}>{title}</h2></div><div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div></section>;
-}
-
-function Principle({ label, children }: { label?: string; children: ReactNode }) {
-  return <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">{label ? <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">{label}</p> : null}<p className={`font-display text-[clamp(1.8rem,4vw,3.05rem)] leading-[1.1] ${label ? "mt-4" : ""}`}>{children}</p></div>;
-}
-
 function StatusPill({ status }: { status: string }) {
   return <span className={`inline-flex rounded-full border px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.06em] ${status === "bereit" ? "border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] text-[#b94f00]" : "border-[rgba(21,21,21,0.16)] bg-[rgba(21,21,21,0.05)] text-ink"}`}>{status}</span>;
 }
@@ -114,17 +118,19 @@ function DataMapTable() {
   return <div className="mt-8" data-vsme-data-map><div className="resource-answer-map hidden overflow-hidden rounded-[1.1rem] border border-[rgba(21,21,21,0.13)] bg-white md:block"><div className="overflow-x-auto"><table className="w-full min-w-[960px] border-collapse text-left text-sm"><caption className="sr-only">Beispiel einer praktischen VSME Data Map</caption><thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]"><tr>{headers.map((heading) => <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={heading} scope="col">{heading}</th>)}</tr></thead><tbody>{dataMapRows.map((row, rowIndex) => <tr className="border-b border-[rgba(21,21,21,0.09)] last:border-b-0" key={`${row[0]}-${row[1]}-${rowIndex}`}><th className="px-4 py-5 font-mono text-xs font-bold text-orange" scope="row">{row[0]}</th>{row.slice(1, 5).map((value, index) => <td className="px-4 py-5 text-muted" key={`${value}-${index}`}>{value}</td>)}<td className="px-4 py-5"><StatusPill status={row[5]}/></td></tr>)}</tbody></table></div></div><div className="grid gap-4 md:hidden">{dataMapRows.map((row, rowIndex) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5" key={`${row[0]}-${row[1]}-${rowIndex}`}><div className="flex items-start justify-between gap-3 border-b border-[rgba(21,21,21,0.1)] pb-4"><div><p className="font-mono text-xs font-bold text-orange">{row[0]}</p><h3 className="mt-2 font-bold text-ink">{row[1]}</h3></div><StatusPill status={row[5]}/></div><dl className="mt-4 grid gap-3 text-sm">{headers.slice(2, 5).map((label, index) => <div className="grid grid-cols-[6.9rem_1fr] gap-3" key={label}><dt className="font-semibold text-[rgba(21,21,21,0.56)]">{label}</dt><dd className="min-w-0 break-words text-ink">{row[index + 2]}</dd></div>)}</dl></article>)}</div></div>;
 }
 
-function DataArtwork() {
-  return <div aria-hidden="true" className="resource-hero-art"><svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg"><path d="M68 66H448V592H68V66Z" fill="currentColor" fillOpacity="0.018" stroke="currentColor" strokeWidth="2"/><path d="M68 150H448M68 238H448M68 326H448M68 414H448M68 502H448M176 66V592M324 66V592" stroke="currentColor" strokeOpacity="0.7" strokeWidth="2"/><circle cx="176" cy="150" fill="#FE7001" r="12"/><circle cx="324" cy="326" fill="#FE7001" r="12"/><circle cx="176" cy="502" fill="#FE7001" r="12"/><text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2" x="68" y="40">B1 — B11 · C1 — C9</text></svg><span className="resource-hero-art__code">DATA · OWNER · SOURCE · EVIDENCE</span></div>;
-}
-
 export function VsmeDataGuide() {
-  return <><main id="top"><article><header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28"><DataArtwork/><div className="site-shell relative z-10"><nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"><Link className="transition hover:text-orange" href="/de">Startseite</Link><span aria-hidden="true">/</span><Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link><span aria-hidden="true">/</span><span className="text-ink">VSME-Datenerfassung</span></nav><div className="mt-12 max-w-6xl"><p className="eyebrow">VSME · Datenerfassung</p><h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">VSME: Welche Daten braucht ein Unternehmen für den Nachhaltigkeitsbericht?</h1></div><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16"><div className="type-lead max-w-3xl text-muted"><p>Sie möchten einen VSME-Nachhaltigkeitsbericht erstellen. Dann beginnt die Arbeit normalerweise nicht mit dem Schreiben des Berichts.</p><p className="font-display mt-7 text-3xl leading-tight text-ink">Welche Daten müssen wir überhaupt zusammentragen?</p><p className="mt-6">Ein Teil liegt in der Buchhaltung, ein Teil bei HR. Energieverbräuche stehen auf Rechnungen, Abfalldaten beim Entsorger, Zertifikate beim Qualitätsmanagement und Arbeitssicherheitsinformationen wieder an anderer Stelle.</p><p className="mt-6">Manche Kennzahlen – insbesondere Scope 1 und Scope 2 – müssen aus vorhandenen Ausgangsdaten erst berechnet werden.</p></div><aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7"><ClipboardCheck aria-hidden="true" className="h-8 w-8 text-orange"/><p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">Die praktische Logik</p><p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">Anforderung → interne Datenquelle → Berechnung oder Aussage → Nachweis → Bericht</p></aside></div><p className="mt-12 max-w-4xl text-lg leading-8 text-muted">Dieser Leitfaden zeigt, welche Informationen Sie für den Basic Module vorbereiten sollten, wann zusätzliche Angaben aus dem Comprehensive Module relevant werden und wie Sie die Daten für Kunden, Banken und ESG-Fragebögen wiederverwendbar strukturieren.</p></div></header>
+  return <ResourceMain locale="de">
+      <article><ResourceHero current="VSME-Datenerfassung" eyebrow="VSME · Datenerfassung" locale="de" title={<>VSME: Welche Daten braucht ein Unternehmen für den Nachhaltigkeitsbericht?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16"><div className="type-lead"><p>Sie möchten einen VSME-Nachhaltigkeitsbericht erstellen. Dann beginnt die Arbeit normalerweise nicht mit dem Schreiben des Berichts.</p><p className="font-display mt-7 text-3xl leading-tight text-ink">Welche Daten müssen wir überhaupt zusammentragen?</p><p className="mt-6">Ein Teil liegt in der Buchhaltung, ein Teil bei HR. Energieverbräuche stehen auf Rechnungen, Abfalldaten beim Entsorger, Zertifikate beim Qualitätsmanagement und Arbeitssicherheitsinformationen wieder an anderer Stelle.</p><p className="mt-6">Manche Kennzahlen – insbesondere Scope 1 und Scope 2 – müssen aus vorhandenen Ausgangsdaten erst berechnet werden.</p></div><aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7"><ClipboardCheck aria-hidden="true" className="h-8 w-8 text-orange"/><p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">Die praktische Logik</p><p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">Anforderung → interne Datenquelle → Berechnung oder Aussage → Nachweis → Bericht</p></aside></div><p className="mt-12 max-w-4xl text-lg leading-8 text-muted">Dieser Leitfaden zeigt, welche Informationen Sie für den Basic Module vorbereiten sollten, wann zusätzliche Angaben aus dem Comprehensive Module relevant werden und wie Sie die Daten für Kunden, Banken und ESG-Fragebögen wiederverwendbar strukturieren.</p></div>
+            <JumpNav items={[["01","Status 2026","#status-2026"],["02","Basic / Comprehensive","#basic-comprehensive"],["04","B1 Berichtsbasis","#b1-berichtsbasis"],["08","B3 Energie","#b3-energie"],["13","B7 Abfall","#b7-abfall"],["19","VSME Data Map","#vsme-data-map"],["20","Comprehensive","#comprehensive-module"],["27","Evidence","#nachvollziehbarkeit"],["31","Value Chain Cap","#value-chain-cap"],["32","Erste vier Stunden","#erste-vier-stunden"]].map(([, label, href]) => ({ label: label, href: href }))} label="Inhalt des Leitfadens" />
+          </ResourceHero>
 
-      <section aria-labelledby="quick-answer-title" className="scroll-mt-24 bg-ink py-20 text-white sm:py-24" id="schnellantwort"><div className="site-shell"><div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-16"><div><p className="eyebrow">Quick Answer</p><h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">Welche Daten brauchen Sie für einen VSME-Bericht?</h2></div><ol className="grid gap-6 sm:grid-cols-2">{quickAreas.map(([number, title, body], index) => <li className={`border-t border-white/20 pt-4 ${index === quickAreas.length - 1 ? "sm:col-span-2" : ""}`} key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div><div className="mt-14 border-t border-white/15 pt-9"><p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">Der Bericht entsteht erst danach.</p><p className="font-display mt-5 text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Zuerst entsteht eine belastbare Datenbasis.</p></div></div></section>
+      <GuideQuickAnswer eyebrow="Quick Answer" id="schnellantwort" title={<>Welche Daten brauchen Sie für einen VSME-Bericht?</>}>
+<div className="site-shell"><div className="grid gap-10 lg:gap-16"><ol className="grid gap-6 sm:grid-cols-2">{quickAreas.map(([number, title, body], index) => <li className={`border-t border-white/20 pt-4 ${index === quickAreas.length - 1 ? "sm:col-span-2" : ""}`} key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div><div className="mt-14 border-t border-white/15 pt-9"><p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">Der Bericht entsteht erst danach.</p><p className="font-display mt-5 text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Zuerst entsteht eine belastbare Datenbasis.</p></div></div>
+          </GuideQuickAnswer>
 
-      <div className="site-shell grid items-start gap-12 py-10 lg:grid-cols-[15rem_minmax(0,55rem)] lg:justify-center lg:gap-16 lg:py-16"><aside className="hidden lg:block"><nav aria-label="Inhalt des Leitfadens" className="sticky top-28 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.72)] p-5 backdrop-blur"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Im Leitfaden</p><ol className="mt-5 grid gap-3 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.62)]">{[["01","Status 2026","#status-2026"],["02","Basic / Comprehensive","#basic-comprehensive"],["04","B1 Berichtsbasis","#b1-berichtsbasis"],["08","B3 Energie","#b3-energie"],["13","B7 Abfall","#b7-abfall"],["19","VSME Data Map","#vsme-data-map"],["20","Comprehensive","#comprehensive-module"],["27","Evidence","#nachvollziehbarkeit"],["31","Value Chain Cap","#value-chain-cap"],["32","Erste vier Stunden","#erste-vier-stunden"]].map(([number, label, href]) => <li key={href}><a className="group flex gap-3 transition hover:text-ink" href={href}><span className="font-mono text-[0.65rem] text-orange">{number}</span><span>{label}</span></a></li>)}</ol></nav></aside><div className="min-w-0">
-        <ArticleSection id="status-2026" number="01" title="VSME oder „Voluntary Standard“ – was gilt 2026 eigentlich?">
+          <GuideBody>
+            <ArticleSection id="status-2026" number="01" title="VSME oder „Voluntary Standard“ – was gilt 2026 eigentlich?">
           <p>Der Begriff VSME bleibt in Unternehmen, Suchmaschinen und vielen Unterstützungsangeboten die gebräuchlichste Bezeichnung. Rechtlich hat sich 2026 aber etwas verändert.</p>
           <p>Die Europäische Kommission hat am 3. Juli 2026 einen neuen Sustainability Reporting Standard for Voluntary Use – kurz Voluntary Standard – angenommen.</p>
           <p>Er basiert auf dem VSME, den EFRAG entwickelt hatte und den die Kommission 2025 mit Recommendation (EU) 2025/1710 unterstützt hatte. Die Änderungen wurden bewusst begrenzt und dienen insbesondere der Abstimmung mit den 2026 überarbeiteten ESRS und dem neuen Value-Chain-Cap-System.</p>
@@ -430,23 +436,23 @@ export function VsmeDataGuide() {
           <Principle>Scope → Datapoints → Owner → Source → Calculation → Evidence → Review → Report</Principle>
         </ArticleSection>
 
-        <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
-          <ClipboardCheck aria-hidden="true" className="h-7 w-7 text-orange"/>
-          <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-          <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">Sie möchten einen VSME-Bericht erstellen, aber die Daten liegen noch überall?</h2>
-          <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68"><p>Senden Sie uns die vorhandenen Unternehmensinformationen und Unterlagen.</p><p>Wir strukturieren die benötigten VSME-Daten, identifizieren vorhandene Quellen und Lücken, bereiten notwendige Berechnungen vor und führen die Informationen zu einer nachvollziehbaren Berichtsgrundlage zusammen.</p></div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row"><ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>VSME-Projekt anfragen</ButtonLink><ButtonLink className="w-full sm:w-auto" href="/de/vsme-nachhaltigkeitsbericht" variant="light">VSME-Nachhaltigkeitsbericht erstellen</ButtonLink></div>
-          <p className="mt-6 text-sm font-semibold text-white/50">Energie · Emissionen · Abfall · Wasser · Mitarbeitende · Policies · Nachweise</p>
-        </section>
+        <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>VSME-Projekt anfragen</PillLink><TextLink href="/de/vsme-nachhaltigkeitsbericht">VSME-Nachhaltigkeitsbericht erstellen</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Energie · Emissionen · Abfall · Wasser · Mitarbeitende · Policies · Nachweise</p></>}
+              title={<>Sie möchten einen VSME-Bericht erstellen, aber die Daten liegen noch überall?</>}
+            >
+              <p>Senden Sie uns die vorhandenen Unternehmensinformationen und Unterlagen.</p><p>Wir strukturieren die benötigten VSME-Daten, identifizieren vorhandene Quellen und Lücken, bereiten notwendige Berechnungen vor und führen die Informationen zu einer nachvollziehbaren Berichtsgrundlage zusammen.</p>
+            </GuideCta>
 
-        <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
-          <p className="eyebrow">FAQ</p><h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zu den Daten für einen VSME-Bericht</h2>
-          <div className="faq-list">{faqItems.map((faq) => <details className="faq-item group" key={faq.question}><summary className="faq-question">{faq.question}<span aria-hidden="true" className="faq-toggle" /></summary><p className="faq-answer">{faq.answer}</p></details>)}</div>
-        </section>
+        </GuideBody>
 
-        <section aria-labelledby="sources-title" className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12">
-          <div className="flex items-center gap-3"><Link2 aria-hidden="true" className="h-4 w-4 text-orange"/><h2 className="text-sm font-bold uppercase tracking-[0.12em] text-ink" id="sources-title">Quellen &amp; weiterführende Informationen</h2></div>
-          <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems} title="Häufige Fragen zu den Daten für einen VSME-Bericht" />
+
+          <GuideBody>
+
+        <GuideSources title="Quellen &amp; weiterführende Informationen">
+              <ul>
             <li><ExternalSourceLink href={COMMISSION_STATUS_URL}>Europäische Kommission — Delegierte Rechtsakte zur Nachhaltigkeitsberichterstattung</ExternalSourceLink><p className="mt-1">Überblick zu Annahme und delegierten Rechtsakten; für Inkrafttreten und Anwendung ist der veröffentlichte Verordnungstext maßgeblich.</p></li>
             <li><ExternalSourceLink href={COMMISSION_NEWS_URL}>Europäische Kommission — Annahme der überarbeiteten Standards am 3. Juli 2026</ExternalSourceLink><p className="mt-1">Zielgruppe, Zweck und Value-Chain-Cap-Kontext des Voluntary Standard.</p></li>
             <li><ExternalSourceLink href={EFRAG_STANDARD_URL}>EFRAG Knowledge Hub — 2026 Voluntary Standard</ExternalSourceLink><p className="mt-1">Aktuelle Struktur von B1–B11 und C1–C9, if-applicable-Logik, Größenunterschiede und Annex II.</p></li>
@@ -455,8 +461,8 @@ export function VsmeDataGuide() {
             <li><ExternalSourceLink href={DNK_VSME_URL}>Deutscher Nachhaltigkeitskodex — VSME-Modul</ExternalSourceLink><p className="mt-1">Informationen zum kostenlosen digitalen Berichtsmodul in Deutschland.</p></li>
             <li><ExternalSourceLink href={DNK_REPORTS_URL}>Deutscher Nachhaltigkeitskodex — VSME-Berichte einsehen</ExternalSourceLink><p className="mt-1">Praktische Beispiele bereits veröffentlichter deutscher VSME-Berichte.</p></li>
           </ul>
-        </section>
-      </div></div>
-    </article></main>
-  </>;
+            </GuideSources>
+          </GuideBody>
+        </article>
+    </ResourceMain>;
 }

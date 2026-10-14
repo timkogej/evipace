@@ -8,16 +8,31 @@ import {
   FileCheck2,
   FileSearch,
   FileStack,
-  FileText,
   Gauge,
-  Link2,
   ListChecks,
   ScanText,
   ShieldCheck,
   Table2
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -226,63 +241,6 @@ function ExternalSourceLink({
   );
 }
 
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-6 grid gap-3">
-      {items.map((item) => (
-        <li className="flex gap-3 leading-7 text-muted" key={item}>
-          <span aria-hidden="true" className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ArticleSection({
-  children,
-  id,
-  number,
-  title
-}: {
-  children: ReactNode;
-  id: string;
-  number: string;
-  title: string;
-}) {
-  return (
-    <section
-      aria-labelledby={`${id}-title`}
-      className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16"
-      id={id}
-    >
-      <div className="flex items-start gap-4 sm:gap-6">
-        <span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span>
-        <h2
-          className="type-heading font-display max-w-[24ch]"
-          id={`${id}-title`}
-        >
-          {title}
-        </h2>
-      </div>
-      <div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div>
-    </section>
-  );
-}
-
-function Principle({ label, children }: { label?: string; children: ReactNode }) {
-  return (
-    <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">
-      {label ? (
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">{label}</p>
-      ) : null}
-      <p className={`font-display text-[clamp(1.85rem,4vw,3.15rem)] leading-[1.1] ${label ? "mt-4" : ""}`}>
-        {children}
-      </p>
-    </div>
-  );
-}
-
 function StatusPill({ status }: { status: string }) {
   return (
     <span
@@ -406,51 +364,13 @@ function EvidenceRegister() {
   );
 }
 
-function DocumentsArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg">
-        <path d="M96 58H359L446 145V587H96V58Z" fill="currentColor" fillOpacity="0.018" stroke="currentColor" strokeWidth="2" />
-        <path d="M359 58V145H446" stroke="currentColor" strokeWidth="2" />
-        <path d="M68 88H331L418 175V617H68V88Z" fill="currentColor" fillOpacity="0.025" stroke="currentColor" strokeWidth="2" />
-        <path d="M331 88V175H418" stroke="currentColor" strokeWidth="2" />
-        <text fill="currentColor" fontFamily="GFS Didot, Georgia, serif" fontSize="132" x="126" y="357">55</text>
-        <path d="M126 406H357M126 438H334M126 470H369M126 502H301" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-        <text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2" x="126" y="137">DOCUMENT SLOTS</text>
-      </svg>
-      <span className="resource-hero-art__code">SCOPE · RELEVANCE · EVIDENCE</span>
-    </div>
-  );
-}
-
 export function EcovadisDocumentsGuide() {
   return (
-    <>
-
-      <main id="top">
-        <article>
-          <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-            <DocumentsArtwork />
-            <div className="site-shell relative z-10">
-              <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
-                <Link className="transition hover:text-orange" href="/de">Startseite</Link>
-                <span aria-hidden="true">/</span>
-                <Link className="transition hover:text-orange" href="/de/ressourcen">
-                  Ressourcen
-                </Link>
-                <span aria-hidden="true">/</span>
-                <span className="text-ink">EcoVadis-Dokumente</span>
-              </nav>
-
-              <div className="mt-12 max-w-6xl">
-                <p className="eyebrow">EcoVadis · Dokumente &amp; Nachweise</p>
-                <h1 className="type-title font-display mt-7 max-w-[20ch]" id="article-title">
-                  EcoVadis-Dokumente und Nachweise: Was zählt als Beleg?
-                </h1>
-              </div>
-
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.6fr)] lg:items-start lg:gap-16">
-                <div className="type-lead max-w-3xl text-muted">
+    <ResourceMain locale="de">
+      <article>
+          <ResourceHero current="EcoVadis-Dokumente" eyebrow="EcoVadis · Dokumente &amp; Nachweise" locale="de" title={<>EcoVadis-Dokumente und Nachweise: Was zählt als Beleg?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.6fr)] lg:items-start lg:gap-16">
+                <div className="type-lead">
                   <p>Beim EcoVadis-Fragebogen reicht es nicht, die richtige Antwort zu kennen.</p>
                   <p className="mt-6">Entscheidend ist häufig auch:</p>
                   <p className="font-display mt-4 text-3xl leading-tight text-ink">Können Sie die Antwort mit einem geeigneten Dokument belegen?</p>
@@ -481,20 +401,25 @@ export function EcovadisDocumentsGuide() {
                     EcoVadis bewertet dokumentenbasiert. Die Unterlagen sollten zur konkreten Antwort und zum richtigen Bewertungsumfang passen. Dieser Leitfaden zeigt, welche Dokumente sinnvoll sein können und wie Sie sie auswählen.
                   </p>
                 </div>
-              </div>
-            </div>
-          </header>
+              </div></div>
+            <JumpNav items={[
+                    ["01", "Warum Dokumente?", "#warum-dokumente"],
+                    ["03", "Assessment Scope", "#assessment-scope"],
+                    ["04", "Evidence Map", "#antwort-dokument"],
+                    ["05", "55-Dokumente-Limit", "#dokumentenlimit"],
+                    ["08", "Richtlinien", "#richtlinien"],
+                    ["11", "Methodik 2026", "#zertifikate-2026"],
+                    ["14", "Machine-readable", "#machine-readable"],
+                    ["16", "Evidence Register", "#evidence-register"],
+                    ["17", "Nicht hochladen", "#nicht-hochladen"],
+                    ["22", "Unterstützung", "#externe-unterstuetzung"]
+                  ].map(([, label, href]) => ({ label: label, href: href }))} label="Inhalt des Leitfadens" />
+          </ResourceHero>
 
-          <section aria-labelledby="quick-answer-title" className="scroll-mt-24 bg-ink py-20 text-white sm:py-24" id="schnellantwort">
-            <div className="site-shell">
-              <div className="grid gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
-                <div>
-                  <p className="eyebrow">Quick Answer</p>
-                  <h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">
-                    Welche EcoVadis-Dokumente sollten Sie zuerst vorbereiten?
-                  </h2>
-                  <p className="mt-7 max-w-sm leading-7 text-white/65">Bevor Sie Dateien hochladen, prüfen Sie sieben Dinge.</p>
-                </div>
+          <GuideQuickAnswer eyebrow="Quick Answer" id="schnellantwort" title={<>Welche EcoVadis-Dokumente sollten Sie zuerst vorbereiten?</>}>
+<div className="site-shell">
+              <div className="grid gap-10 lg:gap-16">
+                <div className={r.qaLead}><p className="mt-7 max-w-sm leading-7 text-white/65">Bevor Sie Dateien hochladen, prüfen Sie sieben Dinge.</p></div>
                 <ol className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
                   {quickChecks.map((check, index) => (
                     <li className={index === quickChecks.length - 1 ? "border-t border-white/20 pt-5 sm:col-span-2" : "border-t border-white/20 pt-5"} key={check.title}>
@@ -514,33 +439,10 @@ export function EcovadisDocumentsGuide() {
                 <p className="font-display mt-5 text-[clamp(2.2rem,5vw,4.5rem)] leading-none">Relevanz schlägt Dokumentenmenge.</p>
               </div>
             </div>
-          </section>
+          </GuideQuickAnswer>
 
-          <div className="site-shell grid items-start gap-12 py-10 lg:grid-cols-[15rem_minmax(0,55rem)] lg:justify-center lg:gap-16 lg:py-16">
-            <aside className="hidden lg:block">
-              <nav aria-label="Inhalt des Leitfadens" className="sticky top-28 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.72)] p-5 backdrop-blur">
-                <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Im Leitfaden</p>
-                <ol className="mt-5 grid gap-3 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.62)]">
-                  {[
-                    ["01", "Warum Dokumente?", "#warum-dokumente"],
-                    ["03", "Assessment Scope", "#assessment-scope"],
-                    ["04", "Evidence Map", "#antwort-dokument"],
-                    ["05", "55-Dokumente-Limit", "#dokumentenlimit"],
-                    ["08", "Richtlinien", "#richtlinien"],
-                    ["11", "Methodik 2026", "#zertifikate-2026"],
-                    ["14", "Machine-readable", "#machine-readable"],
-                    ["16", "Evidence Register", "#evidence-register"],
-                    ["17", "Nicht hochladen", "#nicht-hochladen"],
-                    ["22", "Unterstützung", "#externe-unterstuetzung"]
-                  ].map(([number, label, href]) => (
-                    <li key={href}><a className="group flex gap-3 transition hover:text-ink" href={href}><span className="font-mono text-[0.65rem] text-orange">{number}</span><span>{label}</span></a></li>
-                  ))}
-                </ol>
-              </nav>
-            </aside>
-
-            <div className="min-w-0">
-              <ArticleSection id="warum-dokumente" number="01" title="Warum Dokumente bei EcoVadis so wichtig sind.">
+          <GuideBody>
+            <ArticleSection id="warum-dokumente" number="01" title="Warum Dokumente bei EcoVadis so wichtig sind.">
                 <p>EcoVadis bewertet nicht ausschließlich die Antworten, die Sie im Fragebogen anklicken.</p>
                 <p>Supporting Documents sind ein zentraler Bestandteil des Ratings.</p>
                 <p>
@@ -992,46 +894,24 @@ export function EcovadisDocumentsGuide() {
                 <Principle>Frage → reale Praxis → Antwort → Nachweis → Scope → Review</Principle>
               </ArticleSection>
 
-              <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
-                <FileText aria-hidden="true" className="h-7 w-7 text-orange" />
-                <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-                <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">
-                  Ihr EcoVadis-Fragebogen ist offen – aber die Dokumente sind noch nicht sortiert?
-                </h2>
-                <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68">
-                  <p>Senden Sie uns die vorhandene Ausgangslage.</p>
+              <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>EcoVadis-Anfrage senden</PillLink><TextLink href="/de/ecovadis-unterstuetzung">EcoVadis-Unterstützung</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Fragebogen · Policies · Zertifikate · KPIs · Nachweise</p><p>Evipace ist ein unabhängiger Dienstleister und weder von EcoVadis akkreditiert noch mit EcoVadis verbunden. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis.</p></>}
+              title={<>Ihr EcoVadis-Fragebogen ist offen – aber die Dokumente sind noch nicht sortiert?</>}
+            >
+              <p>Senden Sie uns die vorhandene Ausgangslage.</p>
                   <p>Wir helfen dabei, Antworten, Daten und Supporting Documents strukturiert zusammenzubringen und sichtbar zu machen, welche Informationen bereits belastbar sind und wo noch Lücken bestehen.</p>
-                </div>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>EcoVadis-Anfrage senden</ButtonLink>
-                  <ButtonLink className="w-full sm:w-auto" href="/de/ecovadis-unterstuetzung" variant="light">EcoVadis-Unterstützung</ButtonLink>
-                </div>
-                <p className="mt-6 text-sm font-semibold text-white/50">Fragebogen · Policies · Zertifikate · KPIs · Nachweise</p>
-                <p className="mt-4 max-w-2xl text-xs leading-6 text-white/42">Evipace ist ein unabhängiger Dienstleister und weder von EcoVadis akkreditiert noch mit EcoVadis verbunden. Die finale Bewertung und Anerkennung von Nachweisen liegt bei EcoVadis.</p>
-              </section>
+            </GuideCta>
 
-              <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
-                <p className="eyebrow">FAQ</p>
-                <h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zu EcoVadis-Dokumenten</h2>
-                <div className="faq-list">
-                  {faqItems.map((faq) => (
-                    <details className="faq-item group" key={faq.question}>
-                      <summary className="faq-question">
-                        {faq.question}
-                        <span aria-hidden="true" className="faq-toggle" />
-                      </summary>
-                      <p className="faq-answer">{faq.answer}</p>
-                    </details>
-                  ))}
-                </div>
-              </section>
+              </GuideBody>
 
-              <section aria-labelledby="sources-title" className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12">
-                <div className="flex items-center gap-3">
-                  <Link2 aria-hidden="true" className="h-4 w-4 text-orange" />
-                  <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-ink" id="sources-title">Quellen &amp; weiterführende Informationen</h2>
-                </div>
-                <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems} title="Häufige Fragen zu EcoVadis-Dokumenten" />
+
+          <GuideBody>
+
+              <GuideSources title="Quellen &amp; weiterführende Informationen">
+              <ul>
                   <li>
                     <ExternalSourceLink href={SUPPORTING_DOCUMENTS_URL}>EcoVadis Hilfe-Center — Kenntnisse über belegende Dokumente</ExternalSourceLink>
                     <p className="mt-1">Grundregeln für Relevanz, Vollständigkeit, Bewertungsumfang, Aktualität und Integrität von Supporting Documents.</p>
@@ -1061,11 +941,9 @@ export function EcovadisDocumentsGuide() {
                     <p className="mt-1">Neues Dokumentenkontingent und weitere Berücksichtigung gültiger früherer Dokumente.</p>
                   </li>
                 </ul>
-              </section>
-            </div>
-          </div>
+            </GuideSources>
+          </GuideBody>
         </article>
-      </main>
-    </>
+    </ResourceMain>
   );
 }

@@ -199,6 +199,11 @@ test("all fifteen resource pages link visible and structured breadcrumbs through
   assert.equal(componentFiles.length, 15);
   for (const filename of componentFiles) {
     const source = await readFile(path.join(resourceComponentRoot, filename), "utf8");
-    assert.ok(source.includes('href="/de/ressourcen"'), filename);
+    // The breadcrumb links the hub either directly or via the shared ResourceHero.
+    assert.ok(
+      source.includes('href="/de/ressourcen"') ||
+        (source.includes("<ResourceHero") && source.includes('locale="de"') && source.includes("current=")),
+      filename
+    );
   }
 });

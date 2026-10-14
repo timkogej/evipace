@@ -8,13 +8,29 @@ import {
   Flame,
   Fuel,
   Gauge,
-  Link2,
   Snowflake,
   Table2,
   Zap
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -94,18 +110,6 @@ function ExternalSourceLink({ href, children }: { href: string; children: ReactN
   return <a className="inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-[rgba(254,112,1,0.45)] underline-offset-4 transition hover:text-orange" href={href} rel="noreferrer" target="_blank">{children}<ExternalLink aria-hidden="true" className="h-3.5 w-3.5 shrink-0" /></a>;
 }
 
-function BulletList({ items }: { items: string[] }) {
-  return <ul className="mt-6 grid gap-3">{items.map((item) => <li className="flex gap-3 leading-7 text-muted" key={item}><span aria-hidden="true" className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" /><span>{item}</span></li>)}</ul>;
-}
-
-function ArticleSection({ children, id, number, title }: { children: ReactNode; id: string; number: string; title: string }) {
-  return <section aria-labelledby={`${id}-title`} className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16" id={id}><div className="flex items-start gap-4 sm:gap-6"><span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span><h2 className="type-heading font-display max-w-[24ch]" id={`${id}-title`}>{title}</h2></div><div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div></section>;
-}
-
-function Principle({ label, children }: { label?: string; children: ReactNode }) {
-  return <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">{label ? <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">{label}</p> : null}<p className={`font-display text-[clamp(1.8rem,4vw,3.05rem)] leading-[1.1] ${label ? "mt-4" : ""}`}>{children}</p></div>;
-}
-
 function StatusPill({ status }: { status: string }) {
   return <span className={`inline-flex rounded-full border px-2.5 py-1 text-[0.64rem] font-bold uppercase tracking-[0.06em] ${status === "bereit" ? "border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] text-[#b94f00]" : "border-[rgba(21,21,21,0.16)] bg-[rgba(21,21,21,0.05)] text-ink"}`}>{status}</span>;
 }
@@ -119,16 +123,18 @@ function RawDataTable() {
   return <div className="mt-8" data-scope12-raw-data-table><div className="resource-answer-map hidden overflow-hidden rounded-[1.1rem] border border-[rgba(21,21,21,0.13)] bg-white md:block"><div className="overflow-x-auto"><table className="w-full min-w-[1020px] border-collapse text-left text-sm"><caption className="sr-only">Beispiel einer Datenerfassungstabelle für Scope 1 und Scope 2</caption><thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]"><tr>{headers.map((heading) => <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={heading} scope="col">{heading}</th>)}</tr></thead><tbody>{rawDataRows.map((row, rowIndex) => <tr className="border-b border-[rgba(21,21,21,0.09)] last:border-b-0" key={`${row[1]}-${rowIndex}`}>{row.slice(0, 6).map((value, index) => index === 0 ? <th className="px-4 py-5 font-bold text-orange" key={`${value}-${index}`} scope="row">Scope {value}</th> : <td className="px-4 py-5 text-muted" key={`${value}-${index}`}>{value}</td>)}<td className="px-4 py-5"><StatusPill status={row[6]} /></td></tr>)}</tbody></table></div></div><div className="grid gap-4 md:hidden">{rawDataRows.map((row, rowIndex) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5" key={`${row[1]}-${rowIndex}`}><div className="flex items-start justify-between gap-3 border-b border-[rgba(21,21,21,0.1)] pb-4"><div><p className="text-[0.65rem] font-bold uppercase tracking-[0.1em] text-orange">Scope {row[0]}</p><h3 className="mt-2 font-bold text-ink">{row[1]}</h3></div><StatusPill status={row[6]} /></div><dl className="mt-4 grid gap-3 text-sm">{headers.slice(2, 6).map((label, index) => <div className="grid grid-cols-[6.9rem_1fr] gap-3" key={label}><dt className="font-semibold text-[rgba(21,21,21,0.56)]">{label}</dt><dd className="min-w-0 break-words text-ink">{row[index + 2]}</dd></div>)}</dl></article>)}</div></div>;
 }
 
-function DataArtwork() {
-  return <div aria-hidden="true" className="resource-hero-art"><svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg"><path d="M72 72H444V590H72V72Z" fill="currentColor" fillOpacity="0.018" stroke="currentColor" strokeWidth="2"/><path d="M72 160H444M72 248H444M72 336H444M72 424H444M72 512H444M182 72V590M324 72V590" stroke="currentColor" strokeOpacity="0.7" strokeWidth="2"/><circle cx="182" cy="160" fill="#FE7001" r="12"/><circle cx="324" cy="248" fill="#FE7001" r="12"/><circle cx="182" cy="424" fill="#FE7001" r="12"/><text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2" x="72" y="44">ACTIVITY DATA</text></svg><span className="resource-hero-art__code">BOUNDARY · PERIOD · SOURCE · UNIT</span></div>;
-}
-
 export function Scope12DataGuide() {
-  return <><main id="top"><article><header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28"><DataArtwork/><div className="site-shell relative z-10"><nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"><Link className="transition hover:text-orange" href="/de">Startseite</Link><span aria-hidden="true">/</span><Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link><span aria-hidden="true">/</span><span className="text-ink">Scope-1-&amp;-2-Datenerfassung</span></nav><div className="mt-12 max-w-6xl"><p className="eyebrow">Scope 1 &amp; 2 · Datenerfassung</p><h1 className="type-title font-display mt-7 max-w-[20ch]" id="article-title">Scope 1 und Scope 2: Welche Daten braucht man für die Berechnung?</h1></div><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16"><div className="type-lead max-w-3xl text-muted"><p>Sie sollen die Scope-1- und Scope-2-Emissionen Ihres Unternehmens angeben.</p><p className="mt-6">Vielleicht für einen Kunden. Vielleicht für einen ESG-Fragebogen. Vielleicht für EcoVadis, IntegrityNext oder einen Nachhaltigkeitsbericht.</p><p className="font-display mt-7 text-3xl leading-tight text-ink">„Wir haben diese CO₂-Zahlen noch gar nicht.“</p><p className="mt-6">Das bedeutet nicht automatisch, dass die Berechnung nicht möglich ist. Für den Einstieg brauchen Sie meistens zuerst die Aktivitätsdaten, aus denen Emissionen berechnet werden.</p></div><aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7"><Calculator aria-hidden="true" className="h-8 w-8 text-orange"/><p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">Danach kommt die Berechnung</p><p className="font-display mt-4 text-3xl leading-tight text-ink">Aktivitätsdaten × geeigneter Emissionsfaktor</p><p className="mt-4 text-sm leading-7 text-muted">→ Treibhausgasemissionen</p></aside></div><div className="mt-14 rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"><div className="grid gap-6 lg:grid-cols-[0.42fr_1fr] lg:gap-12"><div><span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-orange">Die eigentliche Frage</span><p className="font-display mt-4 text-3xl leading-[1.08]">Welche Quellen gehören überhaupt in Scope 1 und Scope 2?</p></div><div className="grid gap-2 self-center text-sm font-semibold text-muted sm:grid-cols-2">{["Kilowattstunden Erdgas", "Liter Diesel und Heizöl", "Stromverbrauch in kWh", "eingekaufte Fernwärme", "Kältemitteltyp", "nachgefüllte Kältemittelmenge"].map((item) => <span className="rounded-[0.75rem] bg-[var(--paper)] px-3 py-2.5" key={item}>{item}</span>)}</div></div></div></div></header>
+  return <ResourceMain locale="de">
+      <article><ResourceHero current="Scope-1-&amp;-2-Datenerfassung" eyebrow="Scope 1 &amp; 2 · Datenerfassung" locale="de" title={<>Scope 1 und Scope 2: Welche Daten braucht man für die Berechnung?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16"><div className="type-lead"><p>Sie sollen die Scope-1- und Scope-2-Emissionen Ihres Unternehmens angeben.</p><p className="mt-6">Vielleicht für einen Kunden. Vielleicht für einen ESG-Fragebogen. Vielleicht für EcoVadis, IntegrityNext oder einen Nachhaltigkeitsbericht.</p><p className="font-display mt-7 text-3xl leading-tight text-ink">„Wir haben diese CO₂-Zahlen noch gar nicht.“</p><p className="mt-6">Das bedeutet nicht automatisch, dass die Berechnung nicht möglich ist. Für den Einstieg brauchen Sie meistens zuerst die Aktivitätsdaten, aus denen Emissionen berechnet werden.</p></div><aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7"><Calculator aria-hidden="true" className="h-8 w-8 text-orange"/><p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">Danach kommt die Berechnung</p><p className="font-display mt-4 text-3xl leading-tight text-ink">Aktivitätsdaten × geeigneter Emissionsfaktor</p><p className="mt-4 text-sm leading-7 text-muted">→ Treibhausgasemissionen</p></aside></div><div className="mt-14 rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"><div className="grid gap-6 lg:grid-cols-[0.42fr_1fr] lg:gap-12"><div><span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-orange">Die eigentliche Frage</span><p className="font-display mt-4 text-3xl leading-[1.08]">Welche Quellen gehören überhaupt in Scope 1 und Scope 2?</p></div><div className="grid gap-2 self-center text-sm font-semibold text-muted sm:grid-cols-2">{["Kilowattstunden Erdgas", "Liter Diesel und Heizöl", "Stromverbrauch in kWh", "eingekaufte Fernwärme", "Kältemitteltyp", "nachgefüllte Kältemittelmenge"].map((item) => <span className="rounded-[0.75rem] bg-[var(--paper)] px-3 py-2.5" key={item}>{item}</span>)}</div></div></div></div>
+            <JumpNav items={[["02","Bilanzgrenze","#bilanzgrenze"],["04","Stationäre Verbrennung","#stationaere-verbrennung"],["08","Kältemittel","#kaeltemittel"],["10","Scope-2-Strom","#scope-2-strom"],["12","Location / Market","#location-market"],["16","Datentabelle","#datenerfassungstabelle"],["18","Audit Trail","#originalunterlagen"],["24","Erste zwei Stunden","#erste-zwei-stunden"],["25","Methodik-Update","#methodik-update"]].map(([, label, href]) => ({ label: label, href: href }))} label="Inhalt des Leitfadens" />
+          </ResourceHero>
 
-          <section aria-labelledby="quick-answer-title" className="scroll-mt-24 bg-ink py-20 text-white sm:py-24" id="schnellantwort"><div className="site-shell"><div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16"><div><p className="eyebrow">Quick Answer</p><h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">Für Scope 1 und Scope 2 sollten Sie zuerst diese Daten sammeln.</h2></div><div className="grid gap-10"><div><p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-orange">Scope 1 · Direkte Quellen</p><ol className="mt-5 grid gap-5 sm:grid-cols-2">{scopeOneChecks.map(([number,title,body]) => <li className="border-t border-white/20 pt-4" key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div><div><p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-orange">Scope 2 · Eingekaufte Energie</p><ol className="mt-5 grid gap-5 sm:grid-cols-2">{scopeTwoChecks.map(([number,title,body]) => <li className="border-t border-white/20 pt-4" key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div><div><p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-orange">Für beide Scopes</p><ol className="mt-5 grid gap-5 sm:grid-cols-2">{sharedChecks.map(([number,title,body]) => <li className="border-t border-white/20 pt-4" key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div></div></div><div className="mt-14 border-t border-white/15 pt-9"><p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">Nicht mit CO₂-Zahlen anfangen.</p><p className="font-display mt-5 text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Beginnen Sie mit einer vollständigen Liste Ihrer Emissionsquellen.</p></div></div></section>
+          <GuideQuickAnswer eyebrow="Quick Answer" id="schnellantwort" title={<>Für Scope 1 und Scope 2 sollten Sie zuerst diese Daten sammeln.</>}>
+<div className="site-shell"><div className="grid gap-10 lg:gap-16"><div className="grid gap-10"><div><p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-orange">Scope 1 · Direkte Quellen</p><ol className="mt-5 grid gap-5 sm:grid-cols-2">{scopeOneChecks.map(([number,title,body]) => <li className="border-t border-white/20 pt-4" key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div><div><p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-orange">Scope 2 · Eingekaufte Energie</p><ol className="mt-5 grid gap-5 sm:grid-cols-2">{scopeTwoChecks.map(([number,title,body]) => <li className="border-t border-white/20 pt-4" key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div><div><p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-orange">Für beide Scopes</p><ol className="mt-5 grid gap-5 sm:grid-cols-2">{sharedChecks.map(([number,title,body]) => <li className="border-t border-white/20 pt-4" key={number}><span className="font-mono text-xs text-orange">{number}</span><h3 className="mt-2 font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-white/65">{body}</p></li>)}</ol></div></div></div><div className="mt-14 border-t border-white/15 pt-9"><p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">Nicht mit CO₂-Zahlen anfangen.</p><p className="font-display mt-5 text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Beginnen Sie mit einer vollständigen Liste Ihrer Emissionsquellen.</p></div></div>
+          </GuideQuickAnswer>
 
-          <div className="site-shell grid items-start gap-12 py-10 lg:grid-cols-[15rem_minmax(0,55rem)] lg:justify-center lg:gap-16 lg:py-16"><aside className="hidden lg:block"><nav aria-label="Inhalt des Leitfadens" className="sticky top-28 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.72)] p-5 backdrop-blur"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Im Leitfaden</p><ol className="mt-5 grid gap-3 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.62)]">{[["02","Bilanzgrenze","#bilanzgrenze"],["04","Stationäre Verbrennung","#stationaere-verbrennung"],["08","Kältemittel","#kaeltemittel"],["10","Scope-2-Strom","#scope-2-strom"],["12","Location / Market","#location-market"],["16","Datentabelle","#datenerfassungstabelle"],["18","Audit Trail","#originalunterlagen"],["24","Erste zwei Stunden","#erste-zwei-stunden"],["25","Methodik-Update","#methodik-update"]].map(([number,label,href]) => <li key={href}><a className="group flex gap-3 transition hover:text-ink" href={href}><span className="font-mono text-[0.65rem] text-orange">{number}</span><span>{label}</span></a></li>)}</ol></nav></aside><div className="min-w-0">
+          <GuideBody>
             <ArticleSection id="scope-kurz-erklaert" number="01" title="Scope 1 und Scope 2 kurz erklärt.">
               <p>Nach dem Greenhouse Gas Protocol sind Scope-1-Emissionen direkte Treibhausgasemissionen aus Quellen, die dem berichtenden Unternehmen gehören oder von ihm kontrolliert werden.</p>
               <p>Scope 2 umfasst indirekte Emissionen aus der Erzeugung von eingekaufter oder anderweitig bezogener und vom Unternehmen verbrauchter Elektrizität, Wärme, Kälte und Dampf.</p>
@@ -377,23 +383,23 @@ export function Scope12DataGuide() {
               <Principle>Boundary → Quellen → Aktivitätsdaten → Faktoren → Berechnung → Review → Evidence</Principle>
             </ArticleSection>
 
-            <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
-              <Calculator aria-hidden="true" className="h-7 w-7 text-orange"/>
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-              <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">Sie haben die Verbrauchsdaten – aber noch keine Scope-1-&amp;-2-Berechnung?</h2>
-              <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68"><p>Senden Sie uns die vorhandenen Unterlagen.</p><p>Wir strukturieren die relevanten Emissionsquellen, prüfen die Datengrundlage und erstellen eine nachvollziehbare Scope-1- und Scope-2-Berechnung mit dokumentierten Quellen, Faktoren und offenen Datenlücken.</p></div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</ButtonLink><ButtonLink className="w-full sm:w-auto" href="/de/scope-1-2-berechnung" variant="light">Scope 1 und Scope 2 berechnen</ButtonLink></div>
-              <p className="mt-6 text-sm font-semibold text-white/50">Strom · Erdgas · Kraftstoffe · Kältemittel · Wärme · Emissionsfaktoren</p>
-            </section>
+            <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</PillLink><TextLink href="/de/scope-1-2-berechnung">Scope 1 und Scope 2 berechnen</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Strom · Erdgas · Kraftstoffe · Kältemittel · Wärme · Emissionsfaktoren</p></>}
+              title={<>Sie haben die Verbrauchsdaten – aber noch keine Scope-1-&amp;-2-Berechnung?</>}
+            >
+              <p>Senden Sie uns die vorhandenen Unterlagen.</p><p>Wir strukturieren die relevanten Emissionsquellen, prüfen die Datengrundlage und erstellen eine nachvollziehbare Scope-1- und Scope-2-Berechnung mit dokumentierten Quellen, Faktoren und offenen Datenlücken.</p>
+            </GuideCta>
 
-            <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
-              <p className="eyebrow">FAQ</p><h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zur Scope-1-&amp;-2-Datenerfassung</h2>
-              <div className="faq-list">{faqItems.map((faq) => <details className="faq-item group" key={faq.question}><summary className="faq-question">{faq.question}<span aria-hidden="true" className="faq-toggle" /></summary><p className="faq-answer">{faq.answer}</p></details>)}</div>
-            </section>
+            </GuideBody>
 
-            <section aria-labelledby="sources-title" className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12">
-              <div className="flex items-center gap-3"><Link2 aria-hidden="true" className="h-4 w-4 text-orange"/><h2 className="text-sm font-bold uppercase tracking-[0.12em] text-ink" id="sources-title">Quellen &amp; weiterführende Informationen</h2></div>
-              <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems} title="Häufige Fragen zur Scope-1-&amp;-2-Datenerfassung" />
+
+          <GuideBody>
+
+            <GuideSources title="Quellen &amp; weiterführende Informationen">
+              <ul>
                 <li><ExternalSourceLink href={CORPORATE_STANDARD_URL}>GHG Protocol — Corporate Standard</ExternalSourceLink><p className="mt-1">Definitionen, organisatorische Bilanzgrenzen und Grundlagen des Corporate GHG Inventory.</p></li>
                 <li><ExternalSourceLink href={CORPORATE_FAQ_URL}>GHG Protocol — Corporate Standard FAQ</ExternalSourceLink><p className="mt-1">Stationary und mobile combustion, process und fugitive emissions sowie Berechnungsgrundlagen.</p></li>
                 <li><ExternalSourceLink href={SCOPE_2_GUIDANCE_URL}>GHG Protocol — Scope 2 Guidance</ExternalSourceLink><p className="mt-1">Elektrizität, Dampf, Wärme und Kälte sowie das location-based und market-based Framework.</p></li>
@@ -402,8 +408,8 @@ export function Scope12DataGuide() {
                 <li><ExternalSourceLink href={STANDARDS_UPDATE_URL}>GHG Protocol — Corporate Standards Update vom Juli 2026</ExternalSourceLink><p className="mt-1">Status und Zeitplan der gemeinsamen Standardentwicklung mit ISO.</p></li>
                 <li><ExternalSourceLink href={STANDARDS_UPDATE_FAQ_URL}>GHG Protocol — FAQ zum Standards Update</ExternalSourceLink><p className="mt-1">Einordnung der Konsultation und des vorgesehenen Veröffentlichungszeitplans.</p></li>
               </ul>
-            </section>
-          </div></div>
-        </article></main>
-    </>;
+            </GuideSources>
+          </GuideBody>
+        </article>
+    </ResourceMain>;
 }

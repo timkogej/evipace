@@ -1,7 +1,22 @@
 import type { ReactNode } from "react";
-import { ArrowRight, FileCheck2, RefreshCw, Send, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  FileCheck2,
+  Send,
+  ShieldCheck
+} from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import { ClosingCta } from "../home/ClosingCta";
+import h from "../HomeLandingPage.module.css";
+import sp from "../service-landing/ServicePage.module.css";
+import {
+  Flow,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -227,15 +242,7 @@ const resourceBridgeCards = [
 ] as const;
 
 function InlineLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      className="group inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink underline decoration-orange/35 underline-offset-4 transition hover:text-orange"
-      href={href}
-    >
-      <span>{children}</span>
-      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-orange transition-transform group-hover:translate-x-1" />
-    </Link>
-  );
+  return <TextLink href={href}>{children}</TextLink>;
 }
 
 function SectionHeading({
@@ -252,85 +259,32 @@ function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className="max-w-3xl">
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2
-        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
- light ? "text-white" : "text-ink"
- }`}
-        id={id}
-      >
+    <header className={`${h.sectionHead}${light ? ` ${sp.darkHead}` : ""}`}>
+      {eyebrow ? <p className={h.eyebrow}>{eyebrow}</p> : null}
+      <h2 className={h.heading} id={id}>
         {title}
       </h2>
-      {children ? (
-        <div className={`mt-6 space-y-4 text-base leading-8 sm:text-lg ${light ? "text-white/66" : "text-muted"}`}>
-          {children}
-        </div>
-      ) : null}
-    </div>
+      {children ? <div className={sp.headExtra}>{children}</div> : null}
+    </header>
   );
 }
 
 function FlowList({ items, dark = false }: { items: readonly string[]; dark?: boolean }) {
-  return (
-    <ol className="grid gap-3 lg:grid-cols-4">
-      {items.map((item, index) => (
-        <li className={`relative min-w-0 border-t pt-4 ${dark ? "border-white/20" : "border-[rgba(21,21,21,0.16)]"}`} key={item}>
-          {index < items.length - 1 ? (
-            <ArrowRight aria-hidden="true" className="absolute -right-3 top-4 hidden h-4 w-4 text-orange lg:block" />
-          ) : null}
-          <span className="font-mono text-[0.62rem] font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
-          <p className={`mt-2 break-words text-sm font-bold leading-5 ${dark ? "text-white" : "text-ink"}`}>{item}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function PolicyArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg">
-        <path d="M112 118H408M112 168H360M112 268H408M112 318H408M112 368H334M112 470H250" stroke="currentColor" strokeOpacity="0.44" strokeWidth="4" />
-        <rect height="56" rx="10" stroke="currentColor" strokeOpacity="0.72" strokeWidth="3" width="296" x="112" y="198" />
-        <rect height="42" rx="10" stroke="currentColor" strokeOpacity="0.38" strokeWidth="3" width="112" x="112" y="520" />
-        <rect height="42" rx="10" stroke="currentColor" strokeOpacity="0.38" strokeWidth="3" width="112" x="252" y="520" />
-        <path d="M126 220H238M266 220H388" stroke="currentColor" strokeOpacity="0.68" strokeWidth="8" />
-      </svg>
-      <span className="resource-hero-art__code">SCOPE · OWNER · STATUS · EVIDENCE</span>
-    </div>
-  );
+  return <Flow dark={dark} items={items} />;
 }
 
 export function EnvironmentalPolicyGuide() {
   return (
-    <main id="top">
+    <ResourceMain locale="de">
       <article>
-        <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-          <PolicyArtwork />
-          <div className="site-shell relative z-10">
-            <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
-              <Link className="transition hover:text-orange" href="/de">Startseite</Link>
-              <span aria-hidden="true">/</span>
-              <Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-ink">Environmental Policy erstellen</span>
-            </nav>
-
-            <div className="mt-12 max-w-6xl">
-              <p className="eyebrow">ENVIRONMENTAL POLICY</p>
-              <h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">
-                Environmental Policy erstellen: Was eine belastbare Umweltrichtlinie enthalten sollte
-              </h1>
-            </div>
-
-            <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="type-lead max-w-3xl text-muted">
+        <ResourceHero current="Environmental Policy erstellen" eyebrow="ENVIRONMENTAL POLICY" locale="de" title={<>Environmental Policy erstellen: Was eine belastbare Umweltrichtlinie enthalten sollte</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+              <div className="type-lead">
                 <p>Kunden, ESG-Fragebögen und Supplier Assessments fragen häufig danach, ob ein Unternehmen eine Environmental Policy oder Umweltrichtlinie besitzt.</p>
                 <p className="mt-6">Eine belastbare Policy sollte jedoch nicht nur gut formuliert sein. Sie sollte zum tatsächlichen Unternehmen passen, einen klaren Geltungsbereich haben, Verantwortlichkeiten benennen und nur Aussagen enthalten, die intern vertreten und umgesetzt werden können.</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <ButtonLink className="w-full sm:w-auto" href="#bausteine">Zum Aufbau einer Environmental Policy ↓</ButtonLink>
-                  <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF} variant="secondary">Kunde fragt bereits nach einer Policy?</ButtonLink>
+                  <PillLink href="#bausteine">Zum Aufbau einer Environmental Policy ↓</PillLink>
+                  <TextLink href={SEND_REQUEST_HREF}>Kunde fragt bereits nach einer Policy?</TextLink>
                 </div>
               </div>
               <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
@@ -339,12 +293,11 @@ export function EnvironmentalPolicyGuide() {
                 <p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">Keine rückwirkende Umsetzung durch neue Policy.</p>
                 <p className="mt-5 text-sm leading-7 text-muted">Eine neu erstellte Environmental Policy ist kein rückwirkender Nachweis dafür, dass alle darin beschriebenen Grundsätze oder Maßnahmen bereits in der Vergangenheit umgesetzt wurden.</p>
               </aside>
-            </div>
-          </div>
-        </header>
+            </div></div>
+          </ResourceHero>
 
-        <section aria-labelledby="quick-answer-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="kurz-gesagt">
-          <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
+        <section aria-labelledby="quick-answer-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`} id="kurz-gesagt">
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <p className="eyebrow">Quick Answer</p>
               <h2 className="type-heading font-display mt-6" id="quick-answer-title">Kurz gesagt</h2>
@@ -356,8 +309,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="distinction-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="distinction-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Grundprinzip" id="distinction-title" title="Eine Policy ist nicht dasselbe wie ihre Umsetzung." />
             <div>
               <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-policy-distinction>
@@ -387,8 +340,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="assessment-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="assessment-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Vor dem Entwurf" id="assessment-title" title="Bevor Sie schreiben: Was existiert im Unternehmen bereits?">
               <p>Eine Environmental Policy sollte nicht mit allgemeinen Nachhaltigkeitsformulierungen beginnen, sondern mit der tatsächlichen Situation des Unternehmens.</p>
               <p>Prüfen Sie zunächst, welche Umweltprozesse, Verantwortlichkeiten, Ziele und Dokumente bereits bestehen.</p>
@@ -404,8 +357,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="purpose-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="purpose-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Zweck" id="purpose-title" title="Wofür ist eine Environmental Policy da?" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-policy-purpose-blocks>
               {purposeBlocks.map(([title, copy], index) => (
@@ -419,8 +372,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="blocks-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="bausteine">
-          <div className="site-shell">
+        <section aria-labelledby="blocks-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`} id="bausteine">
+          <div className={h.shell}>
             <SectionHeading eyebrow="Framework" id="blocks-title" light title="Sieben Bausteine einer belastbaren Environmental Policy" />
             <div className="mt-12 grid gap-6" data-policy-building-blocks>
               {buildingBlocks.map((block) => (
@@ -467,8 +420,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="not-in-policy-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="not-in-policy-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Grenzen" id="not-in-policy-title" title="Was nicht in eine Environmental Policy gehört" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-not-in-policy-items>
               {notInPolicyItems.map(([title, copy]) => (
@@ -481,8 +434,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="generic-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="generic-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Formulierung" id="generic-title" title="Eine Vorlage ist nur der Ausgangspunkt." />
             <div className="mt-12 grid gap-6 lg:grid-cols-2" data-generic-specific-comparison>
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.12)] bg-[var(--warm)] p-6 sm:p-8">
@@ -499,8 +452,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="hierarchy-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="hierarchy-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Dokumentensystem" id="hierarchy-title" title="Welche Dokumente gehören zusammen?" />
             <div>
               <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-document-hierarchy>
@@ -539,8 +492,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="evidence-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="evidence-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Evidence" id="evidence-title" title="Welche Nachweise können eine Environmental Policy ergänzen?">
               <p>Nicht jedes Dokument ist für jede Aussage relevant.</p>
             </SectionHeading>
@@ -556,8 +509,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="status-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="status-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Status" id="status-title" title="Welchen Status hat Ihre Environmental Policy?" />
             <div className="mt-12 grid gap-4 md:grid-cols-5" data-policy-status-model>
               {statusModel.map(([title, copy]) => (
@@ -570,8 +523,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="version-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="version-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Version" id="version-title" title="Eine Policy braucht eine eindeutige Version.">
               <p>Keine rückwirkenden Freigabedaten erfinden.</p>
             </SectionHeading>
@@ -589,8 +542,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="outline-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="outline-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Outline" id="outline-title" title="Beispiel für den Aufbau einer Environmental Policy">
               <p>Dies ist eine Strukturhilfe – keine universell gültige Policy-Vorlage.</p>
             </SectionHeading>
@@ -605,8 +558,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="workflow-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="workflow-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Kundenanfrage" id="workflow-title" light title="Was tun, wenn der Kunde nach einer Environmental Policy fragt?" />
             <ol className="mt-12 grid gap-px overflow-hidden rounded-[1.1rem] bg-white/14" data-customer-policy-workflow>
               {workflowSteps.map(([title, copy], index) => (
@@ -619,12 +572,12 @@ export function EnvironmentalPolicyGuide() {
                 </li>
               ))}
             </ol>
-            <div className="mt-8"><ButtonLink href="/de/ressourcen/esg-fragebogen-checkliste-lieferanten">ESG-Fragebogen Checkliste</ButtonLink></div>
+            <div className="mt-8"><PillLink href="/de/ressourcen/esg-fragebogen-checkliste-lieferanten">ESG-Fragebogen Checkliste</PillLink></div>
           </div>
         </section>
 
-        <section aria-labelledby="no-policy-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="no-policy-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Wenn sie fehlt" id="no-policy-title" title="Was, wenn Ihr Unternehmen noch keine Environmental Policy hat?" />
             <div className="resource-prose">
               <p>Dann sollte nicht rückwirkend so geantwortet werden, als hätte bereits eine freigegebene Policy bestanden.</p>
@@ -636,8 +589,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="iso-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="iso-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="ISO 14001" id="iso-title" title="Brauchen Unternehmen mit ISO 14001 zusätzlich eine separate Environmental Policy?" />
             <div className="resource-prose">
               <p>Unternehmen mit einem bestehenden Umweltmanagementsystem verfügen möglicherweise bereits über eine Umweltpolitik oder vergleichbare dokumentierte Vorgaben.</p>
@@ -646,8 +599,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="assessments-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="assessments-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Supplier Assessments" id="assessments-title" title="Environmental Policies in Supplier Assessments">
               <p>In Supplier Assessments kann nicht nur gefragt werden, ob eine Policy existiert, sondern auch nach unterstützenden Dokumenten, Maßnahmen oder Kennzahlen.</p>
               <p>Deshalb sollte die Policy nicht isoliert betrachtet werden. Entscheidend ist die Verbindung zwischen formeller Richtlinie, tatsächlicher Praxis und belastbaren Nachweisen.</p>
@@ -667,8 +620,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="reuse-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="reuse-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Reuse" id="reuse-title" title="Eine freigegebene Policy sollte nicht im nächsten Fragebogen wieder gesucht werden müssen." />
             <div className="resource-prose">
               <p>Dokumentieren Sie, für welche Gesellschaft die Policy gilt, welche Version aktuell ist, wer sie freigegeben hat und wo die freigegebene Datei liegt.</p>
@@ -678,8 +631,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="readiness-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="readiness-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Readiness Map" id="readiness-title" title="Von der tatsächlichen Praxis zur freigegebenen Policy" />
             <div className="mt-12 rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-policy-readiness-map>
               <FlowList items={readinessSteps} />
@@ -687,8 +640,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="mistakes-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="mistakes-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Fehler vermeiden" id="mistakes-title" light title="Sieben typische Fehler bei Environmental Policies" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-common-policy-mistakes>
               {commonMistakes.map(([title, copy], index) => (
@@ -702,8 +655,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="approval-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="approval-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Pre-Approval" id="approval-title" title="Vor der internen Freigabe prüfen" />
             <ul className="mt-12 grid gap-3 md:grid-cols-2" data-pre-approval-checklist>
               {preApprovalItems.map((item) => (
@@ -716,8 +669,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="resource-bridge-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="resource-bridge-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Resource Bridge" id="resource-bridge-title" title="Environmental Policy im ESG-System einordnen" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-resource-bridge>
               {resourceBridgeCards.map(([title, href]) => (
@@ -730,8 +683,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="commercial-title" className="bg-[var(--warm)] py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="commercial-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <div className="overflow-hidden rounded-[1.4rem] border border-orange/25 bg-[var(--soft-orange)]">
               <div className="grid lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="p-7 sm:p-10 lg:p-12">
@@ -742,8 +695,8 @@ export function EnvironmentalPolicyGuide() {
                   <p className="text-base leading-8 text-muted">Wir prüfen mit Ihnen, welche Umweltpraktiken, Verantwortlichkeiten und Unterlagen tatsächlich vorhanden sind, strukturieren offene Punkte und bereiten auf dieser Basis einen Policy-Entwurf für Ihre interne Prüfung und Freigabe vor.</p>
                   <p className="mt-4 text-base leading-8 text-muted">Wenn die Policy Teil eines konkreten Fragebogens ist, hilft auch der Überblick <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</Link>.</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink>
-                    <ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="secondary">Mehr über ESG-Kundenanfragen</ButtonLink>
+                    <PillLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</PillLink>
+                    <TextLink href="/de/esg-kundenanfragen">Mehr über ESG-Kundenanfragen</TextLink>
                   </div>
                   <p className="mt-5 text-sm font-semibold leading-7 text-muted">Der Entwurf wird erst durch Ihre interne Prüfung, Korrektur und autorisierte Freigabe zu einer offiziellen Unternehmensrichtlinie.</p>
                 </div>
@@ -752,8 +705,8 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="method-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="method-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" />
               <SectionHeading eyebrow="Methodik" id="method-title" title="Methodische Einordnung" />
@@ -766,17 +719,16 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="final-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
-            <div className="max-w-4xl">
-              <RefreshCw aria-hidden="true" className="h-10 w-10 text-orange" />
-              <h2 className="type-heading font-display mt-6" id="final-title">Eine gute Environmental Policy beginnt nicht mit Text. Sie beginnt mit dem tatsächlichen Unternehmen.</h2>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">Wenn Scope, Verantwortlichkeiten und bestehende Praxis klar sind, lässt sich daraus eine Richtlinie formulieren, die nachvollziehbar, realistisch und intern vertretbar ist.</p>
-              <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Environmental-Policy-Anfrage senden</ButtonLink></div>
-            </div>
-          </div>
-        </section>
+        
       </article>
-    </main>
+      <ClosingCta
+          body={<><p>Wenn Scope, Verantwortlichkeiten und bestehende Praxis klar sind, lässt sich daraus eine Richtlinie formulieren, die nachvollziehbar, realistisch und intern vertretbar ist.</p></>}
+          formHref={SEND_REQUEST_HREF}
+          formLabel="Environmental-Policy-Anfrage senden"
+          forwardLabel="Anfrage weiterleiten"
+          slogan="ESG work. Done right. Done faster."
+          title="Eine gute Environmental Policy beginnt nicht mit Text. Sie beginnt mit dem tatsächlichen Unternehmen."
+        />
+    </ResourceMain>
   );
 }

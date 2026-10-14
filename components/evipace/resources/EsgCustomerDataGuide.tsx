@@ -1,7 +1,22 @@
 import type { ReactNode } from "react";
-import { ArrowRight, GitBranch, Send, ShieldCheck } from "lucide-react";
-import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  ArrowRight,
+  GitBranch,
+  Send,
+  ShieldCheck
+} from "lucide-react";
+import { ClosingCta } from "../home/ClosingCta";
+import h from "../HomeLandingPage.module.css";
+import sp from "../service-landing/ServicePage.module.css";
+import {
+  Flow,
+  GuideBullets as BulletList,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -552,60 +567,11 @@ const toolBridgeCards = [
 ] as const;
 
 function InlineLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      className="group inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink underline decoration-[rgba(254,112,1,0.35)] underline-offset-4 transition hover:text-orange"
-      href={href}
-    >
-      <span>{children}</span>
-      <ArrowRight
-        aria-hidden="true"
-        className="h-4 w-4 shrink-0 text-orange transition-transform group-hover:translate-x-1"
-      />
-    </Link>
-  );
-}
-
-function BulletList({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="mt-4 grid gap-2.5">
-      {items.map((item) => (
-        <li className="flex gap-3 text-sm leading-6 text-muted" key={item}>
-          <span
-            aria-hidden="true"
-            className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange"
-          />
-          <span className="min-w-0 break-words">{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
+  return <TextLink href={href}>{children}</TextLink>;
 }
 
 function FlowLine({ items }: { items: readonly string[] }) {
-  return (
-    <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
-      {items.map((item, index) => (
-        <li
-          className="relative min-w-0 border-t border-[rgba(21,21,21,0.16)] pt-4"
-          key={item}
-        >
-          {index < items.length - 1 ? (
-            <ArrowRight
-              aria-hidden="true"
-              className="absolute -right-3 top-4 hidden h-4 w-4 text-orange lg:block"
-            />
-          ) : null}
-          <span className="font-mono text-[0.62rem] font-bold text-orange">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <p className="mt-2 break-words text-sm font-bold leading-5 text-ink">
-            {item}
-          </p>
-        </li>
-      ))}
-    </ol>
-  );
+  return <Flow items={items} />;
 }
 
 function SectionHeading({
@@ -622,74 +588,13 @@ function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className="max-w-3xl">
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2
-        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
- light ? "text-white" : "text-ink"
- }`}
-        id={id}
-      >
+    <header className={`${h.sectionHead}${light ? ` ${sp.darkHead}` : ""}`}>
+      {eyebrow ? <p className={h.eyebrow}>{eyebrow}</p> : null}
+      <h2 className={h.heading} id={id}>
         {title}
       </h2>
-      {children ? (
-        <div
-          className={`mt-6 space-y-4 text-base leading-8 sm:text-lg ${
-            light ? "text-white/66" : "text-muted"
-          }`}
-        >
-          {children}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-function CustomerDataArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg
-        className="resource-hero-art__sheet"
-        fill="none"
-        viewBox="0 0 520 650"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M104 132H416M104 214H416M104 296H416M104 378H416M104 460H416"
-          stroke="currentColor"
-          strokeOpacity="0.56"
-          strokeWidth="2"
-        />
-        {[132, 214, 296, 378, 460].map((y, index) => (
-          <g key={y}>
-            <circle
-              cx="126"
-              cy={y}
-              fill={index === 1 ? "#FE7001" : "currentColor"}
-              fillOpacity={index === 1 ? 1 : 0.09}
-              r={index === 1 ? 13 : 10}
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d={`M166 ${y}H360`}
-              stroke="currentColor"
-              strokeOpacity="0.38"
-              strokeWidth="8"
-            />
-          </g>
-        ))}
-        <path
-          d="M260 516L316 548L260 580L204 548L260 516Z"
-          stroke="currentColor"
-          strokeOpacity="0.72"
-          strokeWidth="2"
-        />
-      </svg>
-      <span className="resource-hero-art__code">
-        REQUEST · OWNER · SOURCE · ANSWER
-      </span>
-    </div>
+      {children ? <div className={sp.headExtra}>{children}</div> : null}
+    </header>
   );
 }
 
@@ -915,43 +820,11 @@ function RequestMap() {
 
 export function EsgCustomerDataGuide() {
   return (
-    <main id="top">
+    <ResourceMain locale="de">
       <article>
-        <header
-          aria-labelledby="article-title"
-          className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28"
-        >
-          <CustomerDataArtwork />
-          <div className="site-shell relative z-10">
-            <nav
-              aria-label="Brotkrümelnavigation"
-              className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"
-            >
-              <Link className="transition hover:text-orange" href="/de">
-                Startseite
-              </Link>
-              <span aria-hidden="true">/</span>
-              <Link className="transition hover:text-orange" href="/de/ressourcen">
-                Ressourcen
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-ink">
-                Welche ESG-Daten verlangen Kunden von Lieferanten?
-              </span>
-            </nav>
-
-            <div className="mt-12 max-w-6xl">
-              <p className="eyebrow">ESG-DATEN FÜR KUNDENANFRAGEN</p>
-              <h1
-                className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
-                id="article-title"
-              >
-                Welche ESG-Daten verlangen Kunden von Lieferanten?
-              </h1>
-            </div>
-
-            <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="type-lead max-w-3xl text-muted">
+        <ResourceHero current="Welche ESG-Daten verlangen Kunden von Lieferanten?" eyebrow="ESG-DATEN FÜR KUNDENANFRAGEN" locale="de" title={<>Welche ESG-Daten verlangen Kunden von Lieferanten?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+              <div className="type-lead">
                 <p>
                   Kunden fragen heute nicht nach „ESG“ als einer einzelnen
                   Kennzahl. Je nach Unternehmen, Branche und Anfrage können
@@ -966,16 +839,8 @@ export function EsgCustomerDataGuide() {
                   welche Unterlagen als Ausgangspunkt dienen können.
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <ButtonLink className="w-full sm:w-auto" href="#datenkategorien">
-                    Zu den Datenkategorien ↓
-                  </ButtonLink>
-                  <ButtonLink
-                    className="w-full sm:w-auto"
-                    href={SEND_REQUEST_HREF}
-                    variant="secondary"
-                  >
-                    ESG-Anfrage bereits erhalten?
-                  </ButtonLink>
+                  <PillLink href="#datenkategorien">Zu den Datenkategorien ↓</PillLink>
+                  <TextLink href={SEND_REQUEST_HREF}>ESG-Anfrage bereits erhalten?</TextLink>
                 </div>
               </div>
               <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
@@ -992,16 +857,15 @@ export function EsgCustomerDataGuide() {
                   Kunden.
                 </p>
               </aside>
-            </div>
-          </div>
-        </header>
+            </div></div>
+          </ResourceHero>
 
         <section
           aria-labelledby="quick-answer-title"
-          className="bg-ink py-16 text-white sm:py-20 lg:py-24"
+          className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}
           id="kurz-gesagt"
         >
-          <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <p className="eyebrow">Quick Answer</p>
               <h2
@@ -1030,7 +894,7 @@ export function EsgCustomerDataGuide() {
         </section>
 
         <section className="py-16 sm:py-20 lg:py-24" aria-labelledby="flow-title">
-          <div className="site-shell">
+          <div className={h.shell}>
             <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-20">
               <SectionHeading
                 eyebrow="Vom Signal zur Antwort"
@@ -1062,9 +926,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="keine-universelle-liste-title"
-          className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.tinted} ${r.skin}`}
         >
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading
               eyebrow="Einordnung"
               id="keine-universelle-liste-title"
@@ -1097,10 +961,10 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="datenkategorien-title"
-          className="py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.skin}`}
           id="datenkategorien"
         >
-          <div className="site-shell">
+          <div className={h.shell}>
             <div className="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16">
               <aside>
                 <nav
@@ -1150,9 +1014,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="datenarten-title"
-          className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.tinted} ${r.skin}`}
         >
-          <div className="site-shell">
+          <div className={h.shell}>
             <SectionHeading
               eyebrow="Datenarten"
               id="datenarten-title"
@@ -1178,8 +1042,8 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="daten-nachweise-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.74fr_1.26fr] lg:gap-20">
+        <section aria-labelledby="daten-nachweise-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading
               eyebrow="Traceability"
               id="daten-nachweise-title"
@@ -1229,9 +1093,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="data-owner-title"
-          className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.tinted} ${r.skin}`}
         >
-          <div className="site-shell">
+          <div className={h.shell}>
             <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
               <SectionHeading
                 eyebrow="Interne Quellen"
@@ -1254,8 +1118,8 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="workflow-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="workflow-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
               <SectionHeading
                 eyebrow="Erste Aktion"
@@ -1292,9 +1156,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="nicht-automatisch-title"
-          className="bg-ink py-16 text-white sm:py-20 lg:py-24"
+          className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}
         >
-          <div className="site-shell">
+          <div className={h.shell}>
             <SectionHeading
               eyebrow="Begrenzung"
               id="nicht-automatisch-title"
@@ -1327,8 +1191,8 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="plattformen-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="plattformen-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading
               eyebrow="Assessment-Kontext"
               id="plattformen-title"
@@ -1368,9 +1232,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="vsme-title"
-          className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.tinted} ${r.skin}`}
         >
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading
               eyebrow="VSME"
               id="vsme-title"
@@ -1402,8 +1266,8 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="request-map-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="request-map-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading
               eyebrow="Mapping"
               id="request-map-title"
@@ -1415,9 +1279,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="fehler-title"
-          className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.tinted} ${r.skin}`}
         >
-          <div className="site-shell">
+          <div className={h.shell}>
             <SectionHeading
               eyebrow="Qualität"
               id="fehler-title"
@@ -1439,8 +1303,8 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="tools-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="tools-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading
               eyebrow="Nächste Ressource"
               id="tools-title"
@@ -1480,9 +1344,9 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="commercial-title"
-          className="bg-[var(--warm)] py-16 sm:py-20 lg:py-24"
+          className={`${h.section} ${r.tinted} ${r.skin}`}
         >
-          <div className="site-shell">
+          <div className={h.shell}>
             <div className="overflow-hidden rounded-[1.4rem] border border-orange/25 bg-[var(--soft-orange)]">
               <div className="grid lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="p-7 sm:p-10 lg:p-12">
@@ -1502,16 +1366,8 @@ export function EsgCustomerDataGuide() {
                     Ihre interne Bestätigung vor.
                   </p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>
-                      ESG-Anfrage senden
-                    </ButtonLink>
-                    <ButtonLink
-                      className="w-full sm:w-auto"
-                      href="/de/esg-kundenanfragen"
-                      variant="secondary"
-                    >
-                      Mehr über ESG-Kundenanfragen
-                    </ButtonLink>
+                    <PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink>
+                    <TextLink href="/de/esg-kundenanfragen">Mehr über ESG-Kundenanfragen</TextLink>
                   </div>
                   <p className="mt-5 text-sm font-semibold leading-7 text-muted">
                     Unternehmensangaben und finale Aussagen bleiben unter Ihrer
@@ -1523,8 +1379,8 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="methodik-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="methodik-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" />
               <SectionHeading
@@ -1551,28 +1407,16 @@ export function EsgCustomerDataGuide() {
           </div>
         </section>
 
-        <section className="bg-ink py-16 text-white sm:py-20 lg:py-24" aria-labelledby="final-title">
-          <div className="site-shell">
-            <div className="max-w-4xl">
-              <p className="eyebrow">Nächster Schritt</p>
-              <h2
-                className="type-heading font-display mt-6"
-                id="final-title"
-              >
-                Sie müssen nicht zuerst ein ESG-System aufbauen.
-              </h2>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">
-                Beginnen Sie mit der konkreten Kundenanfrage. Wir helfen Ihnen,
-                herauszufinden, welche Daten tatsächlich benötigt werden und wie
-                daraus eine klare, nachvollziehbare Antwort entsteht.
-              </p>
-              <div className="mt-8">
-                <ButtonLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink>
-              </div>
-            </div>
-          </div>
-        </section>
+        
       </article>
-    </main>
+      <ClosingCta
+          body={<><p>Beginnen Sie mit der konkreten Kundenanfrage. Wir helfen Ihnen, herauszufinden, welche Daten tatsächlich benötigt werden und wie daraus eine klare, nachvollziehbare Antwort entsteht.</p></>}
+          formHref={SEND_REQUEST_HREF}
+          formLabel="Anfrage an Evipace senden"
+          forwardLabel="Anfrage weiterleiten"
+          slogan="Nächster Schritt"
+          title="Sie müssen nicht zuerst ein ESG-System aufbauen."
+        />
+    </ResourceMain>
   );
 }

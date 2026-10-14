@@ -1,7 +1,22 @@
 import type { ReactNode } from "react";
-import { ArrowRight, RefreshCw, Send, ShieldCheck } from "lucide-react";
+import {
+  RefreshCw,
+  Send,
+  ShieldCheck
+} from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import { ClosingCta } from "../home/ClosingCta";
+import h from "../HomeLandingPage.module.css";
+import sp from "../service-landing/ServicePage.module.css";
+import {
+  Flow,
+  GuideBullets as BulletList,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -130,15 +145,7 @@ const resourceSystem = [
 ] as const;
 
 function InlineLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      className="group inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink underline decoration-[rgba(254,112,1,0.35)] underline-offset-4 transition hover:text-orange"
-      href={href}
-    >
-      <span>{children}</span>
-      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-orange transition-transform group-hover:translate-x-1" />
-    </Link>
-  );
+  return <TextLink href={href}>{children}</TextLink>;
 }
 
 function SectionHeading({
@@ -155,101 +162,32 @@ function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className="max-w-3xl">
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2
-        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
- light ? "text-white" : "text-ink"
- }`}
-        id={id}
-      >
+    <header className={`${h.sectionHead}${light ? ` ${sp.darkHead}` : ""}`}>
+      {eyebrow ? <p className={h.eyebrow}>{eyebrow}</p> : null}
+      <h2 className={h.heading} id={id}>
         {title}
       </h2>
-      {children ? (
-        <div className={`mt-6 space-y-4 text-base leading-8 sm:text-lg ${light ? "text-white/66" : "text-muted"}`}>
-          {children}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-function BulletList({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="mt-4 grid gap-2.5">
-      {items.map((item) => (
-        <li className="flex gap-3 text-sm leading-6 text-muted" key={item}>
-          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
-          <span className="min-w-0 break-words">{item}</span>
-        </li>
-      ))}
-    </ul>
+      {children ? <div className={sp.headExtra}>{children}</div> : null}
+    </header>
   );
 }
 
 function FlowLine({ items, dark = false }: { items: readonly string[]; dark?: boolean }) {
-  return (
-    <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
-      {items.map((item, index) => (
-        <li className={`relative min-w-0 border-t pt-4 ${dark ? "border-white/20" : "border-[rgba(21,21,21,0.16)]"}`} key={item}>
-          {index < items.length - 1 ? (
-            <ArrowRight aria-hidden="true" className="absolute -right-3 top-4 hidden h-4 w-4 text-orange lg:block" />
-          ) : null}
-          <span className="font-mono text-[0.62rem] font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
-          <p className={`mt-2 break-words text-sm font-bold leading-5 ${dark ? "text-white" : "text-ink"}`}>{item}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function ReusableDataArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg">
-        <path d="M102 132H418M102 214H418M102 296H418M102 378H418M102 460H418" stroke="currentColor" strokeOpacity="0.52" strokeWidth="2" />
-        {[132, 214, 296, 378, 460].map((y, index) => (
-          <g key={y}>
-            <rect height="34" rx="8" stroke="currentColor" strokeOpacity="0.62" strokeWidth="2" width="54" x="118" y={y - 17} />
-            <path d={`M194 ${y}H386`} stroke="currentColor" strokeOpacity={index === 2 ? "0.74" : "0.34"} strokeWidth={index === 2 ? "9" : "6"} />
-          </g>
-        ))}
-        <path d="M260 520V584M228 552H292" stroke="currentColor" strokeOpacity="0.74" strokeWidth="2" />
-      </svg>
-      <span className="resource-hero-art__code">DATA POINT · SOURCE · STATUS · REUSE</span>
-    </div>
-  );
+  return <Flow dark={dark} items={items} />;
 }
 
 export function EsgReusableDataGuide() {
   return (
-    <main id="top">
+    <ResourceMain locale="de">
       <article>
-        <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-          <ReusableDataArtwork />
-          <div className="site-shell relative z-10">
-            <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
-              <Link className="transition hover:text-orange" href="/de">Startseite</Link>
-              <span aria-hidden="true">/</span>
-              <Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-ink">ESG-Daten einmal sammeln, mehrfach nutzen</span>
-            </nav>
-
-            <div className="mt-12 max-w-6xl">
-              <p className="eyebrow">REUSABLE ESG DATA FOUNDATION</p>
-              <h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">
-                ESG-Daten einmal sammeln. Für die nächste Anfrage wiederverwenden.
-              </h1>
-            </div>
-
-            <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="type-lead max-w-3xl text-muted">
+        <ResourceHero current="ESG-Daten einmal sammeln, mehrfach nutzen" eyebrow="REUSABLE ESG DATA FOUNDATION" locale="de" title={<>ESG-Daten einmal sammeln. Für die nächste Anfrage wiederverwenden.</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+              <div className="type-lead">
                 <p>Viele Lieferanten beantworten ESG-Anfragen noch wie Einzelprojekte: Fragebogen öffnen, Daten zusammensuchen, Nachweise anfordern, Antworten vorbereiten – und beim nächsten Kunden beginnt ein großer Teil der Arbeit erneut.</p>
                 <p className="mt-6">Mit einer strukturierten Datengrundlage lassen sich häufig benötigte Unternehmensdaten, Kennzahlen, Quellen und Nachweise so organisieren, dass sie für spätere Kundenanfragen schneller geprüft, aktualisiert und wiederverwendet werden können.</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <ButtonLink className="w-full sm:w-auto" href="#struktur">So funktioniert die Struktur ↓</ButtonLink>
-                  <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF} variant="secondary">ESG-Anfrage bereits erhalten?</ButtonLink>
+                  <PillLink href="#struktur">So funktioniert die Struktur ↓</PillLink>
+                  <TextLink href={SEND_REQUEST_HREF}>ESG-Anfrage bereits erhalten?</TextLink>
                 </div>
               </div>
               <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
@@ -258,12 +196,11 @@ export function EsgReusableDataGuide() {
                 <p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">Wiederverwendbare Information, aber kontextspezifische Antwort.</p>
                 <p className="mt-5 text-sm leading-7 text-muted">Wiederverwendung bedeutet nicht, alte Antworten ungeprüft zu kopieren. Zeitraum, Scope, Definition und Kundenanforderung müssen bei jeder neuen Anfrage erneut geprüft werden.</p>
               </aside>
-            </div>
-          </div>
-        </header>
+            </div></div>
+          </ResourceHero>
 
-        <section aria-labelledby="quick-answer-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="kurz-gesagt">
-          <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
+        <section aria-labelledby="quick-answer-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`} id="kurz-gesagt">
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <p className="eyebrow">Quick Answer</p>
               <h2 className="type-heading font-display mt-6" id="quick-answer-title">Kurz gesagt</h2>
@@ -275,8 +212,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="problem-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+        <section aria-labelledby="problem-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Ausgangspunkt" id="problem-title" title="Warum beginnt ESG bei vielen Lieferanten jedes Mal wieder bei null?" />
             <div className="resource-prose">
               <p>ESG-Informationen liegen häufig über mehrere Funktionen verteilt. Finance besitzt Energierechnungen, HR Mitarbeitendendaten, Facility Management Verbrauchswerte, Quality Zertifikate und Procurement Informationen zur Lieferkette.</p>
@@ -289,8 +226,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="before-after-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="before-after-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Before / After" id="before-after-title" title="Was sich mit einer wiederverwendbaren Struktur verändert" />
             <div className="mt-12 grid gap-6 lg:grid-cols-2" data-before-after>
               <article className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-[var(--warm)] p-6 sm:p-8">
@@ -317,8 +254,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="struktur-title" className="py-16 sm:py-20 lg:py-24" id="struktur">
-          <div className="site-shell">
+        <section aria-labelledby="struktur-title" className={`${h.section} ${r.skin}`} id="struktur">
+          <div className={h.shell}>
             <SectionHeading eyebrow="Reusable ESG Data" id="struktur-title" title="Was sollte wiederverwendbar gespeichert werden?">
               <p>Eine nützliche ESG-Datengrundlage enthält Kontext, nicht nur einen Wert.</p>
             </SectionHeading>
@@ -340,8 +277,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="record-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="record-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Beispiel" id="record-title" title="Die kleinste sinnvolle ESG-Dateneinheit">
               <p>Dieses Beispiel ist illustrativ. Es zeigt keine realen Kundendaten und keine Aussage über ein echtes Unternehmen.</p>
             </SectionHeading>
@@ -359,8 +296,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="reuse-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="reuse-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Reuse Logic" id="reuse-title" title="Nicht jede Antwort sollte kopiert werden. Viele Datenpunkte können es." />
             <div className="mt-12 grid gap-5 lg:grid-cols-3" data-reuse-groups>
               {reuseGroups.map((group) => (
@@ -374,8 +311,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="layers-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="layers-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Framework" id="layers-title" light title="Fünf Ebenen einer wiederverwendbaren ESG-Struktur" />
             <ol className="mt-12 grid gap-5 lg:grid-cols-5" data-foundation-layers>
               {foundationLayers.map(([title, copy]) => (
@@ -388,8 +325,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="evidence-chain-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="evidence-chain-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Nachvollziehbarkeit" id="evidence-chain-title" title="Wiederverwendung funktioniert nur mit Nachvollziehbarkeit." />
             <div>
               <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-evidence-chain>
@@ -407,8 +344,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="examples-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="examples-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Praxisbeispiele" id="examples-title" title="Drei Beispiele für Wiederverwendung mit Prüfung" />
             <div className="mt-12 grid gap-6" data-practical-examples>
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6 sm:p-8">
@@ -456,8 +393,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="system-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="system-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="System" id="system-title" title="Die reusable ESG database beginnt nicht unbedingt mit neuer Software." />
             <div className="resource-prose">
               <p>Unternehmen benötigen nicht zwingend ein neues ESG-System, bevor sie Informationen strukturieren können.</p>
@@ -467,8 +404,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="owner-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="owner-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Ownership" id="owner-title" title="Jeder wiederverwendbare Datenpunkt braucht einen Owner.">
               <p>Ohne klare Verantwortlichkeit veraltet auch eine gut strukturierte Datensammlung.</p>
               <p>Für jeden wichtigen Datenbereich sollte klar sein, welche interne Funktion die Originalinformation besitzt, wer Änderungen kennt und wer die Angabe vor externer Nutzung bestätigen kann.</p>
@@ -485,8 +422,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="freshness-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="freshness-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Status" id="freshness-title" title="Wiederverwendbare Daten brauchen einen Aktualitätsstatus.">
               <p>Besonders bei Kennzahlen, Zertifikaten, Policies und zeitbezogenen Nachweisen sollte sichtbar sein, ob eine Information weiterhin verwendet werden kann oder vor einer neuen Kundenantwort aktualisiert werden muss.</p>
             </SectionHeading>
@@ -496,8 +433,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="request-mapping-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.74fr_1.26fr] lg:gap-20">
+        <section aria-labelledby="request-mapping-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Request Mapping" id="request-mapping-title" title="Speichern Sie nicht nur den Datenpunkt – speichern Sie auch, wo er verwendet wurde." />
             <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-request-mapping>
               <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustrative Labels</p>
@@ -511,8 +448,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="platform-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="platform-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Kontexte" id="platform-title" title="Warum Wiederverwendung über mehrere ESG-Anfragen hinweg sinnvoll ist">
               <p>Unterschiedliche Kunden und Plattformen können ähnliche Themen in unterschiedlichen Formaten abfragen. Ein Stromverbrauch bleibt beispielsweise derselbe zugrunde liegende Unternehmensdatenpunkt, auch wenn Frageformulierung, Einheit, Zeitraum oder Kontext einer neuen Anfrage erneut geprüft werden müssen.</p>
               <p>Deshalb lohnt es sich, die zugrunde liegenden Unternehmensinformationen von der jeweiligen Fragebogenoberfläche zu trennen.</p>
@@ -529,8 +466,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="workflow-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="workflow-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Workflow" id="workflow-title" light title="So wird aus einer einzelnen ESG-Anfrage eine wiederverwendbare Grundlage" />
             <ol className="mt-12 grid gap-px overflow-hidden rounded-[1.1rem] bg-white/14" data-reuse-workflow>
               {workflowSteps.map(([title, copy], index) => (
@@ -543,12 +480,12 @@ export function EsgReusableDataGuide() {
                 </li>
               ))}
             </ol>
-            <div className="mt-8"><ButtonLink href="/de/ressourcen/esg-fragebogen-checkliste-lieferanten">ESG-Fragebogen strukturiert bearbeiten</ButtonLink></div>
+            <div className="mt-8"><PillLink href="/de/ressourcen/esg-fragebogen-checkliste-lieferanten">ESG-Fragebogen strukturiert bearbeiten</PillLink></div>
           </div>
         </section>
 
-        <section aria-labelledby="copy-paste-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="copy-paste-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Warnung" id="copy-paste-title" title="Wiederverwendung darf nicht zu Copy-and-Paste-ESG werden.">
               <p>Eine wiederverwendbare Datengrundlage soll Sucharbeit reduzieren – nicht die fachliche Prüfung ersetzen.</p>
             </SectionHeading>
@@ -566,8 +503,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="resource-system-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="resource-system-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Resource System" id="resource-system-title" title="Aus einzelnen Tools wird ein System" />
             <div className="mt-10 rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-resource-system-map>
               <FlowLine items={["Request", "Data", "Owner", "Evidence", "Carbon Data", "Reuse"]} />
@@ -582,8 +519,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="commercial-title" className="bg-[var(--warm)] py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="commercial-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <div className="overflow-hidden rounded-[1.4rem] border border-orange/25 bg-[var(--soft-orange)]">
               <div className="grid lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="p-7 sm:p-10 lg:p-12">
@@ -601,8 +538,8 @@ export function EsgReusableDataGuide() {
                     .
                   </p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>ESG-Anfrage senden</ButtonLink>
-                    <ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="secondary">Mehr über ESG-Kundenanfragen</ButtonLink>
+                    <PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink>
+                    <TextLink href="/de/esg-kundenanfragen">Mehr über ESG-Kundenanfragen</TextLink>
                   </div>
                   <p className="mt-5 text-sm font-semibold leading-7 text-muted">Jede neue externe Antwort wird weiterhin gegen Scope, Zeitraum und konkrete Kundenanforderung geprüft.</p>
                 </div>
@@ -611,8 +548,8 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="method-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="method-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" />
               <SectionHeading eyebrow="Methodik" id="method-title" title="Methodische Einordnung" />
@@ -624,17 +561,16 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section className="bg-ink py-16 text-white sm:py-20 lg:py-24" aria-labelledby="final-title">
-          <div className="site-shell">
-            <div className="max-w-4xl">
-              <p className="eyebrow">Nächster Schritt</p>
-              <h2 className="type-heading font-display mt-6" id="final-title">Jede beantwortete Anfrage sollte die nächste einfacher machen.</h2>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">Aus verstreuten Unternehmensdaten wird mit der Zeit eine nachvollziehbare, wiederverwendbare ESG-Datengrundlage.</p>
-              <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink></div>
-            </div>
-          </div>
-        </section>
+        
       </article>
-    </main>
+      <ClosingCta
+          body={<><p>Aus verstreuten Unternehmensdaten wird mit der Zeit eine nachvollziehbare, wiederverwendbare ESG-Datengrundlage.</p></>}
+          formHref={SEND_REQUEST_HREF}
+          formLabel="Anfrage an Evipace senden"
+          forwardLabel="Anfrage weiterleiten"
+          slogan="Nächster Schritt"
+          title="Jede beantwortete Anfrage sollte die nächste einfacher machen."
+        />
+    </ResourceMain>
   );
 }

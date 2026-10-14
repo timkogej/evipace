@@ -283,12 +283,12 @@ test("guide has exact hero contract, collection framing, required internal links
     "Warum bei Strom mehr als nur kWh relevant sein können",
     "Welche Belege sollten Sie aufbewahren?",
     "Fünf typische Fehler bei der Datensammlung",
-    "Startseite",
-    "Ressourcen",
     "Scope 1 &amp; 2 Datenerfassungs-Vorlage"
   ]) {
     assert.ok(guideSource.includes(marker), marker);
   }
+  // "Startseite / Ressourcen / …" comes from the shared ResourceHero breadcrumb.
+  assert.ok(guideSource.includes("<ResourceHero") && guideSource.includes('locale="de"'));
 
   for (const href of [
     "/de/ressourcen",

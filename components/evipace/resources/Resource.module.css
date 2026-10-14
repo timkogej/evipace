@@ -711,8 +711,7 @@
 .sources {
   max-width: 44rem;
   margin: 0 auto;
-  border-top: 1px solid var(--ev-line);
-  padding-block: var(--ev-s-6) var(--ev-s-8);
+  padding-block: var(--ev-s-7) var(--ev-s-8);
 }
 
 .sources h2 {
@@ -1132,4 +1131,325 @@
   .noPrint {
     display: none !important;
   }
+}
+
+/* ── Long-form guides ── */
+.darkContent {
+  max-width: 60rem;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.65;
+}
+
+.inlineCtaBody {
+  max-width: 40rem;
+  margin-top: var(--ev-s-4);
+  color: var(--ev-ink-2);
+  line-height: 1.65;
+}
+
+.inlineCtaBody > * {
+  margin: 0;
+}
+
+.inlineCtaBody > * + * {
+  margin-top: var(--ev-s-3);
+}
+
+.inlineCtaNote > * {
+  max-width: 40rem;
+  margin: var(--ev-s-2) auto 0;
+}
+
+.inlineCtaNote {
+  margin: var(--ev-s-3) 0 0;
+  color: var(--ev-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.sourcesNote {
+  margin: var(--ev-s-5) 0 0;
+  color: var(--ev-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.sources li p {
+  margin: var(--ev-s-1) 0 0;
+  color: var(--ev-ink-2);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.external {
+  color: var(--ev-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ev-orange-500);
+  text-underline-offset: 0.25em;
+}
+
+.external:hover {
+  color: var(--ev-orange-700);
+}
+
+/* Skin: harmonise the guides' own utility-styled blocks with the new palette */
+.skin a:not([class]) {
+  color: var(--ev-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ev-orange-500);
+  text-underline-offset: 0.25em;
+}
+
+.skin a:not([class]):hover {
+  color: var(--ev-orange-700);
+}
+
+.skin :global(.text-orange) {
+  color: var(--ev-orange-700);
+}
+
+.skin :global(.bg-ink) :global(.text-orange),
+.dark .skin :global(.text-orange) {
+  color: var(--ev-orange-500);
+}
+
+.skin :global(.bg-ink) {
+  background-color: var(--ev-charcoal);
+}
+
+.skin :global(.bg-orange) {
+  background-color: var(--ev-orange-500);
+}
+
+.skin :global(.font-mono) {
+  font-family: inherit;
+  letter-spacing: 0.06em;
+}
+
+.skin :global(.font-display) {
+  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-weight: 400;
+}
+
+.skin :global(.text-muted) {
+  color: var(--ev-ink-2);
+}
+
+.skin :global(.text-ink) {
+  color: var(--ev-charcoal);
+}
+
+.skin :global(.text-3xl) {
+  font-size: clamp(1.4rem, 2.4vw, 1.75rem);
+}
+
+.skin :global(.shadow-lift),
+.skin :global(.shadow-premium) {
+  box-shadow: none;
+}
+
+.skin :global(.bg-\[var\(--soft-orange\)\]) {
+  background-color: var(--ev-offwhite);
+}
+
+.skin :global(.bg-\[var\(--paper\)\]),
+.skin :global(.bg-\[var\(--warm\)\]) {
+  background-color: var(--ev-offwhite);
+}
+
+.skin :global(.eyebrow) {
+  color: var(--ev-orange-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.skin table {
+  width: 100%;
+}
+
+.skin :where(h3, h4) {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.heroFacts {
+  display: flex;
+  width: 100%;
+  max-width: 52rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ev-s-3);
+  margin: var(--ev-s-6) 0 0;
+}
+
+.heroFacts > div {
+  min-width: 0;
+  flex: 1 1 11rem;
+  max-width: 17rem;
+  border: 1px solid var(--ev-taupe);
+  border-radius: var(--ev-r-md);
+  background: var(--ev-white);
+  padding: var(--ev-s-4);
+  text-align: left;
+}
+
+.heroFacts dt {
+  color: var(--ev-orange-700);
+  font-weight: 700;
+}
+
+.heroFacts dd {
+  margin: var(--ev-s-1) 0 0;
+  color: var(--ev-ink-2);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* Hero content carried over from the German guides */
+.heroRest {
+  display: flex;
+  width: 100%;
+  max-width: 60rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ev-s-6);
+  margin-top: var(--ev-s-2);
+}
+
+.heroRest > * {
+  width: 100%;
+  margin-top: 0 !important;
+}
+
+.heroRest > :global(.grid) {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ev-s-6);
+}
+
+.heroRest :global(.type-lead) {
+  max-width: 44rem;
+  color: var(--ev-ink-2);
+  font-size: clamp(1.0625rem, 1.3vw, 1.2rem);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.heroRest :global(.type-lead) > * {
+  margin: 0;
+}
+
+.heroRest :global(.type-lead) > * + * {
+  margin-top: var(--ev-s-3);
+}
+
+.heroRest :global(.type-lead) :global(.font-display) {
+  color: var(--ev-charcoal);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.heroRest aside {
+  width: 100%;
+  max-width: 36rem;
+  text-align: left;
+}
+
+.heroRest > div:not(:global(.grid)):not(:global(.type-lead)),
+.heroRest > p {
+  text-align: left;
+}
+
+.heroRest > p {
+  max-width: 44rem;
+  color: var(--ev-ink-2);
+  text-align: center;
+}
+
+.qaLead {
+  max-width: 40rem;
+  margin: 0 auto var(--ev-s-6);
+  color: var(--ev-taupe);
+  text-align: center;
+}
+
+.qaLead > * {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* Inner "site-shell" wrappers carried over from the guides: fill the band */
+.skin :global(.site-shell) {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.heroRest :global(.type-lead) :global(.flex-wrap) {
+  justify-content: center;
+}
+
+.skin :global(.type-heading) {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.2;
+}
+
+.skin :global(.type-subheading) {
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  line-height: 1.25;
+}
+
+/* Former two-column sections: heading on top, content centred underneath */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stack > :not(header) {
+  width: 100%;
+  max-width: 60rem;
+}
+
+.stack > div:first-child:not(header) {
+  margin-bottom: var(--ev-s-6);
+  text-align: center;
+}
+
+.stack > div:first-child:not(header) > * {
+  margin-inline: auto;
+}
+
+/* Links in source lists and content lists: comfortable tap height */
+.sources li a,
+.skin li > a,
+.skin li > p > a {
+  padding-block: 3px;
+}
+
+/* Wide tables in the guides may run wider than the reading column */
+.reading :global(.resource-answer-map) {
+  position: relative;
+  left: 50%;
+  width: min(72rem, 100vw - 2 * var(--gutter));
+  max-width: none;
+  transform: translateX(-50%);
+}
+
+/* Long German compounds inside the tools */
+.toolBand :global(label),
+.skin :where(td, th, dd, label) {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.skin :global(.orange-link) {
+  min-height: 2.75rem;
 }

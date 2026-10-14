@@ -1,14 +1,29 @@
 import type { ReactNode } from "react";
 import {
   CircleAlert,
-  ClipboardCheck,
   ExternalLink,
   FileCheck2,
-  Link2,
   Network
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 const EFRAG_STANDARD_URL = "https://knowledgehub.efrag.org/eng/interactive/voluntary-standard";
@@ -72,18 +87,6 @@ function ExternalSourceLink({ children, href }: { children: ReactNode; href: str
   return <a className="inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-[rgba(254,112,1,0.45)] underline-offset-4 transition hover:text-orange" href={href} rel="noreferrer" target="_blank">{children}<ExternalLink aria-hidden="true" className="h-3.5 w-3.5 shrink-0" /></a>;
 }
 
-function BulletList({ items }: { items: readonly string[] }) {
-  return <ul className="mt-6 grid gap-3">{items.map((item) => <li className="flex gap-3 leading-7 text-muted" key={item}><span aria-hidden="true" className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" /><span>{item}</span></li>)}</ul>;
-}
-
-function ArticleSection({ children, id, number, title }: { children: ReactNode; id: string; number: string; title: string }) {
-  return <section aria-labelledby={id + "-title"} className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16" id={id}><div className="flex items-start gap-4 sm:gap-6"><span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span><h2 className="type-heading font-display max-w-[24ch]" id={id + "-title"}>{title}</h2></div><div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div></section>;
-}
-
-function Principle({ children, label }: { children: ReactNode; label?: string }) {
-  return <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">{label ? <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">{label}</p> : null}<p className={"font-display text-[clamp(1.8rem,4vw,3.05rem)] leading-[1.1] " + (label ? "mt-4" : "")}>{children}</p></div>;
-}
-
 function StatusPill({ status }: { status: string }) {
   const ready = status === "bereit";
   return <span className={"inline-flex rounded-full border px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.06em] " + (ready ? "border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] text-[#b94f00]" : "border-[rgba(21,21,21,0.16)] bg-[rgba(21,21,21,0.05)] text-ink")}>{status}</span>;
@@ -93,47 +96,21 @@ function ResponsiveMap({ caption, headers, marker, rows, statusColumn }: { capti
   return <div className="mt-8" data-esg-map={marker}><div className="resource-answer-map hidden overflow-hidden rounded-[1.1rem] border border-[rgba(21,21,21,0.13)] bg-white md:block"><div className="overflow-x-auto"><table className="w-full min-w-[900px] border-collapse text-left text-sm"><caption className="sr-only">{caption}</caption><thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]"><tr>{headers.map((heading) => <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={heading} scope="col">{heading}</th>)}</tr></thead><tbody>{rows.map((row, rowIndex) => <tr className="border-b border-[rgba(21,21,21,0.09)] last:border-b-0" key={row[0] + "-" + rowIndex}>{row.map((value, columnIndex) => columnIndex === 0 ? <th className="px-4 py-5 font-bold text-ink" key={value + "-" + columnIndex} scope="row">{value}</th> : <td className="px-4 py-5 text-muted" key={value + "-" + columnIndex}>{statusColumn === columnIndex ? <StatusPill status={value} /> : value}</td>)}</tr>)}</tbody></table></div></div><div className="grid gap-4 md:hidden">{rows.map((row, rowIndex) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5" key={row[0] + "-" + rowIndex}><div className="flex items-start justify-between gap-3 border-b border-[rgba(21,21,21,0.1)] pb-4"><h3 className="min-w-0 break-words font-bold text-ink">{row[0]}</h3>{typeof statusColumn === "number" ? <StatusPill status={row[statusColumn]} /> : null}</div><dl className="mt-4 grid gap-3 text-sm">{headers.slice(1).map((label, index) => { const columnIndex = index + 1; if (statusColumn === columnIndex) return null; return <div className="grid grid-cols-[6.7rem_minmax(0,1fr)] gap-3" key={label}><dt className="font-semibold text-[rgba(21,21,21,0.56)]">{label}</dt><dd className="min-w-0 break-words text-ink">{row[columnIndex]}</dd></div>; })}</dl></article>)}</div></div>;
 }
 
-function DataOwnerArtwork() {
-  const nodes = [[260, 78], [260, 178], [112, 294], [260, 294], [408, 294], [112, 438], [260, 438], [408, 438]] as const;
-  return <div aria-hidden="true" className="resource-hero-art"><svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg"><path d="M260 78V178M260 178L112 294M260 178L260 294M260 178L408 294M112 294V438M260 294V438M408 294V438" stroke="currentColor" strokeOpacity="0.72" strokeWidth="2" />{nodes.map(([cx, cy], index) => <circle cx={cx} cy={cy} fill={index === 1 ? "#FE7001" : "currentColor"} fillOpacity={index === 1 ? 1 : 0.08} key={cx + "-" + cy} r={index === 1 ? 15 : 11} stroke="currentColor" strokeWidth="2" />)}<text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2" x="64" y="536">OWNER · SOURCE · REVIEW</text></svg><span className="resource-hero-art__code">FINANCE · HR · QUALITY · OPERATIONS</span></div>;
-}
-
 export function EsgDataOwnersGuide() {
   return (
-    <>
-      <main id="top">
-        <article>
-          <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-            <DataOwnerArtwork />
-            <div className="site-shell relative z-10">
-              <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
-                <Link className="transition hover:text-orange" href="/de">Startseite</Link><span aria-hidden="true">/</span><Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link><span aria-hidden="true">/</span><span className="text-ink">ESG-Datenverantwortung</span>
-              </nav>
-              <div className="mt-12 max-w-6xl"><p className="eyebrow">ESG-Daten · Interne Verantwortlichkeiten</p><h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">ESG-Daten vom Kunden angefragt: Wer im Unternehmen liefert welche Informationen?</h1></div>
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="type-lead max-w-3xl text-muted">
+    <ResourceMain locale="de">
+      <article>
+          <ResourceHero current="ESG-Datenverantwortung" eyebrow="ESG-Daten · Interne Verantwortlichkeiten" locale="de" title={<>ESG-Daten vom Kunden angefragt: Wer im Unternehmen liefert welche Informationen?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+                <div className="type-lead">
                   <p>Ein Kunde schickt einen ESG-Fragebogen. Die Datei landet bei Einkauf, Qualität, Geschäftsführung oder bei der Person, die gerade als Kontakt im Kundenportal hinterlegt ist.</p>
                   <p className="mt-6">Diese Person kann den Fragebogen koordinieren. Aber sie besitzt normalerweise nicht alle Informationen, die für eine belastbare Antwort benötigt werden.</p>
                   <p className="font-display mt-7 text-3xl leading-tight text-ink">Wer besitzt für jeden Datenpunkt die verlässlichste interne Quelle?</p>
                 </div>
                 <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7"><Network aria-hidden="true" className="h-8 w-8 text-orange" /><p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">Die Kernfrage</p><p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">Kundenfrage → Datenpunkt → interner Owner → Quelle → Review</p></aside>
               </div>
-              <p className="mt-12 max-w-4xl text-lg leading-8 text-muted">Stromverbrauch kann in Finance liegen, Kältemittel bei Facility, Mitarbeiterdaten bei HR und Zertifikate im Qualitätsmanagement. Dieser Leitfaden zeigt eine praktische, nicht universell vorgeschriebene Data-Owner-Struktur für produzierende Unternehmen.</p>
-            </div>
-          </header>
-
-          <section aria-labelledby="quick-answer-title" className="scroll-mt-24 bg-ink py-20 text-white sm:py-24" id="schnellantwort">
-            <div className="site-shell">
-              <div className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-16">
-                <div><p className="eyebrow">Quick Answer</p><h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">Wer liefert typischerweise welche ESG-Daten?</h2><p className="mt-6 max-w-sm leading-7 text-white/62">Die genaue Organisation ist in jedem Unternehmen anders. Diese Zuordnung ist eine praktische Orientierung für ein typisches produzierendes KMU.</p></div>
-                <div className="grid gap-x-7 gap-y-8 sm:grid-cols-2">{quickDepartments.map(([title, items], index) => <section className="border-t border-white/20 pt-4" key={title}><p className="font-mono text-xs text-orange">{String(index + 1).padStart(2, "0")}</p><h3 className="mt-2 font-bold text-white">{title}</h3><ul className="mt-3 grid gap-1.5 text-sm leading-6 text-white/62">{items.map((item) => <li key={item}>{item}</li>)}</ul></section>)}</div>
-              </div>
-              <div className="mt-14 border-t border-white/15 pt-9"><p className="font-display max-w-5xl text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Eine Person koordiniert.<br />Die Fachbereiche liefern die Quellen.<br />Verantwortliche Personen bestätigen die Aussagen.</p></div>
-            </div>
-          </section>
-
-          <div className="site-shell grid items-start gap-12 py-10 lg:grid-cols-[15rem_minmax(0,55rem)] lg:justify-center lg:gap-16 lg:py-16">
-            <aside className="hidden lg:block"><nav aria-label="Inhalt des Leitfadens" className="sticky top-28 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.72)] p-5 backdrop-blur"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Im Leitfaden</p><ol className="mt-5 grid gap-3 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.62)]">{[
+              <p className="mt-12 max-w-4xl text-lg leading-8 text-muted">Stromverbrauch kann in Finance liegen, Kältemittel bei Facility, Mitarbeiterdaten bei HR und Zertifikate im Qualitätsmanagement. Dieser Leitfaden zeigt eine praktische, nicht universell vorgeschriebene Data-Owner-Struktur für produzierende Unternehmen.</p></div>
+            <JumpNav items={[
               ["01", "ESG ist verteilt", "#esg-cross-functional"],
               ["03", "Data Owner Map", "#data-owner-map"],
               ["15", "Owner-Rollen", "#owner-rollen"],
@@ -141,9 +118,21 @@ export function EsgDataOwnersGuide() {
               ["23", "Traceability", "#traceability"],
               ["29", "60 Minuten", "#erste-60-minuten"],
               ["FAQ", "Häufige Fragen", "#faq"]
-            ].map(([number, label, href]) => <li key={href}><a className="flex gap-3 hover:text-orange" href={href}><span className="font-mono text-[0.65rem] text-orange">{number}</span><span>{label}</span></a></li>)}</ol></nav></aside>
-            <div className="min-w-0">
-              <ArticleSection id="esg-cross-functional" number="01" title="ESG ist kein einzelnes Fachgebiet.">
+            ].map(([, label, href]) => ({ label: label, href: href }))} label="Inhalt des Leitfadens" />
+          </ResourceHero>
+
+          <GuideQuickAnswer eyebrow="Quick Answer" id="schnellantwort" title={<>Wer liefert typischerweise welche ESG-Daten?</>}>
+<div className="site-shell">
+              <div className="grid gap-10 lg:gap-16">
+                <div className={r.qaLead}><p className="mt-6 max-w-sm leading-7 text-white/62">Die genaue Organisation ist in jedem Unternehmen anders. Diese Zuordnung ist eine praktische Orientierung für ein typisches produzierendes KMU.</p></div>
+                <div className="grid gap-x-7 gap-y-8 sm:grid-cols-2">{quickDepartments.map(([title, items], index) => <section className="border-t border-white/20 pt-4" key={title}><p className="font-mono text-xs text-orange">{String(index + 1).padStart(2, "0")}</p><h3 className="mt-2 font-bold text-white">{title}</h3><ul className="mt-3 grid gap-1.5 text-sm leading-6 text-white/62">{items.map((item) => <li key={item}>{item}</li>)}</ul></section>)}</div>
+              </div>
+              <div className="mt-14 border-t border-white/15 pt-9"><p className="font-display max-w-5xl text-[clamp(2.1rem,5vw,4.2rem)] leading-none">Eine Person koordiniert.<br />Die Fachbereiche liefern die Quellen.<br />Verantwortliche Personen bestätigen die Aussagen.</p></div>
+            </div>
+          </GuideQuickAnswer>
+
+          <GuideBody>
+            <ArticleSection id="esg-cross-functional" number="01" title="ESG ist kein einzelnes Fachgebiet.">
                 <p>Ein Nachhaltigkeitsfragebogen kann gleichzeitig Fragen zu Umwelt, Menschenrechten, Arbeitssicherheit, Unternehmensethik, Beschaffung, Lieferantenmanagement, Emissionen und Zertifizierungen enthalten. Nicht jeder Fragebogen enthält jedes dieser Themen.</p>
                 <p>Der <ExternalSourceLink href={BMW_SAQ_URL}>BMW Group Supplier Sustainability Questionnaire</ExternalSourceLink> ist ein reales Beispiel für diese thematische Breite. Auch der <ExternalSourceLink href={EFRAG_STANDARD_URL}>2026 Voluntary Standard im EFRAG Knowledge Hub</ExternalSourceLink> verbindet unter anderem Energie, Treibhausgasemissionen, Wasser, Abfall, Workforce, Arbeitsunfälle, Vergütung und Weiterbildung in einem Reporting-System.</p>
                 <Principle>ESG-Koordination kann zentral sein. ESG-Daten sind es meistens nicht.</Principle>
@@ -392,34 +381,31 @@ export function EsgDataOwnersGuide() {
                 <p>Wie Evipace konkrete Kundenanforderungen unterstützt, zeigt die Seite <Link href="/de/esg-kundenanfragen">ESG-Anforderungen von Kunden</Link>.</p>
               </ArticleSection>
 
-              <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
-                <ClipboardCheck aria-hidden="true" className="h-7 w-7 text-orange" />
-                <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p>
-                <h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">Ihr Kunde verlangt ESG-Daten – aber intern ist unklar, wer was liefern soll?</h2>
-                <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68"><p>Senden Sie uns die Kundenanfrage oder den Fragebogen.</p><p>Wir strukturieren die benötigten Datenpunkte, ordnen vorhandene Quellen und Nachweise zu und machen sichtbar, welche Informationen aus Finance, HR, Einkauf, Qualität, Operations oder Management noch benötigt werden.</p></div>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>ESG-Anfrage senden</ButtonLink><ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="light">ESG-Anforderungen von Kunden</ButtonLink><Link className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/25 px-6 py-3 text-center text-sm font-bold text-white transition hover:border-orange hover:text-orange sm:w-auto" href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen erhalten – was jetzt?</Link></div>
-                <p className="mt-6 text-sm font-semibold text-white/50">Finance · HR · Einkauf · Qualität · Operations · Nachweise</p>
-              </section>
+              <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink><TextLink href="/de/esg-kundenanfragen">ESG-Anforderungen von Kunden</TextLink><TextLink href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen erhalten – was jetzt?</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Finance · HR · Einkauf · Qualität · Operations · Nachweise</p></>}
+              title={<>Ihr Kunde verlangt ESG-Daten – aber intern ist unklar, wer was liefern soll?</>}
+            >
+              <p>Senden Sie uns die Kundenanfrage oder den Fragebogen.</p><p>Wir strukturieren die benötigten Datenpunkte, ordnen vorhandene Quellen und Nachweise zu und machen sichtbar, welche Informationen aus Finance, HR, Einkauf, Qualität, Operations oder Management noch benötigt werden.</p>
+            </GuideCta>
 
-              <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
-                <p className="eyebrow">FAQ</p><h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zu internen ESG-Verantwortlichkeiten</h2>
-                <div className="faq-list">{faqItems.map(([question, answer]) => <details className="faq-item group" key={question}><summary className="faq-question">{question}<span aria-hidden="true" className="faq-toggle" /></summary><p className="faq-answer">{answer}</p></details>)}</div>
-              </section>
+              </GuideBody>
 
-              <section aria-labelledby="sources-title" className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12">
-                <div className="flex items-center gap-3"><Link2 aria-hidden="true" className="h-4 w-4 text-orange" /><h2 className="text-sm font-bold uppercase tracking-[0.12em] text-ink" id="sources-title">Quellen &amp; weiterführende Informationen</h2></div>
-                <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems.map(([question, answer]) => ({ question: question, answer: answer }))} title="Häufige Fragen zu internen ESG-Verantwortlichkeiten" />
+
+          <GuideBody>
+
+              <GuideSources note={<>Die vorgeschlagene Data-Owner-Struktur ist praktische Evipace-Orientierung und keine gesetzlich vorgeschriebene Organisationsform.</>} title="Quellen &amp; weiterführende Informationen">
+              <ul>
                   <li><ExternalSourceLink href={EFRAG_STANDARD_URL}>EFRAG Knowledge Hub — 2026 Voluntary Standard</ExternalSourceLink><p className="mt-1">Offizielle aktuelle Themen- und Datenpunktstruktur von Energie und Umwelt bis Workforce, Arbeitssicherheit und Training.</p></li>
                   <li><ExternalSourceLink href={INTEGRITYNEXT_COLLEAGUE_URL}>IntegrityNext Help Center — Invite / add a colleague</ExternalSourceLink><p className="mt-1">Offizielle Beschreibung der Zusammenarbeit mehrerer Kolleginnen und Kollegen in einem Supplier Profile.</p></li>
                   <li><ExternalSourceLink href={BMW_SAQ_URL}>BMW Group — Sustainability Assessment Questionnaire</ExternalSourceLink><p className="mt-1">Praxisbeispiel für die thematische Breite eines Lieferanten-Nachhaltigkeitsfragebogens.</p></li>
                   <li><ExternalSourceLink href={BMOE_QUESTIONNAIRE_URL}>BMÖ — Lieferanten-Nachhaltigkeitsfragebogen</ExternalSourceLink><p className="mt-1">Aktueller Kontext zur Standardisierung von Lieferantenfragen und zur Einbindung von Nachhaltigkeit und Einkauf.</p></li>
                 </ul>
-                <p className="mt-7 text-xs leading-6 text-[rgba(21,21,21,0.48)]">Die vorgeschlagene Data-Owner-Struktur ist praktische Evipace-Orientierung und keine gesetzlich vorgeschriebene Organisationsform.</p>
-              </section>
-            </div>
-          </div>
+            </GuideSources>
+          </GuideBody>
         </article>
-      </main>
-    </>
+    </ResourceMain>
   );
 }

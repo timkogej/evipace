@@ -354,7 +354,8 @@ test("resource copy, links, breadcrumbs, privacy copy, and claim safety are pres
     assert.ok(guideSource.includes(`href="${href}"`) || guideSource.includes(`href={SEND_REQUEST_HREF}`), href);
   }
 
-  assert.ok(guideSource.includes("Startseite"));
+  // The "Startseite / Ressourcen" breadcrumb comes from the shared ResourceHero.
+  assert.ok(guideSource.includes("<ResourceHero") && guideSource.includes('locale="de"'));
   assert.ok(guideSource.includes("Ressourcen"));
   assert.ok(guideSource.includes("ESG-Nachweise-Checkliste"));
 

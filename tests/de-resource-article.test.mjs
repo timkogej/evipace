@@ -419,12 +419,12 @@ test("resource has all required internal destinations, CTA paths, and clean firs
   assert.ok(articleSource.includes('const SEND_REQUEST_HREF = "/de/send-request"'));
   assert.ok(
     articleSource.includes(
-      "<ButtonLink className=\"w-full sm:w-auto\" href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</ButtonLink>"
+      "<PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink>"
     )
   );
   assert.ok(
     articleSource.includes(
-      'href="/de/esg-fragebogen-lieferanten" variant="light">Unterstützung bei ESG-Fragebögen</ButtonLink>'
+      '<TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink>'
     )
   );
 
@@ -576,12 +576,12 @@ test("evidence guide has required internal links, CTAs, and clean first-party so
   );
   assert.ok(
     normalizeWhitespace(evidenceArticleSource).includes(
-      "<ButtonLink className=\"w-full sm:w-auto\" href={SEND_REQUEST_HREF}> ESG-Anfrage senden </ButtonLink>"
+      "<PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink>"
     )
   );
   assert.ok(
     normalizeWhitespace(evidenceArticleSource).includes(
-      'href="/de/esg-fragebogen-lieferanten" variant="light" > Unterstützung bei ESG-Fragebögen'
+      '<TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink>'
     )
   );
 
@@ -749,12 +749,12 @@ test("EcoVadis documents guide has the required links, CTAs, independence langua
   );
   assert.ok(
     normalizeWhitespace(ecovadisDocumentsArticleSource).includes(
-      '<ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>EcoVadis-Anfrage senden</ButtonLink>'
+      '<PillLink href={SEND_REQUEST_HREF}>EcoVadis-Anfrage senden</PillLink>'
     )
   );
   assert.ok(
     normalizeWhitespace(ecovadisDocumentsArticleSource).includes(
-      'href="/de/ecovadis-unterstuetzung" variant="light">EcoVadis-Unterstützung</ButtonLink>'
+      '<TextLink href="/de/ecovadis-unterstuetzung">EcoVadis-Unterstützung</TextLink>'
     )
   );
   assert.ok(
@@ -1111,13 +1111,13 @@ test("Scope 1 and Scope 2 guide has required links, exact CTAs, and clean first-
   assert.ok(
     normalizedIncludes(
       scope12DataArticleSource,
-      '<ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</ButtonLink>'
+      '<PillLink href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</PillLink>'
     )
   );
   assert.ok(
     normalizedIncludes(
       scope12DataArticleSource,
-      'href="/de/scope-1-2-berechnung" variant="light">Scope 1 und Scope 2 berechnen</ButtonLink>'
+      '<TextLink href="/de/scope-1-2-berechnung">Scope 1 und Scope 2 berechnen</TextLink>'
     )
   );
   assert.ok(
@@ -1308,13 +1308,13 @@ test("VSME data guide has required internal links, exact CTAs, independence lang
   assert.ok(
     normalizedIncludes(
       vsmeDataArticleSource,
-      '<ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>VSME-Projekt anfragen</ButtonLink>'
+      '<PillLink href={SEND_REQUEST_HREF}>VSME-Projekt anfragen</PillLink>'
     )
   );
   assert.ok(
     normalizedIncludes(
       vsmeDataArticleSource,
-      'href="/de/vsme-nachhaltigkeitsbericht" variant="light">VSME-Nachhaltigkeitsbericht erstellen</ButtonLink>'
+      '<TextLink href="/de/vsme-nachhaltigkeitsbericht">VSME-Nachhaltigkeitsbericht erstellen</TextLink>'
     )
   );
   assert.ok(
@@ -1542,13 +1542,13 @@ test("ESG data-owner guide has all statuses, internal links, CTAs, and clean off
   assert.ok(
     normalizedIncludes(
       esgDataOwnersArticleSource,
-      '<ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>ESG-Anfrage senden</ButtonLink>'
+      '<PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink>'
     )
   );
   assert.ok(
     normalizedIncludes(
       esgDataOwnersArticleSource,
-      'href="/de/esg-kundenanfragen" variant="light">ESG-Anforderungen von Kunden</ButtonLink>'
+      '<TextLink href="/de/esg-kundenanfragen">ESG-Anforderungen von Kunden</TextLink>'
     )
   );
   assert.ok(
@@ -1821,13 +1821,13 @@ test("Scope 1/2/3 guide has required links, exact CTAs, and clean first-party so
   assert.ok(
     normalizedIncludes(
       scope123ArticleSource,
-      '<ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</ButtonLink>'
+      '<PillLink href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</PillLink>'
     )
   );
   assert.ok(
     normalizedIncludes(
       scope123ArticleSource,
-      'href="/de/scope-1-2-berechnung" variant="light">Scope 1 und Scope 2 berechnen</ButtonLink>'
+      '<TextLink href="/de/scope-1-2-berechnung">Scope 1 und Scope 2 berechnen</TextLink>'
     )
   );
   assert.ok(

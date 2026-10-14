@@ -5,14 +5,29 @@ import {
   FileBadge2,
   FileCheck2,
   FileText,
-  Link2,
   Mail,
   RefreshCw,
-  ShieldCheck,
   UsersRound
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -147,78 +162,6 @@ function ExternalSourceLink({
   );
 }
 
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-6 grid gap-3">
-      {items.map((item) => (
-        <li className="flex gap-3 leading-7 text-muted" key={item}>
-          <span
-            aria-hidden="true"
-            className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange"
-          />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ArticleSection({
-  children,
-  id,
-  number,
-  title
-}: {
-  children: ReactNode;
-  id: string;
-  number: string;
-  title: string;
-}) {
-  return (
-    <section
-      aria-labelledby={`${id}-title`}
-      className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16"
-      id={id}
-    >
-      <div className="flex items-start gap-4 sm:gap-6">
-        <span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">
-          {number}
-        </span>
-        <h2
-          className="type-heading font-display max-w-[24ch]"
-          id={`${id}-title`}
-        >
-          {title}
-        </h2>
-      </div>
-      <div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div>
-    </section>
-  );
-}
-
-function Principle({
-  label,
-  children
-}: {
-  label?: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">
-      {label ? (
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
-          {label}
-        </p>
-      ) : null}
-      <p
-        className={`font-display text-[clamp(1.8rem,4vw,3.1rem)] leading-[1.1] ${label ? "mt-4" : ""}`}
-      >
-        {children}
-      </p>
-    </div>
-  );
-}
-
 function StatusPill({ status }: { status: string }) {
   const active = status === "bereit";
   return (
@@ -315,74 +258,13 @@ function AssessmentMap() {
   );
 }
 
-function InvitationArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg
-        className="resource-hero-art__sheet"
-        fill="none"
-        viewBox="0 0 520 650"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M66 156H454V494H66V156Z"
-          fill="currentColor"
-          fillOpacity="0.02"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path d="M67 157L260 326L453 157" stroke="currentColor" strokeWidth="2" />
-        <path d="M67 493L214 303M453 493L306 303" stroke="currentColor" strokeWidth="2" />
-        <circle cx="417" cy="170" fill="#FE7001" r="46" />
-        <path d="M397 170L412 185L438 154" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="6" />
-        <text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2" x="66" y="126">SUPPLIER INVITATION</text>
-      </svg>
-      <span className="resource-hero-art__code">
-        PROFILE · ASSESSMENT · REVIEW
-      </span>
-    </div>
-  );
-}
-
 export function IntegrityNextInvitationGuide() {
   return (
-    <>
-
-      <main id="top">
-        <article>
-          <header
-            aria-labelledby="article-title"
-            className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28"
-          >
-            <InvitationArtwork />
-            <div className="site-shell relative z-10">
-              <nav
-                aria-label="Brotkrümelnavigation"
-                className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"
-              >
-                <Link className="transition hover:text-orange" href="/de">
-                  Startseite
-                </Link>
-                <span aria-hidden="true">/</span>
-                <Link className="transition hover:text-orange" href="/de/ressourcen">
-                  Ressourcen
-                </Link>
-                <span aria-hidden="true">/</span>
-                <span className="text-ink">IntegrityNext für Lieferanten</span>
-              </nav>
-
-              <div className="mt-12 max-w-6xl">
-                <p className="eyebrow">IntegrityNext · Leitfaden für Lieferanten</p>
-                <h1
-                  className="type-title font-display mt-7 max-w-[20ch]"
-                  id="article-title"
-                >
-                  IntegrityNext für Lieferanten: Was passiert nach der Einladung?
-                </h1>
-              </div>
-
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="type-lead max-w-3xl text-muted">
+    <ResourceMain locale="de">
+      <article>
+          <ResourceHero current="IntegrityNext für Lieferanten" eyebrow="IntegrityNext · Leitfaden für Lieferanten" locale="de" title={<>IntegrityNext für Lieferanten: Was passiert nach der Einladung?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+                <div className="type-lead">
                   <p>Eine E-Mail kommt von IntegrityNext.</p>
                   <p className="mt-6">
                     Ein Kunde möchte, dass Ihr Unternehmen ein Nachhaltigkeits-
@@ -444,26 +326,23 @@ export function IntegrityNextInvitationGuide() {
                     Schritt für Schritt.
                   </p>
                 </div>
-              </div>
-            </div>
-          </header>
+              </div></div>
+            <JumpNav items={[
+                    ["01", "Warum eingeladen?", "#warum-eingeladen"],
+                    ["03", "Unternehmensprofil", "#unternehmensprofil"],
+                    ["05", "Zertifikat oder Fragebogen", "#zertifikat-oder-fragebogen"],
+                    ["09", "Assessment Map", "#assessment-map"],
+                    ["14", "Nachbesserungsbedarf", "#nachbesserungsbedarf"],
+                    ["18", "Aktualisierung", "#kein-einmalprojekt"],
+                    ["22", "Erste 24 Stunden", "#erste-24-stunden"],
+                    ["24", "Unterstützung", "#externe-unterstuetzung"]
+                  ].map(([, label, href]) => ({ label: label, href: href }))} label="Inhalt des Leitfadens" />
+          </ResourceHero>
 
-          <section
-            aria-labelledby="quick-answer-title"
-            className="scroll-mt-24 bg-ink py-20 text-white sm:py-24"
-            id="schnellantwort"
-          >
-            <div className="site-shell">
-              <div className="grid gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
-                <div>
-                  <p className="eyebrow">Quick Answer</p>
-                  <h2
-                    className="type-heading font-display mt-6 max-w-[24ch]"
-                    id="quick-answer-title"
-                  >
-                    IntegrityNext-Einladung erhalten? Gehen Sie so vor.
-                  </h2>
-                </div>
+          <GuideQuickAnswer eyebrow="Quick Answer" id="schnellantwort" title={<>IntegrityNext-Einladung erhalten? Gehen Sie so vor.</>}>
+<div className="site-shell">
+              <div className="grid gap-10 lg:gap-16">
+                
                 <ol className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
                   {quickSteps.map((step, index) => (
                     <li
@@ -499,46 +378,10 @@ export function IntegrityNextInvitationGuide() {
                 </p>
               </div>
             </div>
-          </section>
+          </GuideQuickAnswer>
 
-          <div className="site-shell grid items-start gap-12 py-10 lg:grid-cols-[15rem_minmax(0,55rem)] lg:justify-center lg:gap-16 lg:py-16">
-            <aside className="hidden lg:block">
-              <nav
-                aria-label="Inhalt des Leitfadens"
-                className="sticky top-28 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.72)] p-5 backdrop-blur"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">
-                  Im Leitfaden
-                </p>
-                <ol className="mt-5 grid gap-3 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.62)]">
-                  {[
-                    ["01", "Warum eingeladen?", "#warum-eingeladen"],
-                    ["03", "Unternehmensprofil", "#unternehmensprofil"],
-                    ["05", "Zertifikat oder Fragebogen", "#zertifikat-oder-fragebogen"],
-                    ["09", "Assessment Map", "#assessment-map"],
-                    ["14", "Nachbesserungsbedarf", "#nachbesserungsbedarf"],
-                    ["18", "Aktualisierung", "#kein-einmalprojekt"],
-                    ["22", "Erste 24 Stunden", "#erste-24-stunden"],
-                    ["24", "Unterstützung", "#externe-unterstuetzung"]
-                  ].map(([number, label, href]) => (
-                    <li key={href}>
-                      <a
-                        className="group flex gap-3 transition hover:text-ink"
-                        href={href}
-                      >
-                        <span className="font-mono text-[0.65rem] text-orange">
-                          {number}
-                        </span>
-                        <span>{label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            </aside>
-
-            <div className="min-w-0">
-              <ArticleSection
+          <GuideBody>
+            <ArticleSection
                 id="warum-eingeladen"
                 number="01"
                 title="Warum hat mein Kunde uns zu IntegrityNext eingeladen?"
@@ -1430,22 +1273,17 @@ export function IntegrityNextInvitationGuide() {
                 </Principle>
               </ArticleSection>
 
-              <section
-                aria-labelledby="article-cta-title"
-                className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12"
-              >
-                <ShieldCheck aria-hidden="true" className="h-7 w-7 text-orange" />
-                <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                  Ihr nächster Schritt
-                </p>
-                <h2
-                  className="type-heading font-display mt-5 max-w-[24ch]"
-                  id="article-cta-title"
-                >
-                  Sie wurden zu IntegrityNext eingeladen?
-                </h2>
-                <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68">
-                  <p>
+              <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>IntegrityNext-Anfrage senden</PillLink><TextLink href="/de/integritynext-unterstuetzung">IntegrityNext-Unterstützung</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Einladung · Assessments · Zertifikate · Fragebögen · Nachweise</p><p>Evipace ist ein unabhängiger Dienstleister und weder mit
+                  IntegrityNext verbunden noch ein offizieller
+                  IntegrityNext-Partner. Die Eingabe und Freigabe im
+                  IntegrityNext-Profil sowie die finale Validierung liegen beim
+                  Lieferanten beziehungsweise bei IntegrityNext.</p></>}
+              title={<>Sie wurden zu IntegrityNext eingeladen?</>}
+            >
+              <p>
                     Senden Sie uns die Kundenanfrage beziehungsweise die
                     Informationen zu den angeforderten Assessments und die
                     Unterlagen, die bereits vorhanden sind.
@@ -1456,82 +1294,20 @@ export function IntegrityNextInvitationGuide() {
                     Punkte sichtbar zu machen und die Antworten für die Eingabe in
                     IntegrityNext vorzubereiten.
                   </p>
-                  <p className="font-semibold text-white">
+                  <p>
                     Sie behalten die Kontrolle über Ihr Unternehmensprofil und
                     reichen die Angaben selbst in IntegrityNext ein.
                   </p>
-                </div>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <ButtonLink
-                    className="w-full sm:w-auto"
-                    href={SEND_REQUEST_HREF}
-                  >
-                    IntegrityNext-Anfrage senden
-                  </ButtonLink>
-                  <ButtonLink
-                    className="w-full sm:w-auto"
-                    href="/de/integritynext-unterstuetzung"
-                    variant="light"
-                  >
-                    IntegrityNext-Unterstützung
-                  </ButtonLink>
-                </div>
-                <p className="mt-6 text-sm font-semibold text-white/50">
-                  Einladung · Assessments · Zertifikate · Fragebögen · Nachweise
-                </p>
-                <p className="mt-4 max-w-2xl text-xs leading-6 text-white/42">
-                  Evipace ist ein unabhängiger Dienstleister und weder mit
-                  IntegrityNext verbunden noch ein offizieller
-                  IntegrityNext-Partner. Die Eingabe und Freigabe im
-                  IntegrityNext-Profil sowie die finale Validierung liegen beim
-                  Lieferanten beziehungsweise bei IntegrityNext.
-                </p>
-              </section>
+            </GuideCta>
 
-              <section
-                aria-labelledby="faq-title"
-                className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16"
-                id="faq"
-              >
-                <p className="eyebrow">FAQ</p>
-                <h2
-                  className="type-heading font-display mt-6"
-                  id="faq-title"
-                >
-                  Häufige Fragen zu IntegrityNext für Lieferanten
-                </h2>
-                <div className="faq-list">
-                  {faqItems.map((faq) => (
-                    <details
-                      className="faq-item group"
-                      key={faq.question}
-                    >
-                      <summary className="faq-question">
-                        {faq.question}
-                        <span aria-hidden="true" className="faq-toggle" />
-                      </summary>
-                      <p className="faq-answer">
-                        {faq.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
-              </section>
+              </GuideBody>
 
-              <section
-                aria-labelledby="sources-title"
-                className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12"
-              >
-                <div className="flex items-center gap-3">
-                  <Link2 aria-hidden="true" className="h-4 w-4 text-orange" />
-                  <h2
-                    className="text-sm font-bold uppercase tracking-[0.12em] text-ink"
-                    id="sources-title"
-                  >
-                    Quellen &amp; weiterführende Informationen
-                  </h2>
-                </div>
-                <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems} title="Häufige Fragen zu IntegrityNext für Lieferanten" />
+
+          <GuideBody>
+
+              <GuideSources title="Quellen &amp; weiterführende Informationen">
+              <ul>
                   <li>
                     <ExternalSourceLink href={WHAT_IS_INTEGRITYNEXT_URL}>
                       IntegrityNext Helpdesk — Was ist IntegrityNext?
@@ -1614,11 +1390,9 @@ export function IntegrityNextInvitationGuide() {
                     </p>
                   </li>
                 </ul>
-              </section>
-            </div>
-          </div>
+            </GuideSources>
+          </GuideBody>
         </article>
-      </main>
-    </>
+    </ResourceMain>
   );
 }

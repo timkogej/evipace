@@ -5,12 +5,27 @@ import {
   ExternalLink,
   Factory,
   FileCheck2,
-  Link2,
-  Network,
   Zap
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  HeroFacts,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 const CORPORATE_STANDARD_URL = "https://ghgprotocol.org/corporate-standard";
@@ -76,49 +91,28 @@ function ExternalSourceLink({ children, href }: { children: ReactNode; href: str
   return <a className="inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-[rgba(254,112,1,0.45)] underline-offset-4 transition hover:text-orange" href={href} rel="noreferrer" target="_blank">{children}<ExternalLink aria-hidden="true" className="h-3.5 w-3.5 shrink-0" /></a>;
 }
 
-function BulletList({ items }: { items: readonly string[] }) {
-  return <ul className="mt-6 grid gap-3">{items.map((item) => <li className="flex gap-3 leading-7 text-muted" key={item}><span aria-hidden="true" className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" /><span>{item}</span></li>)}</ul>;
-}
-
-function ArticleSection({ children, id, number, title }: { children: ReactNode; id: string; number: string; title: string }) {
-  return <section aria-labelledby={id + "-title"} className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16" id={id}><div className="flex items-start gap-4 sm:gap-6"><span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">{number}</span><h2 className="type-heading font-display max-w-[24ch]" id={id + "-title"}>{title}</h2></div><div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div></section>;
-}
-
-function Principle({ children, label }: { children: ReactNode; label?: string }) {
-  return <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">{label ? <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">{label}</p> : null}<p className={"font-display text-[clamp(1.8rem,4vw,3.05rem)] leading-[1.1] " + (label ? "mt-4" : "")}>{children}</p></div>;
-}
-
 function ScopeFlow({ rows }: { rows: readonly (readonly string[])[] }) {
   return <div className="my-8 grid gap-3">{rows.map(([source, relation, scope]) => <article className="grid gap-2 rounded-[0.9rem] border border-[rgba(21,21,21,0.11)] bg-white p-5 sm:grid-cols-[1fr_auto_1fr_auto_5rem] sm:items-center" key={source}><p className="font-bold text-ink">{source}</p><span aria-hidden="true" className="hidden text-orange sm:block">→</span><p className="text-sm text-muted">{relation}</p><span aria-hidden="true" className="hidden text-orange sm:block">→</span><strong className="text-orange">{scope}</strong></article>)}</div>;
 }
 
-function ScopeArtwork() {
-  return <div aria-hidden="true" className="resource-hero-art"><svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg"><circle cx="260" cy="260" r="72" stroke="currentColor" strokeOpacity="0.72" strokeWidth="2" /><circle cx="260" cy="260" r="138" stroke="currentColor" strokeOpacity="0.42" strokeWidth="2" /><circle cx="260" cy="260" r="205" stroke="currentColor" strokeOpacity="0.22" strokeWidth="2" /><path d="M260 40V480M40 260H480" stroke="currentColor" strokeDasharray="6 8" strokeOpacity="0.18" /><circle cx="260" cy="260" fill="#FE7001" r="13" /><text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="14" fontWeight="700" letterSpacing="2" x="205" y="265">SCOPE 1</text><text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="14" fontWeight="700" letterSpacing="2" x="205" y="164">SCOPE 2</text><text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="14" fontWeight="700" letterSpacing="2" x="205" y="92">SCOPE 3</text></svg><span className="resource-hero-art__code">DIRECT · ENERGY · VALUE CHAIN</span></div>;
-}
-
 export function Scope123ExplainerGuide() {
   return (
-    <>
-      <main id="top">
+      <ResourceMain locale="de">
         <article>
-          <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-            <ScopeArtwork />
-            <div className="site-shell relative z-10">
-              <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"><Link className="transition hover:text-orange" href="/de">Startseite</Link><span aria-hidden="true">/</span><Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link><span aria-hidden="true">/</span><span className="text-ink">Scope 1, 2 und 3</span></nav>
-              <div className="mt-12 max-w-6xl"><p className="eyebrow">Treibhausgasemissionen · Grundlagen</p><h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">Scope 1, 2 und 3 einfach erklärt – mit Beispielen für Unternehmen</h1></div>
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="type-lead max-w-3xl text-muted"><p>Erdgas in der eigenen Heizung. Strom aus dem Netz. Stahl vom Lieferanten. Geschäftsreisen. Abfall aus der Produktion. Transport zum Kunden. Die Nutzung eines verkauften Produkts.</p><p className="mt-6">All diese Aktivitäten können Treibhausgasemissionen verursachen. Aber sie gehören nicht alle in dieselbe Kategorie.</p><p className="mt-6">Das Greenhouse Gas Protocol ordnet Unternehmensemissionen deshalb in drei sogenannte Scopes ein.</p></div>
-                <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7"><Network aria-hidden="true" className="h-8 w-8 text-orange" /><div className="mt-6 grid gap-4"><p><strong className="text-orange">Scope 1</strong><br /><span className="text-sm leading-6 text-muted">direkte Emissionen</span></p><p><strong className="text-orange">Scope 2</strong><br /><span className="text-sm leading-6 text-muted">eingekaufte Energie</span></p><p><strong className="text-orange">Scope 3</strong><br /><span className="text-sm leading-6 text-muted">Wertschöpfungskette</span></p></div></aside>
-              </div>
-              <div className="mt-12 max-w-4xl text-lg leading-8 text-muted"><p>Die Unterscheidung entscheidet darüber, welche Daten Sie benötigen, wo Sie diese finden, welche Emissionsquellen Sie direkt kontrollieren und welche Informationen Sie von Lieferanten oder anderen Partnern brauchen.</p></div>
-            </div>
-          </header>
+          <ResourceHero current="Scope 1, 2 und 3" eyebrow="Treibhausgasemissionen · Grundlagen" locale="de" title="Scope 1, 2 und 3 einfach erklärt – mit Beispielen für Unternehmen" titleId="guide-title">
+            <p>Erdgas in der eigenen Heizung. Strom aus dem Netz. Stahl vom Lieferanten. Geschäftsreisen. Abfall aus der Produktion. Transport zum Kunden. Die Nutzung eines verkauften Produkts.</p>
+            <p>All diese Aktivitäten können Treibhausgasemissionen verursachen. Aber sie gehören nicht alle in dieselbe Kategorie.</p>
+            <p>Das Greenhouse Gas Protocol ordnet Unternehmensemissionen deshalb in drei sogenannte Scopes ein.</p>
+            <HeroFacts items={[["Scope 1", "direkte Emissionen"], ["Scope 2", "eingekaufte Energie"], ["Scope 3", "Wertschöpfungskette"]]} />
+            <p>Die Unterscheidung entscheidet darüber, welche Daten Sie benötigen, wo Sie diese finden, welche Emissionsquellen Sie direkt kontrollieren und welche Informationen Sie von Lieferanten oder anderen Partnern brauchen.</p>
+            <JumpNav items={articleNavItems} label="Artikelabschnitte" />
+          </ResourceHero>
 
-          <section aria-labelledby="quick-answer-title" className="scroll-mt-24 bg-ink py-20 text-white sm:py-24" id="schnellantwort">
-            <div className="site-shell"><div className="grid gap-10 lg:grid-cols-[0.48fr_1.52fr] lg:gap-16"><div><p className="eyebrow">Quick Answer</p><h2 className="type-heading font-display mt-6 max-w-[24ch]" id="quick-answer-title">Scope 1, 2 und 3 in 30 Sekunden</h2></div><div data-scope-comparison="quick-answer"><div className="hidden overflow-hidden rounded-[1rem] border border-white/16 md:block"><table className="w-full border-collapse text-left text-sm"><caption className="sr-only">Scope 1, 2 und 3 im Vergleich</caption><thead className="bg-white/[0.06] text-xs uppercase tracking-[0.09em] text-white/55"><tr><th className="px-5 py-4" scope="col">Scope</th><th className="px-5 py-4" scope="col">Was gehört hinein?</th><th className="px-5 py-4" scope="col">Produktionsbeispiel</th></tr></thead><tbody>{quickScopes.map(([scope, meaning, example]) => <tr className="border-t border-white/12" key={scope}><th className="px-5 py-5 text-orange" scope="row">{scope}</th><td className="px-5 py-5 leading-6 text-white/78">{meaning}</td><td className="px-5 py-5 leading-6 text-white/58">{example}</td></tr>)}</tbody></table></div><div className="grid gap-4 md:hidden">{quickScopes.map(([scope, meaning, example]) => <article className="rounded-[1rem] border border-white/16 p-5" key={scope}><h3 className="type-subheading font-display text-orange">{scope}</h3><p className="mt-4 leading-7 text-white/85">{meaning}</p><p className="mt-3 text-sm leading-6 text-white/55">{example}</p></article>)}</div><div className="mt-8 grid gap-3 border-t border-white/14 pt-7"><p><strong className="text-orange">Scope 1:</strong> Wir emittieren direkt.</p><p><strong className="text-orange">Scope 2:</strong> Jemand erzeugt Energie für uns.</p><p><strong className="text-orange">Scope 3:</strong> Emissionen entstehen in unserer vor- oder nachgelagerten Wertschöpfungskette.</p><p className="mt-2 text-sm leading-6 text-white/52">Diese Faustregel ersetzt keine saubere Bilanzgrenze.</p></div></div></div></div>
-          </section>
+          <GuideQuickAnswer id="schnellantwort" title="Scope 1, 2 und 3 in 30 Sekunden">
+            <div data-scope-comparison="quick-answer"><div className="hidden overflow-hidden rounded-[1rem] border border-white/16 md:block"><table className="w-full border-collapse text-left text-sm"><caption className="sr-only">Scope 1, 2 und 3 im Vergleich</caption><thead className="bg-white/[0.06] text-xs uppercase tracking-[0.09em] text-white/55"><tr><th className="px-5 py-4" scope="col">Scope</th><th className="px-5 py-4" scope="col">Was gehört hinein?</th><th className="px-5 py-4" scope="col">Produktionsbeispiel</th></tr></thead><tbody>{quickScopes.map(([scope, meaning, example]) => <tr className="border-t border-white/12" key={scope}><th className="px-5 py-5 text-orange" scope="row">{scope}</th><td className="px-5 py-5 leading-6 text-white/78">{meaning}</td><td className="px-5 py-5 leading-6 text-white/58">{example}</td></tr>)}</tbody></table></div><div className="grid gap-4 md:hidden">{quickScopes.map(([scope, meaning, example]) => <article className="rounded-[1rem] border border-white/16 p-5" key={scope}><h3 className="type-subheading font-display text-orange">{scope}</h3><p className="mt-4 leading-7 text-white/85">{meaning}</p><p className="mt-3 text-sm leading-6 text-white/55">{example}</p></article>)}</div><div className="mt-8 grid gap-3 border-t border-white/14 pt-7"><p><strong className="text-orange">Scope 1:</strong> Wir emittieren direkt.</p><p><strong className="text-orange">Scope 2:</strong> Jemand erzeugt Energie für uns.</p><p><strong className="text-orange">Scope 3:</strong> Emissionen entstehen in unserer vor- oder nachgelagerten Wertschöpfungskette.</p><p className="mt-2 text-sm leading-6 text-white/52">Diese Faustregel ersetzt keine saubere Bilanzgrenze.</p></div></div>
+          </GuideQuickAnswer>
 
-          <div className="site-shell py-6 sm:py-10"><div className="mx-auto max-w-[1120px]"><div className="lg:grid lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16"><div className="min-w-0">
+          <GuideBody>
             <ArticleSection id="scope-bedeutung" number="01" title="Was bedeutet „Scope“ überhaupt?">
               <p>Scope bedeutet in diesem Zusammenhang sinngemäß Geltungsbereich. Das GHG Protocol verwendet die drei Scopes, um Treibhausgasemissionen eines Unternehmens systematisch einzuordnen.</p>
               <p>Der Corporate Standard deckt nicht nur CO₂ ab, sondern sieben Treibhausgase beziehungsweise Gasgruppen:</p>
@@ -349,20 +343,31 @@ export function Scope123ExplainerGuide() {
               <Principle label="Danach beginnt die Arbeit">Quelle identifizieren → Daten sammeln → Methode wählen → berechnen → dokumentieren.</Principle>
             </ArticleSection>
 
-            <section aria-labelledby="article-cta-title" className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12">
-              <Factory aria-hidden="true" className="h-7 w-7 text-orange" /><p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">Ihr nächster Schritt</p><h2 className="type-heading font-display mt-5 max-w-[24ch]" id="article-cta-title">Sie kennen die Scopes – aber die Zahlen fehlen noch?</h2><div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68"><p>Für Scope 1 und Scope 2 liegen die Ausgangsdaten häufig bereits im Unternehmen.</p><p>Senden Sie uns vorhandene Energie-, Kraftstoff- und Verbrauchsdaten. Wir strukturieren die Emissionsquellen, dokumentieren die Berechnungsgrundlage und machen offene Datenlücken sichtbar.</p></div><div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</ButtonLink><ButtonLink className="w-full sm:w-auto" href="/de/scope-1-2-berechnung" variant="light">Scope 1 und Scope 2 berechnen</ButtonLink><Link className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/25 px-6 py-3 text-center text-sm font-bold text-white transition hover:border-orange hover:text-orange sm:w-auto" href="/de/ressourcen/scope-1-2-daten-berechnung">Welche Daten brauche ich für Scope 1 und Scope 2?</Link></div><p className="mt-6 text-sm font-semibold text-white/50">Scope 1 · Scope 2 · Aktivitätsdaten · Emissionsfaktoren · Nachweise</p>
-            </section>
+            <GuideCta
+              actions={<>
+                <PillLink href={SEND_REQUEST_HREF}>Scope-1-&amp;-2-Berechnung anfragen</PillLink>
+                <TextLink href="/de/scope-1-2-berechnung">Scope 1 und Scope 2 berechnen</TextLink>
+                <TextLink href="/de/ressourcen/scope-1-2-daten-berechnung">Welche Daten brauche ich für Scope 1 und Scope 2?</TextLink>
+              </>}
+              eyebrow="Ihr nächster Schritt"
+              note="Scope 1 · Scope 2 · Aktivitätsdaten · Emissionsfaktoren · Nachweise"
+              title="Sie kennen die Scopes – aber die Zahlen fehlen noch?"
+            >
+              <p>Für Scope 1 und Scope 2 liegen die Ausgangsdaten häufig bereits im Unternehmen.</p>
+              <p>Senden Sie uns vorhandene Energie-, Kraftstoff- und Verbrauchsdaten. Wir strukturieren die Emissionsquellen, dokumentieren die Berechnungsgrundlage und machen offene Datenlücken sichtbar.</p>
+            </GuideCta>
+          </GuideBody>
 
-            <section aria-labelledby="faq-title" className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16" id="faq">
-              <p className="eyebrow">FAQ</p><h2 className="type-heading font-display mt-6" id="faq-title">Häufige Fragen zu Scope 1, 2 und 3</h2><div className="faq-list">{faqItems.map(([question, answer]) => <details className="faq-item group" key={question}><summary className="faq-question">{question}<span aria-hidden="true" className="faq-toggle" /></summary><p className="faq-answer">{answer}</p></details>)}</div>
-            </section>
+          <Faq eyebrow="FAQ" items={faqItems.map(([question, answer]) => ({ question, answer }))} title="Häufige Fragen zu Scope 1, 2 und 3" />
 
-            <section aria-labelledby="sources-title" className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12">
-              <div className="flex items-center gap-3"><Link2 aria-hidden="true" className="h-4 w-4 text-orange" /><h2 className="text-sm font-bold uppercase tracking-[0.12em] text-ink" id="sources-title">Quellen &amp; weiterführende Informationen</h2></div><ul className="mt-6 grid gap-6 text-sm leading-6 text-muted"><li><ExternalSourceLink href={CORPORATE_STANDARD_URL}>GHG Protocol — Corporate Standard</ExternalSourceLink><p className="mt-1">Grundlage für das Corporate GHG Inventory, Scope 1 und den grundlegenden Scope-2-Rahmen.</p></li><li><ExternalSourceLink href={SCOPE_2_GUIDANCE_URL}>GHG Protocol — Scope 2 Guidance</ExternalSourceLink><p className="mt-1">Offizielle Guidance zu Elektrizität, Dampf, Wärme und Kälte sowie location-based und market-based Accounting.</p></li><li><ExternalSourceLink href={SCOPE_3_STANDARD_URL}>GHG Protocol — Corporate Value Chain (Scope 3) Standard</ExternalSourceLink><p className="mt-1">Offizieller Scope-3-Rahmen und Struktur der 15 Kategorien.</p></li><li><ExternalSourceLink href={SCOPE_3_CALCULATION_URL}>GHG Protocol — Scope 3 Calculation Guidance</ExternalSourceLink><p className="mt-1">Berechnungsmethoden und Datengrundlagen für alle 15 Kategorien.</p></li><li><ExternalSourceLink href={STANDARDS_UPDATE_FAQ_URL}>GHG Protocol — Corporate Standards Update / July 2026 FAQ</ExternalSourceLink><p className="mt-1">Aktueller offizieller Revisionsstatus und Zeitplan von Q2 2027 bis Q4 2028.</p></li><li><ExternalSourceLink href={EFRAG_STANDARD_URL}>EFRAG Knowledge Hub — Voluntary Standard</ExternalSourceLink><p className="mt-1">Offizielle aktuelle Grundlage für die im Artikel knapp erläuterte VSME-Verbindung.</p></li></ul><p className="mt-7 text-xs leading-6 text-[rgba(21,21,21,0.48)]">Evipace ist unabhängig von GHG Protocol, WRI, WBCSD, ISO und EFRAG. Die Verweise dienen ausschließlich der fachlichen Einordnung.</p>
-            </section>
-          </div><aside className="hidden lg:block"><div className="sticky top-28 border-l border-[rgba(21,21,21,0.12)] pl-6"><p className="text-xs font-bold uppercase tracking-[0.12em] text-orange">Orientierung</p><nav aria-label="Artikelabschnitte" className="mt-5 grid gap-3 text-sm leading-5 text-muted">{articleNavItems.map((item) => <a className="transition hover:text-orange" href={item.href} key={item.href}>{item.label}</a>)}</nav></div></aside></div></div></div>
+          <GuideBody>
+
+
+            <GuideSources note="Evipace ist unabhängig von GHG Protocol, WRI, WBCSD, ISO und EFRAG. Die Verweise dienen ausschließlich der fachlichen Einordnung." title="Quellen &amp; weiterführende Informationen">
+              <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted"><li><ExternalSourceLink href={CORPORATE_STANDARD_URL}>GHG Protocol — Corporate Standard</ExternalSourceLink><p className="mt-1">Grundlage für das Corporate GHG Inventory, Scope 1 und den grundlegenden Scope-2-Rahmen.</p></li><li><ExternalSourceLink href={SCOPE_2_GUIDANCE_URL}>GHG Protocol — Scope 2 Guidance</ExternalSourceLink><p className="mt-1">Offizielle Guidance zu Elektrizität, Dampf, Wärme und Kälte sowie location-based und market-based Accounting.</p></li><li><ExternalSourceLink href={SCOPE_3_STANDARD_URL}>GHG Protocol — Corporate Value Chain (Scope 3) Standard</ExternalSourceLink><p className="mt-1">Offizieller Scope-3-Rahmen und Struktur der 15 Kategorien.</p></li><li><ExternalSourceLink href={SCOPE_3_CALCULATION_URL}>GHG Protocol — Scope 3 Calculation Guidance</ExternalSourceLink><p className="mt-1">Berechnungsmethoden und Datengrundlagen für alle 15 Kategorien.</p></li><li><ExternalSourceLink href={STANDARDS_UPDATE_FAQ_URL}>GHG Protocol — Corporate Standards Update / July 2026 FAQ</ExternalSourceLink><p className="mt-1">Aktueller offizieller Revisionsstatus und Zeitplan von Q2 2027 bis Q4 2028.</p></li><li><ExternalSourceLink href={EFRAG_STANDARD_URL}>EFRAG Knowledge Hub — Voluntary Standard</ExternalSourceLink><p className="mt-1">Offizielle aktuelle Grundlage für die im Artikel knapp erläuterte VSME-Verbindung.</p></li></ul>
+            </GuideSources>
+          </GuideBody>
         </article>
-      </main>
-    </>
+      </ResourceMain>
   );
 }

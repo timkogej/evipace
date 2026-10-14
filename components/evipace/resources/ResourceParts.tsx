@@ -359,3 +359,153 @@ export function Bullets({ items }: { items: readonly ReactNode[] }) {
     </ul>
   );
 }
+
+/* ── Long-form guide pieces (German guides keep their own section content) ── */
+
+/** Numbered article section: centred heading, left-aligned reading column. */
+export function GuideSection({
+  children,
+  id,
+  number,
+  title
+}: {
+  children: ReactNode;
+  id: string;
+  number?: string;
+  title: ReactNode;
+}) {
+  return (
+    <section aria-labelledby={`${id}-title`} className={r.articleSection} id={id}>
+      <header className={r.articleHead}>
+        {number ? <span aria-hidden="true" className={r.articleNumber}>{number}</span> : null}
+        <h2 id={`${id}-title`}>{title}</h2>
+      </header>
+      <div className={`${r.reading} ${r.skin}`}>{children}</div>
+    </section>
+  );
+}
+
+export function GuidePrinciple({ children, label }: { children: ReactNode; label?: string }) {
+  return (
+    <div className={r.principle}>
+      {label ? <p className={r.principleLabel}>{label}</p> : null}
+      <p className={r.principleText}>{children}</p>
+    </div>
+  );
+}
+
+/** Shell for the run of article sections. */
+export function GuideBody({ children }: { children: ReactNode }) {
+  return <div className={h.shell}>{children}</div>;
+}
+
+/** Dark "quick answer" band; the content keeps its own layout. */
+export function GuideQuickAnswer({
+  children,
+  eyebrow = "Quick Answer",
+  id,
+  title
+}: {
+  children: ReactNode;
+  eyebrow?: string;
+  id?: string;
+  title: ReactNode;
+}) {
+  return (
+    <section aria-labelledby="quick-answer-heading" className={`${h.section} ${r.dark} ${sp.dark} ${sp.anchored}`} id={id}>
+      <RevealOnView className={h.shell}>
+        <header className={`${h.sectionHead} ${sp.darkHead}`}>
+          <p className={h.eyebrow}>{eyebrow}</p>
+          <h2 className={h.heading} id="quick-answer-heading">{title}</h2>
+        </header>
+        <div className={`${r.darkContent} ${r.skin}`}>{children}</div>
+      </RevealOnView>
+    </section>
+  );
+}
+
+/** Mid-article call to action in a light framed box. */
+export function GuideCta({
+  actions,
+  children,
+  eyebrow,
+  note,
+  title
+}: {
+  actions: ReactNode;
+  children: ReactNode;
+  eyebrow?: string;
+  note?: ReactNode;
+  title: ReactNode;
+}) {
+  return (
+    <section aria-labelledby="guide-cta-title" className={r.inlineCta}>
+      {eyebrow ? <p className={h.eyebrow}>{eyebrow}</p> : null}
+      <h2 id="guide-cta-title">{title}</h2>
+      <div className={r.inlineCtaBody}>{children}</div>
+      <div className={h.actions}>{actions}</div>
+      {note ? <div className={r.inlineCtaNote}>{note}</div> : null}
+    </section>
+  );
+}
+
+export function GuideSources({ children, note, title }: { children: ReactNode; note?: ReactNode; title: string }) {
+  return (
+    <section aria-labelledby="sources-title" className={`${r.sources} ${r.skin}`}>
+      <h2 id="sources-title">{title}</h2>
+      {children}
+      {note ? <p className={r.sourcesNote}>{note}</p> : null}
+    </section>
+  );
+}
+
+export function ExternalLink({ children, href }: { children: ReactNode; href: string }) {
+  return (
+    <a className={r.external} href={href} rel="noreferrer" target="_blank">
+      {children}
+      <span aria-hidden="true"> ↗</span>
+    </a>
+  );
+}
+
+/** Small fact boxes under a guide hero (e.g. Scope 1 · direkte Emissionen). */
+export function HeroFacts({ items }: { items: ReadonlyArray<readonly [ReactNode, ReactNode]> }) {
+  return (
+    <dl className={r.heroFacts}>
+      {items.map(([term, description], index) => (
+        <div key={index}>
+          <dt>{term}</dt>
+          <dd>{description}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+/** In-page jump links under a guide hero. */
+export function JumpNav({ items, label }: { items: ReadonlyArray<{ label: string; href: string }>; label: string }) {
+  return (
+    <nav aria-label={label} className={h.jump}>
+      {items.map((item) => (
+        <a className={h.jumpLink} href={item.href} key={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+export { Bullets as GuideBullets };
+
+/** Calm band that holds an interactive tool. */
+export function ToolSection({ children, id }: { children: ReactNode; id?: string }) {
+  return (
+    <section className={r.toolBand} id={id}>
+      <div className={h.shell}>{children}</div>
+    </section>
+  );
+}
+
+/** A plain block in the article flow that keeps its own layout. */
+export function GuideBlock({ children }: { children: ReactNode }) {
+  return <div className={`${r.articleSection} ${r.skin}`}>{children}</div>;
+}

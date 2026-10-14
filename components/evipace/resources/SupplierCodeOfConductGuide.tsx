@@ -1,7 +1,22 @@
 import type { ReactNode } from "react";
-import { ArrowRight, FileCheck2, RefreshCw, Send, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  FileCheck2,
+  Send,
+  ShieldCheck
+} from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import { ClosingCta } from "../home/ClosingCta";
+import h from "../HomeLandingPage.module.css";
+import sp from "../service-landing/ServicePage.module.css";
+import {
+  Flow,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -273,15 +288,7 @@ const resourceBridgeCards = [
 ] as const;
 
 function InlineLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      className="group inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink underline decoration-orange/35 underline-offset-4 transition hover:text-orange"
-      href={href}
-    >
-      <span>{children}</span>
-      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-orange transition-transform group-hover:translate-x-1" />
-    </Link>
-  );
+  return <TextLink href={href}>{children}</TextLink>;
 }
 
 function SectionHeading({
@@ -298,86 +305,33 @@ function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className="max-w-3xl">
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2
-        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
- light ? "text-white" : "text-ink"
- }`}
-        id={id}
-      >
+    <header className={`${h.sectionHead}${light ? ` ${sp.darkHead}` : ""}`}>
+      {eyebrow ? <p className={h.eyebrow}>{eyebrow}</p> : null}
+      <h2 className={h.heading} id={id}>
         {title}
       </h2>
-      {children ? (
-        <div className={`mt-6 space-y-4 text-base leading-8 sm:text-lg ${light ? "text-white/66" : "text-muted"}`}>
-          {children}
-        </div>
-      ) : null}
-    </div>
+      {children ? <div className={sp.headExtra}>{children}</div> : null}
+    </header>
   );
 }
 
 function FlowList({ items, dark = false }: { items: readonly string[]; dark?: boolean }) {
-  return (
-    <ol className="grid gap-3 lg:grid-cols-4">
-      {items.map((item, index) => (
-        <li className={`relative min-w-0 border-t pt-4 ${dark ? "border-white/20" : "border-[rgba(21,21,21,0.16)]"}`} key={item}>
-          {index < items.length - 1 ? (
-            <ArrowRight aria-hidden="true" className="absolute -right-3 top-4 hidden h-4 w-4 text-orange lg:block" />
-          ) : null}
-          <span className="font-mono text-[0.62rem] font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
-          <p className={`mt-2 break-words text-sm font-bold leading-5 ${dark ? "text-white" : "text-ink"}`}>{item}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function SupplierCodeArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg">
-        <path d="M112 122H408M112 176H340M112 306H408M112 356H408M112 406H320" stroke="currentColor" strokeOpacity="0.44" strokeWidth="4" />
-        <rect height="64" rx="12" stroke="currentColor" strokeOpacity="0.7" strokeWidth="3" width="296" x="112" y="214" />
-        <path d="M138 246H236M270 246H382" stroke="currentColor" strokeOpacity="0.64" strokeWidth="8" />
-        <rect height="42" rx="10" stroke="currentColor" strokeOpacity="0.34" strokeWidth="3" width="100" x="112" y="500" />
-        <rect height="42" rx="10" stroke="currentColor" strokeOpacity="0.34" strokeWidth="3" width="100" x="240" y="500" />
-      </svg>
-      <span className="resource-hero-art__code">SCOPE · ACKNOWLEDGMENT · STATUS · EVIDENCE</span>
-    </div>
-  );
+  return <Flow dark={dark} items={items} />;
 }
 
 export function SupplierCodeOfConductGuide() {
   return (
-    <main id="top">
+    <ResourceMain locale="de">
       <article>
-        <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-          <SupplierCodeArtwork />
-          <div className="site-shell relative z-10">
-            <nav aria-label="Brotkrümelnavigation" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
-              <Link className="transition hover:text-orange" href="/de">Startseite</Link>
-              <span aria-hidden="true">/</span>
-              <Link className="transition hover:text-orange" href="/de/ressourcen">Ressourcen</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-ink">Supplier Code of Conduct erstellen</span>
-            </nav>
-
-            <div className="mt-12 max-w-6xl">
-              <p className="eyebrow">SUPPLIER CODE OF CONDUCT</p>
-              <h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">
-                Supplier Code of Conduct erstellen: Was ein belastbarer Lieferantenkodex enthalten sollte
-              </h1>
-            </div>
-
-            <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-              <div className="type-lead max-w-3xl text-muted">
+        <ResourceHero current="Supplier Code of Conduct erstellen" eyebrow="SUPPLIER CODE OF CONDUCT" locale="de" title={<>Supplier Code of Conduct erstellen: Was ein belastbarer Lieferantenkodex enthalten sollte</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+              <div className="type-lead">
                 <p>Kunden und Supplier Assessments fragen häufig danach, ob Unternehmen klare ESG- und Compliance-Erwartungen an ihre Lieferanten stellen.</p>
                 <p className="mt-6">Ein Supplier Code of Conduct kann diese Erwartungen strukturiert dokumentieren – etwa zu Arbeitsbedingungen, Menschenrechten, Umwelt, Geschäftsethik und verantwortungsvoller Beschaffung.</p>
                 <p className="mt-6">Entscheidend ist jedoch, dass der Kodex zum tatsächlichen Unternehmen und seiner Lieferkette passt und nicht mehr verspricht, als intern umgesetzt und gesteuert werden kann.</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <ButtonLink className="w-full sm:w-auto" href="#bausteine">Zum Aufbau des Supplier Code ↓</ButtonLink>
-                  <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF} variant="secondary">Kunde fragt bereits danach?</ButtonLink>
+                  <PillLink href="#bausteine">Zum Aufbau des Supplier Code ↓</PillLink>
+                  <TextLink href={SEND_REQUEST_HREF}>Kunde fragt bereits danach?</TextLink>
                 </div>
               </div>
               <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
@@ -386,12 +340,11 @@ export function SupplierCodeOfConductGuide() {
                 <p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">Unterschrift ist nicht Lieferanten-Compliance.</p>
                 <p className="mt-5 text-sm leading-7 text-muted">Ein veröffentlichter oder unterzeichneter Supplier Code of Conduct beweist nicht automatisch, dass alle Lieferanten sämtliche darin beschriebenen Anforderungen tatsächlich erfüllen.</p>
               </aside>
-            </div>
-          </div>
-        </header>
+            </div></div>
+          </ResourceHero>
 
-        <section aria-labelledby="quick-answer-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="kurz-gesagt">
-          <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
+        <section aria-labelledby="quick-answer-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`} id="kurz-gesagt">
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <p className="eyebrow">Quick Answer</p>
               <h2 className="type-heading font-display mt-6" id="quick-answer-title">Kurz gesagt</h2>
@@ -403,8 +356,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="distinction-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="distinction-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Grundprinzip" id="distinction-title" title="Ein Supplier Code ist eine Erwartung – kein Beweis für Lieferantenleistung." />
             <div>
               <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-code-compliance-distinction>
@@ -434,8 +387,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="assessment-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="assessment-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Vor dem Entwurf" id="assessment-title" title="Bevor Sie einen Lieferantenkodex schreiben: Wie funktioniert Ihre Beschaffung heute?">
               <p>Ein Supplier Code of Conduct sollte nicht mit einer langen Liste allgemeiner ESG-Forderungen beginnen, sondern mit der tatsächlichen Lieferantenstruktur und den bestehenden Beschaffungsprozessen.</p>
             </SectionHeading>
@@ -450,8 +403,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="purpose-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="purpose-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Zweck" id="purpose-title" title="Wofür ist ein Supplier Code of Conduct da?" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-supplier-code-purpose-blocks>
               {purposeBlocks.map(([title, copy], index) => (
@@ -465,8 +418,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="blocks-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="bausteine">
-          <div className="site-shell">
+        <section aria-labelledby="blocks-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`} id="bausteine">
+          <div className={h.shell}>
             <SectionHeading eyebrow="Framework" id="blocks-title" light title="Sieben Bausteine eines belastbaren Supplier Code of Conduct" />
             <div className="mt-12 grid gap-6" data-supplier-code-building-blocks>
               {buildingBlocks.map((block) => (
@@ -499,8 +452,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="not-in-code-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="not-in-code-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Grenzen" id="not-in-code-title" title="Was nicht in einen Supplier Code of Conduct gehört" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-not-in-supplier-code-items>
               {notIncludedItems.map(([title, copy]) => (
@@ -513,8 +466,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="contract-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="contract-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Status" id="contract-title" title="Ist ein Supplier Code automatisch Vertragsbestandteil?" />
             <div className="resource-prose">
               <p className="font-display text-3xl leading-tight text-ink">Nicht automatisch.</p>
@@ -529,8 +482,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="acknowledgment-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="acknowledgment-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Acknowledgment" id="acknowledgment-title" title="Was bedeutet es, wenn ein Lieferant den Kodex bestätigt?">
               <p>Eine Bestätigung kann dokumentieren, dass der Lieferant den Kodex erhalten oder bestimmte Erwartungen anerkannt hat.</p>
               <p>Sie beweist jedoch nicht automatisch, dass sämtliche Inhalte geprüft, umgesetzt oder dauerhaft eingehalten werden.</p>
@@ -547,8 +500,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="evidence-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="evidence-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Evidence" id="evidence-title" title="Welche Nachweise zeigen, dass der Supplier Code tatsächlich genutzt wird?">
               <p>Der Supplier Code selbst ist nur ein Teil des Nachweises. Für die tatsächliche Anwendung sind ergänzende Prozess- und Umsetzungsunterlagen relevant.</p>
             </SectionHeading>
@@ -564,8 +517,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="status-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="status-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Statusmodell" id="status-title" title="Welchen Status hat Ihr Supplier Code?" />
             <div className="mt-12 grid gap-4 md:grid-cols-5" data-supplier-code-status-model>
               {statusModel.map(([title, copy]) => (
@@ -578,8 +531,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="version-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="version-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Version" id="version-title" title="Auch ein Lieferantenkodex braucht Versionskontrolle.">
               <p>Keine rückwirkenden Freigabe- oder Einführungsdaten erfinden.</p>
             </SectionHeading>
@@ -597,8 +550,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="outline-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="outline-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Outline" id="outline-title" title="Beispiel für den Aufbau eines Supplier Code of Conduct">
               <p>Dies ist eine Strukturhilfe – kein universell gültiger Vertrags- oder Compliance-Text.</p>
             </SectionHeading>
@@ -613,8 +566,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="deviation-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="deviation-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Abweichungen" id="deviation-title" light title="Was passiert, wenn ein Lieferant eine Anforderung nicht erfüllt?">
               <p>Ein belastbarer Supplier Code sollte nicht automatisch jede Abweichung mit sofortiger Beendigung der Geschäftsbeziehung verknüpfen.</p>
               <p>Je nach Schweregrad, Risiko, tatsächlichem Sachverhalt und bestehenden vertraglichen Regelungen kann zunächst Klärung, ein Maßnahmenplan oder eine andere angemessene Reaktion sinnvoll sein.</p>
@@ -626,8 +579,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="risk-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="risk-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Risikobasiert" id="risk-title" title="Muss jeder Lieferant gleich behandelt werden?" />
             <div className="resource-prose">
               <p>Nicht jede Lieferantenbeziehung hat dieselbe ESG-Relevanz.</p>
@@ -638,8 +591,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="workflow-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="workflow-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Kundenanfrage" id="workflow-title" title="Was tun, wenn Ihr Kunde nach einem Supplier Code of Conduct fragt?" />
             <ol className="mt-12 grid gap-px overflow-hidden rounded-[1.1rem] bg-[rgba(21,21,21,0.12)]" data-supplier-code-customer-workflow>
               {workflowSteps.map(([title, copy], index) => (
@@ -652,12 +605,12 @@ export function SupplierCodeOfConductGuide() {
                 </li>
               ))}
             </ol>
-            <div className="mt-8"><ButtonLink href="/de/ressourcen/esg-fragebogen-checkliste-lieferanten">Zur ESG-Fragebogen Checkliste</ButtonLink></div>
+            <div className="mt-8"><PillLink href="/de/ressourcen/esg-fragebogen-checkliste-lieferanten">Zur ESG-Fragebogen Checkliste</PillLink></div>
           </div>
         </section>
 
-        <section aria-labelledby="no-code-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="no-code-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Wenn er fehlt" id="no-code-title" title="Was, wenn Ihr Unternehmen noch keinen Supplier Code of Conduct hat?" />
             <div className="resource-prose">
               <p>Dann sollte nicht rückwirkend so geantwortet werden, als hätte bereits ein formeller Lieferantenkodex bestanden.</p>
@@ -670,8 +623,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="comparison-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="comparison-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Abgrenzung" id="comparison-title" title="Supplier Code und Supplier Questionnaire haben unterschiedliche Aufgaben." />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-code-questionnaire-comparison>
               {supplierComparison.map(([title, copy]) => (
@@ -685,8 +638,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="customer-own-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="customer-own-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Copy-Paste vermeiden" id="customer-own-title" title="Kundenanforderung und eigener Supplier Code sind nicht dasselbe." />
             <div className="resource-prose">
               <p>Ein Kunde kann von Ihrem Unternehmen verlangen, bestimmte ESG-Grundsätze gegenüber Lieferanten zu adressieren.</p>
@@ -696,8 +649,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="assessments-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="assessments-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="ESG Assessments" id="assessments-title" title="Supplier Code of Conduct in ESG Assessments">
               <p>ESG Assessments können danach fragen, ob nachhaltige Beschaffungsgrundsätze, Lieferantenanforderungen oder entsprechende Nachweise vorhanden sind.</p>
               <p>Die Existenz eines Supplier Code kann dabei ein relevanter Baustein sein. Sie sollte jedoch nicht mit vollständiger Umsetzung oder einer umfassenden Bewertung der gesamten Lieferkette gleichgesetzt werden.</p>
@@ -717,8 +670,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="reuse-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="reuse-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading eyebrow="Reuse" id="reuse-title" title="Ein freigegebener Supplier Code sollte bei der nächsten ESG-Anfrage auffindbar sein." />
             <div className="resource-prose">
               <p>Dokumentieren Sie Version, Geltungsbereich, Freigabestatus, Document Owner und den aktuellen Speicherort.</p>
@@ -728,8 +681,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="lifecycle-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="lifecycle-title" className={`${h.section} ${r.dark} ${sp.dark} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Lifecycle" id="lifecycle-title" light title="Von den tatsächlichen Erwartungen zum angewendeten Supplier Code" />
             <div className="mt-12 rounded-[1.2rem] border border-white/14 bg-white/[0.04] p-6 sm:p-8" data-supplier-code-lifecycle>
               <FlowList dark items={lifecycleSteps} />
@@ -737,8 +690,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="mistakes-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="mistakes-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Fehler vermeiden" id="mistakes-title" title="Acht typische Fehler bei Supplier Codes of Conduct" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-common-supplier-code-mistakes>
               {commonMistakes.map(([title, copy], index) => (
@@ -752,8 +705,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="approval-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="approval-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Pre-Approval" id="approval-title" title="Vor der internen Freigabe prüfen" />
             <ul className="mt-12 grid gap-3 md:grid-cols-2" data-supplier-code-pre-approval-checklist>
               {preApprovalItems.map((item) => (
@@ -766,8 +719,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="resource-bridge-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="resource-bridge-title" className={`${h.section} ${r.skin}`}>
+          <div className={h.shell}>
             <SectionHeading eyebrow="Resource Bridge" id="resource-bridge-title" title="Supplier Code of Conduct im ESG-System einordnen" />
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5" data-supplier-code-resource-bridge>
               {resourceBridgeCards.map(([title, href]) => (
@@ -780,8 +733,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="commercial-title" className="bg-[var(--warm)] py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
+        <section aria-labelledby="commercial-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+          <div className={h.shell}>
             <div className="overflow-hidden rounded-[1.4rem] border border-orange/25 bg-[var(--soft-orange)]">
               <div className="grid lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="p-7 sm:p-10 lg:p-12">
@@ -792,8 +745,8 @@ export function SupplierCodeOfConductGuide() {
                   <p className="text-base leading-8 text-muted">Wir prüfen mit Ihnen, welche Erwartungen und Beschaffungsprozesse tatsächlich bestehen, strukturieren relevante ESG- und Compliance-Themen und bereiten daraus einen Supplier-Code-Entwurf für Ihre interne Prüfung und Freigabe vor.</p>
                   <p className="mt-4 text-base leading-8 text-muted">Wenn der Kodex Teil eines konkreten Fragebogens ist, hilft auch der Überblick <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</Link>.</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</ButtonLink>
-                    <ButtonLink className="w-full sm:w-auto" href="/de/esg-kundenanfragen" variant="secondary">Mehr über ESG-Kundenanfragen</ButtonLink>
+                    <PillLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</PillLink>
+                    <TextLink href="/de/esg-kundenanfragen">Mehr über ESG-Kundenanfragen</TextLink>
                   </div>
                   <p className="mt-5 text-sm font-semibold leading-7 text-muted">Der Entwurf wird erst durch Ihre interne Prüfung, Anpassung und autorisierte Freigabe zu einem offiziellen Unternehmensdokument.</p>
                 </div>
@@ -802,8 +755,8 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="method-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <section aria-labelledby="method-title" className={`${h.section} ${r.skin}`}>
+          <div className={`${h.shell} ${r.stack}`}>
             <div>
               <ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" />
               <SectionHeading eyebrow="Methodik" id="method-title" title="Methodische Einordnung" />
@@ -817,17 +770,16 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="final-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24">
-          <div className="site-shell">
-            <div className="max-w-4xl">
-              <RefreshCw aria-hidden="true" className="h-10 w-10 text-orange" />
-              <h2 className="type-heading font-display mt-6" id="final-title">Ein guter Supplier Code beginnt nicht mit einer Vorlage. Er beginnt mit Ihrer tatsächlichen Lieferkette.</h2>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">Wenn Lieferantenstruktur, Erwartungen, Verantwortlichkeiten und Prozesse klar sind, lässt sich daraus ein Kodex formulieren, der nachvollziehbar, realistisch und intern anwendbar ist.</p>
-              <div className="mt-8"><ButtonLink href={SEND_REQUEST_HREF}>Supplier-Code-Anfrage senden</ButtonLink></div>
-            </div>
-          </div>
-        </section>
+        
       </article>
-    </main>
+      <ClosingCta
+          body={<><p>Wenn Lieferantenstruktur, Erwartungen, Verantwortlichkeiten und Prozesse klar sind, lässt sich daraus ein Kodex formulieren, der nachvollziehbar, realistisch und intern anwendbar ist.</p></>}
+          formHref={SEND_REQUEST_HREF}
+          formLabel="Supplier-Code-Anfrage senden"
+          forwardLabel="Anfrage weiterleiten"
+          slogan="ESG work. Done right. Done faster."
+          title="Ein guter Supplier Code beginnt nicht mit einer Vorlage. Er beginnt mit Ihrer tatsächlichen Lieferkette."
+        />
+    </ResourceMain>
   );
 }

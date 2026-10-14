@@ -12,15 +12,30 @@ import {
   FileClock,
   FileCog,
   FileStack,
-  FileText,
   FolderTree,
-  Link2,
   ShieldCheck,
   Table2,
   UsersRound
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
+import {
+  GuideBody,
+  GuideBullets as BulletList,
+  GuideCta,
+  GuidePrinciple as Principle,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  GuideSources,
+  JumpNav,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 const QUESTIONNAIRE_GUIDE_HREF =
@@ -350,55 +365,6 @@ function ExternalSourceLink({
   );
 }
 
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-6 grid gap-3">
-      {items.map((item) => (
-        <li className="flex gap-3 leading-7 text-muted" key={item}>
-          <span
-            aria-hidden="true"
-            className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange"
-          />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ArticleSection({
-  children,
-  id,
-  number,
-  title
-}: {
-  children: ReactNode;
-  id: string;
-  number: string;
-  title: string;
-}) {
-  return (
-    <section
-      aria-labelledby={`${id}-title`}
-      className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16"
-      id={id}
-    >
-      <div className="flex items-start gap-4 sm:gap-6">
-        <span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">
-          {number}
-        </span>
-        <h2
-          className="type-heading font-display max-w-[24ch]"
-          id={`${id}-title`}
-        >
-          {title}
-        </h2>
-      </div>
-      <div className="resource-prose mt-8 sm:pl-[3.35rem]">{children}</div>
-    </section>
-  );
-}
-
 function StatusPill({ status }: { status: string }) {
   const highlight = status === "prüfen";
 
@@ -502,99 +468,13 @@ function EvidenceMap() {
   );
 }
 
-function EvidenceArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg
-        className="resource-hero-art__sheet"
-        fill="none"
-        viewBox="0 0 520 650"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M86 40H361L463 142V603H86V40Z"
-          fill="currentColor"
-          fillOpacity="0.018"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path d="M361 40V142H463" stroke="currentColor" strokeWidth="2" />
-        <circle cx="274" cy="262" r="74" stroke="currentColor" strokeWidth="2" />
-        <path
-          d="M238 262L263 286L313 232"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="5"
-        />
-        {[385, 426, 467].map((y, index) => (
-          <g key={y}>
-            <path d={`M139 ${y}H${index === 1 ? 373 : 405}`} stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-            <path d={`M139 ${y + 17}H${index === 2 ? 332 : 353}`} stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-          </g>
-        ))}
-        <path d="M117 545H306" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-        <text fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2" x="132" y="108">
-          EVIDENCE / 02
-        </text>
-      </svg>
-      <span className="resource-hero-art__code">
-        CLAIM · SOURCE · EVIDENCE
-      </span>
-    </div>
-  );
-}
-
-function Principle({ children }: { children: ReactNode }) {
-  return (
-    <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">
-      <p className="font-display text-[clamp(1.85rem,4vw,3.15rem)] leading-[1.1]">
-        {children}
-      </p>
-    </div>
-  );
-}
-
 export function EsgEvidenceGuide() {
   return (
-    <>
-
-      <main id="top">
-        <article>
-          <header
-            aria-labelledby="article-title"
-            className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28"
-          >
-            <EvidenceArtwork />
-            <div className="site-shell relative z-10">
-              <nav
-                aria-label="Brotkrümelnavigation"
-                className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"
-              >
-                <Link className="transition hover:text-orange" href="/de">
-                  Startseite
-                </Link>
-                <span aria-hidden="true">/</span>
-                <Link className="transition hover:text-orange" href="/de/ressourcen">
-                  Ressourcen
-                </Link>
-                <span aria-hidden="true">/</span>
-                <span className="text-ink">ESG-Nachweise</span>
-              </nav>
-
-              <div className="mt-12 max-w-6xl">
-                <p className="eyebrow">ESG-Nachweise · Praxisleitfaden</p>
-                <h1
-                  className="type-title font-display mt-7 max-w-[20ch]"
-                  id="article-title"
-                >
-                  ESG-Nachweise für Lieferanten: Welche Dokumente werden
-                  wirklich gebraucht?
-                </h1>
-              </div>
-
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.6fr)] lg:items-start lg:gap-16">
-                <div className="type-lead max-w-3xl text-muted">
+    <ResourceMain locale="de">
+      <article>
+          <ResourceHero current="ESG-Nachweise" eyebrow="ESG-Nachweise · Praxisleitfaden" locale="de" title={<>ESG-Nachweise für Lieferanten: Welche Dokumente werden wirklich gebraucht?</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.6fr)] lg:items-start lg:gap-16">
+                <div className="type-lead">
                   <p>Ihr Kunde fragt nicht mehr nur:</p>
                   <p className="font-display mt-4 text-3xl text-ink">
                     „Haben Sie eine Umweltpolitik?“
@@ -646,30 +526,28 @@ export function EsgEvidenceGuide() {
                     werden.
                   </p>
                 </div>
-              </div>
-            </div>
-          </header>
+              </div></div>
+            <JumpNav items={[
+                    ["01", "Was ist ein Nachweis?", "#was-ist-ein-esg-nachweis"],
+                    ["02", "Arten von Nachweisen", "#arten-von-nachweisen"],
+                    ["04", "Evidence Map", "#evidence-map"],
+                    ["05", "Policy vs. Umsetzung", "#policy-und-umsetzung"],
+                    ["07", "Berechnungsgrundlage", "#berechnungsgrundlage"],
+                    ["09", "Fehlende Nachweise", "#nachweis-neu-erstellen"],
+                    ["13", "Interne Struktur", "#nachweise-strukturieren"],
+                    ["15", "Plattformen", "#plattformen"],
+                    ["16", "Evidence Check", "#evidence-check"],
+                    ["18", "Unterstützung", "#externe-unterstuetzung"]
+                  ].map(([, label, href]) => ({ label: label, href: href }))} label="Inhalt des Leitfadens" />
+          </ResourceHero>
 
-          <section
-            aria-labelledby="quick-answer-title"
-            className="scroll-mt-24 bg-ink py-20 text-white sm:py-24"
-            id="schnellantwort"
-          >
-            <div className="site-shell">
-              <div className="grid gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
-                <div>
-                  <p className="eyebrow">Quick Answer</p>
-                  <h2
-                    className="type-heading font-display mt-6 max-w-[24ch]"
-                    id="quick-answer-title"
-                  >
-                    Was macht einen guten ESG-Nachweis aus?
-                  </h2>
-                  <p className="mt-7 max-w-sm leading-7 text-white/65">
+          <GuideQuickAnswer eyebrow="Quick Answer" id="schnellantwort" title={<>Was macht einen guten ESG-Nachweis aus?</>}>
+<div className="site-shell">
+              <div className="grid gap-10 lg:gap-16">
+                <div className={r.qaLead}><p className="mt-7 max-w-sm leading-7 text-white/65">
                     Bevor Sie ein Dokument hochladen oder an einen Kunden
                     senden, prüfen Sie fünf Dinge.
-                  </p>
-                </div>
+                  </p></div>
                 <ol className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
                   {quickChecks.map((check, index) => (
                     <li
@@ -709,45 +587,10 @@ export function EsgEvidenceGuide() {
                 </div>
               </div>
             </div>
-          </section>
+          </GuideQuickAnswer>
 
-          <div className="site-shell grid items-start gap-12 py-10 lg:grid-cols-[15rem_minmax(0,55rem)] lg:justify-center lg:gap-16 lg:py-16">
-            <aside className="hidden lg:block">
-              <nav
-                aria-label="Inhalt des Leitfadens"
-                className="sticky top-28 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.72)] p-5 backdrop-blur"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">
-                  Im Leitfaden
-                </p>
-                <ol className="mt-5 grid gap-3 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.62)]">
-                  {[
-                    ["01", "Was ist ein Nachweis?", "#was-ist-ein-esg-nachweis"],
-                    ["02", "Arten von Nachweisen", "#arten-von-nachweisen"],
-                    ["04", "Evidence Map", "#evidence-map"],
-                    ["05", "Policy vs. Umsetzung", "#policy-und-umsetzung"],
-                    ["07", "Berechnungsgrundlage", "#berechnungsgrundlage"],
-                    ["09", "Fehlende Nachweise", "#nachweis-neu-erstellen"],
-                    ["13", "Interne Struktur", "#nachweise-strukturieren"],
-                    ["15", "Plattformen", "#plattformen"],
-                    ["16", "Evidence Check", "#evidence-check"],
-                    ["18", "Unterstützung", "#externe-unterstuetzung"]
-                  ].map(([number, label, href]) => (
-                    <li key={href}>
-                      <a className="group flex gap-3 transition hover:text-ink" href={href}>
-                        <span className="font-mono text-[0.65rem] text-orange">
-                          {number}
-                        </span>
-                        <span>{label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            </aside>
-
-            <div className="min-w-0">
-              <ArticleSection
+          <GuideBody>
+            <ArticleSection
                 id="was-ist-ein-esg-nachweis"
                 number="01"
                 title="Was ist überhaupt ein ESG-Nachweis?"
@@ -1638,22 +1481,13 @@ export function EsgEvidenceGuide() {
                 </p>
               </ArticleSection>
 
-              <section
-                aria-labelledby="article-cta-title"
-                className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12"
-              >
-                <FileText aria-hidden="true" className="h-7 w-7 text-orange" />
-                <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                  Ihr nächster Schritt
-                </p>
-                <h2
-                  className="type-heading font-display mt-5 max-w-[24ch]"
-                  id="article-cta-title"
-                >
-                  Die Antworten sind da. Die Nachweise liegen überall?
-                </h2>
-                <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-white/68">
-                  <p>
+              <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink><TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Zertifikate · Richtlinien · Berechnungen · Nachweise · Daten</p></>}
+              title={<>Die Antworten sind da. Die Nachweise liegen überall?</>}
+            >
+              <p>
                     Senden Sie uns die ESG-Anfrage, den Fragebogen und die
                     Unterlagen, die bereits vorhanden sind.
                   </p>
@@ -1662,68 +1496,16 @@ export function EsgEvidenceGuide() {
                     benötigen, welche Dokumente bereits passen und wo noch
                     Informationen oder belastbare Evidence fehlen.
                   </p>
-                </div>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>
-                    ESG-Anfrage senden
-                  </ButtonLink>
-                  <ButtonLink
-                    className="w-full sm:w-auto"
-                    href="/de/esg-fragebogen-lieferanten"
-                    variant="light"
-                  >
-                    Unterstützung bei ESG-Fragebögen
-                  </ButtonLink>
-                </div>
-                <p className="mt-6 text-sm font-semibold text-white/50">
-                  Zertifikate · Richtlinien · Berechnungen · Nachweise · Daten
-                </p>
-              </section>
+            </GuideCta>
 
-              <section
-                aria-labelledby="faq-title"
-                className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16"
-                id="faq"
-              >
-                <p className="eyebrow">FAQ</p>
-                <h2
-                  className="type-heading font-display mt-6"
-                  id="faq-title"
-                >
-                  Häufige Fragen zu ESG-Nachweisen
-                </h2>
-                <div className="faq-list">
-                  {faqItems.map((faq) => (
-                    <details
-                      className="faq-item group"
-                      key={faq.question}
-                    >
-                      <summary className="faq-question">
-                        {faq.question}
-                        <span aria-hidden="true" className="faq-toggle" />
-                      </summary>
-                      <p className="faq-answer">
-                        {faq.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
-              </section>
+              </GuideBody>
 
-              <section
-                aria-labelledby="sources-title"
-                className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12"
-              >
-                <div className="flex items-center gap-3">
-                  <Link2 aria-hidden="true" className="h-4 w-4 text-orange" />
-                  <h2
-                    className="text-sm font-bold uppercase tracking-[0.12em] text-ink"
-                    id="sources-title"
-                  >
-                    Quellen &amp; weiterführende Informationen
-                  </h2>
-                </div>
-                <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems} title="Häufige Fragen zu ESG-Nachweisen" />
+
+          <GuideBody>
+
+              <GuideSources title="Quellen &amp; weiterführende Informationen">
+              <ul>
                   <li>
                     <ExternalSourceLink href={ECOVADIS_DOCUMENTS_URL}>
                       EcoVadis Help Center — Understanding supporting documents
@@ -1763,11 +1545,9 @@ export function EsgEvidenceGuide() {
                     </p>
                   </li>
                 </ul>
-              </section>
-            </div>
-          </div>
+            </GuideSources>
+          </GuideBody>
         </article>
-      </main>
-    </>
+    </ResourceMain>
   );
 }

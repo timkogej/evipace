@@ -1,15 +1,27 @@
 import type { ReactNode } from "react";
 import {
   AlertTriangle,
-  ArrowRight,
   ClipboardCheck,
   ExternalLink,
-  Link2,
   ShieldAlert
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import {
+  Faq
+} from "../service-landing/Blocks";
 import { EsgQuestionnaireChecklist } from "./EsgQuestionnaireChecklist";
+import {
+  GuideBody,
+  GuideCta,
+  GuideQuickAnswer,
+  GuideSources,
+  PillLink,
+  ResourceHero,
+  ResourceMain,
+  TextLink,
+  ToolSection
+} from "./ResourceParts";
+import r from "./Resource.module.css";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -109,104 +121,15 @@ function ExternalSourceLink({
   );
 }
 
-function ChecklistArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art">
-      <svg
-        className="resource-hero-art__sheet"
-        fill="none"
-        viewBox="0 0 520 650"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          height="520"
-          rx="18"
-          stroke="currentColor"
-          strokeOpacity="0.42"
-          strokeWidth="2"
-          width="390"
-          x="65"
-          y="58"
-        />
-        {[142, 216, 290, 364, 438].map((y, index) => (
-          <g key={y}>
-            <rect
-              fill={index < 3 ? "#FE7001" : "none"}
-              fillOpacity={index < 3 ? 0.18 : 0}
-              height="30"
-              rx="5"
-              stroke="currentColor"
-              strokeWidth="2"
-              width="30"
-              x="112"
-              y={y}
-            />
-            {index < 3 ? (
-              <path
-                d={`M120 ${y + 15}L128 ${y + 23}L145 ${y + 5}`}
-                stroke="#FE7001"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="3"
-              />
-            ) : null}
-            <path
-              d={`M170 ${y + 9}H388M170 ${y + 22}H330`}
-              stroke="currentColor"
-              strokeOpacity="0.34"
-              strokeWidth="2"
-            />
-          </g>
-        ))}
-      </svg>
-      <span className="resource-hero-art__code">
-        SCOPE · DATA · EVIDENCE · REVIEW
-      </span>
-    </div>
-  );
-}
-
 export function EsgQuestionnaireChecklistGuide() {
   return (
     <div className="esg-checklist-page">
 
-      <main id="top">
+      <ResourceMain locale="de">
         <article>
-          <header
-            aria-labelledby="article-title"
-            className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28"
-          >
-            <ChecklistArtwork />
-            <div className="site-shell relative z-10">
-              <nav
-                aria-label="Brotkrümelnavigation"
-                className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"
-              >
-                <Link className="transition hover:text-orange" href="/de">
-                  Startseite
-                </Link>
-                <span aria-hidden="true">/</span>
-                <Link className="transition hover:text-orange" href="/de/ressourcen">
-                  Ressourcen
-                </Link>
-                <span aria-hidden="true">/</span>
-                <span className="text-ink">ESG-Fragebogen Checkliste</span>
-              </nav>
-
-              <div className="mt-12 max-w-6xl">
-                <p className="eyebrow">
-                  ESG-Fragebogen · Checkliste für Lieferanten
-                </p>
-                <h1
-                  className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
-                  id="article-title"
-                >
-                  ESG-Fragebogen Checkliste für Lieferanten
-                </h1>
-              </div>
-
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-                <div className="type-lead max-w-3xl text-muted">
+          <ResourceHero current="ESG-Fragebogen Checkliste" eyebrow="ESG-Fragebogen · Checkliste für Lieferanten" locale="de" title={<>ESG-Fragebogen Checkliste für Lieferanten</>} titleId="guide-title">
+            <div className={`${r.heroRest} ${r.skin}`}><div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
+                <div className="type-lead">
                   <p>
                     Ihr Kunde hat einen ESG- oder Nachhaltigkeitsfragebogen
                     geschickt. Bevor Sie Antworten Feld für Feld eintragen,
@@ -247,18 +170,12 @@ export function EsgQuestionnaireChecklistGuide() {
                     </p>
                   </div>
                 ))}
-              </div>
-            </div>
-          </header>
+              </div></div>
+          </ResourceHero>
 
-          <section className="bg-ink py-16 text-white sm:py-20">
-            <div className="site-shell grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16">
-              <div>
-                <p className="eyebrow">Direkt loslegen</p>
-                <h2 className="type-heading font-display mt-6 max-w-[24ch]">
-                  Kein ESG-Grundkurs. Ein konkreter Arbeitsprozess.
-                </h2>
-              </div>
+          <GuideQuickAnswer eyebrow="Direkt loslegen" title={<>Kein ESG-Grundkurs. Ein konkreter Arbeitsprozess.</>}>
+<div className="site-shell grid gap-8 lg:gap-16">
+              
               <div className="max-w-3xl text-lg leading-8 text-white/68">
                 <p>
                   Arbeiten Sie nicht linear, wenn Ihre internen Quellen in
@@ -319,10 +236,14 @@ export function EsgQuestionnaireChecklistGuide() {
                 </p>
               </div>
             </div>
-          </section>
+          </GuideQuickAnswer>
 
-          <div className="site-shell max-w-[70rem] py-10 sm:py-16">
+          <ToolSection>
             <EsgQuestionnaireChecklist />
+          </ToolSection>
+
+          <GuideBody>
+          <div className={r.skin}>
 
             <section
               aria-labelledby="red-flags-title"
@@ -378,100 +299,33 @@ export function EsgQuestionnaireChecklistGuide() {
               </ul>
             </section>
 
-            <section
-              aria-labelledby="article-cta-title"
-              className="checklist-cta my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12"
+          </div>
+            <GuideCta
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</TextLink><TextLink href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen erhalten – was jetzt?</TextLink></>}
+              eyebrow="Ihr nächster Schritt"
+              note={<><p>Fragebogen · Daten · Nachweise · Berechnungen · Review</p></>}
+              title={<>Der Fragebogen ist länger als die Checkliste?</>}
             >
-              <ClipboardCheck aria-hidden="true" className="h-7 w-7 text-orange" />
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                Ihr nächster Schritt
-              </p>
-              <h2
-                className="type-heading font-display mt-5 max-w-[24ch]"
-                id="article-cta-title"
-              >
-                Der Fragebogen ist länger als die Checkliste?
-              </h2>
-              <div className="mt-6 max-w-3xl space-y-4 text-lg leading-8 text-white/68">
-                <p>Senden Sie uns die ursprüngliche Kundenanfrage.</p>
+              <p>Senden Sie uns die ursprüngliche Kundenanfrage.</p>
                 <p>
                   Wir zerlegen den Fragebogen in konkrete Datenpunkte, ordnen
                   interne Quellen und Verantwortliche zu, bereiten notwendige
                   Berechnungen vor, strukturieren Nachweise und machen Gaps
                   sichtbar.
                 </p>
-              </div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ButtonLink
-                  className="w-full sm:w-auto"
-                  href={SEND_REQUEST_HREF}
-                >
-                  ESG-Fragebogen senden
-                </ButtonLink>
-                <ButtonLink
-                  className="w-full sm:w-auto"
-                  href="/de/esg-fragebogen-lieferanten"
-                  variant="light"
-                >
-                  ESG-Fragebogen für Lieferanten
-                </ButtonLink>
-                <Link
-                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-center text-sm font-bold text-white transition hover:border-orange hover:text-orange sm:w-auto"
-                  href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten"
-                >
-                  ESG-Fragebogen erhalten – was jetzt?
-                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                </Link>
-              </div>
-              <p className="mt-6 text-sm font-semibold text-white/50">
-                Fragebogen · Daten · Nachweise · Berechnungen · Review
-              </p>
-            </section>
+            </GuideCta>
 
-            <section
-              aria-labelledby="faq-title"
-              className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16"
-              id="faq"
-            >
-              <p className="eyebrow">FAQ</p>
-              <h2
-                className="type-heading font-display mt-6"
-                id="faq-title"
-              >
-                Häufige Fragen zur ESG-Fragebogen-Checkliste
-              </h2>
-              <div className="faq-list">
-                {faqItems.map((faq) => (
-                  <details
-                    className="faq-item group"
-                    key={faq.question}
-                  >
-                    <summary className="faq-question">
-                      {faq.question}
-                      <span aria-hidden="true" className="faq-toggle" />
-                    </summary>
-                    <p className="faq-answer">
-                      {faq.answer}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </section>
+            </GuideBody>
 
-            <section
-              aria-labelledby="sources-title"
-              className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12"
-            >
-              <div className="flex items-center gap-3">
-                <Link2 aria-hidden="true" className="h-4 w-4 text-orange" />
-                <h2
-                  className="text-sm font-bold uppercase tracking-[0.12em] text-ink"
-                  id="sources-title"
-                >
-                  Quellen &amp; weiterführende Informationen
-                </h2>
-              </div>
-              <ul className="mt-6 grid gap-6 text-sm leading-6 text-muted">
+          <Faq eyebrow="FAQ" items={faqItems} title="Häufige Fragen zur ESG-Fragebogen-Checkliste" />
+
+          <GuideBody>
+
+            <GuideSources note={<>
+                Evipace ist unabhängig von EcoVadis und IntegrityNext und weder
+                offizieller Partner noch Validierungsstelle dieser Plattformen.
+              </>} title="Quellen &amp; weiterführende Informationen">
+              <ul>
                 <li>
                   <ExternalSourceLink href={ECOVADIS_DOCUMENTS_URL}>
                     EcoVadis — Understanding supporting documents
@@ -527,14 +381,10 @@ export function EsgQuestionnaireChecklistGuide() {
                   </p>
                 </li>
               </ul>
-              <p className="mt-7 text-xs leading-6 text-[rgba(21,21,21,0.48)]">
-                Evipace ist unabhängig von EcoVadis und IntegrityNext und weder
-                offizieller Partner noch Validierungsstelle dieser Plattformen.
-              </p>
-            </section>
-          </div>
+            </GuideSources>
+          </GuideBody>
         </article>
-      </main>
+      </ResourceMain>
     </div>
   );
 }

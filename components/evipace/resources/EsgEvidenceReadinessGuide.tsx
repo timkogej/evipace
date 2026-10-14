@@ -1,17 +1,25 @@
 import type { ReactNode } from "react";
 import {
-  ArrowDown,
   ArrowRight,
-  BadgeCheck,
-  ClipboardCheck,
   FileCheck2,
-  FolderTree,
-  Link2,
-  ShieldCheck
+  FolderTree
 } from "lucide-react";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
+import { ClosingCta } from "../home/ClosingCta";
 import { EsgEvidenceReadinessTool } from "./EsgEvidenceReadinessTool";
+import {
+  GuideBlock,
+  GuideBody,
+  GuideCta,
+  GuideQuickAnswer,
+  GuideSection as ArticleSection,
+  PillLink,
+  QualifierBox,
+  ResourceHero,
+  ResourceMain,
+  TextLink,
+  ToolSection
+} from "./ResourceParts";
 
 const SEND_REQUEST_HREF = "/de/send-request";
 
@@ -27,78 +35,6 @@ function InlineLink({ href, children }: { href: string; children: ReactNode }) {
         className="h-4 w-4 text-orange transition-transform group-hover:translate-x-1"
       />
     </Link>
-  );
-}
-
-function EvidenceArtwork() {
-  return (
-    <div aria-hidden="true" className="resource-hero-art evidence-screen-only">
-      <svg
-        className="resource-hero-art__sheet"
-        fill="none"
-        viewBox="0 0 520 650"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          height="520"
-          rx="18"
-          stroke="currentColor"
-          strokeOpacity="0.42"
-          strokeWidth="2"
-          width="390"
-          x="65"
-          y="58"
-        />
-        {[128, 196, 264, 332, 400, 468].map((y, index) => (
-          <g key={y}>
-            <circle
-              cx="128"
-              cy={y + 14}
-              fill={index < 3 ? "#FE7001" : "none"}
-              fillOpacity={index < 3 ? 0.18 : 0}
-              r="15"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d={`M170 ${y + 6}H388M170 ${y + 22}H328`}
-              stroke="currentColor"
-              strokeOpacity="0.34"
-              strokeWidth="2"
-            />
-          </g>
-        ))}
-      </svg>
-      <span className="resource-hero-art__code">
-        CLAIM · ENTITY · SCOPE · PERIOD · SOURCE · APPROVAL
-      </span>
-    </div>
-  );
-}
-
-function ArticleSection({
-  children,
-  id,
-  title
-}: {
-  children: ReactNode;
-  id: string;
-  title: string;
-}) {
-  return (
-    <section
-      aria-labelledby={`${id}-title`}
-      className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 first:border-t-0 first:pt-0"
-      id={id}
-    >
-      <h2
-        className="type-heading font-display max-w-[24ch] text-ink"
-        id={`${id}-title`}
-      >
-        {title}
-      </h2>
-      <div className="resource-prose mt-7 max-w-3xl">{children}</div>
-    </section>
   );
 }
 
@@ -138,86 +74,38 @@ const typicalEvidenceCards = [
 export function EsgEvidenceReadinessGuide() {
   return (
     <div className="evidence-readiness-page">
-      <main id="top">
+      <ResourceMain locale="de">
         <article>
-          <header
-            aria-labelledby="article-title"
-            className="resource-article-hero relative isolate overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24"
+          <ResourceHero
+            actions={<>
+              <PillLink href="#nachweis-pruefen">Nachweis jetzt prüfen ↓</PillLink>
+              <TextLink href="/de/ressourcen">Alle Ressourcen</TextLink>
+            </>}
+            current="ESG-Nachweise-Checkliste"
+            eyebrow="ESG EVIDENCE READINESS CHECK"
+            locale="de"
+            title="Ist dieser ESG-Nachweis wirklich verwendbar?"
+            titleId="guide-title"
           >
-            <EvidenceArtwork />
-            <div className="site-shell relative z-10">
-              <nav
-                aria-label="Brotkrümelnavigation"
-                className="evidence-screen-only flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"
-              >
-                <Link className="transition hover:text-orange" href="/de">
-                  Startseite
-                </Link>
-                <span aria-hidden="true">/</span>
-                <Link className="transition hover:text-orange" href="/de/ressourcen">
-                  Ressourcen
-                </Link>
-                <span aria-hidden="true">/</span>
-                <span aria-current="page" className="text-ink">
-                  ESG-Nachweise-Checkliste
-                </span>
-              </nav>
-
-              <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.55fr)] lg:items-end lg:gap-16">
-                <div className="min-w-0">
-                  <p className="eyebrow">ESG EVIDENCE READINESS CHECK</p>
-                  <h1
-                    className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto"
-                    id="article-title"
-                  >
-                    Ist dieser ESG-Nachweis wirklich verwendbar?
-                  </h1>
-                  <p className="type-lead mt-8 max-w-3xl text-muted">
-                    Ein Dokument zu haben, bedeutet noch nicht automatisch,
-                    dass es eine ESG-Aussage belastbar unterstützt. Prüfen Sie
-                    einen Nachweis in wenigen Minuten auf Aussagebezug,
-                    Gesellschaft, Scope, Zeitraum, Quelle, Freigabe und
-                    Nachvollziehbarkeit.
-                  </p>
-                  <div className="evidence-screen-only mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <ButtonLink href="#nachweis-pruefen">
-                      Nachweis jetzt prüfen <ArrowDown aria-hidden="true" className="h-4 w-4" />
-                    </ButtonLink>
-                    <Link
-                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[rgba(21,21,21,0.18)] px-6 py-3 text-center text-sm font-bold text-ink transition hover:border-orange hover:text-orange"
-                      href="/de/ressourcen"
-                    >
-                      Alle Ressourcen
-                    </Link>
-                  </div>
-                  <p className="evidence-screen-only mt-5 text-sm font-semibold leading-6 text-muted">
-                    Keine Registrierung. Keine Dokumente werden hochgeladen.
-                    Die Prüfung erfolgt ausschließlich in Ihrem Browser.
-                  </p>
-                </div>
-
-                <aside className="evidence-screen-only rounded-[1.15rem] border border-orange/25 bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
-                  <ClipboardCheck aria-hidden="true" className="h-8 w-8 text-orange" />
-                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                    Evidence Chain
-                  </p>
-                  <p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">
-                    Aussage → Gesellschaft → Scope → Zeitraum → Quelle →
-                    Gültigkeit → Freigabe
-                  </p>
-                </aside>
-              </div>
+            <p>
+              Ein Dokument zu haben, bedeutet noch nicht automatisch,
+              dass es eine ESG-Aussage belastbar unterstützt. Prüfen Sie
+              einen Nachweis in wenigen Minuten auf Aussagebezug,
+              Gesellschaft, Scope, Zeitraum, Quelle, Freigabe und
+              Nachvollziehbarkeit.
+            </p>
+            <p className="evidence-screen-only">
+              Keine Registrierung. Keine Dokumente werden hochgeladen.
+              Die Prüfung erfolgt ausschließlich in Ihrem Browser.
+            </p>
+            <div className="evidence-screen-only">
+              <QualifierBox label="Evidence Chain" title="Aussage → Gesellschaft → Scope → Zeitraum → Quelle → Gültigkeit → Freigabe" />
             </div>
-          </header>
+          </ResourceHero>
 
-          <section className="bg-ink py-14 text-white sm:py-16">
-            <div className="site-shell grid gap-8 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
-              <div>
-                <p className="eyebrow">Abgrenzung</p>
-                <h2 className="type-heading font-display mt-5 max-w-[24ch]">
-                  Ein Nachweis. Nicht der ganze Fragebogen.
-                </h2>
-              </div>
+          <GuideQuickAnswer eyebrow="Abgrenzung" title={<>Ein Nachweis. Nicht der ganze Fragebogen.</>}>
+<div className="site-shell grid gap-8 lg:gap-16">
+              
               <div className="max-w-3xl text-lg leading-8 text-white/68">
                 <p>
                   Die vollständige {" "}
@@ -244,13 +132,14 @@ export function EsgEvidenceReadinessGuide() {
                 </p>
               </div>
             </div>
-          </section>
+          </GuideQuickAnswer>
 
-          <div className="site-shell py-12 sm:py-16">
+          <ToolSection>
             <EsgEvidenceReadinessTool />
-          </div>
+          </ToolSection>
 
-          <div className="evidence-editorial-content site-shell max-w-[72rem] pb-8 sm:pb-12">
+          <div className="evidence-editorial-content">
+          <GuideBody>
             <ArticleSection id="was-ist-ein-esg-nachweis" title="Was ist ein ESG-Nachweis?">
               <p>
                 Ein ESG-Nachweis ist eine Quelle, mit der eine Aussage,
@@ -391,17 +280,7 @@ export function EsgEvidenceReadinessGuide() {
               </InlineLink>
             </ArticleSection>
 
-            <section
-              aria-labelledby="typische-nachweise-title"
-              className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14"
-              id="typische-esg-nachweise"
-            >
-              <h2
-                className="type-heading font-display max-w-[24ch] text-ink"
-                id="typische-nachweise-title"
-              >
-                Typische ESG-Nachweise in produzierenden Unternehmen
-              </h2>
+            <ArticleSection id="typische-esg-nachweise" title="Typische ESG-Nachweise in produzierenden Unternehmen">
               <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {typicalEvidenceCards.map((card) => (
                   <article
@@ -417,9 +296,10 @@ export function EsgEvidenceReadinessGuide() {
                   </article>
                 ))}
               </div>
-            </section>
+            </ArticleSection>
 
-            <section className="grid gap-5 border-t border-[rgba(21,21,21,0.12)] py-14 md:grid-cols-2">
+            <GuideBlock>
+            <div className="grid gap-5 md:grid-cols-2">
               <article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.12)] bg-white p-6 sm:p-7">
                 <FolderTree aria-hidden="true" className="h-8 w-8 text-orange" />
                 <h2 className="type-heading font-display mt-5 text-ink">
@@ -467,102 +347,45 @@ export function EsgEvidenceReadinessGuide() {
                   </InlineLink>
                 </div>
               </article>
-            </section>
+            </div>
+            </GuideBlock>
 
-            <section
-              aria-labelledby="commercial-bridge-title"
-              className="my-4 overflow-hidden rounded-[1.25rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12"
+            <GuideCta
+              actions={<>
+                <PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink>
+                <TextLink href="/de/esg-fragebogen-lieferanten">Mehr über ESG-Fragebögen für Lieferanten</TextLink>
+              </>}
+              note={<p>Sie behalten die Kontrolle über Unternehmensangaben und die finale Einreichung.</p>}
+              title={<>Sie haben die Unterlagen – aber noch keine klare Evidence-Struktur?</>}
             >
-              <BadgeCheck aria-hidden="true" className="h-8 w-8 text-orange" />
-              <h2
-                className="type-heading font-display mt-6 max-w-[24ch]"
-                id="commercial-bridge-title"
-              >
-                Sie haben die Unterlagen – aber noch keine klare
-                Evidence-Struktur?
-              </h2>
-              <div className="mt-6 max-w-3xl space-y-4 text-lg leading-8 text-white/68">
-                <p>
-                  Senden Sie uns die ESG-Anfrage Ihres Kunden. Wir ordnen
-                  Anforderungen, vorhandene Unternehmensdaten und Nachweise,
-                  identifizieren offene Punkte und bereiten die Antworten für
-                  Ihre interne Bestätigung vor.
-                </p>
-              </div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>
-                  ESG-Anfrage senden
-                </ButtonLink>
-                <ButtonLink
-                  className="w-full sm:w-auto"
-                  href="/de/esg-fragebogen-lieferanten"
-                  variant="light"
-                >
-                  Mehr über ESG-Fragebögen für Lieferanten
-                </ButtonLink>
-              </div>
-              <p className="mt-6 text-sm font-semibold text-white/50">
-                Sie behalten die Kontrolle über Unternehmensangaben und die
-                finale Einreichung.
+              <p>
+                Senden Sie uns die ESG-Anfrage Ihres Kunden. Wir ordnen
+                Anforderungen, vorhandene Unternehmensdaten und Nachweise,
+                identifizieren offene Punkte und bereiten die Antworten für
+                Ihre interne Bestätigung vor.
               </p>
-            </section>
+            </GuideCta>
 
-            <section
-              aria-labelledby="methodology-link-title"
-              className="border-t border-[rgba(21,21,21,0.12)] py-14"
-            >
-              <div className="flex items-start gap-4">
-                <ShieldCheck
-                  aria-hidden="true"
-                  className="mt-1 h-8 w-8 shrink-0 text-orange"
-                />
-                <div>
-                  <h2
-                    className="type-heading font-display text-ink"
-                    id="methodology-link-title"
-                  >
-                    Praktische Prüfung statt pauschaler Bewertung.
-                  </h2>
-                  <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
-                    Wie Evipace mit Quellen, Annahmen, Review und
-                    Aussagegrenzen arbeitet, beschreibt unsere Methodik.
-                  </p>
-                  <div className="mt-5">
-                    <InlineLink href="/de/methodology">
-                      Zur Evipace Methodik
-                    </InlineLink>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section
-              aria-labelledby="final-cta-title"
-              className="border-t border-[rgba(21,21,21,0.12)] py-14"
-            >
-              <div className="rounded-[1.25rem] border border-orange/30 bg-[var(--soft-orange)] p-7 sm:p-10">
-                <Link2 aria-hidden="true" className="h-8 w-8 text-orange" />
-                <h2
-                  className="type-heading font-display mt-6 max-w-[24ch] text-ink"
-                  id="final-cta-title"
-                >
-                  Aus Dokumenten werden belastbare Antworten.
-                </h2>
-                <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">
-                  Wir helfen produzierenden Unternehmen dabei, vorhandene
-                  ESG-Daten und Nachweise in eine klare, nachvollziehbare
-                  Kundenantwort zu überführen.
-                </p>
-                <div className="mt-8">
-                  <ButtonLink href={SEND_REQUEST_HREF}>
-                    Anfrage an Evipace senden →
-                  </ButtonLink>
-                </div>
-              </div>
-            </section>
+            <ArticleSection id="methodik" title="Praktische Prüfung statt pauschaler Bewertung.">
+              <p>
+                Wie Evipace mit Quellen, Annahmen, Review und
+                Aussagegrenzen arbeitet, beschreibt unsere Methodik.
+              </p>
+              <p><TextLink href="/de/methodology">Zur Evipace Methodik</TextLink></p>
+            </ArticleSection>
+          </GuideBody>
           </div>
         </article>
-      </main>
+        <ClosingCta
+          body={<p>Wir helfen produzierenden Unternehmen dabei, vorhandene ESG-Daten und Nachweise in eine klare, nachvollziehbare Kundenantwort zu überführen.</p>}
+          formHref={SEND_REQUEST_HREF}
+          formLabel="Anfrage an Evipace senden"
+          forwardLabel="Anfrage weiterleiten"
+          slogan="ESG work. Done right. Done faster."
+          title="Aus Dokumenten werden belastbare Antworten."
+        />
+
+      </ResourceMain>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 /* Homepage. Tokens follow brand book v1.2 and are scoped to this page, so
-   app/globals.css and every other route stay untouched. */
-.page {
+   app/globals.css and every other route stay untouched. `.tokens` carries the
+   same variables for shared blocks placed on pages that are not yet rebuilt. */
+.page,
+.tokens {
   --ev-orange-500: #fe7001;
   --ev-orange-600: #e96500;
   --ev-orange-700: #b44d00;
@@ -30,6 +32,9 @@
   --ev-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --gutter: var(--section-x, clamp(1.25rem, 3vw, 3rem));
   --section-y: clamp(4rem, 8vw, 8rem);
+}
+
+.page {
   background: var(--ev-white);
   color: var(--ev-charcoal);
 }

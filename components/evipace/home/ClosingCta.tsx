@@ -19,7 +19,7 @@ type ClosingCtaProps = {
 
 export function ClosingCta({ slogan, title, body, note, id, forwardLabel, formLabel, formHref, offers }: ClosingCtaProps) {
   return (
-    <section aria-labelledby="closing-cta-title" className={styles.cta} id={id}>
+    <section aria-labelledby="closing-cta-title" className={`${styles.tokens} ${styles.cta}`} id={id}>
       <div className={`${styles.shell} ${styles.ctaInner}`}>
         <div>
           <p className={styles.ctaSlogan}>{slogan}</p>

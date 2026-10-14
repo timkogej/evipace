@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
-import styles from "./ServiceDetails.module.css";
+import h from "../HomeLandingPage.module.css";
+import sp from "./ServicePage.module.css";
 
+/** A full-width "show more" band; the sections inside open below it. */
 export function ServiceDetailAccordion({
   label,
   children
@@ -9,10 +11,10 @@ export function ServiceDetailAccordion({
   children: ReactNode;
 }) {
   return (
-    <details className="group border-y border-[rgba(21,21,21,0.1)] bg-[#f8f8f6]">
-      <summary className={`${styles.summary} site-shell flex min-h-24 cursor-pointer items-center justify-between gap-6 py-6 text-lg font-semibold text-ink`}>
+    <details className={`${h.tokens} ${sp.details}`}>
+      <summary>
         <span>{label}</span>
-        <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[rgba(21,21,21,0.18)] text-xl leading-none transition group-open:rotate-45">+</span>
+        <span aria-hidden="true" className={sp.detailsIcon}>+</span>
       </summary>
       {children}
     </details>

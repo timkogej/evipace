@@ -1,3 +1,7 @@
+import h from "../HomeLandingPage.module.css";
+import { RevealOnView } from "../home/RevealOnView";
+import sp from "./ServicePage.module.css";
+
 type PreviewContent = {
   eyebrow: string;
   title: string;
@@ -118,50 +122,43 @@ export function IllustrativeHandover({
   const headingId = `${locale}-${service}-handover-title`;
 
   return (
-    <section aria-labelledby={headingId} className="section-padding bg-[var(--paper)]">
-      <div className="site-shell grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
-        <div>
-          <p className="eyebrow">{content.eyebrow}</p>
-          <h2 className="type-heading font-display mt-5 max-w-[23ch]" id={headingId}>
-            {content.title}
-          </h2>
-          <p className="mt-5 max-w-xl text-base leading-7 text-muted">{content.intro}</p>
-          <ol className="mt-8 space-y-4">
-            {content.roles.map((role, index) => (
-              <li className="grid grid-cols-[1.75rem_1fr] gap-3 border-t border-[rgba(21,21,21,0.12)] pt-4" key={role.label}>
-                <span className="font-mono text-xs font-bold text-orange">0{index + 1}</span>
-                <div>
-                  <h3 className="text-sm font-bold text-ink">{role.label}</h3>
-                  <p className="mt-1 text-sm leading-6 text-muted">{role.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <article className="min-w-0 self-start border border-[rgba(21,21,21,0.13)] bg-white p-5 shadow-[0_18px_50px_rgba(21,21,21,0.055)] sm:p-7">
-          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-[rgba(21,21,21,0.12)] pb-5">
-            <div>
-              <p className="text-[0.66rem] font-bold uppercase tracking-[0.12em] text-orange">{content.sampleLabel}</p>
-              <h3 className="mt-3 text-lg font-bold leading-snug text-ink">{content.sampleTitle}</h3>
-            </div>
-          </div>
-          <dl className="grid gap-0 text-sm sm:grid-cols-2">
+    <section aria-labelledby={headingId} className={`${h.tokens} ${h.section} ${h.tinted}`}>
+      <RevealOnView className={h.shell}>
+        <header className={h.sectionHead}>
+          <p className={h.eyebrow}>{content.eyebrow}</p>
+          <h2 className={h.heading} id={headingId}>{content.title}</h2>
+          <p className={h.lead}>{content.intro}</p>
+        </header>
+        <ol className={`${h.steps} ${sp.roles}`}>
+          {content.roles.map((role, index) => (
+            <li className={h.step} key={role.label} style={{ "--i": index } as React.CSSProperties}>
+              <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
+              <h3 className={h.cardTitle}>{role.label}</h3>
+              <p>{role.text}</p>
+            </li>
+          ))}
+        </ol>
+        <figure className={`${h.exampleCard} ${sp.handoverCard}`}>
+          <figcaption className={h.exampleHead}>
+            <span className={h.panelTitle}>{content.sampleTitle}</span>
+            <span className={h.badge}>{content.sampleLabel}</span>
+          </figcaption>
+          <dl className={h.exampleRows}>
             {[
               [content.requestLabel, content.request],
               [content.answerLabel, content.answer],
               [content.sourceLabel, content.source],
               [content.reviewLabel, content.review]
             ].map(([label, value]) => (
-              <div className="min-w-0 border-b border-[rgba(21,21,21,0.1)] py-4 sm:pr-6" key={label}>
-                <dt className="text-[0.67rem] font-bold uppercase tracking-[0.1em] text-orange">{label}</dt>
-                <dd className="mt-2 leading-6 text-ink">{value}</dd>
+              <div className={h.exampleRow} key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
               </div>
             ))}
           </dl>
-          <p className="mt-5 border-l-2 border-orange pl-4 text-sm leading-6 text-muted">{content.gap}</p>
-        </article>
-      </div>
+          <p className={sp.gapNote}>{content.gap}</p>
+        </figure>
+      </RevealOnView>
     </section>
   );
 }

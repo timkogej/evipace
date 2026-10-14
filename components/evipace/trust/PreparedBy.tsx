@@ -58,7 +58,7 @@ export function PreparedBy({
   return (
     <section className="border-t border-[rgba(21,21,21,0.1)] bg-[var(--paper)] py-8 sm:py-10">
       <div className="site-shell">
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[rgba(21,21,21,0.5)]">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-[rgba(21,21,21,0.5)]">
           <p><Link className="underline underline-offset-4 hover:text-orange" href={`/${locale}/about`}>{labels.preparedBy}</Link></p>
           <Link className="underline underline-offset-4 hover:text-orange" href={`/${locale}/methodology`}>
             {locale === "de" ? "Methodik und Grenzen" : "Methodology and limitations"}

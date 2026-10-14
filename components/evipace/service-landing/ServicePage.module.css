@@ -212,11 +212,11 @@
   color: var(--ev-white);
 }
 
-.darkHead p:first-child {
+.darkHead > p:first-child {
   color: var(--ev-orange-500);
 }
 
-.darkHead p:not(:first-child) {
+.darkHead > p:not(:first-child) {
   color: var(--ev-taupe);
 }
 

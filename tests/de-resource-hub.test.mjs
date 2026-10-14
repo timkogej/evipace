@@ -129,7 +129,8 @@ test("approved hub structure and operational copy are present", () => {
     assert.ok(hubSource.includes(marker), marker);
   }
 
-  assert.equal((hubSource.match(/<h1\b/g) ?? []).length, 1);
+  // The hub's single h1 is rendered by the shared ResourceHero.
+  assert.equal((hubSource.match(/<h1\b|<ResourceHero\b/g) ?? []).length, 1);
   assert.ok(hubSource.includes("allChecklistItems.length"));
   assert.ok(hubSource.includes("Fortschritt lokal gespeichert · Druckbar"));
   assert.ok(hubSource.includes("Kein Login · lokale Speicherung · druckbar"));

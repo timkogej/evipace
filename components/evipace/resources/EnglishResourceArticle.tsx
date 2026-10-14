@@ -1,15 +1,18 @@
 import { SourceNote } from "../trust/SourceNote";
 import type { PrimarySource } from "@/lib/seo/primary-sources";
-import type { ReactNode } from "react";
 import Link from "next/link";
+import h from "../HomeLandingPage.module.css";
+import { ClosingCta } from "../home/ClosingCta";
+import { RevealOnView } from "../home/RevealOnView";
+import { Faq, Head } from "../service-landing/Blocks";
+import r from "./Resource.module.css";
 import {
-  ArrowRight,
-  ExternalLink,
-  FileCheck2,
-  Link2,
-  ShieldCheck
-} from "lucide-react";
-import { ButtonLink } from "../ButtonLink";
+  PillLink,
+  ResourceBand,
+  ResourceHero,
+  ResourceMain,
+  TextLink
+} from "./ResourceParts";
 
 export type EnglishArticleSection = {
   sources?: readonly PrimarySource[];
@@ -77,71 +80,11 @@ export type EnglishResourceArticleContent = {
   }>;
 };
 
-function ExternalSourceLink({
-  href,
-  children
-}: {
-  href: string;
-  children: ReactNode;
-}) {
-  return (
-    <a
-      className="inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-[rgba(254,112,1,0.45)] underline-offset-4 transition hover:text-orange"
-      href={href}
-      rel="noreferrer"
-      target="_blank"
-    >
-      {children}
-      <ExternalLink aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
-    </a>
-  );
-}
-
-function InlineLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link className="orange-link inline-flex items-center gap-2 text-sm" href={href}>
-      {children}
-      <ArrowRight aria-hidden="true" className="h-4 w-4" />
-    </Link>
-  );
-}
-
-function Principle({
-  label,
-  children
-}: {
-  label?: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="my-8 rounded-[1.1rem] bg-ink p-7 text-white sm:p-8">
-      {label ? (
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
-          {label}
-        </p>
-      ) : null}
-      <p
-        className={`font-display text-[clamp(1.8rem,4vw,3.1rem)] leading-[1.1] ${
-          label ? "mt-4" : ""
-        }`}
-      >
-        {children}
-      </p>
-    </div>
-  );
-}
-
 function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="mt-6 grid gap-3">
+    <ul className={r.bullets}>
       {items.map((item) => (
-        <li className="flex gap-3 leading-7 text-muted" key={item}>
-          <span
-            aria-hidden="true"
-            className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange"
-          />
-          <span>{item}</span>
-        </li>
+        <li key={item}>{item}</li>
       ))}
     </ul>
   );
@@ -151,50 +94,47 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
   return (
     <section
       aria-labelledby={`${section.id}-title`}
-      className="scroll-mt-28 border-t border-[rgba(21,21,21,0.12)] py-14 sm:py-16"
+      className={r.articleSection}
       id={section.id}
     >
-      <div className="flex items-start gap-4 sm:gap-6">
-        <span className="mt-1 font-mono text-xs font-bold tracking-[0.15em] text-orange">
-          {section.number}
-        </span>
-        <h2
-          className="type-heading font-display max-w-[24ch]"
-          id={`${section.id}-title`}
-        >
-          {section.title}
-        </h2>
-      </div>
-      <div className="resource-prose mt-8 sm:pl-[3.35rem]">
-        {section.paragraphs?.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+      <header className={r.articleHead}>
+        <span aria-hidden="true" className={r.articleNumber}>{section.number}</span>
+        <h2 id={`${section.id}-title`}>{section.title}</h2>
+      </header>
+      <div className={r.reading}>
+        {section.paragraphs?.length ? (
+          <div>
+            {section.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        ) : null}
         {section.matrix ? (
-          <div className="mt-8 max-w-full">
-            <div className="grid gap-3 md:hidden">
+          <div className={r.wideBlock}>
+            <div className={r.matrixCards}>
               {section.matrix.rows.map((row) => (
-                <dl className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={row.join("|")}>
+                <dl key={row.join("|")}>
                   {row.map((cell, index) => (
-                    <div className={index ? "mt-4" : ""} key={section.matrix?.columns[index]}>
-                      <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-orange">{section.matrix?.columns[index]}</dt>
-                      <dd className="mt-1 text-sm leading-6 text-ink">{cell}</dd>
+                    <div key={section.matrix?.columns[index]}>
+                      <dt>{section.matrix?.columns[index]}</dt>
+                      <dd>{cell}</dd>
                     </div>
                   ))}
                 </dl>
               ))}
             </div>
-            <div className="hidden overflow-x-auto rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white md:block">
-              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
-                <caption className="sr-only">{section.matrix.caption}</caption>
-                <thead className="bg-[var(--paper)] text-xs uppercase tracking-[0.08em] text-muted">
-                  <tr>{section.matrix.columns.map((column) => <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={column} scope="col">{column}</th>)}</tr>
+            <div className={r.matrixTable}>
+              <table>
+                <caption className={h.srOnly}>{section.matrix.caption}</caption>
+                <thead>
+                  <tr>{section.matrix.columns.map((column) => <th key={column} scope="col">{column}</th>)}</tr>
                 </thead>
                 <tbody>
                   {section.matrix.rows.map((row) => (
-                    <tr className="border-b border-[rgba(21,21,21,0.09)] last:border-b-0" key={row.join("|")}>
+                    <tr key={row.join("|")}>
                       {row.map((cell, index) => index === 0
-                        ? <th className="px-4 py-4 font-semibold text-ink" key={index} scope="row">{cell}</th>
-                        : <td className="px-4 py-4 text-muted" key={index}>{cell}</td>)}
+                        ? <th key={index} scope="row">{cell}</th>
+                        : <td key={index}>{cell}</td>)}
                     </tr>
                   ))}
                 </tbody>
@@ -204,42 +144,37 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
         ) : null}
         {section.bullets ? <BulletList items={section.bullets} /> : null}
         {section.principle ? (
-          <Principle label={section.principle.label}>
-            {section.principle.text}
-          </Principle>
+          <div className={r.principle}>
+            {section.principle.label ? (
+              <p className={r.principleLabel}>{section.principle.label}</p>
+            ) : null}
+            <p className={r.principleText}>{section.principle.text}</p>
+          </div>
         ) : null}
         {section.cards ? (
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className={`${r.articleCards} ${r.wideBlock}`}>
             {section.cards.map((card) => (
-              <section
-                className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6"
-                key={card.title}
-              >
-                <h3 className="type-subheading font-display text-ink">
-                  {card.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted">{card.body}</p>
-              </section>
+              <li key={card.title}>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         ) : null}
         {section.sources ? <SourceNote sources={section.sources} /> : null}
         {section.download ? (
-          <a
-            className="orange-link mt-7 inline-flex items-center gap-2 text-sm"
-            download
-            href={section.download.href}
-          >
+          <a className={r.download} download href={section.download.href}>
             {section.download.label}
-            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            <span aria-hidden="true">→</span>
           </a>
         ) : null}
         {section.links ? (
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className={r.links}>
             {section.links.map((link) => (
-              <InlineLink href={link.href} key={link.href}>
+              <Link href={link.href} key={link.href}>
                 {link.label}
-              </InlineLink>
+                <span aria-hidden="true">→</span>
+              </Link>
             ))}
           </div>
         ) : null}
@@ -254,256 +189,110 @@ export function EnglishResourceArticle({
   content: EnglishResourceArticleContent;
 }) {
   return (
-    <main id="top">
+    <ResourceMain locale="en">
       <article>
-        <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-18 pt-28 sm:pb-22 sm:pt-32 lg:pb-24 lg:pt-36">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 overflow-hidden"
-          >
-            <div className="absolute -right-36 top-16 h-[32rem] w-[32rem] rounded-full border border-orange/15" />
-            <div className="absolute bottom-0 left-[56%] top-0 w-px bg-gradient-to-b from-transparent via-orange/15 to-transparent" />
-          </div>
-          <div className="site-shell">
-            <nav
-              aria-label="Breadcrumb"
-              className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]"
-            >
-              <Link className="transition hover:text-orange" href="/en">
-                Home
-              </Link>
-              <span aria-hidden="true">/</span>
-              <Link className="transition hover:text-orange" href="/en/resources">
-                Resources
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-ink">
-                {content.title}
-              </span>
-            </nav>
-
-            <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.52fr)] lg:items-end lg:gap-20">
-              <div>
-                <p className="eyebrow">{content.eyebrow}</p>
-                <h1
-                  className="type-title font-display mt-7 max-w-[20ch]"
-                  id="article-title"
-                >
-                  {content.title}
-                </h1>
-                <p className="type-statement font-display mt-8 max-w-3xl text-ink">
-                  {content.deck}
-                </p>
-              </div>
-
-              <aside className="border-l-2 border-orange pl-6 lg:mb-2 lg:pl-8">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                  Evipace method
-                </p>
-                <p className="mt-4 text-sm font-semibold leading-7 text-muted">
-                  {content.methodNote ??
-                    "Customer request - scope - data owner - source - evidence - internal review."}
-                </p>
-                <div className="mt-5">
-                  <InlineLink href="/en/methodology">See methodology</InlineLink>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </header>
-
-        <section
-          aria-labelledby="quick-answer-title"
-          className="scroll-mt-24 bg-ink py-20 text-white sm:py-24"
-          id="quick-answer"
+        <ResourceHero
+          current={content.title}
+          eyebrow={content.eyebrow}
+          locale="en"
+          statement={content.deck}
+          title={content.title}
+          titleId="guide-title"
         >
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-            <div>
-              <p className="eyebrow text-orange">Quick answer</p>
-              <h2
-                className="type-heading font-display mt-6 max-w-[24ch]"
-                id="quick-answer-title"
-              >
-                {content.quickAnswerTitle ??
-                  "Start with the request, not the spreadsheet."}
-              </h2>
-              <div className="mt-7 space-y-4 text-base leading-8 text-white/68">
-                {content.summary.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {content.quickChecks.map((check, index) => (
-                <section
-                  className="rounded-[1rem] border border-white/14 bg-white/[0.045] p-5 sm:p-6"
-                  key={check.title}
-                >
-                  <span className="font-mono text-xs font-bold text-orange">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="type-subheading mt-5 font-display">
-                    {check.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/62">
-                    {check.body}
-                  </p>
-                </section>
-              ))}
-            </div>
+          <nav aria-label="On this page" className={h.jump}>
+            {content.nav.map(({ label, href }) => (
+              <a className={h.jumpLink} href={href} key={href}>
+                {label}
+              </a>
+            ))}
+          </nav>
+          <div className={r.method}>
+            <p>Evipace method</p>
+            <p>
+              {content.methodNote ??
+                "Customer request - scope - data owner - source - evidence - internal review."}
+            </p>
+            <Link href="/en/methodology">See methodology</Link>
           </div>
-        </section>
+        </ResourceHero>
 
-        <div className="site-shell">
-          <div className="grid gap-14 lg:grid-cols-[minmax(12rem,0.28fr)_minmax(0,0.72fr)]">
-            <aside className="hidden py-16 lg:block">
-              <div className="sticky top-28">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-orange">
-                  On this page
-                </p>
-                <ol className="mt-5 grid gap-3 text-sm font-semibold text-muted">
-                  {content.nav.map(({ number, label, href }) => (
-                    <li key={href}>
-                      <a
-                        className="group flex gap-3 transition hover:text-ink"
-                        href={href}
-                      >
-                        <span className="font-mono text-[0.65rem] text-orange">
-                          {number}
-                        </span>
-                        <span>{label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </aside>
+        <ResourceBand id="quick-answer" labelledBy="quick-answer-heading" tone="dark">
+          <Head
+            dark
+            eyebrow="Quick answer"
+            id="quick-answer-heading"
+            title={content.quickAnswerTitle ?? "Start with the request, not the spreadsheet."}
+          >
+            {content.summary.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </Head>
+          <ol className={`${h.steps} ${r.quickChecks}`}>
+            {content.quickChecks.map((check, index) => (
+              <li className={h.step} key={check.title}>
+                <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
+                <h3 className={h.cardTitle}>{check.title}</h3>
+                <p>{check.body}</p>
+              </li>
+            ))}
+          </ol>
+        </ResourceBand>
 
-            <div className="min-w-0">
-              {content.sections.map((section) => (
-                <ArticleSection key={section.id} section={section} />
-              ))}
+        <div className={h.shell}>
+          {content.sections.map((section) => (
+            <ArticleSection key={section.id} section={section} />
+          ))}
+        </div>
 
-              <section
-                aria-labelledby="article-cta-title"
-                className="my-12 overflow-hidden rounded-[1.3rem] bg-ink p-7 text-white shadow-premium sm:p-10 lg:p-12"
-              >
-                <Link2 aria-hidden="true" className="h-10 w-10 text-orange" />
-                <p className="eyebrow mt-7 text-orange">{content.cta.eyebrow}</p>
-                <h2
-                  className="type-heading font-display mt-5 max-w-[24ch]"
-                  id="article-cta-title"
-                >
-                  {content.cta.title}
-                </h2>
-                <p className="mt-6 max-w-3xl text-base leading-8 text-white/68">
-                  {content.cta.body}
-                </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <ButtonLink
-                    className="w-full sm:w-auto"
-                    href={content.cta.primaryHref}
-                  >
-                    {content.cta.primaryLabel}
-                  </ButtonLink>
-                  {content.cta.secondaryHref && content.cta.secondaryLabel ? (
-                    <ButtonLink
-                      className="w-full sm:w-auto"
-                      href={content.cta.secondaryHref}
-                      variant="light"
-                    >
-                      {content.cta.secondaryLabel}
-                    </ButtonLink>
-                  ) : null}
-                </div>
-              </section>
-
-              <section
-                aria-labelledby="faq-title"
-                className="scroll-mt-24 border-t border-[rgba(21,21,21,0.12)] py-16"
-                id="faq"
-              >
-                <p className="eyebrow">FAQ</p>
-                <h2
-                  className="type-heading font-display mt-6"
-                  id="faq-title"
-                >
-                  Frequently asked questions
-                </h2>
-                <div className="faq-list">
-                  {content.faq.map((faq) => (
-                    <details
-                      className="faq-item group"
-                      key={faq.question}
-                    >
-                      <summary className="faq-question">
-                        {faq.question}
-                        <span aria-hidden="true" className="faq-toggle" />
-                      </summary>
-                      <p className="faq-answer">
-                        {faq.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
-              </section>
-
-              {content.sources ? (
-                <section
-                  aria-labelledby="sources-title"
-                  className="border-t border-[rgba(21,21,21,0.12)] pb-16 pt-12"
-                >
-                  <div className="rounded-[1rem] bg-[var(--paper)] p-6 sm:p-7">
-                    <FileCheck2
-                      aria-hidden="true"
-                      className="h-7 w-7 text-orange"
-                    />
-                    <h2
-                      className="mt-5 text-sm font-bold uppercase tracking-[0.12em] text-ink"
-                      id="sources-title"
-                    >
-                      Sources and further reading
-                    </h2>
-                    <ul className="mt-4 grid gap-3 text-sm leading-7 text-muted">
-                      {content.sources.map((source) => (
-                        <li key={source.href}>
-                          <ExternalSourceLink href={source.href}>
-                            {source.label}
-                          </ExternalSourceLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </section>
+        <RevealOnView className={h.shell}>
+          <section aria-labelledby="guide-cta-title" className={r.inlineCta}>
+            <p className={h.eyebrow}>{content.cta.eyebrow}</p>
+            <h2 id="guide-cta-title">{content.cta.title}</h2>
+            <p>{content.cta.body}</p>
+            <div className={h.actions}>
+              <PillLink href={content.cta.primaryHref}>{content.cta.primaryLabel}</PillLink>
+              {content.cta.secondaryHref && content.cta.secondaryLabel ? (
+                <TextLink href={content.cta.secondaryHref}>{content.cta.secondaryLabel}</TextLink>
               ) : null}
             </div>
+          </section>
+        </RevealOnView>
+
+        <Faq eyebrow="FAQ" items={content.faq} title="Frequently asked questions" />
+
+        {content.sources ? (
+          <div className={h.shell}>
+            <section aria-labelledby="sources-title" className={r.sources}>
+              <h2 id="sources-title">Sources and further reading</h2>
+              <ul>
+                {content.sources.map((source) => (
+                  <li key={source.href}>
+                    <a href={source.href} rel="noreferrer" target="_blank">
+                      {source.label} ↗
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
-        </div>
+        ) : null}
       </article>
 
-      <section className="resource-final-cta bg-orange py-16 text-white sm:py-20 lg:py-24">
-        <div className="site-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div className="max-w-4xl">
-            <ShieldCheck aria-hidden="true" className="h-10 w-10 text-ink" />
-            <h2 className="type-heading font-display mt-6">
-              Already have the customer request?
-            </h2>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-white/85">
-              Send the questionnaire, customer email, spreadsheet or portal
-              export. We can map what is being asked, identify the internal
-              sources and prepare a response for your review.
-            </p>
-          </div>
-          <div className="lg:text-right">
-            <ButtonLink href="/en/send-request" variant="dark">
-              Send the request
-            </ButtonLink>
-            <p className="mt-4 text-xs font-bold text-ink/68">
-              Questionnaire - Excel - PDF - portal - customer email
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+      <ClosingCta
+        body={
+          <p>
+            Send the questionnaire, customer email, spreadsheet or portal
+            export. We can map what is being asked, identify the internal
+            sources and prepare a response for your review.
+          </p>
+        }
+        formHref="/en/send-request"
+        formLabel="Send the request"
+        forwardLabel="Forward your request"
+        note="Questionnaire - Excel - PDF - portal - customer email"
+        slogan="ESG work. Done right. Done faster."
+        title="Already have the customer request?"
+      />
+    </ResourceMain>
   );
 }

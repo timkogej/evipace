@@ -311,7 +311,6 @@ test("guide has exact hero contract, collection framing, required internal links
 test("hub and related pages link the new template with the approved hub card copy", () => {
   for (const marker of [
     "INTERAKTIVE VORLAGE",
-    "Scope 1 &amp; 2 Datenerfassungs-Vorlage",
     "Scope 1 & 2 Datenerfassungs-Vorlage",
     "Strom, Brennstoffe, Fahrzeuge, Kältemittel und weitere Aktivitätsdaten strukturiert je Standort erfassen."
   ]) {

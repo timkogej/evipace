@@ -1,93 +1,37 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { ArrowRight, FileCheck2, RefreshCw, Send, ShieldCheck } from "lucide-react";
-import { ButtonLink } from "../ButtonLink";
+import { ClosingCta } from "../home/ClosingCta";
+import {
+  Band,
+  Callout,
+  Card,
+  CardGrid,
+  Chips,
+  Head,
+  Items,
+  Prose,
+  Steps
+} from "../service-landing/Blocks";
+import r from "./Resource.module.css";
+import {
+  BoxList,
+  Bullets,
+  CenterAction,
+  Flow,
+  MetaCard,
+  Panel,
+  PillLink,
+  QualifierBox,
+  ResourceCard,
+  ResourceCards,
+  ResourceHero,
+  ResourceMain,
+  Terms,
+  TextLink
+} from "./ResourceParts";
 
 const SEND_REQUEST_HREF = "/en/send-request";
 
-function InlineLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      className="group inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink underline decoration-orange/35 underline-offset-4 transition hover:text-orange"
-      href={href}
-    >
-      <span>{children}</span>
-      <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-orange transition-transform group-hover:translate-x-1" />
-    </Link>
-  );
-}
-
-function SectionHeading({
-  id,
-  eyebrow,
-  title,
-  children,
-  light = false
-}: {
-  id: string;
-  eyebrow?: string;
-  title: string;
-  children?: ReactNode;
-  light?: boolean;
-}) {
-  return (
-    <div className="max-w-3xl">
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2
-        className={`type-heading font-display mt-5 scroll-mt-28 break-words hyphens-auto ${
- light ? "text-white" : "text-ink"
- }`}
-        id={id}
-      >
-        {title}
-      </h2>
-      {children ? (
-        <div className={`mt-6 space-y-4 text-base leading-8 sm:text-lg ${light ? "text-white/66" : "text-muted"}`}>
-          {children}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-function BulletList({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="mt-4 grid gap-2.5">
-      {items.map((item) => (
-        <li className="flex gap-3 text-sm leading-6 text-muted" key={item}>
-          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
-          <span className="min-w-0 break-words">{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function FlowLine({
-  items,
-  dark = false,
-  columns = "lg:grid-cols-4"
-}: {
-  items: readonly string[];
-  dark?: boolean;
-  columns?: string;
-}) {
-  return (
-    <ol className={`grid gap-3 sm:grid-cols-2 ${columns}`}>
-      {items.map((item, index) => (
-        <li className={`relative min-w-0 border-t pt-4 ${dark ? "border-white/20" : "border-[rgba(21,21,21,0.16)]"}`} key={item}>
-          {index < items.length - 1 ? (
-            <ArrowRight aria-hidden="true" className="absolute -right-3 top-4 hidden h-4 w-4 text-orange lg:block" />
-          ) : null}
-          <span className="font-mono text-[0.62rem] font-bold text-orange">{String(index + 1).padStart(2, "0")}</span>
-          <p className={`mt-2 break-words text-sm font-bold leading-5 ${dark ? "text-white" : "text-ink"}`}>{item}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function ResourceHero({
+function GuideHero({
   eyebrow,
   title,
   intro,
@@ -107,50 +51,22 @@ function ResourceHero({
   artworkLabel: string;
 }) {
   return (
-    <header aria-labelledby="article-title" className="resource-article-hero relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28">
-      <div aria-hidden="true" className="resource-hero-art">
-        <svg className="resource-hero-art__sheet" fill="none" viewBox="0 0 520 650" xmlns="http://www.w3.org/2000/svg">
-          <path d="M112 122H408M112 176H340M112 306H408M112 356H408M112 406H320" stroke="currentColor" strokeOpacity="0.44" strokeWidth="4" />
-          <rect height="64" rx="12" stroke="currentColor" strokeOpacity="0.7" strokeWidth="3" width="296" x="112" y="214" />
-          <path d="M138 246H236M270 246H382" stroke="currentColor" strokeOpacity="0.64" strokeWidth="8" />
-          <rect height="42" rx="10" stroke="currentColor" strokeOpacity="0.34" strokeWidth="3" width="100" x="112" y="500" />
-          <rect height="42" rx="10" stroke="currentColor" strokeOpacity="0.34" strokeWidth="3" width="100" x="240" y="500" />
-        </svg>
-        <span className="resource-hero-art__code">{artworkLabel}</span>
-      </div>
-      <div className="site-shell relative z-10">
-        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[rgba(21,21,21,0.52)]">
-          <Link className="transition hover:text-orange" href="/en">Home</Link>
-          <span aria-hidden="true">/</span>
-          <Link className="transition hover:text-orange" href="/en/resources">Resources</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page" className="text-ink">{eyebrow}</span>
-        </nav>
-
-        <div className="mt-12 max-w-6xl">
-          <p className="eyebrow">{eyebrow}</p>
-          <h1 className="type-title font-display mt-7 max-w-[20ch] break-words hyphens-auto" id="article-title">
-            {title}
-          </h1>
-        </div>
-
-        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(19rem,0.58fr)] lg:items-start lg:gap-16">
-          <div className="type-lead max-w-3xl text-muted">
-            {intro}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink className="w-full sm:w-auto" href={primaryHref}>{primaryLabel}</ButtonLink>
-              <ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF} variant="secondary">Already received a customer request?</ButtonLink>
-            </div>
-          </div>
-          <aside className="rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.78)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
-            <FileCheck2 aria-hidden="true" className="h-8 w-8 text-orange" />
-            <p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-orange">Qualifier</p>
-            <p className="font-display mt-4 text-[1.72rem] leading-tight text-ink">{qualifierTitle}</p>
-            <p className="mt-5 text-sm leading-7 text-muted">{qualifier}</p>
-          </aside>
-        </div>
-      </div>
-    </header>
+    <ResourceHero
+      actions={
+        <>
+          <PillLink href={primaryHref}>{primaryLabel}</PillLink>
+          <TextLink href={SEND_REQUEST_HREF}>Already received a customer request?</TextLink>
+        </>
+      }
+      current={eyebrow}
+      eyebrow={eyebrow}
+      locale="en"
+      title={title}
+      titleId="guide-title"
+    >
+      {intro}
+      <QualifierBox body={qualifier} footer={artworkLabel} label="Qualifier" title={qualifierTitle} />
+    </ResourceHero>
   );
 }
 
@@ -509,23 +425,44 @@ const reusableCoreFlow = [
 
 function QuickAnswer({ children }: { children: ReactNode }) {
   return (
-    <section aria-labelledby="quick-answer-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="quick-answer">
-      <div className="site-shell grid gap-9 lg:grid-cols-[0.52fr_1.48fr] lg:gap-16">
-        <div>
-          <p className="eyebrow">Quick Answer</p>
-          <h2 className="type-heading font-display mt-6" id="quick-answer-title">In short</h2>
-        </div>
-        <div className="max-w-4xl text-lg leading-8 text-white/72 sm:text-xl sm:leading-9">{children}</div>
-      </div>
-    </section>
+    <Band id="quick-answer" labelledBy="quick-answer-heading" tone="dark">
+      <Head dark eyebrow="Quick Answer" id="quick-answer-heading" title="In short" />
+      <Prose dark>{children}</Prose>
+    </Band>
+  );
+}
+
+function SimpleCards({ items, columns = 3 }: { items: readonly (readonly [string, string])[]; columns?: 2 | 3 }) {
+  return (
+    <CardGrid columns={columns}>
+      {items.map(([title, copy]) => (
+        <Card key={title} title={title}>
+          <p>{copy}</p>
+        </Card>
+      ))}
+    </CardGrid>
+  );
+}
+
+function BuildingBlocks({ items, extra }: { items: readonly (readonly [string, string, readonly string[]])[]; extra?: (title: string) => ReactNode }) {
+  return (
+    <CardGrid columns={2}>
+      {items.map(([title, copy, list]) => (
+        <Card key={title} title={title}>
+          <p>{copy}</p>
+          {extra?.(title)}
+          <Items items={list} />
+        </Card>
+      ))}
+    </CardGrid>
   );
 }
 
 export function EnglishEnvironmentalPolicyGuide() {
   return (
-    <main id="top">
+    <ResourceMain locale="en">
       <article>
-        <ResourceHero
+        <GuideHero
           artworkLabel="SCOPE · OWNER · STATUS · EVIDENCE"
           eyebrow="ENVIRONMENTAL POLICY"
           primaryHref="#building-blocks"
@@ -535,63 +472,45 @@ export function EnglishEnvironmentalPolicyGuide() {
           title="How to create an Environmental Policy that reflects how your company actually operates"
           intro={<>
             <p>Customers and supplier assessments may ask whether your company has an Environmental Policy.</p>
-            <p className="mt-6">A credible policy should reflect the actual business, have a clear scope, name real responsibilities and contain commitments the company can support. Drafting the policy is different from proving implementation.</p>
+            <p>A credible policy should reflect the actual business, have a clear scope, name real responsibilities and contain commitments the company can support. Drafting the policy is different from proving implementation.</p>
           </>}
         />
         <QuickAnswer>
           <p>An Environmental Policy sets out a company’s fundamental environmental principles, defines its scope, identifies responsibilities and creates a framework for relevant objectives and measures.</p>
-          <p className="mt-6">It should be based on actual business activity, internally reviewed and approved by the responsible function. The policy documents a formal commitment; implementation should be supported by separate processes, KPIs and evidence.</p>
+          <p>It should be based on actual business activity, internally reviewed and approved by the responsible function. The policy documents a formal commitment; implementation should be supported by separate processes, KPIs and evidence.</p>
         </QuickAnswer>
 
-        <section aria-labelledby="distinction-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-            <SectionHeading eyebrow="Core distinction" id="distinction-title" title="A policy is not the same as implementation or evidence." />
-            <div>
-              <div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-policy-distinction>
-                <FlowLine items={["Policy", "Implementation", "Evidence"]} columns="lg:grid-cols-3" />
-                <dl className="mt-8 grid gap-px overflow-hidden rounded-[1rem] bg-[rgba(21,21,21,0.12)] sm:grid-cols-3">
-                  {[
-                    ["Policy", "What the company formally commits to."],
-                    ["Implementation", "What the company actually does."],
-                    ["Evidence", "What documents or records support that implementation."]
-                  ].map(([term, description]) => (
-                    <div className="bg-white p-4" key={term}><dt className="font-display text-2xl text-ink">{term}</dt><dd className="mt-2 text-sm font-semibold leading-6 text-muted">{description}</dd></div>
-                  ))}
-                </dl>
-              </div>
-              <p className="font-display mt-8 text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">Policy ≠ implementation ≠ evidence</p>
+        <Band labelledBy="distinction-title">
+          <Head eyebrow="Core distinction" id="distinction-title" title="A policy is not the same as implementation or evidence." />
+          <div data-policy-distinction>
+            <Flow items={["Policy", "Implementation", "Evidence"]} />
+            <div className={r.blockGap}>
+              <Terms items={[
+                ["Policy", "What the company formally commits to."],
+                ["Implementation", "What the company actually does."],
+                ["Evidence", "What documents or records support that implementation."]
+              ]} />
             </div>
           </div>
-        </section>
+          <p className={r.closingLine}>Policy ≠ implementation ≠ evidence</p>
+        </Band>
 
-        <section aria-labelledby="assessment-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
-            <SectionHeading eyebrow="Before drafting" id="assessment-title" title="Start with reality. Then write the policy.">
-              <p>Review what already exists in the company before writing policy language.</p>
-            </SectionHeading>
-            <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-pre-drafting-assessment>
-              {policyAssessmentItems.map((item) => <li className="rounded-[0.9rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-4 text-sm font-bold leading-6 text-ink" key={item}>{item}</li>)}
-            </ul>
-          </div>
-        </section>
+        <Band labelledBy="assessment-title" tone="tinted">
+          <Head eyebrow="Before drafting" id="assessment-title" title="Start with reality. Then write the policy.">
+            <p>Review what already exists in the company before writing policy language.</p>
+          </Head>
+          <div data-pre-drafting-assessment><Chips items={policyAssessmentItems} /></div>
+        </Band>
 
-        <section aria-labelledby="purpose-title" className="py-16 sm:py-20 lg:py-24">
-          <div className="site-shell">
-            <SectionHeading eyebrow="Purpose" id="purpose-title" title="What an Environmental Policy is for" />
-            <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-policy-purpose-blocks>
-              {policyPurposeBlocks.map(([title, copy], index) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift" key={title}><span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span><h3 className="type-subheading font-display mt-4 text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-muted">{copy}</p></article>)}
-            </div>
-          </div>
-        </section>
+        <Band labelledBy="purpose-title">
+          <Head eyebrow="Purpose" id="purpose-title" title="What an Environmental Policy is for" />
+          <div data-policy-purpose-blocks><SimpleCards columns={2} items={policyPurposeBlocks} /></div>
+        </Band>
 
-        <section aria-labelledby="blocks-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="building-blocks">
-          <div className="site-shell">
-            <SectionHeading eyebrow="Framework" id="blocks-title" light title="Seven building blocks of a credible Environmental Policy" />
-            <div className="mt-12 grid gap-6" data-policy-building-blocks>
-              {policyBuildingBlocks.map(([title, copy, items]) => <section className="rounded-[1.2rem] border border-white/14 bg-white/[0.04] p-6 sm:p-8" key={title}><div className="grid gap-8 lg:grid-cols-[0.46fr_0.54fr]"><div><h3 className="type-subheading font-display text-white">{title}</h3><p className="mt-5 text-base leading-8 text-white/66">{copy}</p></div><ul className="grid gap-2 sm:grid-cols-2">{items.map((item) => <li className="rounded-[0.8rem] border border-white/10 bg-white/[0.06] p-3 text-sm font-bold leading-6 text-white/78" key={item}>{item}</li>)}</ul></div></section>)}
-            </div>
-          </div>
-        </section>
+        <Band id="building-blocks" labelledBy="blocks-title" tone="dark">
+          <Head dark eyebrow="Framework" id="blocks-title" title="Seven building blocks of a credible Environmental Policy" />
+          <div data-policy-building-blocks><BuildingBlocks items={policyBuildingBlocks} /></div>
+        </Band>
 
         <WarningGrid id="not-in-policy-title" eyebrow="Limits" title="What not to include in an Environmental Policy" items={notInPolicyItems} dataAttr="not-in-policy-items" />
         <ComparisonSection />
@@ -600,7 +519,7 @@ export function EnglishEnvironmentalPolicyGuide() {
         <StatusSection id="status-title" title="What status does your Environmental Policy have?" items={policyStatusModel} dataAttr="policy-status-model" />
         <MetadataSection id="version-title" title="A policy needs a clear version." note="Do not invent retrospective approval dates." items={policyVersionMetadata} dataAttr="version-control-example" />
         <TextSection eyebrow="Approval" id="draft-approved-title" title="Draft is not the same as approved.">
-          <p className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">Draft ≠ approved policy</p>
+          <Callout>Draft ≠ approved policy</Callout>
           <p>Evipace can prepare a draft from actual company practices and documents. Only an authorised internal company process can turn that draft into an official Environmental Policy.</p>
         </TextSection>
         <OutlineSection title="Example structure for an Environmental Policy" qualifier="This is a structure guide, not a universal Environmental Policy template." items={policyOutlineSections} dataAttr="policy-outline" />
@@ -608,18 +527,18 @@ export function EnglishEnvironmentalPolicyGuide() {
         <TextSection eyebrow="If it is missing" id="no-policy-title" title="What if your company does not have an Environmental Policy yet?">
           <p>Do not answer retroactively as if an approved policy already existed.</p>
           <p>Review actual environmental practices and responsibilities first. From that reality, an honest draft can be prepared, reviewed internally, corrected and adopted by an authorised function.</p>
-          <p className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">A gap can be closed. It should not be hidden retroactively.</p>
+          <Callout>A gap can be closed. It should not be hidden retroactively.</Callout>
         </TextSection>
-        <TextSection eyebrow="ISO 14001" id="iso-title" title="Do companies with ISO 14001 need a separate Environmental Policy?">
+        <TextSection eyebrow="ISO 14001" id="iso-title" title="Do companies with ISO 14001 need a separate Environmental Policy?" tone="tinted">
           <p>If an environmental management system already exists, the company may already have an environmental policy or related approved documents.</p>
           <p>Inspect existing documentation before creating a duplicate. A certificate is not automatically the same as the policy, and certification does not guarantee that every customer request is satisfied.</p>
         </TextSection>
         <AssessmentContext title="Environmental Policies in supplier assessments" body="EcoVadis and IntegrityNext may ask for policy, evidence or supporting information. This is contextual only: no affiliation, scoring guarantee or automatic acceptance is implied." />
-        <TextSection eyebrow="Reuse" id="reuse-title" title="An approved policy should not be rediscovered for every request.">
+        <TextSection eyebrow="Reuse" id="reuse-title" title="An approved policy should not be rediscovered for every request." tone="tinted">
           <p>Store scope, version, approval status, approver, document owner and file location. Then recheck whether the current version fits the next customer request.</p>
-          <InlineLink href="/en/resources/reusable-esg-data">Build a reusable ESG data foundation</InlineLink>
+          <p><TextLink href="/en/resources/reusable-esg-data">Build a reusable ESG data foundation</TextLink></p>
         </TextSection>
-        <FlowSection id="readiness-title" eyebrow="Readiness flow" title="From actual practice to approved policy" items={policyReadinessSteps} dataAttr="policy-readiness-map" columns="lg:grid-cols-4" />
+        <FlowSection id="readiness-title" eyebrow="Readiness flow" title="From actual practice to approved policy" items={policyReadinessSteps} dataAttr="policy-readiness-map" />
         <MistakesSection title="Seven common Environmental Policy mistakes" items={policyMistakes} dataAttr="common-policy-mistakes" dark />
         <ChecklistSection title="Check before internal approval" items={policyPreApprovalItems} dataAttr="pre-approval-checklist" />
         <ResourceBridge items={[
@@ -631,150 +550,481 @@ export function EnglishEnvironmentalPolicyGuide() {
         ]} dataAttr="resource-bridge" />
         <CommercialBridge title="Customer asking for an Environmental Policy, but you do not want to invent anything?" body="Evipace can review actual practices, responsibilities and documents with you, structure open points and prepare a policy draft for your internal review and approval." note="The draft becomes an official company policy only through your internal review, correction and authorised approval." />
         <MethodSection body="This page describes a practical approach to preparing an Environmental Policy for ESG customer requests. It is not legal, certification or audit advice and does not define universal policy content." />
-        <FinalSection title="A good Environmental Policy starts with the actual company, not with text." body="When scope, responsibilities and existing practice are clear, the policy can be realistic, traceable and internally supportable." />
       </article>
-    </main>
+      <FinalSection title="A good Environmental Policy starts with the actual company, not with text." body="When scope, responsibilities and existing practice are clear, the policy can be realistic, traceable and internally supportable." />
+    </ResourceMain>
   );
 }
 
 function WarningGrid({ id, eyebrow, title, items, dataAttr }: { id: string; eyebrow: string; title: string; items: readonly (readonly [string, string])[]; dataAttr: string }) {
-  return <section aria-labelledby={id} className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow={eyebrow} id={id} title={title} /><div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-not-in-policy-items={dataAttr === "not-in-policy-items" ? true : undefined} data-not-in-supplier-code-items={dataAttr === "not-in-supplier-code-items" ? true : undefined} data-copy-paste-warnings={dataAttr === "copy-paste-warnings" ? true : undefined}>{items.map(([itemTitle, copy]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={itemTitle}><h3 className="type-subheading font-display text-ink">{itemTitle}</h3><p className="mt-3 text-sm leading-7 text-muted">{copy}</p></article>)}</div></div></section>;
+  return (
+    <Band labelledBy={id}>
+      <Head eyebrow={eyebrow} id={id} title={title} />
+      <div data-copy-paste-warnings={dataAttr === "copy-paste-warnings" ? true : undefined} data-not-in-policy-items={dataAttr === "not-in-policy-items" ? true : undefined} data-not-in-supplier-code-items={dataAttr === "not-in-supplier-code-items" ? true : undefined}>
+        <SimpleCards items={items} />
+      </div>
+    </Band>
+  );
 }
 
 function ComparisonSection() {
-  return <section aria-labelledby="generic-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Wording" id="generic-title" title="A template is only a starting point." /><div className="mt-12 grid gap-6 lg:grid-cols-2" data-generic-specific-comparison><article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.12)] bg-[var(--warm)] p-6 sm:p-8"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Generic</p><blockquote className="font-display mt-5 text-3xl leading-tight text-ink">We are committed to protecting the environment and reducing our environmental footprint.</blockquote><p className="mt-5 text-sm leading-7 text-muted">This sounds acceptable, but it says little about which environmental aspects are actually relevant.</p></article><article className="rounded-[1.1rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">More company-specific</p><blockquote className="font-display mt-5 text-3xl leading-tight text-ink">For our production sites, we consider energy use, waste, relevant operating materials and other material operational environmental aspects. Responsibilities and measures are managed by the responsible functions and reviewed where needed.</blockquote><p className="mt-5 text-sm font-bold leading-7 text-muted">Use wording like this only where it fits the actual company.</p></article></div></div></section>;
+  return (
+    <Band labelledBy="generic-title" tone="tinted">
+      <Head eyebrow="Wording" id="generic-title" title="A template is only a starting point." />
+      <div data-generic-specific-comparison>
+        <CardGrid columns={2}>
+          <Card>
+            <p className={r.cardType}>Generic</p>
+            <blockquote className={r.quote}>We are committed to protecting the environment and reducing our environmental footprint.</blockquote>
+            <p>This sounds acceptable, but it says little about which environmental aspects are actually relevant.</p>
+          </Card>
+          <Card>
+            <p className={r.cardType}>More company-specific</p>
+            <blockquote className={r.quote}>For our production sites, we consider energy use, waste, relevant operating materials and other material operational environmental aspects. Responsibilities and measures are managed by the responsible functions and reviewed where needed.</blockquote>
+            <p><strong>Use wording like this only where it fits the actual company.</strong></p>
+          </Card>
+        </CardGrid>
+      </div>
+    </Band>
+  );
 }
 
 function DocumentHierarchy() {
-  return <section aria-labelledby="hierarchy-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><SectionHeading eyebrow="Document system" id="hierarchy-title" title="Which documents belong together?" /><div><div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-document-hierarchy><FlowLine items={["Environmental Policy", "Procedure / work instruction", "Records", "KPI / report"]} /><dl className="mt-8 grid gap-px overflow-hidden rounded-[1rem] bg-[rgba(21,21,21,0.12)] sm:grid-cols-2">{[["Environmental Policy", "Principles and framework."], ["Procedure / work instruction", "How a concrete process works."], ["Records", "What was actually done."], ["KPI / report", "What result follows from it."]].map(([term, description]) => <div className="bg-white p-4" key={term}><dt className="text-xs font-bold uppercase tracking-[0.1em] text-muted">{term}</dt><dd className="mt-2 font-semibold text-ink">{description}</dd></div>)}</dl></div><div className="mt-8 rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustrative example: waste</p><dl className="mt-5 grid gap-4 sm:grid-cols-2">{[["Policy", "Waste should be handled responsibly."], ["Procedure", "Internal process for waste separation."], ["Evidence", "Disposal record."], ["KPI", "Waste quantity in the reporting year."]].map(([term, description]) => <div className="border-t border-[rgba(21,21,21,0.14)] pt-4" key={term}><dt className="font-bold text-ink">{term}</dt><dd className="mt-2 text-sm leading-6 text-muted">{description}</dd></div>)}</dl></div></div></div></section>;
+  return (
+    <Band labelledBy="hierarchy-title">
+      <Head eyebrow="Document system" id="hierarchy-title" title="Which documents belong together?" />
+      <div data-document-hierarchy>
+        <Flow items={["Environmental Policy", "Procedure / work instruction", "Records", "KPI / report"]} />
+        <div className={r.blockGap}>
+          <Terms items={[["Environmental Policy", "Principles and framework."], ["Procedure / work instruction", "How a concrete process works."], ["Records", "What was actually done."], ["KPI / report", "What result follows from it."]]} />
+        </div>
+      </div>
+      <div className={r.blockGap}>
+        <MetaCard items={[["Policy", "Waste should be handled responsibly."], ["Procedure", "Internal process for waste separation."], ["Evidence", "Disposal record."], ["KPI", "Waste quantity in the reporting year."]]} label="Illustrative example: waste" />
+      </div>
+    </Band>
+  );
 }
 
 function EvidenceSection({ evidenceItems }: { evidenceItems: readonly string[] }) {
-  return <section aria-labelledby="evidence-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Evidence" id="evidence-title" title="What supporting evidence may be relevant?"><p>The document itself is only one part of the evidence picture.</p></SectionHeading><ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-supporting-evidence data-supplier-code-evidence>{evidenceItems.map((item) => <li className="rounded-[0.9rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-4 text-sm font-bold leading-6 text-ink" key={item}>{item}</li>)}</ul><div className="mt-8 flex flex-col gap-3 sm:items-start"><InlineLink href="/en/resources/esg-evidence-for-suppliers">Map ESG evidence correctly</InlineLink><InlineLink href="/en/resources/esg-evidence-readiness-check">Check evidence readiness</InlineLink></div></div></section>;
+  return (
+    <Band labelledBy="evidence-title" tone="tinted">
+      <Head eyebrow="Evidence" id="evidence-title" title="What supporting evidence may be relevant?">
+        <p>The document itself is only one part of the evidence picture.</p>
+      </Head>
+      <div data-supplier-code-evidence data-supporting-evidence><Chips items={evidenceItems} /></div>
+      <CenterAction>
+        <TextLink href="/en/resources/esg-evidence-for-suppliers">Map ESG evidence correctly</TextLink>
+        <TextLink href="/en/resources/esg-evidence-readiness-check">Check evidence readiness</TextLink>
+      </CenterAction>
+    </Band>
+  );
 }
 
 function StatusSection({ id, title, items, dataAttr }: { id: string; title: string; items: readonly (readonly [string, string])[]; dataAttr: string }) {
-  return <section aria-labelledby={id} className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Status" id={id} title={title} /><div className="mt-12 grid gap-4 md:grid-cols-5" data-policy-status-model={dataAttr === "policy-status-model" ? true : undefined} data-supplier-code-status-model={dataAttr === "supplier-code-status-model" ? true : undefined}>{items.map(([itemTitle, copy]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={itemTitle}><h3 className="type-subheading font-display text-ink">{itemTitle}</h3><p className="mt-3 text-sm leading-6 text-muted">{copy}</p></article>)}</div></div></section>;
+  return (
+    <Band labelledBy={id}>
+      <Head eyebrow="Status" id={id} title={title} />
+      <div data-policy-status-model={dataAttr === "policy-status-model" ? true : undefined} data-supplier-code-status-model={dataAttr === "supplier-code-status-model" ? true : undefined}>
+        <Terms items={items} />
+      </div>
+    </Band>
+  );
 }
 
 function MetadataSection({ id, title, note, items, dataAttr }: { id: string; title: string; note: string; items: readonly (readonly [string, string])[]; dataAttr: string }) {
-  return <section aria-labelledby={id} className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><SectionHeading eyebrow="Version" id={id} title={title}><p>{note}</p></SectionHeading><div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-5 sm:p-7" data-version-control-example={dataAttr === "version-control-example" ? true : undefined} data-supplier-code-version-control={dataAttr === "supplier-code-version-control" ? true : undefined}><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustrative example metadata</p><dl className="mt-5 grid gap-px overflow-hidden rounded-[1rem] bg-[rgba(21,21,21,0.12)] sm:grid-cols-2">{items.map(([term, description]) => <div className="bg-white p-4" key={term}><dt className="text-xs font-bold uppercase tracking-[0.1em] text-muted">{term}</dt><dd className="mt-2 break-words font-semibold text-ink">{description}</dd></div>)}</dl></div></div></section>;
+  return (
+    <Band labelledBy={id} tone="tinted">
+      <Head eyebrow="Version" id={id} title={title}>
+        <p>{note}</p>
+      </Head>
+      <div data-supplier-code-version-control={dataAttr === "supplier-code-version-control" ? true : undefined} data-version-control-example={dataAttr === "version-control-example" ? true : undefined}>
+        <MetaCard items={items} label="Illustrative example metadata" />
+      </div>
+    </Band>
+  );
 }
 
 function OutlineSection({ title, qualifier, items, dataAttr }: { title: string; qualifier: string; items: readonly (readonly [string, string])[]; dataAttr: string }) {
-  return <section aria-labelledby="outline-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Outline" id="outline-title" title={title}><p>{qualifier}</p></SectionHeading><ol className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3" data-policy-outline={dataAttr === "policy-outline" ? true : undefined} data-supplier-code-outline={dataAttr === "supplier-code-outline" ? true : undefined}>{items.map(([itemTitle, copy]) => <li className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={itemTitle}><h3 className="type-subheading font-display text-ink">{itemTitle}</h3><p className="mt-3 text-sm leading-7 text-muted">{copy}</p></li>)}</ol></div></section>;
+  return (
+    <Band labelledBy="outline-title">
+      <Head eyebrow="Outline" id="outline-title" title={title}>
+        <p>{qualifier}</p>
+      </Head>
+      <div data-policy-outline={dataAttr === "policy-outline" ? true : undefined} data-supplier-code-outline={dataAttr === "supplier-code-outline" ? true : undefined}>
+        <SimpleCards items={items} />
+      </div>
+    </Band>
+  );
 }
 
 function WorkflowSection({ title, items, dataAttr, buttonHref }: { title: string; items: readonly (readonly [string, string])[]; dataAttr: string; buttonHref: string }) {
-  return <section aria-labelledby="workflow-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Customer request" id="workflow-title" light title={title} /><ol className="mt-12 grid gap-px overflow-hidden rounded-[1.1rem] bg-white/14" data-customer-policy-workflow={dataAttr === "customer-policy-workflow" ? true : undefined} data-supplier-code-customer-workflow={dataAttr === "supplier-code-customer-workflow" ? true : undefined}>{items.map(([itemTitle, copy], index) => <li className="grid gap-4 bg-ink p-5 sm:grid-cols-[4rem_1fr] sm:p-6" key={itemTitle}><span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span><div><h3 className="type-subheading font-display text-white">{itemTitle}</h3><p className="mt-2 text-sm leading-6 text-white/62">{copy}</p></div></li>)}</ol><div className="mt-8"><ButtonLink href={buttonHref}>Use the ESG questionnaire checklist</ButtonLink></div></div></section>;
+  return (
+    <Band labelledBy="workflow-title" tone="dark">
+      <Head dark eyebrow="Customer request" id="workflow-title" title={title} />
+      <div className={r.darkSteps} data-customer-policy-workflow={dataAttr === "customer-policy-workflow" ? true : undefined} data-supplier-code-customer-workflow={dataAttr === "supplier-code-customer-workflow" ? true : undefined}>
+        <Steps items={items.map(([itemTitle, copy]) => ({ title: itemTitle, body: copy }))} />
+      </div>
+      <CenterAction>
+        <PillLink href={buttonHref}>Use the ESG questionnaire checklist</PillLink>
+      </CenterAction>
+    </Band>
+  );
 }
 
-function TextSection({ eyebrow, id, title, children }: { eyebrow: string; id: string; title: string; children: ReactNode }) {
-  return <section aria-labelledby={id} className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><SectionHeading eyebrow={eyebrow} id={id} title={title} /><div className="resource-prose">{children}</div></div></section>;
+function TextSection({ eyebrow, id, title, children, tone = "light" }: { eyebrow: string; id: string; title: string; children: ReactNode; tone?: "light" | "tinted" }) {
+  return (
+    <Band labelledBy={id} tone={tone}>
+      <Head eyebrow={eyebrow} id={id} title={title} />
+      <Prose>{children}</Prose>
+    </Band>
+  );
 }
 
 function AssessmentContext({ title, body }: { title: string; body: string }) {
-  return <section aria-labelledby="assessments-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Assessment context" id="assessments-title" title={title}><p>{body}</p></SectionHeading><div className="mt-12 grid gap-5 lg:grid-cols-2">{[["EcoVadis", "/en/resources/ecovadis-documents-evidence"], ["IntegrityNext", "/en/resources/integritynext-invitation-for-suppliers"]].map(([title, href]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}><h3 className="type-subheading font-display text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-muted">Context for supplier assessments. No affiliation, automatic acceptance or scoring claim.</p><div className="mt-5"><InlineLink href={href}>Read related resource</InlineLink></div></article>)}</div></div></section>;
+  return (
+    <Band labelledBy="assessments-title">
+      <Head eyebrow="Assessment context" id="assessments-title" title={title}>
+        <p>{body}</p>
+      </Head>
+      <CardGrid columns={2}>
+        {[["EcoVadis", "/en/resources/ecovadis-documents-evidence"], ["IntegrityNext", "/en/resources/integritynext-invitation-for-suppliers"]].map(([cardTitle, href]) => (
+          <Card key={cardTitle} title={cardTitle}>
+            <p>Context for supplier assessments. No affiliation, automatic acceptance or scoring claim.</p>
+            <TextLink href={href}>Read related resource</TextLink>
+          </Card>
+        ))}
+      </CardGrid>
+    </Band>
+  );
 }
 
-function FlowSection({ id, eyebrow, title, items, dataAttr, columns }: { id: string; eyebrow: string; title: string; items: readonly string[]; dataAttr: string; columns: string }) {
-  return <section aria-labelledby={id} className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow={eyebrow} id={id} title={title} /><div className="mt-12 rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-policy-readiness-map={dataAttr === "policy-readiness-map" ? true : undefined} data-supplier-code-lifecycle={dataAttr === "supplier-code-lifecycle" ? true : undefined}><FlowLine items={items} columns={columns} /></div></div></section>;
+function FlowSection({ id, eyebrow, title, items, dataAttr }: { id: string; eyebrow: string; title: string; items: readonly string[]; dataAttr: string }) {
+  return (
+    <Band labelledBy={id} tone="tinted">
+      <Head eyebrow={eyebrow} id={id} title={title} />
+      <div data-policy-readiness-map={dataAttr === "policy-readiness-map" ? true : undefined} data-supplier-code-lifecycle={dataAttr === "supplier-code-lifecycle" ? true : undefined}>
+        <Flow items={items} />
+      </div>
+    </Band>
+  );
 }
 
 function MistakesSection({ title, items, dataAttr, dark = false }: { title: string; items: readonly (readonly [string, string])[]; dataAttr: string; dark?: boolean }) {
-  return <section aria-labelledby="mistakes-title" className={`${dark ? "bg-ink text-white" : ""} py-16 sm:py-20 lg:py-24`}><div className="site-shell"><SectionHeading eyebrow="Common mistakes" id="mistakes-title" light={dark} title={title} /><div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-common-policy-mistakes={dataAttr === "common-policy-mistakes" ? true : undefined} data-common-supplier-code-mistakes={dataAttr === "common-supplier-code-mistakes" ? true : undefined}>{items.map(([itemTitle, copy], index) => <article className={`rounded-[1rem] border p-6 ${dark ? "border-white/14 bg-white/[0.04]" : "border-[rgba(21,21,21,0.11)] bg-white"}`} key={itemTitle}><p className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</p><h3 className={`type-subheading font-display mt-4 ${dark ? "text-white" : "text-ink"}`}>{itemTitle}</h3><p className={`mt-3 text-sm leading-7 ${dark ? "text-white/62" : "text-muted"}`}>{copy}</p></article>)}</div></div></section>;
+  return (
+    <Band labelledBy="mistakes-title" tone={dark ? "dark" : "light"}>
+      <Head dark={dark} eyebrow="Common mistakes" id="mistakes-title" title={title} />
+      <div data-common-policy-mistakes={dataAttr === "common-policy-mistakes" ? true : undefined} data-common-supplier-code-mistakes={dataAttr === "common-supplier-code-mistakes" ? true : undefined}>
+        <SimpleCards items={items} />
+      </div>
+    </Band>
+  );
 }
 
 function ChecklistSection({ title, items, dataAttr }: { title: string; items: readonly string[]; dataAttr: string }) {
-  return <section aria-labelledby="approval-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Pre-approval" id="approval-title" title={title} /><ul className="mt-12 grid gap-3 md:grid-cols-2" data-pre-approval-checklist={dataAttr === "pre-approval-checklist" ? true : undefined} data-supplier-code-pre-approval-checklist={dataAttr === "supplier-code-pre-approval-checklist" ? true : undefined}>{items.map((item) => <li className="flex gap-3 rounded-[0.9rem] border border-[rgba(21,21,21,0.11)] bg-white p-4 text-sm font-bold leading-6 text-ink" key={item}><span aria-hidden="true" className="text-orange">☐</span><span>{item}</span></li>)}</ul></div></section>;
+  return (
+    <Band labelledBy="approval-title" tone="tinted">
+      <Head eyebrow="Pre-approval" id="approval-title" title={title} />
+      <div data-pre-approval-checklist={dataAttr === "pre-approval-checklist" ? true : undefined} data-supplier-code-pre-approval-checklist={dataAttr === "supplier-code-pre-approval-checklist" ? true : undefined}>
+        <BoxList items={items} />
+      </div>
+    </Band>
+  );
 }
 
 function ResourceBridge({ items, dataAttr }: { items: readonly (readonly [string, string])[]; dataAttr: string }) {
-  return <section aria-labelledby="resource-bridge-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Resource bridge" id="resource-bridge-title" title="Place this document in the wider ESG system" /><div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5" data-resource-bridge={dataAttr === "resource-bridge" ? true : undefined} data-supplier-code-resource-bridge={dataAttr === "supplier-code-resource-bridge" ? true : undefined} data-resource-system-map={dataAttr === "resource-system-map" ? true : undefined}>{items.map(([title, href]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6" key={title}><h3 className="type-subheading font-display text-ink">{title}</h3><div className="mt-5"><InlineLink href={href}>Open resource</InlineLink></div></article>)}</div></div></section>;
+  return (
+    <Band labelledBy="resource-bridge-title">
+      <Head eyebrow="Resource bridge" id="resource-bridge-title" title="Place this document in the wider ESG system" />
+      <div data-resource-bridge={dataAttr === "resource-bridge" ? true : undefined} data-resource-system-map={dataAttr === "resource-system-map" ? true : undefined} data-supplier-code-resource-bridge={dataAttr === "supplier-code-resource-bridge" ? true : undefined}>
+        <ResourceCards>
+          {items.map(([itemTitle, href]) => (
+            <ResourceCard cta="Open resource" href={href} key={href} title={itemTitle} />
+          ))}
+        </ResourceCards>
+      </div>
+    </Band>
+  );
 }
 
 function CommercialBridge({ title, body, note }: { title: string; body: string; note: string }) {
-  return <section aria-labelledby="commercial-title" className="bg-[var(--warm)] py-16 sm:py-20 lg:py-24"><div className="site-shell"><div className="overflow-hidden rounded-[1.4rem] border border-orange/25 bg-[var(--soft-orange)]"><div className="grid lg:grid-cols-[0.78fr_1.22fr]"><div className="p-7 sm:p-10 lg:p-12"><Send aria-hidden="true" className="h-10 w-10 text-orange" /><SectionHeading eyebrow="Implementation" id="commercial-title" title={title} /></div><div className="border-t border-orange/20 bg-white/65 p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12"><p className="text-base leading-8 text-muted">{body}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><ButtonLink className="w-full sm:w-auto" href={SEND_REQUEST_HREF}>Send your ESG request</ButtonLink><ButtonLink className="w-full sm:w-auto" href="/en/esg-customer-requests" variant="secondary">Customer ESG request support</ButtonLink></div><p className="mt-5 text-sm font-semibold leading-7 text-muted">{note}</p></div></div></div></div></section>;
+  return (
+    <Band labelledBy="commercial-title" tone="tinted">
+      <Head eyebrow="Implementation" id="commercial-title" title={title}>
+        <p>{body}</p>
+      </Head>
+      <CenterAction>
+        <PillLink href={SEND_REQUEST_HREF}>Send your ESG request</PillLink>
+        <TextLink href="/en/esg-customer-requests">Customer ESG request support</TextLink>
+      </CenterAction>
+      <p className={r.centerText}>{note}</p>
+    </Band>
+  );
 }
 
 function MethodSection({ body }: { body: string }) {
-  return <section aria-labelledby="method-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div><ShieldCheck aria-hidden="true" className="h-10 w-10 text-orange" /><SectionHeading eyebrow="Methodology" id="method-title" title="Methodological note" /></div><div className="resource-prose"><p>{body}</p><div className="mt-7"><InlineLink href="/en/methodology">How Evipace works with ESG data and evidence</InlineLink></div></div></div></section>;
+  return (
+    <Band labelledBy="method-title">
+      <Head eyebrow="Methodology" id="method-title" title="Methodological note" />
+      <Prose>
+        <p>{body}</p>
+        <p><TextLink href="/en/methodology">How Evipace works with ESG data and evidence</TextLink></p>
+      </Prose>
+    </Band>
+  );
 }
 
 function FinalSection({ title, body }: { title: string; body: string }) {
-  return <section aria-labelledby="final-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24"><div className="site-shell"><div className="max-w-4xl"><RefreshCw aria-hidden="true" className="h-10 w-10 text-orange" /><h2 className="type-heading font-display mt-6" id="final-title">{title}</h2><p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">{body}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><ButtonLink href={SEND_REQUEST_HREF}>Send your ESG request</ButtonLink><ButtonLink href="/en/esg-customer-requests" variant="light">Customer ESG request support</ButtonLink></div></div></div></section>;
+  return (
+    <ClosingCta
+      body={<p>{body}</p>}
+      formHref={SEND_REQUEST_HREF}
+      formLabel="Send your ESG request"
+      forwardLabel="Forward your request"
+      offers={{ label: "Customer ESG request support", href: "/en/esg-customer-requests" }}
+      slogan="ESG work. Done right. Done faster."
+      title={title}
+    />
+  );
 }
 
 export function EnglishSupplierCodeOfConductGuide() {
   return (
-    <main id="top"><article>
-      <ResourceHero artworkLabel="SCOPE · ACKNOWLEDGMENT · STATUS · EVIDENCE" eyebrow="SUPPLIER CODE OF CONDUCT" primaryHref="#building-blocks" primaryLabel="See the code structure ↓" qualifierTitle="Acknowledgment is not supplier compliance." qualifier="A published or acknowledged Supplier Code of Conduct does not automatically prove that every supplier meets every requirement in it." title="How to create a Supplier Code of Conduct that works in practice" intro={<><p>Customers and supplier assessments may ask whether your company defines ESG and compliance expectations for suppliers.</p><p className="mt-6">A Supplier Code can document expectations on human rights, working conditions, environment, ethics and responsible procurement. It must fit the actual supplier base and procurement process, and it should not promise rights or processes the company does not have.</p></>} />
-      <QuickAnswer><p>A Supplier Code of Conduct describes the expectations a company sets for suppliers. A credible code defines scope, uses realistic requirements, is internally approved, and is connected to communication, acknowledgment where used and practical supplier-management processes.</p></QuickAnswer>
-      <section aria-labelledby="distinction-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><SectionHeading eyebrow="Core distinctions" id="distinction-title" title="A Supplier Code is an expectation, not proof of supplier performance." /><div><div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-code-compliance-distinction><FlowLine items={["Code", "Implementation", "Supplier compliance"]} columns="lg:grid-cols-3" /><p className="font-display mt-8 text-3xl leading-tight text-ink">Published ≠ communicated ≠ acknowledged ≠ contractually incorporated</p></div><p className="font-display mt-8 text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">Code ≠ implementation ≠ supplier compliance</p></div></div></section>
-      <section aria-labelledby="assessment-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Before drafting" id="assessment-title" title="Understand procurement first. Then define supplier expectations." /><ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-procurement-assessment>{supplierAssessmentItems.map((item) => <li className="rounded-[0.9rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-4 text-sm font-bold leading-6 text-ink" key={item}>{item}</li>)}</ul></div></section>
-      <section aria-labelledby="purpose-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Purpose" id="purpose-title" title="What a Supplier Code of Conduct is for" /><div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-supplier-code-purpose-blocks>{supplierPurposeBlocks.map(([title, copy], index) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift" key={title}><span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span><h3 className="type-subheading font-display mt-4 text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-muted">{copy}</p></article>)}</div></div></section>
-      <section aria-labelledby="blocks-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24" id="building-blocks"><div className="site-shell"><SectionHeading eyebrow="Framework" id="blocks-title" light title="Seven building blocks of a credible Supplier Code of Conduct" /><div className="mt-12 grid gap-6" data-supplier-code-building-blocks>{supplierBuildingBlocks.map(([title, copy, items]) => <section className="rounded-[1.2rem] border border-white/14 bg-white/[0.04] p-6 sm:p-8" key={title}><div className="grid gap-8 lg:grid-cols-[0.46fr_0.54fr]"><div><h3 className="type-subheading font-display text-white">{title}</h3><p className="mt-5 text-base leading-8 text-white/66">{copy}</p>{title.startsWith("3") ? <div className="mt-5"><Link className="group inline-flex min-h-11 items-center gap-2 text-sm font-bold text-white underline decoration-orange/55 underline-offset-4 transition hover:text-orange" href="/en/resources/environmental-policy"><span>Prepare the Environmental Policy separately</span><ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-orange transition-transform group-hover:translate-x-1" /></Link></div> : null}</div><ul className="grid gap-2 sm:grid-cols-2">{items.map((item) => <li className="rounded-[0.8rem] border border-white/10 bg-white/[0.06] p-3 text-sm font-bold leading-6 text-white/78" key={item}>{item}</li>)}</ul></div></section>)}</div></div></section>
-      <WarningGrid id="not-in-code-title" eyebrow="Limits" title="What not to include in a Supplier Code of Conduct" items={notInSupplierCodeItems} dataAttr="not-in-supplier-code-items" />
-      <TextSection eyebrow="Contract status" id="contract-title" title="Is a Supplier Code automatically part of the contract?"><p className="font-display text-3xl leading-tight text-ink">Not automatically.</p><p>Whether and how a Supplier Code is contractually incorporated depends on the actual contract and procurement process. This guide does not draw enforceability conclusions.</p><div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-contract-status-distinction><FlowLine items={["Published", "Communicated", "Acknowledged", "Contractually incorporated"]} /></div></TextSection>
-      <section aria-labelledby="acknowledgment-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Acknowledgment" id="acknowledgment-title" title="What does supplier acknowledgment mean?"><p>Acknowledgment may document receipt or confirmation. It does not automatically prove implementation or compliance.</p></SectionHeading><div className="mt-12 grid gap-3 md:grid-cols-5" data-supplier-acknowledgment>{supplierAcknowledgmentStates.map((state, index) => <div className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-5" key={state}><span className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</span><p className="type-statement font-display mt-3 text-ink">{state}</p></div>)}</div></div></section>
-      <EvidenceSection evidenceItems={supplierEvidenceItems} />
-      <StatusSection id="status-title" title="What status does your Supplier Code have?" items={supplierStatusModel} dataAttr="supplier-code-status-model" />
-      <MetadataSection id="version-title" title="A Supplier Code also needs version control." note="Do not invent backdated approval or rollout dates." items={supplierVersionMetadata} dataAttr="supplier-code-version-control" />
-      <TextSection eyebrow="Approval" id="supplier-draft-approved-title" title="Draft is not the same as approved."><p className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">Draft ≠ approved Supplier Code</p><p>Evipace can prepare a draft, but the code becomes an official company document only through client review, corrections and authorised internal approval.</p></TextSection>
-      <OutlineSection title="Example structure for a Supplier Code of Conduct" qualifier="This is a structure guide, not a universal contract or compliance template." items={supplierOutlineSections} dataAttr="supplier-code-outline" />
-      <section aria-labelledby="deviation-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Deviations" id="deviation-title" light title="What happens if a supplier does not meet a requirement?"><p>Do not default every deviation to immediate termination. Clarification, risk assessment and corrective action may be appropriate depending on the facts and actual agreements.</p></SectionHeading><div className="mt-12 rounded-[1.2rem] border border-white/14 bg-white/[0.04] p-6 sm:p-8" data-deviation-workflow><FlowLine dark items={supplierDeviationSteps} columns="lg:grid-cols-6" /></div><p className="mt-7 max-w-3xl text-sm font-bold leading-7 text-white/62">Specific legal or contractual response is outside this guide.</p></div></section>
-      <TextSection eyebrow="Risk-based" id="risk-title" title="Does every supplier need the same treatment?"><p>A local office-supply vendor, a critical production supplier and a sensitive raw-material supplier may need different levels of information or review.</p><p>This is practical operating guidance, not a universal legal requirement.</p></TextSection>
-      <WorkflowSection title="What to do when your customer asks for a Supplier Code of Conduct" items={supplierWorkflowSteps} dataAttr="supplier-code-customer-workflow" buttonHref="/en/resources/esg-questionnaire-checklist" />
-      <TextSection eyebrow="If it is missing" id="no-code-title" title="What if your company does not have a Supplier Code yet?"><p>Do not answer retroactively as if a formal code already existed.</p><p>Review existing procurement requirements, identify actual expectations, draft realistically, review internally, approve and integrate the code into actual supplier processes.</p><p className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">A missing policy can be built. A past that did not exist should not be invented.</p></TextSection>
-      <section aria-labelledby="comparison-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Distinction" id="comparison-title" title="Supplier Code and Supplier Questionnaire have different jobs." /><div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4" data-code-questionnaire-comparison>{supplierComparison.map(([title, copy]) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6" key={title}><h3 className="type-subheading font-display text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-muted">{copy}</p></article>)}</div><p className="mt-8 max-w-3xl text-sm font-bold leading-7 text-muted">A Supplier Code does not automatically replace a questionnaire or assessment.</p></div></section>
-      <TextSection eyebrow="Avoid copy-paste" id="customer-own-title" title="A customer requirement and your own Supplier Code are not the same thing."><p>A customer may require your company to address supplier ESG expectations. That does not mean you should copy the customer’s Supplier Code word for word.</p><p>Your own code should fit your supplier structure, procurement process and expectations you can genuinely support and manage.</p></TextSection>
-      <AssessmentContext title="Supplier Code of Conduct in ESG assessments" body="A Supplier Code can be relevant in assessments, but it should not be equated with full implementation or comprehensive supply-chain verification." />
-      <TextSection eyebrow="Reuse" id="reuse-title" title="An approved Supplier Code should be findable for the next ESG request."><p>Store the current version, scope, owner and communication status in a reusable ESG information foundation.</p><InlineLink href="/en/resources/reusable-esg-data">Build a reusable ESG data foundation</InlineLink></TextSection>
-      <FlowSection id="lifecycle-title" eyebrow="Lifecycle" title="From actual expectations to an applied Supplier Code" items={supplierLifecycleSteps} dataAttr="supplier-code-lifecycle" columns="lg:grid-cols-4" />
-      <MistakesSection title="Eight common Supplier Code of Conduct mistakes" items={supplierMistakes} dataAttr="common-supplier-code-mistakes" />
-      <ChecklistSection title="Check before internal approval" items={supplierPreApprovalItems} dataAttr="supplier-code-pre-approval-checklist" />
-      <ResourceBridge items={[["What ESG data do customers ask for?", "/en/resources/esg-data-customers-request-from-suppliers"], ["Who owns ESG data internally?", "/en/resources/esg-data-owners"], ["Check evidence readiness", "/en/resources/esg-evidence-readiness-check"], ["Reuse the document later", "/en/resources/reusable-esg-data"], ["Prepare an Environmental Policy", "/en/resources/environmental-policy"]]} dataAttr="supplier-code-resource-bridge" />
-      <CommercialBridge title="Customer asking for a Supplier Code, but your process is not cleanly documented yet?" body="Evipace can help understand the actual supplier and procurement context, structure relevant ESG and compliance topics and prepare a Supplier Code draft." note="The document becomes official only through your review, corrections and authorised internal approval." />
-      <MethodSection body="This guide describes a practical approach to preparing a Supplier Code of Conduct for ESG customer requests and supplier management. It is not legal, contract, audit or certification advice." />
+    <ResourceMain locale="en">
+      <article>
+        <GuideHero artworkLabel="SCOPE · ACKNOWLEDGMENT · STATUS · EVIDENCE" eyebrow="SUPPLIER CODE OF CONDUCT" primaryHref="#building-blocks" primaryLabel="See the code structure ↓" qualifierTitle="Acknowledgment is not supplier compliance." qualifier="A published or acknowledged Supplier Code of Conduct does not automatically prove that every supplier meets every requirement in it." title="How to create a Supplier Code of Conduct that works in practice" intro={<><p>Customers and supplier assessments may ask whether your company defines ESG and compliance expectations for suppliers.</p><p>A Supplier Code can document expectations on human rights, working conditions, environment, ethics and responsible procurement. It must fit the actual supplier base and procurement process, and it should not promise rights or processes the company does not have.</p></>} />
+        <QuickAnswer><p>A Supplier Code of Conduct describes the expectations a company sets for suppliers. A credible code defines scope, uses realistic requirements, is internally approved, and is connected to communication, acknowledgment where used and practical supplier-management processes.</p></QuickAnswer>
+
+        <Band labelledBy="distinction-title">
+          <Head eyebrow="Core distinctions" id="distinction-title" title="A Supplier Code is an expectation, not proof of supplier performance." />
+          <div data-code-compliance-distinction>
+            <Flow items={["Code", "Implementation", "Supplier compliance"]} />
+            <p className={r.closingLine}>Published ≠ communicated ≠ acknowledged ≠ contractually incorporated</p>
+          </div>
+          <p className={r.closingLine}>Code ≠ implementation ≠ supplier compliance</p>
+        </Band>
+
+        <Band labelledBy="assessment-title" tone="tinted">
+          <Head eyebrow="Before drafting" id="assessment-title" title="Understand procurement first. Then define supplier expectations." />
+          <div data-procurement-assessment><Chips items={supplierAssessmentItems} /></div>
+        </Band>
+
+        <Band labelledBy="purpose-title">
+          <Head eyebrow="Purpose" id="purpose-title" title="What a Supplier Code of Conduct is for" />
+          <div data-supplier-code-purpose-blocks><SimpleCards columns={2} items={supplierPurposeBlocks} /></div>
+        </Band>
+
+        <Band id="building-blocks" labelledBy="blocks-title" tone="dark">
+          <Head dark eyebrow="Framework" id="blocks-title" title="Seven building blocks of a credible Supplier Code of Conduct" />
+          <div data-supplier-code-building-blocks>
+            <BuildingBlocks
+              extra={(blockTitle) => blockTitle.startsWith("3") ? <p><TextLink href="/en/resources/environmental-policy" onDark>Prepare the Environmental Policy separately</TextLink></p> : null}
+              items={supplierBuildingBlocks}
+            />
+          </div>
+        </Band>
+
+        <WarningGrid id="not-in-code-title" eyebrow="Limits" title="What not to include in a Supplier Code of Conduct" items={notInSupplierCodeItems} dataAttr="not-in-supplier-code-items" />
+        <Band labelledBy="contract-title" tone="tinted">
+          <Head eyebrow="Contract status" id="contract-title" title="Is a Supplier Code automatically part of the contract?" />
+          <Prose>
+            <Callout>Not automatically.</Callout>
+            <p>Whether and how a Supplier Code is contractually incorporated depends on the actual contract and procurement process. This guide does not draw enforceability conclusions.</p>
+          </Prose>
+          <div className={r.blockGap} data-contract-status-distinction>
+            <Flow items={["Published", "Communicated", "Acknowledged", "Contractually incorporated"]} />
+          </div>
+        </Band>
+        <Band labelledBy="acknowledgment-title">
+          <Head eyebrow="Acknowledgment" id="acknowledgment-title" title="What does supplier acknowledgment mean?">
+            <p>Acknowledgment may document receipt or confirmation. It does not automatically prove implementation or compliance.</p>
+          </Head>
+          <div data-supplier-acknowledgment><Flow items={supplierAcknowledgmentStates} /></div>
+        </Band>
+        <EvidenceSection evidenceItems={supplierEvidenceItems} />
+        <StatusSection id="status-title" title="What status does your Supplier Code have?" items={supplierStatusModel} dataAttr="supplier-code-status-model" />
+        <MetadataSection id="version-title" title="A Supplier Code also needs version control." note="Do not invent backdated approval or rollout dates." items={supplierVersionMetadata} dataAttr="supplier-code-version-control" />
+        <TextSection eyebrow="Approval" id="supplier-draft-approved-title" title="Draft is not the same as approved.">
+          <Callout>Draft ≠ approved Supplier Code</Callout>
+          <p>Evipace can prepare a draft, but the code becomes an official company document only through client review, corrections and authorised internal approval.</p>
+        </TextSection>
+        <OutlineSection title="Example structure for a Supplier Code of Conduct" qualifier="This is a structure guide, not a universal contract or compliance template." items={supplierOutlineSections} dataAttr="supplier-code-outline" />
+        <Band labelledBy="deviation-title" tone="dark">
+          <Head dark eyebrow="Deviations" id="deviation-title" title="What happens if a supplier does not meet a requirement?">
+            <p>Do not default every deviation to immediate termination. Clarification, risk assessment and corrective action may be appropriate depending on the facts and actual agreements.</p>
+          </Head>
+          <div data-deviation-workflow><Flow dark items={supplierDeviationSteps} /></div>
+          <p className={`${r.centerText} ${r.onDark}`}>Specific legal or contractual response is outside this guide.</p>
+        </Band>
+        <TextSection eyebrow="Risk-based" id="risk-title" title="Does every supplier need the same treatment?">
+          <p>A local office-supply vendor, a critical production supplier and a sensitive raw-material supplier may need different levels of information or review.</p>
+          <p>This is practical operating guidance, not a universal legal requirement.</p>
+        </TextSection>
+        <WorkflowSection title="What to do when your customer asks for a Supplier Code of Conduct" items={supplierWorkflowSteps} dataAttr="supplier-code-customer-workflow" buttonHref="/en/resources/esg-questionnaire-checklist" />
+        <TextSection eyebrow="If it is missing" id="no-code-title" title="What if your company does not have a Supplier Code yet?">
+          <p>Do not answer retroactively as if a formal code already existed.</p>
+          <p>Review existing procurement requirements, identify actual expectations, draft realistically, review internally, approve and integrate the code into actual supplier processes.</p>
+          <Callout>A missing policy can be built. A past that did not exist should not be invented.</Callout>
+        </TextSection>
+        <Band labelledBy="comparison-title" tone="tinted">
+          <Head eyebrow="Distinction" id="comparison-title" title="Supplier Code and Supplier Questionnaire have different jobs." />
+          <div data-code-questionnaire-comparison><Terms items={supplierComparison} /></div>
+          <p className={r.centerText}><strong>A Supplier Code does not automatically replace a questionnaire or assessment.</strong></p>
+        </Band>
+        <TextSection eyebrow="Avoid copy-paste" id="customer-own-title" title="A customer requirement and your own Supplier Code are not the same thing.">
+          <p>A customer may require your company to address supplier ESG expectations. That does not mean you should copy the customer’s Supplier Code word for word.</p>
+          <p>Your own code should fit your supplier structure, procurement process and expectations you can genuinely support and manage.</p>
+        </TextSection>
+        <AssessmentContext title="Supplier Code of Conduct in ESG assessments" body="A Supplier Code can be relevant in assessments, but it should not be equated with full implementation or comprehensive supply-chain verification." />
+        <TextSection eyebrow="Reuse" id="reuse-title" title="An approved Supplier Code should be findable for the next ESG request." tone="tinted">
+          <p>Store the current version, scope, owner and communication status in a reusable ESG information foundation.</p>
+          <p><TextLink href="/en/resources/reusable-esg-data">Build a reusable ESG data foundation</TextLink></p>
+        </TextSection>
+        <FlowSection id="lifecycle-title" eyebrow="Lifecycle" title="From actual expectations to an applied Supplier Code" items={supplierLifecycleSteps} dataAttr="supplier-code-lifecycle" />
+        <MistakesSection title="Eight common Supplier Code of Conduct mistakes" items={supplierMistakes} dataAttr="common-supplier-code-mistakes" />
+        <ChecklistSection title="Check before internal approval" items={supplierPreApprovalItems} dataAttr="supplier-code-pre-approval-checklist" />
+        <ResourceBridge items={[["What ESG data do customers ask for?", "/en/resources/esg-data-customers-request-from-suppliers"], ["Who owns ESG data internally?", "/en/resources/esg-data-owners"], ["Check evidence readiness", "/en/resources/esg-evidence-readiness-check"], ["Reuse the document later", "/en/resources/reusable-esg-data"], ["Prepare an Environmental Policy", "/en/resources/environmental-policy"]]} dataAttr="supplier-code-resource-bridge" />
+        <CommercialBridge title="Customer asking for a Supplier Code, but your process is not cleanly documented yet?" body="Evipace can help understand the actual supplier and procurement context, structure relevant ESG and compliance topics and prepare a Supplier Code draft." note="The document becomes official only through your review, corrections and authorised internal approval." />
+        <MethodSection body="This guide describes a practical approach to preparing a Supplier Code of Conduct for ESG customer requests and supplier management. It is not legal, contract, audit or certification advice." />
+      </article>
       <FinalSection title="A good Supplier Code starts with the actual supplier base, not with a template." body="When supplier structure, expectations, responsibilities and processes are clear, the code can be realistic, traceable and usable." />
-    </article></main>
+    </ResourceMain>
   );
 }
 
 export function EnglishReusableEsgDataGuide() {
   return (
-    <main id="top"><article>
-      <ResourceHero artworkLabel="DATA POINT · SOURCE · STATUS · REUSE" eyebrow="REUSABLE ESG DATA FOUNDATION" primaryHref="#structure" primaryLabel="See the data structure ↓" qualifierTitle="Reuse information. Recheck context." qualifier="Reuse the underlying information. Do not blindly reuse the answer. Scope, period, definition and evidence requirement still need review for every new request." title="Collect ESG data once. Reuse it for the next request." intro={<><p>The same ESG information is often requested by customers, questionnaires, platforms, reporting processes and supplier assessments.</p><p className="mt-6">Many companies still search old emails, reopen spreadsheets, ask the same internal people again and look for the same evidence every time. The first step is not necessarily new software; it is a structured reusable information foundation.</p></>} />
-      <QuickAnswer><p>A reusable ESG data foundation connects recurring data points, internal owners, original sources, evidence, definitions, reporting periods and status.</p><p className="mt-6">For a new customer request, the company can check what already fits, what needs updating and what is genuinely missing instead of rebuilding every answer from scratch.</p></QuickAnswer>
-      <section aria-labelledby="core-flow-title" className="py-16 sm:py-20 lg:py-24">
-        <div className="site-shell">
-          <SectionHeading eyebrow="Core flow" id="core-flow-title" title="Reuse the underlying information. Recheck the context.">
+    <ResourceMain locale="en">
+      <article>
+        <GuideHero artworkLabel="DATA POINT · SOURCE · STATUS · REUSE" eyebrow="REUSABLE ESG DATA FOUNDATION" primaryHref="#structure" primaryLabel="See the data structure ↓" qualifierTitle="Reuse information. Recheck context." qualifier="Reuse the underlying information. Do not blindly reuse the answer. Scope, period, definition and evidence requirement still need review for every new request." title="Collect ESG data once. Reuse it for the next request." intro={<><p>The same ESG information is often requested by customers, questionnaires, platforms, reporting processes and supplier assessments.</p><p>Many companies still search old emails, reopen spreadsheets, ask the same internal people again and look for the same evidence every time. The first step is not necessarily new software; it is a structured reusable information foundation.</p></>} />
+        <QuickAnswer><p>A reusable ESG data foundation connects recurring data points, internal owners, original sources, evidence, definitions, reporting periods and status.</p><p>For a new customer request, the company can check what already fits, what needs updating and what is genuinely missing instead of rebuilding every answer from scratch.</p></QuickAnswer>
+
+        <Band labelledBy="core-flow-title">
+          <Head eyebrow="Core flow" id="core-flow-title" title="Reuse the underlying information. Recheck the context.">
             <p>Reusable ESG work starts by preserving the source and status of the information, then checking what changed before the next external answer is prepared.</p>
-          </SectionHeading>
-          <div className="mt-12 rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-reuse-core-flow>
-            <FlowLine items={reusableCoreFlow} columns="lg:grid-cols-6" />
+          </Head>
+          <div data-reuse-core-flow><Flow items={reusableCoreFlow} /></div>
+        </Band>
+        <TextSection eyebrow="Starting point" id="problem-title" title="Why does ESG start from zero so often?" tone="tinted">
+          <p>ESG information is usually spread across Finance, HR, Facility, Quality, EHS, Procurement and Management.</p>
+          <p>When every request is treated as a one-off project, the company ends up with separate spreadsheets, emails and folders. The next questionnaire sends people back to the same sources again.</p>
+          <Callout>The problem is often not missing information. The problem is missing structure.</Callout>
+        </TextSection>
+        <Band labelledBy="before-after-title">
+          <Head eyebrow="Before / after" id="before-after-title" title="What changes with a reusable structure" />
+          <div data-before-after>
+            <CardGrid columns={2}>
+              <Card title="Without structure">
+                <Items items={["Customer A", "new spreadsheet", "ask Finance", "ask HR", "find invoices", "find evidence"]} />
+                <p className={r.cardQuote}>Customer B → start again</p>
+              </Card>
+              <Card title="With structured data">
+                <p className={r.cardQuote}>Data point + source + evidence + owner + period + status</p>
+                <Items items={["Customer questionnaires", "EcoVadis", "IntegrityNext", "VSME", "Internal ESG reporting"]} />
+              </Card>
+            </CardGrid>
           </div>
-        </div>
-      </section>
-      <TextSection eyebrow="Starting point" id="problem-title" title="Why does ESG start from zero so often?"><p>ESG information is usually spread across Finance, HR, Facility, Quality, EHS, Procurement and Management.</p><p>When every request is treated as a one-off project, the company ends up with separate spreadsheets, emails and folders. The next questionnaire sends people back to the same sources again.</p><p className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-tight text-ink">The problem is often not missing information. The problem is missing structure.</p></TextSection>
-      <section aria-labelledby="before-after-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Before / after" id="before-after-title" title="What changes with a reusable structure" /><div className="mt-12 grid gap-6 lg:grid-cols-2" data-before-after><article className="rounded-[1.2rem] border border-[rgba(21,21,21,0.12)] bg-[var(--warm)] p-6 sm:p-8"><h3 className="type-subheading font-display text-ink">Without structure</h3><FlowLine items={["Customer A", "new spreadsheet", "ask Finance", "ask HR", "find invoices", "find evidence"]} columns="lg:grid-cols-3" /><p className="type-statement mt-7 font-display text-ink">Customer B → start again</p></article><article className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8"><h3 className="type-subheading font-display text-ink">With structured data</h3><p className="type-statement mt-6 rounded-[1rem] bg-white p-5 font-display text-ink">Data point + source + evidence + owner + period + status</p><BulletList items={["Customer questionnaires", "EcoVadis", "IntegrityNext", "VSME", "Internal ESG reporting"]} /></article></div><p className="mt-8 max-w-4xl text-base leading-8 text-muted">The foundation reduces search work. The specific customer requirement still needs to be checked.</p></div></section>
-      <section aria-labelledby="structure-title" className="py-16 sm:py-20 lg:py-24" id="structure"><div className="site-shell"><SectionHeading eyebrow="Reusable ESG data" id="structure-title" title="What should be stored for reuse?"><p>A useful ESG data foundation stores context, not just a value.</p></SectionHeading><div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-reusable-components>{reusableComponents.map(([title, example, copy], index) => <article className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 shadow-lift" key={title}><p className="font-mono text-xs font-bold text-orange">{String(index + 1).padStart(2, "0")}</p><h3 className="type-subheading font-display mt-4 text-ink">{title}</h3><p className="mt-4 rounded-[0.8rem] bg-[var(--warm)] p-4 text-sm font-bold leading-6 text-ink">{example}</p><p className="mt-4 text-sm leading-7 text-muted">{copy}</p></article>)}</div><div className="mt-8 flex flex-wrap gap-2">{reusableStatusExamples.map((status) => <span className="rounded-full border border-orange/25 bg-[var(--soft-orange)] px-3 py-2 text-xs font-bold uppercase tracking-[0.09em] text-[#b94f00]" key={status}>{status}</span>)}</div></div></section>
-      <MetadataSection id="record-title" title="The smallest useful ESG data record" note="Illustrative example. This is not real customer data and not a statement about a real company." items={reusableDataRecord} dataAttr="version-control-example" />
-      <section aria-labelledby="reuse-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Reuse logic" id="reuse-title" title="Do not copy every answer. Reuse many data points." /><div className="mt-12 grid gap-5 lg:grid-cols-3" data-reuse-groups>{reuseGroups.map(([title, items]) => <section className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6" key={title}><h3 className="type-subheading font-display text-ink">{title}</h3><BulletList items={items} /></section>)}</div><p className="type-statement font-display mt-10 max-w-4xl text-ink">The aim is not a universal master answer, but a reliable information base for preparing the right answer.</p></div></section>
-      <section aria-labelledby="layers-title" className="bg-ink py-16 text-white sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Framework" id="layers-title" light title="Five layers of a reusable ESG foundation" /><ol className="mt-12 grid gap-5 lg:grid-cols-5" data-foundation-layers>{foundationLayers.map(([title, copy]) => <li className="rounded-[1rem] border border-white/16 bg-white/[0.04] p-6" key={title}><h3 className="type-subheading font-display text-white">{title}</h3><p className="mt-4 text-sm leading-7 text-white/62">{copy}</p></li>)}</ol></div></section>
-      <TextSection eyebrow="Traceability" id="evidence-chain-title" title="Reuse works only when the source remains traceable."><div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-evidence-chain><FlowLine items={["Customer question", "Answer", "Data point", "Evidence", "Original source"]} columns="lg:grid-cols-5" /></div><p>Storing only the final answer loses much of the later value. Store the data point and source so the next request can be checked against scope, period and evidence requirement.</p><InlineLink href="/en/resources/esg-evidence-for-suppliers">Read about ESG evidence</InlineLink></TextSection>
-      <section aria-labelledby="examples-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Practical examples" id="examples-title" title="Three examples of reuse with review" /><div className="mt-12 grid gap-6" data-practical-examples><article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-6 sm:p-8"><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustrative example</p><h3 className="type-subheading font-display mt-4 text-ink">Example: electricity</h3><p className="mt-5 text-base leading-8 text-muted">If Customer A asks for 2025 electricity use, store company, site, period, value, unit, source and owner. When Customer B asks later for energy or emissions, check whether the same underlying data fits the new scope and definition.</p></article><article className="rounded-[1.1rem] border border-[rgba(21,21,21,0.11)] bg-white p-6 sm:p-8"><h3 className="type-subheading font-display text-ink">Example: Environmental Policy</h3><p className="mt-5 text-base leading-8 text-muted">If an approved Environmental Policy exists, do not write a new one for every request. Check whether the version is current, applies to the answering entity and supports the customer question.</p><div className="mt-6"><InlineLink href="/en/resources/environmental-policy">Prepare an Environmental Policy correctly</InlineLink></div><div className="mt-3"><InlineLink href="/en/resources/supplier-code-of-conduct">Prepare a Supplier Code for reuse</InlineLink></div></article><article className="rounded-[1.1rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8"><h3 className="type-subheading font-display text-ink">Example: Scope 1 &amp; 2</h3><p className="mt-5 text-base leading-8 text-muted">A structured Scope 1 and 2 data foundation can be reused across requests when activity data, sources, units, period, method and calculation stay traceable.</p><div className="mt-6"><InlineLink href="/en/resources/scope-1-2-data-collection-template">Collect Scope 1 and 2 data structurally</InlineLink></div><div className="mt-3"><InlineLink href="/en/resources/scope-1-2-data-calculation">Understand Scope 1 and 2 source data</InlineLink></div></article></div></div></section>
-      <TextSection eyebrow="No new software required" id="system-title" title="A reusable ESG data foundation does not have to start with new software."><p>Companies can begin by improving definitions, ownership, sources, status, update logic and storage discipline in existing systems or controlled spreadsheets.</p></TextSection>
-      <section aria-labelledby="owner-title" className="border-y border-[rgba(21,21,21,0.09)] bg-white py-16 sm:py-20 lg:py-24"><div className="site-shell"><SectionHeading eyebrow="Ownership" id="owner-title" title="Every reusable data point needs an owner."><p>Reusable data remains useful only if someone knows where it comes from, who can confirm it, who updates it and who approves external use where needed.</p></SectionHeading><dl className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" data-owner-examples>{ownerExamples.map(([term, description]) => <div className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[var(--warm)] p-5" key={term}><dt className="font-display text-2xl text-ink">{term}</dt><dd className="mt-3 text-sm font-semibold leading-6 text-muted">{description}</dd></div>)}</dl><div className="mt-8"><InlineLink href="/en/resources/esg-data-owners">Map ESG data owners</InlineLink></div></div></section>
-      <section aria-labelledby="freshness-title" className="py-16 sm:py-20 lg:py-24"><div className="site-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><SectionHeading eyebrow="Freshness" id="freshness-title" title="Reusable data needs a status." /><div className="grid gap-3 sm:grid-cols-2" data-freshness-statuses>{freshnessStatuses.map((status) => <div className="rounded-[0.9rem] border border-[rgba(21,21,21,0.11)] bg-white p-5 font-bold text-ink" key={status}>{status}</div>)}</div></div></section>
-      <TextSection eyebrow="Request mapping" id="request-mapping-title" title="Same underlying information, different customer questions."><div className="rounded-[1.2rem] border border-orange/25 bg-[var(--soft-orange)] p-6 sm:p-8" data-request-mapping><p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">Illustrative labels</p><h3 className="type-subheading font-display mt-4 text-ink">Scope 2 emissions 2025</h3><BulletList items={["Customer A questionnaire", "EcoVadis assessment", "VSME preparation", "Customer B sustainability request"]} /></div><p>Map the reusable data point to each new request. Recheck scope, period, wording, unit, entity and evidence requirement before answering.</p></TextSection>
-      <AssessmentContext title="Why reuse matters across ESG requests" body="Customer questionnaires, EcoVadis, IntegrityNext, VSME and Scope 1 and 2 work can ask similar topics in different formats. Similar is not identical." />
-      <WorkflowSection title="How one ESG request becomes a reusable foundation" items={reuseWorkflowSteps} dataAttr="customer-policy-workflow" buttonHref="/en/resources/esg-questionnaire-checklist" />
-      <WarningGrid id="copy-paste-title" eyebrow="Copy-paste risk" title="Reuse must not become copy-and-paste ESG." items={copyPasteWarnings} dataAttr="copy-paste-warnings" />
-      <ResourceBridge items={[["Start with the customer request", "/en/resources/customer-esg-questionnaire-received"], ["Understand requested ESG data", "/en/resources/esg-data-customers-request-from-suppliers"], ["Map internal owners", "/en/resources/esg-data-owners"], ["Use the checklist", "/en/resources/esg-questionnaire-checklist"], ["Check evidence readiness", "/en/resources/esg-evidence-readiness-check"], ["Scope 1 & 2 source data", "/en/resources/scope-1-2-data-calculation"], ["Scope 1 & 2 collection template", "/en/resources/scope-1-2-data-collection-template"], ["VSME data", "/en/resources/vsme-data-sustainability-report"], ["Environmental Policy", "/en/resources/environmental-policy"], ["Supplier Code", "/en/resources/supplier-code-of-conduct"]]} dataAttr="resource-system-map" />
-      <CommercialBridge title="Your ESG data already exists, but not as a reusable structure?" body="Evipace can help structure the information, sources and evidence needed for a specific customer ESG request so the work does not start from zero next time." note="Every external answer is still checked against scope, period and the specific customer requirement." />
-      <MethodSection body="Reuse on this page means structured reuse of underlying company information and evidence. It does not mean transferring a previous answer unchecked to another customer, period, site, questionnaire or reporting context." />
+          <p className={r.centerText}>The foundation reduces search work. The specific customer requirement still needs to be checked.</p>
+        </Band>
+        <Band id="structure" labelledBy="structure-title" tone="tinted">
+          <Head eyebrow="Reusable ESG data" id="structure-title" title="What should be stored for reuse?">
+            <p>A useful ESG data foundation stores context, not just a value.</p>
+          </Head>
+          <div data-reusable-components>
+            <CardGrid>
+              {reusableComponents.map(([title, example, copy]) => (
+                <Card key={title} title={title}>
+                  <p className={r.example}>{example}</p>
+                  <p>{copy}</p>
+                </Card>
+              ))}
+            </CardGrid>
+          </div>
+          <div className={r.blockGap}><Chips items={reusableStatusExamples} /></div>
+        </Band>
+        <MetadataSection id="record-title" title="The smallest useful ESG data record" note="Illustrative example. This is not real customer data and not a statement about a real company." items={reusableDataRecord} dataAttr="version-control-example" />
+        <Band labelledBy="reuse-title">
+          <Head eyebrow="Reuse logic" id="reuse-title" title="Do not copy every answer. Reuse many data points." />
+          <div data-reuse-groups>
+            <CardGrid>
+              {reuseGroups.map(([title, items]) => (
+                <Card key={title} title={title}>
+                  <Items items={items} />
+                </Card>
+              ))}
+            </CardGrid>
+          </div>
+          <p className={r.closingLine}>The aim is not a universal master answer, but a reliable information base for preparing the right answer.</p>
+        </Band>
+        <Band labelledBy="layers-title" tone="dark">
+          <Head dark eyebrow="Framework" id="layers-title" title="Five layers of a reusable ESG foundation" />
+          <div className={r.darkSteps} data-foundation-layers>
+            <Steps items={foundationLayers.map(([title, copy]) => ({ title, body: copy }))} />
+          </div>
+        </Band>
+        <Band labelledBy="evidence-chain-title">
+          <Head eyebrow="Traceability" id="evidence-chain-title" title="Reuse works only when the source remains traceable." />
+          <div data-evidence-chain><Flow items={["Customer question", "Answer", "Data point", "Evidence", "Original source"]} /></div>
+          <Prose>
+            <p>Storing only the final answer loses much of the later value. Store the data point and source so the next request can be checked against scope, period and evidence requirement.</p>
+            <p><TextLink href="/en/resources/esg-evidence-for-suppliers">Read about ESG evidence</TextLink></p>
+          </Prose>
+        </Band>
+        <Band labelledBy="examples-title" tone="tinted">
+          <Head eyebrow="Practical examples" id="examples-title" title="Three examples of reuse with review" />
+          <div data-practical-examples>
+            <CardGrid>
+              <Card title="Example: electricity">
+                <p className={r.cardType}>Illustrative example</p>
+                <p>If Customer A asks for 2025 electricity use, store company, site, period, value, unit, source and owner. When Customer B asks later for energy or emissions, check whether the same underlying data fits the new scope and definition.</p>
+              </Card>
+              <Card title="Example: Environmental Policy">
+                <p>If an approved Environmental Policy exists, do not write a new one for every request. Check whether the version is current, applies to the answering entity and supports the customer question.</p>
+                <p><TextLink href="/en/resources/environmental-policy">Prepare an Environmental Policy correctly</TextLink></p>
+                <p><TextLink href="/en/resources/supplier-code-of-conduct">Prepare a Supplier Code for reuse</TextLink></p>
+              </Card>
+              <Card title="Example: Scope 1 & 2">
+                <p>A structured Scope 1 and 2 data foundation can be reused across requests when activity data, sources, units, period, method and calculation stay traceable.</p>
+                <p><TextLink href="/en/resources/scope-1-2-data-collection-template">Collect Scope 1 and 2 data structurally</TextLink></p>
+                <p><TextLink href="/en/resources/scope-1-2-data-calculation">Understand Scope 1 and 2 source data</TextLink></p>
+              </Card>
+            </CardGrid>
+          </div>
+        </Band>
+        <TextSection eyebrow="No new software required" id="system-title" title="A reusable ESG data foundation does not have to start with new software.">
+          <p>Companies can begin by improving definitions, ownership, sources, status, update logic and storage discipline in existing systems or controlled spreadsheets.</p>
+        </TextSection>
+        <Band labelledBy="owner-title" tone="tinted">
+          <Head eyebrow="Ownership" id="owner-title" title="Every reusable data point needs an owner.">
+            <p>Reusable data remains useful only if someone knows where it comes from, who can confirm it, who updates it and who approves external use where needed.</p>
+          </Head>
+          <div data-owner-examples><Terms items={ownerExamples} /></div>
+          <CenterAction><TextLink href="/en/resources/esg-data-owners">Map ESG data owners</TextLink></CenterAction>
+        </Band>
+        <Band labelledBy="freshness-title">
+          <Head eyebrow="Freshness" id="freshness-title" title="Reusable data needs a status." />
+          <div data-freshness-statuses><Chips items={freshnessStatuses} /></div>
+        </Band>
+        <Band labelledBy="request-mapping-title" tone="tinted">
+          <Head eyebrow="Request mapping" id="request-mapping-title" title="Same underlying information, different customer questions." />
+          <div className={r.single} data-request-mapping>
+            <Panel label="Illustrative labels">
+              <h3 className={r.panelTitle}>Scope 2 emissions 2025</h3>
+              <Bullets items={["Customer A questionnaire", "EcoVadis assessment", "VSME preparation", "Customer B sustainability request"]} />
+            </Panel>
+          </div>
+          <Prose>
+            <p>Map the reusable data point to each new request. Recheck scope, period, wording, unit, entity and evidence requirement before answering.</p>
+          </Prose>
+        </Band>
+        <AssessmentContext title="Why reuse matters across ESG requests" body="Customer questionnaires, EcoVadis, IntegrityNext, VSME and Scope 1 and 2 work can ask similar topics in different formats. Similar is not identical." />
+        <WorkflowSection title="How one ESG request becomes a reusable foundation" items={reuseWorkflowSteps} dataAttr="customer-policy-workflow" buttonHref="/en/resources/esg-questionnaire-checklist" />
+        <WarningGrid id="copy-paste-title" eyebrow="Copy-paste risk" title="Reuse must not become copy-and-paste ESG." items={copyPasteWarnings} dataAttr="copy-paste-warnings" />
+        <ResourceBridge items={[["Start with the customer request", "/en/resources/customer-esg-questionnaire-received"], ["Understand requested ESG data", "/en/resources/esg-data-customers-request-from-suppliers"], ["Map internal owners", "/en/resources/esg-data-owners"], ["Use the checklist", "/en/resources/esg-questionnaire-checklist"], ["Check evidence readiness", "/en/resources/esg-evidence-readiness-check"], ["Scope 1 & 2 source data", "/en/resources/scope-1-2-data-calculation"], ["Scope 1 & 2 collection template", "/en/resources/scope-1-2-data-collection-template"], ["VSME data", "/en/resources/vsme-data-sustainability-report"], ["Environmental Policy", "/en/resources/environmental-policy"], ["Supplier Code", "/en/resources/supplier-code-of-conduct"]]} dataAttr="resource-system-map" />
+        <CommercialBridge title="Your ESG data already exists, but not as a reusable structure?" body="Evipace can help structure the information, sources and evidence needed for a specific customer ESG request so the work does not start from zero next time." note="Every external answer is still checked against scope, period and the specific customer requirement." />
+        <MethodSection body="Reuse on this page means structured reuse of underlying company information and evidence. It does not mean transferring a previous answer unchecked to another customer, period, site, questionnaire or reporting context." />
+      </article>
       <FinalSection title="Every answered request should make the next one easier." body="Scattered company data can become a traceable, reusable ESG information foundation over time." />
-    </article></main>
+    </ResourceMain>
   );
 }

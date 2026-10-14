@@ -188,7 +188,7 @@
 /* Centred hero: one column of copy, the desk visual underneath. */
 .heroCopy {
   display: flex;
-  max-width: 60rem;
+  max-width: 76rem;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -200,6 +200,33 @@
 
 .page[data-locale="de"] .heroCopy .display {
   max-width: 24ch;
+}
+
+/* Hero title: one line per sentence. */
+.heroCopy .heroTitle {
+  max-width: none;
+}
+
+.titleLine {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .titleKeep {
+    white-space: nowrap;
+  }
+}
+
+/* Phones: the English second sentence still fits one line at a slightly
+   smaller size. The German one is too long for that and wraps. */
+@media (max-width: 639px) {
+  .page[data-locale="en"] .heroTitle {
+    font-size: min(2.5rem, 8.6vw);
+  }
+
+  .page[data-locale="en"] .titleKeep {
+    white-space: nowrap;
+  }
 }
 
 .heroCopy .heroBody {

@@ -17,6 +17,9 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
   const forwardHref = `mailto:${deskForwardEmail}`;
   const offersHref = getOffersPath(locale);
   const statementWords = copy.statement.split(" ");
+  const titleBreak = copy.hero.title.indexOf(". ") + 1;
+  const titleFirst = copy.hero.title.slice(0, titleBreak);
+  const titleSecond = copy.hero.title.slice(titleBreak + 1);
 
   return (
     <main className={styles.page} data-locale={locale}>
@@ -24,7 +27,11 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
         <div className={`${styles.shell} ${styles.heroGrid}`}>
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>{copy.hero.eyebrow}</p>
-            <h1 className={styles.display} id="hero-title">{copy.hero.title}</h1>
+            <h1 className={`${styles.display} ${styles.heroTitle}`} id="hero-title">
+              {/* Each sentence starts its own line; the second never breaks. */}
+              <span className={styles.titleLine}>{titleFirst}</span>{" "}
+              <span className={`${styles.titleLine} ${styles.titleKeep}`}>{titleSecond}</span>
+            </h1>
             <p className={styles.heroBody}>{copy.hero.body}</p>
             <div className={styles.actions}>
               <a className={styles.pillButton} href={forwardHref}>

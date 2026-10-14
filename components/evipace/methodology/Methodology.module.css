@@ -416,6 +416,7 @@ details[open] > summary .toggle::after {
 
 .disclosureText {
   display: grid;
+  min-width: 0;
   gap: var(--ev-s-2);
 }
 
@@ -481,6 +482,7 @@ details[open] > summary .toggle::after {
 
 .stepText {
   display: grid;
+  min-width: 0;
   flex: 1;
   gap: 0.2rem;
 }
@@ -520,6 +522,15 @@ details[open] > summary .toggle::after {
 .page :where(summary):focus-visible {
   outline: 3px solid var(--ev-charcoal);
   outline-offset: 2px;
+}
+
+/* Long German compounds must wrap inside cards and accordions on phones. */
+.page :where(h2, h3, summary, li, p) {
+  overflow-wrap: break-word;
+}
+
+.page[data-locale="de"] :where(h2, h3, summary) {
+  hyphens: auto;
 }
 
 /* Overview */

@@ -50,6 +50,15 @@
   white-space: nowrap;
 }
 
+/* Long German compounds wrap instead of widening cards on narrow screens. */
+.page :where(h2, h3, h4, summary, li, p) {
+  overflow-wrap: break-word;
+}
+
+.page[data-locale="de"] :where(h2, h3, h4, summary) {
+  hyphens: auto;
+}
+
 .page :where(a, button, summary):focus-visible {
   outline: 3px solid var(--ev-charcoal);
   outline-offset: 2px;

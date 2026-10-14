@@ -412,11 +412,7 @@ test("English methodology preserves the approved workflow, trust language, and c
       'const SEND_REQUEST_HREF = "/en/send-request"'
     )
   );
-  assert.ok(
-    englishMethodologySource.includes(
-      "<ButtonLink href={SEND_REQUEST_HREF}>"
-    )
-  );
+  assert.ok(englishMethodologySource.includes("formHref={SEND_REQUEST_HREF}"));
 
   const disallowedCopy = [
     "AI-powered ESG",

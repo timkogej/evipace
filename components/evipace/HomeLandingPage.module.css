@@ -1177,6 +1177,23 @@
   line-height: 1.6;
 }
 
+.ctaBody > p {
+  margin: 0;
+}
+
+.ctaBody > p + p {
+  margin-top: var(--ev-s-3);
+}
+
+.ctaNote {
+  margin: 0;
+  color: var(--ev-taupe);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .textLinkOnDark {
   color: var(--ev-white);
   text-decoration-color: rgba(255, 255, 255, 0.45);

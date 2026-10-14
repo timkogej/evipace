@@ -311,6 +311,26 @@ Razdelek s tremi ponudbami in vrstica o obsegu in ceni sta z domače strani odst
 - `/en/angebot`, `/de/offers` in `/sl/offers` vrnejo 404.
 - Brez cen, rokov, referenc in številk. Pri Desku je v seznamu vključenega izpisan naslov `desk@evipace.com` (tako je bilo naročeno); na domači strani naslov ni izpisan.
 
+### C2b. Stran Methodology (`/en/methodology`, `/de/methodology`)
+
+Prenovljena v sredinski postavitvi domače strani; vsa besedila, seznami, povezave, viri in sidra so ohranjeni.
+
+| Del | Postavitev |
+|---|---|
+| Hero | Sredinsko, z gumbi za skok na glavne razdelke (načelo, postopek, sledljivost, emisije, odgovornost, meje). |
+| At a glance | Trije koraki kot na domači strani. |
+| Odprti razdelki | Sredinski naslov; besedilo in kartica s seznamom drug ob drugem (na telefonu eno pod drugim). Temna pasova: tehnologija, meje. |
+| Postopek (6 korakov) | Seznam razpiral s številko, naslovom in kratkim opisom. |
+| Emisije | Uvod, viri, razpiralo »Scope 1, 2 in 3«. |
+| Podrobni razdelki | Emisijski faktorji, ocene in vrzeli, platforme, dokazila, politike, standardi, VSME, dokumenti: zaporedna razpirala (kot FAQ). |
+| Datum pregleda | Sredinsko pred zaključnim pozivom. |
+| Zaključni poziv | Ista komponenta kot na domači strani; ohranjeni naslov, besedilo, oznaka teme in povezava na obrazec (»Send your ESG request«). |
+
+- Fotografije (tudi ljudi) so odstranjene; pri dokazilih je lastna SVG ilustracija.
+- Postavitev je v `components/evipace/methodology/` (`MethodologyParts.tsx`, `Methodology.module.css`); jezikovni datoteki hranita samo vsebino.
+- Stari test `methodology-typography.test.mjs` (varoval je prejšnji slog) je zamenjan z `methodology-layout.test.mjs` (en `h1`, en `h2` na razdelek, vsa sidra v istem vrstnem redu, ključna besedila, pot do obrazca, brez fotografij).
+- Neuporabljeni ostanki: `MethodologyImages.tsx`, `MethodologyCtaArtwork.tsx` in pravila `.methodology-*` v `app/globals.css` (te datoteke ne spreminjam zaradi testa z zgoščeno vrednostjo).
+
 ### C3. Skupni elementi
 
 | Element | Sprememba |
@@ -364,12 +384,9 @@ Status zahteve v besedilu ni omenjen. Nobena od teh trditev ni preverjena ob kod
 
 ### C7. Posnetki zaslona
 
-`docs/redesign-screenshots/`: celostranski posnetki produkcijskega builda, narejeni s Chromom brez glave (`--screenshot`), po en na stran in širino.
+`docs/redesign-screenshots/`: celostranski posnetki produkcijskega builda za domačo stran, Offers in Methodology, EN in DE, pri 1440, 768 in 390 px (18 datotek). Narejeni so s Chromom prek protokola DevTools z natančno emulacijo širine; animacije so v končnem stanju.
 
-| Datoteke | Širine |
-|---|---|
-| `home-en-*`, `home-de-*` | 1440, 768, 390 |
-| `offers-en-*`, `offers-de-*` | 1440, 768, 390 |
+Popravek: prejšnji posnetki pri »390 px« so bili narejeni s Chromom brez glave, ki ima najmanjšo širino okna 500 px. Prikazovali so torej 500-px postavitev, obrezano na 390 px. Vsi so zamenjani.
 
 ### C8. Odprto
 

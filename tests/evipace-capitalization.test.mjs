@@ -186,9 +186,7 @@ test("the standalone wordmark carries the brand capitalisation everywhere", () =
   }
   for (const key of ["enMethod", "deMethod"]) {
     assert.ok(
-      /<p className="mb-6 text-sm font-bold uppercase text-orange">\s*\n\s*Evipace\s*\n\s*<\/p>/.test(
-        source[key]
-      ),
+      /<p className=\{m\.label\}>\s*\n\s*Evipace\s*\n\s*<\/p>/.test(source[key]),
       key
     );
   }

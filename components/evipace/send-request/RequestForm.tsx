@@ -7,6 +7,7 @@ import { SuccessState } from "./SuccessState";
 import { defaultSendRequestCopy, type SendRequestCopy } from "./copy";
 import { uploadFile, type UploadTarget } from "@/lib/client/upload-file";
 import { getPrivacyPolicyPath } from "@/lib/legal-info";
+import styles from "./SendRequest.module.css";
 
 type Stage = "form" | "uploading" | "success";
 
@@ -161,70 +162,18 @@ export function RequestForm({
 
   return (
     <form
-      className="rounded-[1.25rem] border border-[rgba(21,21,21,0.11)] bg-white p-7 shadow-lift sm:p-9"
+      className={styles.form}
       onChange={(event) => markFormStarted(event.target)}
       onFocus={(event) => markFormStarted(event.target)}
       onPointerDown={(event) => markFormStarted(event.target)}
       onSubmit={handleSubmit}
     >
-      <div className="grid gap-5 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-semibold text-ink">
-          {formCopy.labels.name}
-          <input
-            className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
-            name="name"
-            required
-            type="text"
-          />
-        </label>
-        <label className="grid gap-2 text-sm font-semibold text-ink">
-          {formCopy.labels.email}
-          <input
-            className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
-            name="email"
-            required
-            type="email"
-          />
-        </label>
-        <label className="grid gap-2 text-sm font-semibold text-ink">
-          {formCopy.labels.company}
-          <input
-            className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
-            name="company"
-            required
-            type="text"
-          />
-        </label>
-        <label className="grid gap-2 text-sm font-semibold text-ink">
-          {formCopy.labels.deadline}{" "}
-          <span className="font-normal text-muted">{formCopy.labels.optional}</span>
-          <input
-            className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
-            name="deadline"
-            type="text"
-          />
-        </label>
-      </div>
-
-      <label className="mt-5 grid gap-2 text-sm font-semibold text-ink">
-        {formCopy.labels.message}{" "}
-        <span className="font-normal text-muted">{formCopy.labels.optional}</span>
-        <textarea
-          className="rounded-lg border border-[rgba(21,21,21,0.16)] px-4 py-3 text-base font-normal"
-          name="message"
-          rows={4}
-        />
-      </label>
-
-      {/* Honeypot — hidden from real visitors via CSS, not the accessibility tree trick of display:none on its own (screen readers can still land here), so also marked aria-hidden and tabIndex=-1. */}
-      <div aria-hidden="true" className="hidden">
-        <label>
-          Website
-          <input autoComplete="off" name="website" tabIndex={-1} type="text" />
-        </label>
-      </div>
-
-      <div className="mt-6">
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>
+          <span aria-hidden="true" className={styles.legendNumber}>1</span>
+          {formCopy.sections.request}
+        </legend>
+        <p className={styles.hint}>{formCopy.sections.requestHint}</p>
         <FileDropzone
           copy={copy.dropzone}
           disabled={submitting}
@@ -234,44 +183,99 @@ export function RequestForm({
             setFiles(nextFiles);
           }}
         />
+      </fieldset>
+
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>
+          <span aria-hidden="true" className={styles.legendNumber}>2</span>
+          {formCopy.sections.details}
+        </legend>
+        <div className={styles.grid}>
+          <label className={styles.field}>
+            {formCopy.labels.name}
+            <input autoComplete="name" className={styles.input} name="name" required type="text" />
+          </label>
+          <label className={styles.field}>
+            {formCopy.labels.email}
+            <input autoComplete="email" className={styles.input} name="email" required type="email" />
+          </label>
+          <label className={`${styles.field} ${styles.wideField}`}>
+            {formCopy.labels.company}
+            <input autoComplete="organization" className={styles.input} name="company" required type="text" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>
+          <span aria-hidden="true" className={styles.legendNumber}>3</span>
+          {formCopy.sections.context}
+          <span className={styles.optional}>{formCopy.labels.optional}</span>
+        </legend>
+        <div className={styles.contextGrid}>
+          <label className={styles.field}>
+            <span>
+              {formCopy.labels.deadline}
+              <span className={styles.optional}>{formCopy.labels.optional}</span>
+            </span>
+            <input className={styles.input} name="deadline" type="text" />
+          </label>
+          <label className={styles.field}>
+            <span>
+              {formCopy.labels.message}
+              <span className={styles.optional}>{formCopy.labels.optional}</span>
+            </span>
+            <textarea className={styles.input} name="message" rows={4} />
+          </label>
+        </div>
+      </fieldset>
+
+      {/* Honeypot — hidden from real visitors via CSS, not the accessibility tree trick of display:none on its own (screen readers can still land here), so also marked aria-hidden and tabIndex=-1. */}
+      <div aria-hidden="true" className="hidden">
+        <label>
+          Website
+          <input autoComplete="off" name="website" tabIndex={-1} type="text" />
+        </label>
       </div>
 
       {stage === "uploading" ? (
-        <div className="mt-5">
-          <div className="h-2 w-full overflow-hidden rounded-full bg-[rgba(21,21,21,0.1)]">
+        <div className={styles.progress}>
+          <div className={styles.progressTrack}>
             <div
-              className="h-full rounded-full bg-orange transition-all"
+              className={styles.progressBar}
               style={{ width: `${Math.round(overallProgress * 100)}%` }}
             />
           </div>
-          <p className="mt-2 text-sm font-semibold text-muted">
+          <p className={styles.progressText}>
             {formCopy.uploadingText}
           </p>
         </div>
       ) : null}
 
       {error ? (
-        <p className="mt-4 text-sm font-semibold text-red-700" role="alert">
+        <p className={styles.error} role="alert">
           {error}
         </p>
       ) : null}
 
-      <p className="mt-6 text-sm leading-6 text-muted">
-        {formCopy.privacy.intro}{" "}
-        {formCopy.privacy.linkPrefix}{" "}
-        <a className="orange-link" href={getPrivacyPolicyPath(locale)}>
-          {formCopy.privacy.linkLabel}
-        </a>
-        .
-      </p>
-
-      <button
-        className="group mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-5 py-3 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:border-[#e96500] hover:bg-[#e96500] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-        disabled={submitting}
-        type="submit"
-      >
-        {submitting ? formCopy.submittingLabel : formCopy.submitLabel}
-      </button>
+      <div className={styles.submitRow}>
+        <button
+          className={styles.submit}
+          disabled={submitting}
+          type="submit"
+        >
+          {submitting ? formCopy.submittingLabel : formCopy.submitLabel}
+          <span aria-hidden="true" className={styles.submitArrow}>→</span>
+        </button>
+        <p className={styles.privacy}>
+          {formCopy.privacy.intro}{" "}
+          {formCopy.privacy.linkPrefix}{" "}
+          <a href={getPrivacyPolicyPath(locale)}>
+            {formCopy.privacy.linkLabel}
+          </a>
+          .
+        </p>
+      </div>
     </form>
   );
 }

@@ -409,7 +409,7 @@ function SummaryPanel({
                   <p className="text-sm font-bold leading-5 text-ink">{gap.title}</p>
                   <p className="mt-1 text-xs leading-5 text-muted">{gap.copy}</p>
                   <a
-                    className="mt-2 inline-flex text-xs font-bold text-orange underline underline-offset-4"
+                    className="mt-1 inline-flex min-h-6 items-center text-xs font-bold text-orange underline underline-offset-4"
                     href={`#${gap.targetId}`}
                     onClick={() => onGapLink(gap.targetId)}
                   >

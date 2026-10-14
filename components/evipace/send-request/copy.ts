@@ -16,6 +16,13 @@ import { MAX_FILES } from "@/lib/request-upload-constants";
  * a prop into Client Components, and functions can't cross that boundary.
  */
 export type RequestFormCopy = {
+  /** Headings of the three numbered parts of the form. */
+  sections: {
+    request: string;
+    requestHint: string;
+    details: string;
+    context: string;
+  };
   labels: {
     name: string;
     email: string;
@@ -58,6 +65,9 @@ export type FileDropzoneCopy = {
 export type SuccessStateCopy = {
   heading: string;
   body: string;
+  /** Short "what happens next" list shown after a successful send. */
+  nextLabel: string;
+  next: string[];
 };
 
 export type SendRequestCopy = {
@@ -68,6 +78,12 @@ export type SendRequestCopy = {
 
 export const defaultSendRequestCopy: SendRequestCopy = {
   form: {
+    sections: {
+      request: "Your customer's request",
+      requestHint: "The questionnaire, email, spreadsheet or portal export, plus any documents you already have.",
+      details: "Your details",
+      context: "Context"
+    },
     labels: {
       name: "Name",
       email: "Work email",
@@ -102,12 +118,25 @@ export const defaultSendRequestCopy: SendRequestCopy = {
   },
   success: {
     heading: "Your request was successfully received.",
-    body: "We have your files and details. We'll be in touch shortly."
+    body: "We have your files and details. We'll be in touch shortly.",
+    nextLabel: "What happens next",
+    next: [
+      "We review your request.",
+      "After reviewing your request, we confirm scope and price before we start.",
+      "You review and approve everything before anything is sent."
+    ]
   }
 };
 
 export const deSendRequestCopy: SendRequestCopy = {
   form: {
+    // DE-REVIEW: section headings are drafts for the owner's review.
+    sections: {
+      request: "Die Anfrage Ihres Kunden",
+      requestHint: "Fragebogen, E-Mail, Excel-Datei oder Portal-Export, dazu Unterlagen, die Sie bereits haben.",
+      details: "Ihre Angaben",
+      context: "Kontext"
+    },
     labels: {
       name: "Name",
       email: "Geschäftliche E-Mail",
@@ -144,6 +173,13 @@ export const deSendRequestCopy: SendRequestCopy = {
   },
   success: {
     heading: "Ihre Anfrage wurde erfolgreich empfangen.",
-    body: "Wir haben Ihre Dateien und Angaben erhalten. Wir melden uns in Kürze bei Ihnen."
+    body: "Wir haben Ihre Dateien und Angaben erhalten. Wir melden uns in Kürze bei Ihnen.",
+    // DE-REVIEW
+    nextLabel: "So geht es weiter",
+    next: [
+      "Wir prüfen Ihre Anfrage.",
+      "Nach der Prüfung bestätigen wir Umfang und Preis, bevor wir beginnen.",
+      "Sie prüfen und geben alles frei, bevor etwas versendet wird."
+    ]
   }
 };

@@ -1453,3 +1453,19 @@
 .skin :global(.orange-link) {
   min-height: 2.75rem;
 }
+
+.stack > aside {
+  width: 100%;
+  max-width: 60rem;
+  margin-bottom: var(--ev-s-6);
+}
+
+.stack > div:first-child :global(.type-heading) {
+  font-size: clamp(1.8rem, 3.2vw, 3.1rem);
+  line-height: 1.1;
+}
+
+.heroRest :global(.flex-col) {
+  align-items: center;
+  justify-content: center;
+}

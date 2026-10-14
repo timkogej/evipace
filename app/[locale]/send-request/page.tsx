@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/evipace/trust/PageHero";
+import { SendRequestPage as SendRequestLayout } from "@/components/evipace/send-request/SendRequestPage";
 import { RequestForm } from "@/components/evipace/send-request/RequestForm";
 import { deSendRequestCopy } from "@/components/evipace/send-request/copy";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
@@ -28,25 +28,6 @@ export async function generateMetadata({
   return buildPageMetadata(locale, "sendRequest");
 }
 
-// PageHero copy and the form's presentation copy (components/evipace/
-// send-request/copy.ts) are the only things that branch on locale here.
-// The form component, upload/finalize calls, validation and API routes are
-// completely shared and untouched — see RequestForm.tsx.
-const pageCopy = {
-  en: {
-    eyebrow: "Send your ESG request",
-    heading: "Received an ESG questionnaire? Send it to us.",
-    intro:
-      "Attach the questionnaire, certificates, or documents your customer sent you. We'll review what's there and get back to you."
-  },
-  de: {
-    eyebrow: "ESG-Anfrage senden",
-    heading: "ESG-Fragebogen erhalten? Senden Sie ihn uns.",
-    intro:
-      "Hängen Sie den Fragebogen, Zertifikate oder Unterlagen an, die Ihr Kunde Ihnen geschickt hat. Wir prüfen, was vorhanden ist, und melden uns bei Ihnen."
-  }
-};
-
 export default async function SendRequestPage({
   params
 }: SendRequestPageProps) {
@@ -57,25 +38,16 @@ export default async function SendRequestPage({
   }
 
   const isGerman = locale === "de";
-  const hero = isGerman ? pageCopy.de : pageCopy.en;
 
+  // The page around the form branches on locale; the form component,
+  // upload/finalize calls, validation and API routes are shared — see
+  // RequestForm.tsx.
   return (
-    <>
-      <main>
-        <PageHero
-          eyebrow={hero.eyebrow}
-          heading={hero.heading}
-          intro={hero.intro}
-        />
-        <section className="section-padding py-8 sm:py-10">
-          <div className="site-shell max-w-3xl">
-            <RequestForm
-              copy={isGerman ? deSendRequestCopy : undefined}
-              locale={isGerman ? "de" : "en"}
-            />
-          </div>
-        </section>
-      </main>
-    </>
+    <SendRequestLayout locale={isGerman ? "de" : "en"}>
+      <RequestForm
+        copy={isGerman ? deSendRequestCopy : undefined}
+        locale={isGerman ? "de" : "en"}
+      />
+    </SendRequestLayout>
   );
 }

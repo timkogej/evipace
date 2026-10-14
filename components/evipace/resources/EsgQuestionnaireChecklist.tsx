@@ -458,7 +458,7 @@ export function EsgQuestionnaireChecklist({
                 <div className="checklist-screen-controls mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-ink">
                   {resources[section.id]?.map((resource) => (
                     <Link
-                      className="underline decoration-[rgba(254,112,1,0.5)] underline-offset-4 transition hover:text-orange"
+                      className="inline-flex min-h-11 items-center underline decoration-[rgba(254,112,1,0.5)] underline-offset-4 transition hover:text-orange"
                       href={resource.href}
                       key={resource.href}
                     >

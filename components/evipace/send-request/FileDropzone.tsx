@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { X, Upload as UploadIcon } from "lucide-react";
+import { FileCheck2, X, Upload as UploadIcon } from "lucide-react";
 import { ALLOWED_FILE_TYPES, MAX_FILES } from "@/lib/request-upload-constants";
 import { defaultSendRequestCopy, type FileDropzoneCopy } from "./copy";
+import styles from "./SendRequest.module.css";
 
 type FileDropzoneProps = {
   files: File[];
@@ -41,11 +42,7 @@ export function FileDropzone({
     <div>
       <button
         aria-label={copy.addFilesAriaLabel}
-        className={`flex w-full flex-col items-center justify-center gap-2 rounded-[1rem] border-2 border-dashed p-8 text-center transition ${
-          isDragging
-            ? "border-orange bg-[var(--soft-orange)]"
-            : "border-[rgba(21,21,21,0.18)] bg-[var(--paper)]"
-        }`}
+        className={`${styles.dropzone}${isDragging ? ` ${styles.dropzoneActive}` : ""}`}
         disabled={disabled}
         onClick={() => inputRef.current?.click()}
         onDragLeave={() => setIsDragging(false)}
@@ -60,9 +57,11 @@ export function FileDropzone({
         }}
         type="button"
       >
-        <UploadIcon aria-hidden="true" className="h-6 w-6 text-orange" />
-        <span className="font-semibold text-ink">{copy.dropText}</span>
-        <span className="text-sm text-muted">{copy.hintText}</span>
+        <span aria-hidden="true" className={styles.dropIcon}>
+          <UploadIcon />
+        </span>
+        <span className={styles.dropText}>{copy.dropText}</span>
+        <span className={styles.dropHint}>{copy.hintText}</span>
       </button>
 
       <input
@@ -78,26 +77,20 @@ export function FileDropzone({
       />
 
       {files.length > 0 ? (
-        <ul className="mt-4 grid gap-2">
+        <ul className={styles.files}>
           {files.map((file, index) => (
-            <li
-              className="flex items-center justify-between gap-3 rounded-lg border border-[rgba(21,21,21,0.11)] bg-white px-4 py-2.5"
-              key={`${file.name}-${index}`}
-            >
-              <span className="min-w-0 flex-1 truncate text-sm font-semibold text-ink">
-                {file.name}
-              </span>
-              <span className="shrink-0 text-xs font-semibold text-muted">
-                {formatSize(file.size)}
-              </span>
+            <li className={styles.file} key={`${file.name}-${index}`}>
+              <FileCheck2 aria-hidden="true" className={styles.fileIcon} />
+              <span className={styles.fileName}>{file.name}</span>
+              <span className={styles.fileSize}>{formatSize(file.size)}</span>
               <button
                 aria-label={copy.removeAriaLabelTemplate.replace("{file}", file.name)}
-                className="shrink-0 text-muted transition hover:text-ink"
+                className={styles.remove}
                 disabled={disabled}
                 onClick={() => removeFile(index)}
                 type="button"
               >
-                <X aria-hidden="true" className="h-4 w-4" />
+                <X aria-hidden="true" />
               </button>
             </li>
           ))}

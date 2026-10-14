@@ -895,7 +895,7 @@ export function EsgCustomerDataGuide() {
 
         <section className="py-16 sm:py-20 lg:py-24" aria-labelledby="flow-title">
           <div className={h.shell}>
-            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-20">
+            <div className={r.stack}>
               <SectionHeading
                 eyebrow="Vom Signal zur Antwort"
                 id="flow-title"
@@ -965,16 +965,16 @@ export function EsgCustomerDataGuide() {
           id="datenkategorien"
         >
           <div className={h.shell}>
-            <div className="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16">
+            <div className={r.stack}>
               <aside>
                 <nav
                   aria-label="Datenkategorien"
-                  className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.82)] p-5 lg:sticky lg:top-28"
+                  className="rounded-[1rem] border border-[rgba(21,21,21,0.11)] bg-[rgba(255,255,255,0.82)] p-5 text-center"
                 >
                   <p className="text-xs font-bold uppercase tracking-[0.13em] text-orange">
                     Kategorien
                   </p>
-                  <ol className="mt-5 flex flex-wrap gap-2 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.66)] lg:grid lg:gap-3">
+                  <ol className="mt-5 flex flex-wrap justify-center gap-2 text-sm font-semibold leading-5 text-[rgba(21,21,21,0.66)]">
                     {categoryNav.map(([number, label, href]) => (
                       <li key={href}>
                         <a
@@ -1096,7 +1096,7 @@ export function EsgCustomerDataGuide() {
           className={`${h.section} ${r.tinted} ${r.skin}`}
         >
           <div className={h.shell}>
-            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div className={r.stack}>
               <SectionHeading
                 eyebrow="Interne Quellen"
                 id="data-owner-title"
@@ -1120,7 +1120,7 @@ export function EsgCustomerDataGuide() {
 
         <section aria-labelledby="workflow-title" className={`${h.section} ${r.skin}`}>
           <div className={h.shell}>
-            <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+            <div className={r.stack}>
               <SectionHeading
                 eyebrow="Erste Aktion"
                 id="workflow-title"

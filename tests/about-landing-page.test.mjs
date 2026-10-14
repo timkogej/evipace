@@ -15,21 +15,10 @@ test("both About routes use the same localized page and retain schema", () => {
   assert.match(route, /<JsonLd graph=\{schemaGraph\}/);
 });
 
-test("the supplied full-resolution images are used in the first two positions", async () => {
-  for (const [name, width, height] of [
-    ["hero-team-review.png", 1122, 1402],
-    ["focused-work-sunlit-office.png", 1448, 1086]
-  ]) {
-    const path = `public/images/evipace/about/${name}`;
-    const image = await readFile(new URL(`../${path}`, import.meta.url));
-    assert.ok(image.length > 1_000_000, `${name} was reduced unexpectedly`);
-    assert.equal(image.readUInt32BE(16), width);
-    assert.equal(image.readUInt32BE(20), height);
-    assert.ok(page.includes(`/images/evipace/about/${name}`));
-  }
+test("About uses no photographs; illustrations are the site's own SVG", () => {
+  assert.doesNotMatch(page, /next\/image|\/images\/evipace\/about\/|evipaceImages/);
+  assert.ok(page.includes("<TrustIllustration"));
   assert.doesNotMatch(page, /data-photo-slot="about-founder"|founderPhoto|founderShade/);
-  assert.doesNotMatch(page, /evipaceImages\.founder/);
-  assert.match(css, /\.whyPhoto\{aspect-ratio:4\/3/);
 });
 
 test("the active About page keeps localized service paths, founder facts and limits", () => {
@@ -44,7 +33,6 @@ test("the active About page keeps localized service paths, founder facts and lim
   assert.ok(page.includes("Tim Kogej"));
   assert.ok(page.includes("does not issue ESG certifications"));
   assert.ok(page.includes("vergibt keine ESG-Zertifizierungen"));
-  assert.ok(page.includes("evipaceImages.industrialBreak.src"));
 });
 
 test("both locales retain a direct request path and contact alternative", () => {
@@ -59,13 +47,15 @@ test("the founder section offers a direct call in both languages without a portr
   assert.ok(page.includes("+386 68 663 410"));
   assert.ok(page.includes("Call Tim"));
   assert.ok(page.includes("Tim anrufen"));
-  assert.ok(css.includes(".founderContact{"));
+  assert.ok(page.includes('id="founder-title"'));
+  assert.ok(css.includes(".contact {"));
 });
 
-test("About headings use the site's display font and the example is labeled accurately", () => {
-  assert.ok(css.includes(".heroTitle,.sectionTitle{font-family:var(--font-gfs-didot)"));
-  assert.ok(css.includes(".handoverGrid h3{font-family:var(--font-gfs-didot)"));
-  assert.ok(!css.includes("--font-display"));
+test("About follows the homepage layout and the example is labeled accurately", () => {
+  assert.ok(page.includes('import h from "../HomeLandingPage.module.css"'));
+  assert.ok(page.includes("<ClosingCta"));
+  assert.equal((page.match(/<h1\b/g) ?? []).length, 1);
+  assert.ok(css.includes("font-family: var(--font-gfs-didot)"));
   assert.ok(page.includes("Illustrative handover · not a client case"));
   assert.ok(page.includes("Beispielhafte Übergabe · kein Kundenfall"));
   assert.ok(page.includes("your team still needs to confirm"));

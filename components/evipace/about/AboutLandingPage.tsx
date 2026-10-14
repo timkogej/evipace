@@ -1,9 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ButtonLink } from "../ButtonLink";
-import { evipaceImages } from "@/lib/evipace-images";
 import { publicContactEmail } from "@/lib/company-info";
-import styles from "./AboutLandingPage.module.css";
+import h from "../HomeLandingPage.module.css";
+import { ClosingCta } from "../home/ClosingCta";
+import { RevealOnView } from "../home/RevealOnView";
+import { ScrollProgress } from "../home/ScrollProgress";
+import { TrustIllustration } from "../home/TrustIllustration";
+import a from "./AboutLandingPage.module.css";
 
 type Locale = "en" | "de";
 
@@ -116,154 +118,182 @@ const copy = {
   }
 } as const;
 
+const forwardLabel: Record<Locale, string> = {
+  en: "Forward your request",
+  de: "Anfrage weiterleiten"
+};
+
+const artLabel: Record<Locale, string> = {
+  en: "Illustration: a folder, a document and an approval mark",
+  de: "Illustration: eine Mappe, ein Dokument und ein Freigabezeichen"
+};
+
+/**
+ * About, in the homepage's centred layout. The copy above is unchanged; the
+ * page reuses the homepage styles (tokens, type, sections, closing CTA) and
+ * only adds the founder card, the service links and the handover card.
+ */
 export function AboutLandingPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   const prefix = `/${locale}`;
   const resourcesHref = locale === "de" ? "/de/ressourcen" : "/en/resources";
+  const quoteWords = c.whyQuote.split(" ");
 
   return (
-    <main className={styles.page}>
-      <section className={styles.hero} aria-labelledby="about-title">
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>{c.heroLabel}</p>
-          <h1 id="about-title" className={styles.heroTitle}>{c.heroTitle}</h1>
-          <p className={styles.lead}>{c.heroBody}</p>
-          <div className={styles.heroActions}>
-            <a href="#why" className={styles.textLink}>{c.heroAction} <span aria-hidden="true">↗</span></a>
-            <Link href={`${prefix}/methodology`} className={styles.textLink}>{c.methodology} <span aria-hidden="true">↗</span></Link>
-          </div>
-        </div>
-        <div className={styles.heroPhoto}>
-          <Image
-            src="/images/evipace/about/hero-team-review.png"
-            alt=""
-            fill
-            priority
-            quality={88}
-            sizes="(min-width: 900px) 48vw, 100vw"
-            className={styles.heroImage}
-          />
-        </div>
-      </section>
-
-      <section id="why" className={styles.why} aria-labelledby="why-title">
-        <div className={styles.shell}>
-          <div className={styles.whyGrid}>
-            <div className={styles.whyCopy}>
-              <p className={styles.eyebrow}>{c.whyLabel}</p>
-              <h2 id="why-title" className={styles.sectionTitle}>{c.whyTitle}</h2>
-              <p className={styles.body}>{c.whyBody}</p>
-              <p className={styles.quote}>{c.whyQuote}</p>
-            </div>
-            <div className={styles.whyPhoto}>
-              <Image
-                src="/images/evipace/about/focused-work-sunlit-office.png"
-                alt=""
-                fill
-                quality={88}
-                sizes="(min-width: 700px) 46vw, 100vw"
-                className={styles.whyImage}
-              />
-              <span className={styles.photoAccent} aria-hidden="true" />
+    <main className={`${h.page} ${a.page}`} data-locale={locale}>
+      <section aria-labelledby="about-title" className={`${h.hero} ${h.pageHero}`}>
+        <div className={`${h.shell} ${h.heroGrid}`}>
+          <div className={h.heroCopy}>
+            <p className={h.eyebrow}>{c.heroLabel}</p>
+            <h1 className={`${h.display} ${a.title}`} id="about-title">{c.heroTitle}</h1>
+            <p className={h.heroBody}>{c.heroBody}</p>
+            <div className={h.actions}>
+              <a className={h.jumpLink} href="#why">{c.heroAction}</a>
+              <Link className={h.textLink} href={`${prefix}/methodology`}>
+                {c.methodology}<span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.approach} aria-labelledby="approach-title">
-        <div className={styles.shell}>
-          <div className={styles.approachHead}>
-            <div><p className={styles.eyebrow}>{c.approachLabel}</p><h2 id="approach-title" className={styles.sectionTitle}>{c.approachTitle}</h2></div>
-            <p className={styles.body}>{c.approachIntro}</p>
-          </div>
-          <div className={styles.approachRows}>
-            {c.approachItems.map(([title, body], index) => (
-              <div className={styles.approachRow} key={title}>
-                <span className={styles.rowNumber} aria-hidden="true">0{index + 1}</span>
-                <h3>{title}</h3><p>{body}</p>
-              </div>
+      <section aria-labelledby="why-title" className={`${h.section} ${a.anchored}`} id="why">
+        <RevealOnView className={h.shell}>
+          <header className={h.sectionHead}>
+            <p className={h.eyebrow}>{c.whyLabel}</p>
+            <h2 className={h.heading} id="why-title">{c.whyTitle}</h2>
+            <p className={h.lead}>{c.whyBody}</p>
+          </header>
+        </RevealOnView>
+        <ScrollProgress className={h.shell}>
+          <p className={`${h.statement} ${a.quote}`} style={{ "--n": quoteWords.length } as React.CSSProperties}>
+            {quoteWords.map((word, index) => (
+              <span className={h.word} key={`${index}-${word}`} style={{ "--i": index } as React.CSSProperties}>
+                {word}{" "}
+              </span>
             ))}
-          </div>
-        </div>
+          </p>
+        </ScrollProgress>
       </section>
 
-      <section className={styles.founder} aria-labelledby="founder-title">
-        <div className={`${styles.shell} ${styles.founderInner}`}>
-          <div className={styles.founderCopy}>
-            <p className={styles.eyebrow}>{c.founderLabel}</p>
-            <h2 id="founder-title" className={styles.sectionTitle}>{c.founderTitle}</h2>
-            <p>{c.founderBody}</p>
-            <p className={styles.founderNote}>{c.founderNote}</p>
-          </div>
-          <aside className={styles.founderContact} aria-label={c.founderContact}>
-            <p className={styles.contactLabel}>{c.founderContact}</p>
-            <p className={styles.contactName}>Tim Kogej</p>
-            <p className={styles.contactRole}>{c.founderRole}</p>
-            <a className={styles.callButton} href="tel:+38668663410">
-              <span>{c.founderCall}</span><span aria-hidden="true">↗</span>
-            </a>
-            <a className={styles.phoneNumber} href="tel:+38668663410">+386 68 663 410</a>
-          </aside>
-        </div>
+      <section aria-labelledby="approach-title" className={`${h.section} ${h.tinted}`}>
+        <RevealOnView className={h.shell}>
+          <header className={h.sectionHead}>
+            <p className={h.eyebrow}>{c.approachLabel}</p>
+            <h2 className={h.heading} id="approach-title">{c.approachTitle}</h2>
+            <p className={h.lead}>{c.approachIntro}</p>
+          </header>
+          <ol className={h.steps}>
+            {c.approachItems.map(([title, body], index) => (
+              <li className={h.step} key={title} style={{ "--i": index } as React.CSSProperties}>
+                <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
+                <h3 className={h.cardTitle}>{title}</h3>
+                <p>{body}</p>
+              </li>
+            ))}
+          </ol>
+        </RevealOnView>
       </section>
 
-      <section className={styles.services} aria-labelledby="services-title">
-        <div className={styles.shell}>
-          <div className={styles.servicesHead}>
-            <div><p className={styles.eyebrow}>{c.servicesLabel}</p><h2 id="services-title" className={styles.sectionTitle}>{c.servicesTitle}</h2></div>
-            <p className={styles.body}>{c.servicesIntro}</p>
-          </div>
-          <div className={styles.serviceGrid}>
-            {c.serviceLinks.map(([title, href]) => <Link className={styles.serviceLink} href={href} key={href}><span>{title}</span><span aria-hidden="true">↗</span></Link>)}
-          </div>
-          <aside className={styles.handover} aria-label={c.handoverLabel}>
-            <p className={styles.eyebrow}>{c.handoverLabel}</p>
-            <div className={styles.handoverGrid}>
-              <h3>{c.handoverTitle}</h3>
-              <p>{c.handoverBody}</p>
+      <section aria-labelledby="founder-title" className={h.section}>
+        <RevealOnView className={h.shell}>
+          <header className={h.sectionHead}>
+            <p className={h.eyebrow}>{c.founderLabel}</p>
+            <h2 className={h.heading} id="founder-title">{c.founderTitle}</h2>
+          </header>
+          <div className={a.founder}>
+            <div className={a.founderCopy}>
+              <p>{c.founderBody}</p>
+              <p className={a.founderNote}>{c.founderNote}</p>
             </div>
+            <aside aria-label={c.founderContact} className={a.contact}>
+              <p className={a.contactLabel}>{c.founderContact}</p>
+              <p className={a.contactName}>Tim Kogej</p>
+              <p className={a.contactRole}>{c.founderRole}</p>
+              <a className={h.pillButton} href="tel:+38668663410">
+                {c.founderCall}
+                <span aria-hidden="true" className={h.pillArrow}>→</span>
+              </a>
+              <a className={a.phone} href="tel:+38668663410">+386 68 663 410</a>
+            </aside>
+          </div>
+        </RevealOnView>
+      </section>
+
+      <section aria-labelledby="services-title" className={`${h.section} ${h.tinted}`}>
+        <RevealOnView className={h.shell}>
+          <header className={h.sectionHead}>
+            <p className={h.eyebrow}>{c.servicesLabel}</p>
+            <h2 className={h.heading} id="services-title">{c.servicesTitle}</h2>
+            <p className={h.lead}>{c.servicesIntro}</p>
+          </header>
+          <ul className={h.cards}>
+            {c.serviceLinks.map(([title, href], index) => (
+              <li key={href} style={{ "--i": index } as React.CSSProperties}>
+                <Link className={a.serviceLink} href={href}>
+                  <span>{title}</span>
+                  <span aria-hidden="true" className={a.serviceArrow}>→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <aside aria-label={c.handoverLabel} className={a.handover}>
+            <span className={h.badge}>{c.handoverLabel}</span>
+            <h3 className={a.handoverTitle}>{c.handoverTitle}</h3>
+            <p>{c.handoverBody}</p>
           </aside>
-        </div>
+        </RevealOnView>
       </section>
 
-      <section className={styles.manufacturing} aria-labelledby="manufacturing-title">
-        <Image src={evipaceImages.industrialBreak.src} alt="" fill sizes="100vw" className={styles.manufacturingImage} quality={88} />
-        <div className={styles.manufacturingShade} aria-hidden="true" />
-        <div className={`${styles.shell} ${styles.manufacturingInner}`}>
-          <p className={styles.eyebrow}>{c.manufacturingLabel}</p>
-          <h2 id="manufacturing-title" className={styles.sectionTitle}>{c.manufacturingTitle}</h2>
-          <p>{c.manufacturingBody}</p>
-        </div>
+      <section aria-labelledby="manufacturing-title" className={`${h.section} ${a.dark}`}>
+        <RevealOnView className={h.shell}>
+          <header className={h.sectionHead}>
+            <p className={h.eyebrow}>{c.manufacturingLabel}</p>
+            <h2 className={h.heading} id="manufacturing-title">{c.manufacturingTitle}</h2>
+            <p className={h.lead}>{c.manufacturingBody}</p>
+          </header>
+        </RevealOnView>
       </section>
 
-      <section className={styles.trust} aria-labelledby="trust-title">
-        <div className={styles.shell}>
-          <div className={styles.trustGrid}>
-            <div><p className={styles.eyebrow}>{c.trustLabel}</p><h2 id="trust-title" className={styles.sectionTitle}>{c.trustTitle}</h2></div>
-            <div className={styles.trustCopy}>
-              <p>{c.trustBody}</p><p className={styles.boundary}>{c.trustBoundary}</p>
-              <div className={styles.trustLinks}><Link href={`${prefix}/methodology`} className={styles.textLink}>{c.methodology} <span aria-hidden="true">↗</span></Link><Link href={resourcesHref} className={styles.textLink}>{c.resources} <span aria-hidden="true">↗</span></Link></div>
+      <section aria-labelledby="trust-title" className={h.section}>
+        <RevealOnView className={h.shell}>
+          <header className={h.sectionHead}>
+            <p className={h.eyebrow}>{c.trustLabel}</p>
+            <h2 className={h.heading} id="trust-title">{c.trustTitle}</h2>
+            <TrustIllustration label={artLabel[locale]} />
+          </header>
+          <div className={a.trust}>
+            <p>{c.trustBody}</p>
+            <p className={a.boundary}>{c.trustBoundary}</p>
+            <div className={a.links}>
+              <Link className={h.textLink} href={`${prefix}/methodology`}>
+                {c.methodology}<span aria-hidden="true">→</span>
+              </Link>
+              <Link className={h.textLink} href={resourcesHref}>
+                {c.resources}<span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
-        </div>
+        </RevealOnView>
       </section>
 
-      <section className={styles.cta} aria-labelledby="about-cta-title">
-        <div className={`${styles.shell} ${styles.ctaInner}`}>
-          <div className={styles.ctaContent}>
-            <p className={styles.eyebrow}>{c.ctaLabel}</p>
-            <h2 id="about-cta-title" className={styles.sectionTitle}>{c.ctaTitle}</h2>
+      <ClosingCta
+        body={
+          <>
             <p>{c.ctaBody}</p>
-            <ButtonLink href={`${prefix}/send-request`} variant="primary" className={styles.ctaButton}>{c.ctaButton}</ButtonLink>
-            <a className={styles.email} href={`mailto:${publicContactEmail}`}>{c.contact}: {publicContactEmail}</a>
-          </div>
-          <div className={styles.ctaArtwork} aria-hidden="true">
-            <span className={`${styles.ctaSheet} ${styles.ctaSheetBack}`} />
-            <span className={`${styles.ctaSheet} ${styles.ctaSheetMiddle}`} />
-            <span className={`${styles.ctaSheet} ${styles.ctaSheetFront}`} />
-          </div>
-        </div>
-      </section>
+            <p>
+              <a className={a.email} href={`mailto:${publicContactEmail}`}>
+                {c.contact}: {publicContactEmail}
+              </a>
+            </p>
+          </>
+        }
+        formHref={`${prefix}/send-request`}
+        formLabel={c.ctaButton}
+        forwardLabel={forwardLabel[locale]}
+        slogan={c.ctaLabel}
+        title={c.ctaTitle}
+      />
     </main>
   );
 }

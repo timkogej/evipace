@@ -331,6 +331,23 @@ Prenovljena v sredinski postavitvi domače strani; vsa besedila, seznami, poveza
 - Stari test `methodology-typography.test.mjs` (varoval je prejšnji slog) je zamenjan z `methodology-layout.test.mjs` (en `h1`, en `h2` na razdelek, vsa sidra v istem vrstnem redu, ključna besedila, pot do obrazca, brez fotografij).
 - Neuporabljeni ostanki: `MethodologyImages.tsx`, `MethodologyCtaArtwork.tsx` in pravila `.methodology-*` v `app/globals.css` (te datoteke ne spreminjam zaradi testa z zgoščeno vrednostjo).
 
+### C2c. Stran About (`/en/about`, `/de/about`)
+
+Prenovljena v sredinski postavitvi domače strani; objekt z besedili (EN in DE) je nespremenjen in vsi ključi so uporabljeni.
+
+| # | Razdelek | Postavitev |
+|---|---|---|
+| 1 | Hero | Sredinsko; »Why we exist« (skok na `#why`) in povezava na Methodology. |
+| 2 | Why Evipace exists | Sredinski naslov in besedilo; citat kot velika izjava, ki se razkriva beseda za besedo (isti mehanizem kot na domači strani). |
+| 3 | Our approach | Trije koraki kot na domači strani. |
+| 4 | The founder | Besedilo ob kartici s kontaktom (Tim Kogej, vloga, gumb za klic, telefonska številka); sidro `#founder-title` za JSON-LD je ohranjeno. |
+| 5 | What we help prepare | Šest povezav na storitve kot kartice; pod njimi ilustrativna predaja (oznaka »not a client case«). |
+| 6 | Who we work with | Temen pas z besedilom (prej fotografija). |
+| 7 | How we stay useful | Lastna SVG ilustracija, besedilo, meja (brez certificiranja), povezavi na Methodology in vire. |
+| 8 | Zaključni poziv | Ista komponenta kot na domači strani; ohranjena povezava na obrazec in alternativa po e-pošti (`hello@evipace.com`). |
+
+Fotografije (tudi ljudi) so odstranjene. Test `about-landing-page.test.mjs` je prilagojen (namesto fotografij preverja, da jih ni).
+
 ### C3. Skupni elementi
 
 | Element | Sprememba |
@@ -384,7 +401,7 @@ Status zahteve v besedilu ni omenjen. Nobena od teh trditev ni preverjena ob kod
 
 ### C7. Posnetki zaslona
 
-`docs/redesign-screenshots/`: celostranski posnetki produkcijskega builda za domačo stran, Offers in Methodology, EN in DE, pri 1440, 768 in 390 px (18 datotek). Narejeni so s Chromom prek protokola DevTools z natančno emulacijo širine; animacije so v končnem stanju.
+`docs/redesign-screenshots/`: celostranski posnetki produkcijskega builda za domačo stran, Offers, Methodology in About, EN in DE, pri 1440, 768 in 390 px (24 datotek). Narejeni so s Chromom prek protokola DevTools z natančno emulacijo širine; animacije so v končnem stanju.
 
 Popravek: prejšnji posnetki pri »390 px« so bili narejeni s Chromom brez glave, ki ima najmanjšo širino okna 500 px. Prikazovali so torej 500-px postavitev, obrezano na 390 px. Vsi so zamenjani.
 

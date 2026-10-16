@@ -1,0 +1,4 @@
+out/
+tex/
+*.blend1
+__pycache__/

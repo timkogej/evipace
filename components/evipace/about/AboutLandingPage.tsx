@@ -212,7 +212,7 @@ export function AboutLandingPage({ locale }: { locale: Locale }) {
               <p className={a.contactRole}>{c.founderRole}</p>
               <a className={h.pillButton} href="tel:+38668663410">
                 {c.founderCall}
-                <span aria-hidden="true" className={h.pillArrow}>→</span>
+                <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
               </a>
               <a className={a.phone} href="tel:+38668663410">+386 68 663 410</a>
             </aside>

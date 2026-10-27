@@ -93,7 +93,7 @@ export function PillLink({ children, href }: { children: ReactNode; href: string
   return (
     <Link className={h.pillButton} href={href}>
       {children}
-      <span aria-hidden="true" className={h.pillArrow}>→</span>
+      <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
     </Link>
   );
 }

@@ -320,6 +320,71 @@
   transform: translateX(2px);
 }
 
+.pillArrow {
+  overflow: hidden;
+}
+
+.arrowGlyph {
+  display: block;
+}
+
+/* Microinteractions: the arrow slips out to the right and comes back in from
+   the left, buttons give a little on press, link arrows nudge forward. */
+@keyframes ev-arrow-loop {
+  0% { transform: translateX(0); }
+  45% { opacity: 0; transform: translateX(140%); }
+  46% { opacity: 0; transform: translateX(-140%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pillButton:hover .arrowGlyph {
+    animation: ev-arrow-loop 520ms var(--ease-out-expo);
+  }
+
+  .pillButton {
+    transition:
+      background-color var(--ev-dur-base) ease,
+      border-color var(--ev-dur-base) ease,
+      transform var(--motion-fast) var(--ease-standard);
+  }
+
+  .pillButton:active,
+  .primaryButton:active {
+    transform: scale(0.97);
+  }
+
+  .textLink > span[aria-hidden="true"] {
+    display: inline-block;
+    transition: transform var(--ev-dur-base) var(--ease-out-expo);
+  }
+
+  .textLink:hover > span[aria-hidden="true"] {
+    transform: translateX(4px);
+  }
+
+  .card {
+    transition:
+      transform var(--motion-base) var(--ease-out-expo),
+      box-shadow var(--motion-base) var(--ease-out-expo),
+      border-color var(--motion-base) ease;
+  }
+
+  .card:hover {
+    border-color: rgba(254, 112, 1, 0.45);
+    box-shadow: 0 18px 40px rgba(23, 23, 23, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .cardIcon {
+    transition: transform var(--motion-base) var(--ease-out-expo);
+  }
+
+  .card:hover .cardIcon {
+    transform: translateY(-2px) scale(1.06);
+  }
+}
+
 /* Desk visual: taupe folder with the orange folded corner + status panel */
 .visual {
   position: relative;
@@ -1252,6 +1317,23 @@
 
 .faqItem[open] .faqIcon::after {
   transform: rotate(0deg);
+}
+
+/* The plus turns half a circle as it closes into a minus. */
+.faqIcon {
+  transition: transform var(--motion-base) var(--ease-out-expo);
+}
+
+.faqItem[open] .faqIcon {
+  transform: rotate(180deg);
+}
+
+.faqItem summary h3 {
+  transition: color var(--ev-dur-fast) ease;
+}
+
+.faqItem summary:hover h3 {
+  color: var(--ev-orange-700);
 }
 
 .faqItem > p {

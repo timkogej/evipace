@@ -37,6 +37,59 @@ html {
   overflow-x: clip; /* clip, not hidden: hidden would break position: sticky */
 }
 
+/* Disclosures (FAQs) open and close smoothly where the browser can animate
+   the content height; elsewhere they simply open as before. */
+@media (prefers-reduced-motion: no-preference) {
+  details {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    opacity: 0;
+    transition:
+      block-size var(--motion-base) var(--ease-standard),
+      opacity var(--motion-base) var(--ease-standard),
+      content-visibility var(--motion-base) allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* Page transitions (components/evipace/PageTransitions.tsx): the old page
+   fades out quickly, the new one fades in and settles up. The header has its
+   own name, so it is not part of the cross-fade and stays still. */
+.site-header {
+  view-transition-name: site-header;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+@keyframes page-out {
+  to { opacity: 0; }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: page-out var(--motion-fast) var(--ease-standard) both;
+}
+
+::view-transition-new(root) {
+  animation: page-in var(--motion-slow) var(--ease-out-expo) 60ms both;
+}
+
 /* Lenis animates the scroll itself; native smoothing would fight it. */
 html.lenis {
   scroll-behavior: auto;

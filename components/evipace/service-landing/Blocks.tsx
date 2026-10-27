@@ -258,7 +258,7 @@ export function ServiceHero({
           <div className={h.actions}>
             <Link className={h.pillButton} href={actions.primary.href}>
               {actions.primary.label}
-              <span aria-hidden="true" className={h.pillArrow}>→</span>
+              <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
             </Link>
             {actions.secondary ? (
               actions.secondary.href.startsWith("#") ? (

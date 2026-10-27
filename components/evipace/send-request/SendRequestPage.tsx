@@ -116,7 +116,7 @@ export function SendRequestPage({ children, locale }: { children: ReactNode; loc
               <div className={styles.emailAction}>
                 <a className={h.pillButton} href={mailto}>
                   {copy.emailLink}
-                  <span aria-hidden="true" className={h.pillArrow}>→</span>
+                  <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
                 </a>
               </div>
             </div>

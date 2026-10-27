@@ -29,7 +29,7 @@ export function ClosingCta({ slogan, title, body, note, id, forwardLabel, formLa
         <div className={styles.actions}>
           <a className={styles.pillButton} href={`mailto:${deskForwardEmail}`}>
             {forwardLabel}
-            <span aria-hidden="true" className={styles.pillArrow}>→</span>
+            <span aria-hidden="true" className={styles.pillArrow}><span className={styles.arrowGlyph}>→</span></span>
           </a>
           <Link className={`${styles.textLink} ${styles.textLinkOnDark}`} href={formHref}>
             {formLabel}<span aria-hidden="true">→</span>

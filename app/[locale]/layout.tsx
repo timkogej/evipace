@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ConsentManager } from "@/components/evipace/analytics/ConsentManager";
 import { Footer } from "@/components/evipace/Footer";
 import { Navbar } from "@/components/evipace/Navbar";
+import { PageTransitions } from "@/components/evipace/PageTransitions";
 import { SmoothScroll } from "@/components/evipace/SmoothScroll";
 import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
 import { SITE_NAME, SITE_URL } from "@/lib/seo/site-config";
@@ -76,6 +77,7 @@ export default async function LocaleLayout({
     >
       <body>
         <SmoothScroll />
+        <PageTransitions />
         {showSiteChrome ? <Navbar locale={activeLocale} /> : null}
         <div className="editorial-layout">{children}</div>
         {showSiteChrome ? <Footer locale={activeLocale} /> : null}

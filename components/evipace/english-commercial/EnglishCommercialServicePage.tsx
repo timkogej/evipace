@@ -82,7 +82,7 @@ function Hero({ content }: Props) {
           <div className={h.actions}>
             <Link className={h.pillButton} href={SEND_REQUEST_HREF}>
               {content.primaryCta}
-              <span aria-hidden="true" className={h.pillArrow}>→</span>
+              <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
             </Link>
             <Link className={h.textLink} href={content.secondaryCta.href}>
               {content.secondaryCta.label}<span aria-hidden="true">→</span>

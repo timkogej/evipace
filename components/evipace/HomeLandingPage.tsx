@@ -36,7 +36,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             <div className={styles.actions}>
               <a className={styles.pillButton} href={forwardHref}>
                 {copy.hero.forward}
-                <span aria-hidden="true" className={styles.pillArrow}>→</span>
+                <span aria-hidden="true" className={styles.pillArrow}><span className={styles.arrowGlyph}>→</span></span>
               </a>
               <Link className={styles.textLink} href={requestHref}>
                 {copy.hero.formLink}<span aria-hidden="true">→</span>

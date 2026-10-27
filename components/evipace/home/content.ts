@@ -10,6 +10,9 @@ export type HomeContent = {
     forward: string;
     formLink: string;
     note: string;
+    /** Line under the note offering a call; shown only when a phone number is set. */
+    callPrompt: string;
+    callLabel: string;
   };
   visual: {
     badge: string;
@@ -22,7 +25,18 @@ export type HomeContent = {
   };
   assurances: { label: string; items: string[] };
   statement: string;
-  steps: { label: string; title: string; items: Array<{ title: string; body: string }> };
+  steps: {
+    label: string;
+    title: string;
+    items: Array<{ title: string; body: string }>;
+    /** Decorative desk card beside the pinned steps; it changes with each step. */
+    scene: {
+      badge: string;
+      received: { title: string; file: string; meta: string };
+      preparing: { title: string; rows: [string, string, string] };
+      ready: { title: string; summary: string; approve: string; approved: string };
+    };
+  };
   forwardable: {
     label: string;
     title: string;
@@ -77,7 +91,9 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       body: "Got an ESG questionnaire, an EcoVadis request, a carbon data request or a customer code of conduct? Forward it. We map it, reuse the evidence you have already confirmed, ask only for what is missing, and prepare the response for you to review and approve. Forward it by email or upload it.",
       forward: "Forward your request",
       formLink: "Or send it via the form",
-      note: "You review and approve everything before anything is sent."
+      note: "You review and approve everything before anything is sent.",
+      callPrompt: "Prefer to talk first?",
+      callLabel: "Call us"
     },
     visual: {
       badge: "Illustrative example",
@@ -96,10 +112,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     assurances: {
       label: "How we work",
       items: [
-        "You approve before anything is sent",
+        "Excel, Word and portal questionnaires",
         "A person reviews every response",
         "Only evidence you have confirmed is reused",
-        "Slovenia-based"
+        "Based in Ljubljana, Slovenia"
       ]
     },
     statement:
@@ -107,6 +123,15 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     steps: {
       label: "How it works",
       title: "Three steps from request to approved response.",
+      scene: {
+        badge: "Illustrative example",
+        received: { title: "New request", file: "Customer ESG questionnaire.xlsx", meta: "Forwarded by email" },
+        preparing: {
+          title: "Preparing the answer",
+          rows: ["Questions mapped", "Confirmed evidence reused", "Missing information requested"]
+        },
+        ready: { title: "Ready for your approval", summary: "Draft response with evidence", approve: "Approve", approved: "Approved" }
+      },
       items: [
         {
           title: "Send us the request",
@@ -118,7 +143,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         },
         {
           title: "You review and approve in your Evipace portal",
-          body: "You check the prepared answer and approve it. Nothing goes to your customer without your approval."
+          body: "You check the prepared answer in your portal and approve it when it is right."
         }
       ]
     },
@@ -211,7 +236,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       items: [
         {
           title: "Who we are",
-          body: "Evipace is a Slovenia-based service for manufacturers and suppliers in European supply chains.",
+          body: "Evipace is based in Ljubljana, Slovenia, and works for manufacturers and suppliers in European supply chains.",
           link: { label: "About Evipace", href: "/en/about" }
         },
         {
@@ -221,7 +246,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         },
         {
           title: "Your approval",
-          body: "You review and approve everything before anything is sent. The final response is yours.",
+          body: "The final response is yours: you decide what goes to your customer, and you send it.",
           link: { label: "Our methodology", href: "/en/methodology" }
         }
       ]
@@ -259,7 +284,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     cta: {
       slogan: BRAND_LINE,
       title: "Have a customer request waiting?",
-      body: "Forward it today. You review and approve everything before anything is sent.",
+      body: "Forward it today, and we will tell you what we can prepare.",
       formLink: "Or send it via the form",
       offersLink: "See the ways to work with us"
     }
@@ -271,7 +296,9 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       body: "Eine ESG-Anfrage, eine EcoVadis-Anfrage, eine Anfrage zu CO2-Daten oder ein Verhaltenskodex Ihres Kunden? Leiten Sie sie weiter. Wir ordnen sie zu, nutzen bereits bestätigte Nachweise, fragen nur nach Fehlendem und bereiten die Antwort zur Prüfung und Freigabe vor. Leiten Sie sie per E-Mail weiter oder laden Sie sie hoch.",
       forward: "Anfrage weiterleiten",
       formLink: "Oder über das Formular senden",
-      note: "Sie prüfen und geben alles frei, bevor etwas versendet wird."
+      note: "Sie prüfen und geben alles frei, bevor etwas versendet wird.",
+      callPrompt: "Lieber zuerst sprechen?",
+      callLabel: "Rufen Sie uns an"
     },
     visual: {
       badge: "Beispiel",
@@ -290,10 +317,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     assurances: {
       label: "So arbeiten wir",
       items: [
-        "Sie geben frei, bevor etwas versendet wird",
+        "Fragebögen in Excel, Word und Portalen",
         "Eine Person prüft jede Antwort",
         "Nur von Ihnen bestätigte Nachweise werden wiederverwendet",
-        "Mit Sitz in Slowenien"
+        "Mit Sitz in Ljubljana, Slowenien"
       ]
     },
     statement:
@@ -301,6 +328,15 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     steps: {
       label: "So funktioniert es",
       title: "Drei Schritte von der Anfrage zur freigegebenen Antwort.",
+      scene: {
+        badge: "Beispiel",
+        received: { title: "Neue Anfrage", file: "ESG-Fragebogen des Kunden.xlsx", meta: "Per E-Mail weitergeleitet" },
+        preparing: {
+          title: "Antwort in Vorbereitung",
+          rows: ["Fragen zugeordnet", "Bestätigte Nachweise wiederverwendet", "Fehlende Angaben angefragt"]
+        },
+        ready: { title: "Bereit zur Freigabe", summary: "Antwortentwurf mit Nachweisen", approve: "Freigeben", approved: "Freigegeben" }
+      },
       items: [
         {
           title: "Senden Sie uns die Anfrage",
@@ -312,7 +348,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         },
         {
           title: "Sie prüfen und geben in Ihrem Evipace-Portal frei",
-          body: "Sie prüfen die vorbereitete Antwort und geben sie frei. Ohne Ihre Freigabe geht nichts an Ihren Kunden."
+          body: "Sie prüfen die vorbereitete Antwort in Ihrem Portal und geben sie frei, wenn sie stimmt."
         }
       ]
     },
@@ -405,7 +441,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       items: [
         {
           title: "Wer wir sind",
-          body: "Evipace ist ein Dienstleister aus Slowenien für Hersteller und Zulieferer in europäischen Lieferketten.",
+          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und arbeitet für Hersteller und Zulieferer in europäischen Lieferketten.",
           link: { label: "Über Evipace", href: "/de/about" }
         },
         {
@@ -415,7 +451,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         },
         {
           title: "Ihre Freigabe",
-          body: "Sie prüfen und geben alles frei, bevor etwas versendet wird. Die endgültige Antwort ist Ihre.",
+          body: "Die endgültige Antwort gehört Ihnen: Sie entscheiden, was an Ihren Kunden geht, und Sie versenden sie.",
           link: { label: "Unsere Methodik", href: "/de/methodology" }
         }
       ]
@@ -453,7 +489,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     cta: {
       slogan: BRAND_LINE,
       title: "Wartet eine Kundenanfrage auf Sie?",
-      body: "Leiten Sie sie heute weiter. Sie prüfen und geben alles frei, bevor etwas versendet wird.",
+      body: "Leiten Sie sie heute weiter, und wir sagen Ihnen, was wir vorbereiten können.",
       formLink: "Oder über das Formular senden",
       offersLink: "Wege der Zusammenarbeit ansehen"
     }

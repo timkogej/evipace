@@ -43,7 +43,7 @@ const deliverables = [
 
 export function Deliverables() {
   return (
-    <Band tone="tinted">
+    <Band tone="orange">
       <Head
         eyebrow="Ergebnis"
         lead="Evipace liefert nicht nur eine Liste von ESG-Themen. Das Ergebnis orientiert sich an der konkreten Anfrage Ihres Kunden."

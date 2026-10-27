@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { deskForwardEmail } from "@/lib/company-info";
+import { deskForwardEmail, phoneHref, publicPhone } from "@/lib/company-info";
 import { getOffersPath } from "@/lib/site-navigation";
 import { ClosingCta } from "./home/ClosingCta";
 import { DeskVisual } from "./home/DeskVisual";
-import { LineIcon } from "./home/LineIcon";
+import { BrandIcon } from "./home/BrandIcon";
 import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
 import { ScrollProgress } from "./home/ScrollProgress";
+import { StepsScene } from "./home/StepsScene";
 import { TrustIllustration } from "./home/TrustIllustration";
 import { homeContent, type HomeLocale } from "./home/content";
 import styles from "./HomeLandingPage.module.css";
@@ -36,13 +37,21 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             <div className={styles.actions}>
               <a className={styles.pillButton} href={forwardHref}>
                 {copy.hero.forward}
-                <span aria-hidden="true" className={styles.pillArrow}>→</span>
+                <span aria-hidden="true" className={styles.pillArrow}><span className={styles.arrowGlyph}>→</span></span>
               </a>
               <Link className={styles.textLink} href={requestHref}>
                 {copy.hero.formLink}<span aria-hidden="true">→</span>
               </Link>
             </div>
             <p className={styles.heroNote}>{copy.hero.note}</p>
+            {publicPhone ? (
+              <p className={styles.heroCall}>
+                {copy.hero.callPrompt}{" "}
+                <a className={styles.textLink} href={phoneHref(publicPhone)}>
+                  {copy.hero.callLabel}: {publicPhone}
+                </a>
+              </p>
+            ) : null}
           </div>
           <DeskVisual copy={copy.visual} />
         </div>
@@ -59,22 +68,33 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
         </ul>
       </section>
 
-      <section aria-labelledby="home-steps-title" className={styles.section}>
-        <RevealOnView className={styles.shell}>
-          <header className={styles.sectionHead}>
-            <p className={styles.eyebrow}>{copy.steps.label}</p>
-            <h2 className={styles.heading} id="home-steps-title">{copy.steps.title}</h2>
-          </header>
-          <ol className={styles.steps}>
-            {copy.steps.items.map((step, index) => (
-              <li className={styles.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
-                <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
-                <h3 className={styles.cardTitle}>{step.title}</h3>
-                <p>{step.body}</p>
-              </li>
-            ))}
-          </ol>
-        </RevealOnView>
+      {/* Pinned on large screens: the section holds still while the three
+          steps light up in turn and the orange track fills between them. */}
+      <section aria-labelledby="home-steps-title" className={`${styles.section} ${styles.stepsSection}`}>
+        <ScrollProgress className={styles.stepsPin} pin>
+          <div className={styles.stepsSticky}>
+            <div className={styles.shell}>
+              <RevealOnView>
+                <header className={styles.splitHead}>
+                  <div>
+                    <p className={styles.eyebrow}>{copy.steps.label}</p>
+                    <h2 className={styles.heading} id="home-steps-title">{copy.steps.title}</h2>
+                  </div>
+                  <StepsScene scene={copy.steps.scene} />
+                </header>
+              </RevealOnView>
+              <ol className={styles.steps}>
+                {copy.steps.items.map((step, index) => (
+                  <li className={styles.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
+                    <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
+                    <h3 className={styles.cardTitle}>{step.title}</h3>
+                    <p>{step.body}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </ScrollProgress>
       </section>
 
       <section aria-label={copy.statement} className={styles.statementSection}>
@@ -95,35 +115,39 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
 
       <section
         aria-labelledby="home-forwardable-title"
-        className={`${styles.section} ${styles.tinted}`}
+        className={`${styles.section} ${styles.orangeBand}`}
         id={locale === "de" ? "leistungen" : "services"}
       >
         <RevealOnView className={styles.shell}>
-          <header className={styles.sectionHead}>
-            <p className={styles.eyebrow}>{copy.forwardable.label}</p>
-            <h2 className={styles.heading} id="home-forwardable-title">{copy.forwardable.title}</h2>
-            <p className={styles.lead}>{copy.forwardable.intro}</p>
+          {/* Title on the left, intro and link on the right, cards below. */}
+          <header className={styles.splitHead}>
+            <div>
+              <p className={styles.eyebrow}>{copy.forwardable.label}</p>
+              <h2 className={styles.heading} id="home-forwardable-title">{copy.forwardable.title}</h2>
+            </div>
+            <div className={styles.splitAside}>
+              <p className={styles.lead}>{copy.forwardable.intro}</p>
+              <Link className={styles.textLink} href={offersHref}>
+                {copy.forwardable.link}<span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </header>
           <ul className={styles.cards}>
             {copy.forwardable.items.map((item, index) => (
               <li className={styles.card} key={item.title} style={{ "--i": index } as React.CSSProperties}>
-                <LineIcon className={styles.cardIcon} name={item.icon} />
+                <BrandIcon className={styles.cardIcon} name={item.icon} />
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p>{item.body}</p>
               </li>
             ))}
           </ul>
-          <div className={styles.sectionFoot}>
-            <Link className={styles.textLink} href={offersHref}>
-              {copy.forwardable.link}<span aria-hidden="true">→</span>
-            </Link>
-          </div>
         </RevealOnView>
       </section>
 
+      {/* Copy on the left, the evidence folder on the right. */}
       <section aria-labelledby="home-reuse-title" className={styles.section}>
-        <RevealOnView className={styles.shell}>
-          <header className={styles.sectionHead}>
+        <RevealOnView className={`${styles.shell} ${styles.splitSection}`}>
+          <header className={styles.splitCopy}>
             <p className={styles.eyebrow}>{copy.reuse.label}</p>
             <h2 className={styles.heading} id="home-reuse-title">{copy.reuse.title}</h2>
             <p className={styles.lead}>{copy.reuse.body}</p>
@@ -132,6 +156,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
         </RevealOnView>
       </section>
 
+      {/* Mirrored: the prepared response on the left, copy on the right. */}
       <section aria-labelledby="home-example-title" className={styles.section}>
         <RevealOnView className={`${styles.shell} ${styles.exampleGrid}`}>
           <div>
@@ -149,30 +174,34 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               ))}
             </div>
           </div>
-          <figure className={styles.exampleCard}>
-            <figcaption className={styles.exampleHead}>
-              <span className={styles.panelTitle}>{copy.example.cardTitle}</span>
-              <span className={styles.badge}>{copy.example.badge}</span>
-            </figcaption>
-            <dl className={styles.exampleRows}>
-              {copy.example.rows.map(([term, description]) => (
-                <div className={styles.exampleRow} key={term}>
-                  <dt>{term}</dt>
-                  <dd>{description}</dd>
-                </div>
-              ))}
-            </dl>
-            <p className={styles.exampleStatus}>
-              <span aria-hidden="true" className={styles.dot} data-tone="wait" />
-              {copy.example.status}
-            </p>
-          </figure>
+          {/* The draft fills in row by row as it scrolls into view. */}
+          <ScrollProgress className={styles.exampleStage}>
+            <figure className={styles.exampleCard}>
+              <figcaption className={styles.exampleHead}>
+                <span className={styles.panelTitle}>{copy.example.cardTitle}</span>
+                <span className={styles.badge}>{copy.example.badge}</span>
+              </figcaption>
+              <dl className={styles.exampleRows}>
+                {copy.example.rows.map(([term, description], index) => (
+                  <div className={styles.exampleRow} key={term} style={{ "--i": index } as React.CSSProperties}>
+                    <dt>{term}</dt>
+                    <dd>{description}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className={styles.exampleStatus}>
+                <span aria-hidden="true" className={styles.dot} data-tone="wait" />
+                {copy.example.status}
+              </p>
+            </figure>
+          </ScrollProgress>
         </RevealOnView>
       </section>
 
       <section aria-labelledby="home-trust-title" className={`${styles.section} ${styles.tinted}`}>
-        <RevealOnView className={styles.shell}>
-          <header className={styles.sectionHead}>
+        {/* Title and illustration on the left, the three answers as rows on the right. */}
+        <RevealOnView className={`${styles.shell} ${styles.trustGrid}`}>
+          <header className={styles.splitCopy}>
             <p className={styles.eyebrow}>{copy.trust.label}</p>
             <h2 className={styles.heading} id="home-trust-title">{copy.trust.title}</h2>
             <TrustIllustration label={copy.trust.illustrationLabel} />

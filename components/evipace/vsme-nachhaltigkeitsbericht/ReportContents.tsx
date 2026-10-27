@@ -70,7 +70,7 @@ const categories = [
 
 export function ReportContents() {
   return (
-    <Band tone="tinted">
+    <Band tone="orange">
       <Head
         eyebrow="Berichtsstruktur"
         lead="Der freiwillige europäische Berichtsrahmen ordnet Nachhaltigkeitsinformationen in eine klare Struktur. Dabei geht es nicht nur um CO₂. Umwelt-, Sozial- und Governance-Themen werden in einem gemeinsamen Berichtsrahmen zusammengeführt."

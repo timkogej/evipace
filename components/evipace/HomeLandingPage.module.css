@@ -8,7 +8,9 @@
   --ev-orange-700: #b44d00;
   --ev-orange-800: #8f3d00;
   --ev-orange-100: #ffe6d1;
-  --ev-offwhite: #f6f2ec;
+  /* Neutral light grey for small fills (badges, table heads, panels).
+     Section backgrounds are white; the site no longer uses beige. */
+  --ev-soft: #f5f5f5;
   --ev-taupe: #d8d0c7;
   --ev-charcoal: #171717;
   --ev-white: #ffffff;
@@ -27,9 +29,10 @@
   --ev-r-sm: 8px;
   --ev-r-md: 12px;
   --ev-r-lg: 16px;
-  --ev-dur-fast: 160ms;
-  --ev-dur-base: 200ms;
-  --ev-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Mapped to the site-wide motion tokens in app/globals.css. */
+  --ev-dur-fast: var(--motion-fast);
+  --ev-dur-base: var(--motion-base);
+  --ev-ease: var(--ease-standard);
   --gutter: var(--section-x, clamp(1.25rem, 3vw, 3rem));
   --section-y: clamp(4rem, 8vw, 8rem);
 }
@@ -60,6 +63,13 @@
   overflow-wrap: break-word;
 }
 
+/* Reading size: 17px body copy with an easy line height. Component rules
+   (cards, tables, labels) still set their own sizes on top of this. */
+.page :where(p, li, dd) {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
 .page[data-locale="de"] :where(h2, h3, h4, summary, dd) {
   hyphens: auto;
 }
@@ -74,7 +84,7 @@
 .eyebrow {
   margin: 0;
   color: var(--ev-orange-700);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1.5;
@@ -106,14 +116,14 @@
 .heading {
   max-width: 22ch;
   margin-top: var(--ev-s-4);
-  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  font-size: clamp(2.25rem, 4.2vw, 3.875rem);
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 .page[data-locale="de"] .heading {
   max-width: 26ch;
-  font-size: clamp(1.8rem, 3.2vw, 3.1rem);
+  font-size: clamp(1.95rem, 3.6vw, 3.4rem);
 }
 
 .lead,
@@ -121,7 +131,7 @@
   max-width: 38rem;
   margin: var(--ev-s-5) 0 0;
   color: var(--ev-ink-2);
-  font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+  font-size: clamp(1.125rem, 1.4vw, 1.3125rem);
   line-height: 1.6;
   text-wrap: pretty;
 }
@@ -173,7 +183,7 @@
   gap: var(--ev-s-2);
   margin-top: var(--ev-s-3);
   color: var(--ev-charcoal);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
   text-decoration: underline;
@@ -189,7 +199,7 @@
 
 /* Hero */
 .hero {
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
   padding-block: calc(5rem + clamp(2rem, 3vw, 2.75rem)) clamp(3.5rem, 7vw, 7rem);
 }
 
@@ -260,10 +270,22 @@
   margin-top: var(--ev-s-3);
 }
 
+/* "Prefer to talk first? Book a call" under the hero note. */
+.heroCall {
+  margin: var(--ev-s-2) 0 0;
+  color: var(--ev-ink-2);
+  font-size: 1rem;
+}
+
+.heroCall .textLink {
+  min-height: 0;
+  margin-top: 0;
+}
+
 .heroNote {
   margin: var(--ev-s-4) 0 0;
   color: var(--ev-ink-2);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -317,6 +339,77 @@
 
 .pillButton:hover .pillArrow {
   transform: translateX(2px);
+}
+
+.pillArrow {
+  overflow: hidden;
+}
+
+.arrowGlyph {
+  display: block;
+}
+
+/* Microinteractions: the arrow slips out to the right and comes back in from
+   the left, buttons give a little on press, link arrows nudge forward. */
+@keyframes ev-arrow-loop {
+  0% { transform: translateX(0); }
+  45% { opacity: 0; transform: translateX(140%); }
+  46% { opacity: 0; transform: translateX(-140%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pillButton:hover .arrowGlyph {
+    animation: ev-arrow-loop 520ms var(--ease-out-expo);
+  }
+
+  .pillButton {
+    transition:
+      background-color var(--ev-dur-base) ease,
+      border-color var(--ev-dur-base) ease,
+      transform var(--motion-fast) var(--ease-standard);
+  }
+
+  .pillButton:active,
+  .primaryButton:active {
+    transform: scale(0.97);
+  }
+
+  .textLink > span[aria-hidden="true"] {
+    display: inline-block;
+    transition: transform var(--ev-dur-base) var(--ease-out-expo);
+  }
+
+  .textLink:hover > span[aria-hidden="true"] {
+    transform: translateX(4px);
+  }
+
+  .card {
+    transition:
+      transform var(--motion-base) var(--ease-out-expo),
+      box-shadow var(--motion-base) var(--ease-out-expo),
+      border-color var(--motion-base) ease;
+  }
+
+  .card:hover {
+    border-color: rgba(254, 112, 1, 0.45);
+    box-shadow: 0 18px 40px rgba(23, 23, 23, 0.08);
+    transform: translateY(-4px);
+  }
+
+  /* Brand icons: the page lifts and the one behind it fans out. */
+  .iconBack,
+  .iconFront {
+    transition: transform var(--motion-slow) var(--ease-out-expo);
+  }
+
+  .card:hover .iconBack {
+    transform: rotate(-16deg) translate(-3px, 1px);
+  }
+
+  .card:hover .iconFront {
+    transform: translateY(-3px);
+  }
 }
 
 /* Desk visual: taupe folder with the orange folded corner + status panel */
@@ -421,7 +514,7 @@
 
 .badge {
   border-radius: 999px;
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: 0.3rem 0.7rem;
   color: var(--ev-orange-700);
   font-size: 0.7rem;
@@ -631,7 +724,98 @@
 }
 
 .tinted {
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
+}
+
+/* The one orange section on a page. Text on it is charcoal (about 7:1 on
+   brand orange); cards stay white. Where the browser supports scroll-driven
+   animations the background blends in from white as the section arrives and
+   back to white as it leaves; elsewhere it is simply orange. */
+.orangeBand {
+  background: var(--ev-orange-500);
+}
+
+.orangeBand :is(.eyebrow, .lead, .textLink) {
+  color: var(--ev-charcoal);
+}
+
+.orangeBand .textLink {
+  text-decoration-color: rgba(23, 23, 23, 0.45);
+}
+
+.orangeBand .textLink:hover {
+  color: var(--ev-charcoal);
+  text-decoration-color: currentColor;
+}
+
+/* Cards lift with a charcoal edge here; an orange edge would vanish. */
+.orangeBand .card:hover {
+  border-color: var(--ev-charcoal);
+}
+
+/* Copy sitting straight on orange is charcoal: the greys and dark orange
+   used on white fall below readable contrast here. */
+/* Doubled class: beats utility-colour overrides inside resource skins. */
+.orangeBand.orangeBand :is(p, li, dd, blockquote, [class*="accent"], [class*="Accent"]),
+.page:not(:has(.orangeBand)) .orangePanel :is(blockquote, [class*="accent"], [class*="Note"]) {
+  color: var(--ev-charcoal);
+}
+
+/* Orange buttons would vanish on orange, so they turn charcoal. */
+.orangeBand :is(.pillButton, .primaryButton) {
+  border-color: var(--ev-charcoal);
+  background: var(--ev-charcoal);
+  color: var(--ev-white);
+}
+
+.orangeBand :is(.pillButton, .primaryButton):hover {
+  border-color: #000;
+  background: #000;
+}
+
+/* Article pages: the call-to-action box is the orange accent, but only when
+   the page has no orange section of its own (one orange block per page). */
+.page:not(:has(.orangeBand)) .orangePanel {
+  border-color: var(--ev-orange-500);
+  background: var(--ev-orange-500);
+  color: var(--ev-charcoal);
+}
+
+.page:not(:has(.orangeBand)) .orangePanel :is(.eyebrow, h2, p, li, .textLink) {
+  color: var(--ev-charcoal);
+}
+
+.page:not(:has(.orangeBand)) .orangePanel :is(.pillButton, .primaryButton) {
+  border-color: var(--ev-charcoal);
+  background: var(--ev-charcoal);
+  color: var(--ev-white);
+}
+
+@keyframes ev-orange-band {
+  0%,
+  100% {
+    background-color: var(--ev-white);
+  }
+
+  22%,
+  78% {
+    background-color: var(--ev-orange-500);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .orangeBand {
+      animation: ev-orange-band linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+/* In-page anchors (#services / #leistungen) clear the fixed header. */
+.page section[id] {
+  scroll-margin-top: 5rem;
 }
 
 .sectionHead {
@@ -640,6 +824,92 @@
   align-items: center;
   margin-bottom: var(--ev-s-7);
   text-align: center;
+}
+
+/* Section layouts. Sections alternate between a left-aligned split header,
+   copy beside a visual, and the mirrored version, so the page has a rhythm
+   instead of one centred heading after another. */
+.splitHead {
+  display: grid;
+  gap: var(--ev-s-5);
+  margin-bottom: var(--ev-s-7);
+}
+
+.splitHead .lead {
+  margin-top: 0;
+}
+
+.splitAside {
+  display: grid;
+  justify-items: start;
+  gap: var(--ev-s-4);
+}
+
+.splitAside .textLink {
+  margin-top: 0;
+}
+
+.splitSection,
+.trustGrid {
+  display: grid;
+  gap: var(--ev-s-7);
+  align-items: center;
+}
+
+.splitCopy .lead {
+  max-width: 34rem;
+}
+
+.trustGrid {
+  align-items: start;
+}
+
+.trustGrid .trustStage {
+  width: min(100%, 26rem);
+  margin-top: var(--ev-s-7);
+}
+
+/* In the trust grid the three answers stack as rows. */
+.trustGrid .trust {
+  gap: 0;
+}
+
+.trustGrid .trust li {
+  border-top: 1px solid var(--ev-line);
+  padding-block: var(--ev-s-6);
+}
+
+.trustGrid .trust li:first-child {
+  border-top: 2px solid var(--ev-charcoal);
+}
+
+@media (min-width: 900px) {
+  .splitHead {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+    column-gap: var(--ev-s-8);
+  }
+
+  .trustGrid .trust {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .splitSection {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--ev-s-8);
+  }
+
+  .trustGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--ev-s-8);
+  }
+
+  .trustGrid .splitCopy {
+    position: sticky;
+    top: 7rem;
+  }
 }
 
 /* Steps */
@@ -685,7 +955,7 @@
   margin: var(--ev-s-3) 0 0;
   padding: 0;
   list-style: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -724,20 +994,28 @@
 
 .cardIcon {
   display: block;
-  width: 2rem;
-  height: 2rem;
+  overflow: visible;
+  width: 3rem;
+  height: 3rem;
   margin-bottom: var(--ev-s-4);
   color: var(--ev-orange-700);
 }
 
+/* The second page peeks out behind the brand icon's sheet. */
+.iconBack {
+  transform: rotate(-8deg);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
 .card .cardTitle {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
 }
 
 .card p {
   margin: var(--ev-s-2) 0 0;
   color: var(--ev-ink-2);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -836,11 +1114,126 @@
 }
 
 /* Trust illustration */
+.trustStage {
+  width: min(100%, 20rem);
+  margin-top: var(--ev-s-6);
+}
+
 .trustArt {
   display: block;
-  width: min(100%, 20rem);
+  width: 100%;
   height: auto;
-  margin-top: var(--ev-s-6);
+}
+
+/* Scroll-linked drawing. Each part has its own 0..1 --t from the stage's --p;
+   with no --p every part is in its finished state. */
+.trustDoc {
+  --t: clamp(0, calc(var(--p, 1) * 4 - 0.4), 1);
+  opacity: var(--t);
+  transform: translateY(calc((1 - var(--t)) * -26px));
+}
+
+.trustLine {
+  --t: clamp(0, calc(var(--p, 1) * 8 - 2.6 - var(--i) * 0.7), 1);
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--t));
+}
+
+.trustSeal {
+  --t: clamp(0, calc(var(--p, 1) * 4 - 2), 1);
+  opacity: var(--t);
+  transform: scale(calc(0.6 + var(--t) * 0.4));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.trustTick {
+  --t: clamp(0, calc(var(--p, 1) * 4 - 2.7), 1);
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--t));
+}
+
+/* Example draft: rows are written in one after another as the card scrolls
+   in, then the status asks for approval. */
+.exampleStage {
+  min-width: 0;
+}
+
+.exampleRow {
+  --t: clamp(0, calc(var(--p, 1) * 7.5 - 0.8 - var(--i) * 1.1), 1);
+}
+
+.exampleRow dt {
+  opacity: calc(0.25 + var(--t) * 0.75);
+}
+
+.exampleRow dd {
+  clip-path: inset(0 calc((1 - var(--t)) * 100%) 0 0);
+}
+
+.exampleStatus {
+  --t: clamp(0, calc(var(--p, 1) * 8 - 5.8), 1);
+  opacity: calc(0.3 + var(--t) * 0.7);
+}
+
+.exampleStatus .dot {
+  box-shadow: 0 0 0 calc(var(--t) * 0.3rem) rgba(254, 112, 1, 0.22);
+}
+
+/* How it works (pinned on the homepage, .stepsTrack elsewhere). Each step
+   has its own 0..1 --t: the track above it fills
+   orange, its number turns orange and the copy comes up to full strength.
+   With no --p (no JS, reduced motion) every step shows finished. */
+:is(.stepsPin, .stepsTrack) .step {
+  /* --n is the number of steps (3 unless the list says otherwise). */
+  --t: clamp(0, calc(var(--p, 1) * (var(--n, 3) * 1.05 + 0.25) - var(--i) * 1.05 - 0.15), 1);
+  position: relative;
+  border-top-color: var(--ev-line);
+}
+
+:is(.stepsPin, .stepsTrack) .step::before {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ev-orange-500);
+  transform: scaleX(var(--t));
+  transform-origin: left;
+  content: "";
+}
+
+:is(.stepsPin, .stepsTrack) .stepNumber {
+  background: color-mix(in srgb, var(--ev-orange-500) calc(var(--t) * 100%), var(--ev-orange-100));
+  color: color-mix(in srgb, var(--ev-white) calc(var(--t) * 100%), var(--ev-orange-800));
+  transform: scale(calc(0.9 + var(--t) * 0.1));
+}
+
+:is(.stepsPin, .stepsTrack) .step > :not(.stepNumber) {
+  opacity: calc(0.3 + var(--t) * 0.7);
+  transform: translateY(calc((1 - var(--t)) * 0.75rem));
+}
+
+/* The pin itself: large screens with room to hold the whole section, motion
+   allowed and the script running. Elsewhere the steps fill as they scroll by. */
+@media (min-width: 900px) and (min-height: 620px) and (prefers-reduced-motion: no-preference) {
+  .stepsSection:has(.stepsPin[data-progress="on"]) {
+    padding-block: 0;
+  }
+
+  .stepsPin[data-progress="on"] {
+    height: 260vh;
+  }
+
+  .stepsPin[data-progress="on"] .stepsSticky {
+    position: sticky;
+    top: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 5rem 2rem;
+  }
 }
 
 /* Offers page */
@@ -1014,6 +1407,18 @@
   padding: clamp(1.25rem, 2.4vw, 2rem);
 }
 
+/* Label beside value only when the card itself is wide enough; on a narrow
+   card the label sits above, so the answer never squeezes into a sliver. */
+.exampleCard {
+  container-type: inline-size;
+}
+
+@container (min-width: 34rem) {
+  .exampleRow {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
 .exampleRows {
   margin: var(--ev-s-4) 0 0;
 }
@@ -1036,7 +1441,7 @@
 
 .exampleRow dd {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -1083,6 +1488,22 @@
   text-align: center;
 }
 
+@media (min-width: 1024px) {
+  .faqGrid {
+    max-width: none;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    align-items: start;
+    gap: var(--ev-s-8);
+  }
+
+  .faqGrid > header {
+    position: sticky;
+    top: 7rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
 .faq {
   border-bottom: 1px solid var(--ev-line);
 }
@@ -1108,7 +1529,7 @@
 
 .faqItem h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -1138,6 +1559,23 @@
 
 .faqItem[open] .faqIcon::after {
   transform: rotate(0deg);
+}
+
+/* The plus turns half a circle as it closes into a minus. */
+.faqIcon {
+  transition: transform var(--motion-base) var(--ease-out-expo);
+}
+
+.faqItem[open] .faqIcon {
+  transform: rotate(180deg);
+}
+
+.faqItem summary h3 {
+  transition: color var(--ev-dur-fast) ease;
+}
+
+.faqItem summary:hover h3 {
+  color: var(--ev-orange-700);
 }
 
 .faqItem > p {
@@ -1255,26 +1693,108 @@
   opacity: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 1.3), 1);
 }
 
-/* Entrance: cards and steps follow each other once their section is in view. */
-.reveal[data-reveal] :is(.cards > li, .steps > li) {
+/* Reveal (see RevealOnView). Each block rises in as it enters the viewport;
+   blocks entering together are staggered by --rd. The attributes are removed
+   when the transition ends, so the element's own styles take over again. */
+.reveal [data-ri="pending"] {
+  opacity: 0 !important;
+  transform: translateY(var(--motion-rise)) !important;
+}
+
+.reveal [data-ri="in"] {
   transition:
-    opacity 480ms var(--ev-ease) calc(var(--i, 0) * 80ms + 120ms),
-    transform 480ms var(--ev-ease) calc(var(--i, 0) * 80ms + 120ms);
+    opacity var(--motion-slow) var(--ease-out-expo),
+    transform var(--motion-slow) var(--ease-out-expo) !important;
+  transition-delay: calc(var(--rd, 0) * var(--motion-stagger)) !important;
 }
 
-.reveal[data-reveal="pending"] :is(.cards > li, .steps > li) {
-  opacity: 0;
-  transform: translateY(18px);
+/* Headings rise out of a mask: the visible area grows upwards with the text. */
+.reveal [data-ri="pending"][data-ri-kind="heading"] {
+  clip-path: inset(100% -0.3em -0.3em -0.3em);
+  transform: translateY(0.45em) !important;
 }
 
-/* Reveal */
-.reveal[data-reveal] {
-  transition: opacity 520ms var(--ev-ease), transform 520ms var(--ev-ease);
+.reveal [data-ri="in"][data-ri-kind="heading"] {
+  clip-path: inset(-0.3em -0.3em -0.3em -0.3em);
+  transition:
+    opacity var(--motion-reveal) var(--ease-out-expo),
+    transform var(--motion-reveal) var(--ease-out-expo),
+    clip-path var(--motion-reveal) var(--ease-out-expo) !important;
 }
 
-.reveal[data-reveal="pending"] {
-  opacity: 0;
-  transform: translateY(16px);
+/* Hero intro on page load: eyebrow, title line by line, copy, actions, then
+   the desk visual. `backwards` fill only holds the start frame during the
+   delay, so nothing stays clipped or transformed afterwards. */
+@keyframes ev-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+  }
+}
+
+@keyframes ev-line-in {
+  from {
+    opacity: 0;
+    clip-path: inset(100% -0.3em -0.3em -0.3em);
+    transform: translateY(0.5em);
+  }
+
+  to {
+    clip-path: inset(-0.3em -0.3em -0.3em -0.3em);
+  }
+}
+
+@keyframes ev-stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy > * {
+    animation: ev-rise var(--motion-slow) var(--ease-out-expo) backwards;
+  }
+
+  /* Every page hero shares this: its blocks follow each other in order. */
+  .heroCopy > :nth-child(2) { animation-delay: 80ms; }
+  .heroCopy > :nth-child(3) { animation-delay: 200ms; }
+  .heroCopy > :nth-child(4) { animation-delay: 320ms; }
+  .heroCopy > :nth-child(5) { animation-delay: 420ms; }
+  .heroCopy > :nth-child(6) { animation-delay: 500ms; }
+  .heroCopy > :nth-child(7) { animation-delay: 570ms; }
+  .heroCopy > :nth-child(n + 8) { animation-delay: 630ms; }
+
+  /* Page titles (other than the homepage's line-by-line title) rise out of
+     a mask, like the section headings. */
+  .heroCopy > .display:not(.heroTitle) {
+    animation-name: ev-line-in;
+    animation-duration: 1000ms;
+  }
+
+  /* Homepage timing. */
+  .heroCopy > .eyebrow:first-child { animation-delay: 0ms; }
+  .heroCopy > .heroBody { animation-delay: 380ms; }
+  .heroCopy > .actions { animation-delay: 480ms; }
+  .heroCopy > .heroNote { animation-delay: 560ms; }
+  .heroCopy > .heroCall { animation-delay: 620ms; }
+
+  /* The title itself stays put; its lines carry the motion. */
+  .heroCopy > .heroTitle {
+    animation: none;
+  }
+
+  .heroTitle .titleLine {
+    animation: ev-line-in 1000ms var(--ease-out-expo) 90ms backwards;
+  }
+
+  .heroTitle .titleLine + .titleLine {
+    animation-delay: 210ms;
+  }
+
+  .heroGrid > .visualStage {
+    animation: ev-stage-in 1100ms var(--ease-out-expo) 620ms backwards;
+  }
 }
 
 @media (min-width: 640px) and (max-width: 899px) {
@@ -1295,9 +1815,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .exampleRow {
-    grid-template-columns: 11.5rem minmax(0, 1fr);
-  }
 
   .lanes {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1321,6 +1838,11 @@
   .exampleGrid {
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
     gap: var(--ev-s-8);
+  }
+
+  /* Mirrored: the card sits first visually; copy stays first for readers. */
+  .exampleGrid > .exampleStage {
+    order: -1;
   }
 
   .assuranceList {
@@ -1363,7 +1885,7 @@
   .compare tbody th {
     width: auto;
     border-top: 0;
-    background: var(--ev-offwhite);
+    background: var(--ev-soft);
     color: var(--ev-charcoal);
   }
 
@@ -1386,13 +1908,154 @@
     transition: none !important;
   }
 
-  .reveal[data-reveal="pending"],
-  .reveal[data-reveal="pending"] :is(.cards > li, .steps > li) {
-    opacity: 1;
-    transform: none;
-  }
-
   .primaryButton:hover {
     transform: none;
   }
+}
+
+/* Step lists on other pages fill as they scroll by, without pinning. */
+.stepsTrack {
+  display: block;
+}
+
+/* On an orange section the track and numbers fill charcoal instead. */
+.orangeBand :is(.stepsPin, .stepsTrack) .step::before {
+  background: var(--ev-charcoal);
+}
+
+.orangeBand :is(.stepsPin, .stepsTrack) .stepNumber {
+  background: color-mix(in srgb, var(--ev-charcoal) calc(var(--t) * 100%), var(--ev-white));
+  color: color-mix(in srgb, var(--ev-white) calc(var(--t) * 100%), var(--ev-charcoal));
+}
+
+/* How it works: the desk card beside the pinned steps (StepsScene). Each pane
+   has a visible window [--a, --b] on the steps' scroll progress --p; --v is
+   0..1 inside that window. With no --p only the last (approved) pane shows. */
+.scene {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .scene {
+    position: relative;
+    display: block;
+    width: min(100%, 28rem);
+    height: 14rem;
+    justify-self: end;
+  }
+}
+
+.scenePane {
+  --v: min(
+    clamp(0, calc((var(--p, 1) - var(--a)) * 14), 1),
+    clamp(0, calc((var(--b) - var(--p, 1)) * 14), 1)
+  );
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: start;
+  gap: var(--ev-s-4);
+  border: 1px solid var(--ev-line);
+  border-radius: var(--ev-r-lg);
+  background: var(--ev-white);
+  padding: var(--ev-s-5);
+  box-shadow: 0 24px 60px rgba(23, 23, 23, 0.08);
+  opacity: var(--v);
+  transform: translateY(calc((1 - var(--v)) * 14px)) scale(calc(0.97 + var(--v) * 0.03));
+}
+
+.sceneHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ev-s-3);
+}
+
+.sceneHead .panelTitle {
+  white-space: nowrap;
+}
+
+.sceneFile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ev-s-4);
+  border-top: 1px solid var(--ev-line);
+  padding-top: var(--ev-s-4);
+}
+
+/* Scene 1: the forwarded file slides in. */
+.scenePane:first-child .sceneFile {
+  --e: clamp(0, calc(var(--p, 1) * 12 - 0.3), 1);
+  opacity: var(--e);
+  transform: translateX(calc((1 - var(--e)) * -1.5rem));
+}
+
+/* Scene 2: the preparation rows are ticked one after another. */
+.sceneRows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sceneRows li {
+  --r: clamp(0, calc((var(--p, 1) - 0.4 - var(--j) * 0.07) * 18), 1);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ev-s-3);
+  border-top: 1px solid var(--ev-line);
+  padding-block: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  opacity: calc(0.45 + var(--r) * 0.55);
+}
+
+.sceneTick {
+  position: relative;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1.5px solid color-mix(in srgb, var(--ev-green) calc(var(--r) * 100%), var(--ev-taupe));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ev-green) calc(var(--r) * 100%), var(--ev-white));
+}
+
+.sceneTick::after {
+  position: absolute;
+  top: 0.18rem;
+  left: 0.38rem;
+  width: 0.28rem;
+  height: 0.52rem;
+  border: solid var(--ev-white);
+  border-width: 0 2px 2px 0;
+  opacity: var(--r);
+  transform: rotate(45deg) scale(calc(0.4 + var(--r) * 0.6));
+  content: "";
+}
+
+/* Scene 3: the approve button is pressed and turns green. */
+.sceneApprove {
+  --k: clamp(0, calc((var(--p, 1) - 0.86) * 12), 1);
+  display: inline-grid;
+  justify-self: start;
+  border-radius: var(--ev-r-sm);
+  background: color-mix(in srgb, var(--ev-green) calc(var(--k) * 100%), var(--ev-orange-500));
+  padding: 0.55rem 1rem;
+  color: var(--ev-white);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transform: scale(calc(1 - var(--k) * (1 - var(--k)) * 0.16));
+}
+
+.sceneApprove > span {
+  grid-area: 1 / 1;
+}
+
+.sceneApproveIdle {
+  opacity: calc(1 - var(--k));
+}
+
+.sceneApproveDone {
+  opacity: var(--k);
 }

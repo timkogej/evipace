@@ -46,7 +46,7 @@ const deliverables = [
 
 export function Deliverables() {
   return (
-    <Band tone="tinted">
+    <Band tone="orange">
       <Head
         eyebrow="Ergebnis"
         lead="Eine Scope-1-&-2-Berechnung sollte mehr liefern als nur eine einzelne Zahl."

@@ -245,7 +245,7 @@ export function EnglishResourceArticle({
         </div>
 
         <RevealOnView className={h.shell}>
-          <section aria-labelledby="guide-cta-title" className={r.inlineCta}>
+          <section aria-labelledby="guide-cta-title" className={`${r.inlineCta} ${h.orangePanel}`}>
             <p className={h.eyebrow}>{content.cta.eyebrow}</p>
             <h2 id="guide-cta-title">{content.cta.title}</h2>
             <p>{content.cta.body}</p>

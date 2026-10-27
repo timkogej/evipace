@@ -340,7 +340,7 @@ export function EnvironmentalPolicyGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="assessment-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+        <section aria-labelledby="assessment-title" className={`${h.section} ${h.orangeBand} ${r.skin}`}>
           <div className={h.shell}>
             <SectionHeading eyebrow="Vor dem Entwurf" id="assessment-title" title="Bevor Sie schreiben: Was existiert im Unternehmen bereits?">
               <p>Eine Environmental Policy sollte nicht mit allgemeinen Nachhaltigkeitsformulierungen beginnen, sondern mit der tatsächlichen Situation des Unternehmens.</p>

@@ -13,7 +13,6 @@ import {
   type SiteLocale
 } from "@/lib/site-navigation";
 import { BrandLogo } from "./BrandLogo";
-import { RequestButtonPapers } from "./RequestButtonPapers";
 
 type NavbarProps = { locale: SiteLocale };
 type DesktopPanel = NavigationDirectory["id"] | "language" | null;
@@ -291,16 +290,14 @@ export function Navbar({ locale }: NavbarProps) {
                 ? "page"
                 : undefined
             }
-            className="request-paper-hover group inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-4 py-2.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:border-[#e96500] hover:bg-[#e96500]"
+            className="cta-button inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-4 py-2.5 text-sm font-bold text-white transition duration-200 hover:border-[#e96500] hover:bg-[#e96500]"
             href={navigation.primaryAction.href}
             onClick={closeAll}
           >
             <span>{navigation.primaryAction.label}</span>
-            <ArrowRight
-              aria-hidden="true"
-              className="h-4 w-4 transition-transform group-hover:translate-x-1"
-            />
-            <RequestButtonPapers />
+            <span aria-hidden="true" className="cta-arrow-clip">
+              <ArrowRight className="cta-arrow h-4 w-4" />
+            </span>
           </Link>
         </div>
 

@@ -13,7 +13,8 @@ import r from "./Resource.module.css";
  */
 
 type Locale = "en" | "de";
-type Tone = "light" | "tinted" | "dark";
+/** "orange" is the one highlighted section on a page. */
+type Tone = "light" | "tinted" | "dark" | "orange";
 
 const crumbs = {
   en: { label: "Breadcrumb", home: "Home", hub: "Resources" },
@@ -93,7 +94,7 @@ export function PillLink({ children, href }: { children: ReactNode; href: string
   return (
     <Link className={h.pillButton} href={href}>
       {children}
-      <span aria-hidden="true" className={h.pillArrow}>→</span>
+      <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
     </Link>
   );
 }
@@ -124,7 +125,14 @@ export function ResourceBand({
   labelledBy?: string;
   tone?: Tone;
 }) {
-  const toneClass = tone === "tinted" ? ` ${r.tinted}` : tone === "dark" ? ` ${r.dark} ${sp.dark}` : "";
+  const toneClass =
+    tone === "tinted"
+      ? ` ${r.tinted}`
+      : tone === "dark"
+        ? ` ${r.dark} ${sp.dark}`
+        : tone === "orange"
+          ? ` ${h.orangeBand}`
+          : "";
   return (
     <section aria-labelledby={labelledBy} className={`${h.section} ${sp.anchored}${toneClass}`} id={id}>
       <RevealOnView className={h.shell}>{children}</RevealOnView>
@@ -439,7 +447,8 @@ export function GuideCta({
   title: ReactNode;
 }) {
   return (
-    <section aria-labelledby="guide-cta-title" className={r.inlineCta}>
+    // Orange when the page has no other orange section (see .orangePanel).
+    <section aria-labelledby="guide-cta-title" className={`${r.inlineCta} ${h.orangePanel}`}>
       {eyebrow ? <p className={h.eyebrow}>{eyebrow}</p> : null}
       <h2 id="guide-cta-title">{title}</h2>
       <div className={r.inlineCtaBody}>{children}</div>

@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import h from "../HomeLandingPage.module.css";
 import { ClosingCta } from "../home/ClosingCta";
 import { RevealOnView } from "../home/RevealOnView";
+import { ScrollProgress } from "../home/ScrollProgress";
 import { SourceNote } from "../trust/SourceNote";
 import { ServiceDetailAccordion } from "../service-landing/ServiceDetailAccordion";
 import { IllustrativeHandover } from "../service-landing/IllustrativeHandover";
@@ -56,9 +57,11 @@ function Band({
   children: ReactNode;
   labelledBy: string;
   id?: string;
-  tone?: "light" | "tinted" | "dark";
+  /** "orange" is the one highlighted section on a page. */
+  tone?: "light" | "tinted" | "dark" | "orange";
 }) {
-  const toneClass = tone === "tinted" ? ` ${h.tinted}` : tone === "dark" ? ` ${sp.dark}` : "";
+  const toneClass =
+    tone === "tinted" ? ` ${h.tinted}` : tone === "dark" ? ` ${sp.dark}` : tone === "orange" ? ` ${h.orangeBand}` : "";
   return (
     <section aria-labelledby={labelledBy} className={`${h.section}${toneClass}`} id={id}>
       <RevealOnView className={h.shell}>{children}</RevealOnView>
@@ -82,7 +85,7 @@ function Hero({ content }: Props) {
           <div className={h.actions}>
             <Link className={h.pillButton} href={SEND_REQUEST_HREF}>
               {content.primaryCta}
-              <span aria-hidden="true" className={h.pillArrow}>→</span>
+              <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
             </Link>
             <Link className={h.textLink} href={content.secondaryCta.href}>
               {content.secondaryCta.label}<span aria-hidden="true">→</span>
@@ -184,7 +187,7 @@ function ServiceSection({ content }: Props) {
 
 function InputsSection({ content }: Props) {
   return (
-    <Band labelledBy="inputs-title" tone="tinted">
+    <Band labelledBy="inputs-title" tone="orange">
       <Head id="inputs-title" intro={content.inputs.body} title={content.inputs.title} />
       <ul className={sp.checks}>
         {content.inputs.items.map((item) => (
@@ -202,15 +205,17 @@ function ProcessSection({ content }: Props) {
   return (
     <Band id="process" labelledBy="process-title">
       <Head id="process-title" intro={content.process.intro} title={content.process.title} />
-      <ol className={h.steps}>
-        {content.process.steps.map((step, index) => (
-          <li className={h.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
-            <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
-            <h3 className={h.cardTitle}>{step.title}</h3>
-            <p>{step.body}</p>
-          </li>
-        ))}
-      </ol>
+      <ScrollProgress className={h.stepsTrack} style={{ "--n": content.process.steps.length } as React.CSSProperties}>
+        <ol className={h.steps}>
+          {content.process.steps.map((step, index) => (
+            <li className={h.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
+              <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
+              <h3 className={h.cardTitle}>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </ScrollProgress>
     </Band>
   );
 }

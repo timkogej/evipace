@@ -365,7 +365,7 @@ export function EnglishMethodologyPage({
           eyebrow="First principle"
           heading="Our first principle: source before statement."
           id="principle"
-          tone="warm"
+          tone="orange"
         >
           <div className={m.split}>
             <Rise className={m.body}>

@@ -31,7 +31,7 @@ const deliverables = [
 
 export function Deliverables() {
   return (
-    <Band tone="tinted">
+    <Band tone="orange">
       <Head
         eyebrow="Ergebnis"
         lead="Das Ziel ist nicht noch ein zusätzliches ESG-Dokument, das intern niemand verwendet. Sie erhalten eine strukturierte Grundlage für die konkrete Anfrage Ihres Kunden."

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import h from "../HomeLandingPage.module.css";
 import { RevealOnView } from "../home/RevealOnView";
+import { ScrollProgress } from "../home/ScrollProgress";
 import sp from "./ServicePage.module.css";
 
 /**
@@ -11,7 +12,8 @@ import sp from "./ServicePage.module.css";
  * its own copy and data; these blocks only decide how it is laid out.
  */
 
-type Tone = "light" | "tinted" | "dark";
+/** "orange" is the one highlighted section on a page. */
+type Tone = "light" | "tinted" | "dark" | "orange";
 type Icon = ComponentType<SVGProps<SVGSVGElement> & { "aria-hidden"?: boolean | "true" }>;
 
 /** The page wrapper: brings the design tokens and the German type scale. */
@@ -36,7 +38,8 @@ export function Band({
   labelledBy?: string;
   tone?: Tone;
 }) {
-  const toneClass = tone === "tinted" ? ` ${h.tinted}` : tone === "dark" ? ` ${sp.dark}` : "";
+  const toneClass =
+    tone === "tinted" ? ` ${h.tinted}` : tone === "dark" ? ` ${sp.dark}` : tone === "orange" ? ` ${h.orangeBand}` : "";
   return (
     <section
       aria-label={label}
@@ -159,16 +162,19 @@ export function Steps({
   items: ReadonlyArray<{ title: string; body: ReactNode; extra?: ReactNode }>;
 }) {
   return (
-    <ol className={`${h.steps} ${sp.stepsGrid}`}>
-      {items.map((step, index) => (
-        <li className={h.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
-          <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
-          <h3 className={h.cardTitle}>{step.title}</h3>
-          <p>{step.body}</p>
-          {step.extra}
-        </li>
-      ))}
-    </ol>
+    // The track above each step fills orange as the list scrolls by.
+    <ScrollProgress className={h.stepsTrack} style={{ "--n": items.length } as React.CSSProperties}>
+      <ol className={`${h.steps} ${sp.stepsGrid}`}>
+        {items.map((step, index) => (
+          <li className={h.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
+            <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
+            <h3 className={h.cardTitle}>{step.title}</h3>
+            <p>{step.body}</p>
+            {step.extra}
+          </li>
+        ))}
+      </ol>
+    </ScrollProgress>
   );
 }
 
@@ -258,7 +264,7 @@ export function ServiceHero({
           <div className={h.actions}>
             <Link className={h.pillButton} href={actions.primary.href}>
               {actions.primary.label}
-              <span aria-hidden="true" className={h.pillArrow}>→</span>
+              <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
             </Link>
             {actions.secondary ? (
               actions.secondary.href.startsWith("#") ? (

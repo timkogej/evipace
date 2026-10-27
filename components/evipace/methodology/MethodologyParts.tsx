@@ -22,13 +22,15 @@ export function Rise({
   return <RevealOnView className={className}>{children}</RevealOnView>;
 }
 
-type Tone = "light" | "warm" | "paper" | "dark";
+type Tone = "light" | "warm" | "paper" | "dark" | "orange";
 
 const bandTone: Record<Tone, string> = {
   light: m.band,
   warm: `${m.band} ${m.bandTinted}`,
   paper: `${m.band} ${m.bandTinted}`,
-  dark: `${m.band} ${m.bandDark}`
+  dark: `${m.band} ${m.bandDark}`,
+  /** The one highlighted section on the page. */
+  orange: `${m.band} ${h.orangeBand}`
 };
 
 export function Section({

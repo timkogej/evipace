@@ -320,7 +320,7 @@
 /* Details accordion (streamlined pages) */
 .details {
   border-block: 1px solid var(--ev-line);
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
 }
 
 .details > summary {
@@ -538,7 +538,7 @@ header + .prose {
 .formulaTerm {
   min-width: 9rem;
   border-radius: var(--ev-r-md);
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: var(--ev-s-3) var(--ev-s-4);
 }
 

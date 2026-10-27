@@ -25,7 +25,18 @@ export type HomeContent = {
   };
   assurances: { label: string; items: string[] };
   statement: string;
-  steps: { label: string; title: string; items: Array<{ title: string; body: string }> };
+  steps: {
+    label: string;
+    title: string;
+    items: Array<{ title: string; body: string }>;
+    /** Decorative desk card beside the pinned steps; it changes with each step. */
+    scene: {
+      badge: string;
+      received: { title: string; file: string; meta: string };
+      preparing: { title: string; rows: [string, string, string] };
+      ready: { title: string; summary: string; approve: string; approved: string };
+    };
+  };
   forwardable: {
     label: string;
     title: string;
@@ -112,6 +123,15 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     steps: {
       label: "How it works",
       title: "Three steps from request to approved response.",
+      scene: {
+        badge: "Illustrative example",
+        received: { title: "New request", file: "Customer ESG questionnaire.xlsx", meta: "Forwarded by email" },
+        preparing: {
+          title: "Preparing the answer",
+          rows: ["Questions mapped", "Confirmed evidence reused", "Missing information requested"]
+        },
+        ready: { title: "Ready for your approval", summary: "Draft response with evidence", approve: "Approve", approved: "Approved" }
+      },
       items: [
         {
           title: "Send us the request",
@@ -308,6 +328,15 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     steps: {
       label: "So funktioniert es",
       title: "Drei Schritte von der Anfrage zur freigegebenen Antwort.",
+      scene: {
+        badge: "Beispiel",
+        received: { title: "Neue Anfrage", file: "ESG-Fragebogen des Kunden.xlsx", meta: "Per E-Mail weitergeleitet" },
+        preparing: {
+          title: "Antwort in Vorbereitung",
+          rows: ["Fragen zugeordnet", "Bestätigte Nachweise wiederverwendet", "Fehlende Angaben angefragt"]
+        },
+        ready: { title: "Bereit zur Freigabe", summary: "Antwortentwurf mit Nachweisen", approve: "Freigeben", approved: "Freigegeben" }
+      },
       items: [
         {
           title: "Senden Sie uns die Anfrage",

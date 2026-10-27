@@ -226,7 +226,7 @@ export function EsgReusableDataGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="before-after-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+        <section aria-labelledby="before-after-title" className={`${h.section} ${h.orangeBand} ${r.skin}`}>
           <div className={h.shell}>
             <SectionHeading eyebrow="Before / After" id="before-after-title" title="Was sich mit einer wiederverwendbaren Struktur verändert" />
             <div className="mt-12 grid gap-6 lg:grid-cols-2" data-before-after>

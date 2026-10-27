@@ -753,6 +753,44 @@
   border-color: var(--ev-charcoal);
 }
 
+/* Copy sitting straight on orange is charcoal: the greys and dark orange
+   used on white fall below readable contrast here. */
+/* Doubled class: beats utility-colour overrides inside resource skins. */
+.orangeBand.orangeBand :is(p, li, dd, blockquote, [class*="accent"], [class*="Accent"]),
+.page:not(:has(.orangeBand)) .orangePanel :is(blockquote, [class*="accent"], [class*="Note"]) {
+  color: var(--ev-charcoal);
+}
+
+/* Orange buttons would vanish on orange, so they turn charcoal. */
+.orangeBand :is(.pillButton, .primaryButton) {
+  border-color: var(--ev-charcoal);
+  background: var(--ev-charcoal);
+  color: var(--ev-white);
+}
+
+.orangeBand :is(.pillButton, .primaryButton):hover {
+  border-color: #000;
+  background: #000;
+}
+
+/* Article pages: the call-to-action box is the orange accent, but only when
+   the page has no orange section of its own (one orange block per page). */
+.page:not(:has(.orangeBand)) .orangePanel {
+  border-color: var(--ev-orange-500);
+  background: var(--ev-orange-500);
+  color: var(--ev-charcoal);
+}
+
+.page:not(:has(.orangeBand)) .orangePanel :is(.eyebrow, h2, p, li, .textLink) {
+  color: var(--ev-charcoal);
+}
+
+.page:not(:has(.orangeBand)) .orangePanel :is(.pillButton, .primaryButton) {
+  border-color: var(--ev-charcoal);
+  background: var(--ev-charcoal);
+  color: var(--ev-white);
+}
+
 @keyframes ev-orange-band {
   0%,
   100% {
@@ -1142,16 +1180,18 @@
   box-shadow: 0 0 0 calc(var(--t) * 0.3rem) rgba(254, 112, 1, 0.22);
 }
 
-/* How it works. Each step has its own 0..1 --t: the track above it fills
+/* How it works (pinned on the homepage, .stepsTrack elsewhere). Each step
+   has its own 0..1 --t: the track above it fills
    orange, its number turns orange and the copy comes up to full strength.
    With no --p (no JS, reduced motion) every step shows finished. */
-.stepsPin .step {
-  --t: clamp(0, calc(var(--p, 1) * 3.4 - var(--i) * 1.05 - 0.15), 1);
+:is(.stepsPin, .stepsTrack) .step {
+  /* --n is the number of steps (3 unless the list says otherwise). */
+  --t: clamp(0, calc(var(--p, 1) * (var(--n, 3) * 1.05 + 0.25) - var(--i) * 1.05 - 0.15), 1);
   position: relative;
   border-top-color: var(--ev-line);
 }
 
-.stepsPin .step::before {
+:is(.stepsPin, .stepsTrack) .step::before {
   position: absolute;
   top: -2px;
   left: 0;
@@ -1163,13 +1203,13 @@
   content: "";
 }
 
-.stepsPin .stepNumber {
+:is(.stepsPin, .stepsTrack) .stepNumber {
   background: color-mix(in srgb, var(--ev-orange-500) calc(var(--t) * 100%), var(--ev-orange-100));
   color: color-mix(in srgb, var(--ev-white) calc(var(--t) * 100%), var(--ev-orange-800));
   transform: scale(calc(0.9 + var(--t) * 0.1));
 }
 
-.stepsPin .step > :not(.stepNumber) {
+:is(.stepsPin, .stepsTrack) .step > :not(.stepNumber) {
   opacity: calc(0.3 + var(--t) * 0.7);
   transform: translateY(calc((1 - var(--t)) * 0.75rem));
 }
@@ -1716,7 +1756,24 @@
     animation: ev-rise var(--motion-slow) var(--ease-out-expo) backwards;
   }
 
-  .heroCopy > .eyebrow { animation-delay: 0ms; }
+  /* Every page hero shares this: its blocks follow each other in order. */
+  .heroCopy > :nth-child(2) { animation-delay: 80ms; }
+  .heroCopy > :nth-child(3) { animation-delay: 200ms; }
+  .heroCopy > :nth-child(4) { animation-delay: 320ms; }
+  .heroCopy > :nth-child(5) { animation-delay: 420ms; }
+  .heroCopy > :nth-child(6) { animation-delay: 500ms; }
+  .heroCopy > :nth-child(7) { animation-delay: 570ms; }
+  .heroCopy > :nth-child(n + 8) { animation-delay: 630ms; }
+
+  /* Page titles (other than the homepage's line-by-line title) rise out of
+     a mask, like the section headings. */
+  .heroCopy > .display:not(.heroTitle) {
+    animation-name: ev-line-in;
+    animation-duration: 1000ms;
+  }
+
+  /* Homepage timing. */
+  .heroCopy > .eyebrow:first-child { animation-delay: 0ms; }
   .heroCopy > .heroBody { animation-delay: 380ms; }
   .heroCopy > .actions { animation-delay: 480ms; }
   .heroCopy > .heroNote { animation-delay: 560ms; }
@@ -1854,4 +1911,151 @@
   .primaryButton:hover {
     transform: none;
   }
+}
+
+/* Step lists on other pages fill as they scroll by, without pinning. */
+.stepsTrack {
+  display: block;
+}
+
+/* On an orange section the track and numbers fill charcoal instead. */
+.orangeBand :is(.stepsPin, .stepsTrack) .step::before {
+  background: var(--ev-charcoal);
+}
+
+.orangeBand :is(.stepsPin, .stepsTrack) .stepNumber {
+  background: color-mix(in srgb, var(--ev-charcoal) calc(var(--t) * 100%), var(--ev-white));
+  color: color-mix(in srgb, var(--ev-white) calc(var(--t) * 100%), var(--ev-charcoal));
+}
+
+/* How it works: the desk card beside the pinned steps (StepsScene). Each pane
+   has a visible window [--a, --b] on the steps' scroll progress --p; --v is
+   0..1 inside that window. With no --p only the last (approved) pane shows. */
+.scene {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .scene {
+    position: relative;
+    display: block;
+    width: min(100%, 28rem);
+    height: 14rem;
+    justify-self: end;
+  }
+}
+
+.scenePane {
+  --v: min(
+    clamp(0, calc((var(--p, 1) - var(--a)) * 14), 1),
+    clamp(0, calc((var(--b) - var(--p, 1)) * 14), 1)
+  );
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: start;
+  gap: var(--ev-s-4);
+  border: 1px solid var(--ev-line);
+  border-radius: var(--ev-r-lg);
+  background: var(--ev-white);
+  padding: var(--ev-s-5);
+  box-shadow: 0 24px 60px rgba(23, 23, 23, 0.08);
+  opacity: var(--v);
+  transform: translateY(calc((1 - var(--v)) * 14px)) scale(calc(0.97 + var(--v) * 0.03));
+}
+
+.sceneHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ev-s-3);
+}
+
+.sceneHead .panelTitle {
+  white-space: nowrap;
+}
+
+.sceneFile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ev-s-4);
+  border-top: 1px solid var(--ev-line);
+  padding-top: var(--ev-s-4);
+}
+
+/* Scene 1: the forwarded file slides in. */
+.scenePane:first-child .sceneFile {
+  --e: clamp(0, calc(var(--p, 1) * 12 - 0.3), 1);
+  opacity: var(--e);
+  transform: translateX(calc((1 - var(--e)) * -1.5rem));
+}
+
+/* Scene 2: the preparation rows are ticked one after another. */
+.sceneRows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sceneRows li {
+  --r: clamp(0, calc((var(--p, 1) - 0.4 - var(--j) * 0.07) * 18), 1);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ev-s-3);
+  border-top: 1px solid var(--ev-line);
+  padding-block: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  opacity: calc(0.45 + var(--r) * 0.55);
+}
+
+.sceneTick {
+  position: relative;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1.5px solid color-mix(in srgb, var(--ev-green) calc(var(--r) * 100%), var(--ev-taupe));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ev-green) calc(var(--r) * 100%), var(--ev-white));
+}
+
+.sceneTick::after {
+  position: absolute;
+  top: 0.18rem;
+  left: 0.38rem;
+  width: 0.28rem;
+  height: 0.52rem;
+  border: solid var(--ev-white);
+  border-width: 0 2px 2px 0;
+  opacity: var(--r);
+  transform: rotate(45deg) scale(calc(0.4 + var(--r) * 0.6));
+  content: "";
+}
+
+/* Scene 3: the approve button is pressed and turns green. */
+.sceneApprove {
+  --k: clamp(0, calc((var(--p, 1) - 0.86) * 12), 1);
+  display: inline-grid;
+  justify-self: start;
+  border-radius: var(--ev-r-sm);
+  background: color-mix(in srgb, var(--ev-green) calc(var(--k) * 100%), var(--ev-orange-500));
+  padding: 0.55rem 1rem;
+  color: var(--ev-white);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transform: scale(calc(1 - var(--k) * (1 - var(--k)) * 0.16));
+}
+
+.sceneApprove > span {
+  grid-area: 1 / 1;
+}
+
+.sceneApproveIdle {
+  opacity: calc(1 - var(--k));
+}
+
+.sceneApproveDone {
+  opacity: var(--k);
 }

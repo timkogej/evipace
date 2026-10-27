@@ -37,7 +37,7 @@ const steps = [
 
 export function AssessmentPreparation() {
   return (
-    <Band id="unterstuetzung" tone="tinted">
+    <Band id="unterstuetzung" tone="orange">
       <Head
         eyebrow="Operative Vorbereitung"
         lead="Sie müssen nicht jede Frage selbst interpretieren und anschließend versuchen, im gesamten Unternehmen passende Dokumente zu finden."

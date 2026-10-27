@@ -176,7 +176,7 @@ export function AboutLandingPage({ locale }: { locale: Locale }) {
         </ScrollProgress>
       </section>
 
-      <section aria-labelledby="approach-title" className={`${h.section} ${h.tinted}`}>
+      <section aria-labelledby="approach-title" className={`${h.section} ${h.orangeBand}`}>
         <RevealOnView className={h.shell}>
           <header className={h.sectionHead}>
             <p className={h.eyebrow}>{c.approachLabel}</p>

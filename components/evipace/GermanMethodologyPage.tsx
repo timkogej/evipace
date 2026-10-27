@@ -364,7 +364,7 @@ export function GermanMethodologyPage({
           eyebrow="Grundprinzip"
           heading="Unser Grundprinzip: Quelle vor Aussage."
           id="grundprinzip"
-          tone="warm"
+          tone="orange"
         >
           <div className={m.split}>
             <Rise className={m.body}>

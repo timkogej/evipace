@@ -495,7 +495,7 @@ export function EnglishEnvironmentalPolicyGuide() {
           <p className={r.closingLine}>Policy ≠ implementation ≠ evidence</p>
         </Band>
 
-        <Band labelledBy="assessment-title" tone="tinted">
+        <Band labelledBy="assessment-title" tone="orange">
           <Head eyebrow="Before drafting" id="assessment-title" title="Start with reality. Then write the policy.">
             <p>Review what already exists in the company before writing policy language.</p>
           </Head>
@@ -672,7 +672,7 @@ function WorkflowSection({ title, items, dataAttr, buttonHref }: { title: string
   );
 }
 
-function TextSection({ eyebrow, id, title, children, tone = "light" }: { eyebrow: string; id: string; title: string; children: ReactNode; tone?: "light" | "tinted" }) {
+function TextSection({ eyebrow, id, title, children, tone = "light" }: { eyebrow: string; id: string; title: string; children: ReactNode; tone?: "light" | "tinted" | "orange" }) {
   return (
     <Band labelledBy={id} tone={tone}>
       <Head eyebrow={eyebrow} id={id} title={title} />
@@ -804,7 +804,7 @@ export function EnglishSupplierCodeOfConductGuide() {
           <p className={r.closingLine}>Code ≠ implementation ≠ supplier compliance</p>
         </Band>
 
-        <Band labelledBy="assessment-title" tone="tinted">
+        <Band labelledBy="assessment-title" tone="orange">
           <Head eyebrow="Before drafting" id="assessment-title" title="Understand procurement first. Then define supplier expectations." />
           <div data-procurement-assessment><Chips items={supplierAssessmentItems} /></div>
         </Band>
@@ -905,7 +905,7 @@ export function EnglishReusableEsgDataGuide() {
           </Head>
           <div data-reuse-core-flow><Flow items={reusableCoreFlow} /></div>
         </Band>
-        <TextSection eyebrow="Starting point" id="problem-title" title="Why does ESG start from zero so often?" tone="tinted">
+        <TextSection eyebrow="Starting point" id="problem-title" title="Why does ESG start from zero so often?" tone="orange">
           <p>ESG information is usually spread across Finance, HR, Facility, Quality, EHS, Procurement and Management.</p>
           <p>When every request is treated as a one-off project, the company ends up with separate spreadsheets, emails and folders. The next questionnaire sends people back to the same sources again.</p>
           <Callout>The problem is often not missing information. The problem is missing structure.</Callout>

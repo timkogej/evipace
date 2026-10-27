@@ -235,7 +235,7 @@ export function GermanResourceHub() {
         </div>
       </ResourceBand>
 
-      <ResourceBand labelledBy="evidence-title" tone="tinted">
+      <ResourceBand labelledBy="evidence-title" tone="orange">
         <Head eyebrow="NACHWEISE & PLATTFORMEN" id="evidence-title" title="Eine Antwort ist nur so belastbar wie ihre Grundlage.">
           <p>Kunden und Supplier-Plattformen fragen nicht nur nach Aussagen. Sie wollen häufig auch wissen, worauf diese Aussagen basieren.</p>
         </Head>

@@ -387,7 +387,7 @@ export function SupplierCodeOfConductGuide() {
           </div>
         </section>
 
-        <section aria-labelledby="assessment-title" className={`${h.section} ${r.tinted} ${r.skin}`}>
+        <section aria-labelledby="assessment-title" className={`${h.section} ${h.orangeBand} ${r.skin}`}>
           <div className={h.shell}>
             <SectionHeading eyebrow="Vor dem Entwurf" id="assessment-title" title="Bevor Sie einen Lieferantenkodex schreiben: Wie funktioniert Ihre Beschaffung heute?">
               <p>Ein Supplier Code of Conduct sollte nicht mit einer langen Liste allgemeiner ESG-Forderungen beginnen, sondern mit der tatsächlichen Lieferantenstruktur und den bestehenden Beschaffungsprozessen.</p>

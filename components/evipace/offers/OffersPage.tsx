@@ -4,6 +4,7 @@ import styles from "../HomeLandingPage.module.css";
 import { ClosingCta } from "../home/ClosingCta";
 import type { HomeLocale } from "../home/content";
 import { RevealOnView } from "../home/RevealOnView";
+import { ScrollProgress } from "../home/ScrollProgress";
 import { offersContent } from "./content";
 
 export function OffersPage({ locale }: { locale: HomeLocale }) {
@@ -75,7 +76,7 @@ export function OffersPage({ locale }: { locale: HomeLocale }) {
         </section>
       ))}
 
-      <section aria-labelledby="offers-compare-title" className={`${styles.section} ${styles.tinted}`}>
+      <section aria-labelledby="offers-compare-title" className={`${styles.section} ${styles.orangeBand}`}>
         <RevealOnView className={styles.shell}>
           <header className={styles.sectionHead}>
             <p className={styles.eyebrow}>{copy.compare.label}</p>
@@ -113,15 +114,17 @@ export function OffersPage({ locale }: { locale: HomeLocale }) {
             <p className={styles.eyebrow}>{copy.steps.label}</p>
             <h2 className={styles.heading} id="offers-steps-title">{copy.steps.title}</h2>
           </header>
-          <ol className={`${styles.steps} ${styles.stepsFour}`}>
-            {copy.steps.items.map((step, index) => (
-              <li className={styles.step} key={step.title}>
-                <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
-                <h3 className={styles.cardTitle}>{step.title}</h3>
-                <p>{step.body}</p>
-              </li>
-            ))}
-          </ol>
+          <ScrollProgress className={styles.stepsTrack} style={{ "--n": copy.steps.items.length } as React.CSSProperties}>
+            <ol className={`${styles.steps} ${styles.stepsFour}`}>
+              {copy.steps.items.map((step, index) => (
+                <li className={styles.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
+                  <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
+                  <h3 className={styles.cardTitle}>{step.title}</h3>
+                  <p>{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </ScrollProgress>
           <div className={styles.sectionFoot}>
             <Link className={styles.primaryButton} href={requestHref}>
               {copy.labels.send}<span aria-hidden="true">→</span>

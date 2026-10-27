@@ -35,7 +35,7 @@ const steps = [
 
 export function ProcessSteps() {
   return (
-    <Band id="unterstuetzung" tone="tinted">
+    <Band id="unterstuetzung" tone="orange">
       <Head eyebrow="Ablauf" title="So unterstützen wir bei Ihrer IntegrityNext-Selbstauskunft" />
       <Steps
         items={steps.map((step) => ({

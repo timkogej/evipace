@@ -7,6 +7,7 @@ import { BrandIcon } from "./home/BrandIcon";
 import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
 import { ScrollProgress } from "./home/ScrollProgress";
+import { StepsScene } from "./home/StepsScene";
 import { TrustIllustration } from "./home/TrustIllustration";
 import { homeContent, type HomeLocale } from "./home/content";
 import styles from "./HomeLandingPage.module.css";
@@ -79,6 +80,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
                     <p className={styles.eyebrow}>{copy.steps.label}</p>
                     <h2 className={styles.heading} id="home-steps-title">{copy.steps.title}</h2>
                   </div>
+                  <StepsScene scene={copy.steps.scene} />
                 </header>
               </RevealOnView>
               <ol className={styles.steps}>

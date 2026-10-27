@@ -926,7 +926,7 @@ export function EsgCustomerDataGuide() {
 
         <section
           aria-labelledby="keine-universelle-liste-title"
-          className={`${h.section} ${r.tinted} ${r.skin}`}
+          className={`${h.section} ${h.orangeBand} ${r.skin}`}
         >
           <div className={`${h.shell} ${r.stack}`}>
             <SectionHeading

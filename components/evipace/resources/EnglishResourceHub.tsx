@@ -219,7 +219,7 @@ export function EnglishResourceHub() {
         </ResourceCards>
       </ResourceBand>
 
-      <ResourceBand labelledBy="evidence-title" tone="tinted">
+      <ResourceBand labelledBy="evidence-title" tone="orange">
         <Head
           eyebrow="EVIDENCE"
           id="evidence-title"

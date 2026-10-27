@@ -42,7 +42,7 @@ export function TrustIllustration({ label }: { label: string }) {
           ))}
         </g>
         {/* approval mark */}
-        <circle className={styles.trustSeal} cx="252" cy="92" fill="#f6f2ec" r="34" stroke="#171717" strokeWidth="2" />
+        <circle className={styles.trustSeal} cx="252" cy="92" fill="#fff" r="34" stroke="#171717" strokeWidth="2" />
         <path
           className={styles.trustTick}
           d="M237 92l11 11 20-22"

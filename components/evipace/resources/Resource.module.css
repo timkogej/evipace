@@ -624,7 +624,7 @@
 }
 
 .matrixTable thead {
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
 }
 
 .matrixTable th,
@@ -685,7 +685,7 @@
   margin: clamp(2rem, 5vw, 4rem) auto;
   border: 1px solid var(--ev-taupe);
   border-radius: var(--ev-r-lg);
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: clamp(1.75rem, 4vw, 3rem);
   text-align: center;
 }
@@ -787,7 +787,7 @@
 }
 
 .tinted {
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
 }
 
 @media (min-width: 768px) {
@@ -1043,7 +1043,7 @@
   max-width: 60rem;
   margin: 0 auto;
   border-radius: var(--ev-r-lg);
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: var(--ev-s-5);
 }
 
@@ -1090,7 +1090,7 @@
 
 .example {
   border-radius: var(--ev-r-sm);
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: var(--ev-s-3);
   color: var(--ev-charcoal) !important;
   font-weight: 700;
@@ -1122,7 +1122,7 @@
 
 /* Interactive tools keep their own interface on a calm band */
 .toolBand {
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
   padding-block: clamp(2.5rem, 5vw, 4.5rem);
   scroll-margin-top: 4.5rem;
 }
@@ -1252,12 +1252,12 @@
 }
 
 .skin :global(.bg-\[var\(--soft-orange\)\]) {
-  background-color: var(--ev-offwhite);
+  background-color: var(--ev-soft);
 }
 
 .skin :global(.bg-\[var\(--paper\)\]),
 .skin :global(.bg-\[var\(--warm\)\]) {
-  background-color: var(--ev-offwhite);
+  background-color: var(--ev-soft);
 }
 
 .skin :global(.eyebrow) {

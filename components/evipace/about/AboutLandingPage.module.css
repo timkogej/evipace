@@ -54,7 +54,7 @@
   align-items: center;
   border: 1px solid var(--ev-taupe);
   border-radius: var(--ev-r-lg);
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   text-align: center;
 }

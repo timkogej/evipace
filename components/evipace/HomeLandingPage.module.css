@@ -8,7 +8,9 @@
   --ev-orange-700: #b44d00;
   --ev-orange-800: #8f3d00;
   --ev-orange-100: #ffe6d1;
-  --ev-offwhite: #f6f2ec;
+  /* Neutral light grey for small fills (badges, table heads, panels).
+     Section backgrounds are white; the site no longer uses beige. */
+  --ev-soft: #f5f5f5;
   --ev-taupe: #d8d0c7;
   --ev-charcoal: #171717;
   --ev-white: #ffffff;
@@ -190,7 +192,7 @@
 
 /* Hero */
 .hero {
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
   padding-block: calc(5rem + clamp(2rem, 3vw, 2.75rem)) clamp(3.5rem, 7vw, 7rem);
 }
 
@@ -487,7 +489,7 @@
 
 .badge {
   border-radius: 999px;
-  background: var(--ev-offwhite);
+  background: var(--ev-soft);
   padding: 0.3rem 0.7rem;
   color: var(--ev-orange-700);
   font-size: 0.7rem;
@@ -697,7 +699,60 @@
 }
 
 .tinted {
-  background: var(--ev-offwhite);
+  background: var(--ev-white);
+}
+
+/* The one orange section on a page. Text on it is charcoal (about 7:1 on
+   brand orange); cards stay white. Where the browser supports scroll-driven
+   animations the background blends in from white as the section arrives and
+   back to white as it leaves; elsewhere it is simply orange. */
+.orangeBand {
+  background: var(--ev-orange-500);
+}
+
+.orangeBand :is(.eyebrow, .lead, .textLink) {
+  color: var(--ev-charcoal);
+}
+
+.orangeBand .textLink {
+  text-decoration-color: rgba(23, 23, 23, 0.45);
+}
+
+.orangeBand .textLink:hover {
+  color: var(--ev-charcoal);
+  text-decoration-color: currentColor;
+}
+
+/* Cards lift with a charcoal edge here; an orange edge would vanish. */
+.orangeBand .card:hover {
+  border-color: var(--ev-charcoal);
+}
+
+@keyframes ev-orange-band {
+  0%,
+  100% {
+    background-color: var(--ev-white);
+  }
+
+  22%,
+  78% {
+    background-color: var(--ev-orange-500);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .orangeBand {
+      animation: ev-orange-band linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+/* In-page anchors (#services / #leistungen) clear the fixed header. */
+.page section[id] {
+  scroll-margin-top: 5rem;
 }
 
 .sectionHead {
@@ -1623,7 +1678,7 @@
   .compare tbody th {
     width: auto;
     border-top: 0;
-    background: var(--ev-offwhite);
+    background: var(--ev-soft);
     color: var(--ev-charcoal);
   }
 

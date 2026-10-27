@@ -103,7 +103,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
 
       <section
         aria-labelledby="home-forwardable-title"
-        className={`${styles.section} ${styles.tinted}`}
+        className={`${styles.section} ${styles.orangeBand}`}
         id={locale === "de" ? "leistungen" : "services"}
       >
         <RevealOnView className={styles.shell}>

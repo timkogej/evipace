@@ -1,5 +1,5 @@
 import type { PageKey } from "@/lib/seo/page-registry";
-import { publicLinkedInUrl } from "@/lib/company-info";
+import { phoneHref, publicPhone, publicLinkedInUrl } from "@/lib/company-info";
 
 export const siteLocales = ["en", "de"] as const;
 
@@ -665,7 +665,8 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         title: "Contact",
         links: [
           { label: "hello@evipace.com", href: "mailto:hello@evipace.com" },
-          { label: "LinkedIn", href: publicLinkedInUrl }
+          { label: "LinkedIn", href: publicLinkedInUrl },
+          ...(publicPhone ? [{ label: publicPhone, href: phoneHref(publicPhone) }] : [])
         ]
       }
     ],
@@ -776,7 +777,8 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         title: "Kontakt",
         links: [
           { label: "hello@evipace.com", href: "mailto:hello@evipace.com" },
-          { label: "LinkedIn", href: publicLinkedInUrl }
+          { label: "LinkedIn", href: publicLinkedInUrl },
+          ...(publicPhone ? [{ label: publicPhone, href: phoneHref(publicPhone) }] : [])
         ]
       }
     ],

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { deskForwardEmail } from "@/lib/company-info";
+import { deskForwardEmail, phoneHref, publicPhone } from "@/lib/company-info";
 import styles from "../HomeLandingPage.module.css";
 
 type ClosingCtaProps = {
@@ -34,6 +34,11 @@ export function ClosingCta({ slogan, title, body, note, id, forwardLabel, formLa
           <Link className={`${styles.textLink} ${styles.textLinkOnDark}`} href={formHref}>
             {formLabel}<span aria-hidden="true">→</span>
           </Link>
+          {publicPhone ? (
+            <a className={`${styles.textLink} ${styles.textLinkOnDark}`} href={phoneHref(publicPhone)}>
+              {publicPhone}
+            </a>
+          ) : null}
           {offers ? (
             <Link className={`${styles.textLink} ${styles.textLinkOnDark}`} href={offers.href}>
               {offers.label}<span aria-hidden="true">→</span>

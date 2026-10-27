@@ -63,6 +63,13 @@
   overflow-wrap: break-word;
 }
 
+/* Reading size: 17px body copy with an easy line height. Component rules
+   (cards, tables, labels) still set their own sizes on top of this. */
+.page :where(p, li, dd) {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
 .page[data-locale="de"] :where(h2, h3, h4, summary, dd) {
   hyphens: auto;
 }
@@ -77,7 +84,7 @@
 .eyebrow {
   margin: 0;
   color: var(--ev-orange-700);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1.5;
@@ -109,14 +116,14 @@
 .heading {
   max-width: 22ch;
   margin-top: var(--ev-s-4);
-  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  font-size: clamp(2.25rem, 4.2vw, 3.875rem);
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 .page[data-locale="de"] .heading {
   max-width: 26ch;
-  font-size: clamp(1.8rem, 3.2vw, 3.1rem);
+  font-size: clamp(1.95rem, 3.6vw, 3.4rem);
 }
 
 .lead,
@@ -124,7 +131,7 @@
   max-width: 38rem;
   margin: var(--ev-s-5) 0 0;
   color: var(--ev-ink-2);
-  font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+  font-size: clamp(1.125rem, 1.4vw, 1.3125rem);
   line-height: 1.6;
   text-wrap: pretty;
 }
@@ -176,7 +183,7 @@
   gap: var(--ev-s-2);
   margin-top: var(--ev-s-3);
   color: var(--ev-charcoal);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
   text-decoration: underline;
@@ -263,10 +270,22 @@
   margin-top: var(--ev-s-3);
 }
 
+/* "Prefer to talk first? Book a call" under the hero note. */
+.heroCall {
+  margin: var(--ev-s-2) 0 0;
+  color: var(--ev-ink-2);
+  font-size: 1rem;
+}
+
+.heroCall .textLink {
+  min-height: 0;
+  margin-top: 0;
+}
+
 .heroNote {
   margin: var(--ev-s-4) 0 0;
   color: var(--ev-ink-2);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -378,12 +397,18 @@
     transform: translateY(-4px);
   }
 
-  .cardIcon {
-    transition: transform var(--motion-base) var(--ease-out-expo);
+  /* Brand icons: the page lifts and the one behind it fans out. */
+  .iconBack,
+  .iconFront {
+    transition: transform var(--motion-slow) var(--ease-out-expo);
   }
 
-  .card:hover .cardIcon {
-    transform: translateY(-2px) scale(1.06);
+  .card:hover .iconBack {
+    transform: rotate(-16deg) translate(-3px, 1px);
+  }
+
+  .card:hover .iconFront {
+    transform: translateY(-3px);
   }
 }
 
@@ -763,6 +788,92 @@
   text-align: center;
 }
 
+/* Section layouts. Sections alternate between a left-aligned split header,
+   copy beside a visual, and the mirrored version, so the page has a rhythm
+   instead of one centred heading after another. */
+.splitHead {
+  display: grid;
+  gap: var(--ev-s-5);
+  margin-bottom: var(--ev-s-7);
+}
+
+.splitHead .lead {
+  margin-top: 0;
+}
+
+.splitAside {
+  display: grid;
+  justify-items: start;
+  gap: var(--ev-s-4);
+}
+
+.splitAside .textLink {
+  margin-top: 0;
+}
+
+.splitSection,
+.trustGrid {
+  display: grid;
+  gap: var(--ev-s-7);
+  align-items: center;
+}
+
+.splitCopy .lead {
+  max-width: 34rem;
+}
+
+.trustGrid {
+  align-items: start;
+}
+
+.trustGrid .trustStage {
+  width: min(100%, 26rem);
+  margin-top: var(--ev-s-7);
+}
+
+/* In the trust grid the three answers stack as rows. */
+.trustGrid .trust {
+  gap: 0;
+}
+
+.trustGrid .trust li {
+  border-top: 1px solid var(--ev-line);
+  padding-block: var(--ev-s-6);
+}
+
+.trustGrid .trust li:first-child {
+  border-top: 2px solid var(--ev-charcoal);
+}
+
+@media (min-width: 900px) {
+  .splitHead {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+    column-gap: var(--ev-s-8);
+  }
+
+  .trustGrid .trust {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .splitSection {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--ev-s-8);
+  }
+
+  .trustGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--ev-s-8);
+  }
+
+  .trustGrid .splitCopy {
+    position: sticky;
+    top: 7rem;
+  }
+}
+
 /* Steps */
 .steps {
   display: grid;
@@ -806,7 +917,7 @@
   margin: var(--ev-s-3) 0 0;
   padding: 0;
   list-style: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -845,20 +956,28 @@
 
 .cardIcon {
   display: block;
-  width: 2rem;
-  height: 2rem;
+  overflow: visible;
+  width: 3rem;
+  height: 3rem;
   margin-bottom: var(--ev-s-4);
   color: var(--ev-orange-700);
 }
 
+/* The second page peeks out behind the brand icon's sheet. */
+.iconBack {
+  transform: rotate(-8deg);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
 .card .cardTitle {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
 }
 
 .card p {
   margin: var(--ev-s-2) 0 0;
   color: var(--ev-ink-2);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -1248,6 +1367,18 @@
   padding: clamp(1.25rem, 2.4vw, 2rem);
 }
 
+/* Label beside value only when the card itself is wide enough; on a narrow
+   card the label sits above, so the answer never squeezes into a sliver. */
+.exampleCard {
+  container-type: inline-size;
+}
+
+@container (min-width: 34rem) {
+  .exampleRow {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
 .exampleRows {
   margin: var(--ev-s-4) 0 0;
 }
@@ -1270,7 +1401,7 @@
 
 .exampleRow dd {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -1317,6 +1448,22 @@
   text-align: center;
 }
 
+@media (min-width: 1024px) {
+  .faqGrid {
+    max-width: none;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    align-items: start;
+    gap: var(--ev-s-8);
+  }
+
+  .faqGrid > header {
+    position: sticky;
+    top: 7rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
 .faq {
   border-bottom: 1px solid var(--ev-line);
 }
@@ -1342,7 +1489,7 @@
 
 .faqItem h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -1573,6 +1720,7 @@
   .heroCopy > .heroBody { animation-delay: 380ms; }
   .heroCopy > .actions { animation-delay: 480ms; }
   .heroCopy > .heroNote { animation-delay: 560ms; }
+  .heroCopy > .heroCall { animation-delay: 620ms; }
 
   /* The title itself stays put; its lines carry the motion. */
   .heroCopy > .heroTitle {
@@ -1610,9 +1758,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .exampleRow {
-    grid-template-columns: 11.5rem minmax(0, 1fr);
-  }
 
   .lanes {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1636,6 +1781,11 @@
   .exampleGrid {
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
     gap: var(--ev-s-8);
+  }
+
+  /* Mirrored: the card sits first visually; copy stays first for readers. */
+  .exampleGrid > .exampleStage {
+    order: -1;
   }
 
   .assuranceList {

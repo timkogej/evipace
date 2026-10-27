@@ -134,81 +134,28 @@ a {
   text-decoration: none;
 }
 
-.request-button-papers {
-  display: none;
+/* Request buttons (header and ButtonLink): the arrow slips out to the right
+   and comes back in from the left on hover; the button gives a little on
+   press. Same interaction as the homepage pill buttons. */
+.cta-arrow-clip {
+  display: inline-flex;
+  overflow: hidden;
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .request-paper-hover {
-    position: relative;
-    isolation: isolate;
-    overflow: visible;
+@keyframes cta-arrow-loop {
+  0% { transform: translateX(0); }
+  45% { opacity: 0; transform: translateX(140%); }
+  46% { opacity: 0; transform: translateX(-140%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cta-button:hover .cta-arrow {
+    animation: cta-arrow-loop 520ms var(--ease-out-expo);
   }
 
-  .request-paper-hover > :not(.request-button-papers) {
-    position: relative;
-    z-index: 1;
-  }
-
-  .request-button-papers {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    display: block;
-    pointer-events: none;
-  }
-
-  .request-button-papers > span {
-    position: absolute;
-    width: 1.45rem;
-    height: 1.9rem;
-    border: 1px solid #d6dad6;
-    border-radius: 0.12rem;
-    background:
-      linear-gradient(#fe7001, #fe7001) 0.27rem 0.35rem / 0.55rem 0.12rem no-repeat,
-      linear-gradient(#cdd3cf, #cdd3cf) 0.27rem 0.78rem / 0.87rem 0.07rem no-repeat,
-      linear-gradient(#cdd3cf, #cdd3cf) 0.27rem 1.02rem / 0.87rem 0.07rem no-repeat,
-      linear-gradient(#cdd3cf, #cdd3cf) 0.27rem 1.26rem / 0.62rem 0.07rem no-repeat,
-      #f8f8f6;
-    box-shadow: 0 0.35rem 0.85rem rgba(20, 25, 22, 0.17);
-    opacity: 0;
-    transition: opacity 220ms ease, transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .request-button-papers > span:first-child {
-    top: 50%;
-    left: 0;
-    transform: translate(0.15rem, -50%) rotate(0) scale(0.65);
-  }
-
-  .request-button-papers > span:nth-child(2) {
-    top: 0;
-    left: 56%;
-    transform: translate(-50%, 0.25rem) rotate(0) scale(0.65);
-    transition-delay: 35ms;
-  }
-
-  .request-button-papers > span:last-child {
-    top: 48%;
-    right: 0;
-    transform: translate(-0.15rem, -20%) rotate(0) scale(0.65);
-    transition-delay: 70ms;
-  }
-
-  .request-paper-hover:hover .request-button-papers > span {
-    opacity: 1;
-  }
-
-  .request-paper-hover:hover .request-button-papers > span:first-child {
-    transform: translate(-0.95rem, -50%) rotate(-16deg) scale(1);
-  }
-
-  .request-paper-hover:hover .request-button-papers > span:nth-child(2) {
-    transform: translate(-50%, -0.95rem) rotate(10deg) scale(1);
-  }
-
-  .request-paper-hover:hover .request-button-papers > span:last-child {
-    transform: translate(0.95rem, -20%) rotate(17deg) scale(1);
+  .cta-button:active {
+    transform: scale(0.97);
   }
 }
 

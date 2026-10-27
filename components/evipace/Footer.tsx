@@ -80,7 +80,7 @@ export function Footer({ locale }: FooterProps) {
 
                     return (
                       <li key={`${column.title}-${link.href}-${link.label}`}>
-                        {link.href.startsWith("mailto:") ? (
+                        {link.href.startsWith("mailto:") || link.href.startsWith("tel:") ? (
                           <a className={className} href={link.href}>
                             {link.label}
                           </a>

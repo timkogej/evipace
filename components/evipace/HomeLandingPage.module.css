@@ -27,9 +27,10 @@
   --ev-r-sm: 8px;
   --ev-r-md: 12px;
   --ev-r-lg: 16px;
-  --ev-dur-fast: 160ms;
-  --ev-dur-base: 200ms;
-  --ev-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Mapped to the site-wide motion tokens in app/globals.css. */
+  --ev-dur-fast: var(--motion-fast);
+  --ev-dur-base: var(--motion-base);
+  --ev-ease: var(--ease-standard);
   --gutter: var(--section-x, clamp(1.25rem, 3vw, 3rem));
   --section-y: clamp(4rem, 8vw, 8rem);
 }
@@ -1255,26 +1256,90 @@
   opacity: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 1.3), 1);
 }
 
-/* Entrance: cards and steps follow each other once their section is in view. */
-.reveal[data-reveal] :is(.cards > li, .steps > li) {
+/* Reveal (see RevealOnView). Each block rises in as it enters the viewport;
+   blocks entering together are staggered by --rd. The attributes are removed
+   when the transition ends, so the element's own styles take over again. */
+.reveal [data-ri="pending"] {
+  opacity: 0 !important;
+  transform: translateY(var(--motion-rise)) !important;
+}
+
+.reveal [data-ri="in"] {
   transition:
-    opacity 480ms var(--ev-ease) calc(var(--i, 0) * 80ms + 120ms),
-    transform 480ms var(--ev-ease) calc(var(--i, 0) * 80ms + 120ms);
+    opacity var(--motion-slow) var(--ease-out-expo),
+    transform var(--motion-slow) var(--ease-out-expo) !important;
+  transition-delay: calc(var(--rd, 0) * var(--motion-stagger)) !important;
 }
 
-.reveal[data-reveal="pending"] :is(.cards > li, .steps > li) {
-  opacity: 0;
-  transform: translateY(18px);
+/* Headings rise out of a mask: the visible area grows upwards with the text. */
+.reveal [data-ri="pending"][data-ri-kind="heading"] {
+  clip-path: inset(100% -0.3em -0.3em -0.3em);
+  transform: translateY(0.45em) !important;
 }
 
-/* Reveal */
-.reveal[data-reveal] {
-  transition: opacity 520ms var(--ev-ease), transform 520ms var(--ev-ease);
+.reveal [data-ri="in"][data-ri-kind="heading"] {
+  clip-path: inset(-0.3em -0.3em -0.3em -0.3em);
+  transition:
+    opacity var(--motion-reveal) var(--ease-out-expo),
+    transform var(--motion-reveal) var(--ease-out-expo),
+    clip-path var(--motion-reveal) var(--ease-out-expo) !important;
 }
 
-.reveal[data-reveal="pending"] {
-  opacity: 0;
-  transform: translateY(16px);
+/* Hero intro on page load: eyebrow, title line by line, copy, actions, then
+   the desk visual. `backwards` fill only holds the start frame during the
+   delay, so nothing stays clipped or transformed afterwards. */
+@keyframes ev-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+  }
+}
+
+@keyframes ev-line-in {
+  from {
+    opacity: 0;
+    clip-path: inset(100% -0.3em -0.3em -0.3em);
+    transform: translateY(0.5em);
+  }
+
+  to {
+    clip-path: inset(-0.3em -0.3em -0.3em -0.3em);
+  }
+}
+
+@keyframes ev-stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy > * {
+    animation: ev-rise var(--motion-slow) var(--ease-out-expo) backwards;
+  }
+
+  .heroCopy > .eyebrow { animation-delay: 0ms; }
+  .heroCopy > .heroBody { animation-delay: 380ms; }
+  .heroCopy > .actions { animation-delay: 480ms; }
+  .heroCopy > .heroNote { animation-delay: 560ms; }
+
+  /* The title itself stays put; its lines carry the motion. */
+  .heroCopy > .heroTitle {
+    animation: none;
+  }
+
+  .heroTitle .titleLine {
+    animation: ev-line-in 1000ms var(--ease-out-expo) 90ms backwards;
+  }
+
+  .heroTitle .titleLine + .titleLine {
+    animation-delay: 210ms;
+  }
+
+  .heroGrid > .visualStage {
+    animation: ev-stage-in 1100ms var(--ease-out-expo) 620ms backwards;
+  }
 }
 
 @media (min-width: 640px) and (max-width: 899px) {
@@ -1384,12 +1449,6 @@
   .page *::before,
   .page *::after {
     transition: none !important;
-  }
-
-  .reveal[data-reveal="pending"],
-  .reveal[data-reveal="pending"] :is(.cards > li, .steps > li) {
-    opacity: 1;
-    transform: none;
   }
 
   .primaryButton:hover {

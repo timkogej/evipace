@@ -13,6 +13,18 @@
   --dark: #171717;
   --soft-orange: #fff0e5;
   --section-x: clamp(1.25rem, 3vw, 3rem);
+
+  /* Motion tokens: one set of durations and curves for the whole site. */
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-slow: 700ms;
+  --motion-reveal: 900ms;
+  --motion-stagger: 70ms;
+  --motion-rise: 1.75rem;
+  /* Standard UI easing (hover, open/close). */
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Entrances: fast start, long soft landing. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -23,6 +35,11 @@ html {
   scroll-behavior: smooth;
   background: var(--surface);
   overflow-x: hidden;
+}
+
+/* Lenis animates the scroll itself; native smoothing would fight it. */
+html.lenis {
+  scroll-behavior: auto;
 }
 
 body {

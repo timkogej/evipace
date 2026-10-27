@@ -59,22 +59,30 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
         </ul>
       </section>
 
-      <section aria-labelledby="home-steps-title" className={styles.section}>
-        <RevealOnView className={styles.shell}>
-          <header className={styles.sectionHead}>
-            <p className={styles.eyebrow}>{copy.steps.label}</p>
-            <h2 className={styles.heading} id="home-steps-title">{copy.steps.title}</h2>
-          </header>
-          <ol className={styles.steps}>
-            {copy.steps.items.map((step, index) => (
-              <li className={styles.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
-                <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
-                <h3 className={styles.cardTitle}>{step.title}</h3>
-                <p>{step.body}</p>
-              </li>
-            ))}
-          </ol>
-        </RevealOnView>
+      {/* Pinned on large screens: the section holds still while the three
+          steps light up in turn and the orange track fills between them. */}
+      <section aria-labelledby="home-steps-title" className={`${styles.section} ${styles.stepsSection}`}>
+        <ScrollProgress className={styles.stepsPin} pin>
+          <div className={styles.stepsSticky}>
+            <div className={styles.shell}>
+              <RevealOnView>
+                <header className={styles.sectionHead}>
+                  <p className={styles.eyebrow}>{copy.steps.label}</p>
+                  <h2 className={styles.heading} id="home-steps-title">{copy.steps.title}</h2>
+                </header>
+              </RevealOnView>
+              <ol className={styles.steps}>
+                {copy.steps.items.map((step, index) => (
+                  <li className={styles.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
+                    <span aria-hidden="true" className={styles.stepNumber}>{index + 1}</span>
+                    <h3 className={styles.cardTitle}>{step.title}</h3>
+                    <p>{step.body}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </ScrollProgress>
       </section>
 
       <section aria-label={copy.statement} className={styles.statementSection}>
@@ -149,24 +157,27 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               ))}
             </div>
           </div>
-          <figure className={styles.exampleCard}>
-            <figcaption className={styles.exampleHead}>
-              <span className={styles.panelTitle}>{copy.example.cardTitle}</span>
-              <span className={styles.badge}>{copy.example.badge}</span>
-            </figcaption>
-            <dl className={styles.exampleRows}>
-              {copy.example.rows.map(([term, description]) => (
-                <div className={styles.exampleRow} key={term}>
-                  <dt>{term}</dt>
-                  <dd>{description}</dd>
-                </div>
-              ))}
-            </dl>
-            <p className={styles.exampleStatus}>
-              <span aria-hidden="true" className={styles.dot} data-tone="wait" />
-              {copy.example.status}
-            </p>
-          </figure>
+          {/* The draft fills in row by row as it scrolls into view. */}
+          <ScrollProgress className={styles.exampleStage}>
+            <figure className={styles.exampleCard}>
+              <figcaption className={styles.exampleHead}>
+                <span className={styles.panelTitle}>{copy.example.cardTitle}</span>
+                <span className={styles.badge}>{copy.example.badge}</span>
+              </figcaption>
+              <dl className={styles.exampleRows}>
+                {copy.example.rows.map(([term, description], index) => (
+                  <div className={styles.exampleRow} key={term} style={{ "--i": index } as React.CSSProperties}>
+                    <dt>{term}</dt>
+                    <dd>{description}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className={styles.exampleStatus}>
+                <span aria-hidden="true" className={styles.dot} data-tone="wait" />
+                {copy.example.status}
+              </p>
+            </figure>
+          </ScrollProgress>
         </RevealOnView>
       </section>
 

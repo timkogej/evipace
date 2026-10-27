@@ -34,7 +34,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--surface);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: hidden would break position: sticky */
 }
 
 /* Lenis animates the scroll itself; native smoothing would fight it. */
@@ -47,7 +47,7 @@ body {
   color: var(--ink);
   background: var(--surface);
   font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   text-rendering: geometricPrecision;
 }
 

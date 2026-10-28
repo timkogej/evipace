@@ -942,38 +942,111 @@
   background: var(--ev-white);
 }
 
-/* The one orange section on a page. Text on it is charcoal (about 7:1 on
-   brand orange); cards stay white. Where the browser supports scroll-driven
-   animations the background blends in from white as the section arrives and
-   back to white as it leaves; elsewhere it is simply orange. */
-.orangeBand {
-  background: var(--ev-orange-500);
+/* The one orange section on a page. Text sitting straight on orange is
+   white; cards and other white boxes inside keep charcoal text. --band-ink
+   is the text colour on the band: it is registered so it can blend with the
+   background (see ev-orange-band), keeping text readable while the band
+   fades in from white. Where the browser has no scroll-driven animations
+   the band is simply orange with white text. */
+@property --band-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
 }
 
-.orangeBand :is(.eyebrow, .lead, .textLink) {
+/* Doubled class: page modules give their own bands a white background
+   (e.g. the methodology .band), which must not win here. */
+.orangeBand.orangeBand {
+  --band-ink: var(--ev-white);
+  background: var(--ev-orange-500);
+  color: var(--band-ink);
+}
+
+/* Copy sitting straight on the band follows --band-ink. White boxes inside
+   the band (cards, the comparison table, the motto box, check and topic
+   chips, light boxes in resource skins, matched by their class names across
+   modules) are left out and keep their charcoal text. Doubled class: beats
+   utility-colour overrides inside resource skins. */
+.orangeBand.orangeBand :is(
+  h2,
+  h3,
+  p,
+  li,
+  dd,
+  dt,
+  blockquote,
+  .eyebrow,
+  .lead,
+  .textLink,
+  [class*="accent"],
+  [class*="Accent"]
+):not(
+  :is(
+    [class$="__card"],
+    [class*="__card "],
+    [class*="__tableWrap"],
+    [class*="__motto"],
+    [class*="__checks"] > li,
+    [class*="__chips"] > li,
+    [class*="bg-white"],
+    [class*="bg-[var(--warm)]"],
+    [class*="bg-[var(--soft-orange)]"]
+  ),
+  :is(
+    [class$="__card"],
+    [class*="__card "],
+    [class*="__tableWrap"],
+    [class*="__motto"],
+    [class*="__checks"] > li,
+    [class*="__chips"] > li,
+    [class*="bg-white"],
+    [class*="bg-[var(--warm)]"],
+    [class*="bg-[var(--soft-orange)]"]
+  ) *
+) {
+  color: var(--band-ink);
+}
+
+.orangeBand.orangeBand :is(
+  [class$="__card"],
+  [class*="__card "],
+  [class*="__tableWrap"],
+  [class*="__motto"],
+  [class*="__checks"] > li,
+  [class*="__chips"] > li,
+  [class*="bg-white"],
+  [class*="bg-[var(--warm)]"],
+  [class*="bg-[var(--soft-orange)]"]
+) {
+  color: var(--ev-charcoal);
+}
+
+/* Inside those boxes copy stays charcoal, as before. */
+.orangeBand.orangeBand :is(
+  [class$="__card"],
+  [class*="__card "],
+  [class*="__tableWrap"],
+  [class*="__motto"],
+  [class*="__checks"] > li,
+  [class*="__chips"] > li,
+  [class*="bg-white"],
+  [class*="bg-[var(--warm)]"],
+  [class*="bg-[var(--soft-orange)]"]
+) :is(p, li, dd, blockquote, .eyebrow, .lead, .textLink, [class*="accent"], [class*="Accent"]) {
   color: var(--ev-charcoal);
 }
 
 .orangeBand .textLink {
-  text-decoration-color: rgba(23, 23, 23, 0.45);
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
 }
 
 .orangeBand .textLink:hover {
-  color: var(--ev-charcoal);
   text-decoration-color: currentColor;
 }
 
 /* Cards lift with a charcoal edge here; an orange edge would vanish. */
 .orangeBand .card:hover {
   border-color: var(--ev-charcoal);
-}
-
-/* Copy sitting straight on orange is charcoal: the greys and dark orange
-   used on white fall below readable contrast here. */
-/* Doubled class: beats utility-colour overrides inside resource skins. */
-.orangeBand.orangeBand :is(p, li, dd, blockquote, [class*="accent"], [class*="Accent"]),
-.page:not(:has(.orangeBand)) .orangePanel :is(blockquote, [class*="accent"], [class*="Note"]) {
-  color: var(--ev-charcoal);
 }
 
 /* Orange buttons would vanish on orange, so they turn charcoal. */
@@ -989,15 +1062,29 @@
 }
 
 /* Article pages: the call-to-action box is the orange accent, but only when
-   the page has no orange section of its own (one orange block per page). */
+   the page has no orange section of its own (one orange block per page).
+   Its copy is white too. */
 .page:not(:has(.orangeBand)) .orangePanel {
   border-color: var(--ev-orange-500);
   background: var(--ev-orange-500);
-  color: var(--ev-charcoal);
+  color: var(--ev-white);
 }
 
-.page:not(:has(.orangeBand)) .orangePanel :is(.eyebrow, h2, p, li, .textLink) {
-  color: var(--ev-charcoal);
+.page:not(:has(.orangeBand)) .orangePanel :is(
+  .eyebrow,
+  h2,
+  p,
+  li,
+  .textLink,
+  blockquote,
+  [class*="accent"],
+  [class*="Note"]
+) {
+  color: var(--ev-white);
+}
+
+.page:not(:has(.orangeBand)) .orangePanel .textLink {
+  text-decoration-color: rgba(255, 255, 255, 0.55);
 }
 
 .page:not(:has(.orangeBand)) .orangePanel :is(.pillButton, .primaryButton) {
@@ -1009,11 +1096,13 @@
 @keyframes ev-orange-band {
   0%,
   100% {
+    --band-ink: var(--ev-charcoal);
     background-color: var(--ev-white);
   }
 
   22%,
   78% {
+    --band-ink: var(--ev-white);
     background-color: var(--ev-orange-500);
   }
 }

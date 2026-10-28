@@ -1,3 +1,5 @@
+import type { FileType } from "./paper";
+
 export type HomeLocale = "en" | "de";
 
 export type ForwardIcon = "questionnaire" | "assessment" | "carbon" | "conduct" | "selfAssessment" | "evidence";
@@ -53,7 +55,7 @@ export type HomeContent = {
     folder: string;
     confirmed: string;
     needsUpdate: string;
-    documents: Array<{ name: string; detail: string; status: "confirmed" | "update" }>;
+    documents: Array<{ name: string; detail: string; status: "confirmed" | "update"; type: FileType }>;
   };
   example: {
     label: string;
@@ -191,10 +193,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       confirmed: "Confirmed",
       needsUpdate: "Needs update",
       documents: [
-        { name: "Environmental policy", detail: "Policy document", status: "confirmed" },
-        { name: "Electricity invoices", detail: "Reporting year", status: "confirmed" },
-        { name: "Management system certificate", detail: "Validity to be checked", status: "update" },
-        { name: "Scope 1 and 2 calculation", detail: "Calculation sheet", status: "confirmed" }
+        { name: "Environmental policy", detail: "Policy document", status: "confirmed", type: "pdf" },
+        { name: "Electricity invoices", detail: "Reporting year", status: "confirmed", type: "pdf" },
+        { name: "Management system certificate", detail: "Validity to be checked", status: "update", type: "pdf" },
+        { name: "Scope 1 and 2 calculation", detail: "Calculation sheet", status: "confirmed", type: "xlsx" }
       ]
     },
     example: {
@@ -396,10 +398,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       confirmed: "Bestätigt",
       needsUpdate: "Aktualisieren",
       documents: [
-        { name: "Umweltrichtlinie", detail: "Richtliniendokument", status: "confirmed" },
-        { name: "Stromrechnungen", detail: "Berichtsjahr", status: "confirmed" },
-        { name: "Zertifikat Managementsystem", detail: "Gültigkeit zu prüfen", status: "update" },
-        { name: "Scope-1- und Scope-2-Berechnung", detail: "Berechnungsdatei", status: "confirmed" }
+        { name: "Umweltrichtlinie", detail: "Richtliniendokument", status: "confirmed", type: "pdf" },
+        { name: "Stromrechnungen", detail: "Berichtsjahr", status: "confirmed", type: "pdf" },
+        { name: "Zertifikat Managementsystem", detail: "Gültigkeit zu prüfen", status: "update", type: "pdf" },
+        { name: "Scope-1- und Scope-2-Berechnung", detail: "Berechnungsdatei", status: "confirmed", type: "xlsx" }
       ]
     },
     example: {

@@ -1,5 +1,7 @@
 import styles from "../HomeLandingPage.module.css";
 import type { HomeContent } from "./content";
+import { Document } from "./Document";
+import { fileTypeOf } from "./paper";
 
 type Scene = HomeContent["steps"]["scene"];
 
@@ -11,6 +13,8 @@ type Scene = HomeContent["steps"]["scene"];
  * Without --p (no JavaScript, reduced motion) it shows the approved scene.
  */
 export function StepsScene({ scene }: { scene: Scene }) {
+  const fileType = fileTypeOf(scene.received.file);
+
   return (
     <div aria-hidden="true" className={styles.scene}>
       {/* 1. The customer's request arrives. */}
@@ -20,7 +24,7 @@ export function StepsScene({ scene }: { scene: Scene }) {
           <span className={styles.badge}>{scene.badge}</span>
         </div>
         <div className={styles.sceneFile}>
-          <span className={styles.docIcon} />
+          <Document className={styles.sceneDoc} type={fileType} />
           <span className={styles.panelText}>
             <strong>{scene.received.file}</strong>
             <span>{scene.received.meta}</span>
@@ -51,7 +55,7 @@ export function StepsScene({ scene }: { scene: Scene }) {
           <span className={styles.badge}>{scene.badge}</span>
         </div>
         <div className={styles.sceneFile}>
-          <span className={styles.docIcon} />
+          <Document className={styles.sceneDoc} type={fileType} />
           <span className={styles.panelText}>
             <strong>{scene.ready.summary}</strong>
             <span>{scene.received.file}</span>

@@ -135,7 +135,9 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
           <ul className={styles.cards}>
             {copy.forwardable.items.map((item, index) => (
               <li className={styles.card} key={item.title} style={{ "--i": index } as React.CSSProperties}>
-                <BrandIcon className={styles.cardIcon} name={item.icon} />
+                <span aria-hidden="true" className={styles.cardIconTile}>
+                  <BrandIcon className={styles.cardIcon} name={item.icon} />
+                </span>
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p>{item.body}</p>
               </li>

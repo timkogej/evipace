@@ -1,10 +1,19 @@
 import styles from "../HomeLandingPage.module.css";
 import type { HomeContent } from "./content";
+import { Document } from "./Document";
+import { Folder } from "./Folder";
 import { ScrollProgress } from "./ScrollProgress";
+
+/* Pages sticking out of the folder: position, resting tilt and order. */
+const SHEETS = [
+  { x: "44%", r: "-4deg", lines: 4 },
+  { x: "57%", r: "3deg", lines: 3 }
+];
 
 /**
  * Illustrative HTML/CSS picture of the desk: the brand-book taupe folder with
- * its orange folded corner behind a status panel. Not a screenshot of software.
+ * its orange folded corner behind a status panel, two pages sticking out of
+ * it. Not a screenshot of software.
  *
  * The stage reports its scroll progress as `--p`. As the visitor scrolls, the
  * finished steps are ticked green one after another, and
@@ -15,12 +24,19 @@ export function DeskVisual({ copy }: { copy: HomeContent["visual"] }) {
   return (
     <ScrollProgress className={styles.visualStage}>
       <figure aria-label={copy.label} className={styles.visual}>
-        <div aria-hidden="true" className={styles.folder}>
-          <span className={styles.folderTab} />
-          <span className={styles.folderFold} />
-          <span className={styles.folderLabel}>{copy.folder}</span>
-          <span className={styles.folderLines} />
-        </div>
+        <Folder
+          className={styles.folder}
+          label={copy.folder}
+          lines
+          peek={SHEETS.map((sheet, index) => (
+            <Document
+              className={styles.folderSheet}
+              key={sheet.x}
+              lines={sheet.lines}
+              style={{ "--x": sheet.x, "--r": sheet.r, "--k": index } as React.CSSProperties}
+            />
+          ))}
+        />
         <div className={styles.panel}>
           <div className={styles.panelHead}>
             <span className={styles.panelTitle}>{copy.title}</span>

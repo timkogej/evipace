@@ -45,8 +45,10 @@
     0 2px 4px rgba(23, 23, 23, 0.06),
     0 10px 22px rgba(23, 23, 23, 0.07),
     0 28px 56px rgba(23, 23, 23, 0.1);
-  /* Paper grain: fine, tiled noise at a few percent, laid over a fill. */
-  --ev-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  /* Paper grain: fine, tiled noise at a few percent, laid over a fill.
+     A pre-rendered PNG tile (public/textures): an SVG noise filter here was
+     re-rasterised on repaints, which made scrolling stutter. */
+  --ev-grain: url("/textures/paper-grain.png");
   /* Mapped to the site-wide motion tokens in app/globals.css. */
   --ev-dur-fast: var(--motion-fast);
   --ev-dur-base: var(--motion-base);
@@ -950,7 +952,7 @@
 /* The one orange section on a page. Text sitting straight on orange is
    white; cards and other white boxes inside keep charcoal text. --band-ink
    is the text colour on the band. While the band fades in from white
-   (ev-orange-band) it switches from charcoal to white once, halfway into
+   (a white veil over it, see below) it switches from charcoal to white once, halfway into
    the fade, instead of blending every frame: blending an inherited colour
    restyles the whole section on each frame of the scroll. Where the browser
    has no scroll-driven animations the band is simply orange with white
@@ -959,8 +961,24 @@
    (e.g. the methodology .band), which must not win here. */
 .orangeBand.orangeBand {
   --band-ink: var(--ev-white);
+  position: relative;
+  isolation: isolate;
   background: var(--ev-orange-500);
   color: var(--band-ink);
+}
+
+/* The fade from white is a white layer over the orange that only changes
+   its opacity (see ev-orange-band-veil), which the browser animates on the
+   compositor. Animating background-color instead repainted the whole band,
+   cards and shadows included, on every frame of the fade. */
+.orangeBand.orangeBand::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--ev-white);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Copy sitting straight on the band follows --band-ink. White boxes inside
@@ -1094,17 +1112,29 @@
   color: var(--ev-white);
 }
 
+/* Text colour on the band: charcoal while the band is still mostly white,
+   white once it is mostly orange (discrete, so it switches only twice). */
 @keyframes ev-orange-band {
   0%,
   100% {
     --band-ink: var(--ev-charcoal);
-    background-color: var(--ev-white);
   }
 
   22%,
   78% {
     --band-ink: var(--ev-white);
-    background-color: var(--ev-orange-500);
+  }
+}
+
+@keyframes ev-orange-band-veil {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  22%,
+  78% {
+    opacity: 0;
   }
 }
 
@@ -1114,6 +1144,13 @@
       animation: ev-orange-band linear both;
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
+    }
+
+    .orangeBand.orangeBand::before {
+      animation: ev-orange-band-veil linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      will-change: opacity;
     }
 
     /* Hero depth: as the hero scrolls away the folder trails behind the

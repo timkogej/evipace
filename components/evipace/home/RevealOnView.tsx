@@ -31,8 +31,14 @@ export function RevealOnView({ children, className = "" }: { children: ReactNode
 
     const items = Array.from(root.querySelectorAll<HTMLElement>(ITEM_SELECTOR)).filter((item) => {
       const parent = item.parentElement?.closest(ITEM_SELECTOR);
+      if (parent && root.contains(parent)) return false;
+      // Scroll-linked visuals (a ScrollProgress stage inside this block) and
+      // decorative scenes animate on their own; a reveal on top of them
+      // makes their parts move twice, out of step.
+      const stage = item.closest("[data-scroll-progress]");
+      if ((stage && root.contains(stage)) || item.closest('[aria-hidden="true"]')) return false;
       // Never hide what the reader already sees, including after a deep link.
-      return !(parent && root.contains(parent)) && item.getBoundingClientRect().top > window.innerHeight;
+      return item.getBoundingClientRect().top > window.innerHeight;
     });
     if (items.length === 0) return;
 

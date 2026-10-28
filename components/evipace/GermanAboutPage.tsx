@@ -218,7 +218,7 @@ export function GermanAboutPage() {
                     className="grid grid-cols-[2.25rem_1fr] items-baseline gap-4 border-b border-[rgba(21,21,21,0.1)] py-4"
                     key={number}
                   >
-                    <span className="font-mono text-[0.68rem] font-bold text-orange">
+                    <span className="font-mono text-[0.75rem] font-bold text-orange">
                       {number}
                     </span>
                     <span className="font-display text-xl text-ink sm:text-2xl">
@@ -290,7 +290,7 @@ export function GermanAboutPage() {
                 className={`py-5 ${index > 0 ? "sm:border-l sm:border-[rgba(21,21,21,0.1)] sm:pl-6" : ""}`}
                 key={source}
               >
-                <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-orange">
+                <p className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-orange">
                   {source}
                 </p>
                 <p className="mt-2.5 text-sm font-semibold leading-6 text-muted">
@@ -472,7 +472,7 @@ export function GermanAboutPage() {
               key={principle.number}
               step={index as 0 | 1 | 2}
             >
-              <p className="font-mono text-[0.68rem] font-bold text-orange">
+              <p className="font-mono text-[0.75rem] font-bold text-orange">
                 {principle.number}
               </p>
               <h3 className="about-h3 font-display mt-4 text-ink">

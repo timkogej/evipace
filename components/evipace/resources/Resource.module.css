@@ -26,7 +26,7 @@
   display: block;
   margin-bottom: var(--ev-s-1);
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -104,7 +104,7 @@
 .cardType {
   margin: 0;
   color: var(--ev-orange-700);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -212,7 +212,7 @@
   background: var(--ev-orange-100);
   padding: 0.2rem 0.65rem;
   color: var(--ev-orange-800);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -372,7 +372,7 @@
 
 .flow span {
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
@@ -525,7 +525,7 @@
 .principleLabel {
   margin-bottom: var(--ev-s-3) !important;
   color: var(--ev-orange-500);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -595,7 +595,7 @@
 
 .matrixCards dt {
   color: var(--ev-orange-700);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -637,7 +637,7 @@
 
 .matrixTable thead th {
   color: var(--ev-ink-2);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -764,7 +764,7 @@
 .method p:first-child {
   margin-bottom: var(--ev-s-1);
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -935,7 +935,7 @@
 
 .qualifier .qualifierLabel {
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -954,7 +954,7 @@
   border-top: 1px solid var(--ev-line);
   padding-top: var(--ev-s-3);
   color: var(--ev-muted);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
@@ -973,7 +973,7 @@
 .metaLabel {
   margin: 0 0 var(--ev-s-3);
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;

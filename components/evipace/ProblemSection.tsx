@@ -57,7 +57,7 @@ export function ProblemSection() {
         </Reveal>
 
         <div className="relative min-h-[36rem] rounded-[1.25rem] border border-[rgba(21,21,21,0.1)] bg-white p-6 shadow-lift">
-          <div className="absolute right-6 top-6 rounded-full border border-[rgba(21,21,21,0.12)] px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-muted">
+          <div className="absolute right-6 top-6 rounded-full border border-[rgba(21,21,21,0.12)] px-3 py-1 text-[0.75rem] font-bold uppercase tracking-[0.16em] text-muted">
             Evidence intake
           </div>
 
@@ -92,7 +92,7 @@ export function ProblemSection() {
             >
               <div className="mb-8 flex items-center justify-between">
                 <FileText className="h-5 w-5 text-orange" />
-                <span className="font-mono text-[0.68rem] text-muted">
+                <span className="font-mono text-[0.75rem] text-muted">
                   DOC-{index + 1}
                 </span>
               </div>

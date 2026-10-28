@@ -244,7 +244,7 @@ function ExternalSourceLink({
 function StatusPill({ status }: { status: string }) {
   return (
     <span
-      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.08em] ${
+      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.75rem] font-bold uppercase tracking-[0.08em] ${
         status === "prüfen"
           ? "border-[rgba(21,21,21,0.16)] bg-[rgba(21,21,21,0.05)] text-ink"
           : "border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] text-[#b94f00]"
@@ -264,7 +264,7 @@ function EvidenceMap() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[940px] border-collapse text-left text-sm">
             <caption className="sr-only">Beispiel einer EcoVadis Evidence Map mit Thema, Aussage, Dokument, Scope, Aktualität und Status</caption>
-            <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
+            <thead className="bg-[var(--paper)] text-[0.75rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
               <tr>
                 {["EcoVadis-Thema", ...fields, "Status"].map((heading) => (
                   <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={heading} scope="col">{heading}</th>
@@ -291,7 +291,7 @@ function EvidenceMap() {
           <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5 shadow-[0_10px_30px_rgba(21,21,21,0.035)]" key={`${row[0]}-${row[1]}`}>
             <div className="flex items-start justify-between gap-3 border-b border-[rgba(21,21,21,0.1)] pb-4">
               <div>
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.1em] text-orange">{row[0]}</p>
+                <p className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-orange">{row[0]}</p>
                 <h3 className="mt-2 font-bold text-ink">{row[1]}</h3>
               </div>
               <StatusPill status={row[5]} />
@@ -320,7 +320,7 @@ function EvidenceRegister() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[1240px] border-collapse text-left text-sm">
             <caption className="sr-only">Illustratives internes EcoVadis Evidence Register, kein Kundenfall</caption>
-            <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
+            <thead className="bg-[var(--paper)] text-[0.75rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
               <tr>
                 {["Frage / Option", ...fields, "Status"].map((heading) => (
                   <th className="border-b border-[rgba(21,21,21,0.12)] px-4 py-4 font-bold" key={heading} scope="col">{heading}</th>

@@ -340,7 +340,7 @@ function SummaryPanel({
         <div className="flex items-start gap-3">
           <FileText aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
           <div>
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-orange">
+            <p className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-orange">
               Datensammlung
             </p>
             <h3 className="mt-2 text-lg font-bold leading-tight text-ink">
@@ -355,7 +355,7 @@ function SummaryPanel({
 
         <dl className="mt-5 grid gap-2 text-sm">
           <div className="rounded-[0.8rem] bg-[var(--paper)] p-3">
-            <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+            <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
               Zeitraum
             </dt>
             <dd className="mt-1 font-bold text-ink">
@@ -365,13 +365,13 @@ function SummaryPanel({
             </dd>
           </div>
           <div className="rounded-[0.8rem] bg-[var(--paper)] p-3">
-            <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+            <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
               Standorte
             </dt>
             <dd className="mt-1 font-bold text-ink">{state.locations.length}</dd>
           </div>
           <div className="rounded-[0.8rem] bg-[var(--paper)] p-3">
-            <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+            <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
               Relevante Module
             </dt>
             <dd className="mt-1 font-bold text-ink">
@@ -624,7 +624,7 @@ function EntryCard({
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-orange">
             Scope {entry.scope} · {category.shortLabel}
           </p>
           <h4 className="type-subheading font-display mt-2 text-ink">

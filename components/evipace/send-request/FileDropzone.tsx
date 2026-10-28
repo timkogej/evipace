@@ -60,7 +60,8 @@ export function FileDropzone({
         <span aria-hidden="true" className={styles.dropIcon}>
           <UploadIcon />
         </span>
-        <span className={styles.dropText}>{copy.dropText}</span>
+        <span className={`${styles.dropText} ${styles.dropPointer}`}>{copy.dropText}</span>
+        <span className={`${styles.dropText} ${styles.dropTouch}`}>{copy.tapText}</span>
         <span className={styles.dropHint}>{copy.hintText}</span>
       </button>
 

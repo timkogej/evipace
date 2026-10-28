@@ -370,7 +370,7 @@ function StatusPill({ status }: { status: string }) {
 
   return (
     <span
-      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.08em] ${
+      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.75rem] font-bold uppercase tracking-[0.08em] ${
         highlight
           ? "border-[rgba(21,21,21,0.16)] bg-[rgba(21,21,21,0.05)] text-ink"
           : "border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] text-[#b94f00]"
@@ -398,7 +398,7 @@ function EvidenceMap() {
               Beispiel einer Evidence Map mit angefragter Information,
               Aussage, Nachweis, Scope, Zeitraum und Status
             </caption>
-            <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
+            <thead className="bg-[var(--paper)] text-[0.75rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
               <tr>
                 {[
                   "Angefragte Information",
@@ -690,7 +690,7 @@ export function EsgEvidenceGuide() {
                     >
                       <div className="flex items-center justify-between gap-4">
                         <category.icon aria-hidden="true" className="h-5 w-5 text-orange" />
-                        <span className="font-mono text-[0.65rem] font-bold tracking-[0.12em] text-[rgba(21,21,21,0.42)]">
+                        <span className="font-mono text-[0.75rem] font-bold tracking-[0.12em] text-[rgba(21,21,21,0.42)]">
                           {category.number}
                         </span>
                       </div>

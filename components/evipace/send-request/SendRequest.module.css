@@ -374,6 +374,21 @@ textarea.input {
   font-weight: 700;
 }
 
+.dropTouch {
+  display: none;
+}
+
+/* Touch screens: files are picked, not dragged. */
+@media (hover: none) and (pointer: coarse) {
+  .dropPointer {
+    display: none;
+  }
+
+  .dropTouch {
+    display: inline;
+  }
+}
+
 .dropHint {
   color: var(--ev-ink-2);
   font-size: 0.85rem;

@@ -29,7 +29,10 @@ export function ReuseVisual({ copy }: { copy: HomeContent["reuse"] }) {
                   <strong>{doc.name}</strong>
                   <span>{doc.detail}</span>
                 </span>
-                <span className={styles.pill} data-tone={doc.status === "update" ? "open" : "ok"}>
+                <span
+                  className={doc.status === "update" ? styles.pill : `${styles.pill} ${styles.pillTicked}`}
+                  data-tone={doc.status === "update" ? "open" : "ok"}
+                >
                   {doc.status === "update" ? null : (
                     <svg aria-hidden="true" className={styles.pillCheck} fill="none" focusable="false" viewBox="0 0 12 12">
                       <path

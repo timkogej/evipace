@@ -188,7 +188,10 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
                 {copy.example.rows.map(([term, description], index) => (
                   <div className={styles.exampleRow} key={term} style={{ "--i": index } as React.CSSProperties}>
                     <dt>{term}</dt>
-                    <dd><TypedText text={description} /></dd>
+                    <dd>
+                      {/* Same timing as the row's --t in CSS (.exampleRow). */}
+                      <TypedText rate={7.5} start={0.8 + index * 1.1} text={description} />
+                    </dd>
                   </div>
                 ))}
               </dl>

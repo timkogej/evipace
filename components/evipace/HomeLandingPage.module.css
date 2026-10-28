@@ -576,7 +576,12 @@
 }
 
 /* Hero: two pages stick out above the folder's top edge and rise into
-   place as the visual scrolls in. */
+   place as the visual scrolls in. Scroll-linked pieces get their own layer
+   (will-change) so moving them never repaints their shadows. */
+[data-progress="on"] :is(.folderSheet, .sceneDoc, .sceneStamp, .trustArt) {
+  will-change: transform;
+}
+
 .folderSheet {
   --doc-w: 4.75rem;
   --t: clamp(0, calc(var(--p, 1) * 3 - 0.2 - var(--k) * 0.5), 1);
@@ -944,16 +949,12 @@
 
 /* The one orange section on a page. Text sitting straight on orange is
    white; cards and other white boxes inside keep charcoal text. --band-ink
-   is the text colour on the band: it is registered so it can blend with the
-   background (see ev-orange-band), keeping text readable while the band
-   fades in from white. Where the browser has no scroll-driven animations
-   the band is simply orange with white text. */
-@property --band-ink {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #ffffff;
-}
-
+   is the text colour on the band. While the band fades in from white
+   (ev-orange-band) it switches from charcoal to white once, halfway into
+   the fade, instead of blending every frame: blending an inherited colour
+   restyles the whole section on each frame of the scroll. Where the browser
+   has no scroll-driven animations the band is simply orange with white
+   text. */
 /* Doubled class: page modules give their own bands a white background
    (e.g. the methodology .band), which must not win here. */
 .orangeBand.orangeBand {
@@ -1456,7 +1457,7 @@
   --doc-w: 2.1rem;
 }
 
-.pill:has(.pillCheck) {
+.pillTicked {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -1553,23 +1554,20 @@
   opacity: calc(0.25 + var(--t) * 0.75);
 }
 
-/* Each answer is typed in (TypedText): a character's --k runs 0..1 as the
-   row's --t passes it, and the caret sits on the one being typed. */
-.typed > span {
-  --k: clamp(0, calc(var(--t, 1) * (var(--n) + 1) - var(--c)), 1);
-  opacity: var(--k);
+/* Each answer is typed in (TypedText): the untyped rest keeps its space,
+   and a thin orange caret follows the last typed character. The caret is
+   an empty inline span with a border, so it never adds a line break. */
+.typedRest {
+  visibility: hidden;
 }
 
-/* The caret is drawn on the right edge of the last typed character (fully
-   visible) while the next one (--k2) is being typed. */
-.exampleStage[data-progress="on"] .typed > span {
-  --k2: clamp(0, calc(var(--t, 1) * (var(--n) + 1) - var(--c) - 1), 1);
-  box-shadow: 2px 0 0 0
-    color-mix(
-      in srgb,
-      var(--ev-orange-500) calc(min(var(--k2) * 30, 1) * min((1 - var(--k2)) * 30, 1) * 100%),
-      transparent
-    );
+.caret {
+  margin-inline: -1px;
+  border-left: 2px solid transparent;
+}
+
+.caret[data-on] {
+  border-left-color: var(--ev-orange-500);
 }
 
 .exampleStatus {
@@ -2088,6 +2086,7 @@
    the confirmed ones are ticked (--c) and the one that needs an update
    pulses once. */
 .scrollStage[data-progress="on"] .reuseDoc {
+  will-change: transform, opacity;
   --t: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 0.4), 1);
   --e: calc(1 - (1 - var(--t)) * (1 - var(--t)) * (1 - var(--t)));
   --c: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 1.4), 1);

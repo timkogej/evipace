@@ -29,6 +29,24 @@
   --ev-r-sm: 8px;
   --ev-r-md: 12px;
   --ev-r-lg: 16px;
+  /* Paper depth: a lit top edge, a tight contact shadow and a soft lift.
+     `sheet` is for small paper (rows), `panel` for cards, `lift` for hover. */
+  --ev-shadow-sheet:
+    inset 0 1px 0 var(--ev-white),
+    0 1px 2px rgba(23, 23, 23, 0.06),
+    0 10px 24px rgba(23, 23, 23, 0.07);
+  --ev-shadow-panel:
+    inset 0 1px 0 var(--ev-white),
+    0 1px 2px rgba(23, 23, 23, 0.06),
+    0 6px 14px rgba(23, 23, 23, 0.04),
+    0 24px 56px rgba(23, 23, 23, 0.08);
+  --ev-shadow-lift:
+    inset 0 1px 0 var(--ev-white),
+    0 2px 4px rgba(23, 23, 23, 0.06),
+    0 10px 22px rgba(23, 23, 23, 0.07),
+    0 28px 56px rgba(23, 23, 23, 0.1);
+  /* Paper grain: fine, tiled noise at a few percent, laid over a fill. */
+  --ev-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   /* Mapped to the site-wide motion tokens in app/globals.css. */
   --ev-dur-fast: var(--motion-fast);
   --ev-dur-base: var(--motion-base);
@@ -393,7 +411,7 @@
 
   .card:hover {
     border-color: rgba(254, 112, 1, 0.45);
-    box-shadow: 0 18px 40px rgba(23, 23, 23, 0.08);
+    box-shadow: var(--ev-shadow-lift);
     transform: translateY(-4px);
   }
 
@@ -504,6 +522,7 @@
   inset: 0;
   border-radius: 0 var(--ev-r-md) var(--ev-r-md) var(--ev-r-md);
   background:
+    var(--ev-grain),
     linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 3rem),
     var(--ev-taupe);
   clip-path: polygon(0 0, calc(100% - 3.25rem) 0, 100% 3.25rem, 100% 100%, 0 100%);
@@ -523,7 +542,7 @@
   left: 0;
   height: var(--pocket, 2.75rem);
   border-radius: 0 0 var(--ev-r-md) var(--ev-r-md);
-  background: linear-gradient(180deg, #d1c8be, #c9bfb4);
+  background: var(--ev-grain), linear-gradient(180deg, #d1c8be, #c9bfb4);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 -10px 18px -12px rgba(23, 23, 23, 0.35);
@@ -615,8 +634,8 @@
   position: relative;
   border: 1px solid var(--ev-line);
   border-radius: var(--ev-r-lg);
-  background: var(--ev-white);
-  box-shadow: 0 24px 60px rgba(23, 23, 23, 0.08);
+  background: var(--ev-grain), var(--ev-white);
+  box-shadow: var(--ev-shadow-panel);
 }
 
 .panel {
@@ -923,38 +942,111 @@
   background: var(--ev-white);
 }
 
-/* The one orange section on a page. Text on it is charcoal (about 7:1 on
-   brand orange); cards stay white. Where the browser supports scroll-driven
-   animations the background blends in from white as the section arrives and
-   back to white as it leaves; elsewhere it is simply orange. */
-.orangeBand {
-  background: var(--ev-orange-500);
+/* The one orange section on a page. Text sitting straight on orange is
+   white; cards and other white boxes inside keep charcoal text. --band-ink
+   is the text colour on the band: it is registered so it can blend with the
+   background (see ev-orange-band), keeping text readable while the band
+   fades in from white. Where the browser has no scroll-driven animations
+   the band is simply orange with white text. */
+@property --band-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
 }
 
-.orangeBand :is(.eyebrow, .lead, .textLink) {
+/* Doubled class: page modules give their own bands a white background
+   (e.g. the methodology .band), which must not win here. */
+.orangeBand.orangeBand {
+  --band-ink: var(--ev-white);
+  background: var(--ev-orange-500);
+  color: var(--band-ink);
+}
+
+/* Copy sitting straight on the band follows --band-ink. White boxes inside
+   the band (cards, the comparison table, the motto box, check and topic
+   chips, light boxes in resource skins, matched by their class names across
+   modules) are left out and keep their charcoal text. Doubled class: beats
+   utility-colour overrides inside resource skins. */
+.orangeBand.orangeBand :is(
+  h2,
+  h3,
+  p,
+  li,
+  dd,
+  dt,
+  blockquote,
+  .eyebrow,
+  .lead,
+  .textLink,
+  [class*="accent"],
+  [class*="Accent"]
+):not(
+  :is(
+    [class$="__card"],
+    [class*="__card "],
+    [class*="__tableWrap"],
+    [class*="__motto"],
+    [class*="__checks"] > li,
+    [class*="__chips"] > li,
+    [class*="bg-white"],
+    [class*="bg-[var(--warm)]"],
+    [class*="bg-[var(--soft-orange)]"]
+  ),
+  :is(
+    [class$="__card"],
+    [class*="__card "],
+    [class*="__tableWrap"],
+    [class*="__motto"],
+    [class*="__checks"] > li,
+    [class*="__chips"] > li,
+    [class*="bg-white"],
+    [class*="bg-[var(--warm)]"],
+    [class*="bg-[var(--soft-orange)]"]
+  ) *
+) {
+  color: var(--band-ink);
+}
+
+.orangeBand.orangeBand :is(
+  [class$="__card"],
+  [class*="__card "],
+  [class*="__tableWrap"],
+  [class*="__motto"],
+  [class*="__checks"] > li,
+  [class*="__chips"] > li,
+  [class*="bg-white"],
+  [class*="bg-[var(--warm)]"],
+  [class*="bg-[var(--soft-orange)]"]
+) {
+  color: var(--ev-charcoal);
+}
+
+/* Inside those boxes copy stays charcoal, as before. */
+.orangeBand.orangeBand :is(
+  [class$="__card"],
+  [class*="__card "],
+  [class*="__tableWrap"],
+  [class*="__motto"],
+  [class*="__checks"] > li,
+  [class*="__chips"] > li,
+  [class*="bg-white"],
+  [class*="bg-[var(--warm)]"],
+  [class*="bg-[var(--soft-orange)]"]
+) :is(p, li, dd, blockquote, .eyebrow, .lead, .textLink, [class*="accent"], [class*="Accent"]) {
   color: var(--ev-charcoal);
 }
 
 .orangeBand .textLink {
-  text-decoration-color: rgba(23, 23, 23, 0.45);
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
 }
 
 .orangeBand .textLink:hover {
-  color: var(--ev-charcoal);
   text-decoration-color: currentColor;
 }
 
 /* Cards lift with a charcoal edge here; an orange edge would vanish. */
 .orangeBand .card:hover {
   border-color: var(--ev-charcoal);
-}
-
-/* Copy sitting straight on orange is charcoal: the greys and dark orange
-   used on white fall below readable contrast here. */
-/* Doubled class: beats utility-colour overrides inside resource skins. */
-.orangeBand.orangeBand :is(p, li, dd, blockquote, [class*="accent"], [class*="Accent"]),
-.page:not(:has(.orangeBand)) .orangePanel :is(blockquote, [class*="accent"], [class*="Note"]) {
-  color: var(--ev-charcoal);
 }
 
 /* Orange buttons would vanish on orange, so they turn charcoal. */
@@ -970,15 +1062,29 @@
 }
 
 /* Article pages: the call-to-action box is the orange accent, but only when
-   the page has no orange section of its own (one orange block per page). */
+   the page has no orange section of its own (one orange block per page).
+   Its copy is white too. */
 .page:not(:has(.orangeBand)) .orangePanel {
   border-color: var(--ev-orange-500);
   background: var(--ev-orange-500);
-  color: var(--ev-charcoal);
+  color: var(--ev-white);
 }
 
-.page:not(:has(.orangeBand)) .orangePanel :is(.eyebrow, h2, p, li, .textLink) {
-  color: var(--ev-charcoal);
+.page:not(:has(.orangeBand)) .orangePanel :is(
+  .eyebrow,
+  h2,
+  p,
+  li,
+  .textLink,
+  blockquote,
+  [class*="accent"],
+  [class*="Note"]
+) {
+  color: var(--ev-white);
+}
+
+.page:not(:has(.orangeBand)) .orangePanel .textLink {
+  text-decoration-color: rgba(255, 255, 255, 0.55);
 }
 
 .page:not(:has(.orangeBand)) .orangePanel :is(.pillButton, .primaryButton) {
@@ -990,11 +1096,13 @@
 @keyframes ev-orange-band {
   0%,
   100% {
+    --band-ink: var(--ev-charcoal);
     background-color: var(--ev-white);
   }
 
   22%,
   78% {
+    --band-ink: var(--ev-white);
     background-color: var(--ev-orange-500);
   }
 }
@@ -1218,8 +1326,12 @@
 .detail {
   border: 1px solid var(--ev-taupe);
   border-radius: var(--ev-r-lg);
-  background: var(--ev-white);
+  background: var(--ev-grain), var(--ev-white);
   padding: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.card {
+  box-shadow: var(--ev-shadow-sheet);
 }
 
 /* Icon tile: a soft paper-toned plate that warms up on hover. */
@@ -1326,12 +1438,9 @@
   gap: var(--ev-s-4);
   border: 1px solid var(--ev-line);
   border-radius: var(--ev-r-md);
-  background: var(--ev-white);
+  background: var(--ev-grain), var(--ev-white);
   padding: var(--ev-s-4) var(--ev-s-5);
-  box-shadow:
-    inset 0 1px 0 var(--ev-white),
-    0 1px 2px rgba(23, 23, 23, 0.06),
-    0 10px 24px rgba(23, 23, 23, 0.07);
+  box-shadow: var(--ev-shadow-sheet);
   transform-origin: 50% 100%;
 }
 
@@ -1444,8 +1553,23 @@
   opacity: calc(0.25 + var(--t) * 0.75);
 }
 
-.exampleRow dd {
-  clip-path: inset(0 calc((1 - var(--t)) * 100%) 0 0);
+/* Each answer is typed in (TypedText): a character's --k runs 0..1 as the
+   row's --t passes it, and the caret sits on the one being typed. */
+.typed > span {
+  --k: clamp(0, calc(var(--t, 1) * (var(--n) + 1) - var(--c)), 1);
+  opacity: var(--k);
+}
+
+/* The caret is drawn on the right edge of the last typed character (fully
+   visible) while the next one (--k2) is being typed. */
+.exampleStage[data-progress="on"] .typed > span {
+  --k2: clamp(0, calc(var(--t, 1) * (var(--n) + 1) - var(--c) - 1), 1);
+  box-shadow: 2px 0 0 0
+    color-mix(
+      in srgb,
+      var(--ev-orange-500) calc(min(var(--k2) * 30, 1) * min((1 - var(--k2)) * 30, 1) * 100%),
+      transparent
+    );
 }
 
 .exampleStatus {
@@ -2234,12 +2358,9 @@
     justify-self: end;
     border: 1px solid var(--ev-line);
     border-radius: var(--ev-r-lg);
-    background: var(--ev-white);
+    background: var(--ev-grain), var(--ev-white);
     padding: var(--ev-s-5);
-    box-shadow:
-      inset 0 1px 0 var(--ev-white),
-      0 1px 2px rgba(23, 23, 23, 0.05),
-      0 24px 60px rgba(23, 23, 23, 0.08);
+    box-shadow: var(--ev-shadow-panel);
   }
 }
 

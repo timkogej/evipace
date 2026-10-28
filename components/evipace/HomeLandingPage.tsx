@@ -9,6 +9,7 @@ import { RevealOnView } from "./home/RevealOnView";
 import { ScrollProgress } from "./home/ScrollProgress";
 import { StepsScene } from "./home/StepsScene";
 import { TrustIllustration } from "./home/TrustIllustration";
+import { TypedText } from "./home/TypedText";
 import { homeContent, type HomeLocale } from "./home/content";
 import styles from "./HomeLandingPage.module.css";
 
@@ -176,7 +177,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               ))}
             </div>
           </div>
-          {/* The draft fills in row by row as it scrolls into view. */}
+          {/* The draft is typed in row by row as it scrolls into view. */}
           <ScrollProgress className={styles.exampleStage}>
             <figure className={styles.exampleCard}>
               <figcaption className={styles.exampleHead}>
@@ -187,7 +188,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
                 {copy.example.rows.map(([term, description], index) => (
                   <div className={styles.exampleRow} key={term} style={{ "--i": index } as React.CSSProperties}>
                     <dt>{term}</dt>
-                    <dd>{description}</dd>
+                    <dd><TypedText text={description} /></dd>
                   </div>
                 ))}
               </dl>

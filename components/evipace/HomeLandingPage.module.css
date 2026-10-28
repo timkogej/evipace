@@ -410,6 +410,69 @@
   .card:hover .iconFront {
     transform: translateY(-3px);
   }
+
+  .cardIconTile {
+    transition: background var(--motion-base) ease, box-shadow var(--motion-base) ease;
+  }
+
+  .card:hover .cardIconTile {
+    background: linear-gradient(180deg, #fff7f0, var(--ev-orange-100));
+    box-shadow:
+      inset 0 0 0 1px rgba(254, 112, 1, 0.18),
+      inset 0 1px 0 var(--ev-white);
+  }
+
+  /* The motif is drawn again: strokes are written, marks spring in. */
+  .card:hover .iconDraw {
+    animation: ev-icon-draw 650ms var(--ease-out-expo) both;
+    animation-delay: calc(120ms + var(--d, 0) * 70ms);
+  }
+
+  .card:hover .iconPop {
+    animation: ev-icon-pop 520ms var(--ease-out-expo) both;
+    animation-delay: calc(120ms + var(--d, 0) * 70ms);
+  }
+
+  .card:hover .iconGrow {
+    animation: ev-icon-grow 560ms var(--ease-out-expo) both;
+    animation-delay: calc(120ms + var(--d, 0) * 70ms);
+  }
+}
+
+@keyframes ev-icon-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ev-icon-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ev-icon-grow {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
 }
 
 /* Desk visual: taupe folder with the orange folded corner + status panel */
@@ -419,6 +482,68 @@
   max-width: 46rem;
   margin: 0;
   padding: 3.75rem 0 0 clamp(1rem, 8vw, 6rem);
+}
+
+/* Shared folder (Folder.tsx): peek pages, back wall, content, front pocket.
+   Layers paint in that order, so content sits inside the folder. */
+.folderBox {
+  position: relative;
+}
+
+.folderBack {
+  position: absolute;
+  inset: 0;
+  /* Layered shadow: a tight contact edge plus a soft lift. */
+  filter:
+    drop-shadow(0 1px 1px rgba(23, 23, 23, 0.07))
+    drop-shadow(0 14px 24px rgba(23, 23, 23, 0.08));
+}
+
+.folderBack::before {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 var(--ev-r-md) var(--ev-r-md) var(--ev-r-md);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 3rem),
+    var(--ev-taupe);
+  clip-path: polygon(0 0, calc(100% - 3.25rem) 0, 100% 3.25rem, 100% 100%, 0 100%);
+  content: "";
+}
+
+.folderPeek {
+  position: absolute;
+  inset: 0;
+}
+
+/* The front lip: slightly darker than the wall, lit on its top edge. */
+.folderPocket {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--pocket, 2.75rem);
+  border-radius: 0 0 var(--ev-r-md) var(--ev-r-md);
+  background: linear-gradient(180deg, #d1c8be, #c9bfb4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 -10px 18px -12px rgba(23, 23, 23, 0.35);
+}
+
+/* Shared document (Document.tsx). Width sets the size; height follows. */
+.doc {
+  display: block;
+  overflow: visible;
+  width: var(--doc-w, 2rem);
+  height: auto;
+  flex: none;
+  filter:
+    drop-shadow(0 1px 0.5px rgba(23, 23, 23, 0.1))
+    drop-shadow(0 4px 8px rgba(23, 23, 23, 0.07));
+}
+
+.docLine {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
 }
 
 .folder {
@@ -431,13 +556,15 @@
   transform-origin: 20% 80%;
 }
 
-.folder::before {
+/* Hero: two pages stick out above the folder's top edge and rise into
+   place as the visual scrolls in. */
+.folderSheet {
+  --doc-w: 4.75rem;
+  --t: clamp(0, calc(var(--p, 1) * 3 - 0.2 - var(--k) * 0.5), 1);
   position: absolute;
-  inset: 0;
-  border-radius: 0 var(--ev-r-md) var(--ev-r-md) var(--ev-r-md);
-  background: var(--ev-taupe);
-  clip-path: polygon(0 0, calc(100% - 3.25rem) 0, 100% 3.25rem, 100% 100%, 0 100%);
-  content: "";
+  top: -2.1rem;
+  left: var(--x);
+  transform: translateY(calc((1 - var(--t)) * 1.4rem)) rotate(var(--r));
 }
 
 .folderTab {
@@ -549,8 +676,9 @@
   justify-content: center;
 }
 
+/* Rows finish by p ≈ 0.76, leaving the end of the scroll for the approval. */
 .panelRow {
-  --t: clamp(0, calc(var(--p, 1) * 5.6 - var(--i) * 1.05 - 1.2), 1);
+  --t: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.05 - 1.2), 1);
 }
 
 .mark {
@@ -601,9 +729,77 @@
 }
 
 .panelFoot .mockButton {
-  --t: clamp(0, calc(var(--p, 1) * 8 - 6.9), 1);
+  --t: clamp(0, calc(var(--p, 1) * 8 - 5.6), 1);
   opacity: calc(0.35 + var(--t) * 0.65);
   transform: scale(calc(0.96 + var(--t) * 0.04));
+}
+
+/* Footer note and button each stack a waiting and an approved label. */
+.footNote,
+.mockButton {
+  display: inline-grid;
+}
+
+.footNote > span,
+.mockButton > span {
+  grid-area: 1 / 1;
+}
+
+.footApproved,
+.mockDone {
+  opacity: 0;
+}
+
+.footApproved {
+  color: var(--ev-green);
+}
+
+/* End of the hero scroll, only when it is scroll-linked (JS, full motion):
+   the client's input comes in (--u), then the approve button is pressed and
+   turns green (--k). Without it the panel keeps its waiting state. */
+.visualStage[data-progress="on"] {
+  --u: clamp(0, calc((var(--p, 1) - 0.8) * 12), 1);
+  --k: clamp(0, calc((var(--p, 1) - 0.88) * 12), 1);
+}
+
+.visualStage[data-progress="on"] .panelRow[data-tone="open"] {
+  background: color-mix(in srgb, var(--ev-orange-100) calc(var(--t) * (1 - var(--u)) * 55%), transparent);
+}
+
+.visualStage[data-progress="on"] .panelRow[data-tone="open"] .mark {
+  background: color-mix(in srgb, var(--ev-green) calc(var(--u) * 100%), var(--ev-orange-500));
+  box-shadow: 0 0 0 calc(var(--t) * (1 - var(--u)) * 0.3rem) rgba(254, 112, 1, 0.22);
+  transform: scale(calc(0.5 + var(--t) * 0.22 + var(--u) * 0.28));
+}
+
+.visualStage[data-progress="on"] .panelRow[data-tone="open"] .mark::after {
+  position: absolute;
+  top: 0.22rem;
+  left: 0.43rem;
+  width: 0.32rem;
+  height: 0.6rem;
+  border: solid var(--ev-white);
+  border-width: 0 2px 2px 0;
+  opacity: var(--u);
+  transform: rotate(45deg) scale(calc(0.4 + var(--u) * 0.6));
+  content: "";
+}
+
+.visualStage[data-progress="on"] .panelRow[data-tone="open"] .pill {
+  opacity: calc(var(--t) * (1 - var(--u)));
+}
+
+.visualStage[data-progress="on"] .panelFoot .mockButton {
+  background: color-mix(in srgb, var(--ev-green) calc(var(--k) * 100%), var(--ev-orange-500));
+  transform: scale(calc(0.96 + var(--t) * 0.04 - var(--k) * (1 - var(--k)) * 0.16));
+}
+
+.visualStage[data-progress="on"] :is(.footWaiting, .mockIdle) {
+  opacity: calc(1 - var(--k));
+}
+
+.visualStage[data-progress="on"] :is(.footApproved, .mockDone) {
+  opacity: var(--k);
 }
 
 .panelText {
@@ -810,6 +1006,40 @@
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
     }
+
+    /* Hero depth: as the hero scrolls away the folder trails behind the
+       panel, and the pages sink back into the folder. */
+    .visual .folder {
+      animation: ev-hero-folder linear both;
+      animation-timeline: view();
+      animation-range: cover 30% cover 100%;
+    }
+
+    .visual .folderSheet {
+      animation: ev-hero-sheet linear both;
+      animation-timeline: view();
+      animation-range: cover 30% cover 100%;
+    }
+  }
+}
+
+@keyframes ev-hero-folder {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 3.5rem;
+  }
+}
+
+@keyframes ev-hero-sheet {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 1.25rem;
   }
 }
 
@@ -992,13 +1222,42 @@
   padding: clamp(1.5rem, 2.4vw, 2rem);
 }
 
+/* Icon tile: a soft paper-toned plate that warms up on hover. */
+.cardIconTile {
+  display: grid;
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: var(--ev-s-5);
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #faf8f6, #f1ece6);
+  box-shadow:
+    inset 0 0 0 1px rgba(23, 23, 23, 0.06),
+    inset 0 1px 0 var(--ev-white);
+}
+
 .cardIcon {
   display: block;
   overflow: visible;
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: var(--ev-s-4);
+  /* The sheet fills ~60% of the 48 px grid, so the svg runs larger. */
+  width: 4.5rem;
+  height: 4.5rem;
   color: var(--ev-orange-700);
+}
+
+/* Motion hooks in BrandIcon. At rest every part shows finished. */
+.iconDraw {
+  stroke-dasharray: 1;
+}
+
+.iconPop {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.iconGrow {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
 }
 
 /* The second page peeks out behind the brand icon's sheet. */
@@ -1041,21 +1300,14 @@
   width: 100%;
   max-width: 44rem;
   margin: 0;
-  padding: 4.25rem clamp(1rem, 5vw, 3.5rem) 0;
+  padding-top: 1.25rem;
 }
 
+/* Documents sit inside the folder; the last one tucks 0.65rem behind the
+   pocket, so they read as filed rather than lying on top. */
 .reuseFolder {
-  position: absolute;
-  inset: 1.4rem 0 2.5rem;
-}
-
-.reuseFolder::before {
-  position: absolute;
-  inset: 0;
-  border-radius: 0 var(--ev-r-md) var(--ev-r-md) var(--ev-r-md);
-  background: var(--ev-taupe);
-  clip-path: polygon(0 0, calc(100% - 3.25rem) 0, 100% 3.25rem, 100% 100%, 0 100%);
-  content: "";
+  --pocket: 2.75rem;
+  padding: 3.25rem clamp(1rem, 5vw, 3.5rem) calc(var(--pocket) - 0.65rem);
 }
 
 .reuseDocs {
@@ -1076,29 +1328,40 @@
   border-radius: var(--ev-r-md);
   background: var(--ev-white);
   padding: var(--ev-s-4) var(--ev-s-5);
-  box-shadow: 0 10px 28px rgba(23, 23, 23, 0.06);
+  box-shadow:
+    inset 0 1px 0 var(--ev-white),
+    0 1px 2px rgba(23, 23, 23, 0.06),
+    0 10px 24px rgba(23, 23, 23, 0.07);
+  transform-origin: 50% 100%;
 }
 
-.docIcon {
-  position: relative;
-  width: 1.6rem;
-  height: 2rem;
-  border: 1.5px solid var(--ev-charcoal);
-  border-radius: 3px;
-  background:
-    linear-gradient(rgba(23, 23, 23, 0.35), rgba(23, 23, 23, 0.35)) 50% 55% / 60% 1.5px no-repeat,
-    linear-gradient(rgba(23, 23, 23, 0.35), rgba(23, 23, 23, 0.35)) 50% 75% / 60% 1.5px no-repeat,
-    var(--ev-white);
+.reuseDoc:nth-child(odd) {
+  --tilt: -4deg;
 }
 
-.docIcon::after {
-  position: absolute;
-  top: -1.5px;
-  right: -1.5px;
-  width: 0.55rem;
-  height: 0.55rem;
-  background: linear-gradient(225deg, var(--ev-white) 50%, var(--ev-orange-500) 50%);
-  content: "";
+.reuseDoc:nth-child(even) {
+  --tilt: 3deg;
+}
+
+.reuseDocIcon {
+  --doc-w: 2.1rem;
+}
+
+.pill:has(.pillCheck) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pillCheck {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: none;
+}
+
+.pillCheck path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--c, 1));
 }
 
 .pill[data-tone="ok"] {
@@ -1121,34 +1384,48 @@
 
 .trustArt {
   display: block;
+  overflow: visible;
   width: 100%;
   height: auto;
 }
 
 /* Scroll-linked drawing. Each part has its own 0..1 --t from the stage's --p;
    with no --p every part is in its finished state. */
+/* The document drops into the folder with an ease-out (--e), behind the
+   pocket, and straightens as it lands. */
 .trustDoc {
-  --t: clamp(0, calc(var(--p, 1) * 4 - 0.4), 1);
-  opacity: var(--t);
-  transform: translateY(calc((1 - var(--t)) * -26px));
+  --t: clamp(0, calc(var(--p, 1) * 5 - 0.3), 1);
+  --e: calc(1 - (1 - var(--t)) * (1 - var(--t)) * (1 - var(--t)));
+  opacity: clamp(0, calc(var(--t) * 3), 1);
+  transform: translateY(calc((1 - var(--e)) * -46px)) rotate(calc((1 - var(--e)) * -6deg));
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
 }
 
 .trustLine {
-  --t: clamp(0, calc(var(--p, 1) * 8 - 2.6 - var(--i) * 0.7), 1);
+  --t: clamp(0, calc(var(--p, 1) * 9 - 2.4 - var(--i) * 0.8), 1);
   stroke-dasharray: 1;
   stroke-dashoffset: calc(1 - var(--t));
 }
 
+/* The stamp comes down large and tilted, then settles. */
 .trustSeal {
-  --t: clamp(0, calc(var(--p, 1) * 4 - 2), 1);
-  opacity: var(--t);
-  transform: scale(calc(0.6 + var(--t) * 0.4));
+  --t: clamp(0, calc(var(--p, 1) * 6 - 3.2), 1);
+  --e: calc(1 - (1 - var(--t)) * (1 - var(--t)));
+  opacity: clamp(0, calc(var(--t) * 2.5), 1);
+  transform: rotate(calc(-14deg + var(--e) * 8deg)) scale(calc(1.3 - var(--e) * 0.3));
   transform-box: fill-box;
   transform-origin: center;
 }
 
+.trustRing {
+  --t: clamp(0, calc(var(--p, 1) * 6 - 3.4), 1);
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--t));
+}
+
 .trustTick {
-  --t: clamp(0, calc(var(--p, 1) * 4 - 2.7), 1);
+  --t: clamp(0, calc(var(--p, 1) * 7 - 4.6), 1);
   stroke-dasharray: 1;
   stroke-dashoffset: calc(1 - var(--t));
 }
@@ -1682,15 +1959,24 @@
   transition: opacity 140ms linear;
 }
 
-/* Evidence folder: documents are filed one after another with the scroll. */
+/* Evidence folder: documents drop into the folder one after another with
+   the scroll. --e eases the fall out; each one straightens as it lands. Then
+   the confirmed ones are ticked (--c) and the one that needs an update
+   pulses once. */
 .scrollStage[data-progress="on"] .reuseDoc {
   --t: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 0.4), 1);
-  opacity: var(--t);
-  transform: translateY(calc((1 - var(--t)) * 2.25rem)) scale(calc(0.96 + var(--t) * 0.04));
+  --e: calc(1 - (1 - var(--t)) * (1 - var(--t)) * (1 - var(--t)));
+  --c: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 1.4), 1);
+  opacity: clamp(0, calc(var(--t) * 3), 1);
+  transform: translateY(calc((1 - var(--e)) * -3.5rem)) rotate(calc((1 - var(--e)) * var(--tilt)));
 }
 
 .scrollStage[data-progress="on"] .reuseDoc .pill {
-  opacity: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.1 - 1.3), 1);
+  opacity: clamp(0, calc(var(--c) * 2), 1);
+}
+
+.scrollStage[data-progress="on"] .reuseDoc .pill[data-tone="open"] {
+  box-shadow: 0 0 0 calc(var(--c) * (1 - var(--c)) * 4 * 0.35rem) rgba(254, 112, 1, 0.25);
 }
 
 /* Reveal (see RevealOnView). Each block rises in as it enters the viewport;
@@ -1928,9 +2214,12 @@
   color: color-mix(in srgb, var(--ev-white) calc(var(--t) * 100%), var(--ev-charcoal));
 }
 
-/* How it works: the desk card beside the pinned steps (StepsScene). Each pane
-   has a visible window [--a, --b] on the steps' scroll progress --p; --v is
-   0..1 inside that window. With no --p only the last (approved) pane shows. */
+/* How it works: the desk card beside the pinned steps (StepsScene). One
+   document travels through the three steps on the steps' scroll progress
+   --p: it arrives, its lines are written while the rows are ticked, then it
+   is approved and stamped. Titles and side content are phases, each visible
+   inside its window [--a, --b]. With no --p (no JS, reduced motion) the card
+   shows the approved state. */
 .scene {
   display: none;
 }
@@ -1938,30 +2227,30 @@
 @media (min-width: 900px) {
   .scene {
     position: relative;
-    display: block;
-    width: min(100%, 28rem);
-    height: 14rem;
+    display: grid;
+    align-content: start;
+    gap: var(--ev-s-4);
+    width: min(100%, 30rem);
     justify-self: end;
+    border: 1px solid var(--ev-line);
+    border-radius: var(--ev-r-lg);
+    background: var(--ev-white);
+    padding: var(--ev-s-5);
+    box-shadow:
+      inset 0 1px 0 var(--ev-white),
+      0 1px 2px rgba(23, 23, 23, 0.05),
+      0 24px 60px rgba(23, 23, 23, 0.08);
   }
 }
 
-.scenePane {
+.scenePhase {
   --v: min(
     clamp(0, calc((var(--p, 1) - var(--a)) * 14), 1),
     clamp(0, calc((var(--b) - var(--p, 1)) * 14), 1)
   );
-  position: absolute;
-  inset: 0;
-  display: grid;
-  align-content: start;
-  gap: var(--ev-s-4);
-  border: 1px solid var(--ev-line);
-  border-radius: var(--ev-r-lg);
-  background: var(--ev-white);
-  padding: var(--ev-s-5);
-  box-shadow: 0 24px 60px rgba(23, 23, 23, 0.08);
+  grid-area: 1 / 1;
   opacity: var(--v);
-  transform: translateY(calc((1 - var(--v)) * 14px)) scale(calc(0.97 + var(--v) * 0.03));
+  transform: translateY(calc((1 - var(--v)) * 8px));
 }
 
 .sceneHead {
@@ -1969,29 +2258,128 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--ev-s-3);
+  border-bottom: 1px solid var(--ev-line);
+  padding-bottom: var(--ev-s-4);
 }
 
-.sceneHead .panelTitle {
+.sceneTitles {
+  display: grid;
+  min-width: 0;
+}
+
+.sceneTitles .panelTitle {
   white-space: nowrap;
 }
 
-.sceneFile {
+.sceneBody {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: var(--ev-s-4);
-  border-top: 1px solid var(--ev-line);
-  padding-top: var(--ev-s-4);
+  gap: var(--ev-s-5);
+  min-height: 9.5rem;
 }
 
-/* Scene 1: the forwarded file slides in. */
-.scenePane:first-child .sceneFile {
-  --e: clamp(0, calc(var(--p, 1) * 12 - 0.3), 1);
-  opacity: var(--e);
-  transform: translateX(calc((1 - var(--e)) * -1.5rem));
+.sceneSide {
+  display: grid;
+  align-items: center;
 }
 
-/* Scene 2: the preparation rows are ticked one after another. */
+/* The document. Arrival (--t, eased as --e): it slides in from the top left
+   and straightens. When the stamp lands (--s) the page dips once. */
+.sceneDocStage {
+  position: relative;
+  width: 5.75rem;
+}
+
+.sceneDoc {
+  --doc-w: 5.75rem;
+  --t: clamp(0, calc(var(--p, 1) * 7 - 0.05), 1);
+  --e: calc(1 - (1 - var(--t)) * (1 - var(--t)) * (1 - var(--t)));
+  --s: clamp(0, calc((var(--p, 1) - 0.9) * 14), 1);
+  opacity: clamp(0, calc(var(--t) * 3), 1);
+  transform:
+    translate(calc((1 - var(--e)) * -2.5rem), calc((1 - var(--e)) * -1.5rem))
+    rotate(calc((1 - var(--e)) * -12deg))
+    scale(calc(1 - var(--s) * (1 - var(--s)) * 4 * 0.04));
+}
+
+/* The answers are written line by line, in step with the ticked rows. */
+.sceneDoc .docLine {
+  --w: clamp(0, calc((var(--p, 1) - 0.38 - var(--l) * 0.08) * 14), 1);
+  stroke-dashoffset: calc(1 - var(--w));
+}
+
+/* The approval stamp comes down large and tilted, then settles. */
+.sceneStamp {
+  --s: clamp(0, calc((var(--p, 1) - 0.9) * 14), 1);
+  --se: calc(1 - (1 - var(--s)) * (1 - var(--s)));
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 2px solid var(--ev-orange-500);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.2rem 0.45rem;
+  color: var(--ev-orange-700);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(254, 112, 1, 0.2);
+  opacity: clamp(0, calc(var(--s) * 2.5), 1);
+  transform:
+    translate(-50%, -50%)
+    rotate(calc(-20deg + var(--se) * 12deg))
+    scale(calc(1.6 - var(--se) * 0.6));
+}
+
+.sceneStamp svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Side content: the file and how it arrived, the rows, the approval. */
+.sceneInfo {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.sceneInfo > span:not([class]) {
+  color: var(--ev-muted);
+  font-size: 0.8rem;
+}
+
+/* Phase 1: the mail chip slides in after the document. */
+.sceneMail {
+  --m: clamp(0, calc(var(--p, 1) * 10 - 0.9), 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  background: var(--ev-soft);
+  padding: 0.25rem 0.65rem;
+  color: var(--ev-ink-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: var(--m);
+  transform: translateX(calc((1 - var(--m)) * -0.75rem));
+}
+
+.sceneMail svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* Phase 2: the preparation rows are ticked one after another. */
 .sceneRows {
   display: grid;
   margin: 0;
@@ -2006,10 +2394,15 @@
   align-items: center;
   gap: var(--ev-s-3);
   border-top: 1px solid var(--ev-line);
-  padding-block: 0.55rem;
-  font-size: 0.92rem;
+  padding-block: 0.5rem;
+  font-size: 0.88rem;
   font-weight: 600;
+  line-height: 1.3;
   opacity: calc(0.45 + var(--r) * 0.55);
+}
+
+.sceneRows li:first-child {
+  border-top: 0;
 }
 
 .sceneTick {
@@ -2034,14 +2427,14 @@
   content: "";
 }
 
-/* Scene 3: the approve button is pressed and turns green. */
+/* Phase 3: the approve button is pressed and turns green. */
 .sceneApprove {
-  --k: clamp(0, calc((var(--p, 1) - 0.86) * 12), 1);
+  --k: clamp(0, calc((var(--p, 1) - 0.84) * 14), 1);
   display: inline-grid;
-  justify-self: start;
+  margin-top: var(--ev-s-2);
   border-radius: var(--ev-r-sm);
   background: color-mix(in srgb, var(--ev-green) calc(var(--k) * 100%), var(--ev-orange-500));
-  padding: 0.55rem 1rem;
+  padding: 0.5rem 0.95rem;
   color: var(--ev-white);
   font-size: 0.85rem;
   font-weight: 700;

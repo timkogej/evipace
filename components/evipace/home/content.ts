@@ -1,3 +1,5 @@
+import type { FileType } from "./paper";
+
 export type HomeLocale = "en" | "de";
 
 export type ForwardIcon = "questionnaire" | "assessment" | "carbon" | "conduct" | "selfAssessment" | "evidence";
@@ -22,6 +24,9 @@ export type HomeContent = {
     rows: Array<{ step: string; detail: string; status: string; tone: "done" | "open" | "wait" }>;
     reviewer: string;
     approve: string;
+    /** Shown at the end of the hero scroll, once the response is approved. */
+    approved: string;
+    approvedNote: string;
   };
   assurances: { label: string; items: string[] };
   statement: string;
@@ -53,7 +58,7 @@ export type HomeContent = {
     folder: string;
     confirmed: string;
     needsUpdate: string;
-    documents: Array<{ name: string; detail: string; status: "confirmed" | "update" }>;
+    documents: Array<{ name: string; detail: string; status: "confirmed" | "update"; type: FileType }>;
   };
   example: {
     label: string;
@@ -107,7 +112,9 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         { step: "Response prepared", detail: "Reviewed by a person at Evipace", status: "Ready", tone: "done" }
       ],
       reviewer: "Waiting for your approval",
-      approve: "Review and approve"
+      approve: "Review and approve",
+      approved: "Approved",
+      approvedNote: "Approved by you"
     },
     assurances: {
       label: "How we work",
@@ -191,10 +198,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       confirmed: "Confirmed",
       needsUpdate: "Needs update",
       documents: [
-        { name: "Environmental policy", detail: "Policy document", status: "confirmed" },
-        { name: "Electricity invoices", detail: "Reporting year", status: "confirmed" },
-        { name: "Management system certificate", detail: "Validity to be checked", status: "update" },
-        { name: "Scope 1 and 2 calculation", detail: "Calculation sheet", status: "confirmed" }
+        { name: "Environmental policy", detail: "Policy document", status: "confirmed", type: "pdf" },
+        { name: "Electricity invoices", detail: "Reporting year", status: "confirmed", type: "pdf" },
+        { name: "Management system certificate", detail: "Validity to be checked", status: "update", type: "pdf" },
+        { name: "Scope 1 and 2 calculation", detail: "Calculation sheet", status: "confirmed", type: "xlsx" }
       ]
     },
     example: {
@@ -312,7 +319,9 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         { step: "Antwort vorbereitet", detail: "Von einer Person bei Evipace geprüft", status: "Bereit", tone: "done" }
       ],
       reviewer: "Wartet auf Ihre Freigabe",
-      approve: "Prüfen und freigeben"
+      approve: "Prüfen und freigeben",
+      approved: "Freigegeben",
+      approvedNote: "Von Ihnen freigegeben"
     },
     assurances: {
       label: "So arbeiten wir",
@@ -396,10 +405,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       confirmed: "Bestätigt",
       needsUpdate: "Aktualisieren",
       documents: [
-        { name: "Umweltrichtlinie", detail: "Richtliniendokument", status: "confirmed" },
-        { name: "Stromrechnungen", detail: "Berichtsjahr", status: "confirmed" },
-        { name: "Zertifikat Managementsystem", detail: "Gültigkeit zu prüfen", status: "update" },
-        { name: "Scope-1- und Scope-2-Berechnung", detail: "Berechnungsdatei", status: "confirmed" }
+        { name: "Umweltrichtlinie", detail: "Richtliniendokument", status: "confirmed", type: "pdf" },
+        { name: "Stromrechnungen", detail: "Berichtsjahr", status: "confirmed", type: "pdf" },
+        { name: "Zertifikat Managementsystem", detail: "Gültigkeit zu prüfen", status: "update", type: "pdf" },
+        { name: "Scope-1- und Scope-2-Berechnung", detail: "Berechnungsdatei", status: "confirmed", type: "xlsx" }
       ]
     },
     example: {

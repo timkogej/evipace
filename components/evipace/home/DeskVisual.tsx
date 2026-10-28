@@ -17,8 +17,9 @@ const SHEETS = [
  *
  * The stage reports its scroll progress as `--p`. As the visitor scrolls, the
  * finished steps are ticked green one after another, and
- * the step that needs the client's input is highlighted instead. Without
- * JavaScript or with reduced motion the panel shows its finished state.
+ * the step that needs the client's input is highlighted instead. At the end
+ * of the scroll that input is in, and the approve button is pressed. Without
+ * JavaScript or with reduced motion the panel shows the waiting state.
  */
 export function DeskVisual({ copy }: { copy: HomeContent["visual"] }) {
   return (
@@ -63,9 +64,18 @@ export function DeskVisual({ copy }: { copy: HomeContent["visual"] }) {
               </li>
             ))}
           </ol>
+          {/* At the end of the scroll the response is approved: the note and
+              the button swap to their approved state. Assistive tech reads
+              the waiting state only. */}
           <div className={styles.panelFoot}>
-            <span>{copy.reviewer}</span>
-            <span aria-hidden="true" className={styles.mockButton}>{copy.approve}</span>
+            <span className={styles.footNote}>
+              <span className={styles.footWaiting}>{copy.reviewer}</span>
+              <span aria-hidden="true" className={styles.footApproved}>{copy.approvedNote}</span>
+            </span>
+            <span aria-hidden="true" className={styles.mockButton}>
+              <span className={styles.mockIdle}>{copy.approve}</span>
+              <span className={styles.mockDone}>✓ {copy.approved}</span>
+            </span>
           </div>
         </div>
       </figure>

@@ -24,6 +24,9 @@ export type HomeContent = {
     rows: Array<{ step: string; detail: string; status: string; tone: "done" | "open" | "wait" }>;
     reviewer: string;
     approve: string;
+    /** Shown at the end of the hero scroll, once the response is approved. */
+    approved: string;
+    approvedNote: string;
   };
   assurances: { label: string; items: string[] };
   statement: string;
@@ -109,7 +112,9 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         { step: "Response prepared", detail: "Reviewed by a person at Evipace", status: "Ready", tone: "done" }
       ],
       reviewer: "Waiting for your approval",
-      approve: "Review and approve"
+      approve: "Review and approve",
+      approved: "Approved",
+      approvedNote: "Approved by you"
     },
     assurances: {
       label: "How we work",
@@ -314,7 +319,9 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         { step: "Antwort vorbereitet", detail: "Von einer Person bei Evipace geprüft", status: "Bereit", tone: "done" }
       ],
       reviewer: "Wartet auf Ihre Freigabe",
-      approve: "Prüfen und freigeben"
+      approve: "Prüfen und freigeben",
+      approved: "Freigegeben",
+      approvedNote: "Von Ihnen freigegeben"
     },
     assurances: {
       label: "So arbeiten wir",

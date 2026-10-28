@@ -226,7 +226,7 @@ function EntryCard({
     <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-orange">
             Scope {entry.scope} - {categoryLabels[entry.category]}
           </p>
           <h4 className="type-subheading font-display mt-2 text-ink">

@@ -728,7 +728,7 @@ function DataOwnerTable() {
           <caption className="sr-only">
             Typische interne Stellen für ESG-Datenbereiche
           </caption>
-          <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
+          <thead className="bg-[var(--paper)] text-[0.75rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
             <tr>
               <th className="border-b border-[rgba(21,21,21,0.12)] px-5 py-4 font-bold" scope="col">
                 Datenbereich
@@ -981,7 +981,7 @@ export function EsgCustomerDataGuide() {
                           className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[rgba(21,21,21,0.12)] px-3 py-2 transition hover:border-orange hover:text-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange lg:w-full lg:rounded-none lg:border-0 lg:px-0"
                           href={href}
                         >
-                          <span className="font-mono text-[0.65rem] text-orange">
+                          <span className="font-mono text-[0.75rem] text-orange">
                             {number}
                           </span>
                           <span>{label}</span>

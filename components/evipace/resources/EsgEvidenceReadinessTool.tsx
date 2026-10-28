@@ -196,7 +196,7 @@ function SummaryPanel({
         <div className="flex items-start gap-3">
           <FileText aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
           <div className="min-w-0">
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-orange">
+            <p className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-orange">
               {isEnglish ? "Current evidence" : "Aktueller Nachweis"}
             </p>
             <p className="mt-2 break-words text-sm font-bold leading-6 text-ink">
@@ -257,7 +257,7 @@ function SummaryPanel({
             [isEnglish ? "No" : "Nicht erfüllt", counts.no]
           ].map(([label, value]) => (
             <div className="rounded-[0.75rem] border border-[rgba(21,21,21,0.1)] p-3" key={label}>
-              <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+              <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
                 {label}
               </dt>
               <dd className="font-display mt-1 text-2xl leading-none text-ink">
@@ -969,7 +969,7 @@ export function EsgEvidenceReadinessTool({
                 [isEnglish ? "No" : "Nicht erfüllt", counts.no]
               ].map(([label, value]) => (
                 <div className="rounded-[0.9rem] bg-white p-4" key={label}>
-                  <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+                  <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
                     {label}
                   </dt>
                   <dd className="font-display mt-2 text-3xl leading-none text-ink">

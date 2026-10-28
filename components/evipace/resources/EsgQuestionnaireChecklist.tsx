@@ -499,7 +499,7 @@ export function EsgQuestionnaireChecklist({
         <div className="mt-8 rounded-[1rem] bg-white p-5 text-ink sm:p-7">
           {finalGateItems.map((item, index) => (
             <div key={item.id}>
-              <p className="mb-1 font-mono text-[0.65rem] font-bold tracking-[0.12em] text-orange">
+              <p className="mb-1 font-mono text-[0.75rem] font-bold tracking-[0.12em] text-orange">
                 {String(index + 1).padStart(2, "0")}
               </p>
               <CheckboxRow

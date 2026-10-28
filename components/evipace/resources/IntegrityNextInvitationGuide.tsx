@@ -166,7 +166,7 @@ function StatusPill({ status }: { status: string }) {
   const active = status === "bereit";
   return (
     <span
-      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.64rem] font-bold uppercase tracking-[0.06em] ${
+      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.75rem] font-bold uppercase tracking-[0.06em] ${
         active
           ? "border-[rgba(254,112,1,0.28)] bg-[var(--soft-orange)] text-[#b94f00]"
           : "border-[rgba(21,21,21,0.16)] bg-[rgba(21,21,21,0.05)] text-ink"
@@ -194,7 +194,7 @@ function AssessmentMap() {
               Beispiel einer IntegrityNext Assessment Map mit Thema,
               Zuständigkeit, Zertifikat, Fragebogen, Zusatznachweis und Status
             </caption>
-            <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
+            <thead className="bg-[var(--paper)] text-[0.75rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
               <tr>
                 {["Assessment / Thema", ...fields, "Status"].map((heading) => (
                   <th

@@ -403,7 +403,11 @@
   .textLink:hover > span[aria-hidden="true"] {
     transform: translateX(4px);
   }
+}
 
+/* Cards: a mouse lifts them on hover. Touch screens have no hover, so
+   FocusOnScroll marks the card passing mid-screen with data-focus instead. */
+@media (prefers-reduced-motion: no-preference) {
   .card {
     transition:
       transform var(--motion-base) var(--ease-out-expo),
@@ -411,7 +415,7 @@
       border-color var(--motion-base) ease;
   }
 
-  .card:hover {
+  .card:is(:hover, [data-focus]) {
     border-color: rgba(254, 112, 1, 0.45);
     box-shadow: var(--ev-shadow-lift);
     transform: translateY(-4px);
@@ -423,11 +427,11 @@
     transition: transform var(--motion-slow) var(--ease-out-expo);
   }
 
-  .card:hover .iconBack {
+  .card:is(:hover, [data-focus]) .iconBack {
     transform: rotate(-16deg) translate(-3px, 1px);
   }
 
-  .card:hover .iconFront {
+  .card:is(:hover, [data-focus]) .iconFront {
     transform: translateY(-3px);
   }
 
@@ -435,7 +439,7 @@
     transition: background var(--motion-base) ease, box-shadow var(--motion-base) ease;
   }
 
-  .card:hover .cardIconTile {
+  .card:is(:hover, [data-focus]) .cardIconTile {
     background: linear-gradient(180deg, #fff7f0, var(--ev-orange-100));
     box-shadow:
       inset 0 0 0 1px rgba(254, 112, 1, 0.18),
@@ -443,17 +447,17 @@
   }
 
   /* The motif is drawn again: strokes are written, marks spring in. */
-  .card:hover .iconDraw {
+  .card:is(:hover, [data-focus]) .iconDraw {
     animation: ev-icon-draw 650ms var(--ease-out-expo) both;
     animation-delay: calc(120ms + var(--d, 0) * 70ms);
   }
 
-  .card:hover .iconPop {
+  .card:is(:hover, [data-focus]) .iconPop {
     animation: ev-icon-pop 520ms var(--ease-out-expo) both;
     animation-delay: calc(120ms + var(--d, 0) * 70ms);
   }
 
-  .card:hover .iconGrow {
+  .card:is(:hover, [data-focus]) .iconGrow {
     animation: ev-icon-grow 560ms var(--ease-out-expo) both;
     animation-delay: calc(120ms + var(--d, 0) * 70ms);
   }
@@ -670,7 +674,7 @@
   background: var(--ev-soft);
   padding: 0.3rem 0.7rem;
   color: var(--ev-orange-700);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.4;
@@ -862,7 +866,7 @@
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
   color: var(--ev-ink-2);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.4;
   white-space: nowrap;
@@ -1064,7 +1068,7 @@
 }
 
 /* Cards lift with a charcoal edge here; an orange edge would vanish. */
-.orangeBand .card:hover {
+.orangeBand .card:is(:hover, [data-focus]) {
   border-color: var(--ev-charcoal);
 }
 
@@ -2307,6 +2311,21 @@
   .pill {
     grid-column: 2;
     justify-self: start;
+  }
+
+  /* The pill sits on its own line here. When the client's input comes in
+     (--u) it fades out, so its line folds away too instead of leaving a gap. */
+  .panelRow {
+    row-gap: 0;
+  }
+
+  .panelRow .pill {
+    --gone: var(--u, 0);
+    max-height: calc((1 - var(--gone)) * 2rem);
+    margin-top: calc((1 - var(--gone)) * var(--ev-s-2));
+    overflow: hidden;
+    border-block-width: calc((1 - var(--gone)) * 1px);
+    padding-block: calc((1 - var(--gone)) * 0.2rem);
   }
 }
 

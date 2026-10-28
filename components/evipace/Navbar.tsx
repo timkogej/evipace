@@ -269,7 +269,7 @@ export function Navbar({ locale }: NavbarProps) {
                 className="absolute right-0 top-[calc(100%+0.75rem)] w-64 rounded-2xl border border-[rgba(21,21,21,0.1)] bg-[rgba(255,255,255,0.98)] p-2 shadow-[0_24px_70px_rgba(21,21,21,0.12)]"
                 id={`desktop-${locale}-language`}
               >
-                <p className="px-3 pb-2 pt-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-orange">
+                <p className="px-3 pb-2 pt-1 text-[0.75rem] font-bold uppercase tracking-[0.16em] text-orange">
                   {navigation.labels.language}
                 </p>
                 {languageDestinations.map((destination) => (
@@ -468,7 +468,7 @@ function DesktopDirectory({ directory, id, pathname, onNavigate }: DirectoryProp
       <div className={`grid gap-7 ${gridClass}`}>
         {directory.groups.map((group) => (
           <section key={group.label}>
-            <h2 className="text-[0.65rem] font-bold uppercase tracking-[0.17em] text-orange">
+            <h2 className="text-[0.75rem] font-bold uppercase tracking-[0.17em] text-orange">
               {group.label}
             </h2>
             <ul className="mt-3 grid gap-1.5">
@@ -535,7 +535,7 @@ function MobileDirectory({ directory, id, pathname, onNavigate }: DirectoryProps
       <div className="grid gap-6 sm:grid-cols-2">
         {directory.groups.map((group) => (
           <section key={group.label}>
-            <h3 className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-orange">
+            <h3 className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-orange">
               {group.label}
             </h3>
             <ul className="mt-2 grid gap-1">
@@ -632,7 +632,7 @@ function LanguageLink({
     >
       <span>{destination.label}</span>
       {destination.isCurrent && !mobile ? (
-        <span className="ml-4 text-[0.62rem] font-bold uppercase tracking-[0.1em] text-orange">
+        <span className="ml-4 text-[0.75rem] font-bold uppercase tracking-[0.1em] text-orange">
           {labels.currentLanguage}
         </span>
       ) : null}

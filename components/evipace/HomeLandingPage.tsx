@@ -3,6 +3,7 @@ import { deskForwardEmail, phoneHref, publicPhone } from "@/lib/company-info";
 import { getOffersPath } from "@/lib/site-navigation";
 import { ClosingCta } from "./home/ClosingCta";
 import { DeskVisual } from "./home/DeskVisual";
+import { FocusOnScroll } from "./home/FocusOnScroll";
 import { BrandIcon } from "./home/BrandIcon";
 import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
@@ -133,7 +134,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               </Link>
             </div>
           </header>
-          <ul className={styles.cards}>
+          <FocusOnScroll className={styles.cards}>
             {copy.forwardable.items.map((item, index) => (
               <li className={styles.card} key={item.title} style={{ "--i": index } as React.CSSProperties}>
                 <span aria-hidden="true" className={styles.cardIconTile}>
@@ -143,7 +144,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
                 <p>{item.body}</p>
               </li>
             ))}
-          </ul>
+          </FocusOnScroll>
         </RevealOnView>
       </section>
 

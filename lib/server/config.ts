@@ -71,14 +71,10 @@ export const requestUploadsConfig = {
    * route, so this one server-only accessor is the only place the address
    * is decided — it is never duplicated per locale.
    *
-   * EVIPACE_REQUEST_NOTIFICATION_EMAIL still overrides it, because the
-   * address is operational rather than structural. The repository default
-   * is the public Evipace inbox, so a deployment that sets nothing at all
-   * is already correct. NOTE: an environment variable set in Vercel WINS
-   * over this default and must be updated there to take effect.
+   * Always use the public Evipace inbox. A stale deployment environment
+   * variable must not redirect requests to a retired address.
    */
-  notificationRecipient: () =>
-    process.env.EVIPACE_REQUEST_NOTIFICATION_EMAIL?.trim() || publicContactEmail,
+  notificationRecipient: () => publicContactEmail,
   notificationSender: () => required("EVIPACE_NOTIFICATION_SENDER_EMAIL"),
   confirmationSender: () => process.env.EVIPACE_CONFIRMATION_SENDER_EMAIL?.trim(),
 

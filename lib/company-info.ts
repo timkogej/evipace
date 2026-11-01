@@ -48,4 +48,4 @@ export function phoneHref(phone: string) {
   return `tel:${phone.replace(/[^\d+]/g, "")}`;
 }
 
-export const deskForwardEmail = "desk@evipace.com";
+export const deskForwardEmail = publicContactEmail;

@@ -86,13 +86,11 @@ test("the active recipient resolves to hello@evipace.com", async () => {
     "publicContactEmail should be hello@evipace.com"
   );
 
-  // The recipient accessor falls back to that constant, so a deployment
-  // that sets no environment variable already notifies the right inbox.
-  assert.match(
-    configSource,
-    /notificationRecipient: \(\) =>\s*process\.env\.EVIPACE_REQUEST_NOTIFICATION_EMAIL\?\.trim\(\) \|\| publicContactEmail/,
-    "notificationRecipient should default to publicContactEmail"
-  );
+  // Both delivery paths use the public inbox, even when an old deployment
+  // still sets EVIPACE_REQUEST_NOTIFICATION_EMAIL.
+  assert.match(configSource, /notificationRecipient: \(\) => publicContactEmail/);
+  assert.ok(!configSource.includes("process.env.EVIPACE_REQUEST_NOTIFICATION_EMAIL"));
+  assert.match(companyInfo, /export const deskForwardEmail = publicContactEmail;/);
   assert.ok(configSource.includes('import { publicContactEmail } from "@/lib/company-info";'));
 });
 

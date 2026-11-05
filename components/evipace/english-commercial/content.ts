@@ -11,7 +11,6 @@ import {
   Factory,
   FileCheck2,
   FileText,
-  HelpCircle,
   LucideIcon,
   MapPinned,
   Search,
@@ -158,12 +157,12 @@ export type CommercialServicePageContent = {
 
 export const customerRequestsContent: CommercialServicePageContent = {
   streamlinedService: true,
+  illustrativeHandover: "questionnaire",
   detailsLabel: "Explore request types and the records you can send",
-  eyebrow: "Customer ESG requests",
-  title:
-    "Your customer asked for ESG information. We help you prepare the response.",
+  eyebrow: "Customer questionnaires and requests",
+  title: "Your customer sent a questionnaire. We prepare the answers, you approve them.",
   intro: [
-    "Send us the questionnaire, spreadsheet, platform invitation or email. We identify what the customer needs, bring together the relevant data and evidence, and prepare a response for your review."
+    "Send us the questionnaire, spreadsheet, platform invitation or email. Our system finds the relevant company data and evidence and drafts the answers. A person at Evipace reviews them, you approve, and you decide what goes to your customer."
   ],
   primaryCta: "Send us the request",
   secondaryCta: {
@@ -295,36 +294,23 @@ export const customerRequestsContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "A practical route from request to response",
+    title: "From the request to an approved response",
     steps: [
       {
-        title: "Send the request",
-        body:
-          "You send the customer questionnaire, spreadsheet, platform request or brief."
+        title: "You send the request",
+        body: "The questionnaire, spreadsheet, platform invitation or email, as you received it. It does not need to be filled in first."
       },
       {
-        title: "Define the scope",
-        body:
-          "We identify the entity, sites, reporting period, deadline and required outputs."
+        title: "We prepare the answers",
+        body: "Questions are mapped to your data and evidence, calculations are prepared and gaps are listed instead of invented."
       },
       {
-        title: "Map the information",
-        body:
-          "We determine which data, documents and internal owners are needed."
+        title: "A person reviews",
+        body: "A person at Evipace checks the response and asks you only for what is missing."
       },
       {
-        title: "Prepare the response",
-        body: "We structure answers, calculations, evidence and drafts."
-      },
-      {
-        title: "Review gaps",
-        body:
-          "Missing or unsupported information stays visible rather than being invented."
-      },
-      {
-        title: "Internal confirmation",
-        body:
-          "You confirm company facts and statements before final use."
+        title: "You approve and send",
+        body: "You confirm company facts in your Evipace portal and send the response yourself."
       }
     ]
   },
@@ -377,6 +363,11 @@ export const customerRequestsContent: CommercialServicePageContent = {
         href: "/en/resources/customer-esg-questionnaire-received"
       },
       {
+        title: "ESG questionnaire checklist",
+        body: "A checklist for working through a supplier questionnaire before you send it.",
+        href: "/en/resources/esg-questionnaire-checklist"
+      },
+      {
         title: "ESG data customers request",
         body: "See the data categories customers often ask suppliers to provide.",
         href: "/en/resources/esg-data-customers-request-from-suppliers"
@@ -417,14 +408,13 @@ export const customerRequestsContent: CommercialServicePageContent = {
     secondaryHref: "/en/methodology"
   },
   relatedServices: {
-    title: "When the request arrives as a structured questionnaire",
-    body:
-      "Customer ESG requests reach suppliers in many formats. Where the request is a defined questionnaire, assessment or platform profile, the work has its own page.",
+    title: "Where requests often go next",
+    body: "A customer request often leads to one of these.",
     links: [
       {
-        title: "ESG questionnaire support",
-        body: "For a specific questionnaire, supplier assessment or scored document that has to be completed field by field.",
-        href: "/en/esg-questionnaire-support"
+        title: "EcoVadis support",
+        body: "When the customer asks for an EcoVadis assessment, the preparation has its own page.",
+        href: "/en/ecovadis-support"
       },
       {
         title: "Scope 1 & 2 calculation",
@@ -441,9 +431,9 @@ export const customerRequestsContent: CommercialServicePageContent = {
         "Any request from a customer for sustainability information about your company. In practice that includes spreadsheets, supplier questionnaires, platform invitations such as EcoVadis or IntegrityNext, procurement portal forms, and plain emails asking for a policy, a certificate or an emissions figure."
     },
     {
-      question: "How is this different from your ESG questionnaire support?",
+      question: "Do you complete a questionnaire field by field?",
       answer:
-        "This page covers the whole range of request formats, including short ad-hoc asks that are not questionnaires at all. ESG questionnaire support is the narrower case where a defined questionnaire or assessment document has to be completed field by field. Many engagements start here and move into questionnaire work once the format is clear."
+        "Yes. For a defined questionnaire we prepare a field-by-field response draft from your records, map the evidence and list missing data or decisions. Short ad-hoc requests, such as a single policy or certificate, are handled the same way without a full questionnaire. A response is not a certification or audit, and we cannot guarantee that a customer accepts every answer."
     },
     {
       question: "Do we need to organise the information before contacting you?",
@@ -468,306 +458,12 @@ export const customerRequestsContent: CommercialServicePageContent = {
   ]
 };
 
-export const questionnaireSupportContent: CommercialServicePageContent = {
-  streamlinedService: true,
-  illustrativeHandover: "questionnaire",
-  eyebrow: "ESG questionnaire support",
-  title: "Send us the ESG questionnaire. We prepare the answers and evidence for your review.",
-  intro: [
-    "We take on the question-by-question preparation: finding the relevant company data, drafting answers, matching available evidence and marking what is missing. Your team supplies the facts it holds, confirms the final statements and controls submission."
-  ],
-  primaryCta: "Send your questionnaire",
-  secondaryCta: {
-    label: "See the questionnaire checklist",
-    href: "/en/resources/esg-questionnaire-checklist"
-  },
-  qualifier:
-    "You do not need to complete the questionnaire before sending it to us.",
-  heroVisual: {
-    label: "Questionnaire workflow",
-    items: ["Question", "Requirement", "Evidence", "Confirmation"]
-  },
-  fit: {
-    eyebrow: "Common problems",
-    title: "Why ESG questionnaires take longer than they look",
-    items: [
-      {
-        title: "The question is ambiguous",
-        body: "The requested entity, site, reporting period, unit or answer format is unclear.",
-        icon: HelpCircle
-      },
-      {
-        title: "The answer exists, but not in one place",
-        body:
-          "Finance may have energy records, HR may have workforce data and EHS or Quality may own certificates or procedures.",
-        icon: Database
-      },
-      {
-        title: "A number needs calculation",
-        body: "Raw electricity or fuel data is not the same as CO2e.",
-        icon: Calculator
-      },
-      {
-        title: "A policy is requested",
-        body:
-          "A new draft cannot be treated as historical evidence. It needs internal review and approval before use.",
-        icon: FileText
-      },
-      {
-        title: "Evidence is requested",
-        body:
-          "The document needs to support the specific answer, company scope and period.",
-        icon: FileCheck2
-      },
-      {
-        title: "The questionnaire asks more than the company currently tracks",
-        body:
-          "The gap needs to be identified and handled honestly rather than turned into a certainty.",
-        icon: AlertCircle
-      }
-    ]
-  },
-  service: {
-    eyebrow: "Questionnaire execution",
-    title: "From a long questionnaire to a structured worklist.",
-    intro:
-      "We work through the questionnaire as a set of requirements, not as a generic ESG template.",
-    items: [
-      {
-        title: "Question-by-question review",
-        body: "We identify what each question actually requires.",
-        icon: Search
-      },
-      {
-        title: "Scope control",
-        body:
-          "We keep legal entity, site and reporting period aligned with the request.",
-        icon: MapPinned
-      },
-      {
-        title: "Internal owner mapping",
-        body:
-          "We identify which company function is most likely to own the information.",
-        icon: Users
-      },
-      {
-        title: "Data preparation",
-        body:
-          "We structure quantitative inputs and flag where calculations are needed.",
-        icon: Database
-      },
-      {
-        title: "Evidence mapping",
-        body:
-          "We link answers to supporting source documents where available.",
-        icon: FileCheck2
-      },
-      {
-        title: "Drafting qualitative answers",
-        body:
-          "We prepare concise responses based on actual company practices.",
-        icon: ClipboardCheck
-      },
-      {
-        title: "Gap management",
-        body: "Missing information remains explicitly visible.",
-        icon: AlertCircle
-      },
-      {
-        title: "Human review",
-        body:
-          "Prepared output is reviewed before client confirmation.",
-        icon: ShieldCheck
-      }
-    ]
-  },
-  inputs: {
-    title: "Send the questionnaire before you untangle it.",
-    body:
-      "The original customer file, portal export, email instructions and attachments are more useful than a partly completed version with unclear assumptions.",
-    items: [
-      "Customer questionnaire",
-      "Submission instructions",
-      "Deadline and reporting period",
-      "Customer portal export",
-      "Existing policies and certificates",
-      "Energy, fuel or emissions data",
-      "Prior answers to similar requests",
-      "Documents already considered as evidence"
-    ]
-  },
-  process: {
-    title: "Questionnaire workflow",
-    intro:
-      "Each field moves through the same discipline before it becomes a response.",
-    steps: [
-      { title: "Question", body: "Read the actual wording and field format." },
-      {
-        title: "Requirement",
-        body: "Identify scope, unit, period, evidence and answer type."
-      },
-      {
-        title: "Internal owner",
-        body: "Route the information to the likely company owner."
-      },
-      {
-        title: "Source data",
-        body: "Collect the underlying document, system export or raw input."
-      },
-      {
-        title: "Evidence",
-        body: "Check whether the document supports the exact answer."
-      },
-      {
-        title: "Draft answer",
-        body: "Prepare the response without hiding uncertainty."
-      },
-      {
-        title: "Internal confirmation",
-        body: "Company owners confirm facts before final use."
-      }
-    ]
-  },
-  deliverables: {
-    title: "What you receive",
-    qualifier:
-      "Deliverables depend on the questionnaire and the information available.",
-    items: [
-      "Structured response draft",
-      "Question-by-question worklist",
-      "Mapped evidence",
-      "Missing-data list",
-      "Calculation inputs and results where relevant",
-      "Policy or document gaps",
-      "Assumptions requiring confirmation",
-      "Final internal review version"
-    ]
-  },
-  trust: {
-    eyebrow: "Company control",
-    title: "What we need you to confirm",
-    body: [
-      "Evipace can organise and prepare the response, but company-specific facts must remain under company control.",
-      "That is not a defensive limitation. It is good evidence discipline."
-    ],
-    items: [
-      { label: "Company statements", body: "Claims about actual practice need company confirmation." },
-      { label: "Entity and site scope", body: "The final response must match the customer request." },
-      { label: "Employee information", body: "HR-related figures and statements need internal ownership." },
-      { label: "Supplier practices", body: "Supplier management claims should reflect actual procurement practice." },
-      { label: "Targets and historical claims", body: "Targets and past statements need a traceable basis." },
-      { label: "Final submission", body: "Customer or platform submission remains under your company's control unless separately agreed and supported." }
-    ]
-  },
-  resources: {
-    title: "Useful questionnaire resources",
-    body:
-      "Use these if you want to understand the mechanics. Use the service page when the questionnaire needs to get done.",
-    links: [
-      {
-        title: "Customer ESG questionnaire received",
-        body: "Start with scope, deadline, owners, evidence and internal review.",
-        href: "/en/resources/customer-esg-questionnaire-received"
-      },
-      {
-        title: "ESG Questionnaire Checklist",
-        body: "Review the questionnaire before returning it.",
-        href: "/en/resources/esg-questionnaire-checklist"
-      },
-      {
-        title: "ESG data customers request",
-        body: "Understand common data categories in supplier questionnaires.",
-        href: "/en/resources/esg-data-customers-request-from-suppliers"
-      },
-      {
-        title: "ESG evidence for suppliers",
-        body: "Learn which documents can support which answers.",
-        href: "/en/resources/esg-evidence-for-suppliers"
-      },
-      {
-        title: "Broader ESG customer requests",
-        body: "For requests that go beyond a questionnaire file.",
-        href: "/en/esg-customer-requests"
-      }
-    ]
-  },
-  finalCta: {
-    title: "Send us the questionnaire before you spend hours untangling it.",
-    body:
-      "Upload the questionnaire or customer request you received. We can first determine what is being asked, which information already exists and where the real gaps are.",
-    primaryLabel: "Send your questionnaire",
-    secondaryLabel: "See how Evipace works",
-    secondaryHref: "/en/methodology"
-  },
-  relatedServices: {
-    title: "Where the questionnaire comes from",
-    body:
-      "A questionnaire is one format a customer ESG request can take. Depending on who is asking, the work may sit closer to one of these.",
-    links: [
-      {
-        title: "Customer ESG requests",
-        body: "For the broader case: emails, spreadsheets, portal forms and ad-hoc data requests that are not a single questionnaire document.",
-        href: "/en/esg-customer-requests"
-      },
-      {
-        title: "EcoVadis support",
-        body: "When the questionnaire is an EcoVadis assessment with its own evidence and document rules.",
-        href: "/en/ecovadis-support"
-      },
-      {
-        title: "IntegrityNext support",
-        body: "When the request arrives as an IntegrityNext invitation with platform assessments and certificate checks.",
-        href: "/en/integritynext-support"
-      }
-    ]
-  },
-  faq: [
-    ...getServiceBuyerQuestions("en", "esgFragebogenLieferanten"),
-    {
-      question: "What is an ESG questionnaire?",
-      answer:
-        "A structured set of questions a customer sends a supplier to collect sustainability information in a comparable format. It typically mixes company data, energy and emissions figures, environmental and workforce topics, policies, supply-chain practices and requests for supporting documents."
-    },
-    {
-      question: "How is this different from your customer ESG requests page?",
-      answer:
-        "This page is for a defined questionnaire, assessment or scored document that has to be completed field by field. Customer ESG requests covers the wider set of formats, including short emails and informal data requests that never take questionnaire form."
-    },
-    {
-      question: "Do we have to fill anything in before sending it to you?",
-      answer:
-        "No. Send the questionnaire as your customer sent it, along with the documents you already have. Scoping the questions and identifying which internal sources answer them is part of the work."
-    },
-    {
-      question: "What information do you usually need from us?",
-      answer:
-        "Typically energy and fuel data, company and site information, workforce figures, existing policies and certificates, and any prior responses. The exact set depends on the questionnaire; the first step is establishing which questions actually apply to your company."
-    },
-    {
-      question: "What happens to questions we cannot answer?",
-      answer:
-        "They are recorded as gaps with a note on what would be needed to close them. A missing data point stays visible rather than being replaced by an estimate presented as fact."
-    },
-    {
-      question: "Do you submit the questionnaire for us?",
-      answer:
-        "No. Evipace prepares the response material for internal review. Your company confirms the company-specific statements and remains responsible for the submission and for any platform account involved."
-    },
-    {
-      question: "Can the same answers be used for the next questionnaire?",
-      answer:
-        "Often, yes. Different customers ask for the same underlying facts in different wording, so the work is structured around the data and evidence rather than around one customer's form."
-    }
-  ]
-};
-
 export const scope12CalculationContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "Scope 1 & 2 calculation",
-  title:
-    "Calculate and document your company’s Scope 1 and Scope 2 emissions.",
+  title: "We calculate your Scope 1 and Scope 2 emissions. You approve the result.",
   intro: [
-    "For your corporate carbon footprint, start with the electricity, fuel, vehicle, refrigerant and purchased-heat records you already have. We organise the activity data, apply appropriate emission factors and prepare a documented Scope 1 and Scope 2 calculation for your review."
+    "For your corporate carbon footprint, send the electricity, fuel, vehicle, refrigerant and purchased-heat records you already have. Our system structures the data and applies appropriate emission factors, and a person at Evipace reviews the documented calculation. You approve it, and next year we repeat it from the same records."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -913,33 +609,24 @@ export const scope12CalculationContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "How the calculation work moves",
+    title: "From your records to an approved calculation",
+    intro: "You send the records once. Each year after that we start from the same setup.",
     steps: [
       {
-        title: "Confirm boundary",
-        body: "Which legal entity, sites and period are included?"
+        title: "You send your records",
+        body: "Electricity and fuel invoices, fleet data, refrigerant records: whatever you already have."
       },
       {
-        title: "Collect source data",
-        body:
-          "Which quantities were consumed, purchased, burned, lost or used?"
+        title: "We structure and calculate",
+        body: "Boundary, units and emission factors are applied, and every source, factor version and assumption is documented."
       },
       {
-        title: "Normalise units",
-        body: "Values are structured by source, site, unit and period."
+        title: "A person reviews",
+        body: "A person at Evipace checks the calculation, flags gaps and asks you only for what is missing."
       },
       {
-        title: "Apply factors",
-        body: "Appropriate factor sources and versions are documented."
-      },
-      {
-        title: "Calculate CO2e",
-        body: "Activity data is converted into a traceable emissions result."
-      },
-      {
-        title: "Review assumptions",
-        body:
-          "Gaps, estimates, exclusions and source references remain visible."
+        title: "You approve, we repeat next year",
+        body: "You approve in your Evipace portal. Next year the same records and settings are reused."
       }
     ]
   },
@@ -1380,7 +1067,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
       {
         title: "ESG questionnaire support",
         body: "For customer questionnaires outside the platform that ask for much of the same information.",
-        href: "/en/esg-questionnaire-support"
+        href: "/en/esg-customer-requests"
       },
       {
         title: "Scope 1 & 2 calculation",
@@ -1706,7 +1393,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
       {
         title: "ESG questionnaire support",
         body: "For customer questionnaires outside the platform that ask for much of the same company information.",
-        href: "/en/esg-questionnaire-support"
+        href: "/en/esg-customer-requests"
       },
       {
         title: "Customer ESG requests",
@@ -1758,10 +1445,9 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
 export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "VSME SUSTAINABILITY REPORTING",
-  title:
-    "Need to prepare VSME sustainability information? We help structure the report from your company data.",
+  title: "We prepare your VSME sustainability report. You approve it.",
   intro: [
-    "We bring together the energy, emissions, workforce, policy and other company information needed for your reporting scope, identify missing inputs and prepare a VSME draft for your review."
+    "Our system brings together the energy, emissions, workforce, policy and other company information your reporting scope needs, and lists what is missing. A person at Evipace reviews the VSME draft, and you approve it before it is used."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1920,42 +1606,24 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "How the reporting work moves",
+    title: "From your data to an approved report",
+    intro: "The first report sets everything up. Later years start from the same data and structure.",
     steps: [
       {
-        title: "Define reporting scope",
-        body:
-          "We clarify why the report is being prepared, which entity and period are covered and what the output should support."
+        title: "We agree the scope",
+        body: "Why the report is needed, which entity and period it covers, and whether the Basic or Comprehensive module fits."
       },
       {
-        title: "Map required disclosures",
-        body:
-          "We identify which Basic or Comprehensive information is relevant to the agreed reporting purpose."
+        title: "We collect and map your data",
+        body: "Records, spreadsheets, policies and certificates are mapped to the reporting structure, and missing items are listed."
       },
       {
-        title: "Collect available company data",
-        body:
-          "Existing records, spreadsheets, policies, certificates and source documents are mapped to the reporting structure."
+        title: "We prepare the draft, a person reviews",
+        body: "Calculations and narrative inputs are prepared, and a person at Evipace reviews the VSME draft and its assumptions."
       },
       {
-        title: "Prepare calculations and narrative inputs",
-        body:
-          "Relevant quantitative data and qualitative company information are structured for review."
-      },
-      {
-        title: "Review gaps and assumptions",
-        body:
-          "Missing, not applicable, to calculate and to confirm remain separate statuses."
-      },
-      {
-        title: "Prepare reporting draft",
-        body:
-          "The structured information is assembled into a reviewable VSME reporting draft."
-      },
-      {
-        title: "Client confirms company facts",
-        body:
-          "Your company confirms scope, data, statements and final external use before the report is used."
+        title: "You approve",
+        body: "Your company confirms scope, data and statements before the report is used externally."
       }
     ]
   },

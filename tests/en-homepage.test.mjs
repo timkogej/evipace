@@ -128,7 +128,7 @@ test("English homepage route and claim discipline stay within scope", () => {
     "/en/methodology",
     "/en/send-request",
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/scope-1-2-calculation",
     "/en/vsme-sustainability-report",
     "/en/resources",

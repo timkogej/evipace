@@ -743,7 +743,7 @@ export function SupplierCodeOfConductGuide() {
                 </div>
                 <div className="border-t border-orange/20 bg-white/65 p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
                   <p className="text-base leading-8 text-muted">Wir prüfen mit Ihnen, welche Erwartungen und Beschaffungsprozesse tatsächlich bestehen, strukturieren relevante ESG- und Compliance-Themen und bereiten daraus einen Supplier-Code-Entwurf für Ihre interne Prüfung und Freigabe vor.</p>
-                  <p className="mt-4 text-base leading-8 text-muted">Wenn der Kodex Teil eines konkreten Fragebogens ist, hilft auch der Überblick <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</Link>.</p>
+                  <p className="mt-4 text-base leading-8 text-muted">Wenn der Kodex Teil eines konkreten Fragebogens ist, hilft auch der Überblick <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-kundenanfragen">ESG-Fragebogen für Lieferanten</Link>.</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     <PillLink href={SEND_REQUEST_HREF}>Anfrage an Evipace senden</PillLink>
                     <TextLink href="/de/esg-kundenanfragen">Mehr über ESG-Kundenanfragen</TextLink>

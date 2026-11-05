@@ -538,7 +538,7 @@ export function IntegrityNextInvitationGuide() {
                   einer Plattform nutzt, finden Sie die passende Arbeitsweise auf{" "}
                   <Link
                     className="orange-link"
-                    href="/de/esg-fragebogen-lieferanten"
+                    href="/de/esg-kundenanfragen"
                   >
                     ESG-Fragebogen für Lieferanten
                   </Link>

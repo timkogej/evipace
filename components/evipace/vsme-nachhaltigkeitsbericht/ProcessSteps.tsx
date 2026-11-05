@@ -43,8 +43,8 @@ const steps = [
   },
   {
     number: "08",
-    title: "Unternehmensprüfung",
-    body: "Bevor der Bericht final verwendet wird, prüfen Sie die vorbereiteten Angaben. Informationen, die eine interne Bestätigung oder Entscheidung benötigen, werden nicht ohne Ihre Freigabe als Unternehmensangabe dargestellt."
+    title: "Prüfung und Freigabe",
+    body: "Eine Person bei Evipace prüft den Entwurf. Bevor der Bericht final verwendet wird, prüfen Sie die vorbereiteten Angaben. Informationen, die eine interne Bestätigung oder Entscheidung benötigen, werden nicht ohne Ihre Freigabe als Unternehmensangabe dargestellt."
   }
 ];
 

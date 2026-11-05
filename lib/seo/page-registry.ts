@@ -66,12 +66,12 @@ export type PageKey =
   | "methodology"
   | "sendRequest"
   | "offers"
-  | "esgFragebogenLieferanten"
   | "esgKundenanfragen"
   | "ecovadisUnterstuetzung"
   | "integrityNextUnterstuetzung"
   | "vsmeNachhaltigkeitsbericht"
   | "scope12Berechnung"
+  | "recordsDeadlines"
   | "resourcesHub"
   | "welcheEsgDatenKundenLieferanten"
   | "environmentalPolicyErstellen"
@@ -141,11 +141,11 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
         "Evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
       path: "/en/esg-customer-requests"
     },
-    esgFragebogenLieferanten: {
-      title: "ESG Questionnaire Support for Suppliers | Evipace",
+    recordsDeadlines: {
+      title: "Environmental & Safety Records and Deadlines | Evipace",
       description:
-        "Evipace prepares customer ESG questionnaire answers and supporting evidence from supplier records. Your team reviews the facts and approves the final response.",
-      path: "/en/esg-questionnaire-support"
+        "Evipace keeps a register of your environmental and safety records, watches expiry and renewal dates and prepares what is due. A person reviews it and you approve.",
+      path: "/en/records-and-deadlines"
     },
     scope12Berechnung: {
       title: "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace",
@@ -322,12 +322,6 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     // German route availability remains per-page. Do not add de.sendRequest
     // or other unfinished German pages here until genuine, indexable German
     // content exists for those pages too.
-    esgFragebogenLieferanten: {
-      title: "ESG-Fragebogen für Lieferanten ausfüllen | Evipace",
-      description:
-        "Evipace bereitet Antworten und Nachweise für ESG-Fragebögen Ihrer Kunden vor. Ihr Team bestätigt die Unternehmensangaben und gibt die Antwort frei.",
-      path: "/de/esg-fragebogen-lieferanten"
-    },
     esgKundenanfragen: {
       title: "ESG-Anforderungen von Kunden erfüllen | Evipace",
       description:
@@ -352,6 +346,12 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "VSME-Nachhaltigkeitsbericht für Ihr Unternehmen: Wir strukturieren ESG-Daten, bereiten Kennzahlen auf und erstellen eine nachvollziehbare Grundlage für Kunden, Banken und interne Nutzung.",
       path: "/de/vsme-nachhaltigkeitsbericht"
+    },
+    recordsDeadlines: {
+      title: "Umwelt- und Sicherheitsnachweise und Fristen | Evipace",
+      description:
+        "Evipace führt ein Register Ihrer Umwelt- und Sicherheitsnachweise, überwacht Ablauf- und Verlängerungstermine und bereitet vor, was ansteht. Eine Person prüft, Sie geben frei.",
+      path: "/de/nachweise-und-fristen"
     },
     scope12Berechnung: {
       title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | Evipace",

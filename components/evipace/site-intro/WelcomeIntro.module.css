@@ -32,7 +32,7 @@
   min-height: 1.2em;
   margin: 0;
   color: #171717;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(0.72rem, 3.7vw, 3.25rem);
   font-weight: 400;
   letter-spacing: -0.045em;

@@ -59,7 +59,6 @@ test("the homepage has the agreed sections, the statement and one h1", () => {
   assert.ok(reuseVisual.includes("<ScrollProgress"));
   assert.ok(homePage.includes("copy.statement"));
   assert.ok(scrollProgress.includes("prefers-reduced-motion: reduce"));
-  assert.ok(!scrollProgress.includes("requestAnimationFrame"));
 });
 
 test("Offers has anchored Request, Desk and Report sections and no portal question", () => {

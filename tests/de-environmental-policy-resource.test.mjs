@@ -260,7 +260,7 @@ test("environmental policy guide links required internal destinations", () => {
     "/de/ressourcen/esg-nachweise-checkliste",
     "/de/ressourcen/esg-daten-einmal-sammeln-mehrfach-nutzen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/send-request",

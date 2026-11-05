@@ -104,9 +104,10 @@
 .eyebrow {
   margin: 0;
   color: var(--ev-orange-700);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -114,18 +115,23 @@
 .display,
 .heading {
   margin: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
-  font-weight: 400;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
   text-wrap: balance;
   overflow-wrap: break-word;
+}
+
+/* Accent phrase inside a headline: the brand orange carries the second half. */
+.accent {
+  color: var(--ev-orange-600);
 }
 
 .display {
   max-width: 18ch;
   margin-top: var(--ev-s-5);
   font-size: clamp(2.5rem, 5.4vw, 4.75rem);
-  letter-spacing: -0.025em;
-  line-height: 1.04;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .page[data-locale="de"] .display {
@@ -137,8 +143,8 @@
   max-width: 22ch;
   margin-top: var(--ev-s-4);
   font-size: clamp(2.25rem, 4.2vw, 3.875rem);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
 .page[data-locale="de"] .heading {
@@ -901,7 +907,6 @@
 
 /* Assurance strip */
 .assurances {
-  border-bottom: 1px solid var(--ev-line);
   background: var(--ev-white);
   padding-block: var(--ev-s-5);
 }
@@ -1797,7 +1802,7 @@
 
 .compare thead th {
   border-top: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
 }
@@ -2110,7 +2115,7 @@
 .statement {
   max-width: 80rem;
   margin: 0 auto;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.9rem, 4.3vw, 4rem);
   letter-spacing: -0.02em;
   line-height: 1.16;
@@ -2627,4 +2632,277 @@
 
 .sceneApproveDone {
   opacity: var(--k);
+}
+
+/* Photo band under the hero: one tall portrait-ish photo, one wide, one
+   small. On phones they stack as rounded cards. */
+.photoBand {
+  background: var(--ev-white);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 6vw, 6rem);
+}
+
+.photoGrid {
+  display: grid;
+  gap: var(--ev-s-3);
+  grid-template-columns: 1fr;
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ev-r-lg);
+  background: var(--ev-soft);
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 899px) {
+  .photoSmall {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .photoGrid {
+    gap: var(--ev-s-4);
+    grid-template-columns: 1.1fr 1.5fr 0.9fr;
+    align-items: stretch;
+  }
+
+  .photo {
+    aspect-ratio: auto;
+    min-height: 26rem;
+  }
+
+  .photoWide {
+    transform: translateY(2rem);
+  }
+
+  .photoSmall {
+    transform: translateY(-1.25rem);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero: a large left-aligned headline beside (or above, on phones) a card that
+   follows one customer questionnaire from email to approved answer.
+   ------------------------------------------------------------------------- */
+.hero {
+  padding-block: calc(5rem + clamp(1rem, 3vw, 3rem)) clamp(3rem, 6vw, 6rem);
+}
+
+.heroGrid {
+  justify-items: stretch;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.heroCopy {
+  max-width: none;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.heroCopy .display {
+  max-width: none;
+  font-size: clamp(2.6rem, 7.4vw, 6rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.page[data-locale="de"] .heroCopy .display {
+  max-width: none;
+  font-size: clamp(2.1rem, 6vw, 5rem);
+}
+
+.heroCopy .heroBody {
+  max-width: 36rem;
+  font-size: 1.1875rem;
+}
+
+.heroCopy .actions {
+  justify-content: flex-start;
+}
+
+.heroCopy .heroNote,
+.heroCopy .heroCall {
+  font-size: 0.95rem;
+}
+
+/* Hero card: one small questionnaire waiting for approval, under the headline. */
+.flow {
+  --flow-green: var(--ev-green);
+  display: grid;
+  gap: 1.1rem;
+  width: min(100%, 38rem);
+  margin: 0;
+  border: 1px solid var(--ev-line);
+  border-radius: 1.25rem;
+  background: var(--ev-white);
+  box-shadow: var(--ev-shadow-panel);
+  padding: clamp(1.1rem, 2.4vw, 1.6rem);
+  color: var(--ev-charcoal);
+}
+
+.flowHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ev-s-3);
+}
+
+.flowTitle {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.flowTitle span {
+  color: var(--ev-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.flowBadge {
+  flex: none;
+  border: 1px solid var(--ev-line);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  color: var(--ev-muted);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flowSteps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flowStep {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--ev-muted);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.flowStep::before {
+  content: "";
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(23, 23, 23, 0.1);
+}
+
+.flowStep[data-state="done"] {
+  color: var(--ev-charcoal);
+}
+
+.flowStep[data-state="done"]::before {
+  background: var(--flow-green);
+}
+
+.flowStep[data-state="current"] {
+  color: var(--ev-charcoal);
+  font-weight: 600;
+}
+
+.flowStep[data-state="current"]::before {
+  background: var(--ev-orange-500);
+}
+
+.flowFoot {
+  display: grid;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.flowStatus {
+  margin: 0;
+  min-height: 1.35em;
+  color: var(--ev-ink-2);
+  font-size: 0.95rem;
+}
+
+.flowButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(23, 23, 23, 0.07);
+  padding: 0 1.6rem;
+  color: var(--ev-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.flow[data-ready] .flowButton {
+  background: var(--ev-orange-500);
+  color: var(--ev-white);
+  cursor: pointer;
+}
+
+.flow[data-ready] .flowButton:hover {
+  background: var(--ev-orange-600);
+}
+
+.flow[data-approved] .flowButton {
+  background: var(--flow-green);
+  color: var(--ev-white);
+  cursor: default;
+}
+
+.flowButton:focus-visible {
+  outline: 3px solid var(--ev-charcoal);
+  outline-offset: 2px;
+}
+
+@media (min-width: 520px) {
+  .flowFoot {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+  }
+
+  .flowButton {
+    width: auto;
+    min-height: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow {
+    animation: ev-stage-in 1000ms var(--ease-out-expo) 350ms backwards;
+  }
+
+  .flowStep,
+  .flowStep::before,
+  .flowButton {
+    transition-duration: 400ms;
+    transition-property: background-color, color;
+  }
+
+  .flow[data-ready]:not([data-approved]) .flowButton {
+    animation: ev-flow-pulse 1.6s ease-out 3;
+  }
+}
+
+@keyframes ev-flow-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(254, 112, 1, 0.45);
+  }
+
+  100% {
+    box-shadow: 0 0 0 12px rgba(254, 112, 1, 0);
+  }
 }

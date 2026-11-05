@@ -34,12 +34,12 @@ const steps = [
   {
     number: "06",
     title: "Ergebnisse dokumentieren",
-    body: "Wir dokumentieren Aktivitätsdaten, verwendete Faktoren, Quellen, Annahmen, Berechnungsmethode und offene Datenlücken."
+    body: "Wir dokumentieren Aktivitätsdaten, verwendete Faktoren, Quellen, Annahmen, Berechnungsmethode und offene Datenlücken. Eine Person bei Evipace prüft die Berechnung."
   },
   {
     number: "07",
-    title: "Unternehmensprüfung",
-    body: "Sie prüfen die zugrunde liegenden Unternehmensdaten und bestätigen die vorbereitete Berechnungsgrundlage."
+    title: "Ihre Freigabe",
+    body: "Sie prüfen die zugrunde liegenden Unternehmensdaten und geben die vorbereitete Berechnungsgrundlage frei. Im nächsten Jahr verwenden wir dieselben Unterlagen erneut."
   }
 ];
 

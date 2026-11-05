@@ -96,7 +96,7 @@ test("every chrome route maps to a real route and the reachability registry", as
 test("German services and resources use the exact genuine inventory", () => {
   const expectedServices = [
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/vsme-nachhaltigkeitsbericht",
@@ -149,8 +149,8 @@ test("English navigation remains deliberately smaller and route-correct", () => 
     "/en/send-request",
     "/en/offers",
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
     "/en/scope-1-2-calculation",
+    "/en/records-and-deadlines",
     "/en/ecovadis-support",
     "/en/integritynext-support",
     "/en/vsme-sustainability-report",
@@ -170,9 +170,7 @@ test("English navigation remains deliberately smaller and route-correct", () => 
   ]);
   assert.ok(navigationSource.includes('href: "/en#services"'));
   assert.ok(navigationSource.includes('href: route("en", "esgKundenanfragen")'));
-  assert.ok(
-    navigationSource.includes('href: route("en", "esgFragebogenLieferanten")')
-  );
+  assert.ok(navigationSource.includes('href: route("en", "recordsDeadlines")'));
   assert.ok(navigationSource.includes('href: route("en", "scope12Berechnung")'));
   assert.ok(navigationSource.includes('href: route("en", "ecovadisUnterstuetzung")'));
   assert.ok(

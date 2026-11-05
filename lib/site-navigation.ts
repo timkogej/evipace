@@ -82,11 +82,8 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     { pageKey: "sendRequest", href: "/en/send-request" },
     { pageKey: "offers", href: "/en/offers" },
     { pageKey: "esgKundenanfragen", href: "/en/esg-customer-requests" },
-    {
-      pageKey: "esgFragebogenLieferanten",
-      href: "/en/esg-questionnaire-support"
-    },
     { pageKey: "scope12Berechnung", href: "/en/scope-1-2-calculation" },
+    { pageKey: "recordsDeadlines", href: "/en/records-and-deadlines" },
     { pageKey: "ecovadisUnterstuetzung", href: "/en/ecovadis-support" },
     {
       pageKey: "integrityNextUnterstuetzung",
@@ -158,10 +155,6 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
       href: "/de/esg-kundenanfragen"
     },
     {
-      pageKey: "esgFragebogenLieferanten",
-      href: "/de/esg-fragebogen-lieferanten"
-    },
-    {
       pageKey: "ecovadisUnterstuetzung",
       href: "/de/ecovadis-unterstuetzung"
     },
@@ -176,6 +169,10 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     {
       pageKey: "scope12Berechnung",
       href: "/de/scope-1-2-berechnung"
+    },
+    {
+      pageKey: "recordsDeadlines",
+      href: "/de/nachweise-und-fristen"
     },
     {
       pageKey: "resourcesHub",
@@ -255,17 +252,22 @@ const deServices: NavigationDirectory = {
   label: "Leistungen",
   groups: [
     {
+      label: "Nachweise & Fristen",
+      items: [
+        {
+          label: "Nachweise und Fristen",
+          href: route("de", "recordsDeadlines"),
+          pageKey: "recordsDeadlines"
+        }
+      ]
+    },
+    {
       label: "Kundenanfragen",
       items: [
         {
-          label: "ESG-Kundenanfragen",
+          label: "Kundenfragebögen",
           href: route("de", "esgKundenanfragen"),
           pageKey: "esgKundenanfragen"
-        },
-        {
-          label: "ESG-Fragebögen für Lieferanten",
-          href: route("de", "esgFragebogenLieferanten"),
-          pageKey: "esgFragebogenLieferanten"
         }
       ]
     },
@@ -402,17 +404,22 @@ const enServices: NavigationDirectory = {
   label: "Services",
   groups: [
     {
+      label: "Records and deadlines",
+      items: [
+        {
+          label: "Records and deadlines",
+          href: route("en", "recordsDeadlines"),
+          pageKey: "recordsDeadlines"
+        }
+      ]
+    },
+    {
       label: "Customer requests",
       items: [
         {
-          label: "Customer ESG requests",
+          label: "Customer questionnaires",
           href: route("en", "esgKundenanfragen"),
           pageKey: "esgKundenanfragen"
-        },
-        {
-          label: "ESG questionnaire support",
-          href: route("en", "esgFragebogenLieferanten"),
-          pageKey: "esgFragebogenLieferanten"
         }
       ]
     },
@@ -450,7 +457,7 @@ const enServices: NavigationDirectory = {
   actions: [
     { label: "See what we handle", href: "/en#services" },
     {
-      label: "Send your ESG request",
+      label: "Send us a request",
       href: route("en", "sendRequest"),
       pageKey: "sendRequest"
     }
@@ -550,7 +557,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       section: "home"
     },
     primaryAction: {
-      label: "Send your ESG request",
+      label: "Send us a request",
       href: route("en", "sendRequest"),
       pageKey: "sendRequest"
     },
@@ -581,14 +588,14 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         title: "Services",
         links: [
           {
-            label: "Customer ESG requests",
-            href: route("en", "esgKundenanfragen"),
-            pageKey: "esgKundenanfragen"
+            label: "Records and deadlines",
+            href: route("en", "recordsDeadlines"),
+            pageKey: "recordsDeadlines"
           },
           {
-            label: "ESG questionnaire support",
-            href: route("en", "esgFragebogenLieferanten"),
-            pageKey: "esgFragebogenLieferanten"
+            label: "Customer questionnaires",
+            href: route("en", "esgKundenanfragen"),
+            pageKey: "esgKundenanfragen"
           },
           {
             label: "EcoVadis Support",
@@ -694,7 +701,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       section: "home"
     },
     primaryAction: {
-      label: "ESG-Anfrage senden",
+      label: "Anfrage senden",
       href: route("de", "sendRequest"),
       pageKey: "sendRequest"
     },

@@ -284,7 +284,7 @@ test("supplier code guide links required internal destinations", () => {
     "/de/ressourcen/esg-daten-einmal-sammeln-mehrfach-nutzen",
     "/de/ressourcen/environmental-policy-erstellen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/send-request",

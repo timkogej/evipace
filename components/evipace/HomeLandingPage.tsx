@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
-import { deskForwardEmail, phoneHref, publicPhone } from "@/lib/company-info";
+import { deskForwardEmail } from "@/lib/company-info";
 import { getOffersPath } from "@/lib/site-navigation";
 import { ClosingCta } from "./home/ClosingCta";
-import { DeskVisual } from "./home/DeskVisual";
 import { FocusOnScroll } from "./home/FocusOnScroll";
+import { HeroFlow } from "./home/HeroFlow";
 import { BrandIcon } from "./home/BrandIcon";
 import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
@@ -33,7 +34,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             <h1 className={`${styles.display} ${styles.heroTitle}`} id="hero-title">
               {/* Each sentence starts its own line; the second never breaks. */}
               <span className={styles.titleLine}>{titleFirst}</span>{" "}
-              <span className={`${styles.titleLine} ${styles.titleKeep}`}>{titleSecond}</span>
+              <span className={`${styles.titleLine} ${styles.titleKeep} ${styles.accent}`}>{titleSecond}</span>
             </h1>
             <p className={styles.heroBody}>{copy.hero.body}</p>
             <div className={styles.actions}>
@@ -45,17 +46,8 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
                 {copy.hero.formLink}<span aria-hidden="true">→</span>
               </Link>
             </div>
-            <p className={styles.heroNote}>{copy.hero.note}</p>
-            {publicPhone ? (
-              <p className={styles.heroCall}>
-                {copy.hero.callPrompt}{" "}
-                <a className={styles.textLink} href={phoneHref(publicPhone)}>
-                  {copy.hero.callLabel}: {publicPhone}
-                </a>
-              </p>
-            ) : null}
           </div>
-          <DeskVisual copy={copy.visual} />
+          <HeroFlow copy={copy.flow} />
         </div>
       </section>
 
@@ -68,6 +60,40 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Photo band. PLACEHOLDER photography: swap the files in public/images
+          for Evipace's own shoot without touching this markup. */}
+      <section aria-hidden="true" className={styles.photoBand}>
+        <RevealOnView className={`${styles.shell} ${styles.photoGrid}`}>
+          <div className={`${styles.photo} ${styles.photoTall}`}>
+            <Image
+              alt=""
+              fill
+              sizes="(min-width: 900px) 40vw, 100vw"
+              src="/images/evipace/homepage/industrial-break.webp"
+              style={{ objectFit: "cover", objectPosition: "70% 40%" }}
+            />
+          </div>
+          <div className={`${styles.photo} ${styles.photoWide}`}>
+            <Image
+              alt=""
+              fill
+              sizes="(min-width: 900px) 55vw, 100vw"
+              src="/images/evipace/homepage/hero-meeting-desktop.webp"
+              style={{ objectFit: "cover", objectPosition: "50% 40%" }}
+            />
+          </div>
+          <div className={`${styles.photo} ${styles.photoSmall}`}>
+            <Image
+              alt=""
+              fill
+              sizes="(min-width: 900px) 28vw, 100vw"
+              src="/images/evipace/about/hero-team-review.png"
+              style={{ objectFit: "cover", objectPosition: "50% 35%" }}
+            />
+          </div>
+        </RevealOnView>
       </section>
 
       {/* Pinned on large screens: the section holds still while the three

@@ -11,9 +11,9 @@ export function LandingHero() {
       }}
       breadcrumb="ESG-Kundenanfragen"
       eyebrow="ESG-Kundenanfragen"
-      lead="Senden Sie uns die Anfrage Ihres Kunden – als E-Mail, Fragebogen, Excel-Datei oder Portal-Einladung. Wir klären die Anforderungen, ordnen vorhandene Daten und Nachweise zu und bereiten eine nachvollziehbare Antwort für Ihre Prüfung vor."
+      lead="Senden Sie uns die Anfrage Ihres Kunden – als E-Mail, Fragebogen, Excel-Datei oder Portal-Einladung. Wir klären die Anforderungen, ordnen vorhandene Daten und Nachweise zu und bereiten die Antwort vor. Eine Person bei Evipace prüft sie, Sie geben frei und senden sie selbst."
       note="Starten Sie mit der Anfrage. Sie müssen die ESG-Daten noch nicht selbst zusammenstellen."
-      title="Ihr Kunde verlangt ESG-Daten? Wir bringen die Antwort zusammen."
+      title="Ihr Kunde schickt einen ESG-Fragebogen? Wir bereiten die Antwort vor, Sie geben frei."
     />
   );
 }

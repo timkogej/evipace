@@ -46,7 +46,7 @@ const copy = {
     handoverBody: "For a customer questionnaire: draft answers, the records behind them and a short list of points your team still needs to confirm. The exact deliverable depends on the request.",
     serviceLinks: [
       ["Customer ESG requests", "/en/esg-customer-requests"],
-      ["ESG questionnaires", "/en/esg-questionnaire-support"],
+      ["ESG questionnaires", "/en/esg-customer-requests"],
       ["EcoVadis", "/en/ecovadis-support"],
       ["IntegrityNext", "/en/integritynext-support"],
       ["Scope 1 and 2", "/en/scope-1-2-calculation"],
@@ -99,7 +99,7 @@ const copy = {
     handoverBody: "Bei einem Kundenfragebogen: vorbereitete Antworten, die zugehörigen Nachweise und eine kurze Liste der Punkte, die Ihr Team noch bestätigen muss. Das genaue Ergebnis hängt von der Anfrage ab.",
     serviceLinks: [
       ["ESG-Kundenanfragen", "/de/esg-kundenanfragen"],
-      ["ESG-Fragebögen", "/de/esg-fragebogen-lieferanten"],
+      ["ESG-Fragebögen", "/de/esg-kundenanfragen"],
       ["EcoVadis", "/de/ecovadis-unterstuetzung"],
       ["IntegrityNext", "/de/integritynext-unterstuetzung"],
       ["Scope 1 und 2", "/de/scope-1-2-berechnung"],

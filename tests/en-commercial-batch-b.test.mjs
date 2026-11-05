@@ -74,7 +74,7 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
       "VSME Sustainability Reporting for SMEs | Evipace",
       "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
       "/en/vsme-sustainability-report",
-      "Need to prepare VSME sustainability information? We help structure the report from your company data."
+      "We prepare your VSME sustainability report. You approve it."
     ]
   ];
 
@@ -135,7 +135,7 @@ test("Batch B route files use restrained commercial schema and breadcrumbs", () 
     assert.ok(!source.includes("Review"));
   }
 
-  assert.ok(componentSource.includes('aria-label="Breadcrumb"'));
+  assert.ok(componentSource.includes("aria-label={UI[locale].breadcrumb}"));
 });
 
 test("wrong-locale German slug pages are guarded after EN pair registration", () => {
@@ -221,7 +221,7 @@ test("Batch B copy preserves commercial differentiation and claim safeguards", (
 test("full English commercial layer has the six genuine core service routes", () => {
   const commercialRoutes = [
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/scope-1-2-calculation",
     "/en/ecovadis-support",
     "/en/integritynext-support",

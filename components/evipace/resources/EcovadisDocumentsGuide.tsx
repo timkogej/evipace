@@ -869,7 +869,7 @@ export function EcovadisDocumentsGuide() {
                 <p>Dadurch sehen Sie früh:</p>
                 <BulletList items={["welche Antworten gut belegbar sind", "wo noch interne Informationen fehlen", "welche Dokumente mehrfach relevant sind", "wo der Assessment Scope problematisch ist", "und welche Bereiche echte Verbesserung benötigen"]} />
                 <p>Das reduziert Arbeit kurz vor der Submission.</p>
-                <Link className="orange-link mt-7 inline-flex items-center gap-2 text-sm" href="/de/esg-fragebogen-lieferanten">
+                <Link className="orange-link mt-7 inline-flex items-center gap-2 text-sm" href="/de/esg-kundenanfragen">
                   ESG-Fragebogen für Lieferanten
                   <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </Link>

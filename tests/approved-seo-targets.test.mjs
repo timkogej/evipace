@@ -63,28 +63,28 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
       enRegistry,
       'title: "ESG Customer Request Support for Suppliers | Evipace"',
       homeContentSource,
-      "Forward your customer's request. We prepare the answer.",
+      "We carry the paperwork. You approve.",
       landingHomeSource
     ],
     [
       deRegistry,
       'title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"',
       homeContentSource,
-      "Leiten Sie die Anfrage Ihres Kunden weiter. Wir bereiten die Antwort vor.",
+      "Wir tragen den Papierkram. Sie geben frei.",
       landingHomeSource
     ],
     [
       enRegistry,
       'title: "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace"',
       englishCommercialContent,
-      "Calculate and document your company’s Scope 1 and Scope 2 emissions.",
+      "We calculate your Scope 1 and Scope 2 emissions. You approve the result.",
       englishCommercialComponent
     ],
     [
       deRegistry,
       'title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | Evipace"',
       germanScopeHeroSource,
-      "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 nachvollziehbar berechnen."
+      "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 berechnen wir, Sie geben frei."
     ]
   ];
 

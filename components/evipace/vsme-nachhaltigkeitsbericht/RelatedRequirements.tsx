@@ -9,7 +9,7 @@ const relatedLinks = [
   {
     title: "ESG-Fragebogen für Lieferanten",
     body: "Sie haben einen kundenspezifischen ESG- oder Nachhaltigkeitsfragebogen erhalten? Wir ordnen Daten und Nachweise entlang der konkreten Fragen.",
-    href: "/de/esg-fragebogen-lieferanten"
+    href: "/de/esg-kundenanfragen"
   },
   {
     title: "EcoVadis-Unterstützung",

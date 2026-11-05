@@ -2,7 +2,7 @@ import type { PageKey } from "./page-registry";
 
 type Question = { question: string; answer: string };
 export type ServiceKey = Extract<PageKey,
-  "esgKundenanfragen" | "esgFragebogenLieferanten" | "ecovadisUnterstuetzung" |
+  "esgKundenanfragen" | "ecovadisUnterstuetzung" |
   "integrityNextUnterstuetzung" | "scope12Berechnung" | "vsmeNachhaltigkeitsbericht">;
 
 // Engagement descriptions, not external standards or promises about outcomes.
@@ -10,22 +10,14 @@ export type ServiceKey = Extract<PageKey,
 const questions: Record<ServiceKey, Record<"en" | "de", Question[]>> = {
   esgKundenanfragen: {
     en: [
+      { question: "What is included in the questionnaire handover?", answer: "The working output is a field-by-field response draft based on your company's records, an evidence mapping and a list of missing data or decisions. Your team checks company facts and approves the response. A questionnaire response is not a certification, independent audit or guarantee that a customer accepts every answer." },
       { question: "What should we send first, and what will we get back?", answer: "Send the original customer email or portal request, the deadline, the company or sites covered and any existing records. Evipace maps the request to the available evidence and prepares response material, with sources and open points for your approval. A short request for one policy does not automatically require a full questionnaire or sustainability report." },
       { question: "What determines the cost of responding to a customer ESG request?", answer: "The scope depends on the number and type of questions, entities and sites, the reporting period, evidence quality and any calculations or new documents needed. Share the request and deadline so the work and a realistic timetable can be assessed. No fixed price or delivery time is stated before the request is reviewed." }
     ],
     de: [
+      { question: "Was gehört zur Übergabe des Fragebogens?", answer: "Sie erhalten einen Antwortentwurf entlang der einzelnen Fragen auf Basis Ihrer Unternehmensunterlagen, eine Zuordnung der Nachweise und eine Liste fehlender Daten oder Entscheidungen. Ihr Team prüft die Unternehmensangaben und gibt die Antwort frei. Der ausgefüllte Fragebogen ist keine Zertifizierung, unabhängige Prüfung oder Garantie für die Akzeptanz durch den Kunden." },
       { question: "Was senden wir zuerst, und welches Ergebnis erhalten wir?", answer: "Senden Sie die ursprüngliche Kunden-E-Mail oder Portalanfrage, die Frist, die betroffenen Gesellschaften oder Standorte und vorhandene Unterlagen. Evipace ordnet die Anforderungen den verfügbaren Nachweisen zu und bereitet Antwortmaterial mit Quellen und offenen Punkten zur Freigabe vor. Eine einzelne Richtlinienanfrage erfordert nicht automatisch einen vollständigen Fragebogen oder Nachhaltigkeitsbericht." },
       { question: "Wovon hängen die Kosten einer ESG-Kundenanfrage ab?", answer: "Maßgeblich sind Anzahl und Art der Fragen, Gesellschaften und Standorte, Berichtszeitraum, Qualität der Nachweise sowie erforderliche Berechnungen oder neue Dokumente. Anhand der Anfrage und Frist lassen sich Umfang und ein realistischer Zeitplan einschätzen. Ein Festpreis oder Liefertermin wird hier nicht vor Sichtung der Anfrage zugesagt." }
-    ]
-  },
-  esgFragebogenLieferanten: {
-    en: [
-      { question: "What is included in the questionnaire handover?", answer: "The working output is a field-by-field response draft based on your company's records, an evidence mapping and a list of missing data or decisions. Your team checks company facts and approves the response. A questionnaire response is not a certification, independent audit or guarantee that a customer accepts every answer." },
-      { question: "What determines the cost and timing of questionnaire support?", answer: "Send the actual questionnaire, submission deadline, reporting period and entities or sites covered. Effort depends on question count and complexity, available evidence, missing calculations and how quickly internal owners can confirm the facts. The questionnaire is scoped before a delivery commitment is made." }
-    ],
-    de: [
-      { question: "Was gehört zur Übergabe des Fragebogens?", answer: "Sie erhalten einen Antwortentwurf entlang der einzelnen Fragen auf Basis Ihrer Unternehmensunterlagen, eine Zuordnung der Nachweise und eine Liste fehlender Daten oder Entscheidungen. Ihr Team prüft die Unternehmensangaben und gibt die Antwort frei. Der ausgefüllte Fragebogen ist keine Zertifizierung, unabhängige Prüfung oder Garantie für die Akzeptanz durch den Kunden." },
-      { question: "Wovon hängen Kosten und Zeitbedarf der Fragebogen-Unterstützung ab?", answer: "Senden Sie den konkreten Fragebogen, die Abgabefrist, den Berichtszeitraum und die betroffenen Gesellschaften oder Standorte. Der Aufwand hängt von Anzahl und Komplexität der Fragen, vorhandenen Nachweisen, fehlenden Berechnungen und internen Rückmeldungen ab. Eine Terminvereinbarung setzt die Sichtung des Fragebogens voraus." }
     ]
   },
   ecovadisUnterstuetzung: {

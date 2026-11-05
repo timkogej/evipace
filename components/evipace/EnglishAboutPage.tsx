@@ -512,7 +512,7 @@ export function EnglishAboutPage() {
                 ,{" "}
                 <Link
                   className="orange-link"
-                  href="/en/esg-questionnaire-support"
+                  href="/en/esg-customer-requests"
                 >
                   supplier questionnaires
                 </Link>

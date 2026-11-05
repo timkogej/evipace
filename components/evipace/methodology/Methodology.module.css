@@ -132,7 +132,7 @@
 
 .statement {
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.45rem, 2.2vw, 1.9rem);
   letter-spacing: -0.01em;
   line-height: 1.25;
@@ -275,7 +275,7 @@
   border-radius: 0 var(--ev-r-md) var(--ev-r-md) 0;
   padding: var(--ev-s-5) var(--ev-s-6);
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.2rem, 1.7vw, 1.45rem);
   line-height: 1.4;
 }
@@ -422,7 +422,7 @@ details[open] > summary .toggle::after {
 
 .disclosureTitle {
   margin: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.3rem, 2vw, 1.75rem);
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -475,7 +475,7 @@ details[open] > summary .toggle::after {
 .stepNumber {
   flex: none;
   color: var(--ev-orange-700);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.75rem;
   line-height: 1;
 }

@@ -1061,14 +1061,14 @@ export function EsgQuestionnaireGuide() {
                   beim zweiten, dritten und vierten Fragebogen deutlich besser zu
                   strukturieren.
                 </p>
-                <Link className="orange-link mt-7 inline-flex items-center gap-2 text-sm" href="/de/esg-fragebogen-lieferanten">
+                <Link className="orange-link mt-7 inline-flex items-center gap-2 text-sm" href="/de/esg-kundenanfragen">
                   ESG-Fragebogen für Lieferanten
                   <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </Link>
               </ArticleSection>
 
               <GuideCta
-              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink></>}
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink></>}
               eyebrow="Ihr nächster Schritt"
               note={<><p>Excel · PDF · Kundenformular · Nachweise</p></>}
               title={<>Ihr ESG-Fragebogen liegt bereits vor?</>}

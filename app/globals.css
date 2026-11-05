@@ -170,7 +170,7 @@ a {
 }
 
 .font-display {
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   letter-spacing: 0;
 }
@@ -382,7 +382,7 @@ a {
   z-index: 0;
   display: none;
   color: rgba(21, 21, 21, 0.035);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 12rem;
   line-height: 1;
   pointer-events: none;
@@ -4418,7 +4418,7 @@ html[data-site-intro="done"] .site-intro {
 }
 
 .svc-card__number {
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 2.5rem;
   line-height: 1;
   color: rgba(255, 255, 255, 0.92);

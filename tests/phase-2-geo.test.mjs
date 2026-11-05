@@ -63,14 +63,12 @@ const DE_SERVICES = [
   ["ecovadis-unterstuetzung", "EcoVadis-Unterstützung"],
   ["integritynext-unterstuetzung", "IntegrityNext-Unterstützung"],
   ["esg-kundenanfragen", "ESG-Kundenanfragen"],
-  ["esg-fragebogen-lieferanten", "ESG-Fragebögen für Lieferanten"],
   ["vsme-nachhaltigkeitsbericht", "VSME-Nachhaltigkeitsbericht"],
   ["scope-1-2-berechnung", "Scope 1 & 2"]
 ];
 
 const EN_SERVICE_ROUTES = [
   "esg-customer-requests",
-  "esg-questionnaire-support",
   "ecovadis-support",
   "integritynext-support",
   "scope-1-2-calculation",
@@ -394,7 +392,7 @@ test("About opens with a plain entity definition and links its topics", () => {
 
   for (const href of [
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/ecovadis-support",
     "/en/integritynext-support",
     "/en/scope-1-2-calculation",
@@ -406,7 +404,7 @@ test("About opens with a plain entity definition and links its topics", () => {
   }
   for (const href of [
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/scope-1-2-berechnung",
@@ -435,7 +433,6 @@ test("every English service page carries a FAQ, and platform pages define themse
 
   const contents = [
     "customerRequestsContent",
-    "questionnaireSupportContent",
     "scope12CalculationContent",
     "ecovadisSupportContent",
     "integrityNextSupportContent",
@@ -518,23 +515,11 @@ test("every English service page carries a FAQ, and platform pages define themse
   );
 });
 
-test("the customer-request and questionnaire pages state their distinct scope", () => {
-  assert.ok(commercialContent.includes("This page covers the whole range of request formats"));
-  assert.ok(
-    commercialContent.includes(
-      "ESG questionnaire support is the narrower case where a defined questionnaire or assessment document has to be completed field by field."
-    )
-  );
-  assert.ok(
-    commercialContent.includes(
-      "How is this different from your ESG questionnaire support?"
-    )
-  );
-  assert.ok(
-    commercialContent.includes(
-      "How is this different from your customer ESG requests page?"
-    )
-  );
+test("the merged customer-request page covers questionnaires as one request format", () => {
+  const start = commercialContent.indexOf("export const customerRequestsContent");
+  const end = commercialContent.indexOf("\n};\n", start);
+  const block = commercialContent.slice(start, end);
+  assert.ok(/questionnaire/i.test(block));
 });
 
 /* ────────────────────────────────────────────────────────────────────────

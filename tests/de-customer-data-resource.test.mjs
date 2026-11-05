@@ -42,7 +42,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/ProblemIntro.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -210,7 +210,7 @@ test("customer data guide links required internal destinations", () => {
   const requiredPaths = [
     "/de/ressourcen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",

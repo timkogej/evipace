@@ -26,7 +26,7 @@ export function Footer({ locale }: FooterProps) {
   }
 
   return (
-    <footer className="site-footer border-t border-[rgba(21,21,21,0.1)] bg-[var(--warm)] pb-8 pt-16 text-ink">
+    <footer className="site-footer border-t border-[rgba(21,21,21,0.1)] bg-[#f5f5f5] pb-8 pt-16 text-ink">
       <div className="site-shell">
         <div className="grid gap-12 border-b border-[rgba(21,21,21,0.12)] pb-12 xl:grid-cols-[0.75fr_1.55fr] xl:gap-16">
           <div>
@@ -37,8 +37,10 @@ export function Footer({ locale }: FooterProps) {
             >
               <BrandLogo variant="footer" />
             </Link>
-            <p className="mt-5 text-lg font-semibold text-[rgba(21,21,21,0.66)]">
-              ESG work. Done right. Done faster.
+            <p className="mt-5 max-w-sm text-lg font-semibold leading-snug text-[rgba(21,21,21,0.66)]">
+              {locale === "de"
+                ? "Wir übernehmen Umwelt- und Sicherheitsdokumentation für Produktionsunternehmen."
+                : "We take over environmental and safety documentation for manufacturers."}
             </p>
             <Link
               aria-current={

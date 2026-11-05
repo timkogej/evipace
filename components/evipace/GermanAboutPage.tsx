@@ -521,7 +521,7 @@ export function GermanAboutPage() {
                 ,{" "}
                 <Link
                   className="orange-link"
-                  href="/de/esg-fragebogen-lieferanten"
+                  href="/de/esg-kundenanfragen"
                 >
                   ESG-Fragebögen für Lieferanten
                 </Link>

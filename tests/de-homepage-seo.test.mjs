@@ -155,7 +155,7 @@ test("homepage rendering and global English About navigation remain locale-speci
 test("German global navigation links the live commercial cluster and homepage CTAs remain intact", () => {
   const serviceHrefs = [
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/vsme-nachhaltigkeitsbericht",

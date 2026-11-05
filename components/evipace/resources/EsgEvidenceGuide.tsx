@@ -1482,7 +1482,7 @@ export function EsgEvidenceGuide() {
               </ArticleSection>
 
               <GuideCta
-              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink><TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink></>}
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink><TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink></>}
               eyebrow="Ihr nächster Schritt"
               note={<><p>Zertifikate · Richtlinien · Berechnungen · Nachweise · Daten</p></>}
               title={<>Die Antworten sind da. Die Nachweise liegen überall?</>}

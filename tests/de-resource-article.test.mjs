@@ -62,7 +62,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/ProblemIntro.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -87,7 +87,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/RequirementCategories.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -404,7 +404,7 @@ test("resource preserves the practical guide, Answer Map, evidence integrity, an
 
 test("resource has all required internal destinations, CTA paths, and clean first-party sources", () => {
   const internalPaths = [
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/esg-kundenanfragen",
     "/de/scope-1-2-berechnung",
     "/de/ecovadis-unterstuetzung",
@@ -424,7 +424,7 @@ test("resource has all required internal destinations, CTA paths, and clean firs
   );
   assert.ok(
     articleSource.includes(
-      '<TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink>'
+      '<TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink>'
     )
   );
 
@@ -558,7 +558,7 @@ test("evidence guide preserves its evidence-first principles and complete practi
 
 test("evidence guide has required internal links, CTAs, and clean first-party source links", () => {
   const internalPaths = [
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
@@ -581,7 +581,7 @@ test("evidence guide has required internal links, CTAs, and clean first-party so
   );
   assert.ok(
     normalizeWhitespace(evidenceArticleSource).includes(
-      '<TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink>'
+      '<TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink>'
     )
   );
 
@@ -735,7 +735,7 @@ test("EcoVadis documents guide has the required links, CTAs, independence langua
     "/de/ecovadis-unterstuetzung",
     "/de/ressourcen/esg-nachweise-lieferanten",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/scope-1-2-berechnung",
     "/de/methodology"
   ]) {
@@ -925,7 +925,7 @@ test("IntegrityNext invitation guide has required links, CTAs, independence lang
     "/de/ressourcen/esg-nachweise-lieferanten",
     "/de/ressourcen/ecovadis-dokumente-nachweise",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/scope-1-2-berechnung",
     "/de/methodology"
   ]) {
@@ -2125,7 +2125,7 @@ test("checklist guide contains the workflow, final gate, warnings, exact CTAs, F
 
   for (const path of [
     "/de/send-request",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
     "/de/ressourcen/esg-daten-verantwortliche-abteilungen",
     "/de/ressourcen/esg-nachweise-lieferanten",

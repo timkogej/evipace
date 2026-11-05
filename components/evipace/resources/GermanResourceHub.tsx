@@ -50,7 +50,7 @@ const services = [
   },
   {
     title: "ESG-Fragebögen für Lieferanten",
-    href: "/de/esg-fragebogen-lieferanten",
+    href: "/de/esg-kundenanfragen",
     body: "Ein konkreter Fragebogen oder ein Lieferanten-Assessment, das Feld für Feld beantwortet werden muss."
   },
   {

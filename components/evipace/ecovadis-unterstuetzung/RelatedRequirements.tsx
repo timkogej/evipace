@@ -9,7 +9,7 @@ const relatedLinks = [
   {
     title: "ESG-Fragebogen für Lieferanten",
     body: "Wenn Ihr Kunde einen eigenen strukturierten Nachhaltigkeits- oder ESG-Fragebogen geschickt hat, unterstützen wir bei der Vorbereitung der Antworten und Nachweise entlang der konkreten Fragen.",
-    href: "/de/esg-fragebogen-lieferanten"
+    href: "/de/esg-kundenanfragen"
   }
 ];
 

@@ -73,7 +73,7 @@
 
 .contactName {
   margin-top: var(--ev-s-3) !important;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.9rem, 3vw, 2.5rem);
   line-height: 1.1;
 }
@@ -141,7 +141,7 @@
 
 .handoverTitle {
   margin: var(--ev-s-4) 0 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.6rem, 2.6vw, 2.25rem);
   font-weight: 400;
   line-height: 1.15;

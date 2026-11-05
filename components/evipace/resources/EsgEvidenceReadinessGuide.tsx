@@ -353,7 +353,7 @@ export function EsgEvidenceReadinessGuide() {
             <GuideCta
               actions={<>
                 <PillLink href={SEND_REQUEST_HREF}>ESG-Anfrage senden</PillLink>
-                <TextLink href="/de/esg-fragebogen-lieferanten">Mehr über ESG-Fragebögen für Lieferanten</TextLink>
+                <TextLink href="/de/esg-kundenanfragen">Mehr über ESG-Fragebögen für Lieferanten</TextLink>
               </>}
               note={<p>Sie behalten die Kontrolle über Unternehmensangaben und die finale Einreichung.</p>}
               title={<>Sie haben die Unterlagen – aber noch keine klare Evidence-Struktur?</>}

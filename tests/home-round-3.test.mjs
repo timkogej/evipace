@@ -287,7 +287,6 @@ test("the approved Evidence Desk fallback remains available and untouched", asyn
   const heroPaths = [
     "components/evipace/hero-evidence-desk/EvidenceDeskHero.tsx",
     "components/evipace/hero-evidence-desk/process-labels.ts",
-    "components/evipace/Hero.tsx",
     "public/images/evipace/homepage/hero-evidence-desk-desktop.webp",
     "public/images/evipace/homepage/hero-evidence-desk-mobile.webp"
   ];

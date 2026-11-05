@@ -486,7 +486,7 @@ const platformCards = [
     "Individuelle Kundenfragebögen",
     "Eigene Anforderungen eines Kunden in Excel, Portal oder einem individuellen Format.",
     "ESG-Fragebogen für Lieferanten",
-    "/de/esg-fragebogen-lieferanten"
+    "/de/esg-kundenanfragen"
   ]
 ] as const;
 

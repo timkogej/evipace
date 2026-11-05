@@ -113,7 +113,7 @@ const services = [
     number: "02",
     title: "ESG-Fragebogen für Lieferanten",
     body: "Sie haben einen kundenspezifischen ESG- oder Nachhaltigkeitsfragebogen erhalten? Wir bereiten Antworten, Daten und Nachweise entlang der konkreten Fragen vor.",
-    href: "/de/esg-fragebogen-lieferanten",
+    href: "/de/esg-kundenanfragen",
     icon: ClipboardCheck
   },
   {

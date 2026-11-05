@@ -7,29 +7,24 @@ const SEND_REQUEST_HREF = "/de/send-request";
 const steps = [
   {
     number: "01",
-    title: "Angeforderte Themen zeigen",
-    body: "Sie zeigen uns, welche Assessments in Ihrem IntegrityNext-Profil angefordert wurden, und stellen die vorhandenen Unterlagen bereit. Da die IntegrityNext-Fragebögen online innerhalb des Profils bereitgestellt werden, können dafür beispielsweise Screenshots, eine Übersicht der angeforderten Themen und relevante Dokumente verwendet werden.",
+    title: "Sie senden die Einladung",
+    body: "Die angeforderten Assessments sowie die Zertifikate und Dokumente, die bereits vorhanden sind.",
     cta: true
   },
   {
     number: "02",
-    title: "Anforderungen strukturieren",
-    body: "Wir ordnen die einzelnen Themen und bestimmen, welche Informationen, Zertifikate oder internen Ansprechpartner dafür relevant sind."
+    title: "Wir ordnen zu und bereiten vor",
+    body: "Jedes Thema wird Dokumenten und internen Ansprechpartnern zugeordnet, die Antworten werden vorbereitet."
   },
   {
     number: "03",
-    title: "Zertifikate und Nachweise zuordnen",
-    body: "Bestehende Dokumente werden geprüft und den passenden Themen zugeordnet."
+    title: "Eine Person prüft",
+    body: "Eine Person bei Evipace prüft das Material und hält fehlende Zertifikate und offene Punkte sichtbar."
   },
   {
     number: "04",
-    title: "Antworten vorbereiten",
-    body: "Wo Fragebögen beantwortet werden müssen, bereiten wir die erforderlichen Informationen für Ihre Prüfung auf."
-  },
-  {
-    number: "05",
-    title: "Offene Punkte abstimmen",
-    body: "Fehlende Daten, interne Entscheidungen oder notwendige Bestätigungen werden klar markiert. Sie behalten damit den Überblick darüber, was bereits vorbereitet ist und wo noch Input benötigt wird."
+    title: "Sie bestätigen und reichen ein",
+    body: "Ihr Unternehmen bestätigt die Angaben und trägt sie in IntegrityNext ein beziehungsweise reicht sie dort ein."
   }
 ];
 

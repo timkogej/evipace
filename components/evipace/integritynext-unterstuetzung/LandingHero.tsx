@@ -36,7 +36,7 @@ export function LandingHero() {
       eyebrow="IntegrityNext-Unterstützung"
       lead="Ihr Kunde oder Geschäftspartner fordert Nachhaltigkeits- und Compliance-Informationen über IntegrityNext an? Sie zeigen uns die angeforderten Themen und Ihre vorhandenen Unterlagen. Wir strukturieren die benötigten Angaben, ordnen relevante Zertifikate und Nachweise zu und machen offene Punkte sichtbar."
       note="Unabhängige Unterstützung · keine Verbindung zu IntegrityNext"
-      title="Zu IntegrityNext eingeladen? Wir helfen Ihnen durch die Assessments."
+      title="IntegrityNext-Antworten bereiten wir vor. Sie geben frei und reichen ein."
     >
       <StatusPanel
         label="Supplier-Assessments"

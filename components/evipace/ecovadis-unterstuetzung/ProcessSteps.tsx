@@ -7,29 +7,24 @@ const SEND_REQUEST_HREF = "/de/send-request";
 const steps = [
   {
     number: "01",
-    title: "Fragebogen und Ausgangslage senden",
-    body: "Sie senden uns Ihren aktuellen Fragebogen und die Unterlagen, die bereits vorhanden sind. Wenn Sie bereits eine frühere Bewertung oder Scorecard haben, kann diese ebenfalls berücksichtigt werden.",
+    title: "Sie senden die Anfrage",
+    body: "Der aktuelle EcoVadis-Fragebogen und die Unterlagen, die bereits vorhanden sind, auch eine frühere Scorecard.",
     cta: true
   },
   {
     number: "02",
-    title: "Anforderungen strukturieren",
-    body: "Wir prüfen die relevanten Themen und identifizieren, welche Daten, Aussagen und Nachweise benötigt werden."
+    title: "Wir ordnen zu und bereiten vor",
+    body: "Fragen werden Datenverantwortlichen und vorhandenen Nachweisen zugeordnet, belastbare Antworten werden entworfen."
   },
   {
     number: "03",
-    title: "Vorhandene Nachweise prüfen",
-    body: "Bestehende Richtlinien, Zertifikate, Kennzahlen und Dokumentationen werden den jeweiligen Anforderungen zugeordnet."
+    title: "Eine Person prüft",
+    body: "Eine Person bei Evipace prüft das Paket und hält fehlende oder schwache Nachweise als offene Punkte sichtbar."
   },
   {
     number: "04",
-    title: "Offene Punkte identifizieren",
-    body: "Wir zeigen klar, wo Informationen fehlen, wo ein Nachweis nicht ausreichend passt oder wo eine interne Entscheidung beziehungsweise Bestätigung notwendig ist."
-  },
-  {
-    number: "05",
-    title: "Antworten und Dokumentation vorbereiten",
-    body: "Sie erhalten eine strukturierte Grundlage für Ihre interne Prüfung und weitere Bearbeitung des Assessments."
+    title: "Sie bestätigen und reichen ein",
+    body: "Ihr Unternehmen bestätigt die Angaben und reicht das Assessment ein. Ein Score oder Ergebnis wird nicht zugesagt."
   }
 ];
 

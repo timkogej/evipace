@@ -36,7 +36,7 @@ export function LandingHero() {
       eyebrow="EcoVadis-Unterstützung"
       lead="Sie senden uns den aktuellen Assessment-Kontext und vorhandene Unterlagen. Wir übernehmen die Vorbereitung: Fragen und Daten strukturieren, belastbare Antworten entwerfen, Nachweise zuordnen und Lücken dokumentieren. Ihr Unternehmen bestätigt die Angaben und reicht das Assessment ein."
       note="Unabhängige Unterstützung · keine Verbindung zu EcoVadis · keine Score-Garantie"
-      title="EcoVadis-Fragebogen vor Ihnen? Wir bereiten Antworten und Nachweise für Ihre Prüfung vor."
+      title="EcoVadis-Antworten und Nachweise bereiten wir vor. Sie geben frei und reichen ein."
     >
       <StatusPanel
         label="Assessment-Vorbereitung"

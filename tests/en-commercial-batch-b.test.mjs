@@ -60,14 +60,14 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
       "EcoVadis Support for Suppliers | Evipace",
       "Evipace prepares EcoVadis response material, maps supporting evidence and flags gaps. Your team confirms company facts and submits the assessment.",
       "/en/ecovadis-support",
-      "EcoVadis assessment ahead? We prepare the answers and evidence for your review."
+      "We prepare your EcoVadis answers and evidence. You approve and submit."
     ],
     [
       "integrityNextUnterstuetzung",
       "IntegrityNext Support for Suppliers | Evipace",
       "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
       "/en/integritynext-support",
-      "Received an IntegrityNext request? We help prepare the information and evidence."
+      "We prepare your IntegrityNext response. You approve and submit."
     ],
     [
       "vsmeNachhaltigkeitsbericht",

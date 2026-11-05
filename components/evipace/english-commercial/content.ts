@@ -794,7 +794,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
   illustrativeHandover: "ecovadis",
   eyebrow: "ECOVADIS SUPPORT",
   title:
-    "EcoVadis assessment ahead? We prepare the answers and evidence for your review.",
+    "We prepare your EcoVadis answers and evidence. You approve and submit.",
   intro: [
     "Send us the current assessment context and the documents you already have. We take on the preparation: mapping questions to data owners, drafting supportable answers, organising evidence and recording gaps. Your company confirms its facts and submits the assessment."
   ],
@@ -950,37 +950,24 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "A practical six-step preparation flow",
+    title: "From your assessment to an approved response",
+    intro: "You send the request once. We carry the preparation.",
     steps: [
       {
-        title: "Share the assessment or request",
-        body:
-          "You send the current EcoVadis request, questionnaire context and the documents already available."
+        title: "You send the assessment",
+        body: "The current EcoVadis request and the documents you already have, including any earlier scorecard."
       },
       {
-        title: "Map the requirements",
-        body:
-          "We identify the information, evidence, scope and internal confirmations needed."
+        title: "We map and prepare",
+        body: "Questions are matched to data owners and existing evidence, and supportable answers are drafted."
       },
       {
-        title: "Collect the available data and evidence",
-        body:
-          "Existing policies, certificates, metrics, records and prior materials are organised against the request."
+        title: "A person reviews",
+        body: "A person at Evipace checks the package and keeps weak or missing evidence visible as gaps."
       },
       {
-        title: "Prepare answers and document gaps",
-        body:
-          "Response material is prepared from supportable company information, with missing or weak evidence kept visible."
-      },
-      {
-        title: "Review the response package",
-        body:
-          "Prepared answers, sources, assumptions and gaps are reviewed before return."
-      },
-      {
-        title: "Client confirms and submits",
-        body:
-          "Your company confirms the company facts and remains responsible for final use and platform submission."
+        title: "You confirm and submit",
+        body: "Your company confirms the facts and submits the assessment. No score or outcome is promised."
       }
     ]
   },
@@ -1120,7 +1107,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "INTEGRITYNEXT SUPPORT",
   title:
-    "Received an IntegrityNext request? We help prepare the information and evidence.",
+    "We prepare your IntegrityNext response. You approve and submit.",
   intro: [
     "Show us the invitation or requested assessments and the documents you already have. We organise the company information, certificates and evidence, then flag what still needs an answer or internal confirmation."
   ],
@@ -1270,37 +1257,24 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "From invitation to review-ready material",
+    title: "From invitation to an approved response",
+    intro: "You show us the request once. We carry the preparation.",
     steps: [
       {
-        title: "Send the invitation or request",
-        body:
-          "You share the request, requested topics and the information already available."
+        title: "You send the invitation",
+        body: "The requested assessments and the certificates and documents you already have."
       },
       {
-        title: "Identify what is required",
-        body:
-          "We clarify which information, certificates, documents or questionnaire inputs are needed."
+        title: "We map and prepare",
+        body: "Each topic is matched to documents and internal owners, and response material is prepared."
       },
       {
-        title: "Map data, documents and owners",
-        body:
-          "Each topic is mapped to likely source documents and internal owners."
+        title: "A person reviews",
+        body: "A person at Evipace checks the material and keeps missing certificates and open points visible."
       },
       {
-        title: "Prepare responses and evidence",
-        body:
-          "We prepare response material, organise supporting documents and identify source references."
-      },
-      {
-        title: "Review open gaps",
-        body:
-          "Missing certificates, unclear information and statements needing confirmation remain visible."
-      },
-      {
-        title: "Client confirms and submits",
-        body:
-          "Your company confirms the facts and remains responsible for entering or submitting information through IntegrityNext where applicable."
+        title: "You confirm and submit",
+        body: "Your company confirms the facts and enters or submits them in IntegrityNext where applicable."
       }
     ]
   },

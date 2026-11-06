@@ -125,7 +125,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         name: "Report",
         kind: "VSME report",
         forWhom: "For a company that wants a voluntary VSME report, for example because a customer or a bank asks for one.",
-        note: "Where an independent review or public disclosure is needed, we explain the steps and costs in advance.",
+        note: "Independent assurance and publication are not part of our service; your company decides whether the report is shared or externally reviewed.",
         included: [
           "The report structure",
           "A draft from your confirmed data",
@@ -295,7 +295,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         name: "Bericht",
         kind: "VSME-Bericht",
         forWhom: "Für Unternehmen, die einen freiwilligen VSME-Bericht wünschen, zum Beispiel weil ein Kunde oder eine Bank danach fragt.",
-        note: "Wo eine unabhängige Prüfung oder eine Veröffentlichung nötig ist, erklären wir Schritte und Kosten im Voraus.",
+        note: "Eine unabhängige Prüfung und die Veröffentlichung gehören nicht zu unserer Leistung; Ihr Unternehmen entscheidet, ob der Bericht weitergegeben oder extern geprüft wird.",
         included: [
           "Die Berichtsstruktur",
           "Ein Entwurf aus Ihren bestätigten Daten",

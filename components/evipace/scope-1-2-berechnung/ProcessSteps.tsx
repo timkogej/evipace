@@ -7,39 +7,24 @@ const SEND_REQUEST_HREF = "/de/send-request";
 const steps = [
   {
     number: "01",
-    title: "Bilanzrahmen klären",
-    body: "Wir definieren zunächst Berichtszeitraum, relevante Standorte, organisatorische Abgrenzung und den Verwendungszweck der Berechnung.",
+    title: "Sie senden Ihre Unterlagen",
+    body: "Strom- und Brennstoffrechnungen, Fuhrparkdaten, Kältemittelnachweise: was immer Sie bereits haben.",
     cta: true
   },
   {
     number: "02",
-    title: "Datenquellen identifizieren",
-    body: "Wir bestimmen, welche Aktivitätsdaten benötigt werden und wo diese typischerweise im Unternehmen liegen."
+    title: "Wir strukturieren und berechnen",
+    body: "Bilanzrahmen, Einheiten und Emissionsfaktoren werden angewendet, jede Quelle, Faktorversion und Annahme wird dokumentiert."
   },
   {
     number: "03",
-    title: "Verbrauchsdaten strukturieren",
-    body: "Die vorhandenen Daten werden nach Quelle, Zeitraum, Einheit und Scope geordnet. Unvollständige oder unklare Angaben werden sichtbar gemacht."
+    title: "Eine Person prüft",
+    body: "Eine Person bei Evipace prüft die Berechnung, zeigt Lücken auf und fragt Sie nur nach dem, was fehlt."
   },
   {
     number: "04",
-    title: "Emissionsfaktoren zuordnen",
-    body: "Für die jeweiligen Aktivitätsdaten werden geeignete und nachvollziehbar dokumentierte Emissionsfaktoren verwendet."
-  },
-  {
-    number: "05",
-    title: "CO₂e berechnen",
-    body: "Die relevanten Treibhausgasemissionen werden berechnet und Scope 1 beziehungsweise Scope 2 zugeordnet."
-  },
-  {
-    number: "06",
-    title: "Ergebnisse dokumentieren",
-    body: "Wir dokumentieren Aktivitätsdaten, verwendete Faktoren, Quellen, Annahmen, Berechnungsmethode und offene Datenlücken. Eine Person bei Evipace prüft die Berechnung."
-  },
-  {
-    number: "07",
-    title: "Ihre Freigabe",
-    body: "Sie prüfen die zugrunde liegenden Unternehmensdaten und geben die vorbereitete Berechnungsgrundlage frei. Im nächsten Jahr verwenden wir dieselben Unterlagen erneut."
+    title: "Sie geben frei, wir wiederholen im nächsten Jahr",
+    body: "Sie geben im Evipace-Portal frei. Im nächsten Jahr werden dieselben Unterlagen und Einstellungen wiederverwendet."
   }
 ];
 

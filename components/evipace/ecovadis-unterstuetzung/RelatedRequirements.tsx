@@ -5,11 +5,6 @@ const relatedLinks = [
     title: "ESG-Anforderungen von Kunden",
     body: "Wenn Ihr Kunde einzelne ESG-Daten, Dokumente oder Nachweise verlangt, unterstützen wir bei der strukturierten Vorbereitung der Antwort.",
     href: "/de/esg-kundenanfragen"
-  },
-  {
-    title: "ESG-Fragebogen für Lieferanten",
-    body: "Wenn Ihr Kunde einen eigenen strukturierten Nachhaltigkeits- oder ESG-Fragebogen geschickt hat, unterstützen wir bei der Vorbereitung der Antworten und Nachweise entlang der konkreten Fragen.",
-    href: "/de/esg-kundenanfragen"
   }
 ];
 

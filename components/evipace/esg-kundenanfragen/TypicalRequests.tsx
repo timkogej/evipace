@@ -20,7 +20,7 @@ const categories = [
       "Brennstoffverbrauch",
       "Kraftstoffverbrauch",
       "erneuerbare Energie",
-      "teilweise weitere CO₂- oder Scope-3-Angaben"
+      "weitere CO₂-Angaben, soweit sie Scope 1 und Scope 2 betreffen"
     ]
   },
   {

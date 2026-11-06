@@ -10,7 +10,7 @@ export function RequestIntro() {
           sozialen Daten. Die Antwort liegt oft verteilt in Rechnungen,
           Tabellen und Dokumenten verschiedener Teams. Wir machen sichtbar,
           was bereits belegt ist, was fehlt und was vor der Antwort intern
-          bestätigt werden muss.
+          geklärt werden muss.
         </p>
         <p>
           Sie möchten zuerst den Fragebogen selbst einordnen? Unsere{" "}

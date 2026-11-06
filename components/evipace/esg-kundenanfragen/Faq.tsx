@@ -2,6 +2,11 @@ import { getServiceBuyerQuestions } from "@/lib/seo/service-buyer-questions";
 import { Faq as FaqBlock } from "../service-landing/Blocks";
 
 const faqs = [
+  {
+    question: "Was ist ein ESG-Fragebogen für Lieferanten?",
+    answer:
+      "Ein ESG-Fragebogen für Lieferanten ist eine Liste von Fragen, mit der ein Kunde bei seinen Lieferanten Angaben zu Umwelt, Sozialem und Unternehmensführung abfragt: etwa zu Energie und Emissionen, Richtlinien, Zertifikaten, Arbeitsbedingungen und Compliance. Er kommt meist als Excel-Datei, PDF oder Einladung zu einem Portal, mit Frist und der Bitte um Nachweise."
+  },
   ...getServiceBuyerQuestions("de", "esgKundenanfragen"),
   {
     question: "Warum fragen unsere Kunden plötzlich ESG-Daten ab?",

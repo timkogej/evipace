@@ -24,7 +24,7 @@ const previews: Record<"en" | "de", Record<"questionnaire" | "ecovadis", Preview
   en: {
     questionnaire: {
       eyebrow: "A review-ready handover",
-      title: "We prepare the response. You confirm the company facts.",
+      title: "A prepared answer you can trace back to its source.",
       intro: "A typical handover keeps each draft answer connected to its source and shows exactly what still needs your decision.",
       roles: [
         { label: "You send", text: "The customer questionnaire, deadline and records already available." },
@@ -45,7 +45,7 @@ const previews: Record<"en" | "de", Record<"questionnaire" | "ecovadis", Preview
     },
     ecovadis: {
       eyebrow: "A review-ready handover",
-      title: "We prepare answers and evidence. Your company approves the facts and submits.",
+      title: "Prepared answers and evidence, with the gaps in plain view.",
       intro: "The output connects a proposed answer to the document that may support it, with scope and missing evidence visible before submission.",
       roles: [
         { label: "You send", text: "The current assessment context and documents your teams already hold." },
@@ -68,7 +68,7 @@ const previews: Record<"en" | "de", Record<"questionnaire" | "ecovadis", Preview
   de: {
     questionnaire: {
       eyebrow: "Übergabe zur internen Prüfung",
-      title: "Wir bereiten die Antwort vor. Sie bestätigen die Unternehmensangaben.",
+      title: "Eine vorbereitete Antwort, nachvollziehbar bis zur Quelle.",
       intro: "In der Übergabe bleibt jede vorbereitete Antwort mit ihrer Quelle verbunden. Offene Angaben und Entscheidungen sind klar markiert.",
       roles: [
         { label: "Sie senden", text: "Den Kundenfragebogen, die Frist und bereits vorhandene Unterlagen." },
@@ -89,7 +89,7 @@ const previews: Record<"en" | "de", Record<"questionnaire" | "ecovadis", Preview
     },
     ecovadis: {
       eyebrow: "Übergabe zur internen Prüfung",
-      title: "Wir bereiten Antworten und Nachweise vor. Ihr Unternehmen bestätigt und reicht ein.",
+      title: "Vorbereitete Antworten und Nachweise, offene Lücken sichtbar.",
       intro: "Das Ergebnis verknüpft eine mögliche Antwort mit passenden vorhandenen Dokumenten. Bewertungsumfang und Nachweislücken bleiben vor der Einreichung sichtbar.",
       roles: [
         { label: "Sie senden", text: "Den aktuellen Assessment-Kontext und vorhandene Unterlagen." },

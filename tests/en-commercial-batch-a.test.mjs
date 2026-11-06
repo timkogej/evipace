@@ -54,10 +54,10 @@ const deRegistry = registrySource.slice(
 test("English commercial Batch A uses exact approved metadata and H1 copy", () => {
   const expected = [
     [
-      "ESG Customer Requests for Suppliers | Evipace",
-      "Evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
+      "ESG Questionnaires & Customer Requests for Suppliers | Evipace",
+      "Evipace prepares answers to customer ESG questionnaires and requests for manufacturers and suppliers: data, evidence and open gaps. Based in Ljubljana.",
       "/en/esg-customer-requests",
-      "Your customer sent a questionnaire. We prepare the answers, you approve them."
+      "Your customer sent an ESG questionnaire. We take it from here."
     ],
     [
       "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace",

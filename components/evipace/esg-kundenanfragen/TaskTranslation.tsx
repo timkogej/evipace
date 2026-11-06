@@ -18,7 +18,7 @@ const tasks = [
       "berechenbare Angaben",
       "Richtlinien",
       "Zertifikate",
-      "Punkte, die intern bestätigt werden müssen"
+      "Punkte, die intern geklärt werden müssen"
     ]
   },
   {
@@ -34,7 +34,7 @@ const tasks = [
   {
     icon: AlertCircle,
     title: "Lücken erkennen",
-    body: "Wenn Daten oder Nachweise fehlen, wird dies klar sichtbar gemacht. Sie sehen, was bereits beantwortet werden kann und welche Punkte noch ergänzt, berechnet oder intern bestätigt werden müssen."
+    body: "Wenn Daten oder Nachweise fehlen, wird dies klar sichtbar gemacht. Sie sehen, was bereits beantwortet werden kann und welche Punkte noch ergänzt, berechnet oder intern geklärt werden müssen."
   },
   {
     icon: ClipboardCheck,

@@ -160,10 +160,29 @@ export const customerRequestsContent: CommercialServicePageContent = {
   illustrativeHandover: "questionnaire",
   detailsLabel: "Explore request types and the records you can send",
   eyebrow: "Customer questionnaires and requests",
-  title: "Your customer sent a questionnaire. We prepare the answers, you approve them.",
+  title: "Your customer sent an ESG questionnaire. We take it from here.",
   intro: [
-    "Send us the questionnaire, spreadsheet, platform invitation or email. Our system finds the relevant company data and evidence and drafts the answers. A person at Evipace reviews them, you approve, and you decide what goes to your customer."
+    "Send us the questionnaire, spreadsheet, platform invitation or email. Our system finds the relevant company data and evidence and drafts the answers, and a person at Evipace reviews them. You get a response that is ready to send and a clear list of what is still missing."
   ],
+  directAnswers: {
+    eyebrow: "The short version",
+    items: [
+      {
+        question: "What is an ESG questionnaire for suppliers?",
+        answer: [
+          "An ESG questionnaire is a list of questions a customer sends to its suppliers about environmental, social and governance topics: energy and emissions, policies, certificates, working conditions and compliance.",
+          "It usually arrives as a spreadsheet, a PDF or an invitation to a customer or platform portal, with a deadline and a request for supporting documents."
+        ]
+      },
+      {
+        question: "What does Evipace do with it?",
+        answer: [
+          "Evipace reads the request, maps each question to your data and documents, drafts the answers and lists what is missing. A person at Evipace reviews the result before it comes back to you.",
+          "Evipace does not certify anything, does not guarantee that a customer accepts an answer, and does not cover Scope 3 or life-cycle assessments."
+        ]
+      }
+    ]
+  },
   primaryCta: "Send us the request",
   secondaryCta: {
     label: "See how the process works",
@@ -203,10 +222,10 @@ export const customerRequestsContent: CommercialServicePageContent = {
         icon: Calculator
       },
       {
-        title: "Environmental or social policies",
-        quote: "They want policies we do not currently have documented clearly.",
+        title: "Policies and certificates",
+        quote: "They want to see our policies and certificates.",
         body:
-          "We can prepare drafts from actual company practices for internal review and approval.",
+          "We find the documents you already have, match them to the question and flag any that are missing or out of date.",
         icon: FileText
       },
       {
@@ -257,9 +276,9 @@ export const customerRequestsContent: CommercialServicePageContent = {
         icon: Calculator
       },
       {
-        title: "Policy drafts",
+        title: "Policy and certificate check",
         body:
-          "Where a requested policy does not yet exist, we can prepare a draft based on actual company practices for internal review and approval.",
+          "We match existing policies and certificates to the questions and flag documents that are missing, outdated or too general to support the answer.",
         icon: FileText
       },
       {
@@ -271,7 +290,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
       {
         title: "Final review",
         body:
-          "Prepared deliverables are human-reviewed before they are returned for client confirmation.",
+          "A person at Evipace reviews the prepared response before it is returned to you.",
         icon: ShieldCheck
       }
     ]
@@ -294,7 +313,7 @@ export const customerRequestsContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "From the request to an approved response",
+    title: "From the request to a response you can send",
     steps: [
       {
         title: "You send the request",
@@ -323,9 +342,8 @@ export const customerRequestsContent: CommercialServicePageContent = {
       "Structured supporting evidence",
       "Data and evidence gap list",
       "Scope 1 & 2 calculations where required",
-      "Policy drafts where appropriate",
       "Clear assumptions and source references",
-      "Organised response package for internal confirmation"
+      "A response package ready for you to review and send"
     ]
   },
   trust: {
@@ -347,8 +365,8 @@ export const customerRequestsContent: CommercialServicePageContent = {
         body: "Raw activity data must be converted before it becomes an answer."
       },
       {
-        label: "Needs a new draft or process",
-        body: "A current document may be prepared, but it is not evidence of past implementation."
+        label: "Needs a new document or process",
+        body: "A new document can be created by your team, but it is not evidence of past implementation."
       }
     ]
   },

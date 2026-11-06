@@ -23,15 +23,15 @@ const steps = [
   },
   {
     number: "04",
-    title: "Sie geben frei und senden",
-    body: "Sie bestätigen die Unternehmensangaben in Ihrem Evipace-Portal und senden die Antwort selbst an den Kunden."
+    title: "Sie prüfen und senden",
+    body: "Sie bestätigen die Unternehmensangaben in Ihrem Evipace-Portal und senden die Antwort selbst an Ihren Kunden."
   }
 ];
 
 export function ProcessSteps() {
   return (
     <Band id="ablauf">
-      <Head eyebrow="Ablauf" title="So bearbeiten wir eine ESG-Kundenanfrage" />
+      <Head eyebrow="Ablauf" title="So wird aus der Kundenanfrage eine fertige Antwort" />
       <Steps
         items={steps.map((step) => ({
           ...step,

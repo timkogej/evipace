@@ -136,9 +136,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       lastReviewed: "2026-08-21"
     },
     esgKundenanfragen: {
-      title: "ESG Customer Requests for Suppliers | Evipace",
+      title: "ESG Questionnaires & Customer Requests for Suppliers | Evipace",
       description:
-        "Evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
+        "Evipace prepares answers to customer ESG questionnaires and requests for manufacturers and suppliers: data, evidence and open gaps. Based in Ljubljana.",
       path: "/en/esg-customer-requests"
     },
     recordsDeadlines: {
@@ -323,9 +323,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     // or other unfinished German pages here until genuine, indexable German
     // content exists for those pages too.
     esgKundenanfragen: {
-      title: "ESG-Anforderungen von Kunden erfüllen | Evipace",
+      title: "ESG-Fragebogen für Lieferanten: Antwort vorbereiten | Evipace",
       description:
-        "Ihr Kunde fordert ESG-Daten, Nachweise oder Richtlinien? Wir strukturieren die Anfrage, sammeln die benötigten Informationen und bereiten Ihre Antwort vor.",
+        "Ihr Kunde schickt einen ESG-Fragebogen? Evipace ordnet Daten und Nachweise zu, schreibt den Antwortentwurf und listet offene Punkte auf.",
       path: "/de/esg-kundenanfragen"
     },
     ecovadisUnterstuetzung: {

@@ -520,7 +520,7 @@ export function EnglishEnvironmentalPolicyGuide() {
         <MetadataSection id="version-title" title="A policy needs a clear version." note="Do not invent retrospective approval dates." items={policyVersionMetadata} dataAttr="version-control-example" />
         <TextSection eyebrow="Approval" id="draft-approved-title" title="Draft is not the same as approved.">
           <Callout>Draft ≠ approved policy</Callout>
-          <p>Evipace can prepare a draft from actual company practices and documents. Only an authorised internal company process can turn that draft into an official Environmental Policy.</p>
+          <p>Evipace does not write the policy for you. Only an authorised internal company process can turn a draft into an official Environmental Policy.</p>
         </TextSection>
         <OutlineSection title="Example structure for an Environmental Policy" qualifier="This is a structure guide, not a universal Environmental Policy template." items={policyOutlineSections} dataAttr="policy-outline" />
         <WorkflowSection title="What to do when a customer asks for an Environmental Policy" items={policyWorkflowSteps} dataAttr="customer-policy-workflow" buttonHref="/en/resources/esg-questionnaire-checklist" />
@@ -548,7 +548,7 @@ export function EnglishEnvironmentalPolicyGuide() {
           ["Reuse the policy later", "/en/resources/reusable-esg-data"],
           ["Prepare a Supplier Code", "/en/resources/supplier-code-of-conduct"]
         ]} dataAttr="resource-bridge" />
-        <CommercialBridge title="Customer asking for an Environmental Policy, but you do not want to invent anything?" body="Evipace can review actual practices, responsibilities and documents with you, structure open points and prepare a policy draft for your internal review and approval." note="The draft becomes an official company policy only through your internal review, correction and authorised approval." />
+        <CommercialBridge title="Customer asking for an Environmental Policy, but you do not want to invent anything?" body="Evipace can match the documents you already have to the customer's question and list what is missing. The policy itself is written and adopted by your company." note="A policy becomes official only through your own internal review and authorised approval." />
         <MethodSection body="This page describes a practical approach to preparing an Environmental Policy for ESG customer requests. It is not legal, certification or audit advice and does not define universal policy content." />
       </article>
       <FinalSection title="A good Environmental Policy starts with the actual company, not with text." body="When scope, responsibilities and existing practice are clear, the policy can be realistic, traceable and internally supportable." />
@@ -846,7 +846,7 @@ export function EnglishSupplierCodeOfConductGuide() {
         <MetadataSection id="version-title" title="A Supplier Code also needs version control." note="Do not invent backdated approval or rollout dates." items={supplierVersionMetadata} dataAttr="supplier-code-version-control" />
         <TextSection eyebrow="Approval" id="supplier-draft-approved-title" title="Draft is not the same as approved.">
           <Callout>Draft ≠ approved Supplier Code</Callout>
-          <p>Evipace can prepare a draft, but the code becomes an official company document only through client review, corrections and authorised internal approval.</p>
+          <p>Evipace does not write the code for you. It becomes an official company document only through your review, corrections and authorised internal approval.</p>
         </TextSection>
         <OutlineSection title="Example structure for a Supplier Code of Conduct" qualifier="This is a structure guide, not a universal contract or compliance template." items={supplierOutlineSections} dataAttr="supplier-code-outline" />
         <Band labelledBy="deviation-title" tone="dark">
@@ -884,7 +884,7 @@ export function EnglishSupplierCodeOfConductGuide() {
         <MistakesSection title="Eight common Supplier Code of Conduct mistakes" items={supplierMistakes} dataAttr="common-supplier-code-mistakes" />
         <ChecklistSection title="Check before internal approval" items={supplierPreApprovalItems} dataAttr="supplier-code-pre-approval-checklist" />
         <ResourceBridge items={[["What ESG data do customers ask for?", "/en/resources/esg-data-customers-request-from-suppliers"], ["Who owns ESG data internally?", "/en/resources/esg-data-owners"], ["Check evidence readiness", "/en/resources/esg-evidence-readiness-check"], ["Reuse the document later", "/en/resources/reusable-esg-data"], ["Prepare an Environmental Policy", "/en/resources/environmental-policy"]]} dataAttr="supplier-code-resource-bridge" />
-        <CommercialBridge title="Customer asking for a Supplier Code, but your process is not cleanly documented yet?" body="Evipace can help understand the actual supplier and procurement context, structure relevant ESG and compliance topics and prepare a Supplier Code draft." note="The document becomes official only through your review, corrections and authorised internal approval." />
+        <CommercialBridge title="Customer asking for a Supplier Code, but your process is not cleanly documented yet?" body="Evipace can match the documents you already have to the customer's question and list what is missing. The Supplier Code itself is written and adopted by your company." note="A code becomes official only through your own review and authorised approval." />
         <MethodSection body="This guide describes a practical approach to preparing a Supplier Code of Conduct for ESG customer requests and supplier management. It is not legal, contract, audit or certification advice." />
       </article>
       <FinalSection title="A good Supplier Code starts with the actual supplier base, not with a template." body="When supplier structure, expectations, responsibilities and processes are clear, the code can be realistic, traceable and usable." />

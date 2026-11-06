@@ -74,7 +74,7 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
       "VSME Sustainability Reporting for SMEs | Evipace",
       "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
       "/en/vsme-sustainability-report",
-      "We prepare your VSME sustainability report. You approve it."
+      "We prepare your VSME sustainability report from the data you already have."
     ]
   ];
 

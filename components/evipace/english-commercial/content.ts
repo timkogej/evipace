@@ -1435,9 +1435,9 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
 export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "VSME SUSTAINABILITY REPORTING",
-  title: "We prepare your VSME sustainability report. You approve it.",
+  title: "We prepare your VSME sustainability report from the data you already have.",
   intro: [
-    "Our system brings together the energy, emissions, workforce, policy and other company information your reporting scope needs, and lists what is missing. A person at Evipace reviews the VSME draft, and you approve it before it is used."
+    "Our system brings together the energy, emissions, workforce, policy and other company information your reporting scope needs, and lists what is missing. A person at Evipace reviews the draft and its assumptions, so you start from a structured report instead of a blank template."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1572,7 +1572,7 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
       {
         title: "Human review",
         body:
-          "The output is reviewed before the client confirms company facts.",
+          "A person at Evipace reviews the output before it is returned to you.",
         icon: ShieldCheck
       }
     ]
@@ -1596,7 +1596,7 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "From your data to an approved report",
+    title: "From your data to a finished report",
     intro: "The first report sets everything up. Later years start from the same data and structure.",
     steps: [
       {
@@ -1640,7 +1640,6 @@ export const vsmeSustainabilityReportContent: CommercialServicePageContent = {
       "Source and evidence mapping",
       "Gap list",
       "Assumptions requiring confirmation",
-      "Supporting policy or document drafts where appropriate",
       "Review-ready reporting package"
     ]
   },

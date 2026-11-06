@@ -381,7 +381,7 @@ export function EsgEvidenceReadinessGuide() {
           formHref={SEND_REQUEST_HREF}
           formLabel="Anfrage an Evipace senden"
           forwardLabel="Anfrage weiterleiten"
-          slogan="Umwelt- und Sicherheitsdokumentation, erledigt."
+          slogan="ESG-Dokumentation, erledigt."
           title="Aus Dokumenten werden belastbare Antworten."
         />
 

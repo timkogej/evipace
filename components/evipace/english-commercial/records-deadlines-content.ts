@@ -12,8 +12,8 @@ import {
 import type { CommercialServicePageContent } from "./content";
 
 /**
- * Records and deadlines: the service that keeps a plant's environmental and
- * safety documents current. It describes what we keep track of and how the
+ * Records and deadlines: the service that keeps a plant's
+ * documents current. It describes what we keep track of and how the
  * work is shared (system prepares, a person at Evipace reviews, the client
  * approves). It deliberately makes no legal-compliance promise: the company
  * stays responsible for its obligations.
@@ -21,7 +21,7 @@ import type { CommercialServicePageContent } from "./content";
 export const recordsDeadlinesContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "Records and deadlines",
-  title: "Your environmental and safety records, kept current and on time.",
+  title: "Your records, kept current and on time.",
   intro: [
     "Permits, certificates, measurement reports and evidence each have a date. We keep the register, watch the deadlines, prepare what is due and ask you to approve it. You stop chasing paperwork, and nothing is submitted without your approval."
   ],
@@ -138,7 +138,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
     title: "What you get",
     qualifier: "Delivered through your Evipace portal, ready to share with customers or auditors.",
     items: [
-      "A register of your environmental and safety records",
+      "A register of your records",
       "A calendar of expiry, renewal and reporting dates",
       "Reminders before each date, to the right person",
       "Prepared renewal documents and periodic reports for your approval",
@@ -220,7 +220,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
     {
       question: "Do you carry out measurements and inspections?",
       answer:
-        "No. Where an accredited measurement or inspection is needed, we work with environmental partners and bring the results into your register."
+        "No. We do not carry out measurements or inspections. Where an accredited one is needed, a provider of your choice does it, and we bring the results into your register."
     },
     {
       question: "Does anything get submitted without our approval?",
@@ -236,7 +236,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
 export const recordsDeadlinesContentDe: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "Nachweise und Fristen",
-  title: "Ihre Umwelt- und Sicherheitsnachweise, aktuell und pünktlich.",
+  title: "Ihre Nachweise, aktuell und pünktlich.",
   intro: [
     "Genehmigungen, Zertifikate, Messberichte und Nachweise haben jeweils ein Datum. Wir führen das Register, behalten die Fristen im Blick, bereiten vor, was ansteht, und bitten Sie um Freigabe. Sie müssen dem Papierkram nicht mehr hinterherlaufen, und ohne Ihre Freigabe wird nichts eingereicht."
   ],
@@ -353,7 +353,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
     title: "Was Sie erhalten",
     qualifier: "Bereitgestellt über Ihr Evipace-Portal, bereit zum Teilen mit Kunden oder Auditoren.",
     items: [
-      "Ein Register Ihrer Umwelt- und Sicherheitsnachweise",
+      "Ein Register Ihrer Nachweise",
       "Ein Kalender mit Ablauf-, Verlängerungs- und Berichtsterminen",
       "Erinnerungen vor jedem Termin an die richtige Person",
       "Vorbereitete Verlängerungsunterlagen und Berichte zu Ihrer Freigabe",
@@ -435,7 +435,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
     {
       question: "Führen Sie Messungen und Prüfungen durch?",
       answer:
-        "Nein. Wo eine akkreditierte Messung oder Prüfung nötig ist, arbeiten wir mit Umweltpartnern zusammen und übernehmen die Ergebnisse in Ihr Register."
+        "Nein. Wir führen keine Messungen oder Prüfungen durch. Wo eine akkreditierte nötig ist, übernimmt sie ein Anbieter Ihrer Wahl, und wir übernehmen die Ergebnisse in Ihr Register."
     },
     {
       question: "Wird ohne unsere Freigabe etwas eingereicht?",

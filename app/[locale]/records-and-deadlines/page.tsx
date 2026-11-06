@@ -42,8 +42,8 @@ export default async function RecordsAndDeadlinesPage({ params }: PageProps) {
       locale,
       PAGE_KEY,
       "Records and deadlines",
-      "Environmental and safety records and deadlines",
-      "A register of environmental and safety records with deadline tracking and preparation of what is due, reviewed by a person and approved by the client."
+      "Records and deadlines",
+      "A register of records with deadline tracking and preparation of what is due, reviewed by a person and approved by the client."
     ),
     buildBreadcrumbListSchema([
       { name: "Home", path: "/en" },

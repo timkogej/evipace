@@ -777,7 +777,7 @@ export function SupplierCodeOfConductGuide() {
           formHref={SEND_REQUEST_HREF}
           formLabel="Supplier-Code-Anfrage senden"
           forwardLabel="Anfrage weiterleiten"
-          slogan="Umwelt- und Sicherheitsdokumentation, erledigt."
+          slogan="ESG-Dokumentation, erledigt."
           title="Ein guter Supplier Code beginnt nicht mit einer Vorlage. Er beginnt mit Ihrer tatsächlichen Lieferkette."
         />
     </ResourceMain>

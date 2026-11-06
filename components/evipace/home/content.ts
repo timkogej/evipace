@@ -88,13 +88,13 @@ export type HomeContent = {
  */
 
 /** Brand line, per locale. */
-export const BRAND_LINE = "Environmental and safety documentation, handled.";
-export const BRAND_LINE_DE = "Umwelt- und Sicherheitsdokumentation, erledigt.";
+export const BRAND_LINE = "ESG documentation, handled.";
+export const BRAND_LINE_DE = "ESG-Dokumentation, erledigt.";
 
 export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     hero: {
-      eyebrow: "Environmental and safety documentation for manufacturers",
+      eyebrow: "ESG documentation for manufacturers",
       title: "Less paperwork. More production.",
       body: "We prepare your reports, records and customer questionnaires. A person at Evipace reviews, you approve.",
       forward: "Send us a request",
@@ -245,7 +245,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       items: [
         {
           title: "Who we are",
-          body: "Evipace is based in Ljubljana, Slovenia, and takes over environmental and safety documentation for manufacturing companies.",
+          body: "Evipace is based in Ljubljana, Slovenia, and takes over ESG documentation for manufacturing companies.",
           link: { label: "About Evipace", href: "/en/about" }
         },
         {
@@ -286,7 +286,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         },
         {
           q: "Do you carry out measurements and inspections yourselves?",
-          a: "No. Where an accredited measurement or inspection is needed, we work with environmental partners and bring the results into your documentation."
+          a: "No. We do not carry out measurements or inspections. Where an accredited one is needed, a provider of your choice does it, and we bring the results into your documentation."
         },
         {
           q: "How do you decide scope and price?",
@@ -304,7 +304,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   },
   de: {
     hero: {
-      eyebrow: "Umwelt- und Sicherheitsdokumentation für Produktionsunternehmen",
+      eyebrow: "ESG-Dokumentation für Produktionsunternehmen",
       title: "Weniger Papierkram. Mehr Produktion.",
       body: "Wir bereiten Ihre Berichte, Nachweise und Kundenfragebögen vor. Eine Person bei Evipace prüft, Sie geben frei.",
       forward: "Anfrage senden",
@@ -455,7 +455,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       items: [
         {
           title: "Wer wir sind",
-          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und übernimmt Umwelt- und Sicherheitsdokumentation für Produktionsunternehmen.",
+          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und übernimmt ESG-Dokumentation für Produktionsunternehmen.",
           link: { label: "Über Evipace", href: "/de/about" }
         },
         {
@@ -496,7 +496,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
         },
         {
           q: "Führen Sie Messungen und Prüfungen selbst durch?",
-          a: "Nein. Wo eine akkreditierte Messung oder Prüfung nötig ist, arbeiten wir mit Umweltpartnern zusammen und übernehmen die Ergebnisse in Ihre Dokumentation."
+          a: "Nein. Wir führen keine Messungen oder Prüfungen durch. Wo eine akkreditierte nötig ist, übernimmt sie ein Anbieter Ihrer Wahl, und wir übernehmen die Ergebnisse in Ihre Dokumentation."
         },
         {
           q: "Wie legen Sie Umfang und Preis fest?",

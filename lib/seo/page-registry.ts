@@ -142,9 +142,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/en/esg-customer-requests"
     },
     recordsDeadlines: {
-      title: "Environmental & Safety Records and Deadlines | Evipace",
+      title: "Records and Deadlines for Manufacturers | Evipace",
       description:
-        "Evipace keeps a register of your environmental and safety records, watches expiry and renewal dates and prepares what is due. A person reviews it and you approve.",
+        "Evipace keeps a register of your records, watches expiry and renewal dates and prepares what is due. A person reviews it and you approve.",
       path: "/en/records-and-deadlines"
     },
     scope12Berechnung: {
@@ -348,9 +348,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/de/vsme-nachhaltigkeitsbericht"
     },
     recordsDeadlines: {
-      title: "Umwelt- und Sicherheitsnachweise und Fristen | Evipace",
+      title: "Nachweise und Fristen für Hersteller | Evipace",
       description:
-        "Evipace führt ein Register Ihrer Umwelt- und Sicherheitsnachweise, überwacht Ablauf- und Verlängerungstermine und bereitet vor, was ansteht. Eine Person prüft, Sie geben frei.",
+        "Evipace führt ein Register Ihrer Nachweise, überwacht Ablauf- und Verlängerungstermine und bereitet vor, was ansteht. Eine Person prüft, Sie geben frei.",
       path: "/de/nachweise-und-fristen"
     },
     scope12Berechnung: {

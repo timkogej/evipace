@@ -39,8 +39,8 @@ export function Footer({ locale }: FooterProps) {
             </Link>
             <p className="mt-5 max-w-sm text-lg font-semibold leading-snug text-[rgba(21,21,21,0.66)]">
               {locale === "de"
-                ? "Wir übernehmen Umwelt- und Sicherheitsdokumentation für Produktionsunternehmen."
-                : "We take over environmental and safety documentation for manufacturers."}
+                ? "Wir übernehmen ESG-Dokumentation für Produktionsunternehmen."
+                : "We take over ESG documentation for manufacturers."}
             </p>
             <Link
               aria-current={

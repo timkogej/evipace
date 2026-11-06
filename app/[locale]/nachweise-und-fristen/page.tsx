@@ -42,8 +42,8 @@ export default async function NachweiseUndFristenPage({ params }: PageProps) {
       locale,
       PAGE_KEY,
       "Nachweise und Fristen",
-      "Umwelt- und Sicherheitsnachweise und Fristen",
-      "Ein Register von Umwelt- und Sicherheitsnachweisen mit Fristenüberwachung und Vorbereitung dessen, was ansteht, von einer Person geprüft und vom Kunden freigegeben."
+      "Nachweise und Fristen",
+      "Ein Register von Nachweisen mit Fristenüberwachung und Vorbereitung dessen, was ansteht, von einer Person geprüft und vom Kunden freigegeben."
     ),
     buildBreadcrumbListSchema([
       { name: "Startseite", path: "/de" },

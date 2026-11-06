@@ -782,7 +782,7 @@ function FinalSection({ title, body }: { title: string; body: string }) {
       formLabel="Send your ESG request"
       forwardLabel="Forward your request"
       offers={{ label: "Customer ESG request support", href: "/en/esg-customer-requests" }}
-      slogan="Environmental and safety documentation, handled."
+      slogan="ESG documentation, handled."
       title={title}
     />
   );

@@ -1124,9 +1124,9 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "INTEGRITYNEXT SUPPORT",
   title:
-    "We prepare your IntegrityNext response. You approve and submit.",
+    "IntegrityNext invitation from your customer? We prepare the answers and documents.",
   intro: [
-    "Show us the invitation or requested assessments and the documents you already have. We organise the company information, certificates and evidence, then flag what still needs an answer or internal confirmation."
+    "Show us the invitation or requested assessments and the documents you already have. We organise the company information, certificates and evidence, draft the answers and flag what still needs an answer. Your company keeps its account and makes the final entry."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -1191,7 +1191,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
       {
         title: "Policies",
         body:
-          "Existing policies should be mapped carefully. Missing policies can be drafted from actual practices for review.",
+          "Existing policies should be mapped carefully. Missing policies are recorded as gaps.",
         icon: FileText
       },
       {
@@ -1245,15 +1245,15 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
         icon: AlertCircle
       },
       {
-        title: "Draft preparation",
+        title: "Document check",
         body:
-          "Where appropriate, we can prepare policy or document drafts based on actual company practices.",
+          "We match existing policies and certificates to each topic and flag what is missing or out of date.",
         icon: FileText
       },
       {
         title: "Final review",
         body:
-          "Prepared material is human-reviewed before your company confirms and submits it.",
+          "A person at Evipace reviews the prepared material before it is returned to you.",
         icon: ShieldCheck
       }
     ]
@@ -1274,7 +1274,7 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "From invitation to an approved response",
+    title: "From invitation to a response ready to enter",
     intro: "You show us the request once. We carry the preparation.",
     steps: [
       {
@@ -1315,7 +1315,6 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
       "Structured response material",
       "Organised supporting documents",
       "Gap list",
-      "Policy or document drafts where appropriate",
       "Questions requiring internal confirmation",
       "Source references",
       "Review-ready package"

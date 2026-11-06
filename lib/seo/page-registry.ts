@@ -162,7 +162,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     integrityNextUnterstuetzung: {
       title: "IntegrityNext Support for Suppliers | Evipace",
       description:
-        "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
+        "Invited to IntegrityNext by a customer? Evipace organises your certificates and evidence, prepares the answers and flags gaps. Your company keeps its account.",
       path: "/en/integritynext-support"
     },
     vsmeNachhaltigkeitsbericht: {
@@ -335,10 +335,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/de/ecovadis-unterstuetzung"
     },
     integrityNextUnterstuetzung: {
-      title:
-        "IntegrityNext-Beratung & Unterstützung für Lieferanten | Evipace",
+      title: "IntegrityNext Unterstützung für Lieferanten | Evipace",
       description:
-        "Zu IntegrityNext eingeladen? Wir unterstützen Lieferanten bei Assessments, Fragebögen, Zertifikaten und Nachweisen – strukturiert und nachvollziehbar.",
+        "Zu IntegrityNext eingeladen? Evipace ordnet Zertifikate und Nachweise zu, bereitet Antworten vor und macht offene Punkte sichtbar. Sie behalten Ihr Konto.",
       path: "/de/integritynext-unterstuetzung"
     },
     vsmeNachhaltigkeitsbericht: {

@@ -65,9 +65,9 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
     [
       "integrityNextUnterstuetzung",
       "IntegrityNext Support for Suppliers | Evipace",
-      "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
+      "Invited to IntegrityNext by a customer? Evipace organises your certificates and evidence, prepares the answers and flags gaps. Your company keeps its account.",
       "/en/integritynext-support",
-      "We prepare your IntegrityNext response. You approve and submit."
+      "IntegrityNext invitation from your customer? We prepare the answers and documents."
     ],
     [
       "vsmeNachhaltigkeitsbericht",

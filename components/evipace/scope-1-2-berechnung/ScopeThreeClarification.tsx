@@ -29,10 +29,11 @@ export function ScopeThreeClarification() {
             als bei Scope 1 und Scope 2.
           </p>
           <p>
-            Das auf dieser Seite beschriebene Angebot konzentriert sich
-            zunächst auf Scope 1 und Scope 2. Ob Scope 3 für Ihren konkreten
-            Kunden, Berichtsstandard oder anderen Anwendungsfall benötigt
-            wird, sollte separat geprüft werden.
+            Scope 3 und Ökobilanzen (LCA) gehören nicht zu diesem Angebot.
+            Das Angebot auf dieser Seite umfasst Scope 1 und Scope 2. Ob
+            Scope 3 für Ihren konkreten Kunden, Berichtsstandard oder
+            anderen Anwendungsfall benötigt wird, sollte separat geprüft
+            werden.
           </p>
         </Card>
       </CardGrid>

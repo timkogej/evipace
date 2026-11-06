@@ -685,7 +685,7 @@ export const scope12CalculationContent: CommercialServicePageContent = {
       "Where the underlying methodology requires a distinction between location-based and market-based Scope 2, we explain and document it conservatively. Renewable electricity claims do not automatically make Scope 2 zero."
     ],
     items: [
-      { label: "Scope 3", body: "Not automatically included." },
+      { label: "Scope 3 and LCA", body: "Not included." },
       { label: "Product carbon footprint", body: "Not included unless separately scoped." },
       { label: "Third-party assurance", body: "Not provided by this service." },
       { label: "Certification", body: "No certification claim is made." },
@@ -784,7 +784,7 @@ export const scope12CalculationContent: CommercialServicePageContent = {
     {
       question: "Does this cover Scope 3?",
       answer:
-        "Not as standard. Scope 3 is a separate exercise with different data requirements and a much wider boundary. Where a customer request touches Scope 3, we say so rather than silently extending the calculation."
+        "No. Scope 3 and product life-cycle assessments (LCA) are not part of this service. They are separate exercises with different data requirements and a much wider boundary. Where a customer request touches Scope 3 or LCA, we say so rather than silently extending the calculation."
     }
   ]
 };

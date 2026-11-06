@@ -56,7 +56,7 @@ const faqs = [
   {
     question: "Können Sie auch Scope 3 berechnen?",
     answer:
-      "Das hier beschriebene Angebot konzentriert sich auf Scope 1 und Scope 2. Ob und in welchem Umfang Scope 3 für Ihr Unternehmen relevant ist, sollte separat geprüft werden, da Datenquellen und Berechnung deutlich komplexer sein können."
+      "Nein. Scope 3 und Ökobilanzen (LCA) gehören nicht zu diesem Angebot. Beide sind eigene Vorhaben mit anderen Datenanforderungen und einer deutlich weiteren Abgrenzung. Betrifft eine Kundenanfrage Scope 3 oder LCA, sagen wir das offen, statt die Berechnung stillschweigend auszuweiten."
   },
   {
     question: "Wie lange dauert eine Scope-1-&-2-Berechnung?",

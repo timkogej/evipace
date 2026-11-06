@@ -265,7 +265,7 @@ const deServices: NavigationDirectory = {
       label: "Kundenanfragen",
       items: [
         {
-          label: "Kundenfragebögen",
+          label: "Fragebögen & Kundenanfragen",
           href: route("de", "esgKundenanfragen"),
           pageKey: "esgKundenanfragen"
         }
@@ -417,7 +417,7 @@ const enServices: NavigationDirectory = {
       label: "Customer requests",
       items: [
         {
-          label: "Customer questionnaires",
+          label: "Questionnaires & customer requests",
           href: route("en", "esgKundenanfragen"),
           pageKey: "esgKundenanfragen"
         }
@@ -593,7 +593,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
             pageKey: "recordsDeadlines"
           },
           {
-            label: "Customer questionnaires",
+            label: "Questionnaires & customer requests",
             href: route("en", "esgKundenanfragen"),
             pageKey: "esgKundenanfragen"
           },

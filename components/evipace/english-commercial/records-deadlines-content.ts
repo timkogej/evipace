@@ -107,7 +107,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
       "Permits and certificates, as scans or files",
       "Management system documents, for example ISO 14001 or ISO 45001",
       "Measurement and inspection reports",
-      "Invoices for energy, water and waste",
+      "Invoices for energy and water",
       "Existing spreadsheets or calendars with dates",
       "Names of the people who own each topic"
     ]
@@ -322,7 +322,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
       "Genehmigungen und Zertifikate als Scans oder Dateien",
       "Dokumente des Managementsystems, zum Beispiel ISO 14001 oder ISO 45001",
       "Mess- und Prüfberichte",
-      "Rechnungen für Energie, Wasser und Abfall",
+      "Rechnungen für Energie und Wasser",
       "Vorhandene Tabellen oder Kalender mit Terminen",
       "Namen der Personen, die jedes Thema verantworten"
     ]

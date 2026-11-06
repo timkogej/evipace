@@ -154,9 +154,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/en/scope-1-2-calculation"
     },
     ecovadisUnterstuetzung: {
-      title: "EcoVadis Support for Suppliers | Evipace",
+      title: "EcoVadis Support for Suppliers: Answers & Evidence | Evipace",
       description:
-        "Evipace prepares EcoVadis response material, maps supporting evidence and flags gaps. Your team confirms company facts and submits the assessment.",
+        "Evipace prepares EcoVadis answers and supporting evidence and flags gaps. Your company keeps its account and submits the assessment. No score is promised.",
       path: "/en/ecovadis-support"
     },
     integrityNextUnterstuetzung: {
@@ -329,9 +329,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/de/esg-kundenanfragen"
     },
     ecovadisUnterstuetzung: {
-      title: "EcoVadis-Beratung & Unterstützung für Lieferanten | Evipace",
+      title: "EcoVadis Unterstützung für Lieferanten | Evipace",
       description:
-        "Evipace bereitet EcoVadis-Antworten und Nachweise vor und dokumentiert Lücken. Ihr Unternehmen bestätigt die Angaben und reicht das Assessment ein.",
+        "Evipace bereitet EcoVadis-Antworten und Nachweise vor und macht Lücken sichtbar. Ihr Unternehmen reicht selbst ein. Keine Score-Garantie.",
       path: "/de/ecovadis-unterstuetzung"
     },
     integrityNextUnterstuetzung: {

@@ -57,10 +57,10 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
   const expected = [
     [
       "ecovadisUnterstuetzung",
-      "EcoVadis Support for Suppliers | Evipace",
-      "Evipace prepares EcoVadis response material, maps supporting evidence and flags gaps. Your team confirms company facts and submits the assessment.",
+      "EcoVadis Support for Suppliers: Answers & Evidence | Evipace",
+      "Evipace prepares EcoVadis answers and supporting evidence and flags gaps. Your company keeps its account and submits the assessment. No score is promised.",
       "/en/ecovadis-support",
-      "We prepare your EcoVadis answers and evidence. You approve and submit."
+      "EcoVadis request from your customer? We prepare the answers and evidence."
     ],
     [
       "integrityNextUnterstuetzung",

@@ -2,12 +2,12 @@ import { getServiceBuyerQuestions } from "@/lib/seo/service-buyer-questions";
 import { Faq as FaqBlock } from "../service-landing/Blocks";
 
 const faqs = [
-  ...getServiceBuyerQuestions("de", "ecovadisUnterstuetzung"),
   {
     question: "Was ist EcoVadis?",
     answer:
-      "EcoVadis ist eine Plattform für Nachhaltigkeitsbewertungen von Unternehmen. Im Rahmen der Bewertung werden Informationen und Nachweise zu verschiedenen Nachhaltigkeitsthemen abgefragt und anschließend in einer Scorecard bewertet."
+      "EcoVadis ist ein unabhängiger Anbieter von Nachhaltigkeitsratings für Unternehmen. Unternehmen beantworten online einen Fragebogen zu Umwelt, Arbeits- und Menschenrechten, Ethik und nachhaltiger Beschaffung und laden Dokumente hoch, die ihre Antworten belegen. Große Kunden bitten ihre Lieferanten häufig um ein solches Assessment. Evipace ist nicht mit EcoVadis verbunden; die Bewertung erfolgt allein durch EcoVadis."
   },
+  ...getServiceBuyerQuestions("de", "ecovadisUnterstuetzung"),
   {
     question: "Ist der EcoVadis-Fragebogen für jedes Unternehmen gleich?",
     answer:
@@ -24,9 +24,9 @@ const faqs = [
       "Wir können einen großen Teil der operativen Vorbereitung von Antworten, Daten und Nachweisen übernehmen. Aussagen, die eine interne Bestätigung, Freigabe oder Entscheidung Ihres Unternehmens erfordern, müssen von Ihnen geprüft und bestätigt werden."
   },
   {
-    question: "Können Sie fehlende Richtlinien erstellen?",
+    question: "Erstellen Sie fehlende Richtlinien?",
     answer:
-      "Wenn tatsächlich eine relevante Unternehmensrichtlinie fehlt, kann dies als Verbesserungspunkt identifiziert werden. Auf Wunsch können wir bei der strukturierten Ausarbeitung realer Unternehmensdokumente unterstützen. Wir erstellen jedoch keine fingierten oder rückdatierten Dokumente ausschließlich mit dem Ziel, sie als Nachweis in einer Bewertung zu verwenden."
+      "Nein, nicht als Teil dieser Leistung. Fehlt eine relevante Richtlinie, halten wir das als Lücke fest. Ob Ihr Unternehmen ein Dokument erstellt, entscheidet es selbst. Wir erstellen keine fingierten oder rückdatierten Dokumente, die nur als Nachweis in einer Bewertung dienen sollen."
   },
   {
     question: "Können Sie unseren EcoVadis-Score verbessern?",

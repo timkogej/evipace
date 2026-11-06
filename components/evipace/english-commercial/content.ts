@@ -812,9 +812,9 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
   illustrativeHandover: "ecovadis",
   eyebrow: "ECOVADIS SUPPORT",
   title:
-    "We prepare your EcoVadis answers and evidence. You approve and submit.",
+    "EcoVadis request from your customer? We prepare the answers and evidence.",
   intro: [
-    "Send us the current assessment context and the documents you already have. We take on the preparation: mapping questions to data owners, drafting supportable answers, organising evidence and recording gaps. Your company confirms its facts and submits the assessment."
+    "Send us the current assessment and the documents you already have. We map the questions to your data owners, draft supportable answers, organise the evidence and record the gaps. Your company keeps its EcoVadis account and makes the final submission."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -869,9 +869,9 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
         icon: FileCheck2
       },
       {
-        title: "A requested policy is missing",
+        title: "A requested policy does not exist",
         body:
-          "A new draft can be prepared from real company practices, but it cannot be treated as historical evidence.",
+          "It is recorded as a gap. A document written now cannot be treated as historical evidence.",
         icon: FileText
       },
       {
@@ -919,9 +919,9 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
         icon: FileCheck2
       },
       {
-        title: "Policy and document preparation",
+        title: "Document check",
         body:
-          "Where a required company document does not exist, we can prepare a draft based on actual practices for internal review and approval.",
+          "We match your existing policies and documents to each topic and flag where one is missing, outdated or does not clearly support the answer.",
         icon: FileText
       },
       {
@@ -945,7 +945,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
       {
         title: "Human review",
         body:
-          "Prepared deliverables are reviewed before they are returned for client confirmation.",
+          "A person at Evipace reviews the prepared package before it is returned to you.",
         icon: ShieldCheck
       }
     ]
@@ -968,7 +968,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "From your assessment to an approved response",
+    title: "From the assessment to a package ready to submit",
     intro: "You send the request once. We carry the preparation.",
     steps: [
       {
@@ -997,7 +997,6 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
       "Prepared questionnaire responses",
       "Organised supporting evidence",
       "Evidence-gap list",
-      "Policy or document drafts where appropriate",
       "Quantitative inputs or calculations where in scope",
       "Source references",
       "Assumptions requiring confirmation",
@@ -1009,7 +1008,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     title: "What stays under your company's control",
     body: [
       "Evipace prepares information, evidence and response material. Your company remains the source of company facts.",
-      "A newly prepared policy or document can support future practice after internal approval. It should not be presented as proof of past implementation."
+      "A document your company writes now can support future practice, but it should not be presented as proof of past implementation."
     ],
     items: [
       { label: "Company statements", body: "Statements about actual practices need internal confirmation." },
@@ -1046,7 +1045,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
       },
       {
         title: "Environmental Policy",
-        body: "Prepare a policy from actual company practice without treating a new draft as old evidence.",
+        body: "How to document actual company practice without treating a new document as old evidence.",
         href: "/en/resources/environmental-policy"
       },
       {
@@ -1111,7 +1110,7 @@ export const ecovadisSupportContent: CommercialServicePageContent = {
     {
       question: "What happens if a required document does not exist?",
       answer:
-        "It is recorded as a gap. Where a real company practice exists but is undocumented, a draft can be prepared for internal review and approval — but a newly written document is not presented as evidence of past implementation."
+        "It is recorded as a gap. A newly written document is not presented as evidence of past implementation, and whether to create one is your company's decision."
     },
     {
       question: "Who submits the assessment?",

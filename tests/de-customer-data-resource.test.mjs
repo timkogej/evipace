@@ -101,7 +101,7 @@ test("customer data resource has exact German metadata and English pairing", () 
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Welche ESG-Daten fragen Kunden bei Lieferanten ab? Überblick über Emissionen, Energie, Umwelt, Mitarbeitende, Policies, Lieferkette, Compliance und typische Nachweise."'
+      'description: "Welche ESG-Daten verlangen Kunden von Lieferanten? Überblick zu Emissionen, Energie, Umwelt, Personal, Policies, Lieferkette und Nachweisen."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));

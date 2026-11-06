@@ -110,7 +110,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     offers: {
       title: "Ways to work with Evipace | Request, Desk, Report",
       description:
-        "Forward one customer request, set up a standing desk for recurring requests, or prepare a voluntary VSME report. Scope and price are confirmed after review, before we start.",
+        "Forward one customer request, set up a standing desk for recurring ones, or prepare a VSME report. We confirm scope and price before we start.",
       path: "/en/offers"
     },
     about: {
@@ -136,7 +136,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       lastReviewed: "2026-08-21"
     },
     esgKundenanfragen: {
-      title: "ESG Questionnaires & Customer Requests for Suppliers | Evipace",
+      title: "ESG Questionnaire Support for Suppliers | Evipace",
       description:
         "Evipace prepares answers to customer ESG questionnaires and requests for manufacturers and suppliers: data, evidence and open gaps. Based in Ljubljana.",
       path: "/en/esg-customer-requests"
@@ -148,9 +148,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/en/records-and-deadlines"
     },
     scope12Berechnung: {
-      title: "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace",
+      title: "Carbon Footprint & Scope 1–2 Calculation | Evipace",
       description:
-        "Evipace prepares a documented corporate carbon footprint and Scope 1 and Scope 2 calculation from company activity data, emission factors, sources and assumptions.",
+        "Evipace calculates your corporate carbon footprint (Scope 1 and 2) from activity data, emission factors, sources and assumptions, all documented.",
       path: "/en/scope-1-2-calculation"
     },
     ecovadisUnterstuetzung: {
@@ -172,43 +172,43 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/en/vsme-sustainability-report"
     },
     resourcesHub: {
-      title: "ESG Resources for Suppliers & Manufacturing Companies | Evipace",
+      title: "ESG Resources for Suppliers and Manufacturers | Evipace",
       description:
-        "Practical ESG resources for suppliers and manufacturing companies responding to customer questionnaires, data requests, evidence requests, EcoVadis and IntegrityNext.",
+        "Practical ESG guides for suppliers: customer questionnaires, data and evidence requests, EcoVadis, IntegrityNext, Scope 1 and 2 and VSME.",
       path: "/en/resources"
     },
     esgFragebogenVomKundenErhalten: {
       title: "Received a Customer ESG Questionnaire? Start Here | Evipace",
       description:
-        "A practical first-response guide for suppliers that received an ESG questionnaire from a customer: scope, deadline, data owners, evidence, gaps and internal review.",
+        "First-response guide for suppliers that received a customer ESG questionnaire: scope, deadline, data owners, evidence, gaps and review.",
       path: "/en/resources/customer-esg-questionnaire-received",
       openGraphType: "article"
     },
     welcheEsgDatenKundenLieferanten: {
       title: "What ESG Data Do Customers Ask Suppliers For? | Evipace",
       description:
-        "Practical overview of ESG data customers often request from suppliers, including company scope, energy, emissions, workforce, policies, compliance, supply chain and evidence.",
+        "Which ESG data do customers ask suppliers for? An overview of company scope, energy, emissions, workforce, policies, supply chain and evidence.",
       path: "/en/resources/esg-data-customers-request-from-suppliers",
       openGraphType: "article"
     },
     esgNachweiseLieferanten: {
-      title: "ESG Evidence for Suppliers: What Documents Support Answers? | Evipace",
+      title: "ESG Evidence for Suppliers: Which Documents Count? | Evipace",
       description:
-        "What counts as supporting evidence for supplier ESG answers? Learn how to match statements with sources, documents, scope, reporting period, validity and review.",
+        "What counts as evidence for supplier ESG answers? How to match statements to documents, scope, reporting period, validity and review.",
       path: "/en/resources/esg-evidence-for-suppliers",
       openGraphType: "article"
     },
     ecovadisDokumenteNachweise: {
       title: "EcoVadis Documents & Evidence for Suppliers | Evipace",
       description:
-        "How suppliers should prepare EcoVadis documents and supporting evidence, including assessment scope, document relevance, the 55-document limit, policies and evidence gaps.",
+        "How suppliers prepare EcoVadis documents and evidence: assessment scope, relevance, the 55-document limit, policies and evidence gaps.",
       path: "/en/resources/ecovadis-documents-evidence",
       openGraphType: "article"
     },
     integrityNextEinladungLieferanten: {
-      title: "IntegrityNext Invitation for Suppliers: What to Do Next | Evipace",
+      title: "IntegrityNext Invitation for Suppliers: Next Steps | Evipace",
       description:
-        "Received an IntegrityNext invitation from a customer? A practical supplier guide to profile scope, assessments, certificates, questionnaires, evidence and validation.",
+        "Invited to IntegrityNext by a customer? A supplier guide to profile scope, assessments, certificates, questionnaires, evidence and validation.",
       path: "/en/resources/integritynext-invitation-for-suppliers",
       openGraphType: "article"
     },
@@ -265,7 +265,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     environmentalPolicyErstellen: {
       title: "Environmental Policy: How to Create One | Evipace",
       description:
-        "Create an Environmental Policy that reflects your actual operations, scope, responsibilities and environmental commitments — without turning a new policy into evidence of past implementation.",
+        "Create an Environmental Policy that reflects your real operations, scope, responsibilities and commitments, without treating it as proof of past action.",
       path: "/en/resources/environmental-policy",
       openGraphType: "article"
     },
@@ -292,15 +292,15 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/de"
     },
     offers: {
-      title: "Zusammenarbeit mit Evipace | Einzelanfrage, Laufender Service, Bericht",
+      title: "Zusammenarbeit mit Evipace | Einzelanfrage, Service, Bericht",
       description:
-        "Eine einzelne Kundenanfrage weiterleiten, einen laufenden Service für wiederkehrende Anfragen einrichten oder einen freiwilligen VSME-Bericht vorbereiten. Umfang und Preis bestätigen wir nach der Prüfung, bevor wir beginnen.",
+        "Eine Kundenanfrage weiterleiten, einen laufenden Service einrichten oder einen freiwilligen VSME-Bericht vorbereiten. Umfang und Preis klären wir vorab.",
       path: "/de/angebot"
     },
     about: {
       title: "Über Evipace | ESG für produzierende Unternehmen",
       description:
-        "Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum Evipace gegründet wurde und wie wir arbeiten.",
+        "Evipace unterstützt produzierende Unternehmen bei ESG-Anforderungen ihrer Kunden. Erfahren Sie, warum wir gegründet wurden und wie wir arbeiten.",
       path: "/de/about"
     },
     privacy: {
@@ -323,7 +323,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     // or other unfinished German pages here until genuine, indexable German
     // content exists for those pages too.
     esgKundenanfragen: {
-      title: "ESG-Fragebogen für Lieferanten: Antwort vorbereiten | Evipace",
+      title: "ESG-Fragebogen für Lieferanten beantworten | Evipace",
       description:
         "Ihr Kunde schickt einen ESG-Fragebogen? Evipace ordnet Daten und Nachweise zu, schreibt den Antwortentwurf und listet offene Punkte auf.",
       path: "/de/esg-kundenanfragen"
@@ -343,13 +343,13 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     vsmeNachhaltigkeitsbericht: {
       title: "VSME-Nachhaltigkeitsbericht erstellen | Evipace",
       description:
-        "VSME-Nachhaltigkeitsbericht für Ihr Unternehmen: Wir strukturieren ESG-Daten, bereiten Kennzahlen auf und erstellen eine nachvollziehbare Grundlage für Kunden, Banken und interne Nutzung.",
+        "VSME-Nachhaltigkeitsbericht erstellen: Wir strukturieren Ihre ESG-Daten und bereiten Kennzahlen nachvollziehbar auf, für Kunden, Banken und intern.",
       path: "/de/vsme-nachhaltigkeitsbericht"
     },
     recordsDeadlines: {
       title: "Nachweise und Fristen für Hersteller | Evipace",
       description:
-        "Evipace führt ein Register Ihrer Zertifikate und Nachweise, überwacht Ablauf- und Verlängerungstermine und bereitet vor, was ansteht. Eine Person bei Evipace prüft es.",
+        "Evipace führt ein Register Ihrer Zertifikate und Nachweise, überwacht Ablauf- und Verlängerungstermine und bereitet Fälliges vor. Eine Person prüft es.",
       path: "/de/nachweise-und-fristen"
     },
     scope12Berechnung: {
@@ -367,83 +367,83 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     welcheEsgDatenKundenLieferanten: {
       title: "Welche ESG-Daten verlangen Kunden von Lieferanten? | Evipace",
       description:
-        "Welche ESG-Daten fragen Kunden bei Lieferanten ab? Überblick über Emissionen, Energie, Umwelt, Mitarbeitende, Policies, Lieferkette, Compliance und typische Nachweise.",
+        "Welche ESG-Daten verlangen Kunden von Lieferanten? Überblick zu Emissionen, Energie, Umwelt, Personal, Policies, Lieferkette und Nachweisen.",
       path: "/de/ressourcen/welche-esg-daten-kunden-lieferanten",
       openGraphType: "article"
     },
     environmentalPolicyErstellen: {
       title:
-        "Environmental Policy erstellen: Leitfaden für Unternehmen | Evipace",
+        "Environmental Policy erstellen: Leitfaden | Evipace",
       description:
-        "Environmental Policy erstellen: So strukturieren Lieferanten Geltungsbereich, Umweltgrundsätze, Verantwortlichkeiten, Ziele und interne Freigabe nachvollziehbar.",
+        "Environmental Policy erstellen: Geltungsbereich, Umweltgrundsätze, Verantwortlichkeiten, Ziele und interne Freigabe nachvollziehbar strukturieren.",
       path: "/de/ressourcen/environmental-policy-erstellen",
       openGraphType: "article"
     },
     supplierCodeOfConductErstellen: {
       title: "Supplier Code of Conduct erstellen: Leitfaden | Evipace",
       description:
-        "Supplier Code of Conduct erstellen: So strukturieren Unternehmen Erwartungen an Umwelt, Menschenrechte, Arbeitsbedingungen, Ethik und Lieferanten nachvollziehbar.",
+        "Supplier Code of Conduct erstellen: Erwartungen an Umwelt, Menschenrechte, Arbeitsbedingungen, Ethik und Lieferanten nachvollziehbar strukturieren.",
       path: "/de/ressourcen/supplier-code-of-conduct-erstellen",
       openGraphType: "article"
     },
     esgDatenEinmalSammelnMehrfachNutzen: {
       title: "ESG-Daten einmal sammeln und mehrfach nutzen | Evipace",
       description:
-        "ESG-Daten nicht für jeden Kunden neu zusammensuchen: So bauen Lieferanten eine wiederverwendbare Datengrundlage für Fragebögen, Nachweise, VSME und weitere ESG-Anfragen auf.",
+        "ESG-Daten nicht für jeden Kunden neu suchen: So bauen Sie eine wiederverwendbare Datengrundlage für Fragebögen, Nachweise und VSME auf.",
       path: "/de/ressourcen/esg-daten-einmal-sammeln-mehrfach-nutzen",
       openGraphType: "article"
     },
     esgFragebogenVomKundenErhalten: {
       title:
-        "ESG-Fragebogen vom Kunden erhalten? So gehen Sie vor | Evipace",
+        "ESG-Fragebogen erhalten? So gehen Sie vor | Evipace",
       description:
-        "Ihr Kunde hat einen ESG-Fragebogen geschickt? Erfahren Sie, welche Daten Sie zuerst brauchen, wer im Unternehmen helfen kann und wie Sie Antworten und Nachweise strukturiert vorbereiten.",
+        "ESG-Fragebogen vom Kunden erhalten? Welche Daten Sie zuerst brauchen, wer intern hilft und wie Sie Antworten und Nachweise vorbereiten.",
       path: "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
       openGraphType: "article"
     },
     esgNachweiseLieferanten: {
       title:
-        "ESG-Nachweise für Lieferanten: Welche Dokumente zählen? | Evipace",
+        "ESG-Nachweise für Lieferanten: Welche zählen? | Evipace",
       description:
-        "Welche ESG-Nachweise brauchen Lieferanten wirklich? Erfahren Sie, welche Dokumente Aussagen belegen, worauf Kunden und Plattformen achten und wie Sie Ihre Nachweise strukturiert vorbereiten.",
+        "Welche ESG-Nachweise brauchen Lieferanten? Welche Dokumente Aussagen belegen, worauf Kunden und Plattformen achten und wie Sie vorbereiten.",
       path: "/de/ressourcen/esg-nachweise-lieferanten",
       openGraphType: "article"
     },
     ecovadisDokumenteNachweise: {
       title:
-        "EcoVadis-Dokumente und Nachweise: Was zählt als Beleg? | Evipace",
+        "EcoVadis-Dokumente und Nachweise: Was zählt? | Evipace",
       description:
-        "Welche Dokumente zählen bei EcoVadis als Nachweis? Erfahren Sie, welche Belege relevant sind, wie das 55-Dokumente-Limit funktioniert und welche Fehler Sie vermeiden sollten.",
+        "Welche Dokumente zählen bei EcoVadis als Nachweis? Relevante Belege, das 55-Dokumente-Limit und typische Fehler, die Sie vermeiden sollten.",
       path: "/de/ressourcen/ecovadis-dokumente-nachweise",
       openGraphType: "article"
     },
     integrityNextEinladungLieferanten: {
       title:
-        "IntegrityNext für Lieferanten: Einladung erhalten – was jetzt? | Evipace",
+        "IntegrityNext-Einladung erhalten: Was jetzt? | Evipace",
       description:
-        "Sie wurden von einem Kunden zu IntegrityNext eingeladen? Erfahren Sie, wie das Assessment abläuft, welche Daten und Zertifikate Sie brauchen und was Nachbesserungsbedarf bedeutet.",
+        "Von einem Kunden zu IntegrityNext eingeladen? Wie das Assessment abläuft, welche Daten und Zertifikate Sie brauchen und was Nachbesserung bedeutet.",
       path: "/de/ressourcen/integritynext-einladung-lieferanten",
       openGraphType: "article"
     },
     scope12DatenBerechnung: {
       title: "Scope 1 und Scope 2: Welche Daten braucht man? | Evipace",
       description:
-        "Welche Daten brauchen Sie für Scope 1 und Scope 2? Von Gas, Kraftstoffen und Kältemitteln bis Strom und Fernwärme – praktische Checkliste für die CO₂-Berechnung.",
+        "Welche Daten brauchen Sie für Scope 1 und 2? Von Gas, Kraftstoffen und Kältemitteln bis Strom und Fernwärme: Checkliste für die CO₂-Berechnung.",
       path: "/de/ressourcen/scope-1-2-daten-berechnung",
       openGraphType: "article"
     },
     vsmeDatenNachhaltigkeitsbericht: {
       title:
-        "VSME: Welche Daten braucht ein Nachhaltigkeitsbericht? | Evipace",
+        "VSME-Bericht: Welche Daten braucht man? | Evipace",
       description:
-        "Welche Daten brauchen Sie für einen VSME-Nachhaltigkeitsbericht? Praktischer Überblick zu Energie, Emissionen, Wasser, Abfall, Mitarbeitenden, Policies und weiteren VSME-Angaben.",
+        "Welche Daten brauchen Sie für einen VSME-Bericht? Überblick zu Energie, Emissionen, Wasser, Abfall, Mitarbeitenden, Policies und weiteren Angaben.",
       path: "/de/ressourcen/vsme-daten-nachhaltigkeitsbericht",
       dateModified: "2026-10-04",
       openGraphType: "article"
     },
     esgDatenVerantwortlicheAbteilungen: {
       title:
-        "ESG-Daten vom Kunden angefragt: Wer liefert welche Daten? | Evipace",
+        "ESG-Daten angefragt: Wer liefert welche Daten? | Evipace",
       description:
         "Ihr Kunde verlangt ESG-Daten? Erfahren Sie, welche Informationen typischerweise bei Finance, HR, Einkauf, Qualität, Produktion und Geschäftsführung liegen.",
       path: "/de/ressourcen/esg-daten-verantwortliche-abteilungen",
@@ -451,9 +451,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     },
     scope123EinfachErklaert: {
       title:
-        "Scope 1, 2 und 3 einfach erklärt: Unterschiede & Beispiele | Evipace",
+        "Scope 1, 2 und 3 einfach erklärt | Evipace",
       description:
-        "Was ist der Unterschied zwischen Scope 1, 2 und 3? Einfache Erklärung mit konkreten Beispielen für produzierende Unternehmen und Überblick über die 15 Scope-3-Kategorien.",
+        "Unterschied zwischen Scope 1, 2 und 3 einfach erklärt, mit Beispielen für produzierende Unternehmen und Überblick über die 15 Scope-3-Kategorien.",
       path: "/de/ressourcen/scope-1-2-3-einfach-erklaert",
       openGraphType: "article"
     },

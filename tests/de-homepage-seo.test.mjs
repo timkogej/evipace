@@ -122,7 +122,7 @@ test("English and German About and methodology pages are genuine registry equiva
   );
   assert.ok(
     germanRegistry.includes(
-      '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum Evipace gegründet wurde und wie wir arbeiten."'
+      '"Evipace unterstützt produzierende Unternehmen bei ESG-Anforderungen ihrer Kunden. Erfahren Sie, warum wir gegründet wurden und wie wir arbeiten."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de/about"'));

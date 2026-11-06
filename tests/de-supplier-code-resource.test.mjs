@@ -140,7 +140,7 @@ test("supplier code resource has exact German SEO metadata and English pairing",
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Supplier Code of Conduct erstellen: So strukturieren Unternehmen Erwartungen an Umwelt, Menschenrechte, Arbeitsbedingungen, Ethik und Lieferanten nachvollziehbar."'
+      'description: "Supplier Code of Conduct erstellen: Erwartungen an Umwelt, Menschenrechte, Arbeitsbedingungen, Ethik und Lieferanten nachvollziehbar strukturieren."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));

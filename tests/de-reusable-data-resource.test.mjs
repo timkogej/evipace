@@ -120,7 +120,7 @@ test("reusable data resource has exact German SEO metadata and English pairing",
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "ESG-Daten nicht für jeden Kunden neu zusammensuchen: So bauen Lieferanten eine wiederverwendbare Datengrundlage für Fragebögen, Nachweise, VSME und weitere ESG-Anfragen auf."'
+      'description: "ESG-Daten nicht für jeden Kunden neu suchen: So bauen Sie eine wiederverwendbare Datengrundlage für Fragebögen, Nachweise und VSME auf."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));

@@ -62,7 +62,7 @@ const pages = [
     en: "/en/resources/esg-evidence-for-suppliers",
     de: "/de/ressourcen/esg-nachweise-lieferanten",
     h1: "ESG evidence for suppliers: what documents actually support your answers?",
-    title: "ESG Evidence for Suppliers: What Documents Support Answers? | Evipace"
+    title: "ESG Evidence for Suppliers: Which Documents Count? | Evipace"
   },
   {
     key: "ecovadisDokumenteNachweise",
@@ -76,7 +76,7 @@ const pages = [
     en: "/en/resources/integritynext-invitation-for-suppliers",
     de: "/de/ressourcen/integritynext-einladung-lieferanten",
     h1: "Received an IntegrityNext invitation? A practical guide for suppliers.",
-    title: "IntegrityNext Invitation for Suppliers: What to Do Next | Evipace"
+    title: "IntegrityNext Invitation for Suppliers: Next Steps | Evipace"
   }
 ];
 

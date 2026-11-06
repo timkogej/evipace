@@ -10,8 +10,8 @@ const root = new URL("../", import.meta.url);
 // Hard ceilings catch regressions. The targets (title <= 60, description
 // <= 160) are what search engines show without truncation; the keyword-map
 // step tightens these ceilings as titles are rewritten.
-const TITLE_MAX = 75;
-const DESCRIPTION_MAX = 230;
+const TITLE_MAX = 60;
+const DESCRIPTION_MAX = 160;
 const DESCRIPTION_MIN = 70;
 
 const entries = [];

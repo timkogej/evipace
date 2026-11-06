@@ -61,16 +61,16 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
   const expected = [
     [
       enRegistry,
-      'title: "ESG Customer Request Support for Suppliers | Evipace"',
+      'title: "ESG Documentation for Manufacturers & Suppliers | Evipace"',
       homeContentSource,
-      "Less paperwork. More production.",
+      "Customers ask for ESG documents. We do the work.",
       landingHomeSource
     ],
     [
       deRegistry,
-      'title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"',
+      'title: "ESG-Dokumentation für Hersteller und Lieferanten | Evipace"',
       homeContentSource,
-      "Weniger Papierkram. Mehr Produktion.",
+      "Ihre Kunden fragen nach ESG-Unterlagen. Wir übernehmen die Arbeit.",
       landingHomeSource
     ],
     [

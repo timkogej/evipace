@@ -102,9 +102,9 @@ type LocaleRegistry = Partial<Record<PageKey, PageMetadataEntry>>;
 export const pageRegistry: Record<Locale, LocaleRegistry> = {
   en: {
     home: {
-      title: "ESG Customer Request Support for Suppliers | Evipace",
+      title: "ESG Documentation for Manufacturers & Suppliers | Evipace",
       description:
-        "Forward your customer's ESG questionnaire, EcoVadis, carbon data or code of conduct request. Evipace prepares the response for you to review and approve.",
+        "Evipace (Ljubljana) prepares ESG questionnaire answers, EcoVadis and IntegrityNext material, Scope 1 and 2 calculations and VSME reports for manufacturers.",
       path: "/en"
     },
     offers: {
@@ -286,9 +286,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
   },
   de: {
     home: {
-      title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace",
+      title: "ESG-Dokumentation für Hersteller und Lieferanten | Evipace",
       description:
-        "Leiten Sie ESG-Fragebögen, EcoVadis-Anfragen, Anfragen zu CO2-Daten oder Verhaltenskodizes Ihrer Kunden weiter. Evipace bereitet die Antwort zur Prüfung und Freigabe vor.",
+        "Evipace aus Ljubljana bereitet ESG-Fragebögen, EcoVadis- und IntegrityNext-Unterlagen, Scope-1-und-2-Berechnungen und VSME-Berichte für Hersteller vor.",
       path: "/de"
     },
     offers: {

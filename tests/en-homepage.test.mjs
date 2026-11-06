@@ -40,12 +40,12 @@ test("English homepage metadata uses the exact approved registry values", () => 
 
   assert.ok(
     englishRegistry.includes(
-      'title: "ESG Customer Request Support for Suppliers | Evipace"'
+      'title: "ESG Documentation for Manufacturers & Suppliers | Evipace"'
     )
   );
   assert.ok(
     englishRegistry.includes(
-      `"Forward your customer's ESG questionnaire, EcoVadis, carbon data or code of conduct request. Evipace prepares the response for you to review and approve."`
+      `"Evipace (Ljubljana) prepares ESG questionnaire answers, EcoVadis and IntegrityNext material, Scope 1 and 2 calculations and VSME reports for manufacturers."`
     )
   );
   assert.ok(englishRegistry.includes('path: "/en"'));

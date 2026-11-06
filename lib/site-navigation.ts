@@ -252,7 +252,7 @@ const deServices: NavigationDirectory = {
   label: "Leistungen",
   groups: [
     {
-      label: "Nachweise & Fristen",
+      label: "Nachweise",
       items: [
         {
           label: "Nachweise und Fristen",
@@ -404,7 +404,7 @@ const enServices: NavigationDirectory = {
   label: "Services",
   groups: [
     {
-      label: "Records and deadlines",
+      label: "Records",
       items: [
         {
           label: "Records and deadlines",
@@ -427,12 +427,12 @@ const enServices: NavigationDirectory = {
       label: "Platforms",
       items: [
         {
-          label: "EcoVadis Support",
+          label: "EcoVadis support",
           href: route("en", "ecovadisUnterstuetzung"),
           pageKey: "ecovadisUnterstuetzung"
         },
         {
-          label: "IntegrityNext Support",
+          label: "IntegrityNext support",
           href: route("en", "integrityNextUnterstuetzung"),
           pageKey: "integrityNextUnterstuetzung"
         }
@@ -442,7 +442,7 @@ const enServices: NavigationDirectory = {
       label: "Carbon & reporting",
       items: [
         {
-          label: "VSME Sustainability Reporting",
+          label: "VSME sustainability report",
           href: route("en", "vsmeNachhaltigkeitsbericht"),
           pageKey: "vsmeNachhaltigkeitsbericht"
         },
@@ -598,12 +598,12 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
             pageKey: "esgKundenanfragen"
           },
           {
-            label: "EcoVadis Support",
+            label: "EcoVadis support",
             href: route("en", "ecovadisUnterstuetzung"),
             pageKey: "ecovadisUnterstuetzung"
           },
           {
-            label: "IntegrityNext Support",
+            label: "IntegrityNext support",
             href: route("en", "integrityNextUnterstuetzung"),
             pageKey: "integrityNextUnterstuetzung"
           },
@@ -613,7 +613,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
             pageKey: "scope12Berechnung"
           },
           {
-            label: "VSME Sustainability Reporting",
+            label: "VSME sustainability report",
             href: route("en", "vsmeNachhaltigkeitsbericht"),
             pageKey: "vsmeNachhaltigkeitsbericht"
           },

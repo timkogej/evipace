@@ -162,3 +162,21 @@ test("approval wording stays out of registry titles and descriptions", () => {
 test("the language-neutral sl registry stays empty", () => {
   assert.deepEqual(registry.pageRegistry.sl, {});
 });
+
+test("every German service page carries a Kurz und klar block under the hero", async () => {
+  const pages = {
+    "esg-kundenanfragen": "questionnaire",
+    "ecovadis-unterstuetzung": "ecovadis",
+    "integritynext-unterstuetzung": "integritynext",
+    "scope-1-2-berechnung": "scope12",
+    "vsme-nachhaltigkeitsbericht": "vsme"
+  };
+  for (const [dir, service] of Object.entries(pages)) {
+    const source = await readFile(new URL(`app/[locale]/${dir}/page.tsx`, root), "utf8");
+    const hero = source.indexOf("<LandingHero />");
+    const answers = source.indexOf(`<DirectAnswers service="${service}" />`);
+    assert.ok(hero > -1 && answers > hero, dir);
+  }
+  const component = await readFile(new URL("components/evipace/service-landing/DirectAnswers.tsx", root), "utf8");
+  assert.doesNotMatch(component, /€|Preis|garantiert /);
+});

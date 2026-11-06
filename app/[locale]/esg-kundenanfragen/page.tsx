@@ -14,6 +14,7 @@ import { TypicalRequests } from "@/components/evipace/esg-kundenanfragen/Typical
 import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
 import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
+import { DirectAnswers } from "@/components/evipace/service-landing/DirectAnswers";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -67,6 +68,7 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
       <JsonLd graph={schemaGraph} />
       <ServiceMain>
         <LandingHero />
+        <DirectAnswers service="questionnaire" />
         <RequestIntro />
         <Deliverables />
         <IllustrativeHandover locale="de" service="questionnaire" />

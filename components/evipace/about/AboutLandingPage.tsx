@@ -21,16 +21,16 @@ const copy = {
     whyBody: "A customer asks for ESG information, but the figures, policies and supporting documents may sit with different teams. Evipace brings the available material together, identifies what is missing and prepares a response your company can check before sending.",
     whyQuote: "Start with the request. Build the answer from what your company can show.",
     approachLabel: "Our approach",
-    approachTitle: "From the request to a response your team can approve.",
+    approachTitle: "From the request to a response you can use.",
     approachIntro: "We start with the request in front of you and the records your team already has.",
     approachItems: [
       ["Define the task", "We identify what the customer is asking for and which information is needed."],
       ["Prepare the substance", "We organise existing records, work through calculations and draft the response."],
-      ["Keep your team in control", "Sources, assumptions and open points stay visible for your review and approval."]
+      ["Keep your team in control", "Sources, assumptions and open points stay visible, and your team has the last word."]
     ],
     founderLabel: "The founder",
     founderTitle: "Founded on practical work.",
-    founderBody: "Tim Kogej founded Evipace in Slovenia to give manufacturers and suppliers practical help with customer ESG requests. The work starts with the requirement, moves through the company's existing records and ends with material your team can review and approve.",
+    founderBody: "Tim Kogej founded Evipace in Slovenia to give manufacturers and suppliers practical help with customer ESG requests. The work starts with the requirement, moves through the company's existing records and ends with material ready for your team to use.",
     founderNote: "For work requiring additional specialist expertise, Evipace can involve appropriate external professionals.",
     founderRole: "Founder & Managing Director · Ljubljana, Slovenia",
     founderContact: "Speak directly with Tim",
@@ -39,7 +39,7 @@ const copy = {
     manufacturingTitle: "Built for the reality of manufacturing and supply chains.",
     manufacturingBody: "We work with manufacturers and suppliers who need to respond to customer ESG requests while running their day-to-day business.",
     servicesLabel: "What we help prepare",
-    servicesTitle: "Questionnaires, emissions and reporting — prepared for review.",
+    servicesTitle: "Questionnaires, emissions and reporting — prepared for you.",
     servicesIntro: "We prepare the answers, calculations and documents required by the task, with sources and open questions kept visible.",
     handoverLabel: "Illustrative handover · not a client case",
     handoverTitle: "What could be on your desk at the end?",
@@ -74,16 +74,16 @@ const copy = {
     whyBody: "Ein Kunde fragt nach ESG-Daten, doch Kennzahlen, Richtlinien und Nachweise liegen möglicherweise bei verschiedenen Teams. Evipace führt die vorhandenen Unterlagen zusammen, zeigt Lücken auf und bereitet eine Antwort vor, die Ihr Unternehmen vor dem Versand prüfen kann.",
     whyQuote: "Mit der Anfrage beginnen. Die Antwort auf belegbare Unternehmensdaten stützen.",
     approachLabel: "Unsere Arbeitsweise",
-    approachTitle: "Von der Anfrage zu einer Antwort, die Ihr Team freigeben kann.",
+    approachTitle: "Von der Anfrage zu einer Antwort, die Sie verwenden können.",
     approachIntro: "Wir beginnen mit der konkreten Anfrage und den vorhandenen Unterlagen Ihres Teams.",
     approachItems: [
       ["Aufgabe klären", "Wir erfassen, was der Kunde verlangt und welche Informationen dafür nötig sind."],
       ["Inhalte vorbereiten", "Wir ordnen vorhandene Unterlagen, erarbeiten Berechnungen und entwerfen Antworten."],
-      ["Kontrolle behalten", "Quellen, Annahmen und offene Punkte bleiben für Ihre Prüfung und Freigabe sichtbar."]
+      ["Kontrolle behalten", "Quellen, Annahmen und offene Punkte bleiben sichtbar, und Ihr Team hat das letzte Wort."]
     ],
     founderLabel: "Der Gründer",
     founderTitle: "Aus der Praxis entstanden.",
-    founderBody: "Tim Kogej hat Evipace in Slowenien gegründet, um Hersteller und Zulieferer bei ESG-Anfragen ihrer Kunden praktisch zu unterstützen. Die Arbeit beginnt bei der konkreten Anforderung, nutzt vorhandene Unternehmensunterlagen und führt zu Ergebnissen, die Ihr Team prüfen und freigeben kann.",
+    founderBody: "Tim Kogej hat Evipace in Slowenien gegründet, um Hersteller und Zulieferer bei ESG-Anfragen ihrer Kunden praktisch zu unterstützen. Die Arbeit beginnt bei der konkreten Anforderung, nutzt vorhandene Unternehmensunterlagen und führt zu Ergebnissen, die Ihr Team direkt verwenden kann.",
     founderNote: "Bei Aufgaben, die zusätzliche Fachkenntnisse erfordern, kann Evipace geeignete externe Fachleute einbeziehen.",
     founderRole: "Founder & Managing Director · Ljubljana, Slowenien",
     founderContact: "Sprechen Sie direkt mit Tim",
@@ -92,7 +92,7 @@ const copy = {
     manufacturingTitle: "Für die Realität von Produktion und Lieferketten entwickelt.",
     manufacturingBody: "Wir unterstützen Hersteller und Zulieferer, die ESG-Anfragen ihrer Kunden neben dem laufenden Tagesgeschäft bearbeiten müssen.",
     servicesLabel: "Wobei wir helfen",
-    servicesTitle: "Fragebögen, Emissionen und Berichte — zur Prüfung vorbereitet.",
+    servicesTitle: "Fragebögen, Emissionen und Berichte — für Sie vorbereitet.",
     servicesIntro: "Wir bereiten die für die Aufgabe nötigen Antworten, Berechnungen und Dokumente vor. Quellen und offene Fragen bleiben sichtbar.",
     handoverLabel: "Beispielhafte Übergabe · kein Kundenfall",
     handoverTitle: "Was könnte am Ende auf Ihrem Tisch liegen?",
@@ -124,8 +124,8 @@ const forwardLabel: Record<Locale, string> = {
 };
 
 const artLabel: Record<Locale, string> = {
-  en: "Illustration: a folder, a document and an approval mark",
-  de: "Illustration: eine Mappe, ein Dokument und ein Freigabezeichen"
+  en: "Illustration: a folder, a document and a check mark",
+  de: "Illustration: eine Mappe, ein Dokument und ein Häkchen"
 };
 
 /**

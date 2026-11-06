@@ -1979,15 +1979,13 @@
    delay, so nothing stays clipped or transformed afterwards. */
 @keyframes ev-rise {
   from {
-    opacity: 0;
     transform: translateY(var(--motion-rise));
   }
 }
 
 @keyframes ev-line-in {
   from {
-    opacity: 0;
-    clip-path: inset(100% -0.3em -0.3em -0.3em);
+    clip-path: inset(60% -0.3em -0.3em -0.3em);
     transform: translateY(0.5em);
   }
 
@@ -2005,29 +2003,29 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .heroCopy > * {
-    animation: ev-rise var(--motion-slow) var(--ease-out-expo) backwards;
+    animation: ev-rise 450ms var(--ease-out-expo) backwards;
   }
 
   /* Every page hero shares this: its blocks follow each other in order. */
-  .heroCopy > :nth-child(2) { animation-delay: 80ms; }
-  .heroCopy > :nth-child(3) { animation-delay: 200ms; }
-  .heroCopy > :nth-child(4) { animation-delay: 320ms; }
-  .heroCopy > :nth-child(5) { animation-delay: 420ms; }
-  .heroCopy > :nth-child(6) { animation-delay: 500ms; }
-  .heroCopy > :nth-child(7) { animation-delay: 570ms; }
-  .heroCopy > :nth-child(n + 8) { animation-delay: 630ms; }
+  .heroCopy > :nth-child(2) { animation-delay: 40ms; }
+  .heroCopy > :nth-child(3) { animation-delay: 80ms; }
+  .heroCopy > :nth-child(4) { animation-delay: 120ms; }
+  .heroCopy > :nth-child(5) { animation-delay: 160ms; }
+  .heroCopy > :nth-child(6) { animation-delay: 190ms; }
+  .heroCopy > :nth-child(7) { animation-delay: 220ms; }
+  .heroCopy > :nth-child(n + 8) { animation-delay: 250ms; }
 
   /* Page titles (other than the homepage's line-by-line title) rise out of
      a mask, like the section headings. */
   .heroCopy > .display:not(.heroTitle) {
     animation-name: ev-line-in;
-    animation-duration: 1000ms;
+    animation-duration: 600ms;
   }
 
   /* Homepage timing. */
   .heroCopy > .eyebrow:first-child { animation-delay: 0ms; }
-  .heroCopy > .heroBody { animation-delay: 380ms; }
-  .heroCopy > .actions { animation-delay: 480ms; }
+  .heroCopy > .heroBody { animation-delay: 120ms; }
+  .heroCopy > .actions { animation-delay: 180ms; }
 
   /* The title itself stays put; its lines carry the motion. */
   .heroCopy > .heroTitle {
@@ -2035,11 +2033,11 @@
   }
 
   .heroTitle .titleLine {
-    animation: ev-line-in 1000ms var(--ease-out-expo) 90ms backwards;
+    animation: ev-line-in 600ms var(--ease-out-expo) 40ms backwards;
   }
 
   .heroTitle .titleLine + .titleLine {
-    animation-delay: 210ms;
+    animation-delay: 110ms;
   }
 }
 

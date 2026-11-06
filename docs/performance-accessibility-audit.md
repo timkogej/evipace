@@ -33,3 +33,16 @@ default throttling. Pages: /en, /de/ecovadis-unterstuetzung,
 6. Checked on all 54 sitemap pages: one canonical, one description, `lang`
    set, no heading level skips, no `<img>` without `alt`. Only the two
    Privacy pages have no JSON-LD (intentional).
+
+## Update: hero entrance shortened (same day)
+`HomeLandingPage.module.css`, hero block only (`app/globals.css` untouched):
+- Entrance 700 ms -> 450 ms, delays 80-630 ms -> 40-250 ms, title lines
+  1000 ms -> 600 ms.
+- Text no longer starts at opacity 0; it rises into place from its first
+  frame (`ev-rise` is transform-only, `ev-line-in` starts 40% revealed), so
+  the browser can count the hero text as painted straight away.
+- Final layout and colours are unchanged.
+
+Mobile Lighthouse after: /en 100, /de/ecovadis-unterstuetzung 100,
+/en/resources/esg-evidence-for-suppliers 100; LCP 1.4 s (was 4.2-4.5 s).
+Shortening the timings alone (still fading from opacity 0) did not move LCP.

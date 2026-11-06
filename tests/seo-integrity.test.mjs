@@ -180,3 +180,18 @@ test("every German service page carries a Kurz und klar block under the hero", a
   const component = await readFile(new URL("components/evipace/service-landing/DirectAnswers.tsx", root), "utf8");
   assert.doesNotMatch(component, /€|Preis|garantiert /);
 });
+
+test("Organization and Service schema state only what the site shows", () => {
+  const org = load("lib/seo/schema/organization.ts").buildOrganizationSchema();
+  assert.equal(org.address.addressLocality, "Ljubljana");
+  assert.equal(org.address.addressCountry, "SI");
+  assert.equal(org.address.streetAddress, undefined);
+  assert.equal(org.contactPoint.email, org.email);
+  assert.equal(org.telephone, org.contactPoint.telephone);
+  assert.doesNotMatch(org.description, /polic|certif|guarantee|Scope 3/i);
+  const service = load("lib/seo/schema/service.ts").buildServiceSchema("en", "ecovadisUnterstuetzung", "EcoVadis support");
+  assert.equal(service.areaServed.name, "Europe");
+  for (const field of ["offers", "aggregateRating", "review", "price"]) {
+    assert.ok(!(field in service), field);
+  }
+});

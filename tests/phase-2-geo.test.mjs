@@ -123,6 +123,8 @@ test("Organization schema adds only visibly supported properties", () => {
     "description:",
     "email: publicContactEmail",
     "areaServed:",
+    "addressLocality: \"Ljubljana\"",
+    "telephone: publicPhone",
     "founder:",
     'name: "Tim Kogej"',
     'jobTitle: "Founder & Managing Director"',
@@ -148,8 +150,8 @@ test("Organization schema adds only visibly supported properties", () => {
     "taxID:",
     "vatID:",
     "aggregateRating:",
-    "address:",
-    "telephone:",
+    "streetAddress:",
+    "postalCode:",
     "priceRange:"
   ]) {
     assert.ok(!organizationSchema.includes(forbidden), forbidden);

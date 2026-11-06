@@ -5,6 +5,7 @@ import { GermanMethodologyPage } from "@/components/evipace/GermanMethodologyPag
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { getPageMetadataEntry, isPageReachable } from "@/lib/seo/page-registry";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildWebsiteSchema } from "@/lib/seo/schema/website";
 import { buildWebPageSchema } from "@/lib/seo/schema/webpage";
@@ -30,7 +31,18 @@ export default async function Methodology({ params }: MethodologyPageProps) {
   const schemaGraph = [
     buildOrganizationSchema(),
     buildWebsiteSchema(),
-    buildWebPageSchema(locale, "methodology")
+    buildWebPageSchema(locale, "methodology"),
+    buildBreadcrumbListSchema(
+      locale === "de"
+        ? [
+            { name: "Startseite", path: "/de" },
+            { name: "Methodik", path: getPageMetadataEntry(locale, "methodology")!.path }
+          ]
+        : [
+            { name: "Home", path: "/en" },
+            { name: "Methodology", path: getPageMetadataEntry(locale, "methodology")!.path }
+          ]
+    )
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   const entry = getPageMetadataEntry(locale, "methodology");

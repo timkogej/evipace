@@ -479,9 +479,9 @@ export const customerRequestsContent: CommercialServicePageContent = {
 export const scope12CalculationContent: CommercialServicePageContent = {
   streamlinedService: true,
   eyebrow: "Scope 1 & 2 calculation",
-  title: "We calculate your Scope 1 and Scope 2 emissions. You approve the result.",
+  title: "We calculate your Scope 1 and Scope 2 emissions from the records you already have.",
   intro: [
-    "For your corporate carbon footprint, send the electricity, fuel, vehicle, refrigerant and purchased-heat records you already have. Our system structures the data and applies appropriate emission factors, and a person at Evipace reviews the documented calculation. You approve it, and next year we repeat it from the same records."
+    "For your corporate carbon footprint, send the electricity, fuel, vehicle, refrigerant and purchased-heat records you already have. Our system structures the data and applies appropriate emission factors, and a person at Evipace reviews the documented calculation, and next year we repeat it from the same records."
   ],
   directAnswers: {
     eyebrow: "The short version",
@@ -627,7 +627,7 @@ export const scope12CalculationContent: CommercialServicePageContent = {
     ]
   },
   process: {
-    title: "From your records to an approved calculation",
+    title: "From your records to a documented calculation",
     intro: "You send the records once. Each year after that we start from the same setup.",
     steps: [
       {

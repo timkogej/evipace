@@ -77,14 +77,14 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
       enRegistry,
       'title: "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace"',
       englishCommercialContent,
-      "We calculate your Scope 1 and Scope 2 emissions. You approve the result.",
+      "We calculate your Scope 1 and Scope 2 emissions from the records you already have.",
       englishCommercialComponent
     ],
     [
       deRegistry,
       'title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | Evipace"',
       germanScopeHeroSource,
-      "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 berechnen wir, Sie geben frei."
+      "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 berechnen wir aus Ihren Unterlagen."
     ]
   ];
 

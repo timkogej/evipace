@@ -63,7 +63,7 @@ test("English commercial Batch A uses exact approved metadata and H1 copy", () =
       "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace",
       "Evipace prepares a documented corporate carbon footprint and Scope 1 and Scope 2 calculation from company activity data, emission factors, sources and assumptions.",
       "/en/scope-1-2-calculation",
-      "We calculate your Scope 1 and Scope 2 emissions. You approve the result."
+      "We calculate your Scope 1 and Scope 2 emissions from the records you already have."
     ]
   ];
 

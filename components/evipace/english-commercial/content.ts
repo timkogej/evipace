@@ -1386,9 +1386,9 @@ export const integrityNextSupportContent: CommercialServicePageContent = {
         href: "/en/esg-customer-requests"
       },
       {
-        title: "Customer ESG requests",
-        body: "For the wider set of ESG requests arriving from customers in other formats.",
-        href: "/en/esg-customer-requests"
+        title: "EcoVadis support",
+        body: "For suppliers whose customers ask for an EcoVadis assessment instead of, or as well as, IntegrityNext.",
+        href: "/en/ecovadis-support"
       }
     ]
   },

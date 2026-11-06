@@ -211,3 +211,31 @@ test("llms.txt is generated from the registry and keeps the do-not-do list", () 
   assert.equal(robots.rules.disallow, "/api/");
   assert.equal(robots.sitemap, "https://evipace.com/sitemap.xml");
 });
+
+test("every service page links to at least two other distinct services", async () => {
+  const hrefs = {
+    en: ["esg-customer-requests", "ecovadis-support", "integritynext-support", "scope-1-2-calculation", "vsme-sustainability-report"],
+    de: ["esg-kundenanfragen", "ecovadis-unterstuetzung", "integritynext-unterstuetzung", "scope-1-2-berechnung", "vsme-nachhaltigkeitsbericht"]
+  };
+  const files = {
+    de: {
+      "esg-kundenanfragen": "components/evipace/esg-kundenanfragen/RelatedServices.tsx",
+      "ecovadis-unterstuetzung": "components/evipace/ecovadis-unterstuetzung/RelatedRequirements.tsx",
+      "integritynext-unterstuetzung": "components/evipace/integritynext-unterstuetzung/RelatedRequirements.tsx",
+      "scope-1-2-berechnung": "components/evipace/scope-1-2-berechnung/RelatedRequirements.tsx",
+      "vsme-nachhaltigkeitsbericht": "components/evipace/vsme-nachhaltigkeitsbericht/RelatedRequirements.tsx"
+    }
+  };
+  for (const [slug, file] of Object.entries(files.de)) {
+    const text = await readFile(new URL(file, root), "utf8");
+    const linked = hrefs.de.filter((h) => h !== slug && text.includes(`/de/${h}"`));
+    assert.ok(linked.length >= 2, `${slug}: ${linked.length}`);
+  }
+  const content = await readFile(new URL("components/evipace/english-commercial/content.ts", root), "utf8");
+  const blocks = [...content.matchAll(/relatedServices: \{[\s\S]*?\n  \},/g)].map((m) => m[0]);
+  assert.ok(blocks.length >= 5);
+  for (const block of blocks) {
+    const links = [...block.matchAll(/href: "([^"]+)"/g)].map((m) => m[1]);
+    assert.equal(new Set(links).size, links.length, `duplicate link in ${block.slice(0, 80)}`);
+  }
+});

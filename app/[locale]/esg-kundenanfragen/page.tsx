@@ -7,6 +7,7 @@ import { FocusedScope } from "@/components/evipace/esg-kundenanfragen/FocusedSco
 import { LandingFinalCTA } from "@/components/evipace/esg-kundenanfragen/LandingFinalCTA";
 import { LandingHero } from "@/components/evipace/esg-kundenanfragen/LandingHero";
 import { ProcessSteps } from "@/components/evipace/esg-kundenanfragen/ProcessSteps";
+import { RelatedServices } from "@/components/evipace/esg-kundenanfragen/RelatedServices";
 import { RequestIntro } from "@/components/evipace/esg-kundenanfragen/RequestIntro";
 import { TargetCompanies } from "@/components/evipace/esg-kundenanfragen/TargetCompanies";
 import { TaskTranslation } from "@/components/evipace/esg-kundenanfragen/TaskTranslation";
@@ -80,6 +81,7 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
         </ServiceDetailAccordion>
         <FocusedScope />
         <TargetCompanies />
+        <RelatedServices />
         <Faq />
         <LandingFinalCTA />
       </ServiceMain>

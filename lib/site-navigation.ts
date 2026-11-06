@@ -115,6 +115,10 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
       href: "/en/resources/integritynext-invitation-for-suppliers"
     },
     {
+      pageKey: "ecovadisVsIntegritynext",
+      href: "/en/resources/ecovadis-vs-integritynext"
+    },
+    {
       pageKey: "scope12DatenBerechnung",
       href: "/en/resources/scope-1-2-data-calculation"
     },
@@ -217,6 +221,10 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     {
       pageKey: "integrityNextEinladungLieferanten",
       href: "/de/ressourcen/integritynext-einladung-lieferanten"
+    },
+    {
+      pageKey: "ecovadisVsIntegritynext",
+      href: "/de/ressourcen/ecovadis-und-integritynext-vergleich"
     },
     {
       pageKey: "scope123EinfachErklaert",
@@ -356,6 +364,11 @@ const deResources: NavigationDirectory = {
           label: "IntegrityNext für Lieferanten",
           href: route("de", "integrityNextEinladungLieferanten"),
           pageKey: "integrityNextEinladungLieferanten"
+        },
+        {
+          label: "EcoVadis und IntegrityNext im Vergleich",
+          href: route("de", "ecovadisVsIntegritynext"),
+          pageKey: "ecovadisVsIntegritynext"
         }
       ]
     },
@@ -506,6 +519,11 @@ const enResources: NavigationDirectory = {
           label: "IntegrityNext invitation",
           href: route("en", "integrityNextEinladungLieferanten"),
           pageKey: "integrityNextEinladungLieferanten"
+        },
+        {
+          label: "EcoVadis vs IntegrityNext",
+          href: route("en", "ecovadisVsIntegritynext"),
+          pageKey: "ecovadisVsIntegritynext"
         }
       ]
     },

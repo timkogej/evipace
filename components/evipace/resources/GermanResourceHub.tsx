@@ -31,6 +31,7 @@ const links = {
   evidence: "/de/ressourcen/esg-nachweise-lieferanten",
   ecovadis: "/de/ressourcen/ecovadis-dokumente-nachweise",
   integrityNext: "/de/ressourcen/integritynext-einladung-lieferanten",
+  platformCompare: "/de/ressourcen/ecovadis-und-integritynext-vergleich",
   scopes: "/de/ressourcen/scope-1-2-3-einfach-erklaert",
   scopeData: "/de/ressourcen/scope-1-2-daten-berechnung",
   scopeDataTemplate: "/de/ressourcen/scope-1-2-datenerfassungs-vorlage",
@@ -282,6 +283,13 @@ export function GermanResourceHub() {
             description="Was nach einer IntegrityNext-Einladung passiert, welche Assessments angefragt werden können und wie Zertifikate, Fragebögen, interne Zusammenarbeit und Nachbesserungsbedarf zusammenspielen."
             href={links.integrityNext}
             title="IntegrityNext für Lieferanten"
+            type="PLATTFORM-LEITFADEN"
+          />
+          <ResourceCard
+            cta="Plattformen vergleichen"
+            description="Was EcoVadis und IntegrityNext von Lieferanten jeweils verlangen, welche Dokumente sich überschneiden und wie Sie sich einmal für beide vorbereiten."
+            href={links.platformCompare}
+            title="EcoVadis und IntegrityNext im Vergleich"
             type="PLATTFORM-LEITFADEN"
           />
         </ResourceCards>

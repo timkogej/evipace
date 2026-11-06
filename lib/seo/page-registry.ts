@@ -87,7 +87,8 @@ export type PageKey =
   | "scope123EinfachErklaert"
   | "esgFragebogenChecklisteLieferanten"
   | "esgNachweiseCheckliste"
-  | "scope12DatenerfassungsVorlage";
+  | "scope12DatenerfassungsVorlage"
+  | "ecovadisVsIntegritynext";
 
 type LocaleRegistry = Partial<Record<PageKey, PageMetadataEntry>>;
 
@@ -282,6 +283,15 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
         "Build a reusable ESG data foundation for customer questionnaires, evidence, VSME reporting and recurring ESG requests — without copying answers blindly.",
       path: "/en/resources/reusable-esg-data",
       openGraphType: "article"
+    },
+    ecovadisVsIntegritynext: {
+      title: "EcoVadis vs IntegrityNext for Suppliers | Evipace",
+      description:
+        "How EcoVadis and IntegrityNext differ for suppliers: what each asks you to do, which documents overlap and how to prepare once for both.",
+      path: "/en/resources/ecovadis-vs-integritynext",
+      openGraphType: "article",
+      datePublished: "2026-11-06",
+      dateModified: "2026-11-06"
     }
   },
   de: {
@@ -477,6 +487,15 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
         "Sammeln Sie Strom-, Brennstoff-, Fahrzeug-, Kältemittel- und Wärmedaten strukturiert für Ihre Scope-1-&-2-Berechnung – mit einer praktischen Vorlage.",
       path: "/de/ressourcen/scope-1-2-datenerfassungs-vorlage",
       openGraphType: "article"
+    },
+    ecovadisVsIntegritynext: {
+      title: "EcoVadis und IntegrityNext im Vergleich | Evipace",
+      description:
+        "EcoVadis oder IntegrityNext? Was jede Plattform von Lieferanten verlangt, welche Dokumente sich überschneiden und wie Sie sich einmal für beide vorbereiten.",
+      path: "/de/ressourcen/ecovadis-und-integritynext-vergleich",
+      openGraphType: "article",
+      datePublished: "2026-11-06",
+      dateModified: "2026-11-06"
     }
   },
   sl: {}

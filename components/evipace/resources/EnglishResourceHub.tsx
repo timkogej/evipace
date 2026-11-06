@@ -21,6 +21,7 @@ const links = {
   evidence: "/en/resources/esg-evidence-for-suppliers",
   ecovadis: "/en/resources/ecovadis-documents-evidence",
   integrityNext: "/en/resources/integritynext-invitation-for-suppliers",
+  platformCompare: "/en/resources/ecovadis-vs-integritynext",
   scopeData: "/en/resources/scope-1-2-data-calculation",
   scopeExplained: "/en/resources/scope-1-2-3-explained",
   vsmeData: "/en/resources/vsme-data-sustainability-report",
@@ -252,6 +253,13 @@ export function EnglishResourceHub() {
             description="What to do after an IntegrityNext invitation, from profile scope and assessments to certificates, questionnaires and validation."
             href={links.integrityNext}
             title="IntegrityNext invitation for suppliers"
+            type="PLATFORM GUIDE"
+          />
+          <ResourceCard
+            cta="Compare the two"
+            description="What EcoVadis and IntegrityNext each ask a supplier to do, which documents overlap and how to prepare once for both."
+            href={links.platformCompare}
+            title="EcoVadis vs IntegrityNext"
             type="PLATFORM GUIDE"
           />
           <ResourceCard

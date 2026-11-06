@@ -129,6 +129,8 @@ function localeRegistryBlock(locale) {
     : registrySource.slice(start, nextLocaleStart);
 }
 
+const articleUiSource = await readFile(new URL("../components/evipace/resources/article-ui.ts", import.meta.url), "utf8");
+
 test("English Batch 1 resources are registered as genuine DE/EN pairs only", () => {
   const englishRegistry = normalizeWhitespace(localeRegistryBlock("en"));
   const germanRegistry = normalizeWhitespace(localeRegistryBlock("de"));
@@ -276,7 +278,7 @@ test("English article content preserves methodology, claim discipline and distin
     "does not control platform validation, customer decisions or platform status"
   ]) {
     assert.ok(
-      normalizeWhitespace(`${articleRendererSource}\n${contentSource}\n${batch2ContentSource}`).includes(
+      normalizeWhitespace(`${articleRendererSource}\n${articleUiSource}\n${contentSource}\n${batch2ContentSource}`).includes(
         normalizeWhitespace(required)
       ),
       required

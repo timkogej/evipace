@@ -188,8 +188,8 @@ test("Article authorship resolves to the Organization and dates stay unfabricate
   // have a known substantive revision from this source-checked update.
   assert.ok(registry.includes("datePublished?: string;"));
   assert.ok(registry.includes("dateModified?: string;"));
-  assert.equal((registry.match(/^\s*datePublished: "/gm) ?? []).length, 0);
-  assert.deepEqual(registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim()), ['dateModified: "2026-10-04"', 'dateModified: "2026-10-04"']);
+  assert.equal((registry.match(/^\s*datePublished: "/gm) ?? []).length, 2);
+  assert.deepEqual(registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim()), ['dateModified: "2026-10-04"', 'dateModified: "2026-11-06"', 'dateModified: "2026-10-04"', 'dateModified: "2026-11-06"']);
 
   // Methodology reviews retain their original dates; a GEO edit is not a new full review.
   assert.equal((registry.match(/lastReviewed: "/g) ?? []).length, 2);
@@ -205,7 +205,7 @@ test("resource pages credit Evipace and render registry dates only", async () =>
       if (entry.isDirectory()) routes.push(`${dir}${entry.name}/page.tsx`);
     }
   }
-  assert.equal(routes.length, 30, `found ${routes.length} resource routes`);
+  assert.equal(routes.length, 32, `found ${routes.length} resource routes`);
 
   for (const route of routes) {
     const source = await read(route);

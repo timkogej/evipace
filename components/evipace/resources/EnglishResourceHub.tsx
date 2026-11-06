@@ -263,6 +263,20 @@ export function EnglishResourceHub() {
             type="PLATFORM GUIDE"
           />
           <ResourceCard
+            cta="Compare the methods"
+            description="Why one electricity use can give two Scope 2 figures, what data each method needs and what to write down."
+            href="/en/resources/scope-2-location-based-vs-market-based"
+            title="Scope 2: location-based vs market-based"
+            type="METHOD GUIDE"
+          />
+          <ResourceCard
+            cta="Answer with evidence"
+            description="What each answer type means, what a complete answer contains and how to answer typical question types truthfully, with the gaps stated."
+            href="/en/resources/how-to-answer-esg-questionnaire"
+            title="How to answer ESG questionnaire questions"
+            type="CHECKLIST"
+          />
+          <ResourceCard
             cta="Check one document"
             description="Interactive readiness check for whether a document supports a specific ESG answer by scope, period, source and traceability."
             href={links.evidenceCheck}

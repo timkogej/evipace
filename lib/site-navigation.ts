@@ -119,6 +119,14 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
       href: "/en/resources/ecovadis-vs-integritynext"
     },
     {
+      pageKey: "scope2LocationMarket",
+      href: "/en/resources/scope-2-location-based-vs-market-based"
+    },
+    {
+      pageKey: "esgFragebogenBeantworten",
+      href: "/en/resources/how-to-answer-esg-questionnaire"
+    },
+    {
       pageKey: "scope12DatenBerechnung",
       href: "/en/resources/scope-1-2-data-calculation"
     },
@@ -225,6 +233,14 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     {
       pageKey: "ecovadisVsIntegritynext",
       href: "/de/ressourcen/ecovadis-und-integritynext-vergleich"
+    },
+    {
+      pageKey: "scope2LocationMarket",
+      href: "/de/ressourcen/scope-2-location-based-market-based"
+    },
+    {
+      pageKey: "esgFragebogenBeantworten",
+      href: "/de/ressourcen/esg-fragebogen-beantworten-antwortbeispiele"
     },
     {
       pageKey: "scope123EinfachErklaert",
@@ -369,6 +385,16 @@ const deResources: NavigationDirectory = {
           label: "EcoVadis und IntegrityNext im Vergleich",
           href: route("de", "ecovadisVsIntegritynext"),
           pageKey: "ecovadisVsIntegritynext"
+        },
+        {
+          label: "Scope 2: location- und market-based",
+          href: route("de", "scope2LocationMarket"),
+          pageKey: "scope2LocationMarket"
+        },
+        {
+          label: "ESG-Fragebogen beantworten",
+          href: route("de", "esgFragebogenBeantworten"),
+          pageKey: "esgFragebogenBeantworten"
         }
       ]
     },
@@ -524,6 +550,16 @@ const enResources: NavigationDirectory = {
           label: "EcoVadis vs IntegrityNext",
           href: route("en", "ecovadisVsIntegritynext"),
           pageKey: "ecovadisVsIntegritynext"
+        },
+        {
+          label: "Scope 2: location vs market",
+          href: route("en", "scope2LocationMarket"),
+          pageKey: "scope2LocationMarket"
+        },
+        {
+          label: "How to answer an ESG questionnaire",
+          href: route("en", "esgFragebogenBeantworten"),
+          pageKey: "esgFragebogenBeantworten"
         }
       ]
     },

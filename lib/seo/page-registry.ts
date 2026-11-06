@@ -88,7 +88,9 @@ export type PageKey =
   | "esgFragebogenChecklisteLieferanten"
   | "esgNachweiseCheckliste"
   | "scope12DatenerfassungsVorlage"
-  | "ecovadisVsIntegritynext";
+  | "ecovadisVsIntegritynext"
+  | "esgFragebogenBeantworten"
+  | "scope2LocationMarket";
 
 type LocaleRegistry = Partial<Record<PageKey, PageMetadataEntry>>;
 
@@ -289,6 +291,24 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "How EcoVadis and IntegrityNext differ for suppliers: what each asks you to do, which documents overlap and how to prepare once for both.",
       path: "/en/resources/ecovadis-vs-integritynext",
+      openGraphType: "article",
+      datePublished: "2026-11-06",
+      dateModified: "2026-11-06"
+    },
+    esgFragebogenBeantworten: {
+      title: "How to Answer an ESG Questionnaire: Examples | Evipace",
+      description:
+        "How suppliers answer ESG questionnaire questions: yes, partly, no or not applicable, with scope, period, evidence and gaps stated honestly.",
+      path: "/en/resources/how-to-answer-esg-questionnaire",
+      openGraphType: "article",
+      datePublished: "2026-11-06",
+      dateModified: "2026-11-06"
+    },
+    scope2LocationMarket: {
+      title: "Scope 2: Location-Based vs Market-Based | Evipace",
+      description:
+        "Location-based and market-based Scope 2 explained for manufacturers: what data each method needs, when both are reported and what to document.",
+      path: "/en/resources/scope-2-location-based-vs-market-based",
       openGraphType: "article",
       datePublished: "2026-11-06",
       dateModified: "2026-11-06"
@@ -493,6 +513,24 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       description:
         "EcoVadis oder IntegrityNext? Was jede Plattform von Lieferanten verlangt, welche Dokumente sich überschneiden und wie Sie sich einmal für beide vorbereiten.",
       path: "/de/ressourcen/ecovadis-und-integritynext-vergleich",
+      openGraphType: "article",
+      datePublished: "2026-11-06",
+      dateModified: "2026-11-06"
+    },
+    esgFragebogenBeantworten: {
+      title: "ESG-Fragebogen beantworten: Antwortbeispiele | Evipace",
+      description:
+        "ESG-Fragebogen beantworten: Ja, teilweise, Nein oder nicht zutreffend, mit Geltungsbereich, Zeitraum, Nachweis und offenen Lücken ehrlich benannt.",
+      path: "/de/ressourcen/esg-fragebogen-beantworten-antwortbeispiele",
+      openGraphType: "article",
+      datePublished: "2026-11-06",
+      dateModified: "2026-11-06"
+    },
+    scope2LocationMarket: {
+      title: "Scope 2: Location-based und market-based erklärt | Evipace",
+      description:
+        "Location-based und market-based Scope 2 erklärt: welche Daten jede Methode braucht, wann beide berichtet werden und was Sie dokumentieren.",
+      path: "/de/ressourcen/scope-2-location-based-market-based",
       openGraphType: "article",
       datePublished: "2026-11-06",
       dateModified: "2026-11-06"

@@ -76,7 +76,7 @@ test("the locale layout is the only site-chrome integration point", async () => 
 });
 
 test("every chrome route maps to a real route and the reachability registry", async () => {
-  assert.equal(routeEntries.length, 54);
+  assert.equal(routeEntries.length, 58);
   assert.equal(new Set(hrefs).size, hrefs.length);
 
   for (const entry of routeEntries) {
@@ -161,6 +161,8 @@ test("English navigation remains deliberately smaller and route-correct", () => 
     "/en/resources/ecovadis-documents-evidence",
     "/en/resources/integritynext-invitation-for-suppliers",
     "/en/resources/ecovadis-vs-integritynext",
+    "/en/resources/scope-2-location-based-vs-market-based",
+    "/en/resources/how-to-answer-esg-questionnaire",
     "/en/resources/scope-1-2-data-calculation",
     "/en/resources/scope-1-2-3-explained",
     "/en/resources/vsme-data-sustainability-report",

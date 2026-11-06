@@ -292,6 +292,20 @@ export function GermanResourceHub() {
             title="EcoVadis und IntegrityNext im Vergleich"
             type="PLATTFORM-LEITFADEN"
           />
+          <ResourceCard
+            cta="Methoden vergleichen"
+            description="Warum derselbe Stromverbrauch zwei Scope-2-Werte ergeben kann, welche Daten jede Methode braucht und was Sie festhalten."
+            href="/de/ressourcen/scope-2-location-based-market-based"
+            title="Scope 2: location-based und market-based"
+            type="METHODEN-LEITFADEN"
+          />
+          <ResourceCard
+            cta="Antworten mit Nachweis"
+            description="Was die Antworttypen bedeuten, was eine vollständige Antwort enthält und wie Sie typische Fragearten wahrheitsgemäß beantworten, mit benannten Lücken."
+            href="/de/ressourcen/esg-fragebogen-beantworten-antwortbeispiele"
+            title="ESG-Fragebogen beantworten: Antwortbeispiele"
+            type="LEITFADEN"
+          />
         </ResourceCards>
       </ResourceBand>
 

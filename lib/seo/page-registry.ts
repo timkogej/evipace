@@ -292,9 +292,9 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       path: "/de"
     },
     offers: {
-      title: "Zusammenarbeit mit Evipace | Request, Desk, Report",
+      title: "Zusammenarbeit mit Evipace | Einzelanfrage, Laufender Service, Bericht",
       description:
-        "Eine einzelne Kundenanfrage weiterleiten, einen laufenden Schreibtisch für wiederkehrende Anfragen einrichten oder einen freiwilligen VSME-Bericht vorbereiten. Umfang und Preis bestätigen wir nach der Prüfung, bevor wir beginnen.",
+        "Eine einzelne Kundenanfrage weiterleiten, einen laufenden Service für wiederkehrende Anfragen einrichten oder einen freiwilligen VSME-Bericht vorbereiten. Umfang und Preis bestätigen wir nach der Prüfung, bevor wir beginnen.",
       path: "/de/angebot"
     },
     about: {

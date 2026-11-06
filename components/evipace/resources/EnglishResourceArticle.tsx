@@ -290,7 +290,7 @@ export function EnglishResourceArticle({
         formLabel="Send the request"
         forwardLabel="Forward your request"
         note="Questionnaire - Excel - PDF - portal - customer email"
-        slogan="ESG work. Done right. Done faster."
+        slogan="Environmental and safety documentation, handled."
         title="Already have the customer request?"
       />
     </ResourceMain>

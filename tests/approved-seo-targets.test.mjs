@@ -63,14 +63,14 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
       enRegistry,
       'title: "ESG Customer Request Support for Suppliers | Evipace"',
       homeContentSource,
-      "We carry the paperwork. You approve.",
+      "Less paperwork. More production.",
       landingHomeSource
     ],
     [
       deRegistry,
       'title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"',
       homeContentSource,
-      "Wir tragen den Papierkram. Sie geben frei.",
+      "Weniger Papierkram. Mehr Produktion.",
       landingHomeSource
     ],
     [

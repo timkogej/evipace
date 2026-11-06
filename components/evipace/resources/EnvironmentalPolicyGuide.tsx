@@ -726,7 +726,7 @@ export function EnvironmentalPolicyGuide() {
           formHref={SEND_REQUEST_HREF}
           formLabel="Environmental-Policy-Anfrage senden"
           forwardLabel="Anfrage weiterleiten"
-          slogan="ESG work. Done right. Done faster."
+          slogan="Umwelt- und Sicherheitsdokumentation, erledigt."
           title="Eine gute Environmental Policy beginnt nicht mit Text. Sie beginnt mit dem tatsächlichen Unternehmen."
         />
     </ResourceMain>

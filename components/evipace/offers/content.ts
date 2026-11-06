@@ -1,5 +1,5 @@
 import type { HomeLocale } from "../home/content";
-import { BRAND_LINE } from "../home/content";
+import { BRAND_LINE, BRAND_LINE_DE } from "../home/content";
 
 /**
  * Offers page copy. No prices, deadlines, references or figures. The German
@@ -385,7 +385,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
       ]
     },
     cta: {
-      slogan: BRAND_LINE,
+      slogan: BRAND_LINE_DE,
       title: "Wartet eine Kundenanfrage auf Sie?",
       body: "Leiten Sie sie heute weiter. Sie prüfen und geben alles frei, bevor etwas versendet wird.",
       forward: "Anfrage weiterleiten",

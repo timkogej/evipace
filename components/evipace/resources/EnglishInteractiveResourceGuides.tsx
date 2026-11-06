@@ -81,7 +81,7 @@ function Bridge({
         formLabel={cta}
         forwardLabel="Forward your request"
         offers={serviceHref && serviceLabel ? { label: serviceLabel, href: serviceHref } : undefined}
-        slogan="ESG work. Done right. Done faster."
+        slogan="Environmental and safety documentation, handled."
         title="From tool to response."
       />
     </div>

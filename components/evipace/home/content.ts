@@ -87,14 +87,15 @@ export type HomeContent = {
  * (DE-REVIEW) except the hero eyebrow, title and body, which were supplied.
  */
 
-/** Brand line: stays English in every locale. */
-export const BRAND_LINE = "ESG work. Done right. Done faster.";
+/** Brand line, per locale. */
+export const BRAND_LINE = "Environmental and safety documentation, handled.";
+export const BRAND_LINE_DE = "Umwelt- und Sicherheitsdokumentation, erledigt.";
 
 export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     hero: {
       eyebrow: "Environmental and safety documentation for manufacturers",
-      title: "We carry the paperwork. You approve.",
+      title: "Less paperwork. More production.",
       body: "We prepare your reports, records and customer questionnaires. A person at Evipace reviews, you approve.",
       forward: "Send us a request",
       formLink: "Or use the request form",
@@ -304,7 +305,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   de: {
     hero: {
       eyebrow: "Umwelt- und Sicherheitsdokumentation für Produktionsunternehmen",
-      title: "Wir tragen den Papierkram. Sie geben frei.",
+      title: "Weniger Papierkram. Mehr Produktion.",
       body: "Wir bereiten Ihre Berichte, Nachweise und Kundenfragebögen vor. Eine Person bei Evipace prüft, Sie geben frei.",
       forward: "Anfrage senden",
       formLink: "Oder das Anfrageformular nutzen",
@@ -504,7 +505,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       ]
     },
     cta: {
-      slogan: BRAND_LINE,
+      slogan: BRAND_LINE_DE,
       title: "Wartet Dokumentation auf Sie?",
       body: "Senden Sie sie heute, und wir sagen Ihnen, was wir übernehmen können.",
       formLink: "Oder das Anfrageformular nutzen",

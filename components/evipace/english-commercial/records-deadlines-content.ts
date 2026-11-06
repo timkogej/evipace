@@ -23,7 +23,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
   eyebrow: "Records and deadlines",
   title: "Your records, kept current and on time.",
   intro: [
-    "Permits, certificates, measurement reports and evidence each have a date. We keep the register, watch the deadlines, prepare what is due and ask you to approve it. You stop chasing paperwork, and nothing is submitted without your approval."
+    "Certificates, policies, management-system documents and evidence each have a date. We keep the register, watch the deadlines and prepare what is due, so you stop chasing paperwork."
   ],
   primaryCta: "Hand over your records",
   secondaryCta: {
@@ -70,7 +70,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
     items: [
       {
         title: "A register of records",
-        body: "Permits, certificates, policies, measurement reports and evidence, each with an owner, a period and a status.",
+        body: "Certificates, policies, management-system documents and evidence, each with an owner, a period and a status.",
         icon: ClipboardCheck
       },
       {
@@ -80,7 +80,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
       },
       {
         title: "Preparation of what is due",
-        body: "Renewal documents, updated policies and periodic reports prepared from your data for your review.",
+        body: "Renewal documents and periodic reports prepared from your data for your review.",
         icon: FileText
       },
       {
@@ -104,9 +104,9 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
     title: "What you can send us to start",
     body: "Send what you already have. We list what is missing and ask only for that.",
     items: [
-      "Permits and certificates, as scans or files",
+      "Certificates and policies, as scans or files",
       "Management system documents, for example ISO 14001 or ISO 45001",
-      "Measurement and inspection reports",
+      "Existing reports and test certificates",
       "Invoices for energy and water",
       "Existing spreadsheets or calendars with dates",
       "Names of the people who own each topic"
@@ -141,7 +141,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
       "A register of your records",
       "A calendar of expiry, renewal and reporting dates",
       "Reminders before each date, to the right person",
-      "Prepared renewal documents and periodic reports for your approval",
+      "Renewal documents and periodic reports prepared from your data",
       "Evidence stored with the record it supports"
     ]
   },
@@ -210,7 +210,7 @@ export const recordsDeadlinesContent: CommercialServicePageContent = {
     {
       question: "Which records can you keep?",
       answer:
-        "Permits, certificates, policies, management system documents, measurement and inspection reports, and the evidence behind them. We agree the list with you at the start."
+        "Certificates, policies, management-system documents and the evidence behind them. We agree the list with you at the start."
     },
     {
       question: "Do you tell us which obligations apply to us?",
@@ -238,7 +238,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
   eyebrow: "Nachweise und Fristen",
   title: "Ihre Nachweise, aktuell und pünktlich.",
   intro: [
-    "Genehmigungen, Zertifikate, Messberichte und Nachweise haben jeweils ein Datum. Wir führen das Register, behalten die Fristen im Blick, bereiten vor, was ansteht, und bitten Sie um Freigabe. Sie müssen dem Papierkram nicht mehr hinterherlaufen, und ohne Ihre Freigabe wird nichts eingereicht."
+    "Zertifikate, Richtlinien, Dokumente des Managementsystems und Nachweise haben jeweils ein Datum. Wir führen das Register, behalten die Fristen im Blick und bereiten vor, was ansteht. Sie müssen dem Papierkram nicht mehr hinterherlaufen."
   ],
   primaryCta: "Nachweise übergeben",
   secondaryCta: {
@@ -285,7 +285,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
     items: [
       {
         title: "Ein Register der Nachweise",
-        body: "Genehmigungen, Zertifikate, Richtlinien, Messberichte und Belege, jeweils mit Verantwortlichem, Zeitraum und Status.",
+        body: "Zertifikate, Richtlinien, Dokumente des Managementsystems und Belege, jeweils mit Verantwortlichem, Zeitraum und Status.",
         icon: ClipboardCheck
       },
       {
@@ -295,7 +295,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
       },
       {
         title: "Vorbereitung dessen, was ansteht",
-        body: "Verlängerungsunterlagen, aktualisierte Richtlinien und regelmäßige Berichte, aus Ihren Daten zur Prüfung vorbereitet.",
+        body: "Verlängerungsunterlagen und regelmäßige Berichte, aus Ihren Daten zur Prüfung vorbereitet.",
         icon: FileText
       },
       {
@@ -319,9 +319,9 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
     title: "Was Sie uns zum Start senden können",
     body: "Senden Sie, was Sie bereits haben. Wir listen auf, was fehlt, und fragen nur danach.",
     items: [
-      "Genehmigungen und Zertifikate als Scans oder Dateien",
+      "Zertifikate und Richtlinien als Scans oder Dateien",
       "Dokumente des Managementsystems, zum Beispiel ISO 14001 oder ISO 45001",
-      "Mess- und Prüfberichte",
+      "Vorhandene Berichte und Prüfzeugnisse",
       "Rechnungen für Energie und Wasser",
       "Vorhandene Tabellen oder Kalender mit Terminen",
       "Namen der Personen, die jedes Thema verantworten"
@@ -356,7 +356,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
       "Ein Register Ihrer Nachweise",
       "Ein Kalender mit Ablauf-, Verlängerungs- und Berichtsterminen",
       "Erinnerungen vor jedem Termin an die richtige Person",
-      "Vorbereitete Verlängerungsunterlagen und Berichte zu Ihrer Freigabe",
+      "Vorbereitete Verlängerungsunterlagen und Berichte aus Ihren Daten",
       "Belege, gespeichert beim jeweiligen Nachweis"
     ]
   },
@@ -425,7 +425,7 @@ export const recordsDeadlinesContentDe: CommercialServicePageContent = {
     {
       question: "Welche Nachweise können Sie führen?",
       answer:
-        "Genehmigungen, Zertifikate, Richtlinien, Dokumente des Managementsystems, Mess- und Prüfberichte und die Belege dazu. Die Liste stimmen wir zu Beginn mit Ihnen ab."
+        "Zertifikate, Richtlinien, Dokumente des Managementsystems und die Belege dazu. Die Liste stimmen wir zu Beginn mit Ihnen ab."
     },
     {
       question: "Sagen Sie uns, welche Pflichten für uns gelten?",

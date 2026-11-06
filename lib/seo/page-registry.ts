@@ -144,7 +144,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     recordsDeadlines: {
       title: "Records and Deadlines for Manufacturers | Evipace",
       description:
-        "Evipace keeps a register of your records, watches expiry and renewal dates and prepares what is due. A person reviews it and you approve.",
+        "Evipace keeps a register of your certificates and documents, watches expiry and renewal dates and prepares what is due. A person at Evipace reviews it.",
       path: "/en/records-and-deadlines"
     },
     scope12Berechnung: {
@@ -349,7 +349,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     recordsDeadlines: {
       title: "Nachweise und Fristen für Hersteller | Evipace",
       description:
-        "Evipace führt ein Register Ihrer Nachweise, überwacht Ablauf- und Verlängerungstermine und bereitet vor, was ansteht. Eine Person prüft, Sie geben frei.",
+        "Evipace führt ein Register Ihrer Zertifikate und Nachweise, überwacht Ablauf- und Verlängerungstermine und bereitet vor, was ansteht. Eine Person bei Evipace prüft es.",
       path: "/de/nachweise-und-fristen"
     },
     scope12Berechnung: {

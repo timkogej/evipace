@@ -195,3 +195,19 @@ test("Organization and Service schema state only what the site shows", () => {
     assert.ok(!(field in service), field);
   }
 });
+
+test("llms.txt is generated from the registry and keeps the do-not-do list", () => {
+  const text = load("lib/seo/llms-txt.ts").buildLlmsTxt();
+  assert.ok(text.startsWith("# Evipace\n"));
+  for (const { entry } of entries) {
+    if (entry.path.endsWith("/privacy")) continue;
+    assert.ok(text.includes(`https://evipace.com${entry.path}`), entry.path);
+  }
+  assert.ok(!text.includes("/send-request"));
+  assert.match(text, /does not provide: Scope 3/);
+  assert.match(text, /service, not software/);
+  assert.doesNotMatch(text, /€|\bawards?\b|\brated\b/i);
+  const robots = load("app/robots.ts").default();
+  assert.equal(robots.rules.disallow, "/api/");
+  assert.equal(robots.sitemap, "https://evipace.com/sitemap.xml");
+});

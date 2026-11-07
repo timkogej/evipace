@@ -204,7 +204,7 @@ export const customerQuestionnaireReceivedContent: EnglishResourceArticleContent
       links: [
         {
           label: "Get help preparing this questionnaire",
-          href: "/en/esg-questionnaire-support"
+          href: "/en/esg-customer-requests"
         },
         { label: "Send the ESG questionnaire to Evipace", href: sendRequest },
         { label: "See how Evipace works", href: "/en/methodology" }
@@ -219,7 +219,7 @@ export const customerQuestionnaireReceivedContent: EnglishResourceArticleContent
     primaryLabel: "Send the questionnaire",
     primaryHref: sendRequest,
     secondaryLabel: "ESG questionnaire support",
-    secondaryHref: "/en/esg-questionnaire-support"
+    secondaryHref: "/en/esg-customer-requests"
   },
   faq: [
     {
@@ -618,7 +618,7 @@ export const esgEvidenceForSuppliersContent: EnglishResourceArticleContent = {
       links: [
         {
           label: "Get questionnaire support",
-          href: "/en/esg-questionnaire-support"
+          href: "/en/esg-customer-requests"
         },
         {
           label: "Use evidence when responding to a questionnaire",
@@ -635,7 +635,7 @@ export const esgEvidenceForSuppliersContent: EnglishResourceArticleContent = {
     primaryLabel: "Send the evidence request",
     primaryHref: sendRequest,
     secondaryLabel: "ESG questionnaire support",
-    secondaryHref: "/en/esg-questionnaire-support"
+    secondaryHref: "/en/esg-customer-requests"
   },
   faq: [
     {

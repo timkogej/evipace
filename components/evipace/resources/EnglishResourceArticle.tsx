@@ -5,6 +5,7 @@ import h from "../HomeLandingPage.module.css";
 import { ClosingCta } from "../home/ClosingCta";
 import { RevealOnView } from "../home/RevealOnView";
 import { Faq, Head } from "../service-landing/Blocks";
+import { articleUi as ui } from "./article-ui";
 import r from "./Resource.module.css";
 import {
   PillLink,
@@ -90,7 +91,13 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function ArticleSection({ section }: { section: EnglishArticleSection }) {
+function ArticleSection({
+  locale,
+  section
+}: {
+  locale: "en" | "de";
+  section: EnglishArticleSection;
+}) {
   return (
     <section
       aria-labelledby={`${section.id}-title`}
@@ -161,7 +168,7 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
             ))}
           </ul>
         ) : null}
-        {section.sources ? <SourceNote sources={section.sources} /> : null}
+        {section.sources ? <SourceNote locale={locale} sources={section.sources} /> : null}
         {section.download ? (
           <a className={r.download} download href={section.download.href}>
             {section.download.label}
@@ -184,22 +191,25 @@ function ArticleSection({ section }: { section: EnglishArticleSection }) {
 }
 
 export function EnglishResourceArticle({
-  content
+  content,
+  locale = "en"
 }: {
   content: EnglishResourceArticleContent;
+  locale?: "en" | "de";
 }) {
+  const t = ui[locale];
   return (
-    <ResourceMain locale="en">
+    <ResourceMain locale={locale}>
       <article>
         <ResourceHero
           current={content.title}
           eyebrow={content.eyebrow}
-          locale="en"
+          locale={locale}
           statement={content.deck}
           title={content.title}
           titleId="guide-title"
         >
-          <nav aria-label="On this page" className={h.jump}>
+          <nav aria-label={t.onThisPage} className={h.jump}>
             {content.nav.map(({ label, href }) => (
               <a className={h.jumpLink} href={href} key={href}>
                 {label}
@@ -207,21 +217,18 @@ export function EnglishResourceArticle({
             ))}
           </nav>
           <div className={r.method}>
-            <p>Evipace method</p>
-            <p>
-              {content.methodNote ??
-                "Customer request - scope - data owner - source - evidence - internal review."}
-            </p>
-            <Link href="/en/methodology">See methodology</Link>
+            <p>{t.method}</p>
+            <p>{content.methodNote ?? t.methodDefault}</p>
+            <Link href={t.methodologyHref}>{t.methodology}</Link>
           </div>
         </ResourceHero>
 
         <ResourceBand id="quick-answer" labelledBy="quick-answer-heading" tone="dark">
           <Head
             dark
-            eyebrow="Quick answer"
+            eyebrow={t.quickAnswer}
             id="quick-answer-heading"
-            title={content.quickAnswerTitle ?? "Start with the request, not the spreadsheet."}
+            title={content.quickAnswerTitle ?? t.quickDefault}
           >
             {content.summary.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -240,7 +247,7 @@ export function EnglishResourceArticle({
 
         <div className={h.shell}>
           {content.sections.map((section) => (
-            <ArticleSection key={section.id} section={section} />
+            <ArticleSection key={section.id} locale={locale} section={section} />
           ))}
         </div>
 
@@ -258,12 +265,12 @@ export function EnglishResourceArticle({
           </section>
         </RevealOnView>
 
-        <Faq eyebrow="FAQ" items={content.faq} title="Frequently asked questions" />
+        <Faq eyebrow={t.faq} items={content.faq} title={t.faqTitle} />
 
         {content.sources ? (
           <div className={h.shell}>
             <section aria-labelledby="sources-title" className={r.sources}>
-              <h2 id="sources-title">Sources and further reading</h2>
+              <h2 id="sources-title">{t.sources}</h2>
               <ul>
                 {content.sources.map((source) => (
                   <li key={source.href}>
@@ -279,19 +286,13 @@ export function EnglishResourceArticle({
       </article>
 
       <ClosingCta
-        body={
-          <p>
-            Send the questionnaire, customer email, spreadsheet or portal
-            export. We can map what is being asked, identify the internal
-            sources and prepare a response for your review.
-          </p>
-        }
-        formHref="/en/send-request"
-        formLabel="Send the request"
-        forwardLabel="Forward your request"
-        note="Questionnaire - Excel - PDF - portal - customer email"
-        slogan="ESG work. Done right. Done faster."
-        title="Already have the customer request?"
+        body={<p>{t.cta.body}</p>}
+        formHref={t.cta.formHref}
+        formLabel={t.cta.formLabel}
+        forwardLabel={t.cta.forwardLabel}
+        note={t.cta.note}
+        slogan={t.cta.slogan}
+        title={t.cta.title}
       />
     </ResourceMain>
   );

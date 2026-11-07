@@ -57,7 +57,7 @@ export function ImageSlot({
           role="img"
           style={{ zIndex: 0 }}
         >
-          <div className="flex items-center justify-between text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[rgba(21,21,21,0.48)]">
+          <div className="flex items-center justify-between text-[0.75rem] font-bold uppercase tracking-[0.16em] text-[rgba(21,21,21,0.48)]">
             <span>Missing image</span>
             <span>ESG / 2026</span>
           </div>
@@ -73,10 +73,10 @@ export function ImageSlot({
           <div className="transition-opacity duration-200">
             <div className="mb-3 h-px w-full bg-[rgba(21,21,21,0.14)]" />
             <div className="flex flex-wrap items-end justify-between gap-3">
-              <span className="font-mono text-[0.74rem] text-[rgba(21,21,21,0.58)]">
+              <span className="font-mono text-[0.75rem] text-[rgba(21,21,21,0.58)]">
                 {label}
               </span>
-              <span className="rounded-full border border-[rgba(21,21,21,0.12)] bg-white/60 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-[rgba(21,21,21,0.55)]">
+              <span className="rounded-full border border-[rgba(21,21,21,0.12)] bg-white/60 px-3 py-1 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[rgba(21,21,21,0.55)]">
                 Replace later
               </span>
             </div>

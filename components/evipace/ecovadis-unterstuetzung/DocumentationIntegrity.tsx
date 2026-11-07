@@ -24,12 +24,9 @@ export function DocumentationIntegrity() {
       <Checklist items={questions} />
       <Prose>
         <p>
-          Wenn eine Richtlinie oder andere Dokumentation tatsächlich als
-          Unternehmensinstrument benötigt wird, kann Evipace bei der
-          strukturierten Ausarbeitung unterstützen.
-        </p>
-        <p>
-          Wir erstellen jedoch keine rückdatierten, fingierten oder
+          Ob ein fehlendes Dokument entsteht und wie, entscheidet Ihr
+          Unternehmen. Evipace schreibt solche Dokumente nicht für Sie und
+          erstellt keine rückdatierten, fingierten oder
           ausschließlich für eine Bewertung konstruierten Nachweise.
         </p>
         <p>

@@ -187,7 +187,7 @@ test("German navigation and footer expose one current-aware hub destination", ()
 test("all fifteen resource pages link visible and structured breadcrumbs through the hub", async () => {
   const routeEntries = await readdir(resourceRoot, { withFileTypes: true });
   const articleDirectories = routeEntries.filter((entry) => entry.isDirectory());
-  assert.equal(articleDirectories.length, 15);
+  assert.equal(articleDirectories.length, 18); // 15 guide components plus three content-driven guides
 
   for (const directory of articleDirectories) {
     const route = await readFile(path.join(resourceRoot, directory.name, "page.tsx"), "utf8");

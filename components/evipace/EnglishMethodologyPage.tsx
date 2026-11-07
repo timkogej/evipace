@@ -41,9 +41,8 @@ const projectSteps = [
       "structuring an EcoVadis assessment",
       "preparing IntegrityNext information",
       "calculating Scope 1 and Scope 2 emissions",
-      "assessing relevant Scope 3 emissions where agreed",
       "preparing a voluntary sustainability report",
-      "drafting supporting policies and documentation"
+      "keeping records and deadlines current"
     ],
     closing:
       "We structure the work around the actual requirement rather than forcing every project into the same ESG package."
@@ -89,7 +88,6 @@ const projectSteps = [
       "emissions calculations",
       "evidence mapping",
       "report content",
-      "policy drafts",
       "structured data",
       "or gap lists"
     ]
@@ -148,29 +146,6 @@ const scopeTwoExamples = [
   "district cooling",
   "purchased steam",
   "and other relevant forms of acquired energy"
-];
-
-const scopeThreeExamples = [
-  "purchased goods and services",
-  "capital goods",
-  "fuel- and energy-related activities",
-  "transport and distribution",
-  "waste",
-  "business travel",
-  "employee commuting",
-  "leased assets",
-  "use or end-of-life treatment of sold products",
-  "and other relevant value-chain categories"
-];
-
-const scopeThreeDataTypes = [
-  "primary data",
-  "supplier-specific data",
-  "activity data",
-  "secondary data",
-  "spend-based approaches",
-  "proxies",
-  "and estimates"
 ];
 
 const factorSelectionItems = [
@@ -287,11 +262,9 @@ const deliverables = [
   "evidence mapping",
   "calculation workbooks or calculation basis",
   "Scope 1 and Scope 2 results",
-  "agreed Scope 3 analysis",
   "emissions-factor references",
   "documented assumptions",
   "outstanding questions and gap lists",
-  "policy or document drafts",
   "review-ready materials for internal approval"
 ];
 
@@ -476,7 +449,7 @@ export function EnglishMethodologyPage({
           heading="How we calculate greenhouse-gas emissions."
           id="emissions"
           image="emissions"
-          detailsLabel="Explore Scope 1, Scope 2 and Scope 3 calculations"
+          detailsLabel="Explore Scope 1 and Scope 2 calculations"
           intro={
             <Rise className={m.body}>
               <p>
@@ -576,37 +549,16 @@ export function EnglishMethodologyPage({
             >
               <p className={h.eyebrow}>Scope 3</p>
               <h3 className={m.h3}>
-                Other indirect emissions, where they are part of the
-                engagement.
+                Scope 3 is not part of our service.
               </h3>
               <p className={m.text}>
-                Where Scope 3 is part of the agreed engagement, we assess
-                relevant indirect emissions across the upstream and downstream
-                value chain.
+                Scope 3 covers other indirect emissions across the value
+                chain, and life-cycle assessments look at individual products.
+                Both are separate exercises with a much wider boundary and
+                different data. Evipace does not carry them out. Where a
+                customer request touches Scope 3, we say so and show what is
+                outside the calculation.
               </p>
-              <div className={m.pair}>
-                <div>
-                  <p className={m.label}>
-                    Potentially relevant areas
-                  </p>
-                  <CheckList items={scopeThreeExamples} />
-                </div>
-                <div>
-                  <p className={m.label}>
-                    Data quality
-                  </p>
-                  <p className={m.text}>
-                    Scope 3 data is often more heterogeneous than Scope 1 and
-                    Scope 2 data. It is therefore important to distinguish
-                    between these data types.
-                  </p>
-                  <CheckList items={scopeThreeDataTypes} />
-                  <p className={m.strong}>
-                    The weaker the underlying data, the more important it
-                    becomes to make that uncertainty visible.
-                  </p>
-                </div>
-              </div>
             </Rise>
           </div>
         </Section>
@@ -808,7 +760,7 @@ export function EnglishMethodologyPage({
 
         <Section
           eyebrow="Policies"
-          heading="How policies and company documents are drafted."
+          heading="How we handle policies and company documents."
           id="policies"
           collapsible
           tone="warm"
@@ -819,18 +771,18 @@ export function EnglishMethodologyPage({
                 Sometimes an ESG request reveals that a relevant company
                 practice exists but has not yet been formally documented.
               </p>
-              <p>In those situations, Evipace may prepare a draft.</p>
               <p>
-                The governing principle is simple: the content must reflect
-                the company&apos;s actual practices and actual decisions.
+                In those situations, Evipace records it as a gap. We do not
+                write the policy for you, and whether and how to document the
+                practice is your company&apos;s decision.
               </p>
               <p>
-                We do not create policies by inserting generic claims about
-                what a &ldquo;good company&rdquo; supposedly does.
+                Existing policies are matched to the question and checked for
+                scope, date and validity.
               </p>
               <p className={m.strong}>
-                A newly created document is also never presented as though it
-                had existed historically.
+                A newly created document is never presented as though it had
+                existed historically.
               </p>
             </Rise>
             <Rise
@@ -841,16 +793,15 @@ export function EnglishMethodologyPage({
                 The process is
               </p>
               <p className={m.statement}>
-                actual company practice → structured draft → internal review →
-                necessary corrections → explicit approval
+                existing document → check of scope, date and validity → gap if
+                missing → your decision
               </p>
               <p className={m.cardHeading}>
-                A draft is not yet a company policy.
+                A gap is not a policy.
               </p>
               <p className={m.text}>
-                It only becomes a valid company document once an authorised
-                person within the company has reviewed it, amended it where
-                necessary and explicitly approved or adopted it.
+                A missing policy stays visible as a gap until an authorised
+                person in your company decides how to address it.
               </p>
             </Rise>
           </div>

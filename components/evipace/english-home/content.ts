@@ -41,7 +41,7 @@ export const services = [
   {
     number: "02",
     title: "ESG questionnaires",
-    href: "/en/esg-questionnaire-support",
+    href: "/en/esg-customer-requests",
     body: "We prepare answers, supporting evidence and gaps for supplier assessments and questionnaires.",
     detail:
       "Including work connected to platforms such as EcoVadis and IntegrityNext, while remaining fully independent from those platforms."

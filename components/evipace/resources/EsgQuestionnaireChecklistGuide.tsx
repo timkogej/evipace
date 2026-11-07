@@ -301,7 +301,7 @@ export function EsgQuestionnaireChecklistGuide() {
 
           </div>
             <GuideCta
-              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-fragebogen-lieferanten">ESG-Fragebogen für Lieferanten</TextLink><TextLink href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen erhalten – was jetzt?</TextLink></>}
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-kundenanfragen">ESG-Fragebogen für Lieferanten</TextLink><TextLink href="/de/ressourcen/esg-fragebogen-vom-kunden-erhalten">ESG-Fragebogen erhalten – was jetzt?</TextLink></>}
               eyebrow="Ihr nächster Schritt"
               note={<><p>Fragebogen · Daten · Nachweise · Berechnungen · Review</p></>}
               title={<>Der Fragebogen ist länger als die Checkliste?</>}

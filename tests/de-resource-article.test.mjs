@@ -62,7 +62,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/ProblemIntro.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -87,7 +87,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/RequirementCategories.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -293,12 +293,12 @@ test("German resource has exact metadata, canonical path, sitemap discovery, and
   assert.ok(germanRegistry.includes("esgFragebogenVomKundenErhalten: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Fragebogen vom Kunden erhalten? So gehen Sie vor | Evipace"'
+      'title: "ESG-Fragebogen erhalten? So gehen Sie vor | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Ihr Kunde hat einen ESG-Fragebogen geschickt? Erfahren Sie, welche Daten Sie zuerst brauchen, wer im Unternehmen helfen kann und wie Sie Antworten und Nachweise strukturiert vorbereiten."'
+      'description: "ESG-Fragebogen vom Kunden erhalten? Welche Daten Sie zuerst brauchen, wer intern hilft und wie Sie Antworten und Nachweise vorbereiten."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${ARTICLE_PATH}"`));
@@ -404,7 +404,7 @@ test("resource preserves the practical guide, Answer Map, evidence integrity, an
 
 test("resource has all required internal destinations, CTA paths, and clean first-party sources", () => {
   const internalPaths = [
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/esg-kundenanfragen",
     "/de/scope-1-2-berechnung",
     "/de/ecovadis-unterstuetzung",
@@ -424,7 +424,7 @@ test("resource has all required internal destinations, CTA paths, and clean firs
   );
   assert.ok(
     articleSource.includes(
-      '<TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink>'
+      '<TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink>'
     )
   );
 
@@ -464,12 +464,12 @@ test("evidence guide has exact metadata, sitemap discovery, and English pairing"
   assert.ok(germanRegistry.includes("esgNachweiseLieferanten: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Nachweise für Lieferanten: Welche Dokumente zählen? | Evipace"'
+      'title: "ESG-Nachweise für Lieferanten: Welche zählen? | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Welche ESG-Nachweise brauchen Lieferanten wirklich? Erfahren Sie, welche Dokumente Aussagen belegen, worauf Kunden und Plattformen achten und wie Sie Ihre Nachweise strukturiert vorbereiten."'
+      'description: "Welche ESG-Nachweise brauchen Lieferanten? Welche Dokumente Aussagen belegen, worauf Kunden und Plattformen achten und wie Sie vorbereiten."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${EVIDENCE_ARTICLE_PATH}"`));
@@ -558,7 +558,7 @@ test("evidence guide preserves its evidence-first principles and complete practi
 
 test("evidence guide has required internal links, CTAs, and clean first-party source links", () => {
   const internalPaths = [
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
@@ -581,7 +581,7 @@ test("evidence guide has required internal links, CTAs, and clean first-party so
   );
   assert.ok(
     normalizeWhitespace(evidenceArticleSource).includes(
-      '<TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink>'
+      '<TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink>'
     )
   );
 
@@ -618,12 +618,12 @@ test("EcoVadis documents guide has exact metadata, sitemap discovery, and Englis
   assert.ok(germanRegistry.includes("ecovadisDokumenteNachweise: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "EcoVadis-Dokumente und Nachweise: Was zählt als Beleg? | Evipace"'
+      'title: "EcoVadis-Dokumente und Nachweise: Was zählt? | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Welche Dokumente zählen bei EcoVadis als Nachweis? Erfahren Sie, welche Belege relevant sind, wie das 55-Dokumente-Limit funktioniert und welche Fehler Sie vermeiden sollten."'
+      'description: "Welche Dokumente zählen bei EcoVadis als Nachweis? Relevante Belege, das 55-Dokumente-Limit und typische Fehler, die Sie vermeiden sollten."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${ECOVADIS_DOCUMENTS_PATH}"`));
@@ -735,7 +735,7 @@ test("EcoVadis documents guide has the required links, CTAs, independence langua
     "/de/ecovadis-unterstuetzung",
     "/de/ressourcen/esg-nachweise-lieferanten",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/scope-1-2-berechnung",
     "/de/methodology"
   ]) {
@@ -800,12 +800,12 @@ test("IntegrityNext invitation guide has exact metadata, sitemap discovery, and 
   assert.ok(germanRegistry.includes("integrityNextEinladungLieferanten: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "IntegrityNext für Lieferanten: Einladung erhalten – was jetzt? | Evipace"'
+      'title: "IntegrityNext-Einladung erhalten: Was jetzt? | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Sie wurden von einem Kunden zu IntegrityNext eingeladen? Erfahren Sie, wie das Assessment abläuft, welche Daten und Zertifikate Sie brauchen und was Nachbesserungsbedarf bedeutet."'
+      'description: "Von einem Kunden zu IntegrityNext eingeladen? Wie das Assessment abläuft, welche Daten und Zertifikate Sie brauchen und was Nachbesserung bedeutet."'
     )
   );
   assert.ok(
@@ -925,7 +925,7 @@ test("IntegrityNext invitation guide has required links, CTAs, independence lang
     "/de/ressourcen/esg-nachweise-lieferanten",
     "/de/ressourcen/ecovadis-dokumente-nachweise",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/scope-1-2-berechnung",
     "/de/methodology"
   ]) {
@@ -1014,7 +1014,7 @@ test("Scope 1 and Scope 2 data guide has exact metadata, sitemap discovery, and 
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Welche Daten brauchen Sie für Scope 1 und Scope 2? Von Gas, Kraftstoffen und Kältemitteln bis Strom und Fernwärme – praktische Checkliste für die CO₂-Berechnung."'
+      'description: "Welche Daten brauchen Sie für Scope 1 und 2? Von Gas, Kraftstoffen und Kältemitteln bis Strom und Fernwärme: Checkliste für die CO₂-Berechnung."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${SCOPE12_DATA_PATH}"`));
@@ -1169,12 +1169,12 @@ test("VSME data guide has exact metadata, sitemap discovery, and English pairing
   assert.ok(germanRegistry.includes("vsmeDatenNachhaltigkeitsbericht: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "VSME: Welche Daten braucht ein Nachhaltigkeitsbericht? | Evipace"'
+      'title: "VSME-Bericht: Welche Daten braucht man? | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Welche Daten brauchen Sie für einen VSME-Nachhaltigkeitsbericht? Praktischer Überblick zu Energie, Emissionen, Wasser, Abfall, Mitarbeitenden, Policies und weiteren VSME-Angaben."'
+      'description: "Welche Daten brauchen Sie für einen VSME-Bericht? Überblick zu Energie, Emissionen, Wasser, Abfall, Mitarbeitenden, Policies und weiteren Angaben."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${VSME_DATA_PATH}"`));
@@ -1382,7 +1382,7 @@ test("ESG data-owner guide has exact metadata, sitemap discovery, and English pa
   assert.ok(germanRegistry.includes("esgDatenVerantwortlicheAbteilungen: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "ESG-Daten vom Kunden angefragt: Wer liefert welche Daten? | Evipace"'
+      'title: "ESG-Daten angefragt: Wer liefert welche Daten? | Evipace"'
     )
   );
   assert.ok(
@@ -1644,12 +1644,12 @@ test("Scope 1/2/3 guide has exact metadata, sitemap discovery, and English pairi
   assert.ok(germanRegistry.includes("scope123EinfachErklaert: {"));
   assert.ok(
     germanRegistry.includes(
-      'title: "Scope 1, 2 und 3 einfach erklärt: Unterschiede & Beispiele | Evipace"'
+      'title: "Scope 1, 2 und 3 einfach erklärt | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Was ist der Unterschied zwischen Scope 1, 2 und 3? Einfache Erklärung mit konkreten Beispielen für produzierende Unternehmen und Überblick über die 15 Scope-3-Kategorien."'
+      'description: "Unterschied zwischen Scope 1, 2 und 3 einfach erklärt, mit Beispielen für produzierende Unternehmen und Überblick über die 15 Scope-3-Kategorien."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${SCOPE123_PATH}"`));
@@ -2125,7 +2125,7 @@ test("checklist guide contains the workflow, final gate, warnings, exact CTAs, F
 
   for (const path of [
     "/de/send-request",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",
     "/de/ressourcen/esg-daten-verantwortliche-abteilungen",
     "/de/ressourcen/esg-nachweise-lieferanten",

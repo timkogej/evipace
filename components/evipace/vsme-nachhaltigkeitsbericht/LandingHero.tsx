@@ -11,9 +11,9 @@ export function LandingHero() {
       }}
       breadcrumb="VSME-Nachhaltigkeitsbericht"
       eyebrow="VSME-Nachhaltigkeitsbericht"
-      lead="Sie liefern die vorhandenen Unternehmensdaten und Unterlagen. Wir strukturieren die relevanten Nachhaltigkeitsinformationen, bereiten Kennzahlen und Inhalte auf und führen alles zu einem nachvollziehbaren Bericht nach dem aktuellen freiwilligen europäischen Berichtsrahmen zusammen."
+      lead="Sie liefern die vorhandenen Unternehmensdaten und Unterlagen. Wir strukturieren die relevanten Nachhaltigkeitsinformationen, bereiten Kennzahlen und Inhalte auf und führen alles zu einem nachvollziehbaren Bericht nach dem aktuellen freiwilligen europäischen Berichtsrahmen zusammen. Eine Person bei Evipace prüft den Entwurf, bevor er zu Ihnen kommt."
       note="Daten · Kennzahlen · Dokumentation · Bericht"
-      title="VSME-Nachhaltigkeitsbericht erstellen - ohne daraus ein monatelanges Projekt zu machen."
+      title="VSME-Nachhaltigkeitsbericht erstellen: Wir bereiten ihn aus Ihren Daten vor."
     />
   );
 }

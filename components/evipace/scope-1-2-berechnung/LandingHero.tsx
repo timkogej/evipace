@@ -11,9 +11,9 @@ export function LandingHero() {
       }}
       breadcrumb="Scope 1 & 2"
       eyebrow="Scope 1 & 2"
-      lead="Sie senden uns Stromrechnungen, Brennstoffverbräuche, Fuhrparkdaten und weitere relevante Unterlagen für die CO₂-Bilanz für Unternehmen. Wir strukturieren die Emissionsquellen, bereiten die Berechnung auf und dokumentieren nachvollziehbar, wie Ihre Scope-1- und Scope-2-Werte entstanden sind."
+      lead="Sie senden uns Stromrechnungen, Brennstoffverbräuche, Fuhrparkdaten und weitere relevante Unterlagen für die CO₂-Bilanz für Unternehmen. Wir strukturieren die Emissionsquellen und bereiten die Berechnung nachvollziehbar dokumentiert auf. Eine Person bei Evipace prüft sie, und im nächsten Jahr wiederholen wir sie aus denselben Unterlagen."
       note="Energie · Brennstoffe · Fuhrpark · Kältemittel · CO₂e"
-      title="CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 nachvollziehbar berechnen."
+      title="CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 berechnen wir aus Ihren Unterlagen."
     />
   );
 }

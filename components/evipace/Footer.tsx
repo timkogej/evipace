@@ -26,7 +26,7 @@ export function Footer({ locale }: FooterProps) {
   }
 
   return (
-    <footer className="site-footer border-t border-[rgba(21,21,21,0.1)] bg-[var(--warm)] pb-8 pt-16 text-ink">
+    <footer className="site-footer border-t border-[rgba(21,21,21,0.1)] bg-[#f5f5f5] pb-8 pt-16 text-ink">
       <div className="site-shell">
         <div className="grid gap-12 border-b border-[rgba(21,21,21,0.12)] pb-12 xl:grid-cols-[0.75fr_1.55fr] xl:gap-16">
           <div>
@@ -37,8 +37,10 @@ export function Footer({ locale }: FooterProps) {
             >
               <BrandLogo variant="footer" />
             </Link>
-            <p className="mt-5 text-lg font-semibold text-[rgba(21,21,21,0.66)]">
-              ESG work. Done right. Done faster.
+            <p className="mt-5 max-w-sm text-lg font-semibold leading-snug text-[rgba(21,21,21,0.66)]">
+              {locale === "de"
+                ? "Wir übernehmen ESG-Dokumentation für Hersteller und Lieferanten."
+                : "We take over ESG documentation for manufacturers."}
             </p>
             <Link
               aria-current={
@@ -46,7 +48,7 @@ export function Footer({ locale }: FooterProps) {
                   ? "page"
                   : undefined
               }
-              className="group mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#e96500] hover:bg-[#e96500]"
+              className="group mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#c25000] bg-[#c25000] px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#b44d00] hover:bg-[#b44d00]"
               href={navigation.primaryAction.href}
             >
               <span>{navigation.primaryAction.label}</span>
@@ -66,7 +68,7 @@ export function Footer({ locale }: FooterProps) {
           >
             {navigation.footerColumns.map((column) => (
               <section key={column.title}>
-                <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-orange">
+                <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-[#b44d00]">
                   {column.title}
                 </h2>
                 <ul className="mt-5 grid gap-3">
@@ -116,7 +118,7 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 pt-7 text-sm font-semibold text-[rgba(21,21,21,0.5)] sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-5 pt-7 text-sm font-semibold text-[rgba(21,21,21,0.72)] sm:flex-row sm:items-start sm:justify-between">
           <p>&copy; Evipace</p>
           <div>
             <p className="sr-only">{navigation.labels.language}</p>

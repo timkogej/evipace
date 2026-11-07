@@ -41,9 +41,8 @@ const projectSteps = [
       "ein EcoVadis-Assessment strukturieren",
       "IntegrityNext-Angaben vorbereiten",
       "Scope 1 und Scope 2 berechnen",
-      "relevante Scope-3-Emissionen untersuchen",
       "einen freiwilligen Nachhaltigkeitsbericht erstellen",
-      "Richtlinien oder unterstützende Dokumentation vorbereiten"
+      "Nachweise und Fristen aktuell halten"
     ],
     closing:
       "Wir orientieren die Arbeit an der konkreten Aufgabe – nicht an einem pauschalen ESG-Paket."
@@ -89,7 +88,6 @@ const projectSteps = [
       "Emissionsberechnungen",
       "Evidence Mapping",
       "Berichtsinhalte",
-      "Richtlinienentwürfe",
       "Datenübersichten",
       "Gap-Listen"
     ]
@@ -148,29 +146,6 @@ const scopeTwoExamples = [
   "Fernkälte",
   "extern erzeugter Dampf",
   "weitere relevante eingekaufte Energieformen"
-];
-
-const scopeThreeExamples = [
-  "eingekaufte Waren und Dienstleistungen",
-  "Kapitalgüter",
-  "vorgelagerte Energieemissionen",
-  "Transport und Distribution",
-  "Abfall",
-  "Geschäftsreisen",
-  "Pendelverkehr",
-  "gemietete Vermögenswerte",
-  "Nutzung oder Entsorgung verkaufter Produkte",
-  "weitere relevante Wertschöpfungskettenkategorien"
-];
-
-const scopeThreeDataTypes = [
-  "Primärdaten",
-  "lieferantenspezifischen Daten",
-  "Aktivitätsdaten",
-  "Sekundärdaten",
-  "Ausgaben-basierten Ansätzen",
-  "Proxies",
-  "und Schätzungen"
 ];
 
 const factorSelectionItems = [
@@ -286,11 +261,10 @@ const deliverables = [
   "strukturierte ESG-Daten",
   "Evidence Mapping",
   "Berechnungsgrundlage",
-  "Scope-1-, Scope-2- oder vereinbarte Scope-3-Auswertungen",
+  "Scope-1- und Scope-2-Auswertungen",
   "verwendete Emissionsfaktor-Referenzen",
   "dokumentierte Annahmen",
   "offene Punkte und Datenlücken",
-  "Richtlinien- oder Dokumententwürfe",
   "review-ready Unterlagen für die interne Freigabe"
 ];
 
@@ -478,7 +452,7 @@ export function GermanMethodologyPage({
           heading="Wie wir Treibhausgasemissionen berechnen."
           id="emissionen"
           image="emissions"
-          detailsLabel="Berechnungen für Scope 1, Scope 2 und Scope 3 ansehen"
+          detailsLabel="Berechnungen für Scope 1 und Scope 2 ansehen"
           intro={
             <Rise className={m.body}>
               <p>
@@ -580,36 +554,16 @@ export function GermanMethodologyPage({
             >
               <p className={h.eyebrow}>Scope 3</p>
               <h3 className={m.h3}>
-                Weitere indirekte Emissionen, wenn sie Teil des Auftrags sind.
+                Scope 3 gehört nicht zu unserer Leistung.
               </h3>
               <p className={m.text}>
-                Wenn Scope 3 Teil des vereinbarten Auftrags ist, betrachten wir
-                relevante weitere indirekte Emissionen entlang der vor- und
-                nachgelagerten Wertschöpfungskette.
+                Scope 3 umfasst weitere indirekte Emissionen entlang der
+                Wertschöpfungskette, Ökobilanzen betrachten einzelne Produkte.
+                Beides sind eigene Vorhaben mit deutlich weiterer Systemgrenze
+                und anderen Daten. Evipace führt sie nicht durch. Berührt eine
+                Kundenanfrage Scope 3, sagen wir das und zeigen, was außerhalb
+                der Berechnung liegt.
               </p>
-              <div className={m.pair}>
-                <div>
-                  <p className={m.label}>
-                    Mögliche Kategorien
-                  </p>
-                  <CheckList items={scopeThreeExamples} />
-                </div>
-                <div>
-                  <p className={m.label}>
-                    Datenqualität
-                  </p>
-                  <p className={m.text}>
-                    Bei Scope 3 ist die Datenlage häufig heterogener als bei
-                    Scope 1 und Scope 2. Deshalb ist besonders wichtig, zwischen
-                    diesen Datentypen zu unterscheiden.
-                  </p>
-                  <CheckList items={scopeThreeDataTypes} />
-                  <p className={m.strong}>
-                    Je unsicherer eine Datengrundlage ist, desto wichtiger ist
-                    es, diese Unsicherheit sichtbar zu machen.
-                  </p>
-                </div>
-              </div>
             </Rise>
           </div>
         </Section>
@@ -819,7 +773,7 @@ export function GermanMethodologyPage({
 
         <Section
           eyebrow="Richtlinien"
-          heading="Wie Richtlinien und Unternehmensdokumente entstehen."
+          heading="Wie wir mit Richtlinien und Unternehmensdokumenten umgehen."
           id="richtlinien"
           collapsible
           tone="warm"
@@ -830,19 +784,18 @@ export function GermanMethodologyPage({
                 Manchmal zeigt eine ESG-Anfrage, dass eine relevante Richtlinie
                 oder interne Dokumentation noch nicht formalisiert wurde.
               </p>
-              <p>Evipace kann in solchen Fällen einen Entwurf vorbereiten.</p>
               <p>
-                Dabei gilt ein klares Prinzip: Der Inhalt muss auf der
-                tatsächlichen Praxis und den tatsächlichen Entscheidungen des
-                Unternehmens beruhen.
+                Evipace hält das in solchen Fällen als Lücke fest. Wir
+                schreiben die Richtlinie nicht für Sie, und ob und wie die
+                Praxis dokumentiert wird, entscheidet Ihr Unternehmen.
               </p>
               <p>
-                Wir erstellen deshalb keine Richtlinie aus allgemeinen
-                Behauptungen darüber, was ein „gutes Unternehmen“ angeblich tut.
+                Vorhandene Richtlinien werden der Frage zugeordnet und auf
+                Geltungsbereich, Datum und Gültigkeit geprüft.
               </p>
               <p className={m.strong}>
-                Ein neu erstelltes Dokument wird außerdem nicht so dargestellt,
-                als hätte es bereits in der Vergangenheit bestanden.
+                Ein neu erstelltes Dokument wird nicht so dargestellt, als hätte
+                es bereits in der Vergangenheit bestanden.
               </p>
             </Rise>
             <Rise
@@ -853,16 +806,16 @@ export function GermanMethodologyPage({
                 Der Prozess ist
               </p>
               <p className={m.statement}>
-                reale Unternehmenspraxis → strukturierter Entwurf → interne
-                Prüfung → notwendige Korrekturen → ausdrückliche Freigabe
+                vorhandenes Dokument → Prüfung von Geltungsbereich, Datum und
+                Gültigkeit → Lücke, wenn es fehlt → Ihre Entscheidung
               </p>
               <p className={m.cardHeading}>
-                Ein Entwurf ist noch keine Unternehmensrichtlinie.
+                Eine Lücke ist noch keine Richtlinie.
               </p>
               <p className={m.text}>
-                Er wird erst dann zu einem gültigen internen Dokument des
-                Unternehmens, wenn eine dazu befugte Person ihn geprüft,
-                gegebenenfalls angepasst und ausdrücklich angenommen hat.
+                Eine fehlende Richtlinie bleibt als Lücke sichtbar, bis eine
+                dazu befugte Person in Ihrem Unternehmen entscheidet, wie damit
+                umgegangen wird.
               </p>
             </Rise>
           </div>

@@ -7,7 +7,7 @@
   max-width: 34rem;
   margin: var(--ev-s-5) 0 0;
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.4rem, 2.4vw, 2rem);
   line-height: 1.25;
   text-wrap: balance;
@@ -26,7 +26,7 @@
   display: block;
   margin-bottom: var(--ev-s-1);
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -54,7 +54,7 @@
 .mottoText {
   margin-top: var(--ev-s-2) !important;
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   line-height: 1.3;
   overflow-wrap: break-word;
@@ -104,7 +104,7 @@
 .cardType {
   margin: 0;
   color: var(--ev-orange-700);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -112,7 +112,7 @@
 
 .card h3 {
   margin: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.35rem, 1.9vw, 1.6rem);
   font-weight: 400;
   line-height: 1.2;
@@ -192,7 +192,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   color: var(--ev-white);
   font-size: 0.85rem;
   font-weight: 700;
@@ -212,7 +212,7 @@
   background: var(--ev-orange-100);
   padding: 0.2rem 0.65rem;
   color: var(--ev-orange-800);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -247,7 +247,7 @@
 }
 
 .note h3 {
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.3rem, 2vw, 1.6rem);
   font-weight: 400;
   line-height: 1.25;
@@ -283,7 +283,7 @@
 .tool h3 {
   margin: var(--ev-s-3) 0 0;
   color: var(--ev-white);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.5rem, 2.2vw, 1.9rem);
   font-weight: 400;
   line-height: 1.2;
@@ -303,7 +303,7 @@
 
 .toolFlow {
   color: var(--ev-white) !important;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.1rem, 1.6vw, 1.3rem) !important;
   line-height: 1.4 !important;
   overflow-wrap: break-word;
@@ -372,7 +372,7 @@
 
 .flow span {
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
@@ -459,7 +459,7 @@
 .articleHead h2 {
   max-width: 24ch;
   margin: var(--ev-s-4) 0 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.015em;
@@ -525,14 +525,14 @@
 .principleLabel {
   margin-bottom: var(--ev-s-3) !important;
   color: var(--ev-orange-500);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .principleText {
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.4rem, 2.6vw, 2rem);
   line-height: 1.2;
 }
@@ -595,7 +595,7 @@
 
 .matrixCards dt {
   color: var(--ev-orange-700);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -637,7 +637,7 @@
 
 .matrixTable thead th {
   color: var(--ev-ink-2);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -693,7 +693,7 @@
 .inlineCta h2 {
   max-width: 24ch;
   margin: var(--ev-s-3) 0 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.7rem, 2.8vw, 2.4rem);
   font-weight: 400;
   line-height: 1.15;
@@ -764,7 +764,7 @@
 .method p:first-child {
   margin-bottom: var(--ev-s-1);
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -852,7 +852,7 @@
   max-width: 36rem;
   margin: var(--ev-s-6) auto 0;
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.3rem, 2.2vw, 1.75rem);
   line-height: 1.3;
   text-align: center;
@@ -935,7 +935,7 @@
 
 .qualifier .qualifierLabel {
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -944,7 +944,7 @@
 .qualifier .qualifierTitle {
   margin: var(--ev-s-2) 0 var(--ev-s-3);
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.35rem, 2vw, 1.65rem);
   line-height: 1.2;
 }
@@ -954,7 +954,7 @@
   border-top: 1px solid var(--ev-line);
   padding-top: var(--ev-s-3);
   color: var(--ev-muted);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
@@ -973,7 +973,7 @@
 .metaLabel {
   margin: 0 0 var(--ev-s-3);
   color: var(--ev-orange-700);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1075,7 +1075,7 @@
 .quote {
   margin: var(--ev-s-3) 0 0;
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.2rem, 1.8vw, 1.45rem);
   line-height: 1.35;
 }
@@ -1083,7 +1083,7 @@
 .cardQuote {
   margin-top: var(--ev-s-4) !important;
   color: var(--ev-charcoal) !important;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.2rem !important;
   line-height: 1.35 !important;
 }
@@ -1098,7 +1098,7 @@
 
 .panelTitle {
   margin: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
 }
@@ -1230,7 +1230,7 @@
 }
 
 .skin :global(.font-display) {
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
 }
 

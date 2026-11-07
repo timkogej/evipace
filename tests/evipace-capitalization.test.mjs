@@ -105,7 +105,7 @@ test("sentence-initial occurrences are capitalised in English copy", () => {
     ["enMethod", "Evipace is an independent service provider"],
     ["enMethod", "Evipace is responsible for"],
     ["commercial", '"Evipace does the execution work behind the response: reading the requirement, finding the right data and preparing a clear output for company confirmation."'],
-    ["registry", '"Evipace prepares a documented corporate carbon footprint']
+    ["registry", '"Evipace calculates your corporate carbon footprint']
   ];
   for (const [key, copy] of required) {
     assert.ok(source[key].includes(copy), `${key}: ${copy}`);
@@ -122,7 +122,7 @@ test("sentence-initial occurrences are capitalised in German copy", () => {
     ["deHome", "Evipace beginnt an einer anderen Stelle."],
     ["deMethod", "Evipace ist ein unabhängiger Dienstleister"],
     ["deMethod", "Evipace übernimmt"],
-    ["registry", '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung']
+    ["registry", '"Evipace unterstützt produzierende Unternehmen bei ESG-Anforderungen']
   ];
   for (const [key, copy] of required) {
     assert.ok(source[key].includes(copy), `${key}: ${copy}`);
@@ -162,7 +162,7 @@ test("headings, eyebrows and titles carry the brand capitalisation", () => {
     // read it.
     [
       "registry",
-      'title: "ESG Customer Request Support for Suppliers | Evipace"'
+      'title: "ESG Documentation for Manufacturers & Suppliers | Evipace"'
     ]
   ];
   for (const [key, copy] of required) {

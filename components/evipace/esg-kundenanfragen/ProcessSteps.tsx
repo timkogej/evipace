@@ -7,36 +7,31 @@ const SEND_REQUEST_HREF = "/de/send-request";
 const steps = [
   {
     number: "01",
-    title: "Anfrage senden",
-    body: "Sie senden uns die E-Mail, Datei, Liste oder andere Anforderung Ihres Kunden. Sie müssen die Anfrage vorher nicht selbst strukturieren.",
+    title: "Sie senden die Anfrage",
+    body: "Die E-Mail, Datei, Liste oder Plattform-Einladung Ihres Kunden, so wie sie bei Ihnen eingegangen ist. Sie müssen nichts vorher ausfüllen.",
     cta: true
   },
   {
     number: "02",
-    title: "Anforderungen strukturieren",
-    body: "Wir prüfen, welche Informationen, Kennzahlen, Dokumente und Nachweise tatsächlich verlangt werden. Aus einer unübersichtlichen Kundenanforderung entsteht eine klare Liste konkreter Aufgaben."
+    title: "Wir bereiten die Antworten vor",
+    body: "Fragen werden Ihren Daten und Nachweisen zugeordnet, Kennzahlen werden berechnet und Lücken aufgelistet statt erfunden."
   },
   {
     number: "03",
-    title: "Daten und Dokumente zuordnen",
-    body: "Vorhandene Informationen werden den jeweiligen Anforderungen zugeordnet. Dabei wird sichtbar, welche Antworten bereits auf Basis vorhandener Unterlagen vorbereitet werden können."
+    title: "Eine Person prüft",
+    body: "Eine Person bei Evipace prüft die Antwort und fragt Sie nur nach dem, was fehlt."
   },
   {
     number: "04",
-    title: "Berechnungen und offene Punkte klären",
-    body: "Wenn Kennzahlen berechnet werden müssen, prüfen wir, welche Ausgangsdaten vorhanden sind. Fehlende Informationen oder notwendige interne Bestätigungen werden klar gekennzeichnet."
-  },
-  {
-    number: "05",
-    title: "Antwort vorbereiten",
-    body: "Sie erhalten einen strukturierten Output für Ihre Prüfung und weitere Verwendung gegenüber dem Kunden."
+    title: "Sie prüfen und senden",
+    body: "Sie bestätigen die Unternehmensangaben in Ihrem Evipace-Portal und senden die Antwort selbst an Ihren Kunden."
   }
 ];
 
 export function ProcessSteps() {
   return (
     <Band id="ablauf">
-      <Head eyebrow="Ablauf" title="So bearbeiten wir eine ESG-Kundenanfrage" />
+      <Head eyebrow="Ablauf" title="So wird aus der Kundenanfrage eine fertige Antwort" />
       <Steps
         items={steps.map((step) => ({
           ...step,

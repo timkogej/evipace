@@ -81,7 +81,7 @@ function Bridge({
         formLabel={cta}
         forwardLabel="Forward your request"
         offers={serviceHref && serviceLabel ? { label: serviceLabel, href: serviceHref } : undefined}
-        slogan="ESG work. Done right. Done faster."
+        slogan="ESG documentation, handled."
         title="From tool to response."
       />
     </div>
@@ -104,7 +104,7 @@ export function EnglishQuestionnaireChecklistGuide() {
       <Bridge
         body="Already have the questionnaire? Send us the original request, spreadsheet, portal export or customer email. We can help identify required data, source owners, evidence and real gaps for internal review."
         cta="Send the questionnaire"
-        serviceHref="/en/esg-questionnaire-support"
+        serviceHref="/en/esg-customer-requests"
         serviceLabel="ESG questionnaire support"
       />
     </ResourceMain>
@@ -127,7 +127,7 @@ export function EnglishEvidenceReadinessGuide() {
       <Bridge
         body="Working through a customer ESG request and unsure whether your evidence supports the answer? Send us the request and the evidence list you are considering."
         cta="Send the ESG request"
-        serviceHref="/en/esg-questionnaire-support"
+        serviceHref="/en/esg-customer-requests"
         serviceLabel="Get questionnaire support"
       />
     </ResourceMain>

@@ -76,7 +76,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/ProblemIntro.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -120,7 +120,7 @@ test("reusable data resource has exact German SEO metadata and English pairing",
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "ESG-Daten nicht für jeden Kunden neu zusammensuchen: So bauen Lieferanten eine wiederverwendbare Datengrundlage für Fragebögen, Nachweise, VSME und weitere ESG-Anfragen auf."'
+      'description: "ESG-Daten nicht für jeden Kunden neu suchen: So bauen Sie eine wiederverwendbare Datengrundlage für Fragebögen, Nachweise und VSME auf."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));
@@ -248,7 +248,7 @@ test("reusable data guide links required internal destinations", () => {
   const requiredPaths = [
     "/de/ressourcen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/ressourcen/welche-esg-daten-kunden-lieferanten",

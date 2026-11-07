@@ -122,14 +122,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   color: var(--ev-white);
   content: counter(next);
   font-size: 0.8rem;
   font-weight: 700;
 }
 
-.next h3 {
+.next h2 {
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
@@ -178,7 +178,7 @@
 
 .price {
   margin: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.3rem;
   line-height: 1.3;
 }
@@ -374,6 +374,21 @@ textarea.input {
   font-weight: 700;
 }
 
+.dropTouch {
+  display: none;
+}
+
+/* Touch screens: files are picked, not dragged. */
+@media (hover: none) and (pointer: coarse) {
+  .dropPointer {
+    display: none;
+  }
+
+  .dropTouch {
+    display: inline;
+  }
+}
+
 .dropHint {
   color: var(--ev-ink-2);
   font-size: 0.85rem;
@@ -512,9 +527,9 @@ textarea.input {
   justify-content: center;
   gap: var(--ev-s-3);
   align-self: flex-start;
-  border: 1px solid var(--ev-orange-500);
+  border: 1px solid var(--ev-orange-action);
   border-radius: 999px;
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   padding: 0.3rem 0.3rem 0.3rem 1.3rem;
   color: var(--ev-white);
   cursor: pointer;
@@ -525,8 +540,8 @@ textarea.input {
 }
 
 .submit:hover {
-  border-color: var(--ev-orange-600);
-  background: var(--ev-orange-600);
+  border-color: var(--ev-orange-700);
+  background: var(--ev-orange-700);
 }
 
 .submit:disabled {
@@ -588,7 +603,7 @@ textarea.input {
 
 .success h2 {
   margin: var(--ev-s-5) 0 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.7rem, 3vw, 2.3rem);
   font-weight: 400;
   line-height: 1.15;

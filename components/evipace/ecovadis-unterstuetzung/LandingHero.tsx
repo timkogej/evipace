@@ -34,9 +34,9 @@ export function LandingHero() {
       }}
       breadcrumb="EcoVadis-Unterstützung"
       eyebrow="EcoVadis-Unterstützung"
-      lead="Sie senden uns den aktuellen Assessment-Kontext und vorhandene Unterlagen. Wir übernehmen die Vorbereitung: Fragen und Daten strukturieren, belastbare Antworten entwerfen, Nachweise zuordnen und Lücken dokumentieren. Ihr Unternehmen bestätigt die Angaben und reicht das Assessment ein."
+      lead="Sie senden uns den aktuellen Assessment-Kontext und vorhandene Unterlagen. Wir übernehmen die Vorbereitung: Fragen und Daten strukturieren, belastbare Antworten entwerfen, Nachweise zuordnen und Lücken dokumentieren. Ihr Unternehmen behält sein EcoVadis-Konto und reicht selbst ein."
       note="Unabhängige Unterstützung · keine Verbindung zu EcoVadis · keine Score-Garantie"
-      title="EcoVadis-Fragebogen vor Ihnen? Wir bereiten Antworten und Nachweise für Ihre Prüfung vor."
+      title="EcoVadis-Anfrage von Ihrem Kunden? Wir bereiten Antworten und Nachweise vor."
     >
       <StatusPanel
         label="Assessment-Vorbereitung"

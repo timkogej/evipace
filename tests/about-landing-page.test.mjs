@@ -23,10 +23,10 @@ test("About uses no photographs; illustrations are the site's own SVG", () => {
 
 test("the active About page keeps localized service paths, founder facts and limits", () => {
   for (const path of [
-    "/en/esg-customer-requests", "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests", "/en/esg-customer-requests",
     "/en/ecovadis-support", "/en/integritynext-support",
     "/en/scope-1-2-calculation", "/en/vsme-sustainability-report",
-    "/de/esg-kundenanfragen", "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen", "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung", "/de/integritynext-unterstuetzung",
     "/de/scope-1-2-berechnung", "/de/vsme-nachhaltigkeitsbericht"
   ]) assert.ok(page.includes(path), path);
@@ -55,7 +55,7 @@ test("About follows the homepage layout and the example is labeled accurately", 
   assert.ok(page.includes('import h from "../HomeLandingPage.module.css"'));
   assert.ok(page.includes("<ClosingCta"));
   assert.equal((page.match(/<h1\b/g) ?? []).length, 1);
-  assert.ok(css.includes("font-family: var(--font-gfs-didot)"));
+  assert.ok(css.includes("font-family: var(--font-display)"));
   assert.ok(page.includes("Illustrative handover · not a client case"));
   assert.ok(page.includes("Beispielhafte Übergabe · kein Kundenfall"));
   assert.ok(page.includes("your team still needs to confirm"));

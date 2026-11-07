@@ -16,17 +16,19 @@ export type HomeContent = {
     callPrompt: string;
     callLabel: string;
   };
-  visual: {
-    badge: string;
+  /** Hero: one small card, a questionnaire waiting for the client's approval. */
+  flow: {
     label: string;
-    folder: string;
+    badge: string;
     title: string;
-    rows: Array<{ step: string; detail: string; status: string; tone: "done" | "open" | "wait" }>;
-    reviewer: string;
+    due: string;
+    /** Prepared, reviewed, your approval. */
+    steps: [string, string, string];
+    /** Footer line while it waits, and after approval. */
+    ready: string;
+    sent: string;
     approve: string;
-    /** Shown at the end of the hero scroll, once the response is approved. */
     approved: string;
-    approvedNote: string;
   };
   assurances: { label: string; items: string[] };
   statement: string;
@@ -85,51 +87,47 @@ export type HomeContent = {
  * (DE-REVIEW) except the hero eyebrow, title and body, which were supplied.
  */
 
-/** Brand line: stays English in every locale. */
-export const BRAND_LINE = "ESG work. Done right. Done faster.";
+/** Brand line, per locale. */
+export const BRAND_LINE = "ESG documentation, handled.";
+export const BRAND_LINE_DE = "ESG-Dokumentation, erledigt.";
 
 export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     hero: {
-      eyebrow: "Your external desk for customer sustainability and supply-chain requests",
-      title: "Forward your customer's request. We prepare the answer.",
-      body: "Got an ESG questionnaire, an EcoVadis request, a carbon data request or a customer code of conduct? Forward it. We map it, reuse the evidence you have already confirmed, ask only for what is missing, and prepare the response for you to review and approve. Forward it by email or upload it.",
-      forward: "Forward your request",
-      formLink: "Or send it via the form",
-      note: "You review and approve everything before anything is sent.",
+      eyebrow: "ESG documentation for manufacturers",
+      title: "Customers ask for ESG documents. We do the work.",
+      body: "Questionnaires, EcoVadis, Scope 1 and 2, VSME and records: we take over the preparation, so your team can stay on production.",
+      forward: "Send us a request",
+      formLink: "Or use the request form",
+      note: "A person at Evipace reviews every response.",
       callPrompt: "Prefer to talk first?",
       callLabel: "Call us"
     },
-    visual: {
-      badge: "Illustrative example",
-      label: "Illustrative example of how a forwarded request moves through the desk",
-      folder: "Customer request",
-      title: "Request desk",
-      rows: [
-        { step: "Request received", detail: "Forwarded by email", status: "Done", tone: "done" },
-        { step: "Mapped to your evidence", detail: "Confirmed evidence reused", status: "Done", tone: "done" },
-        { step: "Missing information", detail: "We ask only for what is missing", status: "Your input", tone: "open" },
-        { step: "Response prepared", detail: "Reviewed by a person at Evipace", status: "Ready", tone: "done" }
-      ],
-      reviewer: "Waiting for your approval",
-      approve: "Review and approve",
-      approved: "Approved",
-      approvedNote: "Approved by you"
+    flow: {
+      label: "Example: a customer questionnaire, prepared by Evipace",
+      badge: "Example",
+      title: "Customer ESG questionnaire",
+      due: "Due Friday",
+      steps: ["Prepared", "Reviewed by Evipace", "Ready to send"],
+      ready: "Ready to send",
+      sent: "Approved. You send it to your customer.",
+      approve: "Approve",
+      approved: "Approved"
     },
     assurances: {
-      label: "How we work",
+      label: "At a glance",
       items: [
-        "Excel, Word and portal questionnaires",
-        "A person reviews every response",
-        "Only evidence you have confirmed is reused",
+        "Records and deadlines",
+        "Scope 1 and 2 calculations and reports",
+        "Customer questionnaires and EcoVadis requests",
         "Based in Ljubljana, Slovenia"
       ]
     },
     statement:
-      "Your customer's request does not have to land on your desk. Forward it, and we turn what you have already confirmed into an answer that is ready for your approval.",
+      "Documentation should not take time away from production. We take it over.",
     steps: {
       label: "How it works",
-      title: "Three steps from request to approved response.",
+      title: "From your request to a finished response in three steps.",
       scene: {
         badge: "Illustrative example",
         received: { title: "New request", file: "Customer ESG questionnaire.xlsx", meta: "Forwarded by email" },
@@ -141,61 +139,65 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       },
       items: [
         {
-          title: "Send us the request",
-          body: "Forward it by email, upload it in the form, or add it in your Evipace portal. No new brief is needed."
+          title: "You hand it over",
+          body: "Forward a customer request, or tell us which records, calculations or reports are due. Email, form or portal, no new brief needed."
         },
         {
-          title: "We prepare the answer",
-          body: "We map the request, reuse the evidence you have already confirmed and ask you only for what is missing."
+          title: "We prepare it",
+          body: "Our system reads your data and prepares the document. A person at Evipace reviews it and asks you only for what is missing."
         },
         {
-          title: "You review and approve in your Evipace portal",
-          body: "You check the prepared answer in your portal and approve it when it is right."
+          title: "You approve",
+          body: "You check the result in your Evipace portal and approve it when it is right. Nothing is sent before that."
         }
       ]
     },
     forwardable: {
-      label: "What you can forward",
-      title: "If your customer asked for it, you can forward it.",
-      intro: "These are the requests we see most often. If yours looks different, send it anyway and we will tell you what we can prepare.",
+      label: "What we take over",
+      title: "The documentation your customers ask for, we prepare.",
+      intro: "Start with what costs you the most time. If your need looks different, send it anyway and we will tell you what we can take over.",
       items: [
         {
-          icon: "questionnaire",
-          title: "ESG questionnaire",
-          body: "Sustainability questionnaires from your customers, in Excel, Word or a portal"
+          icon: "evidence",
+          title: "Records and deadlines",
+          body: "Certificates, policies and evidence, with the dates they expire or have to be renewed"
+        },
+        {
+          icon: "carbon",
+          title: "Calculations",
+          body: "Scope 1 and 2 emissions, calculated from your invoices and meter readings"
         },
         {
           icon: "assessment",
-          title: "EcoVadis request",
-          body: "Preparing the assessment answers and evidence (Evipace is not affiliated with EcoVadis)"
+          title: "Reports",
+          body: "Sustainability reports such as VSME, prepared from your data"
         },
-        { icon: "carbon", title: "Carbon data request", body: "Scope 1 and 2 data and calculations" },
         {
-          icon: "conduct",
-          title: "Customer code of conduct",
-          body: "Policies and declarations your customer asks you to confirm"
+          icon: "questionnaire",
+          title: "Customer questionnaires",
+          body: "ESG questionnaires from your customers, in Excel, Word or a portal"
         },
         {
           icon: "selfAssessment",
-          title: "Supplier self-assessment",
-          body: "Supplier forms and platform invitations"
+          title: "EcoVadis and IntegrityNext",
+          body: "Answers and evidence for supplier assessments (Evipace is not affiliated with EcoVadis or IntegrityNext)"
         },
         {
-          icon: "evidence",
-          title: "Evidence and policies",
-          body: "Collecting and organising what you already have"
+          icon: "conduct",
+          title: "Codes of conduct and policy requests",
+          body: "Answers and supporting documents when a customer asks about your policies or its code of conduct"
         }
       ],
       link: "See how we work with you"
     },
     reuse: {
       label: "Faster the second time",
-      title: "What you confirm once is ready for the next request.",
-      body: "Evidence you have confirmed is kept and reused for later requests, after we check that its period, scope and validity still fit. You find it in the evidence library in your Evipace portal.",
+      title: "Prepared once, ready for the next request.",
+      body: "Documents and data you have already provided are kept and reused for later requests, after we check that their period, scope and validity still fit. You find them in your Evipace portal.",
       badge: "Illustrative example",
-      visualLabel: "Illustrative example of an evidence folder with confirmed documents and one that needs an update",
-      folder: "Evidence library",
-      confirmed: "Confirmed",
+      visualLabel: "Illustrative example of a document folder with current documents and one that needs an update",
+      folder: "Your documents",
+      confirmed: "Current",
       needsUpdate: "Needs update",
       documents: [
         { name: "Environmental policy", detail: "Policy document", status: "confirmed", type: "pdf" },
@@ -205,7 +207,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       ]
     },
     example: {
-      label: "Prepared by us, approved by you",
+      label: "How the work is shared",
       title: "A service with people in it, not software you have to run.",
       body: "Preparation uses automation; a person reviews the result.",
       lanes: [
@@ -213,7 +215,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
           title: "Preparation",
           points: [
             "The request is mapped question by question",
-            "Evidence you have confirmed is reused",
+            "Documents you have already provided are reused",
             "Missing information is listed for you"
           ]
         },
@@ -239,11 +241,11 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     trust: {
       label: "Trust",
       title: "Who we are, how we treat your files, and who decides.",
-      illustrationLabel: "Illustration: a folder, a document and an approval mark",
+      illustrationLabel: "Illustration: a folder, a document and a check mark",
       items: [
         {
           title: "Who we are",
-          body: "Evipace is based in Ljubljana, Slovenia, and works for manufacturers and suppliers in European supply chains.",
+          body: "Evipace is based in Ljubljana, Slovenia, and takes over ESG documentation for manufacturing companies.",
           link: { label: "About Evipace", href: "/en/about" }
         },
         {
@@ -252,7 +254,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
           link: { label: "Privacy Policy", href: "/en/privacy" }
         },
         {
-          title: "Your approval",
+          title: "Who decides",
           body: "The final response is yours: you decide what goes to your customer, and you send it.",
           link: { label: "Our methodology", href: "/en/methodology" }
         }
@@ -260,15 +262,19 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     faq: {
       label: "Questions",
-      title: "Before you forward the first request.",
+      title: "Before you hand over the first task.",
       items: [
         {
-          q: "What can I forward?",
-          a: "Customer requests about sustainability and responsible supply chains: ESG questionnaires, EcoVadis requests, carbon data requests, customer codes of conduct and similar. Forward the original email or the files you received."
+          q: "What does Evipace do?",
+          a: "Evipace is an ESG documentation service based in Ljubljana, Slovenia, founded by Tim Kogej. We prepare questionnaire answers, EcoVadis and IntegrityNext material, Scope 1 and 2 calculations, VSME reports and registers of records and deadlines for manufacturers and their suppliers. We provide a service, not software."
+        },
+        {
+          q: "What can I hand over?",
+          a: "Customer ESG questionnaires, EcoVadis and IntegrityNext requests, Scope 1 and 2 calculations, VSME reports, and records and deadlines. Forward the original email or the files you have."
         },
         {
           q: "What do you need from me?",
-          a: "The request itself. Once we have mapped it, we ask only for the information and evidence that is still missing."
+          a: "The request or the data you already have, such as invoices and certificates. We ask only for what is still missing."
         },
         {
           q: "Do you send anything to my customer?",
@@ -283,6 +289,10 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
           a: "No. Evipace is independent and is not affiliated with, accredited by or endorsed by EcoVadis or any other assessment platform. We help you prepare your own response."
         },
         {
+          q: "What do you not do?",
+          a: "We do not do Scope 3 or life-cycle assessments, certification, independent assurance, or measurements and inspections, and we do not prepare environmental or safety documentation. We do not promise an EcoVadis score or that a customer accepts an answer. Where an accredited measurement is needed, a provider of your choice does it, and we bring the results into your documentation."
+        },
+        {
           q: "How do you decide scope and price?",
           a: "After reviewing your request, we confirm scope and price before we start."
         }
@@ -290,53 +300,48 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     cta: {
       slogan: BRAND_LINE,
-      title: "Have a customer request waiting?",
-      body: "Forward it today, and we will tell you what we can prepare.",
-      formLink: "Or send it via the form",
+      title: "Have documentation waiting?",
+      body: "Send it today, and we will tell you what we can take over.",
+      formLink: "Or use the request form",
       offersLink: "See the ways to work with us"
     }
   },
   de: {
     hero: {
-      eyebrow: "Ihr externer Schreibtisch für Nachhaltigkeits- und Lieferketten-Anfragen Ihrer Kunden",
-      title: "Leiten Sie die Anfrage Ihres Kunden weiter. Wir bereiten die Antwort vor.",
-      body: "Eine ESG-Anfrage, eine EcoVadis-Anfrage, eine Anfrage zu CO2-Daten oder ein Verhaltenskodex Ihres Kunden? Leiten Sie sie weiter. Wir ordnen sie zu, nutzen bereits bestätigte Nachweise, fragen nur nach Fehlendem und bereiten die Antwort zur Prüfung und Freigabe vor. Leiten Sie sie per E-Mail weiter oder laden Sie sie hoch.",
-      forward: "Anfrage weiterleiten",
-      formLink: "Oder über das Formular senden",
-      note: "Sie prüfen und geben alles frei, bevor etwas versendet wird.",
+      eyebrow: "ESG-Dokumentation für Hersteller und Lieferanten",
+      title: "Ihre Kunden fragen nach ESG-Unterlagen. Wir übernehmen die Arbeit.",
+      body: "Fragebögen, EcoVadis, Scope 1 und 2, VSME und Nachweise: Wir übernehmen die Vorbereitung, damit Ihr Team bei der Produktion bleiben kann.",
+      forward: "Anfrage senden",
+      formLink: "Oder das Anfrageformular nutzen",
+      note: "Jede Antwort wird von einer Person bei Evipace geprüft.",
       callPrompt: "Lieber zuerst sprechen?",
       callLabel: "Rufen Sie uns an"
     },
-    visual: {
+    flow: {
+      label: "Beispiel: ein Kundenfragebogen, von Evipace vorbereitet",
       badge: "Beispiel",
-      label: "Beispielhafte Darstellung, wie eine weitergeleitete Anfrage bearbeitet wird",
-      folder: "Kundenanfrage",
-      title: "Anfragen-Schreibtisch",
-      rows: [
-        { step: "Anfrage eingegangen", detail: "Per E-Mail weitergeleitet", status: "Erledigt", tone: "done" },
-        { step: "Ihren Nachweisen zugeordnet", detail: "Bestätigte Nachweise genutzt", status: "Erledigt", tone: "done" },
-        { step: "Fehlende Angaben", detail: "Wir fragen nur nach Fehlendem", status: "Ihre Angabe", tone: "open" },
-        { step: "Antwort vorbereitet", detail: "Von einer Person bei Evipace geprüft", status: "Bereit", tone: "done" }
-      ],
-      reviewer: "Wartet auf Ihre Freigabe",
-      approve: "Prüfen und freigeben",
-      approved: "Freigegeben",
-      approvedNote: "Von Ihnen freigegeben"
+      title: "ESG-Fragebogen eines Kunden",
+      due: "Fällig am Freitag",
+      steps: ["Vorbereitet", "Von Evipace geprüft", "Versandbereit"],
+      ready: "Versandbereit",
+      sent: "Freigegeben. Sie senden es an Ihren Kunden.",
+      approve: "Freigeben",
+      approved: "Freigegeben"
     },
     assurances: {
-      label: "So arbeiten wir",
+      label: "Auf einen Blick",
       items: [
-        "Fragebögen in Excel, Word und Portalen",
-        "Eine Person prüft jede Antwort",
-        "Nur von Ihnen bestätigte Nachweise werden wiederverwendet",
+        "Nachweise und Fristen",
+        "Scope-1- und Scope-2-Berechnungen und Berichte",
+        "Kundenfragebögen und EcoVadis-Anfragen",
         "Mit Sitz in Ljubljana, Slowenien"
       ]
     },
     statement:
-      "Die Anfrage Ihres Kunden muss nicht auf Ihrem Schreibtisch liegen bleiben. Leiten Sie sie weiter, und wir machen aus dem, was Sie bereits bestätigt haben, eine Antwort, die bereit für Ihre Freigabe ist.",
+      "Dokumentation sollte der Produktion keine Zeit nehmen. Wir übernehmen sie.",
     steps: {
       label: "So funktioniert es",
-      title: "Drei Schritte von der Anfrage zur freigegebenen Antwort.",
+      title: "In drei Schritten von der Anfrage zur fertigen Antwort.",
       scene: {
         badge: "Beispiel",
         received: { title: "Neue Anfrage", file: "ESG-Fragebogen des Kunden.xlsx", meta: "Per E-Mail weitergeleitet" },
@@ -348,61 +353,65 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       },
       items: [
         {
-          title: "Senden Sie uns die Anfrage",
-          body: "Leiten Sie sie per E-Mail weiter, laden Sie sie im Formular hoch oder fügen Sie sie in Ihrem Evipace-Portal hinzu. Ein neues Briefing ist nicht nötig."
+          title: "Sie übergeben",
+          body: "Leiten Sie eine Kundenanfrage weiter oder sagen Sie uns, welche Nachweise, Berechnungen oder Berichte anstehen. Per E-Mail, Formular oder Portal, ohne neues Briefing."
         },
         {
-          title: "Wir bereiten die Antwort vor",
-          body: "Wir ordnen die Anfrage zu, nutzen bereits bestätigte Nachweise und fragen nur nach dem, was fehlt."
+          title: "Wir bereiten vor",
+          body: "Unser System liest Ihre Daten und bereitet das Dokument vor. Eine Person bei Evipace prüft es und fragt nur nach dem, was fehlt."
         },
         {
-          title: "Sie prüfen und geben in Ihrem Evipace-Portal frei",
-          body: "Sie prüfen die vorbereitete Antwort in Ihrem Portal und geben sie frei, wenn sie stimmt."
+          title: "Sie geben frei",
+          body: "Sie prüfen das Ergebnis in Ihrem Evipace-Portal und geben es frei, wenn es stimmt. Vorher wird nichts versendet."
         }
       ]
     },
     forwardable: {
-      label: "Was Sie weiterleiten können",
-      title: "Wenn Ihr Kunde danach fragt, können Sie es weiterleiten.",
-      intro: "Diese Anfragen sehen wir am häufigsten. Sieht Ihre anders aus, senden Sie sie trotzdem. Wir sagen Ihnen, was wir vorbereiten können.",
+      label: "Was wir übernehmen",
+      title: "Die Dokumentation, die Ihre Kunden verlangen, bereiten wir vor.",
+      intro: "Beginnen Sie mit dem, was Sie am meisten Zeit kostet. Sieht Ihr Bedarf anders aus, senden Sie ihn trotzdem. Wir sagen Ihnen, was wir übernehmen können.",
       items: [
         {
-          icon: "questionnaire",
-          title: "ESG-Fragebogen",
-          body: "Nachhaltigkeitsfragebögen Ihrer Kunden, in Excel, Word oder in einem Portal"
+          icon: "evidence",
+          title: "Nachweise und Fristen",
+          body: "Zertifikate, Richtlinien und Nachweise, mit den Terminen, an denen sie ablaufen oder erneuert werden müssen"
+        },
+        {
+          icon: "carbon",
+          title: "Berechnungen",
+          body: "Scope-1- und Scope-2-Emissionen, berechnet aus Ihren Rechnungen und Zählerständen"
         },
         {
           icon: "assessment",
-          title: "EcoVadis-Anfrage",
-          body: "Vorbereitung der Antworten und Nachweise für die Bewertung (Evipace ist nicht mit EcoVadis verbunden)"
+          title: "Berichte",
+          body: "Nachhaltigkeitsberichte wie VSME, vorbereitet aus Ihren Daten"
         },
-        { icon: "carbon", title: "Anfrage zu CO2-Daten", body: "Daten und Berechnungen zu Scope 1 und 2" },
         {
-          icon: "conduct",
-          title: "Verhaltenskodex des Kunden",
-          body: "Richtlinien und Erklärungen, die Ihr Kunde von Ihnen bestätigt haben möchte"
+          icon: "questionnaire",
+          title: "Kundenfragebögen",
+          body: "ESG-Fragebögen Ihrer Kunden, in Excel, Word oder in einem Portal"
         },
         {
           icon: "selfAssessment",
-          title: "Lieferanten-Selbstauskunft",
-          body: "Lieferantenformulare und Einladungen auf Plattformen"
+          title: "EcoVadis und IntegrityNext",
+          body: "Antworten und Nachweise für Lieferantenbewertungen (Evipace ist nicht mit EcoVadis oder IntegrityNext verbunden)"
         },
         {
-          icon: "evidence",
-          title: "Nachweise und Richtlinien",
-          body: "Sammeln und Ordnen dessen, was bereits vorhanden ist"
+          icon: "conduct",
+          title: "Verhaltenskodizes und Richtlinienanfragen",
+          body: "Antworten und Unterlagen, wenn ein Kunde nach Ihren Richtlinien oder seinem Verhaltenskodex fragt"
         }
       ],
       link: "So arbeiten wir mit Ihnen"
     },
     reuse: {
       label: "Beim zweiten Mal schneller",
-      title: "Was Sie einmal bestätigen, steht für die nächste Anfrage bereit.",
-      body: "Von Ihnen bestätigte Nachweise bleiben erhalten und werden für spätere Anfragen wiederverwendet, nachdem wir Zeitraum, Geltungsbereich und Gültigkeit geprüft haben. Sie finden sie in der Nachweisbibliothek in Ihrem Evipace-Portal.",
+      title: "Einmal vorbereitet, für die nächste Anfrage bereit.",
+      body: "Unterlagen und Daten, die Sie uns schon gegeben haben, bleiben erhalten und werden für spätere Anfragen wiederverwendet, nachdem wir Zeitraum, Geltungsbereich und Gültigkeit geprüft haben. Sie finden sie in Ihrem Evipace-Portal.",
       badge: "Beispiel",
-      visualLabel: "Beispielhafte Darstellung einer Nachweismappe mit bestätigten Dokumenten und einem Dokument, das aktualisiert werden muss",
-      folder: "Nachweisbibliothek",
-      confirmed: "Bestätigt",
+      visualLabel: "Beispielhafte Darstellung einer Dokumentenmappe mit aktuellen Dokumenten und einem Dokument, das aktualisiert werden muss",
+      folder: "Ihre Unterlagen",
+      confirmed: "Aktuell",
       needsUpdate: "Aktualisieren",
       documents: [
         { name: "Umweltrichtlinie", detail: "Richtliniendokument", status: "confirmed", type: "pdf" },
@@ -412,7 +421,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       ]
     },
     example: {
-      label: "Von uns vorbereitet, von Ihnen freigegeben",
+      label: "So teilen wir die Arbeit",
       title: "Eine Dienstleistung mit Menschen, keine Software, die Sie bedienen müssen.",
       body: "Die Vorbereitung nutzt Automatisierung; eine Person prüft das Ergebnis.",
       lanes: [
@@ -420,7 +429,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
           title: "Vorbereitung",
           points: [
             "Die Anfrage wird Frage für Frage zugeordnet",
-            "Von Ihnen bestätigte Nachweise werden wiederverwendet",
+            "Unterlagen, die Sie uns schon gegeben haben, werden wiederverwendet",
             "Fehlende Angaben werden für Sie aufgelistet"
           ]
         },
@@ -446,11 +455,11 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     trust: {
       label: "Vertrauen",
       title: "Wer wir sind, wie wir mit Ihren Dateien umgehen und wer entscheidet.",
-      illustrationLabel: "Illustration: eine Mappe, ein Dokument und ein Freigabezeichen",
+      illustrationLabel: "Illustration: eine Mappe, ein Dokument und ein Häkchen",
       items: [
         {
           title: "Wer wir sind",
-          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und arbeitet für Hersteller und Zulieferer in europäischen Lieferketten.",
+          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und übernimmt ESG-Dokumentation für Hersteller und Lieferanten.",
           link: { label: "Über Evipace", href: "/de/about" }
         },
         {
@@ -459,7 +468,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
           link: { label: "Datenschutzerklärung", href: "/de/privacy" }
         },
         {
-          title: "Ihre Freigabe",
+          title: "Wer entscheidet",
           body: "Die endgültige Antwort gehört Ihnen: Sie entscheiden, was an Ihren Kunden geht, und Sie versenden sie.",
           link: { label: "Unsere Methodik", href: "/de/methodology" }
         }
@@ -467,15 +476,19 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     faq: {
       label: "Fragen",
-      title: "Bevor Sie die erste Anfrage weiterleiten.",
+      title: "Bevor Sie die erste Aufgabe übergeben.",
       items: [
         {
-          q: "Was kann ich weiterleiten?",
-          a: "Kundenanfragen zu Nachhaltigkeit und verantwortungsvollen Lieferketten: ESG-Fragebögen, EcoVadis-Anfragen, Anfragen zu CO2-Daten, Verhaltenskodizes Ihrer Kunden und Ähnliches. Leiten Sie die ursprüngliche E-Mail oder die erhaltenen Dateien weiter."
+          q: "Was macht Evipace?",
+          a: "Evipace ist ein ESG-Dokumentationsservice mit Sitz in Ljubljana, Slowenien, gegründet von Tim Kogej. Wir bereiten für Hersteller und ihre Lieferanten die Antworten auf ESG-Fragebögen, EcoVadis- und IntegrityNext-Unterlagen, Scope-1-und-2-Berechnungen, VSME-Berichte sowie Register für Nachweise und Fristen vor. Wir bieten eine Dienstleistung, keine Software."
+        },
+        {
+          q: "Was kann ich übergeben?",
+          a: "ESG-Fragebögen von Kunden, EcoVadis- und IntegrityNext-Anfragen, Scope-1-und-2-Berechnungen, VSME-Berichte sowie Nachweise und Fristen. Leiten Sie die ursprüngliche E-Mail oder Ihre vorhandenen Dateien weiter."
         },
         {
           q: "Was benötigen Sie von mir?",
-          a: "Die Anfrage selbst. Nach der Zuordnung fragen wir nur nach den Angaben und Nachweisen, die noch fehlen."
+          a: "Die Anfrage oder die Daten, die Sie bereits haben, etwa Rechnungen und Zertifikate. Wir fragen nur nach dem, was noch fehlt."
         },
         {
           q: "Senden Sie etwas an meinen Kunden?",
@@ -490,16 +503,20 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
           a: "Nein. Evipace ist unabhängig und weder mit EcoVadis noch mit einer anderen Bewertungsplattform verbunden, von ihr akkreditiert oder empfohlen. Wir unterstützen Sie bei der Vorbereitung Ihrer eigenen Antwort."
         },
         {
+          q: "Was machen Sie nicht?",
+          a: "Wir erstellen kein Scope 3 und keine Ökobilanzen, vergeben keine Zertifizierungen, bieten keine unabhängige Prüfung (Assurance) an, führen keine Messungen oder Prüfungen durch und bereiten keine Umwelt- oder Arbeitssicherheitsdokumentation vor. Wir versprechen weder einen EcoVadis-Score noch die Annahme einer Antwort durch Ihren Kunden. Wo eine akkreditierte Messung nötig ist, übernimmt sie ein Anbieter Ihrer Wahl, und wir übernehmen die Ergebnisse in Ihre Dokumentation."
+        },
+        {
           q: "Wie legen Sie Umfang und Preis fest?",
           a: "Nach der Prüfung bestätigen wir Umfang und Preis, bevor wir beginnen."
         }
       ]
     },
     cta: {
-      slogan: BRAND_LINE,
-      title: "Wartet eine Kundenanfrage auf Sie?",
-      body: "Leiten Sie sie heute weiter, und wir sagen Ihnen, was wir vorbereiten können.",
-      formLink: "Oder über das Formular senden",
+      slogan: BRAND_LINE_DE,
+      title: "Wartet Dokumentation auf Sie?",
+      body: "Senden Sie sie heute, und wir sagen Ihnen, was wir übernehmen können.",
+      formLink: "Oder das Anfrageformular nutzen",
       offersLink: "Wege der Zusammenarbeit ansehen"
     }
   }

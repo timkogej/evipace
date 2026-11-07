@@ -34,9 +34,9 @@ export function LandingHero() {
       }}
       breadcrumb="IntegrityNext-Unterstützung"
       eyebrow="IntegrityNext-Unterstützung"
-      lead="Ihr Kunde oder Geschäftspartner fordert Nachhaltigkeits- und Compliance-Informationen über IntegrityNext an? Sie zeigen uns die angeforderten Themen und Ihre vorhandenen Unterlagen. Wir strukturieren die benötigten Angaben, ordnen relevante Zertifikate und Nachweise zu und machen offene Punkte sichtbar."
+      lead="Ihr Kunde oder Geschäftspartner fordert Nachhaltigkeits- und Compliance-Informationen über IntegrityNext an? Sie zeigen uns die angeforderten Themen und Ihre vorhandenen Unterlagen. Wir strukturieren die benötigten Angaben, ordnen relevante Zertifikate und Nachweise zu und machen offene Punkte sichtbar. Eine Person bei Evipace prüft das Ergebnis, Ihr Unternehmen behält sein Konto und trägt selbst ein."
       note="Unabhängige Unterstützung · keine Verbindung zu IntegrityNext"
-      title="Zu IntegrityNext eingeladen? Wir helfen Ihnen durch die Assessments."
+      title="IntegrityNext-Einladung von Ihrem Kunden? Wir bereiten Antworten und Unterlagen vor."
     >
       <StatusPanel
         label="Supplier-Assessments"

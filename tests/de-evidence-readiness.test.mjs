@@ -87,7 +87,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/RequirementCategories.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -347,7 +347,7 @@ test("resource copy, links, breadcrumbs, privacy copy, and claim safety are pres
     "/de/ressourcen/ecovadis-dokumente-nachweise",
     "/de/ressourcen/esg-daten-verantwortliche-abteilungen",
     "/de/ressourcen/esg-fragebogen-checkliste-lieferanten",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/send-request",
     "/de/methodology"
   ]) {

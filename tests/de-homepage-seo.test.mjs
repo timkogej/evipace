@@ -106,11 +106,11 @@ test("English and German About and methodology pages are genuine registry equiva
   assert.ok(englishRegistry.includes('lastReviewed: "2026-08-21"'));
   assert.ok(germanRegistry.includes("home: {"));
   assert.ok(
-    germanRegistry.includes('title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"')
+    germanRegistry.includes('title: "ESG-Dokumentation für Hersteller und Lieferanten | Evipace"')
   );
   assert.ok(
     germanRegistry.includes(
-      '"Leiten Sie ESG-Fragebögen, EcoVadis-Anfragen, Anfragen zu CO2-Daten oder Verhaltenskodizes Ihrer Kunden weiter. Evipace bereitet die Antwort zur Prüfung und Freigabe vor."'
+      '"Evipace aus Ljubljana bereitet ESG-Fragebögen, EcoVadis- und IntegrityNext-Unterlagen, Scope-1-und-2-Berechnungen und VSME-Berichte für Hersteller vor."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de"'));
@@ -122,7 +122,7 @@ test("English and German About and methodology pages are genuine registry equiva
   );
   assert.ok(
     germanRegistry.includes(
-      '"Evipace unterstützt produzierende Unternehmen bei der praktischen Umsetzung von ESG-Anforderungen. Erfahren Sie, warum Evipace gegründet wurde und wie wir arbeiten."'
+      '"Evipace unterstützt produzierende Unternehmen bei ESG-Anforderungen ihrer Kunden. Erfahren Sie, warum wir gegründet wurden und wie wir arbeiten."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de/about"'));
@@ -155,7 +155,7 @@ test("homepage rendering and global English About navigation remain locale-speci
 test("German global navigation links the live commercial cluster and homepage CTAs remain intact", () => {
   const serviceHrefs = [
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/vsme-nachhaltigkeitsbericht",
@@ -346,8 +346,8 @@ test("German methodology preserves critical trust language and claim limits", ()
     "Technologie beschleunigt die Vorbereitung. Verantwortung wird nicht automatisiert.",
     "Beleg vor Behauptung.",
     "Wir erstellen keine fingierten, rückdatierten oder irreführend dargestellten Nachweise.",
-    "Ein Entwurf ist noch keine Unternehmensrichtlinie.",
-    "Wenn Scope 3 Teil des vereinbarten Auftrags ist",
+    "Eine Lücke ist noch keine Richtlinie.",
+    "Scope 3 gehört nicht zu unserer Leistung.",
     "Scheinbare Präzision ist nicht besser als transparent dokumentierte Unsicherheit.",
     "Die endgültige Eingabe beziehungsweise Einreichung auf der Plattform erfolgt durch das Unternehmen selbst.",
     "Evipace ist ein unabhängiger Dienstleister und weder mit EcoVadis noch mit IntegrityNext verbunden."
@@ -392,8 +392,8 @@ test("English methodology preserves the approved workflow, trust language, and c
     "Technology can accelerate preparation. Responsibility is not automated.",
     "Evidence before claim.",
     "We do not create fictitious, backdated or misleading evidence.",
-    "A draft is not yet a company policy.",
-    "Where Scope 3 is part of the agreed engagement",
+    "A gap is not a policy.",
+    "Scope 3 is not part of our service.",
     "False precision is not better than transparently documented uncertainty.",
     "The final entry or submission on the external platform is made by the company itself.",
     "Evipace is an independent service provider and is not affiliated with EcoVadis or IntegrityNext.",

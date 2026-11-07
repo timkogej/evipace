@@ -9,10 +9,8 @@ const [
   navigationSource,
   sitemapSource,
   customerPageSource,
-  questionnairePageSource,
   scopePageSource,
   deCustomerPageSource,
-  deQuestionnairePageSource,
   deScopePageSource,
   contentSource,
   componentSource,
@@ -26,10 +24,8 @@ const [
   readFile(new URL("lib/site-navigation.ts", root), "utf8"),
   readFile(new URL("app/sitemap.ts", root), "utf8"),
   readFile(new URL("app/[locale]/esg-customer-requests/page.tsx", root), "utf8"),
-  readFile(new URL("app/[locale]/esg-questionnaire-support/page.tsx", root), "utf8"),
   readFile(new URL("app/[locale]/scope-1-2-calculation/page.tsx", root), "utf8"),
   readFile(new URL("app/[locale]/esg-kundenanfragen/page.tsx", root), "utf8"),
-  readFile(new URL("app/[locale]/esg-fragebogen-lieferanten/page.tsx", root), "utf8"),
   readFile(new URL("app/[locale]/scope-1-2-berechnung/page.tsx", root), "utf8"),
   readFile(new URL("components/evipace/english-commercial/content.ts", root), "utf8"),
   readFile(
@@ -58,22 +54,16 @@ const deRegistry = registrySource.slice(
 test("English commercial Batch A uses exact approved metadata and H1 copy", () => {
   const expected = [
     [
-      "ESG Customer Requests for Suppliers | Evipace",
-      "Evipace helps manufacturing suppliers handle customer ESG requests — from data and evidence to policies, emissions and questionnaire responses.",
-      "/en/esg-customer-requests",
-      "Your customer asked for ESG information. We help you prepare the response."
-    ],
-    [
       "ESG Questionnaire Support for Suppliers | Evipace",
-      "Evipace prepares customer ESG questionnaire answers and supporting evidence from supplier records. Your team reviews the facts and approves the final response.",
-      "/en/esg-questionnaire-support",
-      "Send us the ESG questionnaire. We prepare the answers and evidence for your review."
+      "Evipace prepares answers to customer ESG questionnaires and requests for manufacturers and suppliers: data, evidence and open gaps. Based in Ljubljana.",
+      "/en/esg-customer-requests",
+      "Your customer sent an ESG questionnaire. We take it from here."
     ],
     [
-      "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace",
-      "Evipace prepares a documented corporate carbon footprint and Scope 1 and Scope 2 calculation from company activity data, emission factors, sources and assumptions.",
+      "Carbon Footprint & Scope 1–2 Calculation | Evipace",
+      "Evipace calculates your corporate carbon footprint (Scope 1 and 2) from activity data, emission factors, sources and assumptions, all documented.",
       "/en/scope-1-2-calculation",
-      "Calculate and document your company’s Scope 1 and Scope 2 emissions."
+      "We calculate your Scope 1 and Scope 2 emissions from the records you already have."
     ]
   ];
 
@@ -88,11 +78,6 @@ test("English commercial Batch A uses exact approved metadata and H1 copy", () =
 test("Batch A pages are genuine DE/EN registry pairs with no SL variants", () => {
   const pairs = [
     ["esgKundenanfragen", "/en/esg-customer-requests", "/de/esg-kundenanfragen"],
-    [
-      "esgFragebogenLieferanten",
-      "/en/esg-questionnaire-support",
-      "/de/esg-fragebogen-lieferanten"
-    ],
     ["scope12Berechnung", "/en/scope-1-2-calculation", "/de/scope-1-2-berechnung"]
   ];
 
@@ -111,7 +96,6 @@ test("Batch A pages are genuine DE/EN registry pairs with no SL variants", () =>
 test("wrong-locale commercial slugs remain guarded", () => {
   for (const source of [
     customerPageSource,
-    questionnairePageSource,
     scopePageSource
   ]) {
     assert.ok(source.includes('locale !== "en"'));
@@ -121,7 +105,6 @@ test("wrong-locale commercial slugs remain guarded", () => {
 
   for (const source of [
     deCustomerPageSource,
-    deQuestionnairePageSource,
     deScopePageSource
   ]) {
     assert.ok(source.includes('locale !== "de"'));
@@ -133,7 +116,6 @@ test("wrong-locale commercial slugs remain guarded", () => {
 test("commercial pages use restrained service schema and matching breadcrumbs", () => {
   for (const source of [
     customerPageSource,
-    questionnairePageSource,
     scopePageSource
   ]) {
     assert.ok(source.includes("buildOrganizationSchema()"));
@@ -146,14 +128,15 @@ test("commercial pages use restrained service schema and matching breadcrumbs", 
     assert.ok(!source.includes("Review"));
   }
 
-  assert.ok(componentSource.includes('aria-label="Breadcrumb"'));
-  assert.ok(componentSource.includes('href="/en"'));
+  assert.ok(componentSource.includes('breadcrumb: "Breadcrumb"'));
+  assert.ok(componentSource.includes("aria-label={UI[locale].breadcrumb}"));
+  assert.ok(componentSource.includes("href={`/${locale}`}"));
 });
 
 test("navigation and homepage expose genuine English service routes", () => {
   for (const href of [
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/scope-1-2-calculation",
     "/en/ecovadis-support",
     "/en/integritynext-support",
@@ -163,9 +146,6 @@ test("navigation and homepage expose genuine English service routes", () => {
   }
 
   assert.ok(navigationSource.includes('href: route("en", "esgKundenanfragen")'));
-  assert.ok(
-    navigationSource.includes('href: route("en", "esgFragebogenLieferanten")')
-  );
   assert.ok(navigationSource.includes('href: route("en", "scope12Berechnung")'));
   assert.ok(navigationSource.includes('href: route("en", "ecovadisUnterstuetzung")'));
   assert.ok(
@@ -188,7 +168,7 @@ test("targeted English resources bridge to the commercial layer", () => {
 
   for (const href of [
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/scope-1-2-calculation"
   ]) {
     assert.ok(resourceSources.includes(href), href);
@@ -206,9 +186,6 @@ test("Batch A copy preserves commercial differentiation and claim safeguards", (
     "Start with what you already have.",
     "A response you can actually review.",
     "What if some information is missing?",
-    "Why ESG questionnaires take longer than they look",
-    "Questionnaire workflow",
-    "What we need you to confirm",
     "From source data to a calculation you can trace.",
     "The calculation model we preserve",
     "What this service is not",
@@ -255,7 +232,8 @@ test("new English commercial source has no unintended German UI leakage", () => 
     "Startseite"
   ];
 
-  const newEnglishSource = [contentSource, componentSource].join("\n");
+  // The shared template carries a small German interface table for the DE pages.
+  const newEnglishSource = [contentSource, componentSource.replace(/  de: \{[\s\S]*?\n  \}\n\};/, "")].join("\n");
   for (const term of germanTerms) {
     assert.ok(!newEnglishSource.replace(/getServiceBuyerQuestions\("en", "[^"]+"\)/g, "").includes(term), term);
   }

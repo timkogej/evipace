@@ -76,7 +76,7 @@ test("the locale layout is the only site-chrome integration point", async () => 
 });
 
 test("every chrome route maps to a real route and the reachability registry", async () => {
-  assert.equal(routeEntries.length, 52);
+  assert.equal(routeEntries.length, 58);
   assert.equal(new Set(hrefs).size, hrefs.length);
 
   for (const entry of routeEntries) {
@@ -96,7 +96,7 @@ test("every chrome route maps to a real route and the reachability registry", as
 test("German services and resources use the exact genuine inventory", () => {
   const expectedServices = [
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/vsme-nachhaltigkeitsbericht",
@@ -111,7 +111,7 @@ test("German services and resources use the exact genuine inventory", () => {
     "/de/ressourcen/esg-nachweise-lieferanten",
     "/de/ressourcen/ecovadis-dokumente-nachweise",
     "/de/ressourcen/integritynext-einladung-lieferanten",
-    "/de/ressourcen/scope-1-2-3-einfach-erklaert",
+    "/de/ressourcen/ecovadis-und-integritynext-vergleich",    "/de/ressourcen/scope-1-2-3-einfach-erklaert",
     "/de/ressourcen/scope-1-2-daten-berechnung",
     "/de/ressourcen/scope-1-2-datenerfassungs-vorlage",
     "/de/ressourcen/vsme-daten-nachhaltigkeitsbericht",
@@ -149,8 +149,8 @@ test("English navigation remains deliberately smaller and route-correct", () => 
     "/en/send-request",
     "/en/offers",
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
     "/en/scope-1-2-calculation",
+    "/en/records-and-deadlines",
     "/en/ecovadis-support",
     "/en/integritynext-support",
     "/en/vsme-sustainability-report",
@@ -160,6 +160,9 @@ test("English navigation remains deliberately smaller and route-correct", () => 
     "/en/resources/esg-evidence-for-suppliers",
     "/en/resources/ecovadis-documents-evidence",
     "/en/resources/integritynext-invitation-for-suppliers",
+    "/en/resources/ecovadis-vs-integritynext",
+    "/en/resources/scope-2-location-based-vs-market-based",
+    "/en/resources/how-to-answer-esg-questionnaire",
     "/en/resources/scope-1-2-data-calculation",
     "/en/resources/scope-1-2-3-explained",
     "/en/resources/vsme-data-sustainability-report",
@@ -170,9 +173,7 @@ test("English navigation remains deliberately smaller and route-correct", () => 
   ]);
   assert.ok(navigationSource.includes('href: "/en#services"'));
   assert.ok(navigationSource.includes('href: route("en", "esgKundenanfragen")'));
-  assert.ok(
-    navigationSource.includes('href: route("en", "esgFragebogenLieferanten")')
-  );
+  assert.ok(navigationSource.includes('href: route("en", "recordsDeadlines")'));
   assert.ok(navigationSource.includes('href: route("en", "scope12Berechnung")'));
   assert.ok(navigationSource.includes('href: route("en", "ecovadisUnterstuetzung")'));
   assert.ok(

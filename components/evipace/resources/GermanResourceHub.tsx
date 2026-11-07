@@ -31,6 +31,7 @@ const links = {
   evidence: "/de/ressourcen/esg-nachweise-lieferanten",
   ecovadis: "/de/ressourcen/ecovadis-dokumente-nachweise",
   integrityNext: "/de/ressourcen/integritynext-einladung-lieferanten",
+  platformCompare: "/de/ressourcen/ecovadis-und-integritynext-vergleich",
   scopes: "/de/ressourcen/scope-1-2-3-einfach-erklaert",
   scopeData: "/de/ressourcen/scope-1-2-daten-berechnung",
   scopeDataTemplate: "/de/ressourcen/scope-1-2-datenerfassungs-vorlage",
@@ -50,7 +51,7 @@ const services = [
   },
   {
     title: "ESG-Fragebögen für Lieferanten",
-    href: "/de/esg-fragebogen-lieferanten",
+    href: "/de/esg-kundenanfragen",
     body: "Ein konkreter Fragebogen oder ein Lieferanten-Assessment, das Feld für Feld beantwortet werden muss."
   },
   {
@@ -283,6 +284,27 @@ export function GermanResourceHub() {
             href={links.integrityNext}
             title="IntegrityNext für Lieferanten"
             type="PLATTFORM-LEITFADEN"
+          />
+          <ResourceCard
+            cta="Plattformen vergleichen"
+            description="Was EcoVadis und IntegrityNext von Lieferanten jeweils verlangen, welche Dokumente sich überschneiden und wie Sie sich einmal für beide vorbereiten."
+            href={links.platformCompare}
+            title="EcoVadis und IntegrityNext im Vergleich"
+            type="PLATTFORM-LEITFADEN"
+          />
+          <ResourceCard
+            cta="Methoden vergleichen"
+            description="Warum derselbe Stromverbrauch zwei Scope-2-Werte ergeben kann, welche Daten jede Methode braucht und was Sie festhalten."
+            href="/de/ressourcen/scope-2-location-based-market-based"
+            title="Scope 2: location-based und market-based"
+            type="METHODEN-LEITFADEN"
+          />
+          <ResourceCard
+            cta="Antworten mit Nachweis"
+            description="Was die Antworttypen bedeuten, was eine vollständige Antwort enthält und wie Sie typische Fragearten wahrheitsgemäß beantworten, mit benannten Lücken."
+            href="/de/ressourcen/esg-fragebogen-beantworten-antwortbeispiele"
+            title="ESG-Fragebogen beantworten: Antwortbeispiele"
+            type="LEITFADEN"
           />
         </ResourceCards>
       </ResourceBand>

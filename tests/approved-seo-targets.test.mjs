@@ -61,30 +61,30 @@ test("approved EN and DE SEO titles and H1s are exact", () => {
   const expected = [
     [
       enRegistry,
-      'title: "ESG Customer Request Support for Suppliers | Evipace"',
+      'title: "ESG Documentation for Manufacturers & Suppliers | Evipace"',
       homeContentSource,
-      "Forward your customer's request. We prepare the answer.",
+      "Customers ask for ESG documents. We do the work.",
       landingHomeSource
     ],
     [
       deRegistry,
-      'title: "Unterstützung bei ESG-Kundenanfragen für Lieferanten | Evipace"',
+      'title: "ESG-Dokumentation für Hersteller und Lieferanten | Evipace"',
       homeContentSource,
-      "Leiten Sie die Anfrage Ihres Kunden weiter. Wir bereiten die Antwort vor.",
+      "Ihre Kunden fragen nach ESG-Unterlagen. Wir übernehmen die Arbeit.",
       landingHomeSource
     ],
     [
       enRegistry,
-      'title: "Corporate Carbon Footprint & Scope 1–2 Calculation | Evipace"',
+      'title: "Carbon Footprint & Scope 1–2 Calculation | Evipace"',
       englishCommercialContent,
-      "Calculate and document your company’s Scope 1 and Scope 2 emissions.",
+      "We calculate your Scope 1 and Scope 2 emissions from the records you already have.",
       englishCommercialComponent
     ],
     [
       deRegistry,
       'title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | Evipace"',
       germanScopeHeroSource,
-      "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 nachvollziehbar berechnen."
+      "CO₂-Bilanz für Ihr Unternehmen: Scope 1 und Scope 2 berechnen wir aus Ihren Unterlagen."
     ]
   ];
 

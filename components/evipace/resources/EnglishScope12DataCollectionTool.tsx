@@ -226,7 +226,7 @@ function EntryCard({
     <article className="rounded-[1rem] border border-[rgba(21,21,21,0.12)] bg-white p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-orange">
             Scope {entry.scope} - {categoryLabels[entry.category]}
           </p>
           <h4 className="type-subheading font-display mt-2 text-ink">
@@ -336,7 +336,7 @@ function PrintSummary({ state }: { state: Scope12CollectionState }) {
 
   return (
     <section className="scope12-print-summary" aria-label="Print summary">
-      <h1>Scope 1 and Scope 2 data collection summary</h1>
+      <p className="print-title">Scope 1 and Scope 2 data collection summary</p>
       <p>Created with the Evipace Scope 1 and Scope 2 data collection template.</p>
       <dl>
         <div><dt>Company</dt><dd>{state.companyLabel || "Not provided"}</dd></div>
@@ -557,7 +557,7 @@ export function EnglishScope12DataCollectionTool() {
           {progressText}. Progress is saved locally in this browser.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-orange px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={exportCsv} type="button">
+          <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c25000] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={exportCsv} type="button">
             <Download aria-hidden="true" className="h-4 w-4" />
             Export CSV
           </button>
@@ -594,7 +594,7 @@ export function EnglishScope12DataCollectionTool() {
                 Define which sites belong to the data collection and mark which activity-data modules apply.
               </p>
             </div>
-            <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={addLocation} type="button">
+            <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={addLocation} type="button">
               <Plus aria-hidden="true" className="h-4 w-4" />
               Add site
             </button>
@@ -622,7 +622,7 @@ export function EnglishScope12DataCollectionTool() {
                   {categoryLabels[category.id]}
                 </h3>
               </div>
-              <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={() => addEntry(category.id)} type="button">
+              <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={() => addEntry(category.id)} type="button">
                 <Plus aria-hidden="true" className="h-4 w-4" />
                 Add entry
               </button>

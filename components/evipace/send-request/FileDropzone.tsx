@@ -41,7 +41,6 @@ export function FileDropzone({
   return (
     <div>
       <button
-        aria-label={copy.addFilesAriaLabel}
         className={`${styles.dropzone}${isDragging ? ` ${styles.dropzoneActive}` : ""}`}
         disabled={disabled}
         onClick={() => inputRef.current?.click()}
@@ -60,12 +59,14 @@ export function FileDropzone({
         <span aria-hidden="true" className={styles.dropIcon}>
           <UploadIcon />
         </span>
-        <span className={styles.dropText}>{copy.dropText}</span>
+        <span className={`${styles.dropText} ${styles.dropPointer}`}>{copy.dropText}</span>
+        <span className={`${styles.dropText} ${styles.dropTouch}`}>{copy.tapText}</span>
         <span className={styles.dropHint}>{copy.hintText}</span>
       </button>
 
       <input
         accept={acceptAttr}
+        aria-label={copy.addFilesAriaLabel}
         className="sr-only"
         multiple
         onChange={(event) => {
@@ -73,6 +74,7 @@ export function FileDropzone({
           event.target.value = "";
         }}
         ref={inputRef}
+        tabIndex={-1}
         type="file"
       />
 

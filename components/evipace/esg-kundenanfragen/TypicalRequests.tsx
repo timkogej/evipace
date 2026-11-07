@@ -20,7 +20,7 @@ const categories = [
       "Brennstoffverbrauch",
       "Kraftstoffverbrauch",
       "erneuerbare Energie",
-      "teilweise weitere CO₂- oder Scope-3-Angaben"
+      "weitere CO₂-Angaben, soweit sie Scope 1 und Scope 2 betreffen"
     ]
   },
   {
@@ -30,7 +30,6 @@ const categories = [
     items: [
       "Umweltpolitik",
       "Energieeffizienz",
-      "Abfallmanagement",
       "Wasserverbrauch",
       "Umweltzielen",
       "Klimazielen",
@@ -70,7 +69,6 @@ const categories = [
     intro: "Auch Informationen wie diese können Teil einer ESG-Kundenanfrage sein:",
     items: [
       "Beschäftigtenzahlen",
-      "Arbeitsschutz",
       "Weiterbildungen",
       "Diversität",
       "soziale Standards",

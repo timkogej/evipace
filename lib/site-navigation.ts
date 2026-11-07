@@ -82,11 +82,8 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     { pageKey: "sendRequest", href: "/en/send-request" },
     { pageKey: "offers", href: "/en/offers" },
     { pageKey: "esgKundenanfragen", href: "/en/esg-customer-requests" },
-    {
-      pageKey: "esgFragebogenLieferanten",
-      href: "/en/esg-questionnaire-support"
-    },
     { pageKey: "scope12Berechnung", href: "/en/scope-1-2-calculation" },
+    { pageKey: "recordsDeadlines", href: "/en/records-and-deadlines" },
     { pageKey: "ecovadisUnterstuetzung", href: "/en/ecovadis-support" },
     {
       pageKey: "integrityNextUnterstuetzung",
@@ -116,6 +113,18 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     {
       pageKey: "integrityNextEinladungLieferanten",
       href: "/en/resources/integritynext-invitation-for-suppliers"
+    },
+    {
+      pageKey: "ecovadisVsIntegritynext",
+      href: "/en/resources/ecovadis-vs-integritynext"
+    },
+    {
+      pageKey: "scope2LocationMarket",
+      href: "/en/resources/scope-2-location-based-vs-market-based"
+    },
+    {
+      pageKey: "esgFragebogenBeantworten",
+      href: "/en/resources/how-to-answer-esg-questionnaire"
     },
     {
       pageKey: "scope12DatenBerechnung",
@@ -158,10 +167,6 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
       href: "/de/esg-kundenanfragen"
     },
     {
-      pageKey: "esgFragebogenLieferanten",
-      href: "/de/esg-fragebogen-lieferanten"
-    },
-    {
       pageKey: "ecovadisUnterstuetzung",
       href: "/de/ecovadis-unterstuetzung"
     },
@@ -176,6 +181,10 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
     {
       pageKey: "scope12Berechnung",
       href: "/de/scope-1-2-berechnung"
+    },
+    {
+      pageKey: "recordsDeadlines",
+      href: "/de/nachweise-und-fristen"
     },
     {
       pageKey: "resourcesHub",
@@ -222,6 +231,18 @@ export const pageRoutes: Record<SiteLocale, PageRoute[]> = {
       href: "/de/ressourcen/integritynext-einladung-lieferanten"
     },
     {
+      pageKey: "ecovadisVsIntegritynext",
+      href: "/de/ressourcen/ecovadis-und-integritynext-vergleich"
+    },
+    {
+      pageKey: "scope2LocationMarket",
+      href: "/de/ressourcen/scope-2-location-based-market-based"
+    },
+    {
+      pageKey: "esgFragebogenBeantworten",
+      href: "/de/ressourcen/esg-fragebogen-beantworten-antwortbeispiele"
+    },
+    {
       pageKey: "scope123EinfachErklaert",
       href: "/de/ressourcen/scope-1-2-3-einfach-erklaert"
     },
@@ -255,17 +276,22 @@ const deServices: NavigationDirectory = {
   label: "Leistungen",
   groups: [
     {
+      label: "Nachweise",
+      items: [
+        {
+          label: "Nachweise und Fristen",
+          href: route("de", "recordsDeadlines"),
+          pageKey: "recordsDeadlines"
+        }
+      ]
+    },
+    {
       label: "Kundenanfragen",
       items: [
         {
-          label: "ESG-Kundenanfragen",
+          label: "Fragebögen & Kundenanfragen",
           href: route("de", "esgKundenanfragen"),
           pageKey: "esgKundenanfragen"
-        },
-        {
-          label: "ESG-Fragebögen für Lieferanten",
-          href: route("de", "esgFragebogenLieferanten"),
-          pageKey: "esgFragebogenLieferanten"
         }
       ]
     },
@@ -354,6 +380,21 @@ const deResources: NavigationDirectory = {
           label: "IntegrityNext für Lieferanten",
           href: route("de", "integrityNextEinladungLieferanten"),
           pageKey: "integrityNextEinladungLieferanten"
+        },
+        {
+          label: "EcoVadis und IntegrityNext im Vergleich",
+          href: route("de", "ecovadisVsIntegritynext"),
+          pageKey: "ecovadisVsIntegritynext"
+        },
+        {
+          label: "Scope 2: location- und market-based",
+          href: route("de", "scope2LocationMarket"),
+          pageKey: "scope2LocationMarket"
+        },
+        {
+          label: "ESG-Fragebogen beantworten",
+          href: route("de", "esgFragebogenBeantworten"),
+          pageKey: "esgFragebogenBeantworten"
         }
       ]
     },
@@ -402,17 +443,22 @@ const enServices: NavigationDirectory = {
   label: "Services",
   groups: [
     {
+      label: "Records",
+      items: [
+        {
+          label: "Records and deadlines",
+          href: route("en", "recordsDeadlines"),
+          pageKey: "recordsDeadlines"
+        }
+      ]
+    },
+    {
       label: "Customer requests",
       items: [
         {
-          label: "Customer ESG requests",
+          label: "Questionnaires & customer requests",
           href: route("en", "esgKundenanfragen"),
           pageKey: "esgKundenanfragen"
-        },
-        {
-          label: "ESG questionnaire support",
-          href: route("en", "esgFragebogenLieferanten"),
-          pageKey: "esgFragebogenLieferanten"
         }
       ]
     },
@@ -420,12 +466,12 @@ const enServices: NavigationDirectory = {
       label: "Platforms",
       items: [
         {
-          label: "EcoVadis Support",
+          label: "EcoVadis support",
           href: route("en", "ecovadisUnterstuetzung"),
           pageKey: "ecovadisUnterstuetzung"
         },
         {
-          label: "IntegrityNext Support",
+          label: "IntegrityNext support",
           href: route("en", "integrityNextUnterstuetzung"),
           pageKey: "integrityNextUnterstuetzung"
         }
@@ -435,7 +481,7 @@ const enServices: NavigationDirectory = {
       label: "Carbon & reporting",
       items: [
         {
-          label: "VSME Sustainability Reporting",
+          label: "VSME sustainability report",
           href: route("en", "vsmeNachhaltigkeitsbericht"),
           pageKey: "vsmeNachhaltigkeitsbericht"
         },
@@ -450,7 +496,7 @@ const enServices: NavigationDirectory = {
   actions: [
     { label: "See what we handle", href: "/en#services" },
     {
-      label: "Send your ESG request",
+      label: "Send us a request",
       href: route("en", "sendRequest"),
       pageKey: "sendRequest"
     }
@@ -499,6 +545,21 @@ const enResources: NavigationDirectory = {
           label: "IntegrityNext invitation",
           href: route("en", "integrityNextEinladungLieferanten"),
           pageKey: "integrityNextEinladungLieferanten"
+        },
+        {
+          label: "EcoVadis vs IntegrityNext",
+          href: route("en", "ecovadisVsIntegritynext"),
+          pageKey: "ecovadisVsIntegritynext"
+        },
+        {
+          label: "Scope 2: location vs market",
+          href: route("en", "scope2LocationMarket"),
+          pageKey: "scope2LocationMarket"
+        },
+        {
+          label: "How to answer an ESG questionnaire",
+          href: route("en", "esgFragebogenBeantworten"),
+          pageKey: "esgFragebogenBeantworten"
         }
       ]
     },
@@ -550,7 +611,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       section: "home"
     },
     primaryAction: {
-      label: "Send your ESG request",
+      label: "Send us a request",
       href: route("en", "sendRequest"),
       pageKey: "sendRequest"
     },
@@ -581,22 +642,22 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
         title: "Services",
         links: [
           {
-            label: "Customer ESG requests",
+            label: "Records and deadlines",
+            href: route("en", "recordsDeadlines"),
+            pageKey: "recordsDeadlines"
+          },
+          {
+            label: "Questionnaires & customer requests",
             href: route("en", "esgKundenanfragen"),
             pageKey: "esgKundenanfragen"
           },
           {
-            label: "ESG questionnaire support",
-            href: route("en", "esgFragebogenLieferanten"),
-            pageKey: "esgFragebogenLieferanten"
-          },
-          {
-            label: "EcoVadis Support",
+            label: "EcoVadis support",
             href: route("en", "ecovadisUnterstuetzung"),
             pageKey: "ecovadisUnterstuetzung"
           },
           {
-            label: "IntegrityNext Support",
+            label: "IntegrityNext support",
             href: route("en", "integrityNextUnterstuetzung"),
             pageKey: "integrityNextUnterstuetzung"
           },
@@ -606,7 +667,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
             pageKey: "scope12Berechnung"
           },
           {
-            label: "VSME Sustainability Reporting",
+            label: "VSME sustainability report",
             href: route("en", "vsmeNachhaltigkeitsbericht"),
             pageKey: "vsmeNachhaltigkeitsbericht"
           },
@@ -694,7 +755,7 @@ export const siteNavigation: Record<SiteLocale, SiteNavigation> = {
       section: "home"
     },
     primaryAction: {
-      label: "ESG-Anfrage senden",
+      label: "Anfrage senden",
       href: route("de", "sendRequest"),
       pageKey: "sendRequest"
     },

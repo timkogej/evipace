@@ -1,4 +1,4 @@
-import { publicContactEmail, publicLinkedInUrl } from "@/lib/company-info";
+import { publicContactEmail, publicLinkedInUrl, publicPhone } from "@/lib/company-info";
 import { evipaceImages } from "@/lib/evipace-images";
 import { SITE_NAME, SITE_URL } from "../site-config";
 import { FOUNDER_ID, ORGANIZATION_ID } from "./ids";
@@ -20,7 +20,10 @@ import { FOUNDER_ID, ORGANIZATION_ID } from "./ids";
  *  - `founder` is the real, named founder already published on the About
  *    page, with the job title shown there and nothing more.
  *
- * Do not add address, telephone, founding date, certifications,
+ *  - `telephone` and `contactPoint` reuse the public phone and email
+ *    already shown on the site; `address` is city and country only.
+ *
+ * Do not add a street address, founding date, certifications,
  * memberships, employee count, other social profiles, or awards here unless they
  * exist, are verified, and are visible on the site — an unsupported claim
  * in structured data is worse than no claim at all.
@@ -32,14 +35,28 @@ export function buildOrganizationSchema() {
     name: SITE_NAME,
     url: `${SITE_URL}/`,
     description:
-      "Evipace prepares practical ESG documentation and support for manufacturing companies and suppliers in European supply chains, including customer ESG requests, questionnaires, Scope 1 and Scope 2 calculations, voluntary sustainability reporting, policies and supporting evidence.",
+      "Evipace, based in Ljubljana, Slovenia, prepares ESG documentation for manufacturers and suppliers in European supply chains: answers to customer ESG questionnaires and requests, EcoVadis and IntegrityNext material, Scope 1 and Scope 2 calculations and VSME sustainability reports. A person at Evipace reviews every response. It is a service, not software.",
     email: publicContactEmail,
+    ...(publicPhone ? { telephone: publicPhone } : {}),
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: publicContactEmail,
+      ...(publicPhone ? { telephone: publicPhone } : {})
+    },
     sameAs: [publicLinkedInUrl],
+    // City and country only, as published ("Based in Ljubljana, Slovenia");
+    // no street address or legal entity until supplied and approved.
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ljubljana",
+      addressCountry: "SI"
+    },
     // General country context is visible on both About pages; no invented address.
     location: { "@type": "Country", name: "Slovenia" },
     areaServed: {
       "@type": "Place",
-      name: "Europe"
+      name: "Europe, mainly DACH"
     },
     founder: {
       "@type": "Person",

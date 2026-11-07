@@ -119,12 +119,12 @@ test("environmental policy resource has exact German SEO metadata and English pa
   assert.ok(germanRegistry.includes(`${PAGE_KEY}: {`));
   assert.ok(
     germanRegistry.includes(
-      'title: "Environmental Policy erstellen: Leitfaden für Unternehmen | Evipace"'
+      'title: "Environmental Policy erstellen: Leitfaden | Evipace"'
     )
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Environmental Policy erstellen: So strukturieren Lieferanten Geltungsbereich, Umweltgrundsätze, Verantwortlichkeiten, Ziele und interne Freigabe nachvollziehbar."'
+      'description: "Environmental Policy erstellen: Geltungsbereich, Umweltgrundsätze, Verantwortlichkeiten, Ziele und interne Freigabe nachvollziehbar strukturieren."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));
@@ -260,7 +260,7 @@ test("environmental policy guide links required internal destinations", () => {
     "/de/ressourcen/esg-nachweise-checkliste",
     "/de/ressourcen/esg-daten-einmal-sammeln-mehrfach-nutzen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/send-request",

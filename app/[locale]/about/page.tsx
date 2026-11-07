@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AboutLandingPage } from "@/components/evipace/about/AboutLandingPage";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
-import { isPageReachable } from "@/lib/seo/page-registry";
+import { getPageMetadataEntry, isPageReachable } from "@/lib/seo/page-registry";
 import { JsonLd } from "@/lib/seo/schema/json-ld";
+import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
 import { buildOrganizationSchema } from "@/lib/seo/schema/organization";
 import { buildWebsiteSchema } from "@/lib/seo/schema/website";
 import { buildWebPageSchema } from "@/lib/seo/schema/webpage";
@@ -29,7 +30,18 @@ export default async function About({ params }: AboutPageProps) {
   const schemaGraph = [
     buildOrganizationSchema(),
     buildWebsiteSchema(),
-    buildWebPageSchema(locale, "about")
+    buildWebPageSchema(locale, "about"),
+    buildBreadcrumbListSchema(
+      locale === "de"
+        ? [
+            { name: "Startseite", path: "/de" },
+            { name: "Über Evipace", path: getPageMetadataEntry(locale, "about")!.path }
+          ]
+        : [
+            { name: "Home", path: "/en" },
+            { name: "About", path: getPageMetadataEntry(locale, "about")!.path }
+          ]
+    )
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   if (locale === "de") {

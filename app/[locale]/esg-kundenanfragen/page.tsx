@@ -7,13 +7,15 @@ import { FocusedScope } from "@/components/evipace/esg-kundenanfragen/FocusedSco
 import { LandingFinalCTA } from "@/components/evipace/esg-kundenanfragen/LandingFinalCTA";
 import { LandingHero } from "@/components/evipace/esg-kundenanfragen/LandingHero";
 import { ProcessSteps } from "@/components/evipace/esg-kundenanfragen/ProcessSteps";
-import { RelatedQuestionnaire } from "@/components/evipace/esg-kundenanfragen/RelatedQuestionnaire";
+import { RelatedServices } from "@/components/evipace/esg-kundenanfragen/RelatedServices";
 import { RequestIntro } from "@/components/evipace/esg-kundenanfragen/RequestIntro";
 import { TargetCompanies } from "@/components/evipace/esg-kundenanfragen/TargetCompanies";
 import { TaskTranslation } from "@/components/evipace/esg-kundenanfragen/TaskTranslation";
 import { TypicalRequests } from "@/components/evipace/esg-kundenanfragen/TypicalRequests";
+import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
 import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
+import { DirectAnswers } from "@/components/evipace/service-landing/DirectAnswers";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -67,8 +69,10 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
       <JsonLd graph={schemaGraph} />
       <ServiceMain>
         <LandingHero />
+        <DirectAnswers service="questionnaire" />
         <RequestIntro />
         <Deliverables />
+        <IllustrativeHandover locale="de" service="questionnaire" />
         <ProcessSteps />
         <ServiceDetailAccordion label="Welche Anfragen, Daten und Nachweise wir bearbeiten">
           <TypicalRequests />
@@ -77,7 +81,7 @@ export default async function EsgKundenanfragenPage({ params }: PageProps) {
         </ServiceDetailAccordion>
         <FocusedScope />
         <TargetCompanies />
-        <RelatedQuestionnaire />
+        <RelatedServices />
         <Faq />
         <LandingFinalCTA />
       </ServiceMain>

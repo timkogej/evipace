@@ -18,6 +18,7 @@ import { TrustStatement } from "@/components/evipace/vsme-nachhaltigkeitsbericht
 import { ValueChainCap } from "@/components/evipace/vsme-nachhaltigkeitsbericht/ValueChainCap";
 import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
+import { DirectAnswers } from "@/components/evipace/service-landing/DirectAnswers";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -74,6 +75,7 @@ export default async function VsmeNachhaltigkeitsberichtPage({
       <JsonLd graph={schemaGraph} />
       <ServiceMain>
         <LandingHero />
+        <DirectAnswers service="vsme" />
         <DataFoundation />
         <ReportContents />
         <ProcessSteps />

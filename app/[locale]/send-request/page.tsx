@@ -25,7 +25,11 @@ export async function generateMetadata({
   params
 }: SendRequestPageProps): Promise<Metadata> {
   const { locale } = await params;
-  return buildPageMetadata(locale, "sendRequest");
+  // Still noindex (see above), but the tab and shared links get a name.
+  return {
+    ...buildPageMetadata(locale, "sendRequest"),
+    title: locale === "de" ? "ESG-Anfrage senden | Evipace" : "Send your ESG request | Evipace"
+  };
 }
 
 export default async function SendRequestPage({

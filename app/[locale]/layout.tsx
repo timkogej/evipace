@@ -9,7 +9,7 @@ import { SmoothScroll } from "@/components/evipace/SmoothScroll";
 import { locales, isLocale, type Locale } from "@/lib/evipace-locales";
 import { SITE_NAME, SITE_URL } from "@/lib/seo/site-config";
 import { isSiteLocale } from "@/lib/site-navigation";
-import { gfsDidot, inter } from "../fonts";
+import { display, inter, mono } from "../fonts";
 import "../globals.css";
 import "../typography.css";
 import "../faq.css";
@@ -72,7 +72,7 @@ export default async function LocaleLayout({
 
   return (
     <html
-      className={`${inter.variable} ${gfsDidot.variable}`}
+      className={`${inter.variable} ${display.variable} ${mono.variable}`}
       lang={activeLocale}
     >
       <body>

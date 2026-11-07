@@ -1,5 +1,5 @@
 import type { HomeLocale } from "../home/content";
-import { BRAND_LINE } from "../home/content";
+import { BRAND_LINE, BRAND_LINE_DE } from "../home/content";
 
 /**
  * Offers page copy. No prices, deadlines, references or figures. The German
@@ -56,7 +56,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
     breadcrumb: { home: "Home", current: "Offers" },
     hero: {
       eyebrow: "Ways to work with Evipace",
-      title: "Choose how you want to work with us",
+      title: "Three ways to work with us",
       body: "Forward one request, set up a standing desk, or prepare a voluntary report. We confirm scope and price after reviewing your request, before we start.",
       jumpLabel: "Jump to an offer"
     },
@@ -74,7 +74,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         name: "Request",
         kind: "One-off request",
         forWhom: "For a company that has one request from a customer and needs a prepared answer.",
-        note: "Requests come in sizes S, M and L, depending on scope: the number of questions, the evidence involved and the number of sites. We set the size after reviewing your request.",
+        note: "The scope depends on the number of questions, the evidence involved and the number of sites. We confirm it after reviewing your request.",
         included: [
           "Mapping of the request",
           "Draft answers from your data and evidence",
@@ -100,16 +100,16 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         kind: "Standing desk, annual",
         forWhom: "For a company that receives customer requests regularly.",
         included: [
-          "Supplier Passport: an organised set of your confirmed evidence",
+          "An organised set of your evidence, kept up to date",
           "Regular refresh of evidence and annual data for Scope 1 and 2",
           "An intake for requests (forward to desk@evipace.com), including handling of the email",
-          "A set number of requests per year included; additional requests at a reduced rate",
+          "A set number of requests per year included; additional requests are scoped after review",
           "Priority handling",
-          "Access to your Evipace portal with your evidence library"
+          "Access to your Evipace portal with your documents"
         ],
         youDo: ["Confirm the evidence", "Review each answer", "Approve each answer"],
         process: [
-          "We set up your Supplier Passport from the evidence you confirm.",
+          "We set up your evidence set from the documents you give us.",
           "You forward requests as they arrive.",
           "We prepare each answer and reuse confirmed evidence where it still applies.",
           "You review and approve each answer in your Evipace portal."
@@ -125,7 +125,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         name: "Report",
         kind: "VSME report",
         forWhom: "For a company that wants a voluntary VSME report, for example because a customer or a bank asks for one.",
-        note: "Where an independent review or public disclosure is needed, we explain the steps and costs in advance.",
+        note: "Independent assurance and publication are not part of our service; your company decides whether the report is shared or externally reviewed.",
         included: [
           "The report structure",
           "A draft from your confirmed data",
@@ -167,7 +167,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
           label: "What you get",
           values: [
             "Draft answers and a list of what is missing",
-            "A Supplier Passport, prepared answers and your evidence library",
+            "An organised evidence set, prepared answers and your documents in the portal",
             "A report structure and a draft report"
           ]
         },
@@ -217,7 +217,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
     cta: {
       slogan: BRAND_LINE,
       title: "Have a customer request waiting?",
-      body: "Forward it today. You review and approve everything before anything is sent.",
+      body: "Forward it today, and we will tell you what we can take over.",
       forward: "Forward your request",
       formLink: "Or send it via the form"
     }
@@ -226,8 +226,8 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
     breadcrumb: { home: "Startseite", current: "Angebot" },
     hero: {
       eyebrow: "Zusammenarbeit mit Evipace",
-      title: "Wählen Sie, wie Sie mit uns arbeiten möchten",
-      body: "Leiten Sie eine einzelne Anfrage weiter, richten Sie einen laufenden Schreibtisch ein oder bereiten Sie einen freiwilligen Bericht vor. Umfang und Preis bestätigen wir nach der Prüfung Ihrer Anfrage, bevor wir beginnen.",
+      title: "Drei Möglichkeiten der Zusammenarbeit",
+      body: "Leiten Sie eine einzelne Anfrage weiter, richten Sie einen laufenden Service für wiederkehrende Anfragen ein oder bereiten Sie einen freiwilligen Bericht vor. Umfang und Preis bestätigen wir nach der Prüfung Ihrer Anfrage, bevor wir beginnen.",
       jumpLabel: "Direkt zu einem Angebot"
     },
     labels: {
@@ -241,10 +241,10 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
     offers: [
       {
         id: "request",
-        name: "Request",
+        name: "Einzelanfrage",
         kind: "Einmalige Anfrage",
         forWhom: "Für Unternehmen, die eine einzelne Kundenanfrage erhalten haben und eine vorbereitete Antwort benötigen.",
-        note: "Anfragen gibt es in den Größen S, M und L, je nach Umfang: Anzahl der Fragen, betroffene Nachweise und Anzahl der Standorte. Die Größe legen wir nach der Prüfung Ihrer Anfrage fest.",
+        note: "Der Umfang hängt von der Anzahl der Fragen, den betroffenen Nachweisen und der Zahl der Standorte ab. Wir bestätigen ihn nach der Prüfung Ihrer Anfrage.",
         included: [
           "Zuordnung der Anfrage",
           "Antwortentwürfe aus Ihren Daten und Nachweisen",
@@ -266,20 +266,20 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
       },
       {
         id: "desk",
-        name: "Desk",
-        kind: "Laufender Schreibtisch, jährlich",
+        name: "Laufender Service",
+        kind: "Jährlich, für regelmäßige Anfragen",
         forWhom: "Für Unternehmen, die regelmäßig Kundenanfragen erhalten.",
         included: [
-          "Supplier Passport: eine geordnete Sammlung Ihrer bestätigten Nachweise",
+          "Eine geordnete Sammlung Ihrer Nachweise, laufend aktuell gehalten",
           "Regelmäßige Aktualisierung der Nachweise und jährliche Daten zu Scope 1 und 2",
           "Ein Eingang für Anfragen (Weiterleitung an desk@evipace.com) einschließlich Bearbeitung der E-Mail",
-          "Eine festgelegte Anzahl an Anfragen pro Jahr enthalten; weitere Anfragen zu einem günstigeren Satz",
+          "Eine festgelegte Anzahl an Anfragen pro Jahr enthalten; weitere Anfragen werden nach Prüfung im Umfang festgelegt",
           "Vorrangige Bearbeitung",
-          "Zugang zu Ihrem Evipace-Portal mit Ihrer Nachweisbibliothek"
+          "Zugang zu Ihrem Evipace-Portal mit Ihren Unterlagen"
         ],
         youDo: ["Nachweise bestätigen", "Jede Antwort prüfen", "Jede Antwort freigeben"],
         process: [
-          "Wir richten Ihren Supplier Passport aus den von Ihnen bestätigten Nachweisen ein.",
+          "Wir richten Ihre Nachweissammlung aus den Unterlagen ein, die Sie uns geben.",
           "Sie leiten Anfragen bei Eingang weiter.",
           "Wir bereiten jede Antwort vor und nutzen bestätigte Nachweise, solange sie gültig sind.",
           "Sie prüfen jede Antwort und geben sie in Ihrem Evipace-Portal frei."
@@ -292,10 +292,10 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
       },
       {
         id: "report",
-        name: "Report",
+        name: "Bericht",
         kind: "VSME-Bericht",
         forWhom: "Für Unternehmen, die einen freiwilligen VSME-Bericht wünschen, zum Beispiel weil ein Kunde oder eine Bank danach fragt.",
-        note: "Wo eine unabhängige Prüfung oder eine Veröffentlichung nötig ist, erklären wir Schritte und Kosten im Voraus.",
+        note: "Eine unabhängige Prüfung und die Veröffentlichung gehören nicht zu unserer Leistung; Ihr Unternehmen entscheidet, ob der Bericht weitergegeben oder extern geprüft wird.",
         included: [
           "Die Berichtsstruktur",
           "Ein Entwurf aus Ihren bestätigten Daten",
@@ -318,7 +318,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
     compare: {
       label: "Was passt zu mir?",
       title: "Drei Möglichkeiten im Vergleich.",
-      caption: "Vergleich von Request, Desk und Report",
+      caption: "Vergleich von Einzelanfrage, Laufendem Service und Bericht",
       rowHeader: "Frage",
       rows: [
         {
@@ -337,7 +337,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
           label: "Was Sie erhalten",
           values: [
             "Antwortentwürfe und eine Liste der fehlenden Angaben",
-            "Einen Supplier Passport, vorbereitete Antworten und Ihre Nachweisbibliothek",
+            "Eine geordnete Nachweissammlung, vorbereitete Antworten und Ihre Unterlagen im Portal",
             "Eine Berichtsstruktur und einen Berichtsentwurf"
           ]
         },
@@ -362,8 +362,8 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
       title: "Bevor Sie wählen.",
       items: [
         {
-          q: "Kann ich mit einer Anfrage beginnen und später zu einem Desk wechseln?",
-          a: "Ja. Beginnen Sie mit einer einzelnen Anfrage. Über einen Desk sprechen wir, wenn es für Sie sinnvoll ist."
+          q: "Kann ich mit einer Anfrage beginnen und später zu einem laufenden Service wechseln?",
+          a: "Ja. Beginnen Sie mit einer einzelnen Anfrage. Über einen laufenden Service sprechen wir, wenn es für Sie sinnvoll ist."
         },
         {
           q: "Was kostet es?",
@@ -385,9 +385,9 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
       ]
     },
     cta: {
-      slogan: BRAND_LINE,
+      slogan: BRAND_LINE_DE,
       title: "Wartet eine Kundenanfrage auf Sie?",
-      body: "Leiten Sie sie heute weiter. Sie prüfen und geben alles frei, bevor etwas versendet wird.",
+      body: "Leiten Sie sie heute weiter, und wir sagen Ihnen, was wir übernehmen können.",
       forward: "Anfrage weiterleiten",
       formLink: "Oder über das Formular senden"
     }

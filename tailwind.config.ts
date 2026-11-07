@@ -19,7 +19,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["GFS Didot", "Georgia", "serif"]
+        display: ["Geist", "Helvetica Neue", "Arial", "sans-serif"],
+        mono: ["Geist Mono", "ui-monospace", "monospace"]
       },
       boxShadow: {
         premium: "0 24px 80px rgba(21, 21, 21, 0.10)",

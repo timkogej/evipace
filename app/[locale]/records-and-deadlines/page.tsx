@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EnglishCommercialServicePage } from "@/components/evipace/english-commercial/EnglishCommercialServicePage";
-import { questionnaireSupportContent } from "@/components/evipace/english-commercial/content";
+import { recordsDeadlinesContent } from "@/components/evipace/english-commercial/records-deadlines-content";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -11,7 +11,7 @@ import { buildServiceSchema } from "@/lib/seo/schema/service";
 import { buildWebPageSchema } from "@/lib/seo/schema/webpage";
 import { buildWebsiteSchema } from "@/lib/seo/schema/website";
 
-const PAGE_KEY = "esgFragebogenLieferanten";
+const PAGE_KEY = "recordsDeadlines";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -27,9 +27,7 @@ export async function generateMetadata({
   return buildPageMetadata(locale, PAGE_KEY);
 }
 
-export default async function EsgQuestionnaireSupportPage({
-  params
-}: PageProps) {
+export default async function RecordsAndDeadlinesPage({ params }: PageProps) {
   const { locale } = await params;
 
   if (locale !== "en" || !isPageReachable(locale, PAGE_KEY)) {
@@ -43,21 +41,20 @@ export default async function EsgQuestionnaireSupportPage({
     buildServiceSchema(
       locale,
       PAGE_KEY,
-      "ESG questionnaire support for suppliers"
+      "Records and deadlines",
+      "Records and deadlines",
+      "A register of records with deadline tracking and preparation of what is due, reviewed by a person and approved by the client."
     ),
     buildBreadcrumbListSchema([
       { name: "Home", path: "/en" },
-      {
-        name: "ESG Questionnaire Support",
-        path: "/en/esg-questionnaire-support"
-      }
+      { name: "Records and deadlines", path: "/en/records-and-deadlines" }
     ])
   ].filter((node): node is NonNullable<typeof node> => node !== null);
 
   return (
     <>
       <JsonLd graph={schemaGraph} />
-      <EnglishCommercialServicePage content={questionnaireSupportContent} />
+      <EnglishCommercialServicePage content={recordsDeadlinesContent} locale="en" />
     </>
   );
 }

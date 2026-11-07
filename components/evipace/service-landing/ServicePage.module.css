@@ -166,7 +166,7 @@
 }
 
 .answerCard h3 {
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.4rem, 2vw, 1.75rem);
   font-weight: 400;
 }
@@ -429,7 +429,7 @@ header + .prose {
   border-left: 3px solid var(--ev-orange-500);
   padding-left: var(--ev-s-5);
   color: var(--ev-charcoal);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.3rem, 2vw, 1.6rem);
   line-height: 1.35;
 }
@@ -555,7 +555,7 @@ header + .prose {
 
 .formulaOp {
   color: var(--ev-orange-700);
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.75rem;
 }
 

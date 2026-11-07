@@ -16,6 +16,7 @@ import { TargetCompanies } from "@/components/evipace/ecovadis-unterstuetzung/Ta
 import { ServiceMain } from "@/components/evipace/service-landing/Blocks";
 import { ServiceDetailAccordion } from "@/components/evipace/service-landing/ServiceDetailAccordion";
 import { IllustrativeHandover } from "@/components/evipace/service-landing/IllustrativeHandover";
+import { DirectAnswers } from "@/components/evipace/service-landing/DirectAnswers";
 import { buildPageMetadata } from "@/lib/seo/build-metadata";
 import { isPageReachable } from "@/lib/seo/page-registry";
 import { buildBreadcrumbListSchema } from "@/lib/seo/schema/breadcrumb-list";
@@ -72,6 +73,7 @@ export default async function EcoVadisUnterstuetzungPage({
       <JsonLd graph={schemaGraph} />
       <ServiceMain>
         <LandingHero />
+        <DirectAnswers service="ecovadis" />
         <EvidenceIntro />
         <AssessmentPreparation />
         <ProcessSteps />

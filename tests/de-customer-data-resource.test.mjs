@@ -42,7 +42,7 @@ const [
   ),
   readFile(
     new URL(
-      "../components/evipace/esg-fragebogen-lieferanten/ProblemIntro.tsx",
+      "../components/evipace/esg-kundenanfragen/RequestIntro.tsx",
       import.meta.url
     ),
     "utf8"
@@ -101,7 +101,7 @@ test("customer data resource has exact German metadata and English pairing", () 
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Welche ESG-Daten fragen Kunden bei Lieferanten ab? Überblick über Emissionen, Energie, Umwelt, Mitarbeitende, Policies, Lieferkette, Compliance und typische Nachweise."'
+      'description: "Welche ESG-Daten verlangen Kunden von Lieferanten? Überblick zu Emissionen, Energie, Umwelt, Personal, Policies, Lieferkette und Nachweisen."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));
@@ -210,7 +210,7 @@ test("customer data guide links required internal destinations", () => {
   const requiredPaths = [
     "/de/ressourcen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/ressourcen/esg-fragebogen-vom-kunden-erhalten",

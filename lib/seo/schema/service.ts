@@ -34,6 +34,12 @@ export function buildServiceSchema(
     serviceType,
     url: absoluteUrl,
     provider: { "@id": ORGANIZATION_ID },
+    // Same scope the Organization states; no offers, prices or ratings.
+    areaServed: { "@type": "Place", name: "Europe" },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Manufacturers and suppliers"
+    },
     mainEntityOfPage: { "@id": `${absoluteUrl}#webpage` }
   };
 }

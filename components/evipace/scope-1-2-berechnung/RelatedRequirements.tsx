@@ -12,11 +12,6 @@ const relatedLinks = [
     href: "/de/esg-kundenanfragen"
   },
   {
-    title: "ESG-Fragebogen für Lieferanten",
-    body: "Viele Lieferantenfragebögen enthalten Fragen zu Treibhausgasemissionen, Energieverbrauch oder bestehenden Carbon-Daten.",
-    href: "/de/esg-fragebogen-lieferanten"
-  },
-  {
     title: "EcoVadis-Unterstützung",
     body: "Emissions- und Energiedaten können auch bei der Vorbereitung bestimmter Nachhaltigkeitsbewertungen relevant sein.",
     href: "/de/ecovadis-unterstuetzung"

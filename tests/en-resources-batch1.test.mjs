@@ -62,7 +62,7 @@ const pages = [
     en: "/en/resources/esg-evidence-for-suppliers",
     de: "/de/ressourcen/esg-nachweise-lieferanten",
     h1: "ESG evidence for suppliers: what documents actually support your answers?",
-    title: "ESG Evidence for Suppliers: What Documents Support Answers? | Evipace"
+    title: "ESG Evidence for Suppliers: Which Documents Count? | Evipace"
   },
   {
     key: "ecovadisDokumenteNachweise",
@@ -76,7 +76,7 @@ const pages = [
     en: "/en/resources/integritynext-invitation-for-suppliers",
     de: "/de/ressourcen/integritynext-einladung-lieferanten",
     h1: "Received an IntegrityNext invitation? A practical guide for suppliers.",
-    title: "IntegrityNext Invitation for Suppliers: What to Do Next | Evipace"
+    title: "IntegrityNext Invitation for Suppliers: Next Steps | Evipace"
   }
 ];
 
@@ -128,6 +128,8 @@ function localeRegistryBlock(locale) {
     ? registrySource.slice(start)
     : registrySource.slice(start, nextLocaleStart);
 }
+
+const articleUiSource = await readFile(new URL("../components/evipace/resources/article-ui.ts", import.meta.url), "utf8");
 
 test("English Batch 1 resources are registered as genuine DE/EN pairs only", () => {
   const englishRegistry = normalizeWhitespace(localeRegistryBlock("en"));
@@ -276,7 +278,7 @@ test("English article content preserves methodology, claim discipline and distin
     "does not control platform validation, customer decisions or platform status"
   ]) {
     assert.ok(
-      normalizeWhitespace(`${articleRendererSource}\n${contentSource}\n${batch2ContentSource}`).includes(
+      normalizeWhitespace(`${articleRendererSource}\n${articleUiSource}\n${contentSource}\n${batch2ContentSource}`).includes(
         normalizeWhitespace(required)
       ),
       required

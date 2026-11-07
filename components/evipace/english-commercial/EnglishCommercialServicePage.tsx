@@ -11,14 +11,50 @@ import { IllustrativeHandover } from "../service-landing/IllustrativeHandover";
 import sp from "../service-landing/ServicePage.module.css";
 import type { CommercialServicePageContent } from "./content";
 
-const SEND_REQUEST_HREF = "/en/send-request";
+type Locale = "en" | "de";
 
-type Props = { content: CommercialServicePageContent };
+/** Interface strings of the shared template; page content comes from `content`. */
+const UI: Record<
+  Locale,
+  {
+    home: string;
+    breadcrumb: string;
+    openResource: string;
+    faqEyebrow: string;
+    faqTitle: string;
+    forward: string;
+    slogan: string;
+    details: string;
+  }
+> = {
+  en: {
+    home: "Home",
+    breadcrumb: "Breadcrumb",
+    openResource: "Open resource",
+    faqEyebrow: "FAQ",
+    faqTitle: "Frequently asked questions",
+    forward: "Forward your request",
+    slogan: "Next step",
+    details: "When this service fits and what you can send"
+  },
+  de: {
+    home: "Startseite",
+    breadcrumb: "Brotkrumen",
+    openResource: "Leitfaden öffnen",
+    faqEyebrow: "FAQ",
+    faqTitle: "Häufige Fragen",
+    forward: "Anfrage weiterleiten",
+    slogan: "Nächster Schritt",
+    details: "Wann diese Leistung passt und was Sie senden können"
+  }
+};
 
-function Breadcrumb({ current }: { current: string }) {
+type Props = { content: CommercialServicePageContent; locale?: Locale };
+
+function Breadcrumb({ current, locale }: { current: string; locale: Locale }) {
   return (
-    <nav aria-label="Breadcrumb" className={sp.breadcrumb}>
-      <Link href="/en">Home</Link>
+    <nav aria-label={UI[locale].breadcrumb} className={sp.breadcrumb}>
+      <Link href={`/${locale}`}>{UI[locale].home}</Link>
       <span aria-hidden="true">/</span>
       <span aria-current="page">{current}</span>
     </nav>
@@ -69,12 +105,12 @@ function Band({
   );
 }
 
-function Hero({ content }: Props) {
+function Hero({ content, locale = "en" }: Props) {
   return (
     <section aria-labelledby="hero-title" className={`${h.hero} ${h.pageHero}`}>
       <div className={`${h.shell} ${h.heroGrid}`}>
         <div className={h.heroCopy}>
-          <Breadcrumb current={content.eyebrow} />
+          <Breadcrumb current={content.eyebrow} locale={locale} />
           <p className={h.eyebrow}>{content.eyebrow}</p>
           <h1 className={h.display} id="hero-title">{content.title}</h1>
           <div className={sp.intro}>
@@ -83,7 +119,7 @@ function Hero({ content }: Props) {
             ))}
           </div>
           <div className={h.actions}>
-            <Link className={h.pillButton} href={SEND_REQUEST_HREF}>
+            <Link className={h.pillButton} href={`/${locale}/send-request`}>
               {content.primaryCta}
               <span aria-hidden="true" className={h.pillArrow}><span className={h.arrowGlyph}>→</span></span>
             </Link>
@@ -206,7 +242,7 @@ function ProcessSection({ content }: Props) {
     <Band id="process" labelledBy="process-title">
       <Head id="process-title" intro={content.process.intro} title={content.process.title} />
       <ScrollProgress className={h.stepsTrack} style={{ "--n": content.process.steps.length } as React.CSSProperties}>
-        <ol className={h.steps}>
+        <ol className={`${h.steps}${content.process.steps.length === 4 ? ` ${h.stepsFour}` : ""}`}>
           {content.process.steps.map((step, index) => (
             <li className={h.step} key={step.title} style={{ "--i": index } as React.CSSProperties}>
               <span aria-hidden="true" className={h.stepNumber}>{index + 1}</span>
@@ -275,7 +311,7 @@ function TrustSection({ content }: Props) {
   );
 }
 
-function ResourcesSection({ content }: Props) {
+function ResourcesSection({ content, locale = "en" }: Props) {
   return (
     <Band labelledBy="resources-title" tone="tinted">
       <Head id="resources-title" intro={content.resources.body} title={content.resources.title} />
@@ -286,7 +322,7 @@ function ResourcesSection({ content }: Props) {
               <h3>{link.title}</h3>
               <p>{link.body}</p>
               <span className={sp.linkMore}>
-                Open resource
+                {UI[locale].openResource}
                 <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </span>
             </Link>
@@ -317,14 +353,14 @@ function RelatedServicesSection({ content }: Props) {
   );
 }
 
-function FaqSection({ content }: Props) {
+function FaqSection({ content, locale = "en" }: Props) {
   if (!content.faq?.length) return null;
   return (
     <section aria-labelledby="faq-title" className={`${h.section} ${h.tinted}`} id="faq">
       <RevealOnView className={`${h.shell} ${h.faqGrid}`}>
         <header>
-          <p className={h.eyebrow}>FAQ</p>
-          <h2 className={h.heading} id="faq-title">Frequently asked questions</h2>
+          <p className={h.eyebrow}>{UI[locale].faqEyebrow}</p>
+          <h2 className={h.heading} id="faq-title">{UI[locale].faqTitle}</h2>
         </header>
         <div className={h.faq}>
           {content.faq.map((item) => (
@@ -342,37 +378,37 @@ function FaqSection({ content }: Props) {
   );
 }
 
-function FinalCta({ content }: Props) {
+function FinalCta({ content, locale = "en" }: Props) {
   return (
     <ClosingCta
       body={content.finalCta.body}
-      formHref={SEND_REQUEST_HREF}
+      formHref={`/${locale}/send-request`}
       formLabel={content.finalCta.primaryLabel}
-      forwardLabel="Forward your request"
+      forwardLabel={UI[locale].forward}
       offers={
         content.streamlinedService
           ? undefined
           : { label: content.finalCta.secondaryLabel, href: content.finalCta.secondaryHref }
       }
-      slogan="Next step"
+      slogan={UI[locale].slogan}
       title={content.finalCta.title}
     />
   );
 }
 
-export function EnglishCommercialServicePage({ content }: Props) {
+export function EnglishCommercialServicePage({ content, locale = "en" }: Props) {
   return (
-    <main className={h.page} data-locale="en" id="top">
-      <Hero content={content} />
+    <main className={h.page} data-locale={locale} id="top">
+      <Hero content={content} locale={locale} />
       <DirectAnswers content={content} />
       {content.streamlinedService ? <DeliverablesSection content={content} /> : <FitSection content={content} />}
       {content.illustrativeHandover ? (
-        <IllustrativeHandover locale="en" service={content.illustrativeHandover} />
+        <IllustrativeHandover locale={locale} service={content.illustrativeHandover} />
       ) : null}
       {content.streamlinedService ? <ProcessSection content={content} /> : null}
       <ServiceSection content={content} />
       {content.streamlinedService ? (
-        <ServiceDetailAccordion label={content.detailsLabel ?? "When this service fits and what you can send"}>
+        <ServiceDetailAccordion label={content.detailsLabel ?? UI[locale].details}>
           <FitSection content={content} />
           <InputsSection content={content} />
         </ServiceDetailAccordion>
@@ -385,10 +421,10 @@ export function EnglishCommercialServicePage({ content }: Props) {
       <ModelSection content={content} />
       {!content.streamlinedService ? <DeliverablesSection content={content} /> : null}
       <TrustSection content={content} />
-      <ResourcesSection content={content} />
+      <ResourcesSection content={content} locale={locale} />
       <RelatedServicesSection content={content} />
-      <FaqSection content={content} />
-      <FinalCta content={content} />
+      <FaqSection content={content} locale={locale} />
+      <FinalCta content={content} locale={locale} />
     </main>
   );
 }

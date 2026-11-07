@@ -51,6 +51,8 @@ export type RequestFormCopy = {
 export type FileDropzoneCopy = {
   addFilesAriaLabel: string;
   dropText: string;
+  /** Shown instead of dropText on touch screens, where files are not dragged. */
+  tapText: string;
   hintText: string;
   /**
    * Aria-label for the "remove this file" button, with "{file}" as the
@@ -113,6 +115,7 @@ export const defaultSendRequestCopy: SendRequestCopy = {
   dropzone: {
     addFilesAriaLabel: "Add files",
     dropText: "Drop files here, or click to choose",
+    tapText: "Tap to choose files",
     hintText: `.xlsx, .docx, .pdf, .csv, .jpg, .png — up to ${MAX_FILES} files, 25MB each`,
     removeAriaLabelTemplate: "Remove {file}"
   },
@@ -168,6 +171,7 @@ export const deSendRequestCopy: SendRequestCopy = {
   dropzone: {
     addFilesAriaLabel: "Dateien hinzufügen",
     dropText: "Dateien hier ablegen oder klicken zum Auswählen",
+    tapText: "Tippen, um Dateien auszuwählen",
     hintText: `.xlsx, .docx, .pdf, .csv, .jpg, .png — bis zu ${MAX_FILES} Dateien, je 25 MB`,
     removeAriaLabelTemplate: "{file} entfernen"
   },

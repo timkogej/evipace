@@ -57,24 +57,24 @@ test("English commercial Batch B uses exact approved metadata and H1 copy", () =
   const expected = [
     [
       "ecovadisUnterstuetzung",
-      "EcoVadis Support for Suppliers | Evipace",
-      "Evipace prepares EcoVadis response material, maps supporting evidence and flags gaps. Your team confirms company facts and submits the assessment.",
+      "EcoVadis Support for Suppliers: Answers & Evidence | Evipace",
+      "Evipace prepares EcoVadis answers and supporting evidence and flags gaps. Your company keeps its account and submits the assessment. No score is promised.",
       "/en/ecovadis-support",
-      "EcoVadis assessment ahead? We prepare the answers and evidence for your review."
+      "EcoVadis request from your customer? We prepare the answers and evidence."
     ],
     [
       "integrityNextUnterstuetzung",
       "IntegrityNext Support for Suppliers | Evipace",
-      "Evipace helps suppliers respond to IntegrityNext requests by organising company data, supporting evidence and questionnaire inputs for internal confirmation and submission.",
+      "Invited to IntegrityNext by a customer? Evipace organises your certificates and evidence, prepares the answers and flags gaps. Your company keeps its account.",
       "/en/integritynext-support",
-      "Received an IntegrityNext request? We help prepare the information and evidence."
+      "IntegrityNext invitation from your customer? We prepare the answers and documents."
     ],
     [
       "vsmeNachhaltigkeitsbericht",
       "VSME Sustainability Reporting for SMEs | Evipace",
       "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
       "/en/vsme-sustainability-report",
-      "Need to prepare VSME sustainability information? We help structure the report from your company data."
+      "We prepare your VSME sustainability report from the data you already have."
     ]
   ];
 
@@ -135,7 +135,7 @@ test("Batch B route files use restrained commercial schema and breadcrumbs", () 
     assert.ok(!source.includes("Review"));
   }
 
-  assert.ok(componentSource.includes('aria-label="Breadcrumb"'));
+  assert.ok(componentSource.includes("aria-label={UI[locale].breadcrumb}"));
 });
 
 test("wrong-locale German slug pages are guarded after EN pair registration", () => {
@@ -221,7 +221,7 @@ test("Batch B copy preserves commercial differentiation and claim safeguards", (
 test("full English commercial layer has the six genuine core service routes", () => {
   const commercialRoutes = [
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/scope-1-2-calculation",
     "/en/ecovadis-support",
     "/en/integritynext-support",

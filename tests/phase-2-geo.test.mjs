@@ -63,14 +63,12 @@ const DE_SERVICES = [
   ["ecovadis-unterstuetzung", "EcoVadis-Unterstützung"],
   ["integritynext-unterstuetzung", "IntegrityNext-Unterstützung"],
   ["esg-kundenanfragen", "ESG-Kundenanfragen"],
-  ["esg-fragebogen-lieferanten", "ESG-Fragebögen für Lieferanten"],
   ["vsme-nachhaltigkeitsbericht", "VSME-Nachhaltigkeitsbericht"],
   ["scope-1-2-berechnung", "Scope 1 & 2"]
 ];
 
 const EN_SERVICE_ROUTES = [
   "esg-customer-requests",
-  "esg-questionnaire-support",
   "ecovadis-support",
   "integritynext-support",
   "scope-1-2-calculation",
@@ -125,6 +123,8 @@ test("Organization schema adds only visibly supported properties", () => {
     "description:",
     "email: publicContactEmail",
     "areaServed:",
+    "addressLocality: \"Ljubljana\"",
+    "telephone: publicPhone",
     "founder:",
     'name: "Tim Kogej"',
     'jobTitle: "Founder & Managing Director"',
@@ -150,8 +150,8 @@ test("Organization schema adds only visibly supported properties", () => {
     "taxID:",
     "vatID:",
     "aggregateRating:",
-    "address:",
-    "telephone:",
+    "streetAddress:",
+    "postalCode:",
     "priceRange:"
   ]) {
     assert.ok(!organizationSchema.includes(forbidden), forbidden);
@@ -188,8 +188,13 @@ test("Article authorship resolves to the Organization and dates stay unfabricate
   // have a known substantive revision from this source-checked update.
   assert.ok(registry.includes("datePublished?: string;"));
   assert.ok(registry.includes("dateModified?: string;"));
-  assert.equal((registry.match(/^\s*datePublished: "/gm) ?? []).length, 0);
-  assert.deepEqual(registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim()), ['dateModified: "2026-10-04"', 'dateModified: "2026-10-04"']);
+  assert.equal((registry.match(/^\s*datePublished: "/gm) ?? []).length, 6);
+  const modified = registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim());
+  // Core pages (home, six services, About, Offers) per locale, reviewed 2026-11-06,
+  // plus the guides: one 2026-10-04 update and three 2026-11-06 new guides per locale.
+  assert.equal(modified?.length, 26);
+  assert.equal(modified?.filter((value) => value === 'dateModified: "2026-10-04"').length, 2);
+  assert.equal(modified?.filter((value) => value === 'dateModified: "2026-11-06"').length, 24);
 
   // Methodology reviews retain their original dates; a GEO edit is not a new full review.
   assert.equal((registry.match(/lastReviewed: "/g) ?? []).length, 2);
@@ -205,7 +210,7 @@ test("resource pages credit Evipace and render registry dates only", async () =>
       if (entry.isDirectory()) routes.push(`${dir}${entry.name}/page.tsx`);
     }
   }
-  assert.equal(routes.length, 30, `found ${routes.length} resource routes`);
+  assert.equal(routes.length, 36, `found ${routes.length} resource routes`);
 
   for (const route of routes) {
     const source = await read(route);
@@ -394,7 +399,7 @@ test("About opens with a plain entity definition and links its topics", () => {
 
   for (const href of [
     "/en/esg-customer-requests",
-    "/en/esg-questionnaire-support",
+    "/en/esg-customer-requests",
     "/en/ecovadis-support",
     "/en/integritynext-support",
     "/en/scope-1-2-calculation",
@@ -406,7 +411,7 @@ test("About opens with a plain entity definition and links its topics", () => {
   }
   for (const href of [
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/scope-1-2-berechnung",
@@ -435,7 +440,6 @@ test("every English service page carries a FAQ, and platform pages define themse
 
   const contents = [
     "customerRequestsContent",
-    "questionnaireSupportContent",
     "scope12CalculationContent",
     "ecovadisSupportContent",
     "integrityNextSupportContent",
@@ -518,23 +522,11 @@ test("every English service page carries a FAQ, and platform pages define themse
   );
 });
 
-test("the customer-request and questionnaire pages state their distinct scope", () => {
-  assert.ok(commercialContent.includes("This page covers the whole range of request formats"));
-  assert.ok(
-    commercialContent.includes(
-      "ESG questionnaire support is the narrower case where a defined questionnaire or assessment document has to be completed field by field."
-    )
-  );
-  assert.ok(
-    commercialContent.includes(
-      "How is this different from your ESG questionnaire support?"
-    )
-  );
-  assert.ok(
-    commercialContent.includes(
-      "How is this different from your customer ESG requests page?"
-    )
-  );
+test("the merged customer-request page covers questionnaires as one request format", () => {
+  const start = commercialContent.indexOf("export const customerRequestsContent");
+  const end = commercialContent.indexOf("\n};\n", start);
+  const block = commercialContent.slice(start, end);
+  assert.ok(/questionnaire/i.test(block));
 });
 
 /* ────────────────────────────────────────────────────────────────────────

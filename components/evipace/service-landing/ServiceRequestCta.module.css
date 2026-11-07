@@ -24,7 +24,7 @@
 .title {
   max-width: 18ch;
   margin-top: 1rem;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(2.3rem, 3.8vw, 4rem);
   line-height: 1.1;
 }

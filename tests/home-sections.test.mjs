@@ -155,7 +155,7 @@ test("the marquee loop duplicate is hidden from assistive technology", () => {
 test("every service is still represented, in order, with its link", () => {
   const englishServices = [
     ["Customer ESG requests", "/en/esg-customer-requests"],
-    ["ESG questionnaires", "/en/esg-questionnaire-support"],
+    ["ESG questionnaires", "/en/esg-customer-requests"],
     ["Scope 1 & 2", "/en/scope-1-2-calculation"],
     ["Sustainability reporting", "/en/vsme-sustainability-report"],
     ["Policies & documentation", null],
@@ -175,7 +175,7 @@ test("every service is still represented, in order, with its link", () => {
 
   const germanServices = [
     ["ESG-Anforderungen von Kunden", "/de/esg-kundenanfragen"],
-    ["ESG-Fragebogen für Lieferanten", "/de/esg-fragebogen-lieferanten"],
+    ["ESG-Fragebogen für Lieferanten", "/de/esg-kundenanfragen"],
     ["EcoVadis-Unterstützung", "/de/ecovadis-unterstuetzung"],
     ["IntegrityNext-Unterstützung", "/de/integritynext-unterstuetzung"],
     ["VSME-Nachhaltigkeitsbericht", "/de/vsme-nachhaltigkeitsbericht"],

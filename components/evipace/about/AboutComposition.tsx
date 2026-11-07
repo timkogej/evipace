@@ -138,7 +138,7 @@ export function NumberedRows({
     <ul className="about-list about-list--split">
       {items.map((item, index) => (
         <li className="about-item" key={item}>
-          <span className="font-mono text-[0.68rem] font-bold leading-6 text-orange">
+          <span className="font-mono text-[0.75rem] font-bold leading-6 text-orange">
             {String(index + 1).padStart(2, "0")}
           </span>
           <span

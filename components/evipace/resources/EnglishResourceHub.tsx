@@ -21,6 +21,7 @@ const links = {
   evidence: "/en/resources/esg-evidence-for-suppliers",
   ecovadis: "/en/resources/ecovadis-documents-evidence",
   integrityNext: "/en/resources/integritynext-invitation-for-suppliers",
+  platformCompare: "/en/resources/ecovadis-vs-integritynext",
   scopeData: "/en/resources/scope-1-2-data-calculation",
   scopeExplained: "/en/resources/scope-1-2-3-explained",
   vsmeData: "/en/resources/vsme-data-sustainability-report",
@@ -43,12 +44,7 @@ const services = [
   {
     title: "Customer ESG requests",
     href: "/en/esg-customer-requests",
-    body: "Any format of customer sustainability request, from spreadsheets to portal forms."
-  },
-  {
-    title: "ESG questionnaire support",
-    href: "/en/esg-questionnaire-support",
-    body: "A defined questionnaire or supplier assessment that has to be answered field by field."
+    body: "Any format of customer sustainability request, from spreadsheets and questionnaires to portal forms."
   },
   {
     title: "EcoVadis support",
@@ -253,6 +249,27 @@ export function EnglishResourceHub() {
             href={links.integrityNext}
             title="IntegrityNext invitation for suppliers"
             type="PLATFORM GUIDE"
+          />
+          <ResourceCard
+            cta="Compare the two"
+            description="What EcoVadis and IntegrityNext each ask a supplier to do, which documents overlap and how to prepare once for both."
+            href={links.platformCompare}
+            title="EcoVadis vs IntegrityNext"
+            type="PLATFORM GUIDE"
+          />
+          <ResourceCard
+            cta="Compare the methods"
+            description="Why one electricity use can give two Scope 2 figures, what data each method needs and what to write down."
+            href="/en/resources/scope-2-location-based-vs-market-based"
+            title="Scope 2: location-based vs market-based"
+            type="METHOD GUIDE"
+          />
+          <ResourceCard
+            cta="Answer with evidence"
+            description="What each answer type means, what a complete answer contains and how to answer typical question types truthfully, with the gaps stated."
+            href="/en/resources/how-to-answer-esg-questionnaire"
+            title="How to answer ESG questionnaire questions"
+            type="CHECKLIST"
           />
           <ResourceCard
             cta="Check one document"

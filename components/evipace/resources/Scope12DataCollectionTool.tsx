@@ -340,7 +340,7 @@ function SummaryPanel({
         <div className="flex items-start gap-3">
           <FileText aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
           <div>
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-orange">
+            <p className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-orange">
               Datensammlung
             </p>
             <h3 className="mt-2 text-lg font-bold leading-tight text-ink">
@@ -355,7 +355,7 @@ function SummaryPanel({
 
         <dl className="mt-5 grid gap-2 text-sm">
           <div className="rounded-[0.8rem] bg-[var(--paper)] p-3">
-            <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+            <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
               Zeitraum
             </dt>
             <dd className="mt-1 font-bold text-ink">
@@ -365,13 +365,13 @@ function SummaryPanel({
             </dd>
           </div>
           <div className="rounded-[0.8rem] bg-[var(--paper)] p-3">
-            <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+            <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
               Standorte
             </dt>
             <dd className="mt-1 font-bold text-ink">{state.locations.length}</dd>
           </div>
           <div className="rounded-[0.8rem] bg-[var(--paper)] p-3">
-            <dt className="text-[0.68rem] font-bold uppercase tracking-[0.08em] text-muted">
+            <dt className="text-[0.75rem] font-bold uppercase tracking-[0.08em] text-muted">
               Relevante Module
             </dt>
             <dd className="mt-1 font-bold text-ink">
@@ -427,7 +427,7 @@ function SummaryPanel({
 
         <div className="mt-5 grid gap-2 border-t border-[rgba(21,21,21,0.1)] pt-5">
           <button
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-orange px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c25000] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]"
             onClick={onCsv}
             type="button"
           >
@@ -624,7 +624,7 @@ function EntryCard({
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-orange">
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-orange">
             Scope {entry.scope} · {category.shortLabel}
           </p>
           <h4 className="type-subheading font-display mt-2 text-ink">
@@ -997,7 +997,7 @@ function ModuleSection({
           <p className="mt-4 max-w-3xl leading-7 text-muted">{copy}</p>
         </div>
         <button
-          className="scope12-add-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
+          className="scope12-add-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
           onClick={onAdd}
           type="button"
         >
@@ -1135,7 +1135,7 @@ function PrintSummary({ state }: { state: Scope12CollectionState }) {
 
   return (
     <section className="scope12-print-summary" aria-label="Druckübersicht">
-      <h1>Scope 1 &amp; 2 Datenerfassungsübersicht</h1>
+      <p className="print-title">Scope 1 &amp; 2 Datenerfassungsübersicht</p>
       <p>Erstellt mit der Evipace Datenerfassungs-Vorlage</p>
       <dl>
         <div><dt>Unternehmen</dt><dd>{state.companyLabel || "Nicht angegeben"}</dd></div>
@@ -1509,7 +1509,7 @@ export function Scope12DataCollectionTool({
                 </p>
               </div>
               <button
-                className="scope12-add-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
+                className="scope12-add-button inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
                 onClick={addLocation}
                 type="button"
               >
@@ -1626,7 +1626,7 @@ export function Scope12DataCollectionTool({
               <>
                 <div className="mt-6">
                   <button
-                    className="scope12-add-button inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
+                    className="scope12-add-button inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
                     onClick={() => addEntry("process-emissions")}
                     type="button"
                   >
@@ -1703,7 +1703,7 @@ export function Scope12DataCollectionTool({
               <>
                 <div className="mt-6">
                   <button
-                    className="scope12-add-button inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
+                    className="scope12-add-button inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
                     onClick={() => addEntry("purchased-energy")}
                     type="button"
                   >
@@ -1841,7 +1841,7 @@ export function Scope12DataCollectionTool({
           </p>
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end">
             <button className="inline-flex min-h-11 items-center justify-center rounded-full border border-[rgba(21,21,21,0.18)] px-5 py-2.5 text-sm font-bold" onClick={() => { setPendingEntryDelete(null); entryDialogRef.current?.close(); }} type="button">Abbrechen</button>
-            <button className="inline-flex min-h-11 items-center justify-center rounded-full bg-orange px-5 py-2.5 text-sm font-bold text-white" onClick={confirmRemoveEntry} type="button">Entfernen</button>
+            <button className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#c25000] px-5 py-2.5 text-sm font-bold text-white" onClick={confirmRemoveEntry} type="button">Entfernen</button>
           </div>
         </div>
       </dialog>
@@ -1862,7 +1862,7 @@ export function Scope12DataCollectionTool({
           </p>
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end">
             <button className="inline-flex min-h-11 items-center justify-center rounded-full border border-[rgba(21,21,21,0.18)] px-5 py-2.5 text-sm font-bold" onClick={() => { setPendingLocationDelete(null); locationDialogRef.current?.close(); }} type="button">Abbrechen</button>
-            <button className="inline-flex min-h-11 items-center justify-center rounded-full bg-orange px-5 py-2.5 text-sm font-bold text-white" onClick={confirmRemoveLocation} type="button">Standort entfernen</button>
+            <button className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#c25000] px-5 py-2.5 text-sm font-bold text-white" onClick={confirmRemoveLocation} type="button">Standort entfernen</button>
           </div>
         </div>
       </dialog>
@@ -1882,7 +1882,7 @@ export function Scope12DataCollectionTool({
           </p>
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end">
             <button className="inline-flex min-h-11 items-center justify-center rounded-full border border-[rgba(21,21,21,0.18)] px-5 py-2.5 text-sm font-bold" onClick={() => { setResetOpen(false); resetDialogRef.current?.close(); }} type="button">Abbrechen</button>
-            <button className="inline-flex min-h-11 items-center justify-center rounded-full bg-orange px-5 py-2.5 text-sm font-bold text-white" onClick={resetCollection} type="button">Zurücksetzen</button>
+            <button className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#c25000] px-5 py-2.5 text-sm font-bold text-white" onClick={resetCollection} type="button">Zurücksetzen</button>
           </div>
         </div>
       </dialog>

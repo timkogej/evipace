@@ -140,7 +140,7 @@ test("supplier code resource has exact German SEO metadata and English pairing",
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "Supplier Code of Conduct erstellen: So strukturieren Unternehmen Erwartungen an Umwelt, Menschenrechte, Arbeitsbedingungen, Ethik und Lieferanten nachvollziehbar."'
+      'description: "Supplier Code of Conduct erstellen: Erwartungen an Umwelt, Menschenrechte, Arbeitsbedingungen, Ethik und Lieferanten nachvollziehbar strukturieren."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${PAGE_PATH}"`));
@@ -284,7 +284,7 @@ test("supplier code guide links required internal destinations", () => {
     "/de/ressourcen/esg-daten-einmal-sammeln-mehrfach-nutzen",
     "/de/ressourcen/environmental-policy-erstellen",
     "/de/esg-kundenanfragen",
-    "/de/esg-fragebogen-lieferanten",
+    "/de/esg-kundenanfragen",
     "/de/ecovadis-unterstuetzung",
     "/de/integritynext-unterstuetzung",
     "/de/send-request",

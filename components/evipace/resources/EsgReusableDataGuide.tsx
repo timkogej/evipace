@@ -532,7 +532,7 @@ export function EsgReusableDataGuide() {
                   <p className="mt-4 text-base leading-8 text-muted">
                     Wenn Sie zunächst den operativen Fragebogenkontext
                     einordnen möchten, lesen Sie auch{" "}
-                    <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-fragebogen-lieferanten">
+                    <Link className="font-semibold text-ink underline decoration-orange/45 underline-offset-4 transition hover:text-orange" href="/de/esg-kundenanfragen">
                       ESG-Fragebogen für Lieferanten
                     </Link>
                     .

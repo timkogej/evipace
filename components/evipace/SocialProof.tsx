@@ -44,7 +44,7 @@ export function SocialProof() {
               className="flex min-h-28 items-center justify-center bg-[var(--paper)] px-5"
               key={index}
             >
-              <span className="rounded-full border border-dashed border-[rgba(21,21,21,0.18)] px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-[rgba(21,21,21,0.45)]">
+              <span className="rounded-full border border-dashed border-[rgba(21,21,21,0.18)] px-4 py-2 text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[rgba(21,21,21,0.45)]">
                 Customer logo
               </span>
             </div>

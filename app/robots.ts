@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/site-config";
 
 /**
- * Minimal and safe: allow everything, disallow nothing. There is no
+ * Minimal and safe: allow every page; only /api/ (form and upload
+ * endpoints, no content) is disallowed. There is no
  * admin/private path in this repository (the customer portal and admin
  * panel are separate applications on separate subdomains), so there is
  * nothing to block yet — /_next/, images, CSS, JS, and fonts are all
@@ -22,7 +23,10 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/"
+      allow: "/",
+      // Form and upload endpoints, not pages. Safe under "*" because no
+      // named crawler groups exist (see above), so nothing bypasses it.
+      disallow: "/api/"
     },
     sitemap: `${SITE_URL}/sitemap.xml`
   };

@@ -6,6 +6,9 @@
   --ev-orange-500: #fe7001;
   --ev-orange-600: #e96500;
   --ev-orange-700: #b44d00;
+  /* Fill for buttons that carry white text: 4.7:1 on white, where
+     --ev-orange-500 only reaches 2.8:1. */
+  --ev-orange-action: #c25000;
   --ev-orange-800: #8f3d00;
   --ev-orange-100: #ffe6d1;
   /* Neutral light grey for small fills (badges, table heads, panels).
@@ -104,9 +107,10 @@
 .eyebrow {
   margin: 0;
   color: var(--ev-orange-700);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -114,18 +118,23 @@
 .display,
 .heading {
   margin: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
-  font-weight: 400;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
   text-wrap: balance;
   overflow-wrap: break-word;
+}
+
+/* Accent phrase inside a headline: the brand orange carries the second half. */
+.accent {
+  color: var(--ev-orange-600);
 }
 
 .display {
   max-width: 18ch;
   margin-top: var(--ev-s-5);
   font-size: clamp(2.5rem, 5.4vw, 4.75rem);
-  letter-spacing: -0.025em;
-  line-height: 1.04;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .page[data-locale="de"] .display {
@@ -137,8 +146,8 @@
   max-width: 22ch;
   margin-top: var(--ev-s-4);
   font-size: clamp(2.25rem, 4.2vw, 3.875rem);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
 .page[data-locale="de"] .heading {
@@ -191,8 +200,8 @@
 }
 
 .primaryButton:hover {
-  border-color: var(--ev-orange-600);
-  background: var(--ev-orange-600);
+  border-color: var(--ev-orange-700);
+  background: var(--ev-orange-700);
   transform: translateY(-1px);
 }
 
@@ -286,30 +295,6 @@
   margin-top: var(--ev-s-5);
 }
 
-.heroCopy .heroNote {
-  margin-top: var(--ev-s-3);
-}
-
-/* "Prefer to talk first? Book a call" under the hero note. */
-.heroCall {
-  margin: var(--ev-s-2) 0 0;
-  color: var(--ev-ink-2);
-  font-size: 1rem;
-}
-
-.heroCall .textLink {
-  min-height: 0;
-  margin-top: 0;
-}
-
-.heroNote {
-  margin: var(--ev-s-4) 0 0;
-  color: var(--ev-ink-2);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
 /* Actions: compact pill with an arrow chip, plus the form link */
 .actions {
   display: flex;
@@ -329,9 +314,9 @@
   min-height: 3rem;
   align-items: center;
   gap: var(--ev-s-3);
-  border: 1px solid var(--ev-orange-500);
+  border: 1px solid var(--ev-orange-action);
   border-radius: 999px;
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   padding: 0.3rem 0.3rem 0.3rem 1.15rem;
   color: var(--ev-white);
   font-size: 1rem;
@@ -341,8 +326,8 @@
 }
 
 .pillButton:hover {
-  border-color: var(--ev-orange-600);
-  background: var(--ev-orange-600);
+  border-color: var(--ev-orange-700);
+  background: var(--ev-orange-700);
 }
 
 .pillArrow {
@@ -403,7 +388,11 @@
   .textLink:hover > span[aria-hidden="true"] {
     transform: translateX(4px);
   }
+}
 
+/* Cards: a mouse lifts them on hover. Touch screens have no hover, so
+   FocusOnScroll marks the card passing mid-screen with data-focus instead. */
+@media (prefers-reduced-motion: no-preference) {
   .card {
     transition:
       transform var(--motion-base) var(--ease-out-expo),
@@ -411,7 +400,7 @@
       border-color var(--motion-base) ease;
   }
 
-  .card:hover {
+  .card:is(:hover, [data-focus]) {
     border-color: rgba(254, 112, 1, 0.45);
     box-shadow: var(--ev-shadow-lift);
     transform: translateY(-4px);
@@ -423,11 +412,11 @@
     transition: transform var(--motion-slow) var(--ease-out-expo);
   }
 
-  .card:hover .iconBack {
+  .card:is(:hover, [data-focus]) .iconBack {
     transform: rotate(-16deg) translate(-3px, 1px);
   }
 
-  .card:hover .iconFront {
+  .card:is(:hover, [data-focus]) .iconFront {
     transform: translateY(-3px);
   }
 
@@ -435,7 +424,7 @@
     transition: background var(--motion-base) ease, box-shadow var(--motion-base) ease;
   }
 
-  .card:hover .cardIconTile {
+  .card:is(:hover, [data-focus]) .cardIconTile {
     background: linear-gradient(180deg, #fff7f0, var(--ev-orange-100));
     box-shadow:
       inset 0 0 0 1px rgba(254, 112, 1, 0.18),
@@ -443,17 +432,17 @@
   }
 
   /* The motif is drawn again: strokes are written, marks spring in. */
-  .card:hover .iconDraw {
+  .card:is(:hover, [data-focus]) .iconDraw {
     animation: ev-icon-draw 650ms var(--ease-out-expo) both;
     animation-delay: calc(120ms + var(--d, 0) * 70ms);
   }
 
-  .card:hover .iconPop {
+  .card:is(:hover, [data-focus]) .iconPop {
     animation: ev-icon-pop 520ms var(--ease-out-expo) both;
     animation-delay: calc(120ms + var(--d, 0) * 70ms);
   }
 
-  .card:hover .iconGrow {
+  .card:is(:hover, [data-focus]) .iconGrow {
     animation: ev-icon-grow 560ms var(--ease-out-expo) both;
     animation-delay: calc(120ms + var(--d, 0) * 70ms);
   }
@@ -580,17 +569,8 @@
 /* Hero: two pages stick out above the folder's top edge and rise into
    place as the visual scrolls in. Scroll-linked pieces get their own layer
    (will-change) so moving them never repaints their shadows. */
-[data-progress="on"] :is(.folderSheet, .sceneDoc, .sceneStamp, .trustArt) {
+[data-progress="on"] :is(.sceneDoc, .sceneStamp, .trustArt) {
   will-change: transform;
-}
-
-.folderSheet {
-  --doc-w: 4.75rem;
-  --t: clamp(0, calc(var(--p, 1) * 3 - 0.2 - var(--k) * 0.5), 1);
-  position: absolute;
-  top: -2.1rem;
-  left: var(--x);
-  transform: translateY(calc((1 - var(--t)) * 1.4rem)) rotate(var(--r));
 }
 
 .folderTab {
@@ -670,41 +650,11 @@
   background: var(--ev-soft);
   padding: 0.3rem 0.7rem;
   color: var(--ev-orange-700);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.4;
   text-transform: uppercase;
-}
-
-.panelRows {
-  display: grid;
-  margin: var(--ev-s-4) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.panelRow {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--ev-s-3);
-  border-top: 1px solid var(--ev-line);
-  padding-block: var(--ev-s-3);
-}
-
-/* Desk panel motion. --t runs 0..1 per row from the stage's scroll progress
-   (--p) and the row index (--i). With no --p (no JS, reduced motion) every
-   row is in its finished state. */
-.visualStage {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-/* Rows finish by p ≈ 0.76, leaving the end of the scroll for the approval. */
-.panelRow {
-  --t: clamp(0, calc(var(--p, 1) * 7 - var(--i) * 1.05 - 1.2), 1);
 }
 
 .mark {
@@ -713,119 +663,6 @@
   height: 1.35rem;
   flex: none;
   border-radius: 50%;
-}
-
-/* Finished steps: the ring fills green and the tick is drawn. */
-.panelRow:not([data-tone="open"]) .mark {
-  border: 1.5px solid color-mix(in srgb, var(--ev-green) calc(var(--t) * 100%), var(--ev-taupe));
-  background: color-mix(in srgb, var(--ev-green) calc(var(--t) * 100%), var(--ev-white));
-  transform: scale(calc(0.86 + var(--t) * 0.14));
-}
-
-.panelRow:not([data-tone="open"]) .mark::after {
-  position: absolute;
-  top: 0.22rem;
-  left: 0.43rem;
-  width: 0.32rem;
-  height: 0.6rem;
-  border: solid var(--ev-white);
-  border-width: 0 2px 2px 0;
-  opacity: var(--t);
-  transform: rotate(45deg) scale(calc(0.4 + var(--t) * 0.6));
-  content: "";
-}
-
-/* The step that needs the client's input lights up instead of being ticked. */
-.panelRow[data-tone="open"] {
-  margin-inline: calc(var(--ev-s-3) * -1);
-  border-radius: var(--ev-r-sm);
-  background: color-mix(in srgb, var(--ev-orange-100) calc(var(--t) * 55%), transparent);
-  padding-inline: var(--ev-s-3);
-}
-
-.panelRow[data-tone="open"] .mark {
-  background: var(--ev-orange-500);
-  box-shadow: 0 0 0 calc(var(--t) * 0.3rem) rgba(254, 112, 1, 0.22);
-  transform: scale(calc(0.5 + var(--t) * 0.22));
-}
-
-.panelRow[data-tone="open"] .pill {
-  opacity: var(--t);
-  transform: translateX(calc((1 - var(--t)) * 0.6rem));
-}
-
-.panelFoot .mockButton {
-  --t: clamp(0, calc(var(--p, 1) * 8 - 5.6), 1);
-  opacity: calc(0.35 + var(--t) * 0.65);
-  transform: scale(calc(0.96 + var(--t) * 0.04));
-}
-
-/* Footer note and button each stack a waiting and an approved label. */
-.footNote,
-.mockButton {
-  display: inline-grid;
-}
-
-.footNote > span,
-.mockButton > span {
-  grid-area: 1 / 1;
-}
-
-.footApproved,
-.mockDone {
-  opacity: 0;
-}
-
-.footApproved {
-  color: var(--ev-green);
-}
-
-/* End of the hero scroll, only when it is scroll-linked (JS, full motion):
-   the client's input comes in (--u), then the approve button is pressed and
-   turns green (--k). Without it the panel keeps its waiting state. */
-.visualStage[data-progress="on"] {
-  --u: clamp(0, calc((var(--p, 1) - 0.8) * 12), 1);
-  --k: clamp(0, calc((var(--p, 1) - 0.88) * 12), 1);
-}
-
-.visualStage[data-progress="on"] .panelRow[data-tone="open"] {
-  background: color-mix(in srgb, var(--ev-orange-100) calc(var(--t) * (1 - var(--u)) * 55%), transparent);
-}
-
-.visualStage[data-progress="on"] .panelRow[data-tone="open"] .mark {
-  background: color-mix(in srgb, var(--ev-green) calc(var(--u) * 100%), var(--ev-orange-500));
-  box-shadow: 0 0 0 calc(var(--t) * (1 - var(--u)) * 0.3rem) rgba(254, 112, 1, 0.22);
-  transform: scale(calc(0.5 + var(--t) * 0.22 + var(--u) * 0.28));
-}
-
-.visualStage[data-progress="on"] .panelRow[data-tone="open"] .mark::after {
-  position: absolute;
-  top: 0.22rem;
-  left: 0.43rem;
-  width: 0.32rem;
-  height: 0.6rem;
-  border: solid var(--ev-white);
-  border-width: 0 2px 2px 0;
-  opacity: var(--u);
-  transform: rotate(45deg) scale(calc(0.4 + var(--u) * 0.6));
-  content: "";
-}
-
-.visualStage[data-progress="on"] .panelRow[data-tone="open"] .pill {
-  opacity: calc(var(--t) * (1 - var(--u)));
-}
-
-.visualStage[data-progress="on"] .panelFoot .mockButton {
-  background: color-mix(in srgb, var(--ev-green) calc(var(--k) * 100%), var(--ev-orange-500));
-  transform: scale(calc(0.96 + var(--t) * 0.04 - var(--k) * (1 - var(--k)) * 0.16));
-}
-
-.visualStage[data-progress="on"] :is(.footWaiting, .mockIdle) {
-  opacity: calc(1 - var(--k));
-}
-
-.visualStage[data-progress="on"] :is(.footApproved, .mockDone) {
-  opacity: var(--k);
 }
 
 .panelText {
@@ -862,7 +699,7 @@
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
   color: var(--ev-ink-2);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.4;
   white-space: nowrap;
@@ -874,30 +711,8 @@
   color: var(--ev-orange-800);
 }
 
-.panelFoot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ev-s-3);
-  border-top: 1px solid var(--ev-line);
-  padding-top: var(--ev-s-4);
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.mockButton {
-  border-radius: var(--ev-r-sm);
-  background: var(--ev-orange-500);
-  padding: 0.5rem 0.8rem;
-  color: var(--ev-white);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
 /* Assurance strip */
 .assurances {
-  border-bottom: 1px solid var(--ev-line);
   background: var(--ev-white);
   padding-block: var(--ev-s-5);
 }
@@ -1064,7 +879,7 @@
 }
 
 /* Cards lift with a charcoal edge here; an orange edge would vanish. */
-.orangeBand .card:hover {
+.orangeBand .card:is(:hover, [data-focus]) {
   border-color: var(--ev-charcoal);
 }
 
@@ -1157,12 +972,6 @@
        panel, and the pages sink back into the folder. */
     .visual .folder {
       animation: ev-hero-folder linear both;
-      animation-timeline: view();
-      animation-range: cover 30% cover 100%;
-    }
-
-    .visual .folderSheet {
-      animation: ev-hero-sheet linear both;
       animation-timeline: view();
       animation-range: cover 30% cover 100%;
     }
@@ -1793,7 +1602,7 @@
 
 .compare thead th {
   border-top: 0;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
 }
@@ -2106,7 +1915,7 @@
 .statement {
   max-width: 80rem;
   margin: 0 auto;
-  font-family: var(--font-gfs-didot), Georgia, serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.9rem, 4.3vw, 4rem);
   letter-spacing: -0.02em;
   line-height: 1.16;
@@ -2173,15 +1982,13 @@
    delay, so nothing stays clipped or transformed afterwards. */
 @keyframes ev-rise {
   from {
-    opacity: 0;
     transform: translateY(var(--motion-rise));
   }
 }
 
 @keyframes ev-line-in {
   from {
-    opacity: 0;
-    clip-path: inset(100% -0.3em -0.3em -0.3em);
+    clip-path: inset(60% -0.3em -0.3em -0.3em);
     transform: translateY(0.5em);
   }
 
@@ -2199,31 +2006,29 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .heroCopy > * {
-    animation: ev-rise var(--motion-slow) var(--ease-out-expo) backwards;
+    animation: ev-rise 450ms var(--ease-out-expo) backwards;
   }
 
   /* Every page hero shares this: its blocks follow each other in order. */
-  .heroCopy > :nth-child(2) { animation-delay: 80ms; }
-  .heroCopy > :nth-child(3) { animation-delay: 200ms; }
-  .heroCopy > :nth-child(4) { animation-delay: 320ms; }
-  .heroCopy > :nth-child(5) { animation-delay: 420ms; }
-  .heroCopy > :nth-child(6) { animation-delay: 500ms; }
-  .heroCopy > :nth-child(7) { animation-delay: 570ms; }
-  .heroCopy > :nth-child(n + 8) { animation-delay: 630ms; }
+  .heroCopy > :nth-child(2) { animation-delay: 40ms; }
+  .heroCopy > :nth-child(3) { animation-delay: 80ms; }
+  .heroCopy > :nth-child(4) { animation-delay: 120ms; }
+  .heroCopy > :nth-child(5) { animation-delay: 160ms; }
+  .heroCopy > :nth-child(6) { animation-delay: 190ms; }
+  .heroCopy > :nth-child(7) { animation-delay: 220ms; }
+  .heroCopy > :nth-child(n + 8) { animation-delay: 250ms; }
 
   /* Page titles (other than the homepage's line-by-line title) rise out of
      a mask, like the section headings. */
   .heroCopy > .display:not(.heroTitle) {
     animation-name: ev-line-in;
-    animation-duration: 1000ms;
+    animation-duration: 600ms;
   }
 
   /* Homepage timing. */
   .heroCopy > .eyebrow:first-child { animation-delay: 0ms; }
-  .heroCopy > .heroBody { animation-delay: 380ms; }
-  .heroCopy > .actions { animation-delay: 480ms; }
-  .heroCopy > .heroNote { animation-delay: 560ms; }
-  .heroCopy > .heroCall { animation-delay: 620ms; }
+  .heroCopy > .heroBody { animation-delay: 120ms; }
+  .heroCopy > .actions { animation-delay: 180ms; }
 
   /* The title itself stays put; its lines carry the motion. */
   .heroCopy > .heroTitle {
@@ -2231,15 +2036,11 @@
   }
 
   .heroTitle .titleLine {
-    animation: ev-line-in 1000ms var(--ease-out-expo) 90ms backwards;
+    animation: ev-line-in 600ms var(--ease-out-expo) 40ms backwards;
   }
 
   .heroTitle .titleLine + .titleLine {
-    animation-delay: 210ms;
-  }
-
-  .heroGrid > .visualStage {
-    animation: ev-stage-in 1100ms var(--ease-out-expo) 620ms backwards;
+    animation-delay: 110ms;
   }
 }
 
@@ -2299,7 +2100,6 @@
 }
 
 @media (max-width: 479px) {
-  .panelRow,
   .reuseDoc {
     grid-template-columns: auto minmax(0, 1fr);
   }
@@ -2608,4 +2408,272 @@
 
 .sceneApproveDone {
   opacity: var(--k);
+}
+
+/* Photo band under the hero: one tall portrait-ish photo, one wide, one
+   small. On phones they stack as rounded cards. */
+.photoBand {
+  background: var(--ev-white);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 6vw, 6rem);
+}
+
+.photoGrid {
+  display: grid;
+  gap: var(--ev-s-3);
+  grid-template-columns: 1fr;
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ev-r-lg);
+  background: var(--ev-soft);
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 899px) {
+  .photoSmall {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .photoGrid {
+    gap: var(--ev-s-4);
+    grid-template-columns: 1.4fr 1.5fr 0.9fr;
+    align-items: stretch;
+  }
+
+  .photo {
+    aspect-ratio: auto;
+    min-height: 24rem;
+  }
+
+  .photoWide {
+    transform: translateY(2rem);
+  }
+
+  .photoSmall {
+    transform: translateY(-1.25rem);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero: a large left-aligned headline beside (or above, on phones) a card that
+   follows one customer questionnaire from email to approved answer.
+   ------------------------------------------------------------------------- */
+.hero {
+  padding-block: calc(5rem + clamp(1rem, 3vw, 3rem)) clamp(3rem, 6vw, 6rem);
+}
+
+.heroGrid {
+  justify-items: stretch;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.heroCopy {
+  max-width: none;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.heroCopy .display {
+  max-width: none;
+  font-size: clamp(2.6rem, 7.4vw, 6rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.page[data-locale="de"] .heroCopy .display {
+  max-width: none;
+  font-size: clamp(2.1rem, 6vw, 5rem);
+}
+
+.heroCopy .heroBody {
+  max-width: 36rem;
+  font-size: 1.1875rem;
+}
+
+.heroCopy .actions {
+  justify-content: flex-start;
+}
+
+/* Hero card: one small questionnaire waiting for approval, under the headline. */
+.flow {
+  --flow-green: var(--ev-green);
+  display: grid;
+  gap: 1.1rem;
+  width: min(100%, 38rem);
+  margin: 0;
+  border: 1px solid var(--ev-line);
+  border-radius: 1.25rem;
+  background: var(--ev-white);
+  box-shadow: var(--ev-shadow-panel);
+  padding: clamp(1.1rem, 2.4vw, 1.6rem);
+  color: var(--ev-charcoal);
+}
+
+.flowHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ev-s-3);
+}
+
+.flowTitle {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.flowTitle span {
+  color: var(--ev-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.flowBadge {
+  flex: none;
+  border: 1px solid var(--ev-line);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  color: var(--ev-muted);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flowSteps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flowStep {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--ev-muted);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.flowStep::before {
+  content: "";
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(23, 23, 23, 0.1);
+}
+
+.flowStep[data-state="done"] {
+  color: var(--ev-charcoal);
+}
+
+.flowStep[data-state="done"]::before {
+  background: var(--flow-green);
+}
+
+.flowStep[data-state="current"] {
+  color: var(--ev-charcoal);
+  font-weight: 600;
+}
+
+.flowStep[data-state="current"]::before {
+  background: var(--ev-orange-500);
+}
+
+.flowFoot {
+  display: grid;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.flowStatus {
+  margin: 0;
+  min-height: 1.35em;
+  color: var(--ev-ink-2);
+  font-size: 0.95rem;
+}
+
+.flowButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(23, 23, 23, 0.07);
+  padding: 0 1.6rem;
+  color: var(--ev-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.flow[data-ready] .flowButton {
+  background: var(--ev-orange-action);
+  color: var(--ev-white);
+  cursor: pointer;
+}
+
+.flow[data-ready] .flowButton:hover {
+  background: var(--ev-orange-700);
+}
+
+.flow[data-approved] .flowButton {
+  background: var(--flow-green);
+  color: var(--ev-white);
+  cursor: default;
+}
+
+.flowButton:focus-visible {
+  outline: 3px solid var(--ev-charcoal);
+  outline-offset: 2px;
+}
+
+@media (min-width: 520px) {
+  .flowFoot {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+  }
+
+  .flowButton {
+    width: auto;
+    min-height: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow {
+    animation: ev-stage-in 1000ms var(--ease-out-expo) 350ms backwards;
+  }
+
+  .flowStep,
+  .flowStep::before,
+  .flowButton {
+    transition-duration: 400ms;
+    transition-property: background-color, color;
+  }
+
+  .flow[data-ready]:not([data-approved]) .flowButton {
+    animation: ev-flow-pulse 1.6s ease-out 3;
+  }
+}
+
+@keyframes ev-flow-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(254, 112, 1, 0.45);
+  }
+
+  100% {
+    box-shadow: 0 0 0 12px rgba(254, 112, 1, 0);
+  }
 }

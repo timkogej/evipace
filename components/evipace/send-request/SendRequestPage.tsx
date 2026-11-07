@@ -84,7 +84,7 @@ export function SendRequestPage({ children, locale }: { children: ReactNode; loc
               <ol className={styles.next}>
                 {home.steps.items.map((step) => (
                   <li key={step.title}>
-                    <h3>{step.title}</h3>
+                    <h2>{step.title}</h2>
                     <p>{step.body}</p>
                   </li>
                 ))}

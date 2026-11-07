@@ -402,7 +402,7 @@ function StatusPill({ status }: { status: string }) {
 
   return (
     <span
-      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.08em] ${tone}`}
+      className={`inline-flex rounded-full border px-2.5 py-1 text-[0.75rem] font-bold uppercase tracking-[0.08em] ${tone}`}
     >
       {status}
     </span>
@@ -419,7 +419,7 @@ function AnswerMap() {
               Beispiel einer Answer Map mit Frage, benötigter Information,
               Quelle, verantwortlicher Person, Nachweis und Status
             </caption>
-            <thead className="bg-[var(--paper)] text-[0.68rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
+            <thead className="bg-[var(--paper)] text-[0.75rem] uppercase tracking-[0.09em] text-[rgba(21,21,21,0.58)]">
               <tr>
                 {[
                   "Frage",
@@ -511,7 +511,7 @@ export function EsgQuestionnaireGuide() {
                 <div className="relative rounded-[1.2rem] border border-[rgba(254,112,1,0.24)] bg-[rgba(255,255,255,0.72)] p-6 shadow-[0_24px_70px_rgba(21,21,21,0.07)] backdrop-blur-sm sm:p-7">
                   <div className="flex items-center justify-between gap-4">
                     <FileSpreadsheet aria-hidden="true" className="h-6 w-6 text-orange" />
-                    <span className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.13em] text-[rgba(21,21,21,0.48)]">
+                    <span className="font-mono text-[0.75rem] font-bold uppercase tracking-[0.13em] text-[rgba(21,21,21,0.48)]">
                       Eingang / heute
                     </span>
                   </div>
@@ -1061,14 +1061,14 @@ export function EsgQuestionnaireGuide() {
                   beim zweiten, dritten und vierten Fragebogen deutlich besser zu
                   strukturieren.
                 </p>
-                <Link className="orange-link mt-7 inline-flex items-center gap-2 text-sm" href="/de/esg-fragebogen-lieferanten">
+                <Link className="orange-link mt-7 inline-flex items-center gap-2 text-sm" href="/de/esg-kundenanfragen">
                   ESG-Fragebogen für Lieferanten
                   <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </Link>
               </ArticleSection>
 
               <GuideCta
-              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-fragebogen-lieferanten">Unterstützung bei ESG-Fragebögen</TextLink></>}
+              actions={<><PillLink href={SEND_REQUEST_HREF}>ESG-Fragebogen senden</PillLink><TextLink href="/de/esg-kundenanfragen">Unterstützung bei ESG-Fragebögen</TextLink></>}
               eyebrow="Ihr nächster Schritt"
               note={<><p>Excel · PDF · Kundenformular · Nachweise</p></>}
               title={<>Ihr ESG-Fragebogen liegt bereits vor?</>}

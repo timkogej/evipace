@@ -156,13 +156,13 @@ export function Hero({ imageAvailable }: HeroProps) {
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--soft-orange)] text-orange">
                   <FileText aria-hidden="true" className="h-4 w-4" />
                 </div>
-                <span className="font-mono text-[0.68rem] text-muted">
+                <span className="font-mono text-[0.75rem] text-muted">
                   ESG / 2026
                 </span>
               </div>
               <p className="text-sm font-bold text-ink">{doc.title}</p>
               <p className="mt-1 text-xs font-semibold text-muted">{doc.meta}</p>
-              <p className="mt-4 inline-flex items-center gap-2 text-[0.68rem] font-bold uppercase text-[rgba(21,21,21,0.64)]">
+              <p className="mt-4 inline-flex items-center gap-2 text-[0.75rem] font-bold uppercase text-[rgba(21,21,21,0.64)]">
                 <span
                   aria-hidden="true"
                   className="h-1.5 w-1.5 rounded-full bg-orange"

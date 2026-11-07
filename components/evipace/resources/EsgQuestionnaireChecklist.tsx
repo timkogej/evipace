@@ -320,7 +320,7 @@ export function EsgQuestionnaireChecklist({
             </p>
             <ProgressBar completed={completedCount} locale={locale} total={totalCount} />
             {isComplete ? (
-              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-orange/40 bg-orange/10 px-4 py-2 text-sm font-bold text-white">
+              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#c25000]/40 bg-[#c25000]/10 px-4 py-2 text-sm font-bold text-white">
                 <Check aria-hidden="true" className="h-4 w-4 text-orange" />
                 {isEnglish ? "Checklist complete." : "Checkliste vollständig bearbeitet."}
               </p>
@@ -329,7 +329,7 @@ export function EsgQuestionnaireChecklist({
 
           <div className="checklist-screen-controls flex flex-col gap-3 sm:flex-row lg:flex-col">
             <button
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-orange px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c25000] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]"
               onClick={() => window.print()}
               type="button"
             >

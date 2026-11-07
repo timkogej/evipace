@@ -335,7 +335,7 @@ export function GermanHomePage({ imageAvailability }: GermanHomePageProps) {
 
           <div className="mark-hero__actions mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              className="inline-flex min-h-12 w-full max-w-full items-center justify-center rounded-lg border border-orange bg-orange px-5 py-3 text-center text-sm font-bold text-white sm:w-auto"
+              className="inline-flex min-h-12 w-full max-w-full items-center justify-center rounded-lg border border-[#c25000] bg-[#c25000] px-5 py-3 text-center text-sm font-bold text-white sm:w-auto"
               href={SEND_REQUEST_HREF}
             >
               ESG-Anfrage senden

@@ -113,7 +113,7 @@ export function ProblemSection() {
           >
             <span aria-hidden="true" className="document-fold" />
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#c25000] text-white">
                 <FileSpreadsheet className="h-5 w-5" />
               </div>
               <div>

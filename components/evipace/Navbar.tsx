@@ -290,7 +290,7 @@ export function Navbar({ locale }: NavbarProps) {
                 ? "page"
                 : undefined
             }
-            className="cta-button inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-4 py-2.5 text-sm font-bold text-white transition duration-200 hover:border-[#e96500] hover:bg-[#e96500]"
+            className="cta-button inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-[#c25000] bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition duration-200 hover:border-[#b44d00] hover:bg-[#b44d00]"
             href={navigation.primaryAction.href}
             onClick={closeAll}
           >
@@ -425,7 +425,7 @@ export function Navbar({ locale }: NavbarProps) {
                   ? "page"
                   : undefined
               }
-              className="mt-7 flex min-h-14 w-full items-center justify-center gap-2 rounded-lg border border-orange bg-orange px-5 py-3 text-center text-sm font-bold text-white transition hover:border-[#e96500] hover:bg-[#e96500]"
+              className="mt-7 flex min-h-14 w-full items-center justify-center gap-2 rounded-lg border border-[#c25000] bg-[#c25000] px-5 py-3 text-center text-sm font-bold text-white transition hover:border-[#b44d00] hover:bg-[#b44d00]"
               href={navigation.primaryAction.href}
               onClick={closeAll}
             >

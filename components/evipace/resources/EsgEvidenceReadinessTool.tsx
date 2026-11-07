@@ -358,7 +358,7 @@ function SummaryPanel({
 
         <div className="mt-6 grid gap-2 border-t border-[rgba(21,21,21,0.1)] pt-5">
           <button
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-orange px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c25000] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]"
             onClick={onPrint}
             type="button"
           >
@@ -1106,7 +1106,7 @@ export function EsgEvidenceReadinessTool({
               {isEnglish ? "Cancel" : "Abbrechen"}
             </button>
             <button
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-orange px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#c25000] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]"
               onClick={confirmReset}
               type="button"
             >

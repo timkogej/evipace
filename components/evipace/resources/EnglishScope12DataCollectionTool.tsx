@@ -557,7 +557,7 @@ export function EnglishScope12DataCollectionTool() {
           {progressText}. Progress is saved locally in this browser.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-orange px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={exportCsv} type="button">
+          <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c25000] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={exportCsv} type="button">
             <Download aria-hidden="true" className="h-4 w-4" />
             Export CSV
           </button>
@@ -594,7 +594,7 @@ export function EnglishScope12DataCollectionTool() {
                 Define which sites belong to the data collection and mark which activity-data modules apply.
               </p>
             </div>
-            <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={addLocation} type="button">
+            <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={addLocation} type="button">
               <Plus aria-hidden="true" className="h-4 w-4" />
               Add site
             </button>
@@ -622,7 +622,7 @@ export function EnglishScope12DataCollectionTool() {
                   {categoryLabels[category.id]}
                 </h3>
               </div>
-              <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={() => addEntry(category.id)} type="button">
+              <button className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#c25000] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#df6100]" onClick={() => addEntry(category.id)} type="button">
                 <Plus aria-hidden="true" className="h-4 w-4" />
                 Add entry
               </button>

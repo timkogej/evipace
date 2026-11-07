@@ -10,7 +10,7 @@ type ButtonLinkProps = {
 
 const variants = {
   primary:
-    "bg-orange text-white border-orange hover:bg-[#e96500] hover:border-[#e96500]",
+    "bg-[#c25000] text-white border-[#c25000] hover:bg-[#b44d00] hover:border-[#b44d00]",
   secondary:
     "bg-transparent text-ink border-[rgba(21,21,21,0.2)] hover:border-orange hover:text-orange",
   dark: "bg-ink text-white border-ink hover:bg-orange hover:border-orange",

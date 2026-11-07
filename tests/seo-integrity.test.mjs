@@ -239,3 +239,15 @@ test("every service page links to at least two other distinct services", async (
     assert.equal(new Set(links).size, links.length, `duplicate link in ${block.slice(0, 80)}`);
   }
 });
+
+test("print-only tool summaries do not add a second H1", async () => {
+  const { readFile } = await import("node:fs/promises");
+  for (const f of [
+    "components/evipace/resources/EsgEvidenceReadinessTool.tsx",
+    "components/evipace/resources/Scope12DataCollectionTool.tsx",
+    "components/evipace/resources/EnglishScope12DataCollectionTool.tsx"
+  ]) {
+    const src = await readFile(new URL(`../${f}`, import.meta.url), "utf8");
+    assert.ok(!src.includes("<h1"), f);
+  }
+});

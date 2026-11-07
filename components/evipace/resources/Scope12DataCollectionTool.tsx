@@ -1135,7 +1135,7 @@ function PrintSummary({ state }: { state: Scope12CollectionState }) {
 
   return (
     <section className="scope12-print-summary" aria-label="Druckübersicht">
-      <h1>Scope 1 &amp; 2 Datenerfassungsübersicht</h1>
+      <p className="print-title">Scope 1 &amp; 2 Datenerfassungsübersicht</p>
       <p>Erstellt mit der Evipace Datenerfassungs-Vorlage</p>
       <dl>
         <div><dt>Unternehmen</dt><dd>{state.companyLabel || "Nicht angegeben"}</dd></div>

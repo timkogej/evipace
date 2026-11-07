@@ -502,7 +502,7 @@ function PrintSummary({
       className="evidence-print-summary"
       aria-label={isEnglish ? "Print summary" : "Druckübersicht"}
     >
-      <h1>ESG Evidence Readiness Check</h1>
+      <p className="print-title">ESG Evidence Readiness Check</p>
       <p>
         {isEnglish
           ? "Created with the Evipace ESG Evidence Readiness Check"

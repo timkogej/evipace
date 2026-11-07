@@ -35,7 +35,7 @@
   "app/[locale]/page.tsx": "ca0b866378e2ea5d79f41eb3801b5d56c33256f4df5fe6061994680d6f283de2",
   "app/[locale]/scope-1-2-berechnung/page.tsx": "73e055da8203df3e1069f4efb0b51508b20d807117a403914e4a3df550b78c54",
   "app/[locale]/vsme-nachhaltigkeitsbericht/page.tsx": "1c73ddca9fd1531f9ca5ab666913981198c8be67d9f800fc1214e34daf5ecc50",
-  "app/globals.css": "565c19f5aeee4771269d1745c01b7a567084179945cc00f51abdb976c372fdf0",
+  "app/globals.css": "0e639a592cbb06f40e84f0a331ed87c2778fcc488dd1bcaec0839df66c07c857",
   "components/evipace/ButtonLink.tsx": "bb5eaccaf8d5f3f70974d6f37f23aae46b2b6d2bae0a969396fdc9372a8a27a3",
   "components/evipace/EnglishMethodologyPage.tsx": "02a5cee41592617143b7a4e7ce97b9b6fe7b3bee4320ee81f5d559c0e72aaf40",
   "components/evipace/Footer.tsx": "b5bd4c7afe20499c5866610497a8aeb806a25a553725e22837a03624c1745e89",

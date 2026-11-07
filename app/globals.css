@@ -1758,7 +1758,7 @@ a {
     font-family: Arial, sans-serif !important;
   }
 
-  .evidence-readiness-page .evidence-print-summary h1 {
+  .evidence-readiness-page .evidence-print-summary .print-title {
     margin: 0 0 3mm !important;
     color: #111 !important;
     font-size: 25pt !important;
@@ -1863,7 +1863,7 @@ a {
     font-family: Arial, sans-serif !important;
   }
 
-  .scope12-data-page .scope12-print-summary h1 {
+  .scope12-data-page .scope12-print-summary .print-title {
     margin: 0 0 3mm !important;
     color: #111 !important;
     font-size: 25pt !important;

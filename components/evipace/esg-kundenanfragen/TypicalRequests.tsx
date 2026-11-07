@@ -30,7 +30,6 @@ const categories = [
     items: [
       "Umweltpolitik",
       "Energieeffizienz",
-      "Abfallmanagement",
       "Wasserverbrauch",
       "Umweltzielen",
       "Klimazielen",
@@ -70,7 +69,6 @@ const categories = [
     intro: "Auch Informationen wie diese können Teil einer ESG-Kundenanfrage sein:",
     items: [
       "Beschäftigtenzahlen",
-      "Arbeitsschutz",
       "Weiterbildungen",
       "Diversität",
       "soziale Standards",

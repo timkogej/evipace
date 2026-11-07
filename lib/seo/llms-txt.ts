@@ -48,7 +48,7 @@ export function buildLlmsTxt(): string {
   const out: string[] = [
     "# Evipace",
     "",
-    "> Evipace is an ESG documentation service based in Ljubljana, Slovenia, for manufacturers and suppliers, mainly in the DACH region. When a customer sends an ESG questionnaire or request, the client forwards it; Evipace prepares the response, a person at Evipace reviews it, and the client sends it themselves. It is a service, not software.",
+    "> Evipace is an ESG documentation service based in Ljubljana, Slovenia, for manufacturers and suppliers in Europe, mainly DACH. When a customer sends an ESG questionnaire or request, the client forwards it; Evipace prepares the response, a person at Evipace reviews it, and the client sends it themselves. It is a service, not software.",
     "",
     "Evipace does not provide: Scope 3 or life-cycle (LCA) analysis, environmental or safety documentation, drafting of policies, measurements or inspections, certification, independent assurance, or any guarantee of a score or of customer acceptance.",
     "",

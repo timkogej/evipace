@@ -189,7 +189,12 @@ test("Article authorship resolves to the Organization and dates stay unfabricate
   assert.ok(registry.includes("datePublished?: string;"));
   assert.ok(registry.includes("dateModified?: string;"));
   assert.equal((registry.match(/^\s*datePublished: "/gm) ?? []).length, 6);
-  assert.deepEqual(registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim()), ['dateModified: "2026-10-04"', 'dateModified: "2026-11-06"', 'dateModified: "2026-11-06"', 'dateModified: "2026-11-06"', 'dateModified: "2026-10-04"', 'dateModified: "2026-11-06"', 'dateModified: "2026-11-06"', 'dateModified: "2026-11-06"']);
+  const modified = registry.match(/^\s*dateModified: "[^"]+"/gm)?.map((value) => value.trim());
+  // Core pages (home, six services, About, Offers) per locale, reviewed 2026-11-06,
+  // plus the guides: one 2026-10-04 update and three 2026-11-06 new guides per locale.
+  assert.equal(modified?.length, 26);
+  assert.equal(modified?.filter((value) => value === 'dateModified: "2026-10-04"').length, 2);
+  assert.equal(modified?.filter((value) => value === 'dateModified: "2026-11-06"').length, 24);
 
   // Methodology reviews retain their original dates; a GEO edit is not a new full review.
   assert.equal((registry.match(/lastReviewed: "/g) ?? []).length, 2);

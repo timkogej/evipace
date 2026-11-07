@@ -44,12 +44,7 @@ const services = [
   {
     title: "Customer ESG requests",
     href: "/en/esg-customer-requests",
-    body: "Any format of customer sustainability request, from spreadsheets to portal forms."
-  },
-  {
-    title: "ESG questionnaire support",
-    href: "/en/esg-customer-requests",
-    body: "A defined questionnaire or supplier assessment that has to be answered field by field."
+    body: "Any format of customer sustainability request, from spreadsheets and questionnaires to portal forms."
   },
   {
     title: "EcoVadis support",

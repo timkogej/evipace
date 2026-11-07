@@ -308,7 +308,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   },
   de: {
     hero: {
-      eyebrow: "ESG-Dokumentation für Produktionsunternehmen",
+      eyebrow: "ESG-Dokumentation für Hersteller und Lieferanten",
       title: "Ihre Kunden fragen nach ESG-Unterlagen. Wir übernehmen die Arbeit.",
       body: "Fragebögen, EcoVadis, Scope 1 und 2, VSME und Nachweise: Wir übernehmen die Vorbereitung, damit Ihr Team bei der Produktion bleiben kann.",
       forward: "Anfrage senden",
@@ -459,7 +459,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       items: [
         {
           title: "Wer wir sind",
-          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und übernimmt ESG-Dokumentation für Produktionsunternehmen.",
+          body: "Evipace hat seinen Sitz in Ljubljana, Slowenien, und übernimmt ESG-Dokumentation für Hersteller und Lieferanten.",
           link: { label: "Über Evipace", href: "/de/about" }
         },
         {

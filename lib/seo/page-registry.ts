@@ -108,19 +108,22 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       title: "ESG Documentation for Manufacturers & Suppliers | Evipace",
       description:
         "Evipace (Ljubljana) prepares ESG questionnaire answers, EcoVadis and IntegrityNext material, Scope 1 and 2 calculations and VSME reports for manufacturers.",
-      path: "/en"
+      path: "/en",
+      dateModified: "2026-11-06"
     },
     offers: {
       title: "Ways to work with Evipace | Request, Desk, Report",
       description:
         "Forward one customer request, set up a standing desk for recurring ones, or prepare a VSME report. We confirm scope and price before we start.",
-      path: "/en/offers"
+      path: "/en/offers",
+      dateModified: "2026-11-06"
     },
     about: {
       title: "About Evipace | ESG for manufacturing companies",
       description:
         "Evipace helps manufacturing companies handle practical ESG requirements — from customer requests and questionnaires to emissions data, reports and evidence.",
-      path: "/en/about"
+      path: "/en/about",
+      dateModified: "2026-11-06"
     },
     privacy: {
       title: "Privacy policy | Evipace",
@@ -142,37 +145,43 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       title: "ESG Questionnaire Support for Suppliers | Evipace",
       description:
         "Evipace prepares answers to customer ESG questionnaires and requests for manufacturers and suppliers: data, evidence and open gaps. Based in Ljubljana.",
-      path: "/en/esg-customer-requests"
+      path: "/en/esg-customer-requests",
+      dateModified: "2026-11-06"
     },
     recordsDeadlines: {
       title: "Records and Deadlines for Manufacturers | Evipace",
       description:
         "Evipace keeps a register of your certificates and documents, watches expiry and renewal dates and prepares what is due. A person at Evipace reviews it.",
-      path: "/en/records-and-deadlines"
+      path: "/en/records-and-deadlines",
+      dateModified: "2026-11-06"
     },
     scope12Berechnung: {
       title: "Carbon Footprint & Scope 1–2 Calculation | Evipace",
       description:
         "Evipace calculates your corporate carbon footprint (Scope 1 and 2) from activity data, emission factors, sources and assumptions, all documented.",
-      path: "/en/scope-1-2-calculation"
+      path: "/en/scope-1-2-calculation",
+      dateModified: "2026-11-06"
     },
     ecovadisUnterstuetzung: {
       title: "EcoVadis Support for Suppliers: Answers & Evidence | Evipace",
       description:
         "Evipace prepares EcoVadis answers and supporting evidence and flags gaps. Your company keeps its account and submits the assessment. No score is promised.",
-      path: "/en/ecovadis-support"
+      path: "/en/ecovadis-support",
+      dateModified: "2026-11-06"
     },
     integrityNextUnterstuetzung: {
       title: "IntegrityNext Support for Suppliers | Evipace",
       description:
         "Invited to IntegrityNext by a customer? Evipace organises your certificates and evidence, prepares the answers and flags gaps. Your company keeps its account.",
-      path: "/en/integritynext-support"
+      path: "/en/integritynext-support",
+      dateModified: "2026-11-06"
     },
     vsmeNachhaltigkeitsbericht: {
       title: "VSME Sustainability Reporting for SMEs | Evipace",
       description:
         "Evipace helps SMEs prepare VSME sustainability reporting from company data, existing documents and supporting evidence, with gaps and assumptions kept visible.",
-      path: "/en/vsme-sustainability-report"
+      path: "/en/vsme-sustainability-report",
+      dateModified: "2026-11-06"
     },
     resourcesHub: {
       title: "ESG Resources for Suppliers and Manufacturers | Evipace",
@@ -319,19 +328,22 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       title: "ESG-Dokumentation für Hersteller und Lieferanten | Evipace",
       description:
         "Evipace aus Ljubljana bereitet ESG-Fragebögen, EcoVadis- und IntegrityNext-Unterlagen, Scope-1-und-2-Berechnungen und VSME-Berichte für Hersteller vor.",
-      path: "/de"
+      path: "/de",
+      dateModified: "2026-11-06"
     },
     offers: {
       title: "Zusammenarbeit mit Evipace | Einzelanfrage, Service, Bericht",
       description:
         "Eine Kundenanfrage weiterleiten, einen laufenden Service einrichten oder einen freiwilligen VSME-Bericht vorbereiten. Umfang und Preis klären wir vorab.",
-      path: "/de/angebot"
+      path: "/de/angebot",
+      dateModified: "2026-11-06"
     },
     about: {
       title: "Über Evipace | ESG für produzierende Unternehmen",
       description:
         "Evipace unterstützt produzierende Unternehmen bei ESG-Anforderungen ihrer Kunden. Erfahren Sie, warum wir gegründet wurden und wie wir arbeiten.",
-      path: "/de/about"
+      path: "/de/about",
+      dateModified: "2026-11-06"
     },
     privacy: {
       title: "Datenschutzerklärung | Evipace",
@@ -356,37 +368,43 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
       title: "ESG-Fragebogen für Lieferanten beantworten | Evipace",
       description:
         "Ihr Kunde schickt einen ESG-Fragebogen? Evipace ordnet Daten und Nachweise zu, schreibt den Antwortentwurf und listet offene Punkte auf.",
-      path: "/de/esg-kundenanfragen"
+      path: "/de/esg-kundenanfragen",
+      dateModified: "2026-11-06"
     },
     ecovadisUnterstuetzung: {
       title: "EcoVadis Unterstützung für Lieferanten | Evipace",
       description:
         "Evipace bereitet EcoVadis-Antworten und Nachweise vor und macht Lücken sichtbar. Ihr Unternehmen reicht selbst ein. Keine Score-Garantie.",
-      path: "/de/ecovadis-unterstuetzung"
+      path: "/de/ecovadis-unterstuetzung",
+      dateModified: "2026-11-06"
     },
     integrityNextUnterstuetzung: {
       title: "IntegrityNext Unterstützung für Lieferanten | Evipace",
       description:
         "Zu IntegrityNext eingeladen? Evipace ordnet Zertifikate und Nachweise zu, bereitet Antworten vor und macht offene Punkte sichtbar. Sie behalten Ihr Konto.",
-      path: "/de/integritynext-unterstuetzung"
+      path: "/de/integritynext-unterstuetzung",
+      dateModified: "2026-11-06"
     },
     vsmeNachhaltigkeitsbericht: {
       title: "VSME-Nachhaltigkeitsbericht erstellen | Evipace",
       description:
         "VSME-Nachhaltigkeitsbericht erstellen: Wir strukturieren Ihre ESG-Daten und bereiten Kennzahlen nachvollziehbar auf, für Kunden, Banken und intern.",
-      path: "/de/vsme-nachhaltigkeitsbericht"
+      path: "/de/vsme-nachhaltigkeitsbericht",
+      dateModified: "2026-11-06"
     },
     recordsDeadlines: {
       title: "Nachweise und Fristen für Hersteller | Evipace",
       description:
         "Evipace führt ein Register Ihrer Zertifikate und Nachweise, überwacht Ablauf- und Verlängerungstermine und bereitet Fälliges vor. Eine Person prüft es.",
-      path: "/de/nachweise-und-fristen"
+      path: "/de/nachweise-und-fristen",
+      dateModified: "2026-11-06"
     },
     scope12Berechnung: {
       title: "CO₂-Bilanz für Unternehmen: Scope 1 & 2 berechnen | Evipace",
       description:
         "CO₂-Bilanz für Unternehmen: Wir strukturieren Verbrauchsdaten, Emissionsquellen und Faktoren, um Scope 1 und Scope 2 nachvollziehbar zu berechnen.",
-      path: "/de/scope-1-2-berechnung"
+      path: "/de/scope-1-2-berechnung",
+      dateModified: "2026-11-06"
     },
     resourcesHub: {
       title: "ESG-Ressourcen für Lieferanten & Unternehmen | Evipace",

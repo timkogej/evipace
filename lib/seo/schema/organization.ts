@@ -56,7 +56,7 @@ export function buildOrganizationSchema() {
     location: { "@type": "Country", name: "Slovenia" },
     areaServed: {
       "@type": "Place",
-      name: "Europe"
+      name: "Europe, mainly DACH"
     },
     founder: {
       "@type": "Person",

@@ -6,6 +6,9 @@
   --ev-orange-500: #fe7001;
   --ev-orange-600: #e96500;
   --ev-orange-700: #b44d00;
+  /* Fill for buttons that carry white text: 4.7:1 on white, where
+     --ev-orange-500 only reaches 2.8:1. */
+  --ev-orange-action: #c25000;
   --ev-orange-800: #8f3d00;
   --ev-orange-100: #ffe6d1;
   /* Neutral light grey for small fills (badges, table heads, panels).
@@ -197,8 +200,8 @@
 }
 
 .primaryButton:hover {
-  border-color: var(--ev-orange-600);
-  background: var(--ev-orange-600);
+  border-color: var(--ev-orange-700);
+  background: var(--ev-orange-700);
   transform: translateY(-1px);
 }
 
@@ -311,9 +314,9 @@
   min-height: 3rem;
   align-items: center;
   gap: var(--ev-s-3);
-  border: 1px solid var(--ev-orange-500);
+  border: 1px solid var(--ev-orange-action);
   border-radius: 999px;
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   padding: 0.3rem 0.3rem 0.3rem 1.15rem;
   color: var(--ev-white);
   font-size: 1rem;
@@ -323,8 +326,8 @@
 }
 
 .pillButton:hover {
-  border-color: var(--ev-orange-600);
-  background: var(--ev-orange-600);
+  border-color: var(--ev-orange-700);
+  background: var(--ev-orange-700);
 }
 
 .pillArrow {
@@ -2616,13 +2619,13 @@
 }
 
 .flow[data-ready] .flowButton {
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   color: var(--ev-white);
   cursor: pointer;
 }
 
 .flow[data-ready] .flowButton:hover {
-  background: var(--ev-orange-600);
+  background: var(--ev-orange-700);
 }
 
 .flow[data-approved] .flowButton {

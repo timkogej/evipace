@@ -192,7 +192,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--ev-orange-500);
+  background: var(--ev-orange-action);
   color: var(--ev-white);
   font-size: 0.85rem;
   font-weight: 700;

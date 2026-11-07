@@ -102,7 +102,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         included: [
           "An organised set of your evidence, kept up to date",
           "Regular refresh of evidence and annual data for Scope 1 and 2",
-          "An intake for requests (forward to desk@evipace.com), including handling of the email",
+          "An intake for requests (forward to hello@evipace.com), including handling of the email",
           "A set number of requests per year included; additional requests are scoped after review",
           "Priority handling",
           "Access to your Evipace portal with your documents"
@@ -272,7 +272,7 @@ export const offersContent: Record<HomeLocale, OffersContent> = {
         included: [
           "Eine geordnete Sammlung Ihrer Nachweise, laufend aktuell gehalten",
           "Regelmäßige Aktualisierung der Nachweise und jährliche Daten zu Scope 1 und 2",
-          "Ein Eingang für Anfragen (Weiterleitung an desk@evipace.com) einschließlich Bearbeitung der E-Mail",
+          "Ein Eingang für Anfragen (Weiterleitung an hello@evipace.com) einschließlich Bearbeitung der E-Mail",
           "Eine festgelegte Anzahl an Anfragen pro Jahr enthalten; weitere Anfragen werden nach Prüfung im Umfang festgelegt",
           "Vorrangige Bearbeitung",
           "Zugang zu Ihrem Evipace-Portal mit Ihren Unterlagen"

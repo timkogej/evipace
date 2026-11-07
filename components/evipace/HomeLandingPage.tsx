@@ -72,7 +72,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               fill
               quality={88}
               sizes="(min-width: 900px) 40vw, 100vw"
-              src="/images/evipace/homepage/photo-band-quality-manager.webp"
+              src="/images/evipace/homepage/photo-band-manager-sharp.webp"
               style={{ objectFit: "cover", objectPosition: "30% 30%" }}
             />
           </div>
@@ -82,8 +82,8 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               fill
               quality={88}
               sizes="(min-width: 900px) 55vw, 100vw"
-              src="/images/evipace/homepage/hero-meeting-desktop.webp"
-              style={{ objectFit: "cover", objectPosition: "50% 40%" }}
+              src="/images/evipace/homepage/photo-band-review.webp"
+              style={{ objectFit: "cover", objectPosition: "40% 40%" }}
             />
           </div>
           <div className={`${styles.photo} ${styles.photoSmall}`}>
@@ -92,8 +92,8 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               fill
               quality={88}
               sizes="(min-width: 900px) 28vw, 100vw"
-              src="/images/evipace/about/hero-team-review.png"
-              style={{ objectFit: "cover", objectPosition: "50% 35%" }}
+              src="/images/evipace/homepage/photo-band-result.webp"
+              style={{ objectFit: "cover", objectPosition: "50% 62%" }}
             />
           </div>
         </RevealOnView>

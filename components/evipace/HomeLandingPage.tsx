@@ -4,7 +4,7 @@ import { deskForwardEmail } from "@/lib/company-info";
 import { getOffersPath } from "@/lib/site-navigation";
 import { ClosingCta } from "./home/ClosingCta";
 import { FocusOnScroll } from "./home/FocusOnScroll";
-import { HeroFlow } from "./home/HeroFlow";
+import { HeroScene } from "./home/HeroScene";
 import { BrandIcon } from "./home/BrandIcon";
 import { ReuseVisual } from "./home/ReuseVisual";
 import { RevealOnView } from "./home/RevealOnView";
@@ -47,7 +47,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               </Link>
             </div>
           </div>
-          <HeroFlow copy={copy.flow} />
+          <HeroScene />
         </div>
       </section>
 
@@ -70,15 +70,17 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             <Image
               alt=""
               fill
+              quality={88}
               sizes="(min-width: 900px) 40vw, 100vw"
-              src="/images/evipace/homepage/industrial-break.webp"
-              style={{ objectFit: "cover", objectPosition: "70% 40%" }}
+              src="/images/evipace/homepage/photo-band-quality-manager.webp"
+              style={{ objectFit: "cover", objectPosition: "30% 30%" }}
             />
           </div>
           <div className={`${styles.photo} ${styles.photoWide}`}>
             <Image
               alt=""
               fill
+              quality={88}
               sizes="(min-width: 900px) 55vw, 100vw"
               src="/images/evipace/homepage/hero-meeting-desktop.webp"
               style={{ objectFit: "cover", objectPosition: "50% 40%" }}
@@ -88,6 +90,7 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
             <Image
               alt=""
               fill
+              quality={88}
               sizes="(min-width: 900px) 28vw, 100vw"
               src="/images/evipace/about/hero-team-review.png"
               style={{ objectFit: "cover", objectPosition: "50% 35%" }}

@@ -2440,13 +2440,13 @@
 @media (min-width: 900px) {
   .photoGrid {
     gap: var(--ev-s-4);
-    grid-template-columns: 1.1fr 1.5fr 0.9fr;
+    grid-template-columns: 1.4fr 1.5fr 0.9fr;
     align-items: stretch;
   }
 
   .photo {
     aspect-ratio: auto;
-    min-height: 26rem;
+    min-height: 24rem;
   }
 
   .photoWide {

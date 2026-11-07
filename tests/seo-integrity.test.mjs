@@ -251,3 +251,12 @@ test("print-only tool summaries do not add a second H1", async () => {
     assert.ok(!src.includes("<h1"), f);
   }
 });
+
+test("hero scene is decorative and carries no text of its own", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const src = await readFile(new URL("../components/evipace/home/HeroScene.tsx", import.meta.url), "utf8");
+  assert.ok(src.includes('aria-hidden="true"'));
+  assert.ok(!/<h[1-6]/.test(src));
+  const home = await readFile(new URL("../components/evipace/HomeLandingPage.tsx", import.meta.url), "utf8");
+  assert.ok(home.includes("<HeroScene />"));
+});

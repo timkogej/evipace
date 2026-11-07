@@ -41,7 +41,6 @@ export function FileDropzone({
   return (
     <div>
       <button
-        aria-label={copy.addFilesAriaLabel}
         className={`${styles.dropzone}${isDragging ? ` ${styles.dropzoneActive}` : ""}`}
         disabled={disabled}
         onClick={() => inputRef.current?.click()}
@@ -67,6 +66,7 @@ export function FileDropzone({
 
       <input
         accept={acceptAttr}
+        aria-label={copy.addFilesAriaLabel}
         className="sr-only"
         multiple
         onChange={(event) => {
@@ -74,6 +74,7 @@ export function FileDropzone({
           event.target.value = "";
         }}
         ref={inputRef}
+        tabIndex={-1}
         type="file"
       />
 

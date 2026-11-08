@@ -72,8 +72,8 @@ export function HomeLandingPage({ locale }: { locale: HomeLocale }) {
               fill
               quality={88}
               sizes="(min-width: 900px) 40vw, 100vw"
-              src="/images/evipace/homepage/photo-band-manager-sharp.webp"
-              style={{ objectFit: "cover", objectPosition: "30% 30%" }}
+              src="/images/evipace/homepage/photo-band-team.webp"
+              style={{ objectFit: "cover", objectPosition: "56% 45%" }}
             />
           </div>
           <div className={`${styles.photo} ${styles.photoWide}`}>

@@ -354,7 +354,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     methodology: {
       title: "ESG-Methodik & Qualitätssicherung | Evipace",
       description:
-        "So bereitet Evipace ESG-Fragebögen, Emissionsberechnungen, Nachhaltigkeitsberichte und Nachweise vor – mit nachvollziehbaren Quellen und menschlicher Prüfung.",
+        "So bereitet Evipace ESG-Fragebögen, Emissionsberechnungen, Berichte und Nachweise vor – mit nachvollziehbaren Quellen und menschlicher Prüfung.",
       path: "/de/methodology",
       // Hand-set when the content is actually reviewed — never derived from
       // a build/deploy timestamp. Update this only when the methodology
@@ -409,7 +409,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     resourcesHub: {
       title: "ESG-Ressourcen für Lieferanten & Unternehmen | Evipace",
       description:
-        "Praktische ESG-Leitfäden, Checklisten und Tools für Lieferanten und produzierende Unternehmen – von Kundenfragebögen und Nachweisen bis Scope 1 & 2 und VSME.",
+        "Praktische ESG-Leitfäden, Checklisten und Tools für Lieferanten und Hersteller – von Kundenfragebögen und Nachweisen bis Scope 1 & 2 und VSME.",
       path: "/de/ressourcen"
     },
     welcheEsgDatenKundenLieferanten: {
@@ -508,7 +508,7 @@ export const pageRegistry: Record<Locale, LocaleRegistry> = {
     esgFragebogenChecklisteLieferanten: {
       title: "ESG-Fragebogen Checkliste für Lieferanten | Evipace",
       description:
-        "ESG-Fragebogen vom Kunden erhalten? Diese praktische Checkliste führt Sie von Scope und Datensammlung über Nachweise und Berechnungen bis zur finalen Prüfung.",
+        "ESG-Fragebogen vom Kunden erhalten? Diese Checkliste führt Sie von Scope und Datensammlung über Nachweise und Berechnungen bis zur Prüfung.",
       path: "/de/ressourcen/esg-fragebogen-checkliste-lieferanten",
       openGraphType: "article"
     },

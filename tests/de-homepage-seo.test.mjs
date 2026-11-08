@@ -134,7 +134,7 @@ test("English and German About and methodology pages are genuine registry equiva
   );
   assert.ok(
     germanRegistry.includes(
-      '"So bereitet Evipace ESG-Fragebögen, Emissionsberechnungen, Nachhaltigkeitsberichte und Nachweise vor – mit nachvollziehbaren Quellen und menschlicher Prüfung."'
+      '"So bereitet Evipace ESG-Fragebögen, Emissionsberechnungen, Berichte und Nachweise vor – mit nachvollziehbaren Quellen und menschlicher Prüfung."'
     )
   );
   assert.ok(germanRegistry.includes('path: "/de/methodology"'));

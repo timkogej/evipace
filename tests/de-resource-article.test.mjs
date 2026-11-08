@@ -1909,7 +1909,7 @@ test("interactive ESG questionnaire checklist has exact metadata and genuine Eng
   );
   assert.ok(
     germanRegistry.includes(
-      'description: "ESG-Fragebogen vom Kunden erhalten? Diese praktische Checkliste führt Sie von Scope und Datensammlung über Nachweise und Berechnungen bis zur finalen Prüfung."'
+      'description: "ESG-Fragebogen vom Kunden erhalten? Diese Checkliste führt Sie von Scope und Datensammlung über Nachweise und Berechnungen bis zur Prüfung."'
     )
   );
   assert.ok(germanRegistry.includes(`path: "${CHECKLIST_PATH}"`));
